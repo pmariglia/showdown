@@ -9,6 +9,8 @@ The bot can play games in generations 4 through 7 however some of the evaluation
 Developed and testing using Python 3.6.3.
 
 ### Installing
+Clone the repository with `git clone https://github.com/pmariglia/showdown.git```
+
 Install the requirements with `pip install -r requirements.txt`.
 
 Be sure to use a virtual environment to isolate your packages.
