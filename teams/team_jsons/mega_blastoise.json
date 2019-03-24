@@ -1,0 +1,134 @@
+[
+  {
+    "name": "Snorlax",
+    "species": "Snorlax",
+    "item": "leftovers",
+    "ability": "Thick Fat",
+    "moves": [
+      "curse",
+      "rest",
+      "return",
+      "earthquake"
+    ],
+    "nature": "careful",
+    "evs": {
+      "hp": 188,
+      "atk": 0,
+      "def": 128,
+      "spa": 0,
+      "spd": 192,
+      "spe": 0
+    },
+    "level": 100
+  },
+  {
+    "name": "Doublade",
+    "species": "Doublade",
+    "item": "eviolite",
+    "ability": "noguard",
+    "moves": [
+      "swordsdance",
+      "shadowsneak",
+      "sacredsword",
+      "shadowclaw"
+    ],
+    "nature": "adamant",
+    "evs": {
+      "hp": 252,
+      "atk": 180,
+      "def": 0,
+      "spa": 0,
+      "spd": 76,
+      "spe": 0
+    },
+    "level": 100
+  },
+  {
+    "name": "Shaymin",
+    "species": "Shaymin",
+    "item": "choicescarf",
+    "ability": "Natural Cure",
+    "moves": [
+      "seedflare",
+      "healingwish",
+      "psychic",
+      "hiddenpowerice"
+    ],
+    "nature": "timid",
+    "evs": {
+      "hp": 0,
+      "atk": 0,
+      "def": 0,
+      "spa": 252,
+      "spd": 4,
+      "spe": 252
+    },
+    "level": 100
+  },
+  {
+    "name": "Nidoqueen",
+    "species": "Nidoqueen",
+    "item": "lifeorb",
+    "ability": "Sheer Force",
+    "moves": [
+      "stealthrock",
+      "earthpower",
+      "icebeam",
+      "toxicspikes"
+    ],
+    "nature": "timid",
+    "evs": {
+      "hp": 0,
+      "atk": 0,
+      "def": 0,
+      "spa": 252,
+      "spd": 4,
+      "spe": 252
+    },
+    "level": 100
+  },
+  {
+    "name": "Flygon",
+    "species": "Flygon",
+    "item": "dragoniumz",
+    "ability": "Levitate",
+    "moves": [
+      "dragondance",
+      "earthquake",
+      "outrage",
+      "irontail"
+    ],
+    "nature": "adamant",
+    "evs": {
+      "hp": 0,
+      "atk": 252,
+      "def": 0,
+      "spa": 0,
+      "spd": 4,
+      "spe": 252
+    },
+    "level": 100
+  },
+  {
+    "name": "Blastoise",
+    "species": "Blastoise",
+    "item": "blastoisinite",
+    "ability": "Rain Dish",
+    "moves": [
+      "scald",
+      "darkpulse",
+      "aurasphere",
+      "rapidspin"
+    ],
+    "nature": "timid",
+    "evs": {
+      "hp": 0,
+      "atk": 0,
+      "def": 0,
+      "spa": 252,
+      "spd": 4,
+      "spe": 252
+    },
+    "level": 100
+  }
+]

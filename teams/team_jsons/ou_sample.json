@@ -1,0 +1,152 @@
+[
+  {
+    "name": " Greninja-Ash",
+    "species": "",
+    "item": "choicespecs",
+    "ability": "",
+    "moves": [
+      "surf",
+      "darkpulse",
+      "icebeam",
+      "watershuriken"
+    ],
+    "nature": "Timid",
+    "evs": {
+      "hp": "",
+      "atk": "",
+      "def": "4",
+      "spa": "252",
+      "spd": "",
+      "spe": "252"
+    },
+    "gender": "",
+    "ivs": "",
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Mawile-Mega",
+    "species": "",
+    "item": "mawilite",
+    "ability": "intimidate",
+    "moves": [
+      "suckerpunch",
+      "playrough",
+      "thunderpunch",
+      "firefang"
+    ],
+    "nature": "Adamant",
+    "evs": {
+      "hp": "80",
+      "atk": "252",
+      "def": "",
+      "spa": "",
+      "spd": "",
+      "spe": "176"
+    },
+    "gender": "",
+    "ivs": "",
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Tornadus-Therian",
+    "species": "",
+    "item": "fightiniumz",
+    "ability": "",
+    "moves": [
+      "taunt",
+      "hurricane",
+      "focusblast",
+      "defog"
+    ],
+    "nature": "Timid",
+    "evs": {
+      "hp": "",
+      "atk": "",
+      "def": "4",
+      "spa": "252",
+      "spd": "",
+      "spe": "252"
+    },
+    "gender": "",
+    "ivs": ",0,,,,",
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Ferrothorn",
+    "species": "",
+    "item": "leftovers",
+    "ability": "",
+    "moves": [
+      "spikes",
+      "leechseed",
+      "knockoff",
+      "gyroball"
+    ],
+    "nature": "Sassy",
+    "evs": {
+      "hp": "252",
+      "atk": "",
+      "def": "4",
+      "spa": "",
+      "spd": "252",
+      "spe": ""
+    },
+    "gender": "",
+    "ivs": ",,,,,0",
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Heatran",
+    "species": "",
+    "item": "leftovers",
+    "ability": "",
+    "moves": [
+      "taunt",
+      "magmastorm",
+      "earthpower",
+      "toxic"
+    ],
+    "nature": "Calm",
+    "evs": {
+      "hp": "248",
+      "atk": "",
+      "def": "",
+      "spa": "",
+      "spd": "216",
+      "spe": "44"
+    },
+    "gender": "",
+    "ivs": ",0,,,,",
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Garchomp",
+    "species": "",
+    "item": "rockyhelmet",
+    "ability": "H",
+    "moves": [
+      "stealthrock",
+      "earthquake",
+      "toxic",
+      "roar"
+    ],
+    "nature": "Impish",
+    "evs": {
+      "hp": "88",
+      "atk": "",
+      "def": "252",
+      "spa": "",
+      "spd": "",
+      "spe": "168"
+    },
+    "gender": "",
+    "ivs": "",
+    "shiny": "",
+    "level": ""
+  }
+]

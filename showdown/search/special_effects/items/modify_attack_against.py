@@ -1,0 +1,45 @@
+import constants
+
+
+def eviolite(attacking_move, attacking_pokemon, defending_pokemon):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.BASE_POWER] *= 0.5
+    return attacking_move
+
+
+def rockyhelmet(attacking_move, attacking_pokemon, defending_pokemon):
+    if constants.CONTACT in attacking_move[constants.FLAGS]:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.HEAL] = [-1, 6]
+        attacking_move[constants.HEAL_TARGET] = constants.SELF
+    return attacking_move
+
+
+def assaultvest(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.CATEGORY] == constants.SPECIAL:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 0.5
+    return attacking_move
+
+
+def airballoon(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'ground':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] = 0
+    return attacking_move
+
+
+item_lookup = {
+    'eviolite': eviolite,
+    'rockyhelmet': rockyhelmet,
+    'assaultvest': assaultvest,
+    'airballoon': airballoon
+}
+
+
+def item_modify_attack_against(item_name, attacking_move, attacking_pokemon, defending_pokemon):
+    item_func = item_lookup.get(item_name)
+    if item_func is not None:
+        return item_func(attacking_move, attacking_pokemon, defending_pokemon)
+    else:
+        return attacking_move
