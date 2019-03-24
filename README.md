@@ -1,22 +1,22 @@
-#Showdown
+# Showdown
 Showdown is a Pokémon battle-bot that can play battles on [Pokemon Showdown](https://pokemonshowdown.com/).
 
 The bot can play games in generations 4 through 7 however some of the evaluation logic is assuming gen7 mechanics.
 
 ## Getting Started
 
-###Python version
+### Python version
 Developed and testing using Python 3.6.3.
 
-###Installing
+### Installing
 Install the requirements with `pip install -r requirements.txt`.
 
 Be sure to use a virtual environment to isolate your packages.
 
-###Tests
+### Tests
 Run all tests with `python -m unittest discover -s tests/ -t .`
 
-###Configuration
+### Configuration
 Showdown uses environment variables for configuration, which are read from a file named `.env` in the root of the project.
 
 The configurations available are:
@@ -50,11 +50,11 @@ RUN_COUNT=1
 ```
 
 
-###Running
+### Running
 Running with `python run.py` will start the bot with the settings specified in your `.env` file.
 
 
-##Decision Logic
+## Decision Logic
 
 Showdown decides which move to make by first simulating all possible transpositions for 2 turns.
 An evaluation function is used to score each combination of moves and a decision is made about which the best move(s) are.
@@ -75,7 +75,7 @@ Most aspects of Pokémon are accounted for, such as:
 
 7. Weather
 
-##Specifying Teams
+## Specifying Teams
 The user can specify teams in JSON format to be used for non-random battles. Examples can be found in `teams/team_jsons/`.
 
 The name of the `.json` file must used as `TEAM_NAME` in the configuration file.
