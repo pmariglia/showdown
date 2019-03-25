@@ -1,0 +1,6 @@
+requests==2.20.1
+environs==4.1.0
+websockets==7.0
+
+# For Testing/Analysis
+pandas==0.23.4
