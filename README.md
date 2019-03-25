@@ -61,6 +61,8 @@ Running with `python run.py` will start the bot with the settings specified in y
 Showdown decides which move to make by first simulating all possible transpositions for 2 turns.
 An evaluation function is used to score each combination of moves and a decision is made about which the best move(s) are.
 
+The decision logic is not deterministic. The same state could result in two different decisions if evaluated twice.
+
 Most aspects of Pokémon are accounted for, such as:
 
 1. Damage Rolls
