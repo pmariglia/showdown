@@ -83,6 +83,14 @@ def gyroball(attacking_move, defending_move, attacking_pokemon, defending_pokemo
     return attacking_move
 
 
+def focuspunch(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move):
+    # technically wrong - a move missing would allow focuspunch to hit, however that information is not present here
+    if first_move or defending_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] = 0
+    return attacking_move
+
+
 move_lookup = {
     'suckerpunch': suckerpunch,
     'eruption': eruption,
@@ -102,7 +110,8 @@ move_lookup = {
     'secretsword': psyshock,
     'avalanche': avalanche,
     'facade': facade,
-    'gyroball': gyroball
+    'gyroball': gyroball,
+    'focuspunch': focuspunch
 }
 
 

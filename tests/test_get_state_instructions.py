@@ -105,6 +105,38 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_focuspunch_into_non_damaging_move_gives_correct_states(self):
+        bot_move = "focuspunch"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 46)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_focuspunch_into_damaging_move_gives_correct_states(self):
+        bot_move = "focuspunch"
+        opponent_move = "tackle"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35)
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_whirlwind_removes_status_boosts(self):
         bot_move = "whirlwind"
         opponent_move = "splash"
