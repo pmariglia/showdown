@@ -6,6 +6,7 @@ import time
 
 from config import logger
 from .exceptions import LoginError
+from .exceptions import SaveReplayError
 
 
 class PSWebsocketClient:
@@ -127,12 +128,13 @@ class PSWebsocketClient:
                 obj = json.loads(msg.replace("|queryresponse|savereplay|", ""))
                 log = obj['log']
                 identifier = obj['id']
-                get_response = requests.post(
+                post_response = requests.post(
                     "https://play.pokemonshowdown.com/~~showdown/action.php?act=uploadreplay",
                     data={
                         "log": log,
                         "id": identifier
                     }
                 )
-                assert get_response.status_code == 200, "GET to save replay did not return a 200: {}".format(get_response.content)
+                if post_response.status_code != 200:
+                    raise SaveReplayError("GET to save replay did not return a 200: {}".format(post_response.content))
                 break
