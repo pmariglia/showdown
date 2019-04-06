@@ -136,5 +136,5 @@ class PSWebsocketClient:
                     }
                 )
                 if post_response.status_code != 200:
-                    raise SaveReplayError("GET to save replay did not return a 200: {}".format(post_response.content))
+                    raise SaveReplayError("POST to save replay did not return a 200: {}".format(post_response.content))
                 break
