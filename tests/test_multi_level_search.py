@@ -134,7 +134,6 @@ class TestSelectBestMove(unittest.TestCase):
         move_string = 'tackle'
         self.state.self.active.moves = [
             {
-                # this boosting move will allow a guaranteed ko on move # 2
                 'id': move_string,
                 'disabled': False,
                 'current_pp': 16
@@ -142,7 +141,6 @@ class TestSelectBestMove(unittest.TestCase):
         ]
         self.state.opponent.active.moves = [
             {
-                # this boosting move will allow a guaranteed ko on move # 2
                 'id': move_string,
                 'disabled': False,
                 'current_pp': 16
@@ -180,7 +178,6 @@ class TestSelectBestMove(unittest.TestCase):
         move_string = 'tackle'
         self.state.self.active.moves = [
             {
-                # this boosting move will allow a guaranteed ko on move # 2
                 'id': move_string,
                 'disabled': False,
                 'current_pp': 16
@@ -188,7 +185,6 @@ class TestSelectBestMove(unittest.TestCase):
         ]
         self.state.opponent.active.moves = [
             {
-                # this boosting move will allow a guaranteed ko on move # 2
                 'id': move_string,
                 'disabled': False,
                 'current_pp': 16
