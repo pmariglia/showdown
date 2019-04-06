@@ -4191,3 +4191,63 @@ class TestUserMovesFirst(unittest.TestCase):
         opponent.active.speed = 2
 
         self.assertFalse(user_moves_first(self.state, user_move, opponent_move))
+
+    def test_prankster_results_in_status_move_going_first(self):
+        user = self.state.self
+        opponent = self.state.opponent
+        user_move = lookup_move('willowisp')
+        opponent_move = lookup_move('tackle')
+
+        user.active.speed = 1
+        opponent.active.speed = 2
+        user.active.ability = 'prankster'
+
+        self.assertTrue(user_moves_first(self.state, user_move, opponent_move))
+
+    def test_quickattack_still_goes_first_when_user_has_prankster(self):
+        user = self.state.self
+        opponent = self.state.opponent
+        user_move = lookup_move('willowisp')
+        opponent_move = lookup_move('quickattack')
+
+        user.active.speed = 1
+        opponent.active.speed = 2
+        user.active.ability = 'prankster'
+
+        self.assertFalse(user_moves_first(self.state, user_move, opponent_move))
+
+    def test_prankster_does_not_result_in_tackle_going_first(self):
+        user = self.state.self
+        opponent = self.state.opponent
+        user_move = lookup_move('tackle')
+        opponent_move = lookup_move('tackle')
+
+        user.active.speed = 1
+        opponent.active.speed = 2
+        user.active.ability = 'prankster'
+
+        self.assertFalse(user_moves_first(self.state, user_move, opponent_move))
+
+    def test_trickroom_results_in_slower_pokemon_going_first(self):
+        user = self.state.self
+        opponent = self.state.opponent
+        user_move = lookup_move('tackle')
+        opponent_move = lookup_move('tackle')
+
+        self.state.field = 'trickroom'
+        user.active.speed = 1
+        opponent.active.speed = 2
+
+        self.assertTrue(user_moves_first(self.state, user_move, opponent_move))
+
+    def test_priority_move_goes_first_in_trickroom(self):
+        user = self.state.self
+        opponent = self.state.opponent
+        user_move = lookup_move('tackle')
+        opponent_move = lookup_move('quickattack')
+
+        self.state.field = 'trickroom'
+        user.active.speed = 1
+        opponent.active.speed = 2
+
+        self.assertFalse(user_moves_first(self.state, user_move, opponent_move))

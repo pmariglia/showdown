@@ -207,7 +207,7 @@ def weather(battle, split_msg):
 
 def fieldstart(battle, split_msg):
     """Set the battle's field condition"""
-    battle.field = split_msg[2].split(':')[-1].strip()
+    battle.field = normalize_name(split_msg[2].split(':')[-1].strip())
 
 
 def fieldend(battle, _):

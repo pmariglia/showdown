@@ -70,13 +70,17 @@ def user_moves_first(state, user_move, opponent_move):
 
     user_priority = user_move[constants.PRIORITY]
     opponent_priority = opponent_move[constants.PRIORITY]
-    if state.self.active.ability == 'prankster':
+    if state.self.active.ability == 'prankster' and user_move[constants.CATEGORY] == constants.STATUS:
         user_priority += 1
-    if state.opponent.active.ability == 'prankster':
+    if state.opponent.active.ability == 'prankster' and opponent_move[constants.CATEGORY] == constants.STATUS:
         opponent_priority += 1
 
     if user_priority == opponent_priority:
-        return user_effective_speed > opponent_effective_speed
+        user_is_faster = user_effective_speed > opponent_effective_speed
+        if state.field == 'trickroom':
+            return not user_is_faster
+        else:
+            return user_is_faster
 
     if user_priority > opponent_priority:
         return True
