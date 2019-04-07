@@ -572,6 +572,38 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_fire_type_cannot_be_burned(self):
+        bot_move = "willowisp"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['fire']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_fire_type_cannot_be_burned_from_secondary(self):
+        bot_move = "flamethrower"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['fire']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 24)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_poisoning_move_shows_poison_damage_on_opponents_turn(self):
         bot_move = "poisonjab"
         opponent_move = "tackle"

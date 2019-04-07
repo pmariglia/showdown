@@ -805,6 +805,8 @@ class InstructionGenerator:
             return True
         if status in [constants.POISON, constants.TOXIC] and any(t in ['poison', 'steel'] for t in pkmn.types):
             return True
+        if status == constants.BURN and 'fire' in pkmn.types:
+            return True
         if status == constants.PARALYZED and 'ground' in pkmn.types:
             return True
 
