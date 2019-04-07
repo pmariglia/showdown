@@ -83,6 +83,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_superpower_correctly_unboosts_opponent(self):
+        bot_move = "splash"
+        opponent_move = "superpower"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 101),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.DEFENSE, -1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_powder_into_powder_gives_correct_states(self):
         bot_move = "sleeppowder"
         opponent_move = "sleeppowder"
