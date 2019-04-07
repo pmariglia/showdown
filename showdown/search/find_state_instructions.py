@@ -100,7 +100,8 @@ def update_damage_calc_from_abilities_and_items(attacking_pokemon, defending_pok
         attacking_pokemon.ability,
         attacking_move,
         attacking_pokemon,
-        defending_pokemon
+        defending_pokemon,
+        first_move
     )
 
     attacking_move = item_modify_attack_being_used(

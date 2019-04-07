@@ -604,6 +604,25 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_analytic_boosts_damage(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'analytic'
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 33)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_poisoning_move_shows_poison_damage_on_opponents_turn(self):
         bot_move = "poisonjab"
         opponent_move = "tackle"
