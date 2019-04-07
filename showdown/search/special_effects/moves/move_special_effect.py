@@ -55,8 +55,9 @@ def storedpower(attacking_move, defending_move, attacking_pokemon, defending_pok
 
 
 def psyshock(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move):
+    defending_stats = defending_pokemon.calculate_boosted_stats()
     attacking_move = attacking_move.copy()
-    attacking_move[constants.BASE_POWER] *= (defending_pokemon.special_defense / defending_pokemon.defense)
+    attacking_move[constants.BASE_POWER] *= (defending_stats[constants.SPECIAL_DEFENSE] / defending_stats[constants.DEFENSE])
     return attacking_move
 
 
