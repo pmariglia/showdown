@@ -711,9 +711,9 @@ class InstructionGenerator:
             instruction_additions.append(
                 (
                     constants.MUTATOR_SIDE_END,
-                    constants.SELF,
+                    side_string,
                     constants.TOXIC_COUNT,
-                    2
+                    side.side_conditions[constants.TOXIC_COUNT]
                 ))
         if side.active.attack_boost:
             instruction_additions.append(
