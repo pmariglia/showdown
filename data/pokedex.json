@@ -21616,5 +21616,469 @@
             "dragon"
         ],
         "most_likely_ability": "Neuroforce"
+    },
+    "raticatealolatotem": {
+        "abilities": {
+            "0": "Thick Fat"
+        },
+        "baseStats": {
+            "hp": 75,
+            "attack": 71,
+            "defense": 70,
+            "special-attack": 40,
+            "special-defense": 80,
+            "speed": 77
+        },
+        "species": "Raticate-Alola-Totem",
+        "types": [
+            "dark",
+            "normal"
+        ],
+        "most_likely_ability": "Thick Fat"
+    },
+    "pikachuoriginal": {
+        "species": "Pikachu-Original",
+        "types": [
+            "electric"
+        ],
+        "baseStats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+        },
+        "abilities": {
+            "0": "Static"
+        },
+        "most_likely_ability": "Static"
+    },
+    "pikachuhoenn": {
+        "species": "Pikachu-Hoenn",
+        "types": [
+            "electric"
+        ],
+        "baseStats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+        },
+        "abilities": {
+            "0": "Static"
+        },
+        "most_likely_ability": "Static"
+    },
+    "pikachusinnoh": {
+        "species": "Pikachu-Sinnoh",
+        "types": [
+            "electric"
+        ],
+        "baseStats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+        },
+        "abilities": {
+            "0": "Static"
+        },
+        "most_likely_ability": "Static"
+    },
+    "pikachuunova": {
+        "species": "Pikachu-Unova",
+        "types": [
+            "electric"
+        ],
+        "baseStats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+        },
+        "abilities": {
+            "0": "Static"
+        },
+        "most_likely_ability": "Static"
+    },
+    "pikachukalos": {
+        "species": "Pikachu-Kalos",
+        "types": [
+            "electric"
+        ],
+        "baseStats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+        },
+        "abilities": {
+            "0": "Static"
+        },
+        "most_likely_ability": "Static"
+    },
+    "pikachualola": {
+        "species": "Pikachu-Alola",
+        "types": [
+            "electric"
+        ],
+        "baseStats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+        },
+        "abilities": {
+            "0": "Static"
+        },
+        "most_likely_ability": "Static"
+    },
+    "pikachupartner": {
+        "species": "Pikachu-Partner",
+        "types": [
+            "electric"
+        ],
+        "baseStats": {
+            "hp": 35,
+            "attack": 55,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 50,
+            "speed": 90
+        },
+        "abilities": {
+            "0": "Static"
+        },
+        "most_likely_ability": "Static"
+    },
+    "pikachustarter": {
+        "species": "Pikachu-Starter",
+        "types": [
+            "electric"
+        ],
+        "baseStats": {
+            "hp": 45,
+            "attack": 80,
+            "defense": 50,
+            "special-attack": 75,
+            "special-defense": 60,
+            "speed": 120
+        },
+        "abilities": {
+            "0": "Static",
+            "H": "Lightning Rod"
+        },
+        "most_likely_ability": "Lightning Rod"
+    },
+    "marowakalolatotem": {
+        "species": "Marowak-Alola-Totem",
+        "types": [
+            "fire",
+            "ghost"
+        ],
+        "baseStats": {
+            "hp": 60,
+            "attack": 80,
+            "defense": 110,
+            "special-attack": 50,
+            "special-defense": 80,
+            "speed": 45
+        },
+        "abilities": {
+            "0": "Rock Head"
+        },
+        "most_likely_ability": "Rock Head"
+    },
+    "eeveestarter": {
+        "species": "Eevee-Starter",
+        "types": [
+            "normal"
+        ],
+        "baseStats": {
+            "hp": 65,
+            "attack": 75,
+            "defense": 70,
+            "special-attack": 65,
+            "special-defense": 85,
+            "speed": 75
+        },
+        "abilities": {
+            "0": "Run Away",
+            "1": "Adaptability",
+            "H": "Anticipation"
+        },
+        "most_likely_ability": "Adaptability"
+    },
+    "gumshoostotem": {
+        "species": "Gumshoos-Totem",
+        "types": [
+            "normal"
+        ],
+        "baseStats": {
+            "hp": 88,
+            "attack": 110,
+            "defense": 60,
+            "special-attack": 55,
+            "special-defense": 60,
+            "speed": 45
+        },
+        "abilities": {
+            "0": "Adaptability"
+        },
+        "most_likely_ability": "Adaptability"
+    },
+    "vikavolttotem": {
+        "species": "Vikavolt-Totem",
+        "types": [
+            "bug",
+            "electric"
+        ],
+        "baseStats": {
+            "hp": 77,
+            "attack": 70,
+            "defense": 90,
+            "special-attack": 145,
+            "special-defense": 75,
+            "speed": 43
+        },
+        "abilities": {
+            "0": "Levitate"
+        },
+        "most_likely_ability": "Levitate"
+    },
+    "ribombeetotem": {
+        "species": "Ribombee-Totem",
+        "types": [
+            "bug",
+            "fairy"
+        ],
+        "baseStats": {
+            "hp": 60,
+            "attack": 55,
+            "defense": 60,
+            "special-attack": 95,
+            "special-defense": 70,
+            "speed": 124
+        },
+        "abilities": {
+            "0": "Sweet Veil"
+        },
+        "most_likely_ability": "Sweet Veil"
+    },
+    "araquanidtotem": {
+        "species": "Araquanid-Totem",
+        "types": [
+            "water",
+            "bug"
+        ],
+        "baseStats": {
+            "hp": 68,
+            "attack": 70,
+            "defense": 92,
+            "special-attack": 50,
+            "special-defense": 132,
+            "speed": 42
+        },
+        "abilities": {
+            "0": "Water Bubble"
+        },
+        "most_likely_ability": "Water Bubble"
+    },
+    "lurantistotem": {
+        "species": "Lurantis-Totem",
+        "types": [
+            "grass"
+        ],
+        "baseStats": {
+            "hp": 70,
+            "attack": 105,
+            "defense": 90,
+            "special-attack": 80,
+            "special-defense": 90,
+            "speed": 45
+        },
+        "abilities": {
+            "0": "Leaf Guard"
+        },
+        "most_likely_ability": "Leaf Guard"
+    },
+    "salazzletotem": {
+        "species": "Salazzle-Totem",
+        "types": [
+            "poison",
+            "fire"
+        ],
+        "baseStats": {
+            "hp": 68,
+            "attack": 64,
+            "defense": 60,
+            "special-attack": 111,
+            "special-defense": 60,
+            "speed": 117
+        },
+        "abilities": {
+            "0": "Corrosion"
+        },
+        "most_likely_ability": "Corrosion"
+    },
+    "togedemarutotem": {
+        "species": "Togedemaru-Totem",
+        "types": [
+            "electric",
+            "steel"
+        ],
+        "baseStats": {
+            "hp": 65,
+            "attack": 98,
+            "defense": 63,
+            "special-attack": 40,
+            "special-defense": 73,
+            "speed": 96
+        },
+        "abilities": {
+            "0": "Sturdy"
+        },
+        "most_likely_ability": "Sturdy"
+    },
+    "mimikyutotem": {
+        "species": "Mimikyu-Totem",
+        "types": [
+            "ghost",
+            "fairy"
+        ],
+        "baseStats": {
+            "hp": 55,
+            "attack": 90,
+            "defense": 80,
+            "special-attack": 50,
+            "special-defense": 105,
+            "speed": 96
+        },
+        "abilities": {
+            "0": "Disguise"
+        },
+        "most_likely_ability": "Disguise"
+    },
+    "mimikyubustedtotem": {
+        "species": "Mimikyu-Busted-Totem",
+        "types": [
+            "ghost",
+            "fairy"
+        ],
+        "baseStats": {
+            "hp": 55,
+            "attack": 90,
+            "defense": 80,
+            "special-attack": 50,
+            "special-defense": 105,
+            "speed": 96
+        },
+        "abilities": {
+            "0": "Disguise"
+        },
+        "most_likely_ability": "Disguise"
+    },
+    "kommoototem": {
+        "species": "Kommo-o-Totem",
+        "types": [
+            "dragon",
+            "fighting"
+        ],
+        "baseStats": {
+            "hp": 75,
+            "attack": 110,
+            "defense": 125,
+            "special-attack": 100,
+            "special-defense": 105,
+            "speed": 85
+        },
+        "abilities": {
+            "0": "Overcoat"
+        },
+        "most_likely_ability": "Overcoat"
+    },
+    "magearnaoriginal": {
+        "species": "Magearna-Original",
+        "types": [
+            "steel",
+            "fairy"
+        ],
+        "baseStats": {
+            "hp": 80,
+            "attack": 95,
+            "defense": 115,
+            "special-attack": 130,
+            "special-defense": 115,
+            "speed": 65
+        },
+        "abilities": {
+            "0": "Soul-Heart"
+        },
+        "most_likely_ability": "Soul-Heart"
+    },
+    "poipole": {
+        "species": "Poipole",
+        "types": [
+            "poison"
+        ],
+        "baseStats": {
+            "hp": 67,
+            "attack": 73,
+            "defense": 67,
+            "special-attack": 73,
+            "special-defense": 67,
+            "speed": 73
+        },
+        "abilities": {
+            "0": "Beast Boost"
+        },
+        "most_likely_ability": "Beast Boost"
+    },
+    "meltan": {
+        "species": "Meltan",
+        "types": [
+            "steel"
+        ],
+        "baseStats": {
+            "hp": 46,
+            "attack": 65,
+            "defense": 65,
+            "special-attack": 55,
+            "special-defense": 35,
+            "speed": 34
+        },
+        "abilities": {
+            "0": "Magnet Pull"
+        },
+        "most_likely_ability": "Magnet Pull"
+    },
+    "melmetal": {
+        "species": "Melmetal",
+        "types": [
+            "steel"
+        ],
+        "baseStats": {
+            "hp": 135,
+            "attack": 143,
+            "defense": 143,
+            "special-attack": 80,
+            "special-defense": 65,
+            "speed": 34
+        },
+        "abilities": {
+            "0": "Iron Fist"
+        },
+        "most_likely_ability": "Iron Fist"
     }
 }
