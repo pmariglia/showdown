@@ -126,7 +126,7 @@
     },
     "acrobatics": {
         "accuracy": 100,
-        "basePower": 55,
+        "basePower": 110,
         "category": "physical",
         "flags": {
             "contact": 1,
