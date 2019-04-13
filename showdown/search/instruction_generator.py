@@ -626,7 +626,7 @@ class InstructionGenerator:
             )
             toxic_count = side.side_conditions[constants.TOXIC_COUNT]
             toxic_multiplier = (1 / 16) * toxic_count + (1 / 16)
-            toxic_damage = int(min(pkmn.maxhp * toxic_multiplier, pkmn.hp))
+            toxic_damage = max(1, int(min(pkmn.maxhp * toxic_multiplier, pkmn.hp)))
             instructions_to_add.append(
                 (
                     constants.MUTATOR_DAMAGE,
@@ -639,7 +639,7 @@ class InstructionGenerator:
                 (
                     constants.MUTATOR_DAMAGE,
                     attacker,
-                    int(min(pkmn.maxhp * 0.0625, pkmn.hp))
+                    max(1, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
                 )
             )
         elif constants.POISON == pkmn.status:
@@ -647,11 +647,11 @@ class InstructionGenerator:
                 (
                     constants.MUTATOR_DAMAGE,
                     attacker,
-                    int(min(pkmn.maxhp * 0.125, pkmn.hp))
+                    max(1, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
                 )
             )
         if constants.LEECH_SEED in pkmn.volatile_status:
-            damage_sapped = int(min(pkmn.maxhp * 0.125, pkmn.hp))
+            damage_sapped = max(1, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
             instructions_to_add.append(
                 (
                     constants.MUTATOR_DAMAGE,
