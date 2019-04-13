@@ -40,6 +40,9 @@ def get_effective_speed(state, side):
     elif state.weather == constants.RAIN and side.active.ability == 'sandrush':
         boosted_speed *= 2
 
+    if side.active.ability == 'unburden' and not side.active.item:
+        boosted_speed *= 2
+
     if side.side_conditions[constants.TAILWIND]:
         boosted_speed *= 2
 

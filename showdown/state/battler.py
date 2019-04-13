@@ -58,7 +58,7 @@ class Battler:
             pkmn.ability = pkmn_dict[constants.REQUEST_DICT_ABILITY]
             pkmn.index = index + 1
             pkmn.hp, pkmn.status = get_pokemon_info_from_condition(pkmn_dict[constants.CONDITION])
-            pkmn.item = pkmn_dict[constants.ITEM]
+            pkmn.item = pkmn_dict[constants.ITEM] if pkmn_dict[constants.ITEM] else None
 
             if pkmn_dict[constants.ACTIVE]:
                 self.active = pkmn
