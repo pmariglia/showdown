@@ -92,6 +92,16 @@ def focuspunch(attacking_move, defending_move, attacking_pokemon, defending_poke
     return attacking_move
 
 
+def acrobatics(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move):
+    # acrobatics is 110 by default. If the pokemon has an item, it will go to 55
+    # technically this should be the other way around, but the evaluation logic should
+    # assume that the opponent's pokemon has a 110 BP move (worst case unless known)
+    if attacking_pokemon.item not in [None, 'unknown']:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 0.5
+    return attacking_move
+
+
 move_lookup = {
     'suckerpunch': suckerpunch,
     'eruption': eruption,
@@ -112,7 +122,8 @@ move_lookup = {
     'avalanche': avalanche,
     'facade': facade,
     'gyroball': gyroball,
-    'focuspunch': focuspunch
+    'focuspunch': focuspunch,
+    'acrobatics': acrobatics
 }
 
 
