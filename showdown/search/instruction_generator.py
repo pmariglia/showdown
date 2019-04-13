@@ -296,7 +296,7 @@ class InstructionGenerator:
                 drain_instruction = (
                     constants.MUTATOR_HEAL,
                     attacker,
-                    int(drain_percent * actual_damage)
+                    min(int(drain_percent * actual_damage), int(attacker_side.active.maxhp - attacker_side.active.hp))
                 )
                 instruction_additions.append(drain_instruction)
             if recoil:
@@ -304,7 +304,7 @@ class InstructionGenerator:
                 recoil_instruction = (
                     constants.MUTATOR_DAMAGE,
                     attacker,
-                    int(recoil_percent * actual_damage)
+                    min(int(recoil_percent * actual_damage), int(attacker_side.active.hp))
                 )
                 instruction_additions.append(recoil_instruction)
 
