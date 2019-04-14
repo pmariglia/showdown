@@ -1051,7 +1051,7 @@
     },
     "bonemerang": {
         "accuracy": 90,
-        "basePower": 50,
+        "basePower": 100,
         "category": "physical",
         "flags": {
             "protect": 1,
@@ -4249,7 +4249,7 @@
     },
     "geargrind": {
         "accuracy": 85,
-        "basePower": 50,
+        "basePower": 100,
         "category": "physical",
         "flags": {
             "contact": 1,
