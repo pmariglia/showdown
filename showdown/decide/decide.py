@@ -1,6 +1,8 @@
 import random
 from collections import defaultdict
 
+from config import logger
+
 
 def remove_guaranteed_opponent_moves(score_lookup):
     """This method removes enemy moves from the score-lookup that do not give the bot a choice.
@@ -55,10 +57,12 @@ def decide_from_best_averages(score_lookup, limit=10):
 
     possible_moves = [sorted_moves[0][0]]
     best_move_score = sorted_moves[0][1]
+    logger.debug("Good option: {}: {}".format(possible_moves[0], best_move_score))
 
     for move, score in sorted_moves[1:]:
         if best_move_score - score > limit:
             break
+        logger.debug("Good option: {}: {}".format(move, score))
         possible_moves.append(move)
 
     return possible_moves
@@ -66,6 +70,7 @@ def decide_from_best_averages(score_lookup, limit=10):
 
 def decide_from_safest(score_lookup):
     safest = pick_safest(score_lookup)
+    logger.debug("Safest: {}, {}".format(safest[0][0], safest[1]))
     return safest[0][0]
 
 
