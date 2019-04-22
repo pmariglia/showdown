@@ -28,7 +28,7 @@ LOG_TO_FILE: (bool, default False) Specifies whether or not to save for each bat
 LOG_LEVEL: (string, default "DEBUG") The Python logging level 
 WEBSOCKET_URI: (string, default is the official PokemonShowdown websocket address: "sim.smogon.com:8000") The address to use to connect to the Pokemon Showdown websocket 
 PS_USERNAME: (string, required) Pokemon Showdown username
-PS_PASSWORD: (string, required) Pokemon Showdown password
+PS_PASSWORD: (string) Pokemon Showdown password
 BOT_MODE: (string, required) The mode the the bot will operate in. Options are "CHALLENGE_USER", "SEARCH_LADDER", or "ACCEPT_CHALLENGE"
 USER_TO_CHALLENGE: (string, required if BOT_MODE is "CHALLENGE_USER") The user to challenge
 POKEMON_MODE: (string, required) The type of game this bot will play games in
