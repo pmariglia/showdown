@@ -24,7 +24,7 @@ async def showdown():
     logger.setLevel(env("LOG_LEVEL", "DEBUG"))
     websocket_uri = env("WEBSOCKET_URI", "sim.smogon.com:8000")
     username = env("PS_USERNAME")
-    password = env("PS_PASSWORD")
+    password = env("PS_PASSWORD", "")
     bot_mode = env("BOT_MODE")
     team_name = env("TEAM_NAME", None)
     pokemon_mode = env("POKEMON_MODE", constants.DEFAULT_MODE)
