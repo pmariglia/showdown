@@ -26,7 +26,7 @@ class PSWebsocketClient:
         self.password = password
         self.address = "ws://{}/showdown/websocket".format(address)
         self.websocket = await websockets.connect(self.address)
-        self.login_uri = "https://play.pokemonshowdown.com/action.php?"
+        self.login_uri = "https://play.pokemonshowdown.com/action.php"
         return self
 
     async def receive_message(self):
@@ -49,17 +49,28 @@ class PSWebsocketClient:
 
     async def login(self):
         client_id, challstr = await self._get_id_and_challstr()
-        response = requests.post(self.login_uri,
-                                 data={
-                                     'act': 'login',
-                                     'name': self.username,
-                                     'pass': self.password,
-                                     'challstr': "{}%7C{}".format(client_id, challstr)
-                                 })
+        if self.password:
+            response = requests.post(self.login_uri,
+                                    data={
+                                        'act': 'login',
+                                        'name': self.username,
+                                        'pass': self.password,
+                                        'challstr': "{}%7C{}".format(client_id, challstr)
+                                    })
+        else:
+            response = requests.post(self.login_uri,
+                                    data={
+                                        'act': 'getassertion',
+                                        'userid': self.username,
+                                        'challstr': '|'.join([client_id, challstr]),
+                                    })
 
         if response.status_code == 200:
-            response_json = json.loads(response.text[1:])
-            assertion = response_json.get('assertion')
+            if self.password:
+                response_json = json.loads(response.text[1:])
+                assertion = response_json.get('assertion')
+            else:
+                assertion = response.text
 
             message = ["/trn " + self.username + ",0," + assertion]
             await self.send_message('', message)
