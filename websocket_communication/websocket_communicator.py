@@ -50,20 +50,25 @@ class PSWebsocketClient:
     async def login(self):
         client_id, challstr = await self._get_id_and_challstr()
         if self.password:
-            response = requests.post(self.login_uri,
-                                    data={
-                                        'act': 'login',
-                                        'name': self.username,
-                                        'pass': self.password,
-                                        'challstr': "{}%7C{}".format(client_id, challstr)
-                                    })
+            response = requests.post(
+                self.login_uri,
+                data={
+                    'act': 'login',
+                    'name': self.username,
+                    'pass': self.password,
+                    'challstr': "|".join([client_id, challstr])
+                }
+            )
+
         else:
-            response = requests.post(self.login_uri,
-                                    data={
-                                        'act': 'getassertion',
-                                        'userid': self.username,
-                                        'challstr': '|'.join([client_id, challstr]),
-                                    })
+            response = requests.post(
+                self.login_uri,
+                data={
+                    'act': 'getassertion',
+                    'userid': self.username,
+                    'challstr': '|'.join([client_id, challstr]),
+                }
+            )
 
         if response.status_code == 200:
             if self.password:
