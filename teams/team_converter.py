@@ -43,7 +43,15 @@ def packed_to_json(packed_team):
         j['evs']['spd'] = evs[4]
         j['evs']['spe'] = evs[5]
         j['gender'] = items[7]
-        j['ivs'] = items[8]
+        j['ivs'] = dict()
+        ivs = items[8].split(',')
+        if len(ivs) == 6:
+            j['ivs']['hp'] = ivs[0]
+            j['ivs']['atk'] = ivs[1]
+            j['ivs']['def'] = ivs[2]
+            j['ivs']['spa'] = ivs[3]
+            j['ivs']['spd'] = ivs[4]
+            j['ivs']['spe'] = ivs[5]
         j['shiny'] = items[9]
         j['level'] = items[10]
         final = items[11].split(',')
