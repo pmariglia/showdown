@@ -388,6 +388,11 @@ class TestHealOrDamage(unittest.TestCase):
         self.battle.opponent.active = self.opponent_active
         self.battle.user.active = self.user_active
 
+    def test_sets_ability_when_the_information_is_present(self):
+        split_msg = ['', '-heal', 'p2a: Quagsire', '68/100', '[from] ability: Water Absorb', '[of] p2a: Genesect']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual('waterabsorb', self.battle.opponent.active.ability)
+
     def test_damage_sets_opponents_active_pokemon_to_correct_hp(self):
         split_msg = ['', '-damage', 'p2a: Caterpie', '80/100']
         heal_or_damage(self.battle, split_msg)
@@ -401,7 +406,7 @@ class TestHealOrDamage(unittest.TestCase):
     def test_damage_caused_by_an_item_properly_sets_opponents_item(self):
         split_msg = ['', '-damage', 'p2a: Caterpie', '100/100', '[from] item: Life Orb']
         heal_or_damage(self.battle, split_msg)
-        self.assertEqual("Life Orb", self.battle.opponent.active.item)
+        self.assertEqual("lifeorb", self.battle.opponent.active.item)
 
     def test_damage_caused_by_toxic_increases_side_condition_toxic_counter_for_opponent(self):
         split_msg = ['', '-damage', 'p2a: Caterpie', '94/100 tox', '[from] psn']

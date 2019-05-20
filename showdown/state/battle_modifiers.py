@@ -90,9 +90,15 @@ def heal_or_damage(battle, split_msg):
 
         # give that pokemon an item if this string specifies one
         if len(split_msg) == 5 and constants.ITEM in split_msg[4]:
-            item = split_msg[4].split(constants.ITEM)[-1].strip(": ")
+            item = normalize_name(split_msg[4].split(constants.ITEM)[-1].strip(": "))
             logger.debug("Setting opponent's item to: {}".format(item))
             pkmn.item = item
+
+        # set the ability if the information is shown
+        if len(split_msg) >= 5 and constants.ABILITY in split_msg[4]:
+            ability = normalize_name(split_msg[4].split(constants.ABILITY)[-1].strip(": "))
+            logger.debug("Setting opponent's item ability {}".format(ability))
+            pkmn.ability = ability
 
     else:
         if len(split_msg) == 5 and constants.TOXIC in split_msg[3] and '[from] psn' in split_msg[4]:
