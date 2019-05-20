@@ -102,6 +102,26 @@ def acrobatics(attacking_move, defending_move, attacking_pokemon, defending_poke
     return attacking_move
 
 
+def technoblast(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move):
+    if attacking_pokemon.item == 'burndrive':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = 'fire'
+
+    elif attacking_pokemon.item == 'chilldrive':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = 'ice'
+
+    elif attacking_pokemon.item == 'dousedrive':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = 'water'
+
+    elif attacking_pokemon.item == 'shockdrive':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = 'electric'
+
+    return attacking_move
+
+
 move_lookup = {
     'suckerpunch': suckerpunch,
     'eruption': eruption,
@@ -123,7 +143,8 @@ move_lookup = {
     'facade': facade,
     'gyroball': gyroball,
     'focuspunch': focuspunch,
-    'acrobatics': acrobatics
+    'acrobatics': acrobatics,
+    'technoblast': technoblast
 }
 
 

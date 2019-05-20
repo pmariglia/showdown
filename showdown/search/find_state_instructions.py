@@ -92,6 +92,14 @@ def user_moves_first(state, user_move, opponent_move):
 
 
 def update_damage_calc_from_abilities_and_items(attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move):
+    attacking_move = modify_attack_being_used(
+        attacking_move,
+        defending_move,
+        attacking_pokemon,
+        defending_pokemon,
+        first_move
+    )
+
     attacking_move = ability_modify_attack_against(
         defending_pokemon.ability,
         attacking_move,
@@ -119,14 +127,6 @@ def update_damage_calc_from_abilities_and_items(attacking_pokemon, defending_pok
         attacking_move,
         attacking_pokemon,
         defending_pokemon
-    )
-
-    attacking_move = modify_attack_being_used(
-        attacking_move,
-        defending_move,
-        attacking_pokemon,
-        defending_pokemon,
-        first_move
     )
 
     return attacking_move

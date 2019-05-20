@@ -1185,6 +1185,23 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_dousedrive_makes_waterabsorb_activate(self):
+        bot_move = "technoblast"
+        opponent_move = "splash"
+        self.state.self.active.item = 'dousedrive'
+        self.state.opponent.active.ability = 'waterabsorb'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_airballoon_makes_immune(self):
         bot_move = "tackle"
         opponent_move = "earthquake"

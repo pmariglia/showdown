@@ -609,7 +609,8 @@ class InstructionGenerator:
 
         mutator.reverse(instruction.instructions)
 
-        instruction.add_instruction(heal_instruction)
+        if health_recovered:
+            instruction.add_instruction(heal_instruction)
 
         return [instruction]
 

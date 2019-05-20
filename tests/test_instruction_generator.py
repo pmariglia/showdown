@@ -2002,14 +2002,8 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
         mutator = StateMutator(self.state)
         instructions = self.state_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
 
-        heal_instruction = (
-            constants.MUTATOR_HEAL,
-            attacker,
-            0
-        )
-
         expected_instructions = [
-            TransposeInstruction(1.0, [heal_instruction], False),
+            TransposeInstruction(1.0, [], False),
         ]
 
         self.assertEqual(expected_instructions, instructions)
