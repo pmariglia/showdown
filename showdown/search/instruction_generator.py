@@ -81,7 +81,7 @@ class InstructionGenerator:
                 )
             )
 
-        if side.active.ability == 'regenerator':
+        if side.active.ability == 'regenerator' and side.active.hp:
             hp_missing = side.active.maxhp - side.active.hp
             instruction_additions.append(
                 (
