@@ -81,6 +81,16 @@ class InstructionGenerator:
                 )
             )
 
+        if side.active.ability == 'regenerator':
+            hp_missing = side.active.maxhp - side.active.hp
+            instruction_additions.append(
+                (
+                    constants.MUTATOR_HEAL,
+                    attacker,
+                    int(min(1 / 3 * side.active.maxhp, hp_missing))
+                )
+            )
+
         instruction_additions.append(
             (
                 constants.MUTATOR_SWITCH,

@@ -1483,6 +1483,60 @@ class TestGetStateFromSwitch(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_regenerator_heals_one_third_hp(self):
+        attacker = constants.SELF
+        switch_pokemon_name = "rattata"
+        self.state.self.active.hp = 1
+        self.state.self.active.ability = 'regenerator'
+
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (
+                        constants.MUTATOR_HEAL,
+                        attacker,
+                        77  # 1/3rd of pikachu's maxhp is 77
+                    ),
+                    ('switch', 'self', 'pikachu', 'rattata'),
+
+                ],
+                False
+            )
+        ]
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_regenerator_does_not_overheal(self):
+        attacker = constants.SELF
+        switch_pokemon_name = "rattata"
+        self.state.self.active.hp -= 1
+        self.state.self.active.ability = 'regenerator'
+
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (
+                        constants.MUTATOR_HEAL,
+                        attacker,
+                        1
+                    ),
+                    ('switch', 'self', 'pikachu', 'rattata'),
+
+                ],
+                False
+            )
+        ]
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_switch_into_toxicspikes_causes_poison(self):
         self.state.self.side_conditions[constants.TOXIC_SPIKES] = 1
         attacker = constants.SELF
