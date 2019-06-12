@@ -174,7 +174,9 @@ class InstructionGenerator:
         ability_switch_in_instruction = ability_on_switch_in(
             switch_pkmn.ability,
             mutator.state,
+            attacker,
             attacking_side.active,
+            self.possible_affected_strings[attacker],
             defending_side.active
         )
         if ability_switch_in_instruction is not None:

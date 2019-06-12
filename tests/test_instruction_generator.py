@@ -2017,6 +2017,127 @@ class TestGetStateFromSwitch(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switch_into_pokemon_with_desolateland_sets_weather_when_primordial_sea_is_active(self):
+        attacker = constants.SELF
+        switch_pokemon_name = "pidgey"
+        self.state.weather = constants.HEAVY_RAIN
+        self.state.self.reserve[switch_pokemon_name].ability = constants.DESOLATE_LAND
+
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (
+                        constants.MUTATOR_SWITCH,
+                        attacker,
+                        self.state.self.active.id,
+                        switch_pokemon_name
+                    ),
+                    (
+                        constants.MUTATOR_WEATHER_START,
+                        constants.DESOLATE_LAND,
+                    ),
+                ]
+                ,
+                False
+            )
+        ]
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_pokemon_with_primordialsea_sets_weather_when_desolateland_is_active(self):
+        attacker = constants.SELF
+        switch_pokemon_name = "pidgey"
+        self.state.weather = constants.DESOLATE_LAND
+        self.state.self.reserve[switch_pokemon_name].ability = constants.HEAVY_RAIN
+
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (
+                        constants.MUTATOR_SWITCH,
+                        attacker,
+                        self.state.self.active.id,
+                        switch_pokemon_name
+                    ),
+                    (
+                        constants.MUTATOR_WEATHER_START,
+                        constants.HEAVY_RAIN,
+                    ),
+                ]
+                ,
+                False
+            )
+        ]
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_intimidate_lowers_opponent_attack(self):
+        attacker = constants.SELF
+        switch_pokemon_name = "pidgey"
+        self.state.self.reserve[switch_pokemon_name].ability = 'intimidate'
+
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (
+                        constants.MUTATOR_SWITCH,
+                        attacker,
+                        self.state.self.active.id,
+                        switch_pokemon_name
+                    ),
+                    (
+                        constants.MUTATOR_UNBOOST,
+                        constants.OPPONENT,
+                        constants.ATTACK,
+                        1
+                    ),
+                ]
+                ,
+                False
+            )
+        ]
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_intimidate_does_not_lower_attack_when_already_at_negative_6(self):
+        attacker = constants.SELF
+        switch_pokemon_name = "pidgey"
+        self.state.self.reserve[switch_pokemon_name].ability = 'intimidate'
+        self.state.opponent.active.attack_boost = -6
+
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (
+                        constants.MUTATOR_SWITCH,
+                        attacker,
+                        self.state.self.active.id,
+                        switch_pokemon_name
+                    ),
+                ]
+                ,
+                False
+            )
+        ]
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+
+        self.assertEqual(expected_instructions, instructions)
+
 
 class TestGetStateFromHealingMoves(unittest.TestCase):
     def setUp(self):
