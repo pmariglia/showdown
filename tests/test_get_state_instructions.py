@@ -1185,6 +1185,78 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switch_into_ninetales_starts_sun_weather(self):
+        bot_move = "switch ninetales"
+        opponent_move = "splash"
+        self.state.self.reserve['ninetales'] = Pokemon.from_state_pokemon_dict(StatePokemon("ninetales", 81).to_dict())
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'ninetales'),
+                    (constants.MUTATOR_WEATHER_START, constants.SUN)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_politoed_starts_rain_weather(self):
+        bot_move = "switch politoed"
+        opponent_move = "splash"
+        self.state.self.reserve['politoed'] = Pokemon.from_state_pokemon_dict(StatePokemon("politoed", 81).to_dict())
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'politoed'),
+                    (constants.MUTATOR_WEATHER_START, constants.RAIN)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_politoed_does_not_start_rain_weather_when_desolate_land_is_active(self):
+        bot_move = "switch politoed"
+        opponent_move = "splash"
+        self.state.weather = constants.DESOLATE_LAND
+        self.state.self.reserve['politoed'] = Pokemon.from_state_pokemon_dict(StatePokemon("politoed", 81).to_dict())
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'politoed'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_politoed_does_not_start_rain_weather_when_rain_is_already_active(self):
+        bot_move = "switch politoed"
+        opponent_move = "splash"
+        self.state.weather = constants.DESOLATE_LAND
+        self.state.self.reserve['politoed'] = Pokemon.from_state_pokemon_dict(StatePokemon("politoed", 81).to_dict())
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'politoed'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_dousedrive_makes_waterabsorb_activate(self):
         bot_move = "technoblast"
         opponent_move = "splash"

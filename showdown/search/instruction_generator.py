@@ -1,6 +1,8 @@
 import constants
 from copy import copy
 from config import logger
+
+from showdown.search.special_effects.abilities.on_switch_in import ability_on_switch_in
 from showdown.calculate_damage import damage_multipication_array
 from showdown.calculate_damage import pokemon_type_indicies
 
@@ -68,11 +70,12 @@ class InstructionGenerator:
         if attacker not in self.possible_affected_strings:
             raise ValueError("attacker parameter must be one of: {}".format(', '.join(self.possible_affected_strings)))
 
-        side = self.get_side_from_state(mutator.state, attacker)
+        attacking_side = self.get_side_from_state(mutator.state, attacker)
+        defending_side = self.get_side_from_state(mutator.state, self.possible_affected_strings[attacker])
         mutator.apply(instructions.instructions)
-        instruction_additions = self.remove_volatile_status_and_boosts_instructions(side, attacker)
+        instruction_additions = self.remove_volatile_status_and_boosts_instructions(attacking_side, attacker)
 
-        for move in filter(lambda x: x[constants.DISABLED] is True and x[constants.CURRENT_PP], side.active.moves):
+        for move in filter(lambda x: x[constants.DISABLED] is True and x[constants.CURRENT_PP], attacking_side.active.moves):
             instruction_additions.append(
                 (
                     constants.MUTATOR_ENABLE_MOVE,
@@ -81,13 +84,13 @@ class InstructionGenerator:
                 )
             )
 
-        if side.active.ability == 'regenerator' and side.active.hp:
-            hp_missing = side.active.maxhp - side.active.hp
+        if attacking_side.active.ability == 'regenerator' and attacking_side.active.hp:
+            hp_missing = attacking_side.active.maxhp - attacking_side.active.hp
             instruction_additions.append(
                 (
                     constants.MUTATOR_HEAL,
                     attacker,
-                    int(min(1 / 3 * side.active.maxhp, hp_missing))
+                    int(min(1 / 3 * attacking_side.active.maxhp, hp_missing))
                 )
             )
 
@@ -95,14 +98,14 @@ class InstructionGenerator:
             (
                 constants.MUTATOR_SWITCH,
                 attacker,
-                side.active.id,
+                attacking_side.active.id,
                 switch_pokemon_name
             )
         )
 
-        switch_pkmn = side.reserve[switch_pokemon_name]
+        switch_pkmn = attacking_side.reserve[switch_pokemon_name]
         # account for stealth rock damage
-        if side.side_conditions[constants.STEALTH_ROCK] == 1:
+        if attacking_side.side_conditions[constants.STEALTH_ROCK] == 1:
             multiplier = 1
             rock_type_index = pokemon_type_indicies['rock']
             for pkmn_type in switch_pkmn.types:
@@ -117,8 +120,8 @@ class InstructionGenerator:
             )
 
         # account for spikes damage
-        if side.side_conditions[constants.SPIKES] > 0 and switch_pkmn.is_grounded():
-            spike_count = side.side_conditions[constants.SPIKES]
+        if attacking_side.side_conditions[constants.SPIKES] > 0 and switch_pkmn.is_grounded():
+            spike_count = attacking_side.side_conditions[constants.SPIKES]
             instruction_additions.append(
                 (
                     constants.MUTATOR_DAMAGE,
@@ -128,7 +131,7 @@ class InstructionGenerator:
             )
 
         # account for stickyweb speed drop
-        if side.side_conditions[constants.STICKY_WEB] == 1 and switch_pkmn.is_grounded():
+        if attacking_side.side_conditions[constants.STICKY_WEB] == 1 and switch_pkmn.is_grounded():
             instruction_additions.append(
                 (
                     constants.MUTATOR_UNBOOST,
@@ -139,9 +142,9 @@ class InstructionGenerator:
             )
 
         # account for toxic spikes effect
-        if side.side_conditions[constants.TOXIC_SPIKES] >= 1 and switch_pkmn.is_grounded():
+        if attacking_side.side_conditions[constants.TOXIC_SPIKES] >= 1 and switch_pkmn.is_grounded():
             if not self._immune_to_status(switch_pkmn, constants.POISON):
-                if side.side_conditions[constants.TOXIC_SPIKES] == 1:
+                if attacking_side.side_conditions[constants.TOXIC_SPIKES] == 1:
                     instruction_additions.append(
                         (
                             constants.MUTATOR_APPLY_STATUS,
@@ -149,7 +152,7 @@ class InstructionGenerator:
                             constants.POISON
                         )
                     )
-                elif side.side_conditions[constants.TOXIC_SPIKES] == 2:
+                elif attacking_side.side_conditions[constants.TOXIC_SPIKES] == 2:
                     instruction_additions.append(
                         (
                             constants.MUTATOR_APPLY_STATUS,
@@ -163,9 +166,21 @@ class InstructionGenerator:
                         constants.MUTATOR_SIDE_END,
                         attacker,
                         constants.TOXIC_SPIKES,
-                        side.side_conditions[constants.TOXIC_SPIKES]
+                        attacking_side.side_conditions[constants.TOXIC_SPIKES]
                     )
                 )
+
+        # account for switch-in abilities
+        ability_switch_in_instruction = ability_on_switch_in(
+            switch_pkmn.ability,
+            mutator.state,
+            attacking_side.active,
+            defending_side.active
+        )
+        if ability_switch_in_instruction is not None:
+            instruction_additions.append(
+                ability_switch_in_instruction
+            )
 
         mutator.reverse(instructions.instructions)
         for i in instruction_additions:

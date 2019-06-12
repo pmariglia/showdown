@@ -13,6 +13,7 @@ from showdown.state.battle_modifiers import move
 from showdown.state.battle_modifiers import boost
 from showdown.state.battle_modifiers import unboost
 from showdown.state.battle_modifiers import status
+from showdown.state.battle_modifiers import weather
 from showdown.state.battle_modifiers import curestatus
 from showdown.state.battle_modifiers import start_volatile_status
 from showdown.state.battle_modifiers import end_volatile_status
@@ -454,6 +455,30 @@ class TestMove(unittest.TestCase):
         move(self.battle, split_msg)
 
         self.assertEqual(1, len(self.battle.opponent.active.moves))
+
+
+class TestWeather(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+
+    def test_starts_weather_properly(self):
+        split_msg = ['', '-weather', 'RainDance', '[from] ability: Drizzle', '[of] p2a: Pelipper']
+
+        weather(self.battle, split_msg)
+
+        self.assertEqual('raindance', self.battle.weather)
+
+    def test_sets_weather_ability_when_it_is_present(self):
+        split_msg = ['', '-weather', 'RainDance', '[from] ability: Drizzle', '[of] p2a: Pelipper']
+
+        weather(self.battle, split_msg)
+
+        self.assertEqual('drizzle', self.battle.opponent.active.ability)
 
 
 class TestBoostAndUnboost(unittest.TestCase):

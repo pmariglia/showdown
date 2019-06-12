@@ -210,6 +210,11 @@ def weather(battle, split_msg):
     logger.debug("Weather {} started".format(weather_name))
     battle.weather = weather_name
 
+    if len(split_msg) >= 5 and battle.opponent.name in split_msg[4]:
+        ability = normalize_name(split_msg[3].split(':')[-1].strip())
+        logger.debug("Setting opponent ability to {}".format(ability))
+        battle.opponent.active.ability = ability
+
 
 def fieldstart(battle, split_msg):
     """Set the battle's field condition"""

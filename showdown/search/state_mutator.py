@@ -19,6 +19,7 @@ class StateMutator:
             constants.MUTATOR_SIDE_END: self.side_end,
             constants.MUTATOR_DISABLE_MOVE: self.disable_move,
             constants.MUTATOR_ENABLE_MOVE: self.enable_move,
+            constants.MUTATOR_WEATHER_START: self.start_weather
         }
         self.reverse_instructions = {
             constants.MUTATOR_SWITCH: self.reverse_switch,
@@ -34,6 +35,7 @@ class StateMutator:
             constants.MUTATOR_SIDE_END: self.reverse_side_end,
             constants.MUTATOR_DISABLE_MOVE: self.enable_move,
             constants.MUTATOR_ENABLE_MOVE: self.disable_move,
+            constants.MUTATOR_WEATHER_START: self.end_weather
         }
 
     def apply(self, instructions):
@@ -146,3 +148,11 @@ class StateMutator:
 
     def reverse_side_end(self, side, effect, amount):
         self.side_start(side, effect, amount)
+
+    def start_weather(self, weather):
+        self.state.weather = weather
+
+    def end_weather(self, _):
+        # the parameter is the weather being removed
+        # the value is here for reversing purposes
+        self.state.weather = None

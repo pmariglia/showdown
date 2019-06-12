@@ -32,6 +32,8 @@ MUTATOR_SIDE_START = "side_start"
 MUTATOR_SIDE_END = "side_end"
 MUTATOR_DISABLE_MOVE = "disable_move"
 MUTATOR_ENABLE_MOVE = "enable_move"
+MUTATOR_WEATHER_START = "weather_start"
+MUTATOR_WEATER_END = "weather_end"
 
 
 DAMAGE = 'damage'
@@ -176,6 +178,7 @@ SUN = "sunnyday"
 SAND = "sandstream"
 SNOW = "snowwarning"
 DESOLATE_LAND = "desolateland"
+HEAVY_RAIN = "primordialsea"
 
 # Hazards
 STEALTH_ROCK = 'stealthrock'

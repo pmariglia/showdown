@@ -1930,6 +1930,93 @@ class TestGetStateFromSwitch(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switch_into_pokemon_with_drought_sets_weather(self):
+        attacker = constants.SELF
+        switch_pokemon_name = "pidgey"
+        self.state.self.reserve[switch_pokemon_name].ability = "drought"
+
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (
+                        constants.MUTATOR_SWITCH,
+                        attacker,
+                        self.state.self.active.id,
+                        switch_pokemon_name
+                    ),
+                    (
+                        constants.MUTATOR_WEATHER_START,
+                        constants.SUN,
+                    ),
+                ]
+                ,
+                False
+            )
+        ]
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_pokemon_with_drizze_sets_weather(self):
+        attacker = constants.SELF
+        switch_pokemon_name = "pidgey"
+        self.state.self.reserve[switch_pokemon_name].ability = "drizzle"
+
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (
+                        constants.MUTATOR_SWITCH,
+                        attacker,
+                        self.state.self.active.id,
+                        switch_pokemon_name
+                    ),
+                    (
+                        constants.MUTATOR_WEATHER_START,
+                        constants.RAIN,
+                    ),
+                ]
+                ,
+                False
+            )
+        ]
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_pokemon_with_drizze_does_not_set_weather_when_desolate_land_is_active(self):
+        attacker = constants.SELF
+        switch_pokemon_name = "pidgey"
+        self.state.weather = 'desolateland'
+        self.state.self.reserve[switch_pokemon_name].ability = 'drizzle'
+
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (
+                        constants.MUTATOR_SWITCH,
+                        attacker,
+                        self.state.self.active.id,
+                        switch_pokemon_name
+                    ),
+                ]
+                ,
+                False
+            )
+        ]
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+
+        self.assertEqual(expected_instructions, instructions)
+
 
 class TestGetStateFromHealingMoves(unittest.TestCase):
     def setUp(self):
