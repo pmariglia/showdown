@@ -9324,6 +9324,23 @@
         "type": "normal",
         "pp": 20
     },
+    "return102": {
+        "accuracy": 100,
+        "basePower": 102,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "return",
+        "name": "Return",
+        "priority": 0,
+        "secondary": false,
+        "target": "normal",
+        "type": "normal",
+        "pp": 20
+    },
     "revelationdance": {
         "accuracy": 100,
         "basePower": 90,
