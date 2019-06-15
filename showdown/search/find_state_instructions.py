@@ -145,6 +145,9 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     defending_pokemon = defending_side.active
     active_weather = mutator.state.weather
 
+    if constants.TAUNT in attacking_pokemon.volatile_status and attacking_move[constants.CATEGORY] not in constants.DAMAGING_CATEGORIES:
+        attacking_move = lookup_move(constants.DO_NOTHING_MOVE)
+
     conditions = {
         constants.REFLECT: defending_side.side_conditions[constants.REFLECT],
         constants.LIGHT_SCREEN: defending_side.side_conditions[constants.LIGHT_SCREEN],

@@ -209,6 +209,7 @@ FLINCH = "flinch"
 CONFUSION = "confusion"
 LEECH_SEED = 'leechseed'
 SUBSTITUTE = 'substitute'
+TAUNT = 'taunt'
 
 # non-volatile statuses
 SLEEP = "slp"
