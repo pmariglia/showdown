@@ -30,15 +30,17 @@ def battle_is_over(state):
 
 def get_pokemon_info_from_condition(condition_string: str):
     if constants.FNT in condition_string:
-        return 0, None
+        return 0, 0, None
 
     split_string = condition_string.split("/")
     hp = int(split_string[0])
     if any(s in condition_string for s in constants.NON_VOLATILE_STATUSES):
-        status = split_string[1].split(' ')[1]
-        return hp, status
+        maxhp, status = split_string[1].split(' ')
+        maxhp = int(maxhp)
+        return hp, maxhp, status
     else:
-        return hp, None
+        maxhp = int(split_string[1])
+        return hp, maxhp, None
 
 
 def normalize_name(name):

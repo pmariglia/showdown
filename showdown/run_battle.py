@@ -8,7 +8,7 @@ import constants
 import config
 from config import logger
 from config import reset_logger
-from showdown.decide.decide import decide_random_from_average_and_safest
+from showdown.decide.decide import decide_from_safest
 from showdown.search.select_best_move import get_move_combination_scores
 from showdown.state.battle import Battle
 from showdown.state.pokemon import Pokemon
@@ -117,7 +117,7 @@ def _find_best_move(battle: Battle):
     move_scores = get_move_combination_scores(mutator)
     logger.debug("Score lookups produced: {}".format(move_scores))
 
-    decision = decide_random_from_average_and_safest(move_scores)
+    decision = decide_from_safest(move_scores)
     logger.debug("Decision: {}".format(decision))
 
     if decision.startswith(constants.SWITCH_STRING) and decision != "switcheroo":
