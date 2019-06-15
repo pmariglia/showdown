@@ -30,8 +30,7 @@ def lookup_move(move_name):
 
 
 def get_effective_speed(state, side):
-    base_speed = side.active.speed
-    boosted_speed = base_speed * boost_multiplier_lookup[side.active.speed_boost]
+    boosted_speed = side.active.speed * boost_multiplier_lookup[side.active.speed_boost]
 
     if state.weather == constants.SUN and side.active.ability == 'chlorophyll':
         boosted_speed *= 2
