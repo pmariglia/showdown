@@ -56,6 +56,11 @@ def get_all_options(mutator: StateMutator):
     force_switch = mutator.state.force_switch or mutator.state.self.active.hp <= 0
     wait = mutator.state.wait or mutator.state.opponent.active.hp <= 0
 
+    if force_switch and wait:
+        user_options = get_user_options(mutator.state.self, force_switch)
+        opponent_options = get_opponent_options(mutator.state.opponent) or [constants.DO_NOTHING_MOVE]
+        return user_options, opponent_options
+
     if force_switch:
         opponent_options = [constants.DO_NOTHING_MOVE]
         mutator.state.force_switch = False

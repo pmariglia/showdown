@@ -85,6 +85,15 @@ class Pokemon:
             constants.CAN_MEGA_EVO: self.can_mega_evo
         }
 
+    @classmethod
+    def get_dummy(cls):
+        p = Pokemon('pikachu', 100)
+        p.hp = 0
+        p.name = ''
+        p.ability = None
+        p.fainted = True
+        return p
+
     def __eq__(self, other):
         return self.name == other.name and self.level == other.level
 

@@ -1,7 +1,8 @@
 import json
-import random
 import asyncio
 import concurrent.futures
+
+from copy import deepcopy
 
 import constants
 import config
@@ -10,30 +11,26 @@ from config import reset_logger
 from showdown.decide.decide import decide_random_from_average_and_safest
 from showdown.search.select_best_move import get_move_combination_scores
 from showdown.state.battle import Battle
+from showdown.state.pokemon import Pokemon
 from showdown.state.battle_modifiers import update_battle
 from showdown.search.state_mutator import StateMutator
 
 from websocket_communication import PSWebsocketClient
 
 
-async def _get_index_of_pokemon_with_stealth_rocks(battle: Battle, team_len):
-    for i in range(0, team_len - 1):
-        mon = battle.user.reserve[i]
-        try:
-            mon.get_move(constants.STEALTH_ROCK)
-            return i + 1
-        except ValueError:
-            pass
-
-    return None
-
-
 async def _handle_team_preview(battle: Battle, ps_websocket_client: PSWebsocketClient):
+    battle_copy = deepcopy(battle)
+    battle_copy.user.active = Pokemon.get_dummy()
+    battle_copy.opponent.active = Pokemon.get_dummy()
+
+    loop = asyncio.get_event_loop()
+    with concurrent.futures.ThreadPoolExecutor() as pool:
+        formatted_message = await loop.run_in_executor(
+            pool, _find_best_move, battle_copy
+        )
     size_of_team = len(battle.user.reserve) + 1
     team_list_indexes = list(range(1, size_of_team))
-    choice_digit = await _get_index_of_pokemon_with_stealth_rocks(battle, size_of_team)
-    if choice_digit is None:
-        choice_digit = random.choice(team_list_indexes)
+    choice_digit = int(formatted_message[0].split()[-1])
 
     team_list_indexes.remove(choice_digit)
     message = ["/team {}{}|{}".format(choice_digit, "".join(str(x) for x in team_list_indexes), battle.rqid)]
