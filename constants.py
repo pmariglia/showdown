@@ -176,7 +176,7 @@ HEALING_WISH = 'healingwish'
 RAIN = "raindance"
 SUN = "sunnyday"
 SAND = "sandstream"
-SNOW = "snowwarning"
+HAIL = "snowwarning"
 DESOLATE_LAND = "desolateland"
 HEAVY_RAIN = "primordialsea"
 
