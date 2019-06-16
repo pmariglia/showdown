@@ -134,6 +134,7 @@ move_lookup = {
     'bonerush': tailslap,
     'iciclespear': tailslap,
     'pinmissile': tailslap,
+    'watershuriken': tailslap,
     'foulplay': foulplay,
     'storedpower': storedpower,
     'psyshock': psyshock,
