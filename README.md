@@ -36,7 +36,9 @@ TEAM_NAME: (string, required if POKEMON_MODE is one where a team is required): T
 RUN_COUNT: (integer, required) The amount of games this bot will play before quitting
 ```
 
-Here is a sample `.env` file:
+Here is a sample `.env` file
+
+This configuration will use the Mega-Gardevoir team and search for a gen7ou battle:
 ```
 SAVE_REPLAY=False
 LOG_TO_FILE=False
@@ -44,7 +46,7 @@ LOG_LEVEL="DEBUG"
 WEBSOCKET_URI="sim.smogon.com:8000"
 PS_USERNAME="MyCoolUsername"
 PS_PASSWORD="MySuperSecretPassword"
-BOT_MODE="CHALLENGE_USER"
+BOT_MODE="SEARCH_LADDER"
 USER_TO_CHALLENGE="SomeScrub"
 POKEMON_MODE="gen7ou"
 TEAM_NAME="ou_mega_gard"
