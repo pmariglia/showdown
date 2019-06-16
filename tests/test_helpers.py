@@ -60,9 +60,15 @@ class TestGetPokemonInfoFromCondition(unittest.TestCase):
 
         self.assertEqual(expected_results, get_pokemon_info_from_condition(condition_string))
 
-    def test_statused_case(self):
+    def test_burned_case(self):
         condition_string = '100/100 brn'
         expected_results = 100, 100, 'brn'
+
+        self.assertEqual(expected_results, get_pokemon_info_from_condition(condition_string))
+
+    def test_poisoned_case(self):
+        condition_string = '121/403 psn'
+        expected_results = 121, 403, 'psn'
 
         self.assertEqual(expected_results, get_pokemon_info_from_condition(condition_string))
 
