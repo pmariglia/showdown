@@ -19,7 +19,7 @@ with open(move_set_json_location) as f:
     all_move_sets = json.load(f)
 
 
-def get_spread(pokemon_name):
+def get_most_likely_spread(pokemon_name):
     with open("{}/spreads.json".format(PWD), 'r') as pokemon_spreads:
         j = json.load(pokemon_spreads)
     try:

@@ -1,6 +1,6 @@
 import constants
 from copy import copy
-from data import get_spread
+from data import get_most_likely_spread
 from showdown.state.battler import Battler
 from showdown.state.pokemon import Pokemon
 from showdown.search.objects import State
@@ -29,7 +29,7 @@ class Battle:
         self.user.active = None
         for pkmn_string in opponent_pokemon:
             pokemon = Pokemon.from_switch_string(pkmn_string)
-            nature, evs = get_spread(pokemon.name)
+            nature, evs = get_most_likely_spread(pokemon.name)
             pokemon.set_spread(nature, evs)
             self.opponent.reserve.append(pokemon)
 
