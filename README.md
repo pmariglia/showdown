@@ -41,13 +41,13 @@ Here is a sample `.env` file:
 SAVE_REPLAY=False
 LOG_TO_FILE=False
 LOG_LEVEL="DEBUG"
-WEBSOCKET_URI="localhost:8000"
+WEBSOCKET_URI="sim.smogon.com:8000"
 PS_USERNAME="MyCoolUsername"
 PS_PASSWORD="MySuperSecretPassword"
 BOT_MODE="CHALLENGE_USER"
 USER_TO_CHALLENGE="SomeScrub"
-POKEMON_MODE="gen7randombattle"
-TEAM_NAME="ou_sample"
+POKEMON_MODE="gen7ou"
+TEAM_NAME="ou_mega_gard"
 RUN_COUNT=1
 ```
 

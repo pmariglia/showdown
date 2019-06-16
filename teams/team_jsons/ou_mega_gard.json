@@ -1,0 +1,179 @@
+[
+  {
+    "name": "Gardevoir-Mega",
+    "species": "",
+    "item": "gardevoirite",
+    "ability": "trace",
+    "moves": [
+      "hypervoice",
+      "psyshock",
+      "willowisp",
+      "focusblast"
+    ],
+    "nature": "Timid",
+    "evs": {
+      "hp": "",
+      "atk": "",
+      "def": "",
+      "spa": "252",
+      "spd": "4",
+      "spe": "252"
+    },
+    "gender": "",
+    "ivs": {
+      "hp": "",
+      "atk": "0",
+      "def": "",
+      "spa": "",
+      "spd": "",
+      "spe": ""
+    },
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Tangrowth",
+    "species": "",
+    "item": "assaultvest",
+    "ability": "H",
+    "moves": [
+      "gigadrain",
+      "knockoff",
+      "hiddenpowerice",
+      "earthquake"
+    ],
+    "nature": "Sassy",
+    "evs": {
+      "hp": "248",
+      "atk": "",
+      "def": "8",
+      "spa": "",
+      "spd": "252",
+      "spe": ""
+    },
+    "gender": "",
+    "ivs": {
+      "hp": "",
+      "atk": "30",
+      "def": "30",
+      "spa": "",
+      "spd": "",
+      "spe": ""
+    },
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Greninja",
+    "species": "",
+    "item": "choicespecs",
+    "ability": "battlebond",
+    "moves": [
+      "hydropump",
+      "darkpulse",
+      "watershuriken",
+      "spikes"
+    ],
+    "nature": "Timid",
+    "evs": {
+      "hp": "",
+      "atk": "",
+      "def": "4",
+      "spa": "252",
+      "spd": "",
+      "spe": "252"
+    },
+    "gender": "",
+    "ivs": {
+
+    },
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Landorus-Therian",
+    "species": "",
+    "item": "choicescarf",
+    "ability": "",
+    "moves": [
+      "earthquake",
+      "uturn",
+      "stoneedge",
+      "knockoff"
+    ],
+    "nature": "Jolly",
+    "evs": {
+      "hp": "",
+      "atk": "244",
+      "def": "68",
+      "spa": "",
+      "spd": "",
+      "spe": "196"
+    },
+    "gender": "",
+    "ivs": {
+
+    },
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Zapdos",
+    "species": "",
+    "item": "leftovers",
+    "ability": "H",
+    "moves": [
+      "discharge",
+      "roost",
+      "heatwave",
+      "defog"
+    ],
+    "nature": "Bold",
+    "evs": {
+      "hp": "248",
+      "atk": "",
+      "def": "240",
+      "spa": "",
+      "spd": "",
+      "spe": "20"
+    },
+    "gender": "",
+    "ivs": {
+      "hp": "",
+      "atk": "0",
+      "def": "",
+      "spa": "",
+      "spd": "",
+      "spe": ""
+    },
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Heatran",
+    "species": "",
+    "item": "steeliumz",
+    "ability": "",
+    "moves": [
+      "flashcannon",
+      "lavaplume",
+      "earthpower",
+      "stealthrock"
+    ],
+    "nature": "Modest",
+    "evs": {
+      "hp": "",
+      "atk": "",
+      "def": "4",
+      "spa": "252",
+      "spd": "",
+      "spe": "252"
+    },
+    "gender": "",
+    "ivs": {
+
+    },
+    "shiny": "",
+    "level": ""
+  }
+]
