@@ -1,4 +1,6 @@
 import re
+from datetime import datetime
+from dateutil import relativedelta
 
 import requests
 from showdown.helpers import normalize_name
@@ -12,6 +14,22 @@ item_string = "items"
 spreads_string = "spreads"
 
 PERCENTAGES_REGEX = '[\d\.% ]'
+
+
+def get_smogon_stats_file_name(game_mode):
+    """
+    Gets the smogon stats url based on the game mode
+    Uses the previous-month's statistics
+    """
+
+    # always use the `-0` file - the higher ladder is for noobs
+    smogon_url = "https://www.smogon.com/stats/{}-{}/moveset/{}-0.txt"
+
+    previous_month = datetime.now() - relativedelta.relativedelta(months=1)
+    year = previous_month.year
+    month = "{:02d}".format(previous_month.month)
+
+    return smogon_url.format(year, month, game_mode)
 
 
 def get_pokemon_information(smogon_stats_url):
