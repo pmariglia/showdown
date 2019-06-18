@@ -115,7 +115,12 @@ def move(battle, split_msg):
     move_name = split_msg[3].strip().lower()
     if is_opponent(battle, split_msg):
         pkmn = battle.opponent.active
-        pkmn.add_move(move_name)
+        move = pkmn.get_move(move_name)
+        if move is None:
+            pkmn.add_move(move_name)
+        else:
+            move.current_pp -= 1
+            logger.debug("{} already has the move {}. Decrementing the PP by 1".format(pkmn.name, move_name))
 
 
 def boost(battle, split_msg):

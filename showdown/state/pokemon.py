@@ -61,8 +61,6 @@ class Pokemon:
         self.hp = self.max_hp * hp_percent
 
     def add_move(self, move_name: str):
-        if normalize_name(move_name) in [m.name for m in self.moves]:
-            return
         try:
             self.moves.append(Move(move_name))
         except KeyError:
@@ -72,7 +70,7 @@ class Pokemon:
         for m in self.moves:
             if m.name == normalize_name(move_name):
                 return m
-        raise ValueError("{} does not have the move {}".format(self.name, move_name))
+        return None
 
     def to_dict(self):
         return {

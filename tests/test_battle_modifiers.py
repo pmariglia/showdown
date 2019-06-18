@@ -456,6 +456,15 @@ class TestMove(unittest.TestCase):
 
         self.assertEqual(1, len(self.battle.opponent.active.moves))
 
+    def test_decrements_seen_move_pp_if_seen_again(self):
+        split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
+        m = Move("String Shot")
+        m.current_pp = 5
+        self.battle.opponent.active.moves.append(m)
+        move(self.battle, split_msg)
+
+        self.assertEqual(4, m.current_pp)
+
 
 class TestWeather(unittest.TestCase):
     def setUp(self):

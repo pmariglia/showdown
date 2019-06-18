@@ -75,6 +75,8 @@ class Battle:
                 moves = smogon_usage_data[pokemon.name][moves_string][:4]
                 logger.debug("Moves assumption for {}: {}".format(pokemon.name, moves))
                 for m in moves:
+                    if constants.HIDDEN_POWER in m:
+                        m = "{}{}".format(m, constants.HIDDEN_POWER_ACTIVE_MOVE_BASE_DAMAGE_STRING)
                     pokemon.add_move(m)
             except (KeyError, ValueError, IndexError):
                 logger.debug("No moves found for {}".format(pokemon.name))
