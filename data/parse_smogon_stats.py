@@ -26,11 +26,11 @@ def get_smogon_stats_file_name(game_mode):
     # always use the `-0` file - the higher ladder is for noobs
     smogon_url = "https://www.smogon.com/stats/{}-{}/moveset/{}-0.txt"
 
-    previous_month = datetime.now() - relativedelta.relativedelta(months=1)
+    previous_month = datetime.now() - relativedelta.relativedelta(months=2)
     year = previous_month.year
     month = "{:02d}".format(previous_month.month)
 
-    return smogon_url.format(previous_month.year, month, game_mode)
+    return smogon_url.format(year, month, game_mode)
 
 
 def get_pokemon_information(smogon_stats_url):
