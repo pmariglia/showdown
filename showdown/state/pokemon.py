@@ -15,7 +15,14 @@ class Pokemon:
         self.base_name = self.name
         self.level = level
 
-        self.base_stats = pokedex[self.name][constants.BASESTATS]
+        try:
+            self.base_stats = pokedex[self.name][constants.BASESTATS]
+        except KeyError:
+            logger.info("Could not pokedex entry for {}".format(self.name))
+            self.name = [k for k in pokedex if self.name.startswith(k)][0]
+            logger.info("Using {} instead".format(self.name))
+            self.base_stats = pokedex[self.name][constants.BASESTATS]
+
         self.stats = calculate_stats(self.base_stats, self.level)
 
         self.max_hp = self.stats.pop(constants.HITPOINTS)
@@ -47,6 +54,7 @@ class Pokemon:
         return Pokemon(name, level)
 
     def set_spread(self, nature, evs):
+        evs = [int(e) for e in evs.split(',')]
         hp_percent = self.hp / self.max_hp
         self.stats = calculate_stats(self.base_stats, self.level, evs=evs, nature=nature)
         self.max_hp = self.stats.pop(constants.HITPOINTS)

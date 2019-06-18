@@ -56,8 +56,7 @@ async def showdown():
         else:
             raise ValueError("Invalid Bot Mode")
 
-        is_random_battle = "random" in pokemon_mode
-        winner = await pokemon_battle(ps_websocket_client, is_random_battle)
+        winner = await pokemon_battle(ps_websocket_client, pokemon_mode)
 
         if winner == username:
             wins += 1

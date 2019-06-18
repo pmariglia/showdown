@@ -12,6 +12,7 @@ other_string = "other"
 moves_string = "moves"
 item_string = "items"
 spreads_string = "spreads"
+ability_string = "abilities"
 
 PERCENTAGES_REGEX = '[\d\.% ]'
 
@@ -29,7 +30,7 @@ def get_smogon_stats_file_name(game_mode):
     year = previous_month.year
     month = "{:02d}".format(previous_month.month)
 
-    return smogon_url.format(year, month, game_mode)
+    return smogon_url.format(previous_month.year, month, game_mode)
 
 
 def get_pokemon_information(smogon_stats_url):
@@ -49,6 +50,7 @@ def get_pokemon_information(smogon_stats_url):
         pokemon_information[pokemon_name][spreads_string] = list()
         pokemon_information[pokemon_name][item_string] = list()
         pokemon_information[pokemon_name][moves_string] = list()
+        pokemon_information[pokemon_name][ability_string] = list()
         for segment in it:
             if normalize_name(segment) == spreads_string:
                 while section_end_string not in segment:
@@ -75,5 +77,13 @@ def get_pokemon_information(smogon_stats_url):
                         move = normalize_name(re.sub(PERCENTAGES_REGEX, '', segment).strip())
                         if move != other_string:
                             pokemon_information[pokemon_name][moves_string].append(move)
+
+            elif normalize_name(segment) == ability_string:
+                while section_end_string not in segment:
+                    segment = next(it)
+                    if '%' in segment:
+                        ability = normalize_name(re.sub(PERCENTAGES_REGEX, '', segment).strip())
+                        if ability != other_string:
+                            pokemon_information[pokemon_name][ability_string].append(ability)
 
     return pokemon_information

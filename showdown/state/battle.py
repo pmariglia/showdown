@@ -1,6 +1,12 @@
 import constants
+from config import logger
 from copy import copy
-from data import get_most_likely_spread
+from data.parse_smogon_stats import get_smogon_stats_file_name
+from data.parse_smogon_stats import get_pokemon_information
+from data.parse_smogon_stats import moves_string
+from data.parse_smogon_stats import spreads_string
+from data.parse_smogon_stats import ability_string
+from data.parse_smogon_stats import item_string
 from showdown.state.battler import Battler
 from showdown.state.pokemon import Pokemon
 from showdown.search.objects import State
@@ -23,15 +29,51 @@ class Battle:
         self.force_switch = False
         self.wait = False
 
-    def initialize_team_preview(self, user_json, opponent_pokemon):
+    def initialize_team_preview(self, user_json, opponent_pokemon, battle_mode):
         self.user.from_json(user_json, first_turn=True)
         self.user.reserve.insert(0, self.user.active)
         self.user.active = None
+
+        smogon_stats_file_name = get_smogon_stats_file_name(battle_mode)
+        logger.debug("Making HTTP request to {} for usage stats".format(smogon_stats_file_name))
+        smogon_usage_data = get_pokemon_information(smogon_stats_file_name)
+
         for pkmn_string in opponent_pokemon:
             pokemon = Pokemon.from_switch_string(pkmn_string)
-            nature, evs = get_most_likely_spread(pokemon.name)
+            try:
+                nature, evs = smogon_usage_data[pokemon.name][spreads_string][0]
+                logger.debug("Spread assumption for {}: {}, {}".format(pokemon.name, nature, evs))
+            except (KeyError, ValueError, IndexError):
+                nature, evs = 'serious', "85,85,85,85,85,85"
+                logger.debug("No spreads found for {}, using random-battle spreads".format(pokemon.name))
             pokemon.set_spread(nature, evs)
+
+            try:
+                item = smogon_usage_data[pokemon.name][item_string][0]
+                pokemon.item = item
+                logger.debug("Item assumption for {}: {}".format(pokemon.name, item))
+            except (KeyError, ValueError, IndexError):
+                logger.debug("No item found for {}".format(pokemon.name))
+
+            try:
+                moves = smogon_usage_data[pokemon.name][moves_string][:4]
+                logger.debug("Moves assumption for {}: {}".format(pokemon.name, moves))
+                for m in moves:
+                    pokemon.add_move(m)
+            except (KeyError, ValueError, IndexError):
+                logger.debug("No moves found for {}".format(pokemon.name))
+
+            try:
+                ability = smogon_usage_data[pokemon.name][ability_string][0]
+                logger.debug("Ability assumption for {}: {}".format(pokemon.name, ability))
+                pokemon.ability = ability
+            except (KeyError, ValueError, IndexError):
+                logger.debug("No ability found for {}".format(pokemon.name))
+
             self.opponent.reserve.append(pokemon)
+
+        # ensure this gets garbage collected
+        del smogon_usage_data
 
         self.started = True
         self.rqid = user_json[constants.RQID]

@@ -85,7 +85,7 @@ async def _start_random_battle(ps_websocket_client: PSWebsocketClient):
             return battle
 
 
-async def _start_standard_battle(ps_websocket_client: PSWebsocketClient):
+async def _start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
     battle, opponent_id, user_json = await _initialize_battle_with_tag(ps_websocket_client)
     reset_logger(logger, "{}-{}.log".format(battle.opponent.account_name, battle.battle_tag))
 
@@ -104,7 +104,7 @@ async def _start_standard_battle(ps_websocket_client: PSWebsocketClient):
         if split_line[1] == constants.TEAM_PREVIEW_POKE and split_line[2].strip() == opponent_id:
             opponent_pokemon.append(split_line[3])
 
-    battle.initialize_team_preview(user_json, opponent_pokemon)
+    battle.initialize_team_preview(user_json, opponent_pokemon, pokemon_battle_type)
     await _handle_team_preview(battle, ps_websocket_client)
 
     return battle
@@ -141,8 +141,8 @@ def _find_best_move(battle: Battle):
     return [message, str(battle.rqid)]
 
 
-async def pokemon_battle(ps_websocket_client: PSWebsocketClient, random_battle):
-    if random_battle:
+async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
+    if "random" in pokemon_battle_type:
         battle = await _start_random_battle(ps_websocket_client)
         loop = asyncio.get_event_loop()
         with concurrent.futures.ThreadPoolExecutor() as pool:
@@ -151,7 +151,7 @@ async def pokemon_battle(ps_websocket_client: PSWebsocketClient, random_battle):
             )
         await ps_websocket_client.send_message(battle.battle_tag, formatted_message)
     else:
-        battle = await _start_standard_battle(ps_websocket_client)
+        battle = await _start_standard_battle(ps_websocket_client, pokemon_battle_type)
 
     await ps_websocket_client.send_message(battle.battle_tag, ['/timer on'])
     while True:
