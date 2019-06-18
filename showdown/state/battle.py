@@ -34,9 +34,25 @@ class Battle:
         self.user.reserve.insert(0, self.user.active)
         self.user.active = None
 
-        smogon_stats_file_name = get_smogon_stats_file_name(battle_mode)
-        logger.debug("Making HTTP request to {} for usage stats".format(smogon_stats_file_name))
-        smogon_usage_data = get_pokemon_information(smogon_stats_file_name)
+        if any(battle_mode.endswith(s) for s in constants.SMOGON_HAS_STATS_PAGE_SUFFIXES):
+            smogon_stats_file_name = get_smogon_stats_file_name(battle_mode)
+            logger.debug("Making HTTP request to {} for usage stats".format(smogon_stats_file_name))
+            smogon_usage_data = get_pokemon_information(smogon_stats_file_name)
+        else:
+            # use ALL data for a mode like battle-factory
+            logger.debug("Making HTTP request for ALL usage stats\nplease wait...")
+            ou_data = get_pokemon_information(get_smogon_stats_file_name("gen7ou"))
+            uu_data = get_pokemon_information(get_smogon_stats_file_name("gen7uu"))
+            ru_data = get_pokemon_information(get_smogon_stats_file_name("gen7ru"))
+            nu_data = get_pokemon_information(get_smogon_stats_file_name("gen7nu"))
+            pu_data = get_pokemon_information(get_smogon_stats_file_name("gen7pu"))
+            lc_data = get_pokemon_information(get_smogon_stats_file_name("gen7lc"))
+
+            smogon_usage_data = ou_data
+            for pkmn_data in [uu_data, ru_data, nu_data, pu_data, lc_data]:
+                for pkmn_name in pkmn_data:
+                    if pkmn_name not in smogon_usage_data:
+                        smogon_usage_data[pkmn_name] = pkmn_data[pkmn_name]
 
         for pkmn_string in opponent_pokemon:
             pokemon = Pokemon.from_switch_string(pkmn_string)
