@@ -2240,7 +2240,7 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
         heal_instruction = (
             constants.MUTATOR_HEAL,
             constants.SELF,
-            -1 / 2 * self.state.opponent.active.maxhp
+            -1 / 2 * self.state.self.active.maxhp
         )
 
         expected_instructions = [
