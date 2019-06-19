@@ -22,9 +22,9 @@ boost_multiplier_lookup = {
 
 
 def battle_is_over(state):
-    if state.self.active.hp == 0 and not any(pkmn.hp for pkmn in state.self.reserve.values()):
+    if state.self.active.hp <= 0 and not any(pkmn.hp for pkmn in state.self.reserve.values()):
         return True
-    elif state.opponent.active.hp == 0 and not any(pkmn.hp for pkmn in state.opponent.reserve.values()) and len(state.opponent.reserve) == 5:
+    elif state.opponent.active.hp <= 0 and not any(pkmn.hp for pkmn in state.opponent.reserve.values()) and len(state.opponent.reserve) == 5:
         return True
 
     return False
