@@ -40,6 +40,7 @@ class TestStatemutator(unittest.TestCase):
             None,
             None,
             False,
+            False,
             False
         )
         self.mutator = StateMutator(self.state)

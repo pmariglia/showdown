@@ -206,6 +206,8 @@ DEFOG_CLEARS = [
     AURORA_VEIL
 ]
 
+TRICK_ROOM = "trickroom"
+
 # volatile statuses
 FLINCH = "flinch"
 CONFUSION = "confusion"

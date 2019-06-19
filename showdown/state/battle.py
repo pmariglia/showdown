@@ -22,6 +22,7 @@ class Battle:
         self.opponent = Battler()
         self.weather = None
         self.field = None
+        self.trick_room = False
 
         self.started = False
         self.rqid = None
@@ -123,5 +124,5 @@ class Battle:
         user = Side(user_active, user_reserve, copy(self.user.side_conditions), self.user.trapped)
         opponent = Side(opponent_active, opponent_reserve, copy(self.opponent.side_conditions), self.opponent.trapped)
 
-        state = State(user, opponent, self.weather, self.field, self.force_switch, self.wait)
+        state = State(user, opponent, self.weather, self.field, self.trick_room, self.force_switch, self.wait)
         return state

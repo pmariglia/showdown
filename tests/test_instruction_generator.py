@@ -40,6 +40,7 @@ class TestGetInstructionsFromFlinched(unittest.TestCase):
             None,
             None,
             False,
+            False,
             False
         )
         self.state_generator = InstructionGenerator()
@@ -107,6 +108,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
             ),
             None,
             None,
+            False,
             False,
             False
         )
@@ -254,6 +256,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
             ),
             None,
             None,
+            False,
             False,
             False
         )
@@ -564,6 +567,7 @@ class TestGetInstructionsFromSideConditions(unittest.TestCase):
             None,
             None,
             False,
+            False,
             False
         )
         self.state_generator = InstructionGenerator()
@@ -691,6 +695,7 @@ class TestGetInstructionsFromHazardClearingMoves(unittest.TestCase):
             ),
             None,
             None,
+            False,
             False,
             False
         )
@@ -860,6 +865,7 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
             ),
             None,
             None,
+            False,
             False,
             False
         )
@@ -1065,6 +1071,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
             ),
             None,
             None,
+            False,
             False,
             False
         )
@@ -1292,6 +1299,7 @@ class TestGetInstructionsFromFlinchingMoves(unittest.TestCase):
             None,
             None,
             False,
+            False,
             False
         )
         self.state_generator = InstructionGenerator()
@@ -1397,6 +1405,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
             ),
             None,
             None,
+            False,
             False,
             False
         )
@@ -2169,6 +2178,7 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
             None,
             None,
             False,
+            False,
             False
         )
         self.state_generator = InstructionGenerator()
@@ -2288,6 +2298,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
             ),
             None,
             None,
+            False,
             False,
             False
         )
@@ -2409,6 +2420,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
             ),
             None,
             None,
+            False,
             False,
             False
         )

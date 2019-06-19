@@ -44,6 +44,7 @@ class TestGetStateInstructions(unittest.TestCase):
                         None,
                         None,
                         False,
+                        False,
                         False
                     )
 
@@ -2276,7 +2277,8 @@ class TestGetStateInstructions(unittest.TestCase):
                 'weather': None,
                 'field': None,
                 'forceSwitch': False,
-                'wait': False
+                'wait': False,
+                'trickroom': False
             }
         )
         self.mutator.state = self.state
@@ -2740,7 +2742,8 @@ class TestGetStateInstructions(unittest.TestCase):
                 'weather': None,
                 'field': None,
                 'forceSwitch': False,
-                'wait': False
+                'wait': False,
+                'trickroom': False
             }
         )
         self.mutator.state = self.state
@@ -3224,7 +3227,8 @@ class TestGetStateInstructions(unittest.TestCase):
                 'weather': None,
                 'field': None,
                 'forceSwitch': False,
-                'wait': False
+                'wait': False,
+                'trickroom': False
             }
         )
         self.mutator.state = self.state
@@ -3670,7 +3674,8 @@ class TestGetStateInstructions(unittest.TestCase):
                 'weather': 'sunnyday',
                 'field': None,
                 'forceSwitch': False,
-                'wait': False
+                'wait': False,
+                'trickroom': False
             }
         )
         self.mutator.state = self.state
@@ -3816,7 +3821,7 @@ class TestGetStateInstructions(unittest.TestCase):
                                 'canMegaEvo': False}},
                 'side_conditions': {'tailwind': 0, 'reflect': 0, 'lightscreen': 0, 'auroraveil': 0, 'stealthrock': 1,
                                     'spikes': 0, 'stickyweb': 0, 'toxicspikes': 0}, 'trapped': False}, 'weather': None,
-             'field': None, 'forceSwitch': False, 'wait': False}
+             'field': None, 'forceSwitch': False, 'wait': False, 'trickroom': False}
         )
         self.mutator.state = self.state
 
@@ -3967,7 +3972,7 @@ class TestGetStateInstructions(unittest.TestCase):
                                  'types': ['ghost'], 'canMegaEvo': False}},
                 'side_conditions': {'tailwind': 0, 'reflect': 0, 'lightscreen': 0, 'auroraveil': 0, 'stealthrock': 0,
                                     'spikes': 0, 'stickyweb': 0, 'toxicspikes': 0}, 'trapped': False}, 'weather': None,
-             'field': None, 'forceSwitch': False, 'wait': False}
+             'field': None, 'forceSwitch': False, 'wait': False, 'trickroom': False}
         )
         self.mutator.state = self.state
 
@@ -4108,7 +4113,7 @@ class TestGetStateInstructions(unittest.TestCase):
                                  'canMegaEvo': False}},
                 'side_conditions': {'tailwind': 0, 'reflect': 0, 'lightscreen': 0, 'auroraveil': 0, 'toxicspikes': 0,
                                     'stealthrock': 0, 'spikes': 0, 'stickyweb': 0, 'Wish': 0}, 'trapped': False},
-             'weather': None, 'field': None, 'forceSwitch': False, 'wait': False}
+             'weather': None, 'field': None, 'forceSwitch': False, 'wait': False, 'trickroom': False}
         )
         self.mutator.state = self.state
 
@@ -4255,7 +4260,7 @@ class TestGetStateInstructions(unittest.TestCase):
                                      'types': ['psychic', 'dark'], 'canMegaEvo': False}},
                 'side_conditions': {'tailwind': 0, 'reflect': 0, 'lightscreen': 0, 'auroraveil': 0, 'stealthrock': 0,
                                     'stickyweb': 0, 'spikes': 0, 'toxicspikes': 0}, 'trapped': False}, 'weather': None,
-             'field': None, 'forceSwitch': False, 'wait': False}
+             'field': None, 'forceSwitch': False, 'wait': False, 'trickroom': False}
         )
         self.mutator.state = self.state
 
@@ -4307,6 +4312,7 @@ class TestUserMovesFirst(unittest.TestCase):
                         ),
                         None,
                         None,
+                        False,
                         False,
                         False
                     )
@@ -4470,7 +4476,7 @@ class TestUserMovesFirst(unittest.TestCase):
         user_move = lookup_move('tackle')
         opponent_move = lookup_move('tackle')
 
-        self.state.field = 'trickroom'
+        self.state.trick_room = True
         user.active.speed = 1
         opponent.active.speed = 2
 

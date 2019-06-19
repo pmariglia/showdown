@@ -223,12 +223,28 @@ def weather(battle, split_msg):
 
 def fieldstart(battle, split_msg):
     """Set the battle's field condition"""
-    battle.field = normalize_name(split_msg[2].split(':')[-1].strip())
+    field_name = normalize_name(split_msg[2].split(':')[-1].strip())
+
+    # trick room shows up as a `-fieldstart` item but is separate from the other fields
+    if field_name == constants.TRICK_ROOM:
+        logger.debug("Setting trickroom")
+        battle.trick_room = True
+    else:
+        logger.debug("Setting the field to {}".format(field_name))
+        battle.field = field_name
 
 
-def fieldend(battle, _):
+def fieldend(battle, split_msg):
     """Remove the battle's field condition"""
-    battle.field = None
+    field_name = normalize_name(split_msg[2].split(':')[-1].strip())
+
+    # trick room shows up as a `-fieldend` item but is separate from the other fields
+    if field_name == constants.TRICK_ROOM:
+        logger.debug("Removing trick room")
+        battle.trick_room = False
+    else:
+        logger.debug("Setting the field to None")
+        battle.field = None
 
 
 def sidestart(battle, split_msg):

@@ -3,13 +3,14 @@ from .side import Side
 
 
 class State(object):
-    __slots__ = ('self', 'opponent', 'weather', 'force_switch', 'field', 'wait')
+    __slots__ = ('self', 'opponent', 'weather', 'force_switch', 'field', 'trick_room', 'wait')
 
-    def __init__(self, user, opponent, weather, field, force_switch, wait):
+    def __init__(self, user, opponent, weather, field, trick_room, force_switch, wait):
         self.self = user
         self.opponent = opponent
         self.weather = weather
         self.field = field
+        self.trick_room = trick_room
         self.force_switch = force_switch
         self.wait = wait
 
@@ -21,6 +22,7 @@ class State(object):
             state_dict[constants.WEATHER],
             state_dict[constants.FIELD],
             state_dict[constants.FORCE_SWITCH],
+            state_dict[constants.TRICK_ROOM],
             state_dict[constants.WAIT],
         )
 
@@ -31,6 +33,7 @@ class State(object):
                 constants.OPPONENT: self.opponent,
                 constants.WEATHER: self.weather,
                 constants.FIELD: self.field,
+                constants.TRICK_ROOM: self.trick_room,
                 constants.FORCE_SWITCH: self.force_switch,
                 constants.WAIT: self.wait
             }
