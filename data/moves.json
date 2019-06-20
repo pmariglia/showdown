@@ -3443,13 +3443,18 @@
         "flags": {
             "protect": 1
         },
+        "heal": [
+          -1,
+          1
+        ],
         "id": "finalgambit",
         "name": "Final Gambit",
         "priority": 0,
         "secondary": false,
         "target": "normal",
         "type": "fighting",
-        "pp": 5
+        "pp": 5,
+        "heal_target": "self"
     },
     "fireblast": {
         "accuracy": 85,

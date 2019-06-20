@@ -138,6 +138,8 @@ class DamageCalculator:
             return [int(defender.hp / 2)]
         elif attacking_move[constants.ID] == "naturesmadness":
             return [int(defender.hp / 2)]
+        elif attacking_move[constants.ID] == "finalgambit":
+            return [int(attacker.hp)]
 
         if attacking_move[constants.BASE_POWER] == 0:
             return [0]
