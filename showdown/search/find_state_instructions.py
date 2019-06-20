@@ -181,7 +181,12 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     move_accuracy = min(100, attacking_move[constants.ACCURACY])
     move_status_accuracy = move_accuracy
+
     move_target = attacking_move[constants.TARGET]
+    if move_target == constants.SELF:
+        move_status_target = attacker
+    else:
+        move_status_target = defender
 
     if attacking_move[constants.ID] in constants.HAZARD_CLEARING_MOVES:
         hazard_clearing_move = attacking_move
@@ -284,7 +289,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     if move_status_effect is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += state_generator.get_states_from_status_effects(mutator, defender, move_status_effect, move_status_accuracy, instruction_set)
+            temp_instructions += state_generator.get_states_from_status_effects(mutator, move_status_target, move_status_effect, move_status_accuracy, instruction_set)
         all_instructions = temp_instructions
 
     if boosts is not None:

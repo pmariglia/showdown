@@ -419,6 +419,25 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_rest_heals_user_and_puts_to_sleep(self):
+        bot_move = "rest"
+        opponent_move = "splash"
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 50
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.SLEEP),
+                    (constants.MUTATOR_HEAL, constants.SELF, 50),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_ghost_immune_to_superfang(self):
         bot_move = "superfang"
         opponent_move = "splash"

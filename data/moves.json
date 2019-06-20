@@ -9287,13 +9287,19 @@
             "snatch": 1,
             "heal": 1
         },
+        "heal": [
+          1,
+          1
+        ],
+        "status": "slp",
         "id": "rest",
         "name": "Rest",
         "priority": 0,
         "secondary": false,
         "target": "self",
         "type": "psychic",
-        "pp": 10
+        "pp": 10,
+        "heal_target": "self"
     },
     "retaliate": {
         "accuracy": 100,
