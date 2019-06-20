@@ -50,7 +50,14 @@ damage_multipication_array = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1/2, 0, 1, 1,
 class DamageCalculator:
 
     def __init__(self):
-        pass
+        self.special_logic = {
+            "seismictoss",
+            "nightshade",
+            "superfang",
+            "naturesmadness",
+            "finalgambit",
+            "endeavor"
+        }
 
     def calculate_modifier(self, attacker, defender, attacking_move, conditions: dict):
 
@@ -130,21 +137,8 @@ class DamageCalculator:
         else:
             return None
 
-        if attacking_move[constants.ID] == "seismictoss" and "ghost" not in defender.types:
-            return [int(attacker.level)]
-        elif attacking_move[constants.ID] == "nightshade" and "normal" not in defender.types:
-            return [int(attacker.level)]
-        elif attacking_move[constants.ID] == "superfang" and "ghost" not in defender.types:
-            return [int(defender.hp / 2)]
-        elif attacking_move[constants.ID] == "naturesmadness":
-            return [int(defender.hp / 2)]
-        elif attacking_move[constants.ID] == "finalgambit" and "ghost" not in defender.types:
-            return [int(attacker.hp)]
-        elif attacking_move[constants.ID] == "endeavor" and "ghost" not in defender.types:
-            if defender.hp > attacker.hp:
-                return [int(defender.hp - attacker.hp)]
-            else:
-                return [0]
+        if attacking_move[constants.ID] in self.special_logic:
+            return special_logic(attacking_move[constants.ID], attacker, defender)
 
         if attacking_move[constants.BASE_POWER] == 0:
             return [0]
@@ -170,6 +164,24 @@ class DamageCalculator:
         damage_rolls = self._get_damage_rolls(damage, calc_type)
 
         return list(set(damage_rolls))
+
+
+def special_logic(move_name, attacker, defender):
+    if move_name == "seismictoss" and "ghost" not in defender.types:
+        return [int(attacker.level)]
+    elif move_name == "nightshade" and "normal" not in defender.types:
+        return [int(attacker.level)]
+    elif move_name == "superfang" and "ghost" not in defender.types:
+        return [int(defender.hp / 2)]
+    elif move_name == "naturesmadness":
+        return [int(defender.hp / 2)]
+    elif move_name == "finalgambit" and "ghost" not in defender.types:
+        return [int(attacker.hp)]
+    elif move_name == "endeavor" and "ghost" not in defender.types:
+        if defender.hp > attacker.hp:
+            return [int(defender.hp - attacker.hp)]
+        else:
+            return [0]
 
 
 def clean_string(s):
