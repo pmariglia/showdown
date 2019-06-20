@@ -122,6 +122,14 @@ def technoblast(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
+def knockoff(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move):
+    # .endswith("mega|primal") is a hack but w/e sue me
+    if defending_pokemon.item is not None and not defending_pokemon.id.endswith("mega") and not defending_pokemon.id.endswith("primal"):
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.5
+    return attacking_move
+
+
 move_lookup = {
     'suckerpunch': suckerpunch,
     'eruption': eruption,
@@ -145,7 +153,8 @@ move_lookup = {
     'gyroball': gyroball,
     'focuspunch': focuspunch,
     'acrobatics': acrobatics,
-    'technoblast': technoblast
+    'technoblast': technoblast,
+    'knockoff': knockoff
 }
 
 

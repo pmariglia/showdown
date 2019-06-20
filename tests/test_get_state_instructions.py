@@ -354,6 +354,71 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_knockoff_does_more_damage_when_item_can_be_removed(self):
+        bot_move = "knockoff"
+        opponent_move = "splash"
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 100
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 100
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    # this move does 20 damage without knockoff boost
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 30)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_knockoff_does_not_amplify_damage_for_mega(self):
+        bot_move = "knockoff"
+        opponent_move = "splash"
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 100
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 100
+        self.state.opponent.active.id = "blastoisemega"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    # this move does 20 damage without knockoff boost
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 20)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_knockoff_does_not_amplify_damage_for_primal(self):
+        bot_move = "knockoff"
+        opponent_move = "splash"
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 100
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 100
+        self.state.opponent.active.id = "groudonprimal"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    # this move does 20 damage without knockoff boost
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 20)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_ghost_immune_to_superfang(self):
         bot_move = "superfang"
         opponent_move = "splash"
