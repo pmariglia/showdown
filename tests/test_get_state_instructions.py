@@ -314,6 +314,46 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_endeavor_brings_hp_to_equal(self):
+        bot_move = "endeavor"
+        opponent_move = "splash"
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 100
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 80
+        self.state.opponent.active.types = ["normal"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 20)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_endeavor_does_nothing_when_user_hp_greater_than_target_hp(self):
+        bot_move = "endeavor"
+        opponent_move = "splash"
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 60
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 80
+        self.state.opponent.active.types = ["normal"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_ghost_immune_to_superfang(self):
         bot_move = "superfang"
         opponent_move = "splash"

@@ -140,6 +140,11 @@ class DamageCalculator:
             return [int(defender.hp / 2)]
         elif attacking_move[constants.ID] == "finalgambit" and "ghost" not in defender.types:
             return [int(attacker.hp)]
+        elif attacking_move[constants.ID] == "endeavor" and "ghost" not in defender.types:
+            if defender.hp > attacker.hp:
+                return [int(defender.hp - attacker.hp)]
+            else:
+                return [0]
 
         if attacking_move[constants.BASE_POWER] == 0:
             return [0]
