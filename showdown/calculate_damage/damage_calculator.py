@@ -130,6 +130,15 @@ class DamageCalculator:
         else:
             return None
 
+        if attacking_move[constants.ID] == "seismictoss" and "ghost" not in defender.types:
+            return [int(attacker.level)]
+        elif attacking_move[constants.ID] == "nightshade" and "normal" not in defender.types:
+            return [int(attacker.level)]
+        elif attacking_move[constants.ID] == "superfang" and "ghost" not in defender.types:
+            return [int(defender.hp / 2)]
+        elif attacking_move[constants.ID] == "naturesmadness":
+            return [int(defender.hp / 2)]
+
         if attacking_move[constants.BASE_POWER] == 0:
             return [0]
 

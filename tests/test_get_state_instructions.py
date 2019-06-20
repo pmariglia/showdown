@@ -219,6 +219,96 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_seismic_toss_deals_damage_by_level(self):
+        bot_move = "seismictoss"
+        opponent_move = "splash"
+        self.state.self.active.level = 99
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 99),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_ghost_immune_to_seismic_toss(self):
+        bot_move = "seismictoss"
+        opponent_move = "splash"
+        self.state.self.active.level = 99
+        self.state.opponent.active.types = ["ghost"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_normal_immune_to_night_shade(self):
+        bot_move = "nightshade"
+        opponent_move = "splash"
+        self.state.self.active.level = 99
+        self.state.opponent.active.types = ["normal"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_superfang_does_half_health(self):
+        bot_move = "superfang"
+        opponent_move = "splash"
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 80
+        self.state.opponent.active.types = ["normal"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.9,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 40)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.09999999999999998,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_ghost_immune_to_superfang(self):
+        bot_move = "superfang"
+        opponent_move = "splash"
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 100
+        self.state.opponent.active.types = ["ghost"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_bellydrum_works_properly_in_basic_case(self):
         bot_move = "bellydrum"
         opponent_move = "splash"
