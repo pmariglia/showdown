@@ -455,6 +455,146 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_fast_uturn_results_in_switching_out_move_for_enemy(self):
+        bot_move = "splash"
+        opponent_move = "uturn"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                        (constants.MUTATOR_DAMAGE, constants.SELF, 60),
+                        (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_fast_uturn_results_in_switching_out_for_bot(self):
+        bot_move = "uturn"
+        opponent_move = "tackle"
+        self.state.self.active.speed = 2
+        self.state.opponent.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                        (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
+                        (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'gyarados'),
+                        (constants.MUTATOR_DAMAGE, constants.SELF, 24)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_slow_uturn_results_in_switching_out_for_bot(self):
+        bot_move = "uturn"
+        opponent_move = "tackle"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                        (constants.MUTATOR_DAMAGE, constants.SELF, 35),
+                        (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
+                        (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'gyarados')
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_slow_uturn_results_in_switching_out_for_opponent(self):
+        bot_move = "tackle"
+        opponent_move = "uturn"
+        self.state.self.active.speed = 2
+        self.state.opponent.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                        (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                        (constants.MUTATOR_DAMAGE, constants.SELF, 60),
+                        (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_fast_voltswitch_results_in_switching_out_for_opponent(self):
+        self.state.self.active.ability = None  # raichu has lightningrod lol
+        bot_move = "tackle"
+        opponent_move = "voltswitch"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                        (constants.MUTATOR_DAMAGE, constants.SELF, 29),
+                        (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong'),
+                        (constants.MUTATOR_DAMAGE, constants.OPPONENT, 10),
+
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_immune_by_ability_does_not_allow_voltswitch(self):
+        bot_move = "tackle"
+        opponent_move = "voltswitch"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_ground_type_does_not_allow_voltswitch(self):
+        self.state.self.active.ability = None  # raichu has lightningrod lol
+        self.state.self.active.types = ['ground']
+        bot_move = "tackle"
+        opponent_move = "voltswitch"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_bellydrum_works_properly_in_basic_case(self):
         bot_move = "bellydrum"
         opponent_move = "splash"

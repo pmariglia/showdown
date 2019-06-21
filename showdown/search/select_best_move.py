@@ -87,19 +87,21 @@ def get_all_options(mutator: StateMutator):
     return user_options, opponent_options
 
 
-def get_move_combination_scores(mutator, depth=2, previous_moves=tuple(), previous_instructions=()):
+def get_move_combination_scores(mutator, depth=2, forced_options=None):
     """
     :param mutator: a StateMutator object representing the state of the battle
     :param depth: the remaining depth before the state is evaluated
-    :param previous_moves: any previous moves that happened prior to this call
-    :param previous_instructions: any previous instructions that were applied to the state before this call
+    :param forced_options: options that can be forced instead of using `get_all_options`
     :return: a dictionary representing the potential move combinations and their associated scores
     """
     depth -= 1
     if battle_is_over(mutator.state):
         return {(constants.DO_NOTHING_MOVE, constants.DO_NOTHING_MOVE): evaluate(mutator.state)}
 
-    user_options, opponent_options = get_all_options(mutator)
+    if forced_options:
+        user_options, opponent_options = forced_options
+    else:
+        user_options, opponent_options = get_all_options(mutator)
 
     # if the battle is not over, but the opponent has no moves - we want to return the user options as moves
     # this is a special case in a random battle where the opponent's pokemon has fainted, but the opponent still
@@ -123,10 +125,7 @@ def get_move_combination_scores(mutator, depth=2, previous_moves=tuple(), previo
                 for instructions in state_instructions:
                     this_percentage = instructions.percentage
                     mutator.apply(instructions.instructions)
-                    safest = pick_safest(get_move_combination_scores(
-                        mutator, depth, previous_moves=previous_moves + (user_move, opponent_move),
-                        previous_instructions=previous_instructions + tuple(instructions.instructions))
-                    )
+                    safest = pick_safest(get_move_combination_scores(mutator, depth))
                     score += safest[1] * this_percentage
                     mutator.reverse(instructions.instructions)
 
