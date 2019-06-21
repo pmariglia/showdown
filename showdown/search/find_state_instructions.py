@@ -325,18 +325,22 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     if attacking_move[constants.ID] in ['uturn', 'voltswitch'] and damage_amounts is not None and all(damage_amounts):
         from showdown.search.select_best_move import get_move_combination_scores
-        if first_move:
-            other_move = defending_move[constants.ID]
-        else:
-            other_move = constants.DO_NOTHING_MOVE
-        switches = get_possible_switches(attacking_side)
-        if attacker == constants.SELF:
-            best_switch = max(get_move_combination_scores(mutator, depth=1, forced_options=(switches, [other_move])).items(), key=lambda x: x[1])[0][0]
-        else:
-            best_switch = min(get_move_combination_scores(mutator, depth=1, forced_options=([other_move], switches)).items(), key=lambda x: x[1])[0][1]
 
-        switch_pkmn = best_switch.split()[-1].strip()
         for i in all_possible_instructions:
+            if i.frozen:
+                continue
+            if first_move:
+                other_move = defending_move[constants.ID]
+            else:
+                other_move = constants.DO_NOTHING_MOVE
+            switches = get_possible_switches(attacking_side)
+            if attacker == constants.SELF:
+                best_switch = max(get_move_combination_scores(mutator, depth=1, forced_options=(switches, [other_move])).items(), key=lambda x: x[1])[0][0]
+            else:
+                best_switch = min(get_move_combination_scores(mutator, depth=1, forced_options=([other_move], switches)).items(), key=lambda x: x[1])[0][1]
+
+            switch_pkmn = best_switch.split()[-1].strip()
+
             i.add_instruction(
                 (
                     constants.MUTATOR_SWITCH,
