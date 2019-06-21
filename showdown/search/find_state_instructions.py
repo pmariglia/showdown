@@ -327,13 +327,15 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         from showdown.search.select_best_move import get_move_combination_scores
 
         for i in all_possible_instructions:
-            if i.frozen:
+            switches = get_possible_switches(attacking_side)
+            if not switches or i.frozen:
                 continue
+
             if first_move:
                 other_move = defending_move[constants.ID]
             else:
                 other_move = constants.DO_NOTHING_MOVE
-            switches = get_possible_switches(attacking_side)
+
             if attacker == constants.SELF:
                 best_switch = max(get_move_combination_scores(mutator, depth=1, forced_options=(switches, [other_move])).items(), key=lambda x: x[1])[0][0]
             else:

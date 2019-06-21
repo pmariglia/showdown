@@ -572,6 +572,27 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_uturn_when_there_are_no_available_switches_works(self):
+        bot_move = "splash"
+        opponent_move = "uturn"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        for mon in self.state.opponent.reserve.values():
+            mon.hp = 0
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    ('damage', 'self', 60)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_fast_voltswitch_results_in_switching_out_for_opponent(self):
         self.state.self.active.ability = None  # raichu has lightningrod lol
         bot_move = "tackle"
