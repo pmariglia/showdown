@@ -44,6 +44,7 @@ def inactive(battle, split_msg):
         capture = re.search(regex_string, split_msg[2])
         try:
             battle.time_remaining = int(capture.group(1))
+            logger.debug("Time remaining: {}".format(capture.group(1)))
         except ValueError:
             logger.warning("{} is not a valid int".format(capture.group(1)))
         except AttributeError:
