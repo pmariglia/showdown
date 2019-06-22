@@ -115,7 +115,7 @@ def _find_best_move(battle: Battle):
     logger.debug("Attempting to find best move from: {}".format(state))
     mutator = StateMutator(state)
     if battle.time_remaining > 30:
-        move_scores = get_move_combination_scores(mutator, depth=3)
+        move_scores = get_move_combination_scores(mutator, depth=config.search_depth)
     else:
         logger.debug("Low on time, only using depth of 2")
         move_scores = get_move_combination_scores(mutator, depth=2)

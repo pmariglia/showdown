@@ -3,6 +3,7 @@ import sys
 import logging
 
 damage_calc_type = 'average'
+search_depth = 2
 
 save_replay = False
 log_to_file = False

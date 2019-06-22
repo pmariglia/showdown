@@ -32,7 +32,8 @@ PS_PASSWORD: (string) Pokemon Showdown password
 BOT_MODE: (string, required) The mode the the bot will operate in. Options are "CHALLENGE_USER", "SEARCH_LADDER", or "ACCEPT_CHALLENGE"
 USER_TO_CHALLENGE: (string, required if BOT_MODE is "CHALLENGE_USER") The user to challenge
 POKEMON_MODE: (string, required) The type of game this bot will play games in
-TEAM_NAME: (string, required if POKEMON_MODE is one where a team is required): The name of the JSON file that contains the team you want to use. More on this below in the Specifying Teams section.
+TEAM_NAME: (string, required if POKEMON_MODE is one where a team is required) The name of the JSON file that contains the team you want to use. More on this below in the Specifying Teams section.
+SEARCH_DEPTH: (integer, default 2) The max search depth that will be used.
 RUN_COUNT: (integer, required) The amount of games this bot will play before quitting
 ```
 
@@ -60,8 +61,10 @@ Running with `python run.py` will start the bot with the settings specified in y
 
 ## Decision Logic
 
-Showdown decides which move to make by first simulating all possible transpositions for 2 turns.
-An evaluation function is used to score each combination of moves and a decision is made about which the best move(s) are.
+Showdown decides which move to make by first simulating all possible transpositions up to the search depth.
+An evaluation function is used to score each combination of moves and the safest move is chosen.
+
+MAX_SEARCH_DEPTH may be set in the config to search any depth desired. Leaving this value at the default (2) provides almost instant decisions. 3 is manageable for most machines.
 
 Most aspects of Pokémon are accounted for, such as:
 
