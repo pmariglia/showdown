@@ -30,6 +30,8 @@ class Battle:
         self.force_switch = False
         self.wait = False
 
+        self.time_remaining = 240
+
     def initialize_team_preview(self, user_json, opponent_pokemon, battle_mode):
         self.user.from_json(user_json, first_turn=True)
         self.user.reserve.insert(0, self.user.active)

@@ -20,6 +20,7 @@ from showdown.state.battle_modifiers import end_volatile_status
 from showdown.state.battle_modifiers import set_opponent_ability
 from showdown.state.battle_modifiers import set_opponent_ability_from_ability_tag
 from showdown.state.battle_modifiers import form_change
+from showdown.state.battle_modifiers import inactive
 
 
 class TestRequestMessage(unittest.TestCase):
@@ -819,3 +820,54 @@ class TestFormChange(unittest.TestCase):
 
         pkmn = Pokemon("wishiwashischool", 100)
         self.assertNotIn(pkmn, self.battle.opponent.reserve)
+
+
+class TestInactive(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+        self.battle.opponent.active.ability = None
+
+        self.user_active = Pokemon('weedle', 100)
+        self.battle.user.active = self.user_active
+
+        self.username = "CoolUsername"
+
+        self.battle.username = self.username
+
+    def test_sets_time_to_15_seconds(self):
+        split_msg = ['', 'inactive', 'Time left: 135 sec this turn', '135 sec total']
+        inactive(self.battle, split_msg)
+
+        self.assertEqual(135, self.battle.time_remaining)
+
+    def test_sets_to_60_seconds(self):
+        split_msg = ['', 'inactive', 'Time left: 60 sec this turn', '60 sec total']
+        inactive(self.battle, split_msg)
+
+        self.assertEqual(60, self.battle.time_remaining)
+
+    def test_capture_group_failing(self):
+        self.battle.time_remaining = 1
+        split_msg = ['', 'inactive', 'some random message']
+        inactive(self.battle, split_msg)
+
+        self.assertEqual(1, self.battle.time_remaining)
+
+    def test_capture_group_failing_but_message_starts_with_username(self):
+        self.battle.time_remaining = 1
+        split_msg = ['', 'inactive', 'Time left: some random message']
+        inactive(self.battle, split_msg)
+
+        self.assertEqual(1, self.battle.time_remaining)
+
+    def test_different_inactive_message_does_not_change_time(self):
+        self.battle.time_remaining = 1
+        split_msg = ['', 'inactive', 'Some Other Person has 10 seconds left']
+        inactive(self.battle, split_msg)
+
+        self.assertEqual(1, self.battle.time_remaining)

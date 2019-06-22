@@ -1,3 +1,4 @@
+import re
 import json
 import constants
 from config import logger
@@ -35,6 +36,18 @@ def request(battle, split_msg):
 
         if not battle.wait:
             battle.user.from_json(battle_json)
+
+
+def inactive(battle, split_msg):
+    regex_string = "(\d+) sec this turn"
+    if split_msg[2].startswith(constants.TIME_LEFT):
+        capture = re.search(regex_string, split_msg[2])
+        try:
+            battle.time_remaining = int(capture.group(1))
+        except ValueError:
+            logger.warning("{} is not a valid int".format(capture.group(1)))
+        except AttributeError:
+            logger.warning("'{}' does not match the regex '{}'".format(split_msg[2], regex_string))
 
 
 def switch_or_drag(battle, split_msg):
@@ -336,6 +349,7 @@ async def update_battle(battle, msg):
 
         battle_modifiers_lookup = {
             'request': request,
+            'inactive': inactive,
             'switch': switch_or_drag,
             'faint': faint,
             'drag': switch_or_drag,

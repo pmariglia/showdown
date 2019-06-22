@@ -88,6 +88,7 @@ FNT = "fnt"
 SWITCH_STRING = "switch"
 WIN_STRING = "|win|"
 CHAT_STRING = "|c|"
+TIME_LEFT = "Time left:"
 DETAILS = "details"
 
 CAN_MEGA_EVO = "canMegaEvo"

@@ -93,7 +93,7 @@ def move_item_to_front_of_list(l, item):
     return [l[i] for i in all_indicies]
 
 
-def get_move_combination_scores(mutator, depth=3, forced_options=None):
+def get_move_combination_scores(mutator, depth=2, forced_options=None):
     """
     :param mutator: a StateMutator object representing the state of the battle
     :param depth: the remaining depth before the state is evaluated
