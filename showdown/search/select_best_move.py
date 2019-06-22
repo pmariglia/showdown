@@ -102,7 +102,6 @@ def get_move_combination_scores(mutator, depth=2, forced_options=None):
     :param forced_options: options that can be forced instead of using `get_all_options`
     :return: a dictionary representing the potential move combinations and their associated scores
     """
-    import pandas as pd
     depth -= 1
     if battle_is_over(mutator.state):
         return {(constants.DO_NOTHING_MOVE, constants.DO_NOTHING_MOVE): evaluate(mutator.state)}
