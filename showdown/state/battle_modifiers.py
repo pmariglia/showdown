@@ -367,5 +367,8 @@ async def update_battle(battle, msg):
         if function_to_call is not None:
             function_to_call(battle, split_msg)
 
+    if action == 'inactive':
+        return False
+
     if action != "request":
         return battle.force_switch
