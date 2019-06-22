@@ -21,8 +21,8 @@ class State(object):
             Side.from_dict(state_dict[constants.OPPONENT]),
             state_dict[constants.WEATHER],
             state_dict[constants.FIELD],
-            state_dict[constants.FORCE_SWITCH],
             state_dict[constants.TRICK_ROOM],
+            state_dict[constants.FORCE_SWITCH],
             state_dict[constants.WAIT],
         )
 
