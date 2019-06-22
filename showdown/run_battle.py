@@ -156,7 +156,7 @@ async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_
     await ps_websocket_client.send_message(battle.battle_tag, ['/timer on'])
     while True:
         msg = await ps_websocket_client.receive_message()
-        if constants.WIN_STRING in msg:
+        if constants.WIN_STRING in msg and not constants.CHAT_STRING in msg:
             winner = msg.split(constants.WIN_STRING)[-1].split('\n')[0].strip()
             logger.debug("Winner: {}".format(winner))
             await ps_websocket_client.leave_battle(battle.battle_tag, save_replay=config.save_replay)
