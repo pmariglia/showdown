@@ -87,6 +87,7 @@ async def _start_random_battle(ps_websocket_client: PSWebsocketClient):
 
 async def _start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
     battle, opponent_id, user_json = await _initialize_battle_with_tag(ps_websocket_client)
+    await ps_websocket_client.send_message(battle.battle_tag, [config.greeting_message])
     reset_logger(logger, "{}-{}.log".format(battle.opponent.account_name, battle.battle_tag))
 
     msg = ''
@@ -149,6 +150,7 @@ def _find_best_move(battle: Battle):
 async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
     if "random" in pokemon_battle_type:
         battle = await _start_random_battle(ps_websocket_client)
+        await ps_websocket_client.send_message(battle.battle_tag, [config.greeting_message])
         loop = asyncio.get_event_loop()
         with concurrent.futures.ThreadPoolExecutor() as pool:
             formatted_message = await loop.run_in_executor(
@@ -159,7 +161,6 @@ async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_
         battle = await _start_standard_battle(ps_websocket_client, pokemon_battle_type)
 
     await ps_websocket_client.send_message(battle.battle_tag, ['/timer on'])
-    await ps_websocket_client.send_message(battle.battle_tag, [config.greeting_message])
     while True:
         msg = await ps_websocket_client.receive_message()
         if constants.WIN_STRING in msg and not constants.CHAT_STRING in msg:
