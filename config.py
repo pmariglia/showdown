@@ -2,6 +2,9 @@ import os
 import sys
 import logging
 
+greeting_message = 'hf'
+battle_ending_message = 'gg'
+
 damage_calc_type = 'average'
 search_depth = 2
 

@@ -22,6 +22,8 @@ async def showdown():
     config.log_to_file = env.bool("LOG_TO_FILE", config.log_to_file)
     config.save_replay = env.bool("SAVE_REPLAY", config.save_replay)
     config.search_depth = int(env("MAX_SEARCH_DEPTH", config.search_depth))
+    config.greeting_message = env("GREETING_MESSAGE", config.greeting_message)
+    config.battle_ending_message = env("BATTLE_OVER_MESSAGE", config.battle_ending_message)
     logger.setLevel(env("LOG_LEVEL", "DEBUG"))
     websocket_uri = env("WEBSOCKET_URI", "sim.smogon.com:8000")
     username = env("PS_USERNAME")
