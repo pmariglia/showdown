@@ -208,6 +208,9 @@ DEFOG_CLEARS = [
 
 TRICK_ROOM = "trickroom"
 
+# switch-out moves
+SWITCH_OUT_MOVES = {"uturn", "voltswitch", "partingshot"}
+
 # volatile statuses
 FLINCH = "flinch"
 CONFUSION = "confusion"
