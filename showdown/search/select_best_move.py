@@ -77,11 +77,9 @@ def get_all_options(mutator: StateMutator):
         user_options = get_user_options(mutator.state.self, force_switch)
 
     if not user_options:
-        logger.debug("Could not find a user move, defaulting to splash")
         user_options = [constants.DO_NOTHING_MOVE]
 
     if not opponent_options:
-        logger.debug("Could not find an opponent move, defaulting to splash")
         opponent_options = [constants.DO_NOTHING_MOVE]
 
     return user_options, opponent_options
@@ -95,7 +93,7 @@ def move_item_to_front_of_list(l, item):
     return [l[i] for i in all_indicies]
 
 
-def get_move_combination_scores(mutator, depth=2, forced_options=None):
+def get_move_combination_scores(mutator, depth=3, forced_options=None):
     """
     :param mutator: a StateMutator object representing the state of the battle
     :param depth: the remaining depth before the state is evaluated
