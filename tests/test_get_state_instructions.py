@@ -1837,6 +1837,28 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_leechseed_does_not_sap_when_dead(self):
+        bot_move = "splash"
+        opponent_move = "tackle"
+        self.state.opponent.active.volatile_status.add(constants.LEECH_SEED)
+        self.state.opponent.active.maxhp = 100
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 1
+        self.state.opponent.active.speed = 2
+        self.state.self.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_terrain_makes_psychic_move_stronger(self):
         bot_move = "psyshock"
         opponent_move = "splash"

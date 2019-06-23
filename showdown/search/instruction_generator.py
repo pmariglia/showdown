@@ -678,7 +678,7 @@ class InstructionGenerator:
                     max(1, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
                 )
             )
-        if constants.LEECH_SEED in pkmn.volatile_status:
+        if constants.LEECH_SEED in pkmn.volatile_status and defending_pkmn.hp > 0:
             damage_sapped = max(1, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
             instructions_to_add.append(
                 (
