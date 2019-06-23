@@ -69,6 +69,7 @@ class DamageCalculator:
         modifier *= light_screen_modifier(attacking_move, conditions.get(constants.LIGHT_SCREEN))
         modifier *= reflect_modifier(attacking_move, conditions.get(constants.REFLECT))
         modifier *= aurora_veil_modifier(conditions.get(constants.AURORA_VEIL))
+        modifier *= terrain_modifier(attacker, defender, attacking_move, conditions.get(constants.TERRAIN))
 
         return modifier
 
@@ -241,4 +242,18 @@ def reflect_modifier(attacking_move: namedtuple, reflect: bool):
 def aurora_veil_modifier(aurora_veil: bool):
     if aurora_veil:
         return 0.5
+    return 1
+
+
+def terrain_modifier(attacker, defender, attacking_move, terrain):
+    if terrain == constants.ELECTRIC_TERRAIN and attacking_move[constants.TYPE] == 'electric' and attacker.is_grounded():
+        return 1.5
+    elif terrain == constants.GRASSY_TERRAIN and attacking_move[constants.TYPE] == 'grass' and attacker.is_grounded():
+        return 1.5
+    elif terrain == constants.GRASSY_TERRAIN and attacking_move[constants.ID] == 'earthquake':
+        return 0.5
+    elif terrain == constants.MISTY_TERRAIN and attacking_move[constants.TYPE] == 'dragon' and defender.is_grounded():
+        return 0.5
+    elif terrain == constants.PSYCHIC_TERRAIN and attacking_move[constants.TYPE] == 'psychic' and attacker.is_grounded():
+        return 1.5
     return 1

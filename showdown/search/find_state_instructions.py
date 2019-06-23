@@ -155,7 +155,8 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         constants.REFLECT: defending_side.side_conditions[constants.REFLECT],
         constants.LIGHT_SCREEN: defending_side.side_conditions[constants.LIGHT_SCREEN],
         constants.AURORA_VEIL: defending_side.side_conditions[constants.AURORA_VEIL],
-        constants.WEATHER: active_weather
+        constants.WEATHER: active_weather,
+        constants.TERRAIN: mutator.state.field
     }
 
     if attacking_pokemon.hp == 0:

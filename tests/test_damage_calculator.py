@@ -97,6 +97,75 @@ class TestCalculateDamage(unittest.TestCase):
         dmg = self.damage_calculator.calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
         self.assertEqual([75], dmg)
 
+    def test_electric_terrain_increases_electric_damage_for_grounded_pokemon(self):
+        self.charizard.types = ['fire']
+
+        conditions = {
+            constants.TERRAIN: constants.ELECTRIC_TERRAIN
+        }
+
+        move = 'thunderbolt'
+
+        dmg = self.damage_calculator.calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+
+        # normally this is 41
+        self.assertEqual([61], dmg)
+
+    def test_psychic_terrain_increases_psychic_damage(self):
+        self.charizard.types = ['fire']
+
+        conditions = {
+            constants.TERRAIN: constants.PSYCHIC_TERRAIN
+        }
+
+        move = 'psychic'
+
+        dmg = self.damage_calculator.calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+
+        # normally this is 164
+        self.assertEqual([246], dmg)
+
+    def test_damage_is_not_increased_if_attacker_is_not_grounded(self):
+        self.charizard.types = ['fire', 'flying']
+
+        conditions = {
+            constants.TERRAIN: constants.PSYCHIC_TERRAIN
+        }
+
+        move = 'psychic'
+
+        dmg = self.damage_calculator.calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+
+        self.assertEqual([164], dmg)
+
+    def test_grassy_terrain_increases_grass_type_move(self):
+        self.charizard.types = ['fire']
+
+        conditions = {
+            constants.TERRAIN: constants.GRASSY_TERRAIN
+        }
+
+        move = 'gigadrain'
+
+        dmg = self.damage_calculator.calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+
+        # normally this is 17
+        self.assertEqual([25], dmg)
+
+    def test_misty_terrain_halves_dragon_moves(self):
+        self.charizard.types = ['fire']
+
+        conditions = {
+            constants.TERRAIN: constants.MISTY_TERRAIN
+        }
+
+        move = 'outrage'
+
+        dmg = self.damage_calculator.calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+
+        # normally this is 103
+        self.assertEqual([51], dmg)
+
     def test_rain_properly_amplifies_water_damage(self):
 
         conditions = {

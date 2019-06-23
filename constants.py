@@ -210,6 +210,12 @@ DEFOG_CLEARS = [
 
 TRICK_ROOM = "trickroom"
 
+TERRAIN = "terrain"
+ELECTRIC_TERRAIN = "electricterrain"
+GRASSY_TERRAIN = "grassyterrain"
+MISTY_TERRAIN = "mistyterrain"
+PSYCHIC_TERRAIN = "psychicterrain"
+
 # switch-out moves
 SWITCH_OUT_MOVES = {"uturn", "voltswitch", "partingshot"}
 
