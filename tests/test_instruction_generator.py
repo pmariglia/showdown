@@ -1140,6 +1140,94 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_boosts_cannot_go_below_min_boosts_with_previous_instruction_lowering_boost(self):
+
+        self.previous_instruction = TransposeInstruction(
+            1,
+            [
+                (constants.MUTATOR_UNBOOST, constants.SELF, constants.ATTACK, 5)
+            ],
+            False
+        )
+
+        boosts = {
+            constants.ATTACK: -2
+        }
+        accuracy = True
+        side = constants.SELF
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
+
+        boost_instruction = (
+            constants.MUTATOR_BOOST,
+            side,
+            constants.ATTACK,
+            -1
+        )
+
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    self.previous_instruction.instructions[0],
+                    boost_instruction,
+
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_boosts_cannot_go_below_min_boosts_with_previous_instruction_lowering_boost_with_percentage_hit_not_1(self):
+
+        self.previous_instruction = TransposeInstruction(
+            1,
+            [
+                (constants.MUTATOR_UNBOOST, constants.SELF, constants.ATTACK, 5)
+            ],
+            False
+        )
+
+        boosts = {
+            constants.ATTACK: -2
+        }
+        accuracy = 60
+        side = constants.SELF
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
+
+        boost_instruction = (
+            constants.MUTATOR_BOOST,
+            side,
+            constants.ATTACK,
+            -1
+        )
+
+        expected_instructions = [
+            TransposeInstruction(
+                0.6,
+                [
+                    self.previous_instruction.instructions[0],
+                    boost_instruction,
+
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.4,
+                [
+                    self.previous_instruction.instructions[0],
+
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_guaranteed_atk_boost_returns_one_state(self):
         boosts = {
             constants.ATTACK: 1
@@ -2153,25 +2241,25 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
         self.state = State(
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
-                [
-                    Pokemon.from_state_pokemon_dict(StatePokemon("rattata", 100).to_dict()),
-                    Pokemon.from_state_pokemon_dict(StatePokemon("charmander", 100).to_dict()),
-                    Pokemon.from_state_pokemon_dict(StatePokemon("squirtle", 100).to_dict()),
-                    Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
-                    Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
-                ],
+                {
+                    'rattata': Pokemon.from_state_pokemon_dict(StatePokemon("rattata", 100).to_dict()),
+                    'charmander': Pokemon.from_state_pokemon_dict(StatePokemon("charmander", 100).to_dict()),
+                    'squirtle': Pokemon.from_state_pokemon_dict(StatePokemon("squirtle", 100).to_dict()),
+                    'bulbasaur': Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
+                    'pidgey': Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
+                },
                 defaultdict(lambda: 0),
                 False
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
-                [
-                    Pokemon.from_state_pokemon_dict(StatePokemon("rattata", 100).to_dict()),
-                    Pokemon.from_state_pokemon_dict(StatePokemon("charmander", 100).to_dict()),
-                    Pokemon.from_state_pokemon_dict(StatePokemon("squirtle", 100).to_dict()),
-                    Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
-                    Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
-                ],
+                {
+                    'rattata': Pokemon.from_state_pokemon_dict(StatePokemon("rattata", 100).to_dict()),
+                    'charmander': Pokemon.from_state_pokemon_dict(StatePokemon("charmander", 100).to_dict()),
+                    'squirtle': Pokemon.from_state_pokemon_dict(StatePokemon("squirtle", 100).to_dict()),
+                    'bulbasaur': Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
+                    'pidgey': Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
+                },
                 defaultdict(lambda: 0),
                 False
             ),
@@ -2204,6 +2292,65 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
 
         expected_instructions = [
             TransposeInstruction(1.0, [heal_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_previous_instruction_affect_this_instruction(self):
+        self.state.self.active.hp = self.state.self.active.maxhp  # this ensures that only the damage taken in previous instructions is recoverable
+        self.previous_instruction = TransposeInstruction(
+            1,
+            [
+                (constants.MUTATOR_DAMAGE, constants.SELF, 15)
+            ],
+            False
+        )
+
+        attacker = constants.SELF
+        move = {
+            constants.TARGET: constants.SELF,
+            constants.HEAL: [1, 3],
+            constants.HEAL_TARGET: constants.SELF
+        }
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
+
+        heal_instruction = (
+            constants.MUTATOR_HEAL,
+            attacker,
+            15.000000000000014
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [self.previous_instruction.instructions[0], heal_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_previous_instructions_result_in_correct_recovery(self):
+        self.state.self.active.hp = 50
+
+        self.previous_instruction = TransposeInstruction(
+            1,
+            [
+                (constants.MUTATOR_SWITCH, constants.SELF, 'pikachu', 'rattata')
+            ],
+            False
+        )
+
+        attacker = constants.SELF
+        move = {
+            constants.TARGET: constants.SELF,
+            constants.HEAL: [1, 3],
+            constants.HEAL_TARGET: constants.SELF
+        }
+
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
+
+        expected_instructions = [
+            TransposeInstruction(1.0, self.previous_instruction.instructions, False),
         ]
 
         self.assertEqual(expected_instructions, instructions)

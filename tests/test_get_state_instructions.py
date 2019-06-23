@@ -758,6 +758,23 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_pokemon_boosting_into_roar(self):
+        bot_move = "roar"
+        opponent_move = "swordsdance"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 2)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_pokemon_with_active_substitute_switching_into_phazing_move(self):
         bot_move = "switch starmie"
         opponent_move = "roar"
@@ -936,6 +953,56 @@ class TestGetStateInstructions(unittest.TestCase):
                     ('damage', 'self', 104),
                 ],
                 False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_highjumpkick_causes_crash_with_previous_move(self):
+        self.state.self.active.speed = 100
+        self.state.opponent.active.speed = 101
+        self.state.self.active.hp = 36  # tackle does 35 damage
+        bot_move = "highjumpkick"
+        opponent_move = "tackle"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.9,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 40)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.09999999999999998,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 1),
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_highjumpkick_crash_when_switching_into_ghost(self):
+        self.state.self.active.speed = 100
+        self.state.opponent.active.speed = 101
+        self.state.self.active.hp = 1
+
+        self.state.opponent.reserve['gengar'] = Pokemon.from_state_pokemon_dict(StatePokemon("gengar", 73).to_dict())
+        bot_move = "highjumpkick"
+        opponent_move = "switch gengar"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'gengar'),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 1)
+                ],
+                True
             )
         ]
 

@@ -200,10 +200,10 @@ class InstructionGenerator:
         side = self.get_side_from_state(mutator.state, attacker)
         if constants.FLINCH in side.active.volatile_status:
             remove_flinch_instruction = (
-                                constants.MUTATOR_REMOVE_VOLATILE_STATUS,
-                                attacker,
-                                constants.FLINCH
-                            )
+                constants.MUTATOR_REMOVE_VOLATILE_STATUS,
+                attacker,
+                constants.FLINCH
+            )
             mutator.reverse(instruction.instructions)
             instruction.add_instruction(remove_flinch_instruction)
             instruction.frozen = True
@@ -264,6 +264,8 @@ class InstructionGenerator:
         if instruction.frozen or damage is None:
             return [instruction]
 
+        mutator.apply(instruction.instructions)
+
         # `damage == 0` means that the move deals damage, but not in this situation
         # for example: using Return against a Ghost-type
         # the state must be frozen because any secondary effects must not take place
@@ -273,9 +275,12 @@ class InstructionGenerator:
                 crash_instruction = (
                     constants.MUTATOR_DAMAGE,
                     attacker,
-                    int(crash_percent * attacker_side.active.maxhp)
+                    min(int(crash_percent * attacker_side.active.maxhp), attacker_side.active.hp)
                 )
+                mutator.reverse(instruction.instructions)
                 instruction.add_instruction(crash_instruction)
+            else:
+                mutator.reverse(instruction.instructions)
             instruction.frozen = True
             return [instruction]
 
@@ -286,8 +291,6 @@ class InstructionGenerator:
         if accuracy is True:
             accuracy = 100
         percent_hit = accuracy / 100
-
-        mutator.apply(instruction.instructions)
 
         instruction_additions = []
         move_missed_instruction = copy(instruction)
@@ -345,7 +348,7 @@ class InstructionGenerator:
                 crash_instruction = (
                     constants.MUTATOR_DAMAGE,
                     attacker,
-                    int(crash_percent * attacker_side.active.maxhp)
+                    min(int(crash_percent * attacker_side.active.maxhp), attacker_side.active.hp)
                 )
                 move_missed_instruction.add_instruction(crash_instruction)
 
@@ -595,6 +598,8 @@ class InstructionGenerator:
         if instruction.frozen:
             return [instruction]
 
+        mutator.apply(instruction.instructions)
+
         target = move[constants.HEAL_TARGET]
         if target in self.opposing_side_strings:
             side_string = self.possible_affected_strings[attacker_string]
@@ -608,9 +613,8 @@ class InstructionGenerator:
             health_recovered = 0
 
         if health_recovered == 0:
+            mutator.reverse(instruction.instructions)
             return [instruction]
-
-        mutator.apply(instruction.instructions)
 
         final_health = pkmn.hp + health_recovered
         if final_health > pkmn.maxhp:
