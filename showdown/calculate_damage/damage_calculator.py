@@ -256,4 +256,6 @@ def terrain_modifier(attacker, defender, attacking_move, terrain):
         return 0.5
     elif terrain == constants.PSYCHIC_TERRAIN and attacking_move[constants.TYPE] == 'psychic' and attacker.is_grounded():
         return 1.5
+    elif terrain == constants.PSYCHIC_TERRAIN and attacking_move[constants.PRIORITY] > 0:
+        return 0
     return 1

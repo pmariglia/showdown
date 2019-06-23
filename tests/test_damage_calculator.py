@@ -166,6 +166,19 @@ class TestCalculateDamage(unittest.TestCase):
         # normally this is 103
         self.assertEqual([51], dmg)
 
+    def test_psychic_terrain_makes_priority_move_do_nothing(self):
+        self.charizard.types = ['fire']
+
+        conditions = {
+            constants.TERRAIN: constants.PSYCHIC_TERRAIN
+        }
+
+        move = 'machpunch'
+
+        dmg = self.damage_calculator.calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+
+        self.assertEqual([0], dmg)
+
     def test_rain_properly_amplifies_water_damage(self):
 
         conditions = {
