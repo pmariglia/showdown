@@ -143,7 +143,7 @@ class InstructionGenerator:
 
         # account for toxic spikes effect
         if attacking_side.side_conditions[constants.TOXIC_SPIKES] >= 1 and switch_pkmn.is_grounded():
-            if not self._immune_to_status(switch_pkmn, constants.POISON):
+            if not self._immune_to_status(mutator.state, switch_pkmn, constants.POISON):
                 if attacking_side.side_conditions[constants.TOXIC_SPIKES] == 1:
                     instruction_additions.append(
                         (
@@ -476,7 +476,7 @@ class InstructionGenerator:
             mutator.reverse(instruction.instructions)
             return [instruction]
 
-        if self._immune_to_status(side.active, status):
+        if self._immune_to_status(mutator.state, side.active, status):
             mutator.reverse(instruction.instructions)
             return [instruction]
 
@@ -826,7 +826,7 @@ class InstructionGenerator:
         return False
 
     @staticmethod
-    def _immune_to_status(pkmn, status):
+    def _immune_to_status(state, pkmn, status):
         if pkmn.status is not None:
             return True
         if constants.SUBSTITUTE in pkmn.volatile_status:
@@ -836,6 +836,10 @@ class InstructionGenerator:
         if status == constants.BURN and 'fire' in pkmn.types:
             return True
         if status == constants.PARALYZED and 'ground' in pkmn.types:
+            return True
+        if state.field == constants.MISTY_TERRAIN:
+            return True
+        if state.field == constants.ELECTRIC_TERRAIN and status == constants.SLEEP:
             return True
 
         return False

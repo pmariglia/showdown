@@ -1857,6 +1857,42 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_misty_terrain_blocks_status(self):
+        bot_move = "splash"
+        opponent_move = "spore"
+        self.state.field = constants.MISTY_TERRAIN
+        self.state.opponent.active.maxhp = 100
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 50
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_electric_terrain_blocks_sleep(self):
+        bot_move = "splash"
+        opponent_move = "spore"
+        self.state.field = constants.ELECTRIC_TERRAIN
+        self.state.opponent.active.maxhp = 100
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 50
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_skill_link_increases_tailslap_damage(self):
         bot_move = "tailslap"
         opponent_move = "splash"
