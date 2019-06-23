@@ -64,7 +64,7 @@ Running with `python run.py` will start the bot with the settings specified in y
 Showdown decides which move to make by first simulating all possible transpositions up to the search depth.
 An evaluation function is used to score each combination of moves and the safest move is chosen.
 
-MAX_SEARCH_DEPTH may be set in the config to search any depth desired. Leaving this value at the default (2) provides almost instant decisions. 3 is manageable for most machines.
+MAX_SEARCH_DEPTH may be set in the config to search any depth desired. Leaving this value at the default (2) provides almost instant decisions. 3 should keep within PokemonShowdown's time constraints for most machines.
 
 Most aspects of Pokémon are accounted for, such as:
 
