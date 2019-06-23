@@ -642,6 +642,9 @@ class InstructionGenerator:
         pkmn = side.active
         defending_pkmn = defending_side.active
 
+        if pkmn.ability == 'magicguard':
+            return [instruction]
+
         instructions_to_add = []
         if constants.TOXIC == pkmn.status:
             instructions_to_add.append(

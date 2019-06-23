@@ -1837,6 +1837,38 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_magicguard_does_not_take_leechseed_damage(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'magicguard'
+        self.state.opponent.active.volatile_status.add(constants.LEECH_SEED)
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_magicguard_does_not_take_poison_damage(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'magicguard'
+        self.state.opponent.active.status = constants.POISON
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_leechseed_does_not_sap_when_dead(self):
         bot_move = "splash"
         opponent_move = "tackle"
