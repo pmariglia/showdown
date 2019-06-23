@@ -122,7 +122,7 @@ def _find_best_move(battle: Battle):
     decision = decide_from_safest(move_scores)
     logger.debug("Decision from depth={}: {}".format(config.search_depth-1, decision))
 
-    if battle.time_remaining > 30:
+    if battle.time_remaining > 60:
         user_options, opponent_options = get_all_options(mutator)
         new_user_options = move_item_to_front_of_list(user_options, decision)
         move_scores = get_move_combination_scores(mutator, depth=config.search_depth, forced_options=(new_user_options, opponent_options))

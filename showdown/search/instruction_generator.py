@@ -643,6 +643,7 @@ class InstructionGenerator:
         defending_pkmn = defending_side.active
 
         if pkmn.ability == 'magicguard':
+            mutator.reverse(instruction.instructions)
             return [instruction]
 
         instructions_to_add = []
