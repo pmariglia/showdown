@@ -33,7 +33,7 @@ BOT_MODE: (string, required) The mode the the bot will operate in. Options are "
 USER_TO_CHALLENGE: (string, required if BOT_MODE is "CHALLENGE_USER") The user to challenge
 POKEMON_MODE: (string, required) The type of game this bot will play games in
 TEAM_NAME: (string, required if POKEMON_MODE is one where a team is required) The name of the JSON file that contains the team you want to use. More on this below in the Specifying Teams section.
-SEARCH_DEPTH: (integer, default 2) The max search depth that will be used.
+MAX_SEARCH_DEPTH: (integer, default 2) The max search depth that will be used.
 RUN_COUNT: (integer, required) The amount of games this bot will play before quitting
 ```
 
