@@ -4,6 +4,7 @@ from data import all_move_sets
 from .find_state_instructions import get_all_state_instructions
 from showdown.helpers import battle_is_over
 from showdown.evaluate_state import evaluate
+from showdown.evaluate_state import scoring
 from showdown.decide.decide import pick_safest
 from showdown.search.state_mutator import StateMutator
 
@@ -100,10 +101,11 @@ def get_move_combination_scores(mutator, depth=2, forced_options=None):
     :param forced_options: options that can be forced instead of using `get_all_options`
     :return: a dictionary representing the potential move combinations and their associated scores
     """
-    depth -= 1
-    if battle_is_over(mutator.state):
-        return {(constants.DO_NOTHING_MOVE, constants.DO_NOTHING_MOVE): evaluate(mutator.state)}
+    winner = battle_is_over(mutator.state)
+    if winner:
+        return {(constants.DO_NOTHING_MOVE, constants.DO_NOTHING_MOVE): evaluate(mutator.state) + scoring.WON_BATTLE*depth*winner}
 
+    depth -= 1
     if forced_options:
         user_options, opponent_options = forced_options
     else:

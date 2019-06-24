@@ -1,5 +1,7 @@
 import constants
 
+WON_BATTLE = 100
+
 POKEMON_ALIVE = {
     0.15: 50,
     0.50: 75,
