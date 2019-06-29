@@ -1,18 +1,12 @@
+from functools import lru_cache
+
 from showdown.helpers import normalize_name
 import constants
 from . import scoring
 
 
-cache = dict()
-
-
+@lru_cache(maxsize=None)
 def evaluate_pokemon(pkmn):
-
-    try:
-        return cache[(pkmn.hp, pkmn.maxhp, pkmn.attack_boost, pkmn.defense_boost, pkmn.special_attack_boost, pkmn.special_defense_boost, pkmn.speed_boost, pkmn.status) + tuple(pkmn.volatile_status)]
-    except KeyError:
-        pass
-
     score = 0
     if pkmn.hp <= 0:
         return score
@@ -41,8 +35,4 @@ def evaluate_pokemon(pkmn):
         except KeyError:
             pass
 
-    score = round(score)
-
-    cache[(pkmn.hp, pkmn.maxhp, pkmn.attack_boost, pkmn.defense_boost, pkmn.special_attack_boost, pkmn.special_defense_boost, pkmn.speed_boost, pkmn.status) + tuple(pkmn.volatile_status)] = score
-
-    return score
+    return round(score)
