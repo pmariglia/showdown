@@ -55,7 +55,7 @@ def packed_to_json(packed_team):
         j['shiny'] = items[9]
         j['level'] = items[10]
         final = items[11].split(',')
-        if final[0]:
+        if len(final) == 3:
             j['happiness'] = final[0]
             j['pokeball'] = final[1]
             j['hiddenpowertype'] = final[2]
