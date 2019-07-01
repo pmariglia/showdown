@@ -1,3 +1,4 @@
+import math
 import random
 from collections import defaultdict
 
@@ -23,7 +24,7 @@ def remove_guaranteed_opponent_moves(score_lookup):
         opponent_move = k[1]
         if opponent_move not in opponent_move_scores:
             opponent_move_scores[opponent_move] = score
-        elif opponent_move in opponent_move_scores and score != opponent_move_scores[opponent_move]:
+        elif opponent_move in opponent_move_scores and score != opponent_move_scores[opponent_move] and not math.isnan(score):
             opponent_decisions.add(opponent_move)
 
     # re-create score_lookup with only the opponent's move acquired above
@@ -36,6 +37,7 @@ def remove_guaranteed_opponent_moves(score_lookup):
 
 
 def pick_safest(score_lookup):
+    score_lookup = remove_guaranteed_opponent_moves(score_lookup)
     worst_case = defaultdict(lambda: (tuple(), float('inf')))
     for move_pair, result in score_lookup.items():
         if worst_case[move_pair[0]][1] > result:

@@ -17,11 +17,11 @@ class TestPickSafest(unittest.TestCase):
     def test_returns_better_option_for_two_different_moves(self):
         score_lookup = {
             ("a", "b"): 100,
-            ("c", "d"): 200
+            ("c", "b"): 200
         }
 
         safest = pick_safest(score_lookup)
-        expected_result = (("c", "d"), 200)
+        expected_result = (("c", "b"), 200)
 
         self.assertEqual(expected_result, safest)
 
