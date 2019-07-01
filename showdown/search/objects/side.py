@@ -28,3 +28,17 @@ class Side(object):
                 constants.SIDE_CONDITIONS: dict(self.side_conditions),
                 constants.TRAPPED: self.trapped
             })
+
+    def __key(self):
+        return (
+            hash(self.active),
+            sum(hash(p.reserve_hash()) for p in self.reserve.values()),
+            hash(frozenset(self.side_conditions.items())),
+            self.trapped
+        )
+
+    def __eq__(self, other):
+        return self.__key() == other.__key()
+
+    def __hash__(self):
+        return hash(self.__key())

@@ -177,3 +177,47 @@ class Pokemon(object):
                 constants.TYPES: self.types,
                 constants.CAN_MEGA_EVO: self.can_mega_evo
             })
+
+    def active_hash(self):
+        """Unique identifier for a pokemon"""
+        return (
+            self.id,  # id is used instead of types
+            self.hp,
+            self.maxhp,
+            self.ability,
+            self.item,
+            self.status,
+            frozenset(self.volatile_status),
+            self.attack,
+            self.defense,
+            self.special_attack,
+            self.special_defense,
+            self.speed,
+            self.attack_boost,
+            self.defense_boost,
+            self.special_attack_boost,
+            self.special_defense_boost,
+            self.speed_boost,
+        )
+
+    def reserve_hash(self):
+        """Unique identifier for a pokemon in the reserves
+           This exists because it is a lighter calculation than active_hash"""
+        return (
+            self.hp,
+            self.maxhp,
+            self.ability,
+            self.item,
+            self.status,
+            self.attack,
+            self.defense,
+            self.special_attack,
+            self.special_defense,
+            self.speed,
+        )
+
+    def __eq__(self, other):
+        return self.active_hash() == other.active_hash()
+
+    def __hash__(self):
+        return hash(self.active_hash())

@@ -455,6 +455,28 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_taunt_into_uturn_causes_taunt_to_be_removed_after_switching(self):
+        bot_move = "taunt"
+        opponent_move = "uturn"
+        self.state.self.active.speed = 2
+        self.state.opponent.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, constants.TAUNT),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 60),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.TAUNT),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_fast_uturn_results_in_switching_out_move_for_enemy(self):
         bot_move = "splash"
         opponent_move = "uturn"
@@ -486,7 +508,8 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                         (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
                         (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'gyarados'),
-                        (constants.MUTATOR_DAMAGE, constants.SELF, 24)
+                        (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 1),
+                        (constants.MUTATOR_DAMAGE, constants.SELF, 16)
                 ],
                 False
             )
@@ -506,7 +529,8 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                         (constants.MUTATOR_DAMAGE, constants.SELF, 35),
                         (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
-                        (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'gyarados')
+                        (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'gyarados'),
+                        (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 1)
                 ],
                 False
             )

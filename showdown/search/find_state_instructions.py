@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 import config
 import constants
 from data import all_move_json
@@ -324,27 +326,26 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     temp_instructions = []
     for instruction_set in all_instructions:
         temp_instructions += state_generator.get_state_from_drag(mutator, attacking_move, attacker, move_target, instruction_set)
-    all_possible_instructions = temp_instructions
+    all_instructions = temp_instructions
 
     if switch_out_move_triggered(attacking_move, damage_amounts):
-        for i in all_possible_instructions:
+        temp_instructions = []
+        for i in all_instructions:
             best_switch = get_best_switch_pokemon(mutator, i, attacker, attacking_side, defending_move, first_move)
             if best_switch is not None:
-                i.add_instruction(
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        attacking_pokemon.id,
-                        best_switch
-                    )
-                )
+                temp_instructions += state_generator.get_instructions_from_switch(mutator, attacker, best_switch, i)
+            else:
+                temp_instructions.append(i)
 
-    return all_possible_instructions
+        all_instructions = temp_instructions
+
+    return all_instructions
 
 
-def get_all_state_instructions(mutator, user_move, opponent_move):
-    user_move = lookup_move(user_move)
-    opponent_move = lookup_move(opponent_move)
+@lru_cache(maxsize=None)
+def get_all_state_instructions(mutator, user_move_string, opponent_move_string):
+    user_move = lookup_move(user_move_string)
+    opponent_move = lookup_move(opponent_move_string)
 
     bot_moves_first = user_moves_first(mutator.state, user_move, opponent_move)
 

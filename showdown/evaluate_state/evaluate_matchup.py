@@ -1,9 +1,12 @@
+from functools import lru_cache
+
 import constants
 from . import scoring
 from data import all_move_json
 from showdown.calculate_damage import is_super_effective
 
 
+@lru_cache(maxsize=None)
 def evaluate_matchup(user_pkmn, opponent_pkmn):
     score = 0
 
