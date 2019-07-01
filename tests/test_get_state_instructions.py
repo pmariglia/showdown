@@ -1582,6 +1582,23 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_rain_makes_hurricane_always_hit(self):
+        bot_move = "hurricane"
+        opponent_move = "splash"
+        self.state.weather = constants.RAIN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 59)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_sun_doubles_fire_damage(self):
         bot_move = "eruption"
         opponent_move = "tackle"

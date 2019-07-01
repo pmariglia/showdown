@@ -94,13 +94,14 @@ def user_moves_first(state, user_move, opponent_move):
         return False
 
 
-def update_damage_calc_from_abilities_and_items(attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move):
+def update_damage_calc_from_abilities_and_items(attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move, weather):
     attacking_move = modify_attack_being_used(
         attacking_move,
         defending_move,
         attacking_pokemon,
         defending_pokemon,
-        first_move
+        first_move,
+        weather
     )
 
     attacking_move = ability_modify_attack_against(
@@ -169,7 +170,8 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         defending_pokemon,
         attacking_move,
         defending_move,
-        first_move
+        first_move,
+        mutator.state.weather
     )
 
     damage_amounts = None
