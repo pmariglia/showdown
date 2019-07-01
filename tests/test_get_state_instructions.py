@@ -1454,6 +1454,45 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_stamina_increases_defence_when_hit_with_damaging_move(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+
+        self.state.opponent.active.ability = 'stamina'
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.DEFENSE, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_stamina_does_not_increase_defence_when_hit_with_status_move(self):
+        bot_move = "charm"
+        opponent_move = "splash"
+
+        self.state.opponent.active.ability = 'stamina'
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -2),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_stealthrock_into_switch(self):
         bot_move = "stealthrock"
         opponent_move = "switch yveltal"

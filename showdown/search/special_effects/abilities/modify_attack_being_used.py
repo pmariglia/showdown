@@ -4,13 +4,18 @@ from showdown.calculate_damage import is_not_very_effective
 
 def speedboost(attacking_move, attacking_pokemon, defending_pokemon, first_move):
     attacking_move = attacking_move.copy()
-    if constants.BOOSTS not in attacking_move:
-        attacking_move[constants.BOOSTS] = dict()
+    if constants.SELF not in attacking_move:
+        attacking_move[constants.SELF] = dict()
     else:
-        attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
-    if constants.SPEED not in attacking_move[constants.BOOSTS]:
-        attacking_move[constants.BOOSTS][constants.SPEED] = 0
-    attacking_move[constants.BOOSTS][constants.SPEED] += 1
+        attacking_move[constants.SELF] = attacking_move[constants.SELF].copy()
+    if constants.BOOSTS not in attacking_move[constants.SELF]:
+        attacking_move[constants.SELF][constants.BOOSTS] = dict()
+    else:
+        attacking_move[constants.SELF][constants.BOOSTS] = attacking_move[constants.SELF][constants.BOOSTS].copy()
+    if constants.SPEED not in attacking_move[constants.SELF][constants.BOOSTS]:
+        attacking_move[constants.SELF][constants.BOOSTS][constants.SPEED] = 0
+        attacking_move[constants.SELF][constants.CHANCE] = 100
+    attacking_move[constants.SELF][constants.BOOSTS][constants.SPEED] += 1
     return attacking_move
 
 

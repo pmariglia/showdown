@@ -208,7 +208,16 @@ def wonderguard(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def stamina(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BOOSTS] = {constants.DEFENSE: 1}
+
+    return attacking_move
+
+
 ability_lookup = {
+    'stamina': stamina,
     'levitate': levitate,
     'lightningrod': lightningrod,
     'stormdrain': stormdrain,

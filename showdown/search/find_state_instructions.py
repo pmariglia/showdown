@@ -242,7 +242,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
         elif constants.BOOSTS in attacking_move:
             boosts = attacking_move[constants.BOOSTS]
-            boosts_target = attacker
+            boosts_target = attacker if attacking_move[constants.TARGET] in constants.MOVE_TARGET_SELF else defender
             boosts_chance = 100
 
     # move is a status move
