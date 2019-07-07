@@ -21,6 +21,7 @@ from showdown.state.battle_modifiers import set_opponent_ability
 from showdown.state.battle_modifiers import set_opponent_ability_from_ability_tag
 from showdown.state.battle_modifiers import form_change
 from showdown.state.battle_modifiers import inactive
+from showdown.state.battle_modifiers import zpower
 
 
 class TestRequestMessage(unittest.TestCase):
@@ -871,3 +872,35 @@ class TestInactive(unittest.TestCase):
         inactive(self.battle, split_msg)
 
         self.assertEqual(1, self.battle.time_remaining)
+
+
+class TestZPower(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+        self.battle.opponent.active.ability = None
+
+        self.user_active = Pokemon('weedle', 100)
+        self.battle.user.active = self.user_active
+
+        self.username = "CoolUsername"
+
+        self.battle.username = self.username
+
+    def test_sets_item_to_none(self):
+        split_msg = ['', '-zpower', 'p2a: Pkmn']
+        self.battle.opponent.active.item = "some_item"
+        zpower(self.battle, split_msg)
+
+        self.assertEqual(None, self.battle.opponent.active.item)
+
+    def test_does_not_set_item_when_the_bot_moves(self):
+        split_msg = ['', '-zpower', 'p1a: Pkmn']
+        self.battle.opponent.active.item = "some_item"
+        zpower(self.battle, split_msg)
+
+        self.assertEqual("some_item", self.battle.opponent.active.item)

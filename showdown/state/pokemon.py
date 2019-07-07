@@ -5,6 +5,14 @@ from showdown.state.move import Move
 from showdown.helpers import normalize_name
 from showdown.helpers import calculate_stats
 from data import pokedex
+from data.helpers import get_all_possible_moves_for_random_battle
+from data.helpers import get_most_likely_item_for_random_battle_pokemon
+from data.helpers import get_most_likely_ability_for_random_battle
+from data.helpers import get_all_possible_moves_for_standard_battle
+from data.helpers import get_most_likely_item_for_standard_battle_pokemon
+from data.helpers import get_most_likely_ability_for_standard_battle
+from data.helpers import get_most_likely_spread_for_standard_battle
+
 from config import logger
 
 
@@ -31,9 +39,9 @@ class Pokemon:
             self.max_hp = 1
             self.hp = 1
 
-        self.ability = normalize_name(pokedex[self.name][constants.MOST_LIKELY_ABILITY])
+        self.ability = None
         self.types = pokedex[self.name][constants.TYPES]
-        self.item = 'unknown'
+        self.item = constants.UNKNOWN_ITEM
 
         self.fainted = False
         self.moves = []
@@ -42,6 +50,9 @@ class Pokemon:
         self.boosts = defaultdict(lambda: 0)
         self.can_mega_evo = False
         self.can_ultra_burst = True
+
+    def is_alive(self):
+        return self.hp > 0
 
     @classmethod
     def from_switch_string(cls, switch_string):
@@ -71,6 +82,72 @@ class Pokemon:
             if m.name == normalize_name(move_name):
                 return m
         return None
+
+    def update_moves_for_random_battles(self):
+        if len(self.moves) == 4:
+            logger.debug("{} revealed 4 moves, not guessing any more moves".format(self.name))
+            return
+        additional_moves = get_all_possible_moves_for_random_battle(self.name, [m.name for m in self.moves])
+        logger.debug("Guessing additional moves for {}: {}".format(self.name, additional_moves))
+        for m in additional_moves:
+            self.moves.append(Move(m))
+
+    def update_ability_for_random_battles(self):
+        if self.ability is not None:
+            logger.debug("{} has revealed it's ability, not guessing".format(self.name))
+            return
+        ability = get_most_likely_ability_for_random_battle(self.name)
+        logger.debug("Guessing ability={} for {}".format(ability, self.name))
+        self.ability = ability
+
+    def update_item_for_random_battles(self):
+        if self.item != constants.UNKNOWN_ITEM:
+            logger.debug("{} has revealed it's item, not guessing".format(self.name))
+            return
+        item = get_most_likely_item_for_random_battle_pokemon(self.name)
+        logger.debug("Guessing item={} for {}".format(item, self.name))
+        self.item = item
+
+    def update_moves_for_standard_battles(self):
+        if len(self.moves) == 4:
+            logger.debug("{} revealed 4 moves, not guessing any more moves".format(self.name))
+            return
+        additional_moves = get_all_possible_moves_for_standard_battle(self.name, [m.name for m in self.moves])
+        logger.debug("Guessing additional moves for {}: {}".format(self.name, additional_moves))
+        for m in additional_moves:
+            self.moves.append(Move(m))
+
+    def update_ability_for_standard_battles(self):
+        if self.ability is not None:
+            logger.debug("{} has revealed it's ability, not guessing".format(self.name))
+            return
+        ability = get_most_likely_ability_for_standard_battle(self.name)
+        logger.debug("Guessing ability={} for {}".format(ability, self.name))
+        self.ability = ability
+
+    def update_item_for_standard_battles(self):
+        if self.item != constants.UNKNOWN_ITEM:
+            logger.debug("{} has revealed it's item, not guessing".format(self.name))
+            return
+        item = get_most_likely_item_for_standard_battle_pokemon(self.name)
+        logger.debug("Guessing item={} for {}".format(item, self.name))
+        self.item = item
+
+    def update_spread_for_standard_battles(self):
+        nature, evs = get_most_likely_spread_for_standard_battle(self.name)
+        logger.debug("Spread assumption for {}: {}, {}".format(self.name, nature, evs))
+        self.set_spread(nature, evs)
+
+    def guess_random_battle_attributes(self):
+        self.update_ability_for_random_battles()
+        self.update_item_for_random_battles()
+        self.update_moves_for_random_battles()
+
+    def guess_standard_battle_attributes(self):
+        self.update_ability_for_standard_battles()
+        self.update_item_for_standard_battles()
+        self.update_moves_for_standard_battles()
+        self.update_spread_for_standard_battles()
 
     def to_dict(self):
         return {

@@ -73,10 +73,10 @@ class TestGetAllOptions(unittest.TestCase):
                 'switch hitmonlee'
             ],
             [
+                'tackle',
                 'charm',
                 'growl',
                 'stringshot',
-                'tackle',
                 'switch yveltal',
                 'switch slurpuff',
                 'switch victini',

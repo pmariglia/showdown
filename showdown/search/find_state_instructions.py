@@ -1,5 +1,3 @@
-from functools import lru_cache
-
 import config
 import constants
 from data import all_move_json
@@ -342,7 +340,6 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     return all_instructions
 
 
-@lru_cache(maxsize=None)
 def get_all_state_instructions(mutator, user_move_string, opponent_move_string):
     user_move = lookup_move(user_move_string)
     opponent_move = lookup_move(opponent_move_string)

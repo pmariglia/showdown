@@ -499,6 +499,7 @@ class TestGetStateInstructions(unittest.TestCase):
     def test_fast_uturn_results_in_switching_out_for_bot(self):
         bot_move = "uturn"
         opponent_move = "tackle"
+        self.state.self.reserve['gyarados'].ability = 'intimidate'
         self.state.self.active.speed = 2
         self.state.opponent.active.speed = 1
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
@@ -520,6 +521,7 @@ class TestGetStateInstructions(unittest.TestCase):
     def test_slow_uturn_results_in_switching_out_for_bot(self):
         bot_move = "uturn"
         opponent_move = "tackle"
+        self.state.self.reserve['gyarados'].ability = 'intimidate'
         self.state.self.active.speed = 1
         self.state.opponent.active.speed = 2
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
@@ -640,6 +642,7 @@ class TestGetStateInstructions(unittest.TestCase):
         self.assertEqual(expected_instructions, instructions)
 
     def test_immune_by_ability_does_not_allow_voltswitch(self):
+        self.state.self.active.ability = 'lightningrod'  # immune to voltswitch
         bot_move = "tackle"
         opponent_move = "voltswitch"
         self.state.self.active.speed = 1
@@ -1843,6 +1846,7 @@ class TestGetStateInstructions(unittest.TestCase):
         bot_move = "switch ninetales"
         opponent_move = "splash"
         self.state.self.reserve['ninetales'] = Pokemon.from_state_pokemon_dict(StatePokemon("ninetales", 81).to_dict())
+        self.state.self.reserve['ninetales'].ability = 'drought'
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
@@ -1861,6 +1865,7 @@ class TestGetStateInstructions(unittest.TestCase):
         bot_move = "switch politoed"
         opponent_move = "splash"
         self.state.self.reserve['politoed'] = Pokemon.from_state_pokemon_dict(StatePokemon("politoed", 81).to_dict())
+        self.state.self.reserve['politoed'].ability = 'drizzle'
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(

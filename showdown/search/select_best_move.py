@@ -1,20 +1,11 @@
 import constants
-from config import logger
-from data import all_move_sets
+
 from .find_state_instructions import get_all_state_instructions
 from showdown.helpers import battle_is_over
 from showdown.evaluate_state import evaluate
 from showdown.evaluate_state import scoring
 from showdown.decide.decide import pick_safest
 from showdown.search.state_mutator import StateMutator
-
-
-def get_move_set(pkmn_name):
-    try:
-        return set(all_move_sets[pkmn_name.lower()])
-    except KeyError:
-        logger.warning("{} does not have a move lookup".format(pkmn_name.lower()))
-        return [constants.DO_NOTHING_MOVE]
 
 
 def get_possible_switches(side):
@@ -43,10 +34,7 @@ def get_opponent_options(side):
     if side.active.hp <= 0:
         possible_moves = []
     else:
-        possible_moves = set(s[constants.ID] for s in side.active.moves)
-        if len(possible_moves) < 4:
-            possible_moves = possible_moves.union(get_move_set(side.active.id))
-        possible_moves = sorted(list(possible_moves))
+        possible_moves = [s[constants.ID] for s in side.active.moves]
 
     possible_switches = get_possible_switches(side)
 

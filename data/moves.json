@@ -11110,6 +11110,21 @@
         "type": "normal",
         "pp": 40
     },
+    "nothing": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "gravity": 1
+        },
+        "id": "splash",
+        "name": "Splash",
+        "priority": 0,
+        "secondary": false,
+        "target": "self",
+        "type": "normal",
+        "pp": 40
+    },
     "spore": {
         "accuracy": 100,
         "basePower": 0,

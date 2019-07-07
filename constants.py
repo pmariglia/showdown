@@ -4,10 +4,21 @@ SEARCH_LADDER = "SEARCH_LADDER"
 BOT_MODES = [CHALLENGE_USER, ACCEPT_CHALLENGE, SEARCH_LADDER]
 DEFAULT_MODE = "gen7randombattle"
 
+STANDARD_BATTLE = "standard_battle"
+RANDOM_BATTLE = "random_battle"
+
 START_STRING = "|start"
 RQID = 'rqid'
 TEAM_PREVIEW_POKE = "poke"
 START_TEAM_PREVIEW = "clearpoke"
+
+MOVES = "moves"
+ABILITIES = "abilities"
+ITEMS = "items"
+COUNT = "count"
+SETS = "sets"
+
+UNKNOWN_ITEM = "unknown_item"
 
 UNKOWN_POKEMON_FORMES = ['silvally', 'arceus']
 

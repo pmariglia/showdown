@@ -322,8 +322,10 @@ def form_change(battle, split_msg):
     if is_opponent(battle, split_msg):
         base_name = battle.opponent.active.base_name
         hp_percent = float(battle.opponent.active.hp) / battle.opponent.active.max_hp
+        moves = battle.opponent.active.moves
 
         new_pokemon = Pokemon.from_switch_string(split_msg[3])
+        new_pokemon.moves = moves
         if new_pokemon in battle.opponent.reserve:
             battle.opponent.reserve.remove(new_pokemon)
 
@@ -332,6 +334,12 @@ def form_change(battle, split_msg):
 
         if battle.opponent.active.name != "zoroark":
             battle.opponent.active.base_name = base_name
+
+
+def zpower(battle, split_msg):
+    if is_opponent(battle, split_msg):
+        logger.debug("{} Used a Z-Move, setting item to None".format(battle.opponent.active.name))
+        battle.opponent.active.item = None
 
 
 async def update_battle(battle, msg):
@@ -375,7 +383,8 @@ async def update_battle(battle, msg):
             '-ability': set_opponent_ability_from_ability_tag,
             'detailschange': form_change,
             'replace': form_change,
-            '-formechange': form_change
+            '-formechange': form_change,
+            '-zpower': zpower
         }
 
         function_to_call = battle_modifiers_lookup.get(action)

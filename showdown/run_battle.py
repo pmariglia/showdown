@@ -17,7 +17,6 @@ from showdown.state.pokemon import Pokemon
 from showdown.state.battle_modifiers import update_battle
 from showdown.search.state_mutator import StateMutator
 
-from showdown.search.find_state_instructions import get_all_state_instructions
 from showdown.evaluate_state.evaluate_pokemon import evaluate_pokemon
 from showdown.evaluate_state.evaluate import evaluate
 from showdown.evaluate_state.evaluate_matchup import evaluate_matchup
@@ -76,6 +75,7 @@ async def _initialize_battle_with_tag(ps_websocket_client: PSWebsocketClient):
 
 async def _start_random_battle(ps_websocket_client: PSWebsocketClient):
     battle, opponent_id, user_json = await _initialize_battle_with_tag(ps_websocket_client)
+    battle.battle_type = constants.RANDOM_BATTLE
     reset_logger(logger, "{}-{}.log".format(battle.opponent.account_name, battle.battle_tag))
     while True:
         msg = await ps_websocket_client.receive_message()
@@ -95,6 +95,7 @@ async def _start_random_battle(ps_websocket_client: PSWebsocketClient):
 
 async def _start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
     battle, opponent_id, user_json = await _initialize_battle_with_tag(ps_websocket_client)
+    battle.battle_type = constants.STANDARD_BATTLE
     await ps_websocket_client.send_message(battle.battle_tag, [config.greeting_message])
     reset_logger(logger, "{}-{}.log".format(battle.opponent.account_name, battle.battle_tag))
 
@@ -120,6 +121,12 @@ async def _start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon
 
 
 def _find_best_move(battle: Battle):
+    battle = deepcopy(battle)
+    if battle.battle_type == constants.RANDOM_BATTLE:
+        battle.prepare_random_battle()
+    else:
+        battle.prepare_standard_battle()
+
     state = battle.to_object()
     logger.debug("Attempting to find best move from: {}".format(state))
     mutator = StateMutator(state)
@@ -163,12 +170,10 @@ def _find_best_move(battle: Battle):
 
 def clear_caches():
     logger.debug("Clearing caches...")
-    logger.debug("get_all_state_instructions cache: {}".format(get_all_state_instructions.cache_info()))
     logger.debug("evaluate cache: {}".format(evaluate.cache_info()))
     logger.debug("evaluate_pokemon cache: {}".format(evaluate_pokemon.cache_info()))
     logger.debug("evaluate_matchup cache: {}".format(evaluate_matchup.cache_info()))
     logger.debug("custom reserve pokemon cache size: {}".format(len(pkmn_cache)))
-    get_all_state_instructions.cache_clear()
     evaluate.cache_clear()
     evaluate_pokemon.cache_clear()
     evaluate_matchup.cache_clear()
