@@ -37,9 +37,11 @@ def remove_guaranteed_opponent_moves(score_lookup):
 
 
 def pick_safest(score_lookup):
-    score_lookup = remove_guaranteed_opponent_moves(score_lookup)
+    modified_score_lookup = remove_guaranteed_opponent_moves(score_lookup)
+    if not modified_score_lookup:
+        modified_score_lookup = score_lookup
     worst_case = defaultdict(lambda: (tuple(), float('inf')))
-    for move_pair, result in score_lookup.items():
+    for move_pair, result in modified_score_lookup.items():
         if worst_case[move_pair[0]][1] > result:
             worst_case[move_pair[0]] = move_pair, result
 
