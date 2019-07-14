@@ -147,7 +147,26 @@ def blizzard(attacking_move, defending_move, attacking_pokemon, defending_pokemo
     return attacking_move
 
 
+def solarbeam(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if weather == constants.SUN:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.FLAGS] = attacking_move[constants.FLAGS].copy()
+        attacking_move[constants.FLAGS].pop(constants.CHARGE)
+    return attacking_move
+
+
+def fly(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    # fly is a special case that needs to be dealt with because it would otherwise be a 2-turn charge
+    if attacking_pokemon.item == 'flyniumz':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.FLAGS] = attacking_move[constants.FLAGS].copy()
+        attacking_move[constants.FLAGS].pop(constants.CHARGE)
+    return attacking_move
+
+
 move_lookup = {
+    'fly': fly,
+    'solarbeam': solarbeam,
     'hurricane': hurricane,
     'thunder': hurricane,
     'blizzard': blizzard,

@@ -172,6 +172,7 @@ CRASH = "crash"
 RECOIL = "recoil"
 DRAIN = "drain"
 CONTACT = "contact"
+CHARGE = "charge"
 POWDER = "powder"
 DRAG = "drag"
 
