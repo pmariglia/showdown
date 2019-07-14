@@ -1,5 +1,7 @@
 import constants
 
+from showdown.calculate_damage import is_super_effective
+
 
 def eviolite(attacking_move, attacking_pokemon, defending_pokemon):
     attacking_move = attacking_move.copy()
@@ -29,7 +31,18 @@ def airballoon(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def weaknesspolicy(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES and is_super_effective(attacking_move[constants.TYPE], defending_pokemon.types):
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BOOSTS] = {
+            constants.ATTACK: 2,
+            constants.SPECIAL_ATTACK: 2,
+        }
+    return attacking_move
+
+
 item_lookup = {
+    'weaknesspolicy': weaknesspolicy,
     'eviolite': eviolite,
     'rockyhelmet': rockyhelmet,
     'assaultvest': assaultvest,

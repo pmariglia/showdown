@@ -1,146 +1,166 @@
 [
-  {
-    "name": " Greninja-Ash",
-    "species": "",
-    "item": "choicespecs",
-    "ability": "",
-    "moves": [
-      "surf",
-      "darkpulse",
-      "icebeam",
-      "watershuriken"
-    ],
-    "nature": "Timid",
-    "evs": {
-      "hp": "",
-      "atk": "",
-      "def": "4",
-      "spa": "252",
-      "spd": "",
-      "spe": "252"
+    {
+        "name": "Kartana",
+        "species": "",
+        "item": "choicescarf",
+        "ability": "",
+        "moves": [
+            "leafblade",
+            "sacredsword",
+            "smartstrike",
+            "knockoff"
+        ],
+        "nature": "Jolly",
+        "evs": {
+            "hp": "4",
+            "atk": "252",
+            "def": "",
+            "spa": "",
+            "spd": "",
+            "spe": "252"
+        },
+        "gender": "",
+        "ivs": {},
+        "shiny": "",
+        "level": ""
     },
-    "gender": "",
-    "shiny": "",
-    "level": ""
-  },
-  {
-    "name": "Mawile-Mega",
-    "species": "",
-    "item": "mawilite",
-    "ability": "intimidate",
-    "moves": [
-      "suckerpunch",
-      "playrough",
-      "thunderpunch",
-      "firefang"
-    ],
-    "nature": "Adamant",
-    "evs": {
-      "hp": "80",
-      "atk": "252",
-      "def": "",
-      "spa": "",
-      "spd": "",
-      "spe": "176"
+    {
+        "name": "Tyranitar",
+        "species": "",
+        "item": "tyranitarite",
+        "ability": "",
+        "moves": [
+            "dragondance",
+            "stoneedge",
+            "firepunch",
+            "earthquake"
+        ],
+        "nature": "Jolly",
+        "evs": {
+            "hp": "",
+            "atk": "252",
+            "def": "",
+            "spa": "",
+            "spd": "4",
+            "spe": "252"
+        },
+        "gender": "",
+        "ivs": {},
+        "shiny": "",
+        "level": ""
     },
-    "gender": "",
-    "shiny": "",
-    "level": ""
-  },
-  {
-    "name": "Tornadus-Therian",
-    "species": "",
-    "item": "fightiniumz",
-    "ability": "",
-    "moves": [
-      "taunt",
-      "hurricane",
-      "focusblast",
-      "defog"
-    ],
-    "nature": "Timid",
-    "evs": {
-      "hp": "",
-      "atk": "",
-      "def": "4",
-      "spa": "252",
-      "spd": "",
-      "spe": "252"
+    {
+        "name": "Magearna",
+        "species": "",
+        "item": "assaultvest",
+        "ability": "",
+        "moves": [
+            "voltswitch",
+            "fleurcannon",
+            "hiddenpowerfire",
+            "icebeam"
+        ],
+        "nature": "Sassy",
+        "evs": {
+            "hp": "248",
+            "atk": "",
+            "def": "",
+            "spa": "",
+            "spd": "224",
+            "spe": "36"
+        },
+        "gender": "",
+        "ivs": {
+            "hp": "",
+            "atk": "1",
+            "def": "",
+            "spa": "",
+            "spd": "",
+            "spe": ""
+        },
+        "shiny": "",
+        "level": ""
     },
-    "gender": "",
-    "shiny": "",
-    "level": ""
-  },
-  {
-    "name": "Ferrothorn",
-    "species": "",
-    "item": "leftovers",
-    "ability": "",
-    "moves": [
-      "spikes",
-      "leechseed",
-      "knockoff",
-      "gyroball"
-    ],
-    "nature": "Sassy",
-    "evs": {
-      "hp": "252",
-      "atk": "",
-      "def": "4",
-      "spa": "",
-      "spd": "252",
-      "spe": ""
+    {
+        "name": "Landorus-Therian",
+        "species": "",
+        "item": "flyiniumz",
+        "ability": "",
+        "moves": [
+            "stealthrock",
+            "earthquake",
+            "fly",
+            "uturn"
+        ],
+        "nature": "Impish",
+        "evs": {
+            "hp": "252",
+            "atk": "",
+            "def": "112",
+            "spa": "",
+            "spd": "",
+            "spe": "144"
+        },
+        "gender": "",
+        "ivs": {},
+        "shiny": "",
+        "level": ""
     },
-    "gender": "",
-    "shiny": "",
-    "level": ""
-  },
-  {
-    "name": "Heatran",
-    "species": "",
-    "item": "leftovers",
-    "ability": "",
-    "moves": [
-      "taunt",
-      "magmastorm",
-      "earthpower",
-      "toxic"
-    ],
-    "nature": "Calm",
-    "evs": {
-      "hp": "248",
-      "atk": "",
-      "def": "",
-      "spa": "",
-      "spd": "216",
-      "spe": "44"
+    {
+        "name": "Tapu Fini",
+        "species": "",
+        "item": "leftovers",
+        "ability": "",
+        "moves": [
+            "defog",
+            "moonblast",
+            "scald",
+            "taunt"
+        ],
+        "nature": "Calm",
+        "evs": {
+            "hp": "248",
+            "atk": "",
+            "def": "16",
+            "spa": "12",
+            "spd": "40",
+            "spe": "192"
+        },
+        "gender": "",
+        "ivs": {},
+        "shiny": "",
+        "level": ""
     },
-    "gender": "",
-    "shiny": "",
-    "level": ""
-  },
-  {
-    "name": "Garchomp",
-    "species": "",
-    "item": "rockyhelmet",
-    "ability": "H",
-    "moves": [
-      "stealthrock",
-      "earthquake",
-      "toxic",
-      "roar"
-    ],
-    "nature": "Impish",
-    "evs": {
-      "hp": "88",
-      "atk": "",
-      "def": "252",
-      "spa": "",
-      "spd": "",
-      "spe": "168"
-    },
-    "gender": "",
-    "shiny": "",
-    "level": ""
-  }
+    {
+        "name": "Zapdos",
+        "species": "",
+        "item": "rockyhelmet",
+        "ability": "",
+        "moves": [
+            "discharge",
+            "hiddenpowerice",
+            "heatwave",
+            "roost"
+        ],
+        "nature": "Timid",
+        "evs": {
+            "hp": "248",
+            "atk": "",
+            "def": "188",
+            "spa": "",
+            "spd": "",
+            "spe": "72"
+        },
+        "gender": "",
+        "ivs": {
+            "hp": "",
+            "atk": "30",
+            "def": "30",
+            "spa": "",
+            "spd": "",
+            "spe": ""
+        },
+        "shiny": "",
+        "level": ""
+    }
 ]

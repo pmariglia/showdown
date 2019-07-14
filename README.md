@@ -39,7 +39,7 @@ RUN_COUNT: (integer, required) The amount of games this bot will play before qui
 
 Here is a sample `.env` file
 
-This configuration will use the Mega-Gardevoir team and search for a gen7ou battle:
+This configuration will use the sample OU team and search for a gen7ou battle:
 ```
 SAVE_REPLAY=False
 LOG_TO_FILE=False
@@ -50,7 +50,7 @@ PS_PASSWORD="MySuperSecretPassword"
 BOT_MODE="SEARCH_LADDER"
 USER_TO_CHALLENGE="SomeScrub"
 POKEMON_MODE="gen7ou"
-TEAM_NAME="ou_mega_gard"
+TEAM_NAME="ou_sample"
 RUN_COUNT=1
 ```
 
