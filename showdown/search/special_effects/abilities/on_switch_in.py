@@ -1,6 +1,24 @@
 import constants
 
 
+def sandstream(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    if state.weather not in [constants.DESOLATE_LAND, constants.HEAVY_RAIN]:
+        return (
+            constants.MUTATOR_WEATHER_START,
+            constants.SAND
+        )
+    return None
+
+
+def snowwarning(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    if state.weather not in [constants.DESOLATE_LAND, constants.HEAVY_RAIN]:
+        return (
+            constants.MUTATOR_WEATHER_START,
+            constants.HAIL
+        )
+    return None
+
+
 def drought(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
     if state.weather not in [constants.DESOLATE_LAND, constants.HEAVY_RAIN]:
         return (
@@ -45,6 +63,8 @@ def intimidate(state, attacking_side, attacking_pokemon, defending_side, defendi
 
 
 ability_lookup = {
+    "sandstream": sandstream,
+    "snowwarning": snowwarning,
     "drought": drought,
     "drizzle": drizzle,
     "desolateland": desolateland,
