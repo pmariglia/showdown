@@ -2,6 +2,7 @@ import os
 import sys
 import logging
 
+gambit_exe_path = "C:\Program Files (x86)\Gambit\gambit-enummixed.exe"
 greeting_message = 'hf'
 battle_ending_message = 'gg'
 

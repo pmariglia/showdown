@@ -2,6 +2,9 @@ import math
 import random
 from collections import defaultdict
 
+import numpy as np
+import pandas as pd
+
 from config import logger
 
 
@@ -87,3 +90,62 @@ def decide_random_from_average_and_safest(score_lookup):
     for _ in range(len(options)):
         options.append(safest)
     return random.choice(options)
+
+
+def find_nash_equilibrium(score_lookup):
+    from .gambit_nash_equilibrium import find_all_equilibria
+    modified_score_lookup = remove_guaranteed_opponent_moves(score_lookup)
+    if not modified_score_lookup:
+        modified_score_lookup = score_lookup
+
+    df = pd.Series(modified_score_lookup).unstack()
+
+    eq = find_all_equilibria(df)
+    bot_percentages = eq[0][0]
+    opponent_percentages = eq[0][1]
+
+    bot_choices = df.index
+    opponent_choices = df.columns
+
+    return bot_choices, opponent_choices, bot_percentages, opponent_percentages
+
+
+def _log_nash_equilibria(bot_choices, opponent_choices, bot_percentages, opponent_percentages):
+    bot_options = []
+    for i, percentage in enumerate(bot_percentages):
+        if percentage:
+            bot_options.append((bot_choices[i], percentage))
+
+    opponent_options = []
+    for i, percentage in enumerate(opponent_percentages):
+        if percentage:
+            opponent_options.append((opponent_choices[i], percentage))
+
+    logger.debug("Bot options: {}".format(bot_options))
+    logger.debug("Opponent options: {}".format(opponent_options))
+
+
+def pick_from_nash_equilibria(score_lookup):
+    bot_choices, opponent_choices, bot_percentages, opponent_percentages = find_nash_equilibrium(score_lookup)
+
+    _log_nash_equilibria(bot_choices, opponent_choices, bot_percentages, opponent_percentages)
+
+    s = sum(bot_percentages)
+    percentages = [p / s for p in bot_percentages]
+
+    return np.random.choice(bot_choices, p=percentages)
+
+
+def get_nash_equilibium_payoff(score_lookup):
+    from nashpy import Game
+
+    modified_score_lookup = remove_guaranteed_opponent_moves(score_lookup)
+    if not modified_score_lookup:
+        modified_score_lookup = score_lookup
+
+    df = pd.Series(modified_score_lookup).unstack()
+
+    bot_choices, opponent_choices, bot_percentages, opponent_percentages = find_nash_equilibrium(score_lookup)
+
+    game = Game(df)
+    return None, game[bot_percentages, opponent_percentages][0]

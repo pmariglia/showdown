@@ -9,6 +9,7 @@ import config
 from config import logger
 from config import reset_logger
 from showdown.decide.decide import decide_from_safest
+from showdown.decide.decide import pick_from_nash_equilibria
 from showdown.search.select_best_move import get_move_combination_scores
 from showdown.search.select_best_move import move_item_to_front_of_list
 from showdown.search.select_best_move import get_all_options
@@ -131,18 +132,8 @@ def _find_best_move(battle: Battle):
     logger.debug("Attempting to find best move from: {}".format(state))
     mutator = StateMutator(state)
 
-    move_scores = get_move_combination_scores(deepcopy(mutator), depth=config.search_depth-1)
-    decision = decide_from_safest(move_scores)
-    logger.debug("Decision from depth={}: {}".format(config.search_depth-1, decision))
-
-    if battle.time_remaining > 60:
-        user_options, opponent_options = get_all_options(mutator)
-        new_user_options = move_item_to_front_of_list(user_options, decision)
-        move_scores = get_move_combination_scores(mutator, depth=config.search_depth, forced_options=(new_user_options, opponent_options))
-        decision = decide_from_safest(move_scores)
-        logger.debug("Decision from depth={}: {}".format(config.search_depth, decision))
-    else:
-        logger.debug("Low on time, not searching deeper than depth={}".format(config.search_depth-1))
+    move_scores = get_move_combination_scores(mutator, depth=config.search_depth)
+    decision = pick_from_nash_equilibria(move_scores)
 
     logger.debug("Score lookups produced: {}".format(move_scores))
     logger.debug("Decision: {}".format(decision))

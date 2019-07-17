@@ -2,7 +2,7 @@ import pandas as pd
 from showdown.search.objects import State
 from showdown.search.state_mutator import StateMutator
 from showdown.search.select_best_move import get_move_combination_scores
-from showdown.decide.decide import decide_from_safest
+from showdown.decide.decide import pick_from_nash_equilibria
 from showdown.search.select_best_move import get_all_state_instructions
 
 import logging
@@ -23,6 +23,6 @@ scores = get_move_combination_scores(mutator, depth=2)
 df = pd.Series(scores).unstack()
 averages = df.mean(axis=1)
 
-safest = decide_from_safest(scores)
+safest = pick_from_nash_equilibria(scores)
 
 pass
