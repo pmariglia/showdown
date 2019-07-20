@@ -20,7 +20,8 @@ from config import logger
 PASS_ITEMS = {
     'leftovers',
     'focussash',
-    'blacksludge'
+    'blacksludge',
+    'lifeorb'
 }
 
 
