@@ -92,6 +92,20 @@ def decide_random_from_average_and_safest(score_lookup):
     return random.choice(options)
 
 
+def _find_best_nash_equilibrium(equilibria, df):
+    from nashpy import Game
+    game = Game(df)
+
+    score = float('-inf')
+    best_eq = None
+    for eq in equilibria:
+        outcome = game[eq][0]
+        if outcome > score:
+            score = outcome
+            best_eq = eq
+    return best_eq, score
+
+
 def find_nash_equilibrium(score_lookup):
     from .gambit_nash_equilibrium import find_all_equilibria
     modified_score_lookup = remove_guaranteed_opponent_moves(score_lookup)
@@ -100,17 +114,18 @@ def find_nash_equilibrium(score_lookup):
 
     df = pd.Series(modified_score_lookup).unstack()
 
-    eq = find_all_equilibria(df)
-    bot_percentages = eq[0][0]
-    opponent_percentages = eq[0][1]
+    equilibria = find_all_equilibria(df)
+    best_eq, score = _find_best_nash_equilibrium(equilibria, df)
+    bot_percentages = best_eq[0]
+    opponent_percentages = best_eq[1]
 
     bot_choices = df.index
     opponent_choices = df.columns
 
-    return bot_choices, opponent_choices, bot_percentages, opponent_percentages
+    return bot_choices, opponent_choices, bot_percentages, opponent_percentages, score
 
 
-def _log_nash_equilibria(bot_choices, opponent_choices, bot_percentages, opponent_percentages):
+def _log_nash_equilibria(bot_choices, opponent_choices, bot_percentages, opponent_percentages, payoff):
     bot_options = []
     for i, percentage in enumerate(bot_percentages):
         if percentage:
@@ -123,12 +138,13 @@ def _log_nash_equilibria(bot_choices, opponent_choices, bot_percentages, opponen
 
     logger.debug("Bot options: {}".format(bot_options))
     logger.debug("Opponent options: {}".format(opponent_options))
+    logger.debug("Payoff: {}".format(payoff))
 
 
 def pick_from_nash_equilibria(score_lookup):
-    bot_choices, opponent_choices, bot_percentages, opponent_percentages = find_nash_equilibrium(score_lookup)
+    bot_choices, opponent_choices, bot_percentages, opponent_percentages, payoff = find_nash_equilibrium(score_lookup)
 
-    _log_nash_equilibria(bot_choices, opponent_choices, bot_percentages, opponent_percentages)
+    _log_nash_equilibria(bot_choices, opponent_choices, bot_percentages, opponent_percentages, payoff)
 
     s = sum(bot_percentages)
     percentages = [p / s for p in bot_percentages]
@@ -137,15 +153,10 @@ def pick_from_nash_equilibria(score_lookup):
 
 
 def get_nash_equilibium_payoff(score_lookup):
-    from nashpy import Game
-
     modified_score_lookup = remove_guaranteed_opponent_moves(score_lookup)
     if not modified_score_lookup:
         modified_score_lookup = score_lookup
 
-    df = pd.Series(modified_score_lookup).unstack()
+    bot_choices, opponent_choices, bot_percentages, opponent_percentages, payoff = find_nash_equilibrium(modified_score_lookup)
 
-    bot_choices, opponent_choices, bot_percentages, opponent_percentages = find_nash_equilibrium(score_lookup)
-
-    game = Game(df)
-    return None, game[bot_percentages, opponent_percentages][0]
+    return payoff

@@ -29,7 +29,16 @@ def _get_random_battle_set(pkmn):
 
 
 def _get_standard_battle_set(pkmn):
-    return data.standard_battle_sets[pkmn]
+    try:
+        return data.standard_battle_sets[pkmn]
+    except KeyError:
+        possible_names = [p for p in data.standard_battle_sets if pkmn.startswith(p)]
+        if not possible_names:
+            raise KeyError
+        else:
+            new_name = possible_names[0]
+            logger.debug("{} not in the sets lookup, using {} instead".format(pkmn, new_name))
+            return data.standard_battle_sets[new_name]
 
 
 def get_all_possible_moves_for_random_battle(pkmn_name, known_moves):
