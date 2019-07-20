@@ -839,17 +839,15 @@ class InstructionGenerator:
             return True
         if constants.SUBSTITUTE in pkmn.volatile_status:
             return True
-        if status in [constants.POISON, constants.TOXIC] and any(t in ['poison', 'steel'] for t in pkmn.types):
+        if status == constants.BURN and ('fire' in pkmn.types or pkmn.ability == 'waterveil'):
             return True
-        if status == constants.BURN and 'fire' in pkmn.types:
+        if status == constants.SLEEP and (pkmn.ability == 'insomnia' or state.field == constants.ELECTRIC_TERRAIN):
+            return True
+        if status in [constants.POISON, constants.TOXIC] and any(t in ['poison', 'steel'] for t in pkmn.types):
             return True
         if status == constants.PARALYZED and 'ground' in pkmn.types:
             return True
         if state.field == constants.MISTY_TERRAIN:
-            return True
-        if state.field == constants.ELECTRIC_TERRAIN and status == constants.SLEEP:
-            return True
-        if pkmn.ability == 'waterveil' and status == constants.BURN:
             return True
 
         return False
