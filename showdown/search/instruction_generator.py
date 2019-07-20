@@ -849,5 +849,7 @@ class InstructionGenerator:
             return True
         if state.field == constants.ELECTRIC_TERRAIN and status == constants.SLEEP:
             return True
+        if pkmn.ability == 'waterveil' and status == constants.BURN:
+            return True
 
         return False
