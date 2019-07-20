@@ -2136,6 +2136,42 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_memories_change_multiattack_type(self):
+        bot_move = "multiattack"
+        opponent_move = "splash"
+        self.state.self.active.item = 'bugmemory'
+        self.state.opponent.active.types = ['grass']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 112)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_memories_change_multiattack_type_to_not_very_effective(self):
+        bot_move = "multiattack"
+        opponent_move = "splash"
+        self.state.self.active.item = 'watermemory'
+        self.state.opponent.active.types = ['grass']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 28)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_inflicting_with_leechseed_produces_sap_instruction(self):
         bot_move = "leechseed"
         opponent_move = "splash"

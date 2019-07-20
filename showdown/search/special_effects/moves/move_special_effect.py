@@ -122,6 +122,14 @@ def technoblast(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
+def multiattack(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_pokemon.item.endswith('memory'):
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = attacking_pokemon.item.replace('memory', '')
+
+    return attacking_move
+
+
 def knockoff(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
     # .endswith("mega|primal") is a hack but w/e sue me
     if defending_pokemon.item is not None and not defending_pokemon.id.endswith("mega") and not defending_pokemon.id.endswith("primal"):
@@ -165,6 +173,7 @@ def fly(attacking_move, defending_move, attacking_pokemon, defending_pokemon, fi
 
 
 move_lookup = {
+    'multiattack': multiattack,
     'fly': fly,
     'solarbeam': solarbeam,
     'hurricane': hurricane,
