@@ -1,4 +1,5 @@
 import constants
+import config
 
 from .find_state_instructions import get_all_state_instructions
 from showdown.helpers import battle_is_over
@@ -84,7 +85,7 @@ def move_item_to_front_of_list(l, item):
     return [l[i] for i in all_indicies]
 
 
-def get_move_combination_scores(mutator, depth=2, forced_options=None, prune=False):
+def get_move_combination_scores(mutator, depth=2, forced_options=None):
     """
     :param mutator: a StateMutator object representing the state of the battle
     :param depth: the remaining depth before the state is evaluated
@@ -143,7 +144,7 @@ def get_move_combination_scores(mutator, depth=2, forced_options=None, prune=Fal
             if score < worst_score_for_this_row:
                 worst_score_for_this_row = score
 
-            if prune and score < best_score:
+            if config.decision_method == constants.PICK_SAFEST and score < best_score:
                 skip = True
 
                 # MOST of the time in pokemon, an opponent's move that causes a prune will cause a prune elsewhere
