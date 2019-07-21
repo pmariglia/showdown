@@ -1,5 +1,4 @@
 import subprocess
-import numpy as np
 
 from config import gambit_exe_path
 
@@ -16,6 +15,7 @@ def format_string_for_options(num_rows, num_cols):
 
 
 def append_items_to_string(matrix, string):
+    import numpy as np
 
     item_to_add = "%s %s"
     this_string = ""
@@ -31,6 +31,7 @@ def convert_from_list(l, num_rows):
 
 
 def find_all_equilibria(matrix):
+    import numpy as np
     matrix = matrix.round(0)
 
     matrix = np.array(matrix)

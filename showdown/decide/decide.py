@@ -5,9 +5,6 @@ from collections import defaultdict
 import constants
 from .gambit_nash_equilibrium import find_all_equilibria
 
-import pandas as pd
-from nashpy import Game
-
 from config import logger
 
 
@@ -62,6 +59,7 @@ def decide_from_safest(score_lookup):
 
 
 def _find_best_nash_equilibrium(equilibria, df):
+    from nashpy import Game
     game = Game(df)
 
     score = float('-inf')
@@ -75,6 +73,7 @@ def _find_best_nash_equilibrium(equilibria, df):
 
 
 def find_nash_equilibrium(score_lookup):
+    import pandas as pd
     modified_score_lookup = remove_guaranteed_opponent_moves(score_lookup)
     if not modified_score_lookup:
         modified_score_lookup = score_lookup
