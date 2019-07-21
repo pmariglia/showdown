@@ -5,8 +5,6 @@ from showdown.helpers import battle_is_over
 from showdown.evaluate_state import evaluate
 from showdown.evaluate_state import scoring
 from showdown.decide.decide import pick_safest
-from showdown.decide.decide import pick_from_nash_equilibria
-from showdown.decide.decide import get_nash_equilibium_payoff
 from showdown.search.state_mutator import StateMutator
 
 

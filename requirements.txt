@@ -2,6 +2,5 @@ requests==2.20.1
 environs==4.1.0
 websockets==7.0
 python-dateutil==2.8.0
-
-# For Testing/Analysis
+nashpy==0.0.17
 pandas==0.23.4

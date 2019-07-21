@@ -2,8 +2,11 @@ import math
 import random
 from collections import defaultdict
 
-import numpy as np
+from .gambit_nash_equilibrium import find_all_equilibria
+
 import pandas as pd
+
+from nashpy import Game
 
 from config import logger
 
@@ -93,7 +96,6 @@ def decide_random_from_average_and_safest(score_lookup):
 
 
 def _find_best_nash_equilibrium(equilibria, df):
-    from nashpy import Game
     game = Game(df)
 
     score = float('-inf')
@@ -107,7 +109,6 @@ def _find_best_nash_equilibrium(equilibria, df):
 
 
 def find_nash_equilibrium(score_lookup):
-    from .gambit_nash_equilibrium import find_all_equilibria
     modified_score_lookup = remove_guaranteed_opponent_moves(score_lookup)
     if not modified_score_lookup:
         modified_score_lookup = score_lookup
@@ -149,14 +150,4 @@ def pick_from_nash_equilibria(score_lookup):
     s = sum(bot_percentages)
     percentages = [p / s for p in bot_percentages]
 
-    return np.random.choice(bot_choices, p=percentages)
-
-
-def get_nash_equilibium_payoff(score_lookup):
-    modified_score_lookup = remove_guaranteed_opponent_moves(score_lookup)
-    if not modified_score_lookup:
-        modified_score_lookup = score_lookup
-
-    bot_choices, opponent_choices, bot_percentages, opponent_percentages, payoff = find_nash_equilibrium(modified_score_lookup)
-
-    return payoff
+    return random.choices(bot_choices, weights=percentages)[0]
