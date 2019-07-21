@@ -2,10 +2,13 @@ import os
 import sys
 import logging
 
+import constants
+
 gambit_exe_path = "C:\Program Files (x86)\Gambit\gambit-enummixed.exe"
 greeting_message = 'hf'
 battle_ending_message = 'gg'
 
+decision_method = constants.PICK_SAFEST
 damage_calc_type = 'average'
 search_depth = 2
 

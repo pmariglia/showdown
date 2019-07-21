@@ -2,6 +2,7 @@ import math
 import random
 from collections import defaultdict
 
+import constants
 from .gambit_nash_equilibrium import find_all_equilibria
 
 import pandas as pd
@@ -116,3 +117,11 @@ def pick_from_nash_equilibria(score_lookup):
     percentages = [p / s for p in bot_percentages]
 
     return random.choices(bot_choices, weights=percentages)[0]
+
+
+def pick_best_move(score_lookup, decision_type):
+    if decision_type == constants.PICK_SAFEST:
+        return pick_safest(score_lookup)
+    elif decision_type == constants.PICK_NASH_EQUILIBRIUM:
+        return pick_from_nash_equilibria(score_lookup)
+    raise ValueError("Invalid decision type")

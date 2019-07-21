@@ -8,8 +8,7 @@ import constants
 import config
 from config import logger
 from config import reset_logger
-from showdown.decide.decide import decide_from_safest
-from showdown.decide.decide import pick_from_nash_equilibria
+from showdown.decide.decide import pick_best_move
 from showdown.search.select_best_move import get_move_combination_scores
 from showdown.search.select_best_move import move_item_to_front_of_list
 from showdown.search.select_best_move import get_all_options
@@ -133,7 +132,7 @@ def _find_best_move(battle: Battle):
     mutator = StateMutator(state)
 
     move_scores = get_move_combination_scores(mutator, depth=config.search_depth)
-    decision = pick_from_nash_equilibria(move_scores)
+    decision = pick_best_move(move_scores, config.decision_method)
 
     logger.debug("Score lookups produced: {}".format(move_scores))
     logger.debug("Decision: {}".format(decision))

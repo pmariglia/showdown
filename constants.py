@@ -7,6 +7,9 @@ DEFAULT_MODE = "gen7randombattle"
 STANDARD_BATTLE = "standard_battle"
 RANDOM_BATTLE = "random_battle"
 
+PICK_SAFEST = "safest"
+PICK_NASH_EQUILIBRIUM = "nash"
+
 START_STRING = "|start"
 RQID = 'rqid'
 TEAM_PREVIEW_POKE = "poke"
