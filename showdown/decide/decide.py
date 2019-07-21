@@ -120,7 +120,7 @@ def pick_from_nash_equilibria(score_lookup):
 
 def pick_best_move(score_lookup, decision_type):
     if decision_type == constants.PICK_SAFEST:
-        return pick_safest(score_lookup)
+        return decide_from_safest(score_lookup)
     elif decision_type == constants.PICK_NASH_EQUILIBRIUM:
         return pick_from_nash_equilibria(score_lookup)
     raise ValueError("Invalid decision type")
