@@ -5,7 +5,6 @@ from collections import defaultdict
 from .gambit_nash_equilibrium import find_all_equilibria
 
 import pandas as pd
-
 from nashpy import Game
 
 from config import logger
@@ -55,44 +54,10 @@ def pick_safest(score_lookup):
     return worst_case[safest]
 
 
-def decide_from_best_averages(score_lookup, limit=10):
-    move_averages = defaultdict(lambda: [])
-    for move_tuple, score in score_lookup.items():
-        move_averages[move_tuple[0]].append(score)
-
-    for move, scores in move_averages.items():
-        move_averages[move] = sum(scores) / len(scores)
-
-    sorted_moves = sorted(move_averages.items(), key=lambda x: x[1], reverse=True)
-
-    possible_moves = [sorted_moves[0][0]]
-    best_move_score = sorted_moves[0][1]
-    logger.debug("Good option: {}: {}".format(possible_moves[0], best_move_score))
-
-    for move, score in sorted_moves[1:]:
-        if best_move_score - score > limit:
-            break
-        logger.debug("Good option: {}: {}".format(move, score))
-        possible_moves.append(move)
-
-    return possible_moves
-
-
 def decide_from_safest(score_lookup):
     safest = pick_safest(score_lookup)
     logger.debug("Safest: {}, {}".format(safest[0][0], safest[1]))
     return safest[0][0]
-
-
-def decide_random_from_average_and_safest(score_lookup):
-    modified_score_lookup = remove_guaranteed_opponent_moves(score_lookup)
-    if not modified_score_lookup:
-        modified_score_lookup = score_lookup
-    options = decide_from_best_averages(modified_score_lookup)
-    safest = decide_from_safest(modified_score_lookup)
-    for _ in range(len(options)):
-        options.append(safest)
-    return random.choice(options)
 
 
 def _find_best_nash_equilibrium(equilibria, df):
