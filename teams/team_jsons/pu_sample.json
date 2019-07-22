@@ -1,180 +1,179 @@
 [
-    {
-        "name": "Qwilfish",
-        "species": "",
-        "item": "rockyhelmet",
-        "ability": "H",
-        "moves": [
-            "spikes",
-            "toxicspikes",
-            "taunt",
-            "scald"
-        ],
-        "nature": "Timid",
-        "evs": {
-            "hp": "252",
-            "atk": "",
-            "def": "",
-            "spa": "",
-            "spd": "4",
-            "spe": "252"
-        },
-        "gender": "",
-        "ivs": {
-            "hp": "",
-            "atk": "0",
-            "def": "",
-            "spa": "",
-            "spd": "",
-            "spe": ""
-        },
-        "shiny": "",
-        "level": ""
+  {
+    "name": "Victreebel",
+    "species": "",
+    "item": "grassiumz",
+    "ability": "",
+    "moves": [
+      "strengthsap",
+      "leafstorm",
+      "hiddenpowerfire",
+      "sludgebomb"
+    ],
+    "nature": "Modest",
+    "evs": {
+      "hp": "",
+      "atk": "",
+      "def": "",
+      "spa": "252",
+      "spd": "4",
+      "spe": "252"
     },
-    {
-        "name": "Honedge",
-        "species": "",
-        "item": "eviolite",
-        "ability": "",
-        "moves": [
-            "sacredsword",
-            "toxic",
-            "gyroball",
-            "shadowsneak"
-        ],
-        "nature": "Relaxed",
-        "evs": {
-            "hp": "252",
-            "atk": "80",
-            "def": "176",
-            "spa": "",
-            "spd": "",
-            "spe": ""
-        },
-        "gender": "",
-        "ivs": {
-            "hp": "",
-            "atk": "",
-            "def": "",
-            "spa": "",
-            "spd": "",
-            "spe": "0"
-        },
-        "shiny": "",
-        "level": ""
+    "gender": "",
+    "ivs": {
+      "hp": "",
+      "atk": "0",
+      "def": "",
+      "spa": "",
+      "spd": "",
+      "spe": ""
     },
-    {
-        "name": "Claydol",
-        "species": "",
-        "item": "psychiumz",
-        "ability": "",
-        "moves": [
-            "rapidspin",
-            "stealthrock",
-            "psychic",
-            "earthpower"
-        ],
-        "nature": "Bold",
-        "evs": {
-            "hp": "252",
-            "atk": "",
-            "def": "120",
-            "spa": "",
-            "spd": "",
-            "spe": "136"
-        },
-        "gender": "",
-        "ivs": {
-            "hp": "",
-            "atk": "0",
-            "def": "",
-            "spa": "",
-            "spd": "",
-            "spe": ""
-        },
-        "shiny": "",
-        "level": ""
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Aurorus",
+    "species": "",
+    "item": "choicescarf",
+    "ability": "H",
+    "moves": [
+      "blizzard",
+      "freezedry",
+      "earthpower",
+      "hiddenpowerrock"
+    ],
+    "nature": "Timid",
+    "evs": {
+      "hp": "",
+      "atk": "",
+      "def": "",
+      "spa": "252",
+      "spd": "4",
+      "spe": "252"
     },
-    {
-        "name": "Silvally-Fairy",
-        "species": "",
-        "item": "fairymemory",
-        "ability": "",
-        "moves": [
-            "defog",
-            "partingshot",
-            "multiattack",
-            "flamethrower"
-        ],
-        "nature": "Jolly",
-        "evs": {
-            "hp": "48",
-            "atk": "208",
-            "def": "",
-            "spa": "",
-            "spd": "",
-            "spe": "252"
-        },
-        "gender": "",
-        "ivs": {},
-        "shiny": "",
-        "level": ""
+    "gender": "",
+    "ivs": {
+      "hp": "",
+      "atk": "0",
+      "def": "",
+      "spa": "",
+      "spd": "",
+      "spe": ""
     },
-    {
-        "name": "Guzzlord",
-        "species": "",
-        "item": "choicespecs",
-        "ability": "",
-        "moves": [
-            "dracometeor",
-            "fireblast",
-            "darkpulse",
-            "sludgewave"
-        ],
-        "nature": "Modest",
-        "evs": {
-            "hp": "",
-            "atk": "",
-            "def": "128",
-            "spa": "252",
-            "spd": "60",
-            "spe": "68"
-        },
-        "gender": "",
-        "ivs": {
-            "hp": "",
-            "atk": "0",
-            "def": "",
-            "spa": "",
-            "spd": "",
-            "spe": ""
-        },
-        "shiny": "",
-        "level": ""
+    "shiny": "S",
+    "level": ""
+  },
+  {
+    "name": "Skuntank",
+    "species": "",
+    "item": "choiceband",
+    "ability": "1",
+    "moves": [
+      "pursuit",
+      "crunch",
+      "poisonjab",
+      "suckerpunch"
+    ],
+    "nature": "Adamant",
+    "evs": {
+      "hp": "",
+      "atk": "252",
+      "def": "",
+      "spa": "",
+      "spd": "4",
+      "spe": "252"
     },
-    {
-        "name": "Kangaskhan",
-        "species": "",
-        "item": "choiceband",
-        "ability": "1",
-        "moves": [
-            "crunch",
-            "earthquake",
-            "doubleedge",
-            "suckerpunch"
-        ],
-        "nature": "Jolly",
-        "evs": {
-            "hp": "",
-            "atk": "252",
-            "def": "",
-            "spa": "",
-            "spd": "4",
-            "spe": "252"
-        },
-        "gender": "",
-        "ivs": {},
-        "shiny": "",
-        "level": ""
-    }
+    "gender": "",
+    "ivs": {
+
+    },
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Froslass",
+    "species": "",
+    "item": "colburberry",
+    "ability": "H",
+    "moves": [
+      "spikes",
+      "willowisp",
+      "hex",
+      "taunt"
+    ],
+    "nature": "Timid",
+    "evs": {
+      "hp": "248",
+      "atk": "",
+      "def": "8",
+      "spa": "",
+      "spd": "",
+      "spe": "252"
+    },
+    "gender": "",
+    "ivs": {
+      "hp": "",
+      "atk": "0",
+      "def": "",
+      "spa": "",
+      "spd": "",
+      "spe": ""
+    },
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Hitmonchan",
+    "species": "",
+    "item": "assaultvest",
+    "ability": "1",
+    "moves": [
+      "thunderpunch",
+      "drainpunch",
+      "machpunch",
+      "rapidspin"
+    ],
+    "nature": "Adamant",
+    "evs": {
+      "hp": "252",
+      "atk": "124",
+      "def": "",
+      "spa": "",
+      "spd": "",
+      "spe": "132"
+    },
+    "gender": "",
+    "ivs": {
+
+    },
+    "shiny": "",
+    "level": ""
+  },
+  {
+    "name": "Mudsdale",
+    "species": "",
+    "item": "figyberry",
+    "ability": "1",
+    "moves": [
+      "stealthrock",
+      "earthquake",
+      "rockslide",
+      "toxic"
+    ],
+    "nature": "Impish",
+    "evs": {
+      "hp": "252",
+      "atk": "68",
+      "def": "188",
+      "spa": "",
+      "spd": "",
+      "spe": ""
+    },
+    "gender": "",
+    "ivs": {
+
+    },
+    "shiny": "",
+    "level": ""
+  }
 ]
