@@ -231,7 +231,16 @@ def skilllink(attacking_move, attacking_pokemon, defending_pokemon, first_move):
     return attacking_move
 
 
+def waterbubble(attacking_move, attacking_pokemon, defending_pokemon, first_move):
+    if attacking_move[constants.TYPE] == 'water':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 2
+
+    return attacking_move
+
+
 ability_lookup = {
+    'waterbubble': waterbubble,
     'adaptability': adaptability,
     'analytic': analytic,
     'aerilate': aerilate,

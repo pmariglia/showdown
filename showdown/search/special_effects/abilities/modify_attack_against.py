@@ -216,7 +216,16 @@ def stamina(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def waterbubble(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'fire':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] /= 2
+
+    return attacking_move
+
+
 ability_lookup = {
+    'waterbubble': waterbubble,
     'stamina': stamina,
     'levitate': levitate,
     'lightningrod': lightningrod,

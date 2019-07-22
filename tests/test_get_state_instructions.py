@@ -2209,6 +2209,51 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_waterbubble_doubles_water_damage(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'waterbubble'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [(constants.MUTATOR_DAMAGE, constants.OPPONENT, 43)],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_waterbubble_halves_fire_damage(self):
+        bot_move = "eruption"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'waterbubble'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [(constants.MUTATOR_DAMAGE, constants.OPPONENT, 40)],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_waterbubble_prevents_burn(self):
+        bot_move = "willowisp"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'waterbubble'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_magicguard_does_not_take_poison_damage(self):
         bot_move = "splash"
         opponent_move = "splash"

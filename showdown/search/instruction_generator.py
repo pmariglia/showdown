@@ -839,7 +839,7 @@ class InstructionGenerator:
             return True
         if constants.SUBSTITUTE in pkmn.volatile_status:
             return True
-        if status == constants.BURN and ('fire' in pkmn.types or pkmn.ability == 'waterveil'):
+        if status == constants.BURN and ('fire' in pkmn.types or pkmn.ability in ['waterveil', 'waterbubble']):
             return True
         if status == constants.SLEEP and (pkmn.ability == 'insomnia' or state.field == constants.ELECTRIC_TERRAIN):
             return True
