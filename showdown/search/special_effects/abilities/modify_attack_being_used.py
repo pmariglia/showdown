@@ -36,8 +36,16 @@ def adaptability(attacking_move, attacking_pokemon, defending_pokemon, first_mov
 def aerilate(attacking_move, attacking_pokemon, defending_pokemon, first_move):
     if attacking_move[constants.TYPE] == 'normal':
         attacking_move = attacking_move.copy()
-        attacking_move[constants.BASE_POWER] = int(attacking_move[constants.BASE_POWER] * 1.30)
+        attacking_move[constants.BASE_POWER] = int(attacking_move[constants.BASE_POWER] * 1.2)
         attacking_move[constants.TYPE] = 'flying'
+    return attacking_move
+
+
+def galvanize(attacking_move, attacking_pokemon, defending_pokemon, first_move):
+    if attacking_move[constants.TYPE] == 'normal':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] = int(attacking_move[constants.BASE_POWER] * 1.2)
+        attacking_move[constants.TYPE] = 'electric'
     return attacking_move
 
 
@@ -111,7 +119,7 @@ def noguard(attacking_move, attacking_pokemon, defending_pokemon, first_move):
 def pixilate(attacking_move, attacking_pokemon, defending_pokemon, first_move):
     if attacking_move[constants.TYPE] == 'normal':
         attacking_move = attacking_move.copy()
-        attacking_move[constants.BASE_POWER] = int(attacking_move[constants.BASE_POWER] * 1.30)
+        attacking_move[constants.BASE_POWER] = int(attacking_move[constants.BASE_POWER] * 1.2)
         attacking_move[constants.TYPE] = 'fairy'
     return attacking_move
 
@@ -119,7 +127,7 @@ def pixilate(attacking_move, attacking_pokemon, defending_pokemon, first_move):
 def refrigerate(attacking_move, attacking_pokemon, defending_pokemon, first_move):
     if attacking_move[constants.TYPE] == 'normal':
         attacking_move = attacking_move.copy()
-        attacking_move[constants.BASE_POWER] = int(attacking_move[constants.BASE_POWER] * 1.30)
+        attacking_move[constants.BASE_POWER] = int(attacking_move[constants.BASE_POWER] * 1.2)
         attacking_move[constants.TYPE] = 'ice'
     return attacking_move
 
@@ -240,6 +248,7 @@ def waterbubble(attacking_move, attacking_pokemon, defending_pokemon, first_move
 
 
 ability_lookup = {
+    'galvanize': galvanize,
     'waterbubble': waterbubble,
     'adaptability': adaptability,
     'analytic': analytic,

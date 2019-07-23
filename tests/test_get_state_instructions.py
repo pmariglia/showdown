@@ -2270,6 +2270,41 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_galvanize_boosts_normal_move_to_give_it_stab(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'galvanize'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 45)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_galvanize_boosts_normal_move_without_stab(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'galvanize'
+        self.state.self.active.types = ['normal']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 30)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_leechseed_does_not_sap_when_dead(self):
         bot_move = "splash"
         opponent_move = "tackle"

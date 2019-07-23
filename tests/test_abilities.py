@@ -81,7 +81,7 @@ class TestAerilate(unittest.TestCase):
         expected_move = {
             constants.NAME: "cool_move",
             constants.TYPE: "flying",
-            constants.BASE_POWER: 130
+            constants.BASE_POWER: 120
         }
 
         self.assertEqual(expected_move, ability_modify_attack_being_used(self.ability_name, move, None, None, False))
