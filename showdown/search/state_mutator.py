@@ -20,6 +20,7 @@ class StateMutator:
             constants.MUTATOR_DISABLE_MOVE: self.disable_move,
             constants.MUTATOR_ENABLE_MOVE: self.enable_move,
             constants.MUTATOR_WEATHER_START: self.start_weather,
+            constants.MUTATOR_FIELD_START: self.start_field,
         }
         self.reverse_instructions = {
             constants.MUTATOR_SWITCH: self.reverse_switch,
@@ -36,7 +37,7 @@ class StateMutator:
             constants.MUTATOR_DISABLE_MOVE: self.enable_move,
             constants.MUTATOR_ENABLE_MOVE: self.disable_move,
             constants.MUTATOR_WEATHER_START: self.reverse_start_weather,
-
+            constants.MUTATOR_FIELD_START: self.reverse_start_field
         }
 
     def apply(self, instructions):
@@ -152,6 +153,14 @@ class StateMutator:
 
     def reverse_start_weather(self, _, old_weather):
         self.state.weather = old_weather
+
+    def start_field(self, field, _):
+        # the second parameter is the current field
+        # the value is here for reversing purposes
+        self.state.field = field
+
+    def reverse_start_field(self, _, old_field):
+        self.state.field = old_field
 
     def __key(self):
         return self.state

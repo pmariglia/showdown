@@ -508,3 +508,57 @@ class TestStatemutator(unittest.TestCase):
         self.mutator.reverse(list_of_instructions)
 
         self.assertEqual(constants.RAIN, self.state.weather)
+
+    def test_setting_field(self):
+        self.state.field = None
+        instruction = (
+            constants.MUTATOR_FIELD_START,
+            constants.PSYCHIC_TERRAIN,
+            None
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        self.assertEqual(constants.PSYCHIC_TERRAIN, self.state.field)
+
+    def test_reverse_setting_field(self):
+        self.state.field = constants.PSYCHIC_TERRAIN
+        instruction = (
+            constants.MUTATOR_FIELD_START,
+            constants.PSYCHIC_TERRAIN,
+            None
+        )
+        list_of_instructions = [instruction]
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(None, self.state.field)
+
+    def test_apply_and_reverse_field(self):
+        self.state.field = None
+        instruction = (
+            constants.MUTATOR_FIELD_START,
+            constants.PSYCHIC_TERRAIN,
+            None
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+        if self.state.field != constants.PSYCHIC_TERRAIN:
+            self.fail("Terrain was not set")
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(None, self.state.field)
+
+    def test_apply_and_reverse_field_when_previous_field_exists(self):
+        self.state.field = constants.GRASSY_TERRAIN
+        instruction = (
+            constants.MUTATOR_FIELD_START,
+            constants.PSYCHIC_TERRAIN,
+            constants.GRASSY_TERRAIN
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+        if self.state.field != constants.PSYCHIC_TERRAIN:
+            self.fail("Terrain was not set")
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(constants.GRASSY_TERRAIN, self.state.field)
