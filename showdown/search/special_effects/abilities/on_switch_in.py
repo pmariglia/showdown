@@ -5,7 +5,8 @@ def sandstream(state, attacking_side, attacking_pokemon, defending_side, defendi
     if state.weather not in [constants.DESOLATE_LAND, constants.HEAVY_RAIN]:
         return (
             constants.MUTATOR_WEATHER_START,
-            constants.SAND
+            constants.SAND,
+            state.weather
         )
     return None
 
@@ -14,7 +15,8 @@ def snowwarning(state, attacking_side, attacking_pokemon, defending_side, defend
     if state.weather not in [constants.DESOLATE_LAND, constants.HEAVY_RAIN]:
         return (
             constants.MUTATOR_WEATHER_START,
-            constants.HAIL
+            constants.HAIL,
+            state.weather
         )
     return None
 
@@ -23,7 +25,8 @@ def drought(state, attacking_side, attacking_pokemon, defending_side, defending_
     if state.weather not in [constants.DESOLATE_LAND, constants.HEAVY_RAIN]:
         return (
             constants.MUTATOR_WEATHER_START,
-            constants.SUN
+            constants.SUN,
+            state.weather
         )
     return None
 
@@ -32,7 +35,8 @@ def drizzle(state, attacking_side, attacking_pokemon, defending_side, defending_
     if state.weather not in [constants.DESOLATE_LAND, constants.HEAVY_RAIN]:
         return (
             constants.MUTATOR_WEATHER_START,
-            constants.RAIN
+            constants.RAIN,
+            state.weather
         )
     return None
 
@@ -40,14 +44,16 @@ def drizzle(state, attacking_side, attacking_pokemon, defending_side, defending_
 def desolateland(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
     return (
         constants.MUTATOR_WEATHER_START,
-        constants.DESOLATE_LAND
+        constants.DESOLATE_LAND,
+        state.weather
     )
 
 
 def primordialsea(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
     return (
         constants.MUTATOR_WEATHER_START,
-        constants.HEAVY_RAIN
+        constants.HEAVY_RAIN,
+        state.weather
     )
 
 

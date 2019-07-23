@@ -1941,7 +1941,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'ninetales'),
-                    (constants.MUTATOR_WEATHER_START, constants.SUN)
+                    (constants.MUTATOR_WEATHER_START, constants.SUN, None)
                 ],
                 False
             )
@@ -1960,7 +1960,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'politoed'),
-                    (constants.MUTATOR_WEATHER_START, constants.RAIN)
+                    (constants.MUTATOR_WEATHER_START, constants.RAIN, None)
                 ],
                 False
             )

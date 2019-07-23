@@ -210,6 +210,22 @@ class TestStatemutator(unittest.TestCase):
 
         self.assertEqual(0, self.state.self.active.attack_boost)
 
+    def test_boost_is_properly_reversed_when_a_boost_previously_existed(self):
+        # the pokemon had attack_boost=2 before
+        # it boosted to 4, and now it is being reversed
+        self.state.self.active.attack_boost = 4
+        instruction = (
+            constants.MUTATOR_BOOST,
+            constants.SELF,
+            constants.ATTACK,
+            2
+        )
+
+        list_of_instructions = [instruction]
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(2, self.state.self.active.attack_boost)
+
     def test_unboost_is_properly_applied(self):
         instruction = (
             constants.MUTATOR_UNBOOST,
@@ -379,10 +395,10 @@ class TestStatemutator(unittest.TestCase):
 
     def test_enable_move(self):
         move = {
-                'id': 'return',
-                'disabled': True,
-                'current_pp': 16
-            }
+            'id': 'return',
+            'disabled': True,
+            'current_pp': 16
+        }
         self.state.self.active.moves = [move]
         instruction = (
             constants.MUTATOR_ENABLE_MOVE,
@@ -397,10 +413,10 @@ class TestStatemutator(unittest.TestCase):
 
     def test_reverse_enable_move(self):
         move = {
-                'id': 'return',
-                'disabled': False,
-                'current_pp': 16
-            }
+            'id': 'return',
+            'disabled': False,
+            'current_pp': 16
+        }
         self.state.self.active.moves = [move]
         instruction = (
             constants.MUTATOR_ENABLE_MOVE,
@@ -412,3 +428,83 @@ class TestStatemutator(unittest.TestCase):
         self.mutator.reverse(list_of_instructions)
 
         self.assertTrue(move[constants.DISABLED])
+
+    def test_setting_weather(self):
+        self.state.weather = None
+        instruction = (
+            constants.MUTATOR_WEATHER_START,
+            constants.SUN,
+            None
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        self.assertEqual(constants.SUN, self.state.weather)
+
+    def test_setting_weather_when_previous_weather_exists(self):
+        self.state.weather = constants.RAIN
+        instruction = (
+            constants.MUTATOR_WEATHER_START,
+            constants.SUN,
+            constants.RAIN
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        self.assertEqual(constants.SUN, self.state.weather)
+
+    def test_reversing_weather_when_previous_weather_exists(self):
+        self.state.weather = constants.SUN
+        instruction = (
+            constants.MUTATOR_WEATHER_START,
+            constants.SUN,
+            constants.RAIN
+        )
+        list_of_instructions = [instruction]
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(constants.RAIN, self.state.weather)
+
+    def test_reverse_setting_weather(self):
+        self.state.weather = constants.SUN
+        instruction = (
+            constants.MUTATOR_WEATHER_START,
+            constants.SUN,
+            None
+        )
+        list_of_instructions = [instruction]
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(None, self.state.weather)
+
+    def test_apply_and_reverse_setting_weather_works(self):
+        self.state.weather = None
+        instruction = (
+            constants.MUTATOR_WEATHER_START,
+            constants.SUN,
+            None
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+        if not self.state.weather == constants.SUN:
+            self.fail("Sun was not set")
+
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(None, self.state.weather)
+
+    def test_apply_and_reverse_setting_weather_works_with_weather_previously_existing(self):
+        self.state.weather = constants.RAIN
+        instruction = (
+            constants.MUTATOR_WEATHER_START,
+            constants.SUN,
+            constants.RAIN
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+        if not self.state.weather == constants.SUN:
+            self.fail("Sun was not set")
+
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(constants.RAIN, self.state.weather)

@@ -49,7 +49,9 @@ MUTATOR_SIDE_END = "side_end"
 MUTATOR_DISABLE_MOVE = "disable_move"
 MUTATOR_ENABLE_MOVE = "enable_move"
 MUTATOR_WEATHER_START = "weather_start"
-MUTATOR_WEATER_END = "weather_end"
+MUTATOR_WEATHER_END = "weather_end"
+MUTATOR_FIELD_START = "field_start"
+MUTATOR_FIELD_END = "field_end"
 
 
 DAMAGE = 'damage'

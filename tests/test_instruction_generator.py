@@ -2045,6 +2045,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
                     (
                         constants.MUTATOR_WEATHER_START,
                         constants.SUN,
+                        None
                     ),
                 ]
                 ,
@@ -2075,6 +2076,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
                     (
                         constants.MUTATOR_WEATHER_START,
                         constants.RAIN,
+                        None
                     ),
                 ]
                 ,
@@ -2133,6 +2135,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
                     (
                         constants.MUTATOR_WEATHER_START,
                         constants.DESOLATE_LAND,
+                        constants.HEAVY_RAIN
                     ),
                 ]
                 ,
@@ -2164,6 +2167,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
                     (
                         constants.MUTATOR_WEATHER_START,
                         constants.HEAVY_RAIN,
+                        constants.DESOLATE_LAND
                     ),
                 ]
                 ,
