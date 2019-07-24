@@ -1968,6 +1968,82 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switch_into_electricsurge_starts_terrain(self):
+        bot_move = "switch tapukoko"
+        opponent_move = "splash"
+        self.state.self.reserve['tapukoko'] = Pokemon.from_state_pokemon_dict(StatePokemon("tapukoko", 81).to_dict())
+        self.state.self.reserve['tapukoko'].ability = 'electricsurge'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'tapukoko'),
+                    (constants.MUTATOR_FIELD_START, constants.ELECTRIC_TERRAIN, None)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_psychicsurge_starts_terrain(self):
+        bot_move = "switch tapulele"
+        opponent_move = "splash"
+        self.state.self.reserve['tapulele'] = Pokemon.from_state_pokemon_dict(StatePokemon("tapulele", 81).to_dict())
+        self.state.self.reserve['tapulele'].ability = 'psychicsurge'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'tapulele'),
+                    (constants.MUTATOR_FIELD_START, constants.PSYCHIC_TERRAIN, None)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_grassysurge_starts_terrain(self):
+        bot_move = "switch tapulele"
+        opponent_move = "splash"
+        self.state.self.reserve['tapulele'] = Pokemon.from_state_pokemon_dict(StatePokemon("tapulele", 81).to_dict())
+        self.state.self.reserve['tapulele'].ability = 'grassysurge'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'tapulele'),
+                    (constants.MUTATOR_FIELD_START, constants.GRASSY_TERRAIN, None)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_mistysurge_starts_terrain(self):
+        bot_move = "switch tapulele"
+        opponent_move = "splash"
+        self.state.self.reserve['tapulele'] = Pokemon.from_state_pokemon_dict(StatePokemon("tapulele", 81).to_dict())
+        self.state.self.reserve['tapulele'].ability = 'mistysurge'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'tapulele'),
+                    (constants.MUTATOR_FIELD_START, constants.MISTY_TERRAIN, None)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_switch_into_politoed_does_not_start_rain_weather_when_desolate_land_is_active(self):
         bot_move = "switch politoed"
         opponent_move = "splash"

@@ -57,6 +57,38 @@ def primordialsea(state, attacking_side, attacking_pokemon, defending_side, defe
     )
 
 
+def electricsurge(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    return (
+        constants.MUTATOR_FIELD_START,
+        constants.ELECTRIC_TERRAIN,
+        state.field
+    )
+
+
+def psychicsurge(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    return (
+        constants.MUTATOR_FIELD_START,
+        constants.PSYCHIC_TERRAIN,
+        state.field
+    )
+
+
+def grassysurge(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    return (
+        constants.MUTATOR_FIELD_START,
+        constants.GRASSY_TERRAIN,
+        state.field
+    )
+
+
+def mistysurge(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    return (
+        constants.MUTATOR_FIELD_START,
+        constants.MISTY_TERRAIN,
+        state.field
+    )
+
+
 def intimidate(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
     if defending_pokemon.ability not in ['fullmetalbody', 'clearbody', 'hypercutter', 'whitesmoke'] and defending_pokemon.attack_boost > -6:
         return (
@@ -69,6 +101,10 @@ def intimidate(state, attacking_side, attacking_pokemon, defending_side, defendi
 
 
 ability_lookup = {
+    "mistysurge": mistysurge,
+    "grassysurge": grassysurge,
+    "psychicsurge": psychicsurge,
+    "electricsurge": electricsurge,
     "sandstream": sandstream,
     "snowwarning": snowwarning,
     "drought": drought,
