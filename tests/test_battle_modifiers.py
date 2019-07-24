@@ -772,6 +772,24 @@ class TestFormChange(unittest.TestCase):
 
         self.assertEqual('meloettapirouette', self.battle.opponent.active.name)
 
+    def test_preserves_boosts(self):
+        self.battle.opponent.active = Pokemon('meloetta', 100)
+        self.battle.opponent.active.boosts = {
+            constants.ATTACK: 2
+        }
+        split_msg = ['', '-formechange', 'p2a: Meloetta', 'Meloetta - Pirouette', '[msg]']
+        form_change(self.battle, split_msg)
+
+        self.assertEqual(2, self.battle.opponent.active.boosts[constants.ATTACK])
+
+    def test_preserves_status(self):
+        self.battle.opponent.active = Pokemon('meloetta', 100)
+        self.battle.opponent.active.status = constants.BURN
+        split_msg = ['', '-formechange', 'p2a: Meloetta', 'Meloetta - Pirouette', '[msg]']
+        form_change(self.battle, split_msg)
+
+        self.assertEqual(constants.BURN, self.battle.opponent.active.status)
+
     def test_preserves_base_name_when_form_changes(self):
         self.battle.opponent.active = Pokemon('meloetta', 100)
         split_msg = ['', '-formechange', 'p2a: Meloetta', 'Meloetta - Pirouette', '[msg]']

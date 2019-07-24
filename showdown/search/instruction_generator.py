@@ -93,6 +93,14 @@ class InstructionGenerator:
                     int(min(1 / 3 * attacking_side.active.maxhp, hp_missing))
                 )
             )
+        elif attacking_side.active.ability == 'naturalcure' and attacking_side.active.status is not None:
+            instruction_additions.append(
+                (
+                    constants.MUTATOR_REMOVE_STATUS,
+                    attacker,
+                    attacking_side.active.status
+                )
+            )
 
         instruction_additions.append(
             (
@@ -240,7 +248,7 @@ class InstructionGenerator:
             instruction.update_percentage(constants.THAW_PERCENT)
             instructions.append(still_frozen_instruction)
 
-        if constants.POWDER in move[constants.FLAGS] and 'grass' in defender_side.active.types:
+        if constants.POWDER in move[constants.FLAGS] and ('grass' in defender_side.active.types or defender_side.active.ability == 'overcoat'):
             instruction.frozen = True
 
         mutator.reverse(instruction.instructions)
@@ -309,6 +317,9 @@ class InstructionGenerator:
                     actual_damage = damage
             else:
                 actual_damage = min(damage, damage_side.active.hp)
+                if damage_side.active.ability == 'sturdy' and damage_side.active.hp == damage_side.active.maxhp:
+                    actual_damage -= 1
+
                 instruction_additions.append(
                     (
                         constants.MUTATOR_DAMAGE,
@@ -839,15 +850,22 @@ class InstructionGenerator:
             return True
         if constants.SUBSTITUTE in pkmn.volatile_status:
             return True
-        if status == constants.BURN and ('fire' in pkmn.types or pkmn.ability in ['waterveil', 'waterbubble']):
+        if pkmn.ability == 'shieldsdown' and ((pkmn.hp / pkmn.maxhp) > 0.5):
             return True
-        if status == constants.SLEEP and (pkmn.ability == 'insomnia' or state.field == constants.ELECTRIC_TERRAIN):
-            return True
-        if status in [constants.POISON, constants.TOXIC] and any(t in ['poison', 'steel'] for t in pkmn.types):
-            return True
-        if status == constants.PARALYZED and 'ground' in pkmn.types:
+        if pkmn.ability == 'comatose':
             return True
         if state.field == constants.MISTY_TERRAIN:
+            return True
+
+        if status == constants.FROZEN and (pkmn.ability in constants.IMMUNE_TO_FROZEN_ABILITIES):
+            return True
+        elif status == constants.BURN and ('fire' in pkmn.types or pkmn.ability in constants.IMMUNE_TO_BURN_ABILITIES):
+            return True
+        elif status == constants.SLEEP and (pkmn.ability in constants.IMMUNE_TO_SLEEP_ABILITIES or state.field == constants.ELECTRIC_TERRAIN):
+            return True
+        elif status in [constants.POISON, constants.TOXIC] and (any(t in ['poison', 'steel'] for t in pkmn.types) or pkmn.ability in constants.IMMUNE_TO_POISON_ABILITIES):
+            return True
+        elif status == constants.PARALYZED and ('ground' in pkmn.types or pkmn.ability in constants.IMMUNE_TO_PARALYSIS_ABILITIES):
             return True
 
         return False

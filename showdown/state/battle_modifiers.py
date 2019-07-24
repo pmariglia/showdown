@@ -132,6 +132,7 @@ def move(battle, split_msg):
         move = pkmn.get_move(move_name)
         if move is None:
             pkmn.add_move(move_name)
+            pkmn.get_move(move_name).current_pp -= 1
         else:
             move.current_pp -= 1
             logger.debug("{} already has the move {}. Decrementing the PP by 1".format(pkmn.name, move_name))
@@ -323,6 +324,8 @@ def form_change(battle, split_msg):
         base_name = battle.opponent.active.base_name
         hp_percent = float(battle.opponent.active.hp) / battle.opponent.active.max_hp
         moves = battle.opponent.active.moves
+        boosts = battle.opponent.active.boosts
+        status = battle.opponent.active.status
 
         new_pokemon = Pokemon.from_switch_string(split_msg[3])
         new_pokemon.moves = moves
@@ -331,6 +334,8 @@ def form_change(battle, split_msg):
 
         battle.opponent.active = new_pokemon
         battle.opponent.active.hp = hp_percent * battle.opponent.active.max_hp
+        battle.opponent.active.boosts = boosts
+        battle.opponent.active.status = status
 
         if battle.opponent.active.name != "zoroark":
             battle.opponent.active.base_name = base_name

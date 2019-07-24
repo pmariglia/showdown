@@ -180,6 +180,7 @@ CONTACT = "contact"
 CHARGE = "charge"
 POWDER = "powder"
 DRAG = "drag"
+SOUND = "sound"
 
 VOLATILE_STATUS = "volatileStatus"
 SECONDARY = "secondary"
@@ -258,3 +259,9 @@ NON_VOLATILE_STATUSES = {SLEEP, BURN, FROZEN, PARALYZED, POISON, TOXIC}
 WAKE_UP_PERCENT = 0.33
 THAW_PERCENT = 0.20
 FULLY_PARALYZED_PERCENT = 0.25
+
+IMMUNE_TO_SLEEP_ABILITIES = {'insomnia', 'sweetveil', 'vitalspirit'}
+IMMUNE_TO_BURN_ABILITIES = {'waterveil', 'waterbubble'}
+IMMUNE_TO_FROZEN_ABILITIES = {'magmaarmor'}
+IMMUNE_TO_POISON_ABILITIES = {'immunity'}
+IMMUNE_TO_PARALYSIS_ABILITIES = {'limber'}

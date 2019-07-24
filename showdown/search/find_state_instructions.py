@@ -43,8 +43,13 @@ def get_effective_speed(state, side):
     elif state.weather == constants.HAIL and side.active.ability == 'slushrush':
         boosted_speed *= 2
 
+    if state.field == constants.ELECTRIC_TERRAIN and side.active.ability == 'surgesurfer':
+        boosted_speed *= 2
+
     if side.active.ability == 'unburden' and not side.active.item:
         boosted_speed *= 2
+    elif side.active.ability == 'quickfeet' and side.active.status is not None:
+        boosted_speed *= 1.5
 
     if side.side_conditions[constants.TAILWIND]:
         boosted_speed *= 2
@@ -52,10 +57,22 @@ def get_effective_speed(state, side):
     if 'choicescarf' == side.active.item:
         boosted_speed *= 1.5
 
-    if constants.PARALYZED == side.active.status:
+    if constants.PARALYZED == side.active.status and side.active.ability != 'quickfeet':
         boosted_speed *= 0.5
 
     return int(boosted_speed)
+
+
+def get_effective_priority(side, move):
+    priority = move[constants.PRIORITY]
+    if side.active.ability == 'prankster' and move[constants.CATEGORY] == constants.STATUS:
+        priority += 1
+    elif side.active.ability == 'galewings' and (side.active.hp == side.active.maxhp) and ('flying' in move[constants.TYPE]):
+        priority += 1
+    elif side.active.ability == 'triage' and constants.HEAL in move[constants.FLAGS]:
+        priority += 3
+
+    return priority
 
 
 def user_moves_first(state, user_move, opponent_move):
@@ -74,12 +91,8 @@ def user_moves_first(state, user_move, opponent_move):
     elif constants.SWITCH_STRING in opponent_move:
         return False
 
-    user_priority = user_move[constants.PRIORITY]
-    opponent_priority = opponent_move[constants.PRIORITY]
-    if state.self.active.ability == 'prankster' and user_move[constants.CATEGORY] == constants.STATUS:
-        user_priority += 1
-    if state.opponent.active.ability == 'prankster' and opponent_move[constants.CATEGORY] == constants.STATUS:
-        opponent_priority += 1
+    user_priority = get_effective_priority(state.self, user_move)
+    opponent_priority = get_effective_priority(state.opponent, opponent_move)
 
     if user_priority == opponent_priority:
         user_is_faster = user_effective_speed > opponent_effective_speed
@@ -116,7 +129,8 @@ def update_damage_calc_from_abilities_and_items(attacking_pokemon, defending_pok
         attacking_move,
         attacking_pokemon,
         defending_pokemon,
-        first_move
+        first_move,
+        weather
     )
 
     attacking_move = item_modify_attack_being_used(

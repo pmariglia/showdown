@@ -55,7 +55,7 @@ class TestAdaptability(unittest.TestCase):
             constants.BASE_POWER: int(400/3)
         }
 
-        self.assertEqual(expected_move, ability_modify_attack_being_used(self.ability_name, move, pkmn, None, False))
+        self.assertEqual(expected_move, ability_modify_attack_being_used(self.ability_name, move, pkmn, None, False, None))
 
     def test_does_not_boost_damage_when_it_does_not_need_to(self):
         move = {
@@ -64,7 +64,7 @@ class TestAdaptability(unittest.TestCase):
         }
         pkmn = MagicMock()
         pkmn.types = ['ghost', 'flying']
-        self.assertEqual(move, ability_modify_attack_being_used(self.ability_name, move, pkmn, None, False))
+        self.assertEqual(move, ability_modify_attack_being_used(self.ability_name, move, pkmn, None, False, None))
 
 
 class TestAerilate(unittest.TestCase):
@@ -84,7 +84,7 @@ class TestAerilate(unittest.TestCase):
             constants.BASE_POWER: 120
         }
 
-        self.assertEqual(expected_move, ability_modify_attack_being_used(self.ability_name, move, None, None, False))
+        self.assertEqual(expected_move, ability_modify_attack_being_used(self.ability_name, move, None, None, False, None))
 
     def test_does_not_modify_flying_move(self):
         move = {
@@ -99,7 +99,7 @@ class TestAerilate(unittest.TestCase):
             constants.BASE_POWER: 100
         }
 
-        self.assertEqual(expected_move, ability_modify_attack_being_used(self.ability_name, move, None, None, False))
+        self.assertEqual(expected_move, ability_modify_attack_being_used(self.ability_name, move, None, None, False, None))
 
 
 class TestMegaLauncher(unittest.TestCase):
@@ -132,7 +132,7 @@ class TestMegaLauncher(unittest.TestCase):
         }
         expected_move_power = 120
         pkmn = MagicMock()
-        actual_power = ability_modify_attack_being_used(self.ability_name, move, pkmn, None, False)[constants.BASE_POWER]
+        actual_power = ability_modify_attack_being_used(self.ability_name, move, pkmn, None, False, None)[constants.BASE_POWER]
 
         self.assertEqual(expected_move_power, actual_power)
 
@@ -155,6 +155,6 @@ class TestMegaLauncher(unittest.TestCase):
         }
         expected_move_power = 40
         pkmn = MagicMock()
-        actual_power = ability_modify_attack_being_used(self.ability_name, move, pkmn, None, False)[constants.BASE_POWER]
+        actual_power = ability_modify_attack_being_used(self.ability_name, move, pkmn, None, False, None)[constants.BASE_POWER]
 
         self.assertEqual(expected_move_power, actual_power)

@@ -169,14 +169,6 @@ def fluffy(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
-def immunity(attacking_move, attacking_pokemon, defending_pokemon):
-    poison_strings = [constants.POISON, constants.TOXIC]
-    if attacking_move.get(constants.STATUS) in poison_strings:
-        attacking_move = attacking_move.copy()
-        attacking_move[constants.STATUS] = None
-    return attacking_move
-
-
 def magicbounce(attacking_move, attacking_pokemon, defending_pokemon):
     if attacking_move[constants.FLAGS].get(constants.REFLECTABLE):
         attacking_move = attacking_move.copy()
@@ -224,7 +216,162 @@ def waterbubble(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def queenlymajesty(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.PRIORITY] > 0:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] = 0
+
+    return attacking_move
+
+
+def tanglinghair(attacking_move, attacking_pokemon, defending_pokemon):
+    if constants.CONTACT in attacking_move[constants.FLAGS]:
+        attacking_move = attacking_move.copy()
+        if constants.SELF in attacking_move:
+            attacking_move[constants.SELF] = attacking_move[constants.SELF].copy()
+        else:
+            attacking_move[constants.SELF] = dict()
+
+        if constants.BOOSTS in attacking_move[constants.SELF]:
+            attacking_move[constants.SELF][constants.BOOSTS] = attacking_move[constants.SELF][constants.BOOSTS].copy()
+        else:
+            attacking_move[constants.SELF][constants.BOOSTS] = dict()
+
+        if constants.SPEED in attacking_move[constants.SELF][constants.BOOSTS]:
+            attacking_move[constants.SELF][constants.BOOSTS][constants.SPEED] -= 1
+        else:
+            attacking_move[constants.SELF][constants.BOOSTS][constants.SPEED] = -1
+
+    return attacking_move
+
+
+def marvelscale(attacking_move, attacking_pokemon, defending_pokemon):
+    if defending_pokemon.status is not None:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] /= 1.5
+
+    return attacking_move
+
+
+def justified(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'dark' and attacking_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BOOSTS] = {  # damaging moves dont have boosts so dont bother copying
+            constants.ATTACK: 1
+        }
+
+    return attacking_move
+
+
+def shielddust(attacking_move, attacking_pokemon, defending_pokemon):
+    if constants.SECONDARY in attacking_move:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.SECONDARY] = False
+
+    return attacking_move
+
+
+def defiant(attacking_move, attacking_pokemon, defending_pokemon):
+    attacking_move = attacking_move.copy()
+    if constants.BOOSTS in attacking_move:
+        attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
+        for _ in attacking_move[constants.BOOSTS].copy():
+            if constants.ATTACK not in attacking_move[constants.BOOSTS]:
+                attacking_move[constants.BOOSTS][constants.ATTACK] = 0
+            else:
+                attacking_move[constants.BOOSTS][constants.ATTACK] += 2
+
+    elif attacking_move[constants.SECONDARY] and constants.BOOSTS in attacking_move[constants.SECONDARY]:
+        attacking_move[constants.SECONDARY] = attacking_move[constants.SECONDARY].copy()
+        attacking_move[constants.SECONDARY][constants.BOOSTS] = attacking_move[constants.SECONDARY][constants.BOOSTS].copy()
+        for _ in attacking_move[constants.SECONDARY][constants.BOOSTS].copy():
+            if constants.ATTACK not in attacking_move[constants.SECONDARY][constants.BOOSTS]:
+                attacking_move[constants.SECONDARY][constants.BOOSTS][constants.ATTACK] = 2
+            else:
+                attacking_move[constants.SECONDARY][constants.BOOSTS][constants.ATTACK] += 2
+
+    return attacking_move
+
+
+def weakarmor(attacking_move, attacking_pokemon, defending_pokemon):
+    if constants.PHYSICAL in attacking_move[constants.CATEGORY]:
+        attacking_move = attacking_move.copy()
+        if constants.BOOSTS in attacking_move:
+            attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
+        else:
+            attacking_move[constants.BOOSTS] = dict()
+
+        if constants.DEFENSE in attacking_move[constants.BOOSTS]:
+            attacking_move[constants.BOOSTS][constants.DEFENSE] -= 1
+        else:
+            attacking_move[constants.BOOSTS][constants.DEFENSE] = -1
+
+        if constants.SPEED in attacking_move[constants.BOOSTS]:
+            attacking_move[constants.BOOSTS][constants.SPEED] += 2
+        else:
+            attacking_move[constants.BOOSTS][constants.SPEED] = 2
+
+    return attacking_move
+
+
+def liquidooze(attacking_move, attacking_pokemon, defending_pokemon):
+    if constants.DRAIN in attacking_move:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.DRAIN] = attacking_move[constants.DRAIN].copy()
+        attacking_move[constants.DRAIN][0] *= -1
+
+    return attacking_move
+
+
+def innerfocus(attacking_move, attacking_pokemon, defending_pokemon):
+    if (
+        attacking_move[constants.SECONDARY] and
+        constants.VOLATILE_STATUS in attacking_move[constants.SECONDARY] and
+        attacking_move[constants.SECONDARY][constants.VOLATILE_STATUS] == constants.FLINCH
+    ):
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.SECONDARY] = False
+
+    return attacking_move
+
+
+def soundproof(attacking_move, attacking_pokemon, defending_pokemon):
+    if constants.SOUND in attacking_move[constants.FLAGS]:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.ACCURACY] = False
+
+    return attacking_move
+
+
+def darkaura(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'dark' and attacking_pokemon.ability != 'aurabreak':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.33
+
+    return attacking_move
+
+
+def fairyaura(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'fairy' and attacking_pokemon.ability != 'aurabreak':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.33
+
+    return attacking_move
+
+
 ability_lookup = {
+    'fairyaura': fairyaura,
+    'darkaura': darkaura,
+    'soundproof': soundproof,
+    'innerfocus': innerfocus,
+    'liquidooze': liquidooze,
+    'weakarmor': weakarmor,
+    'defiant': defiant,
+    'shielddust': shielddust,
+    'justified': justified,
+    'marvelscale': marvelscale,
+    'tanglinghair': tanglinghair,
+    'queenlymajesty': queenlymajesty,
     'waterbubble': waterbubble,
     'stamina': stamina,
     'levitate': levitate,
@@ -245,8 +392,8 @@ ability_lookup = {
     'bulletproof': bulletproof,
     'furcoat': furcoat,
     'prismarmor': solidrock,
+    'filter': solidrock,
     'fluffy': fluffy,
-    'immunity': immunity,
     'ironbarbs': ironbarbs,
     'wonderguard': wonderguard,
     'roughskin': roughskin,

@@ -66,10 +66,12 @@ class DamageCalculator:
         modifier *= weather_modifier(attacking_move, conditions.get(constants.WEATHER))
         modifier *= stab_modifier(attacker, attacking_move)
         modifier *= burn_modifier(attacker, attacking_move)
-        modifier *= light_screen_modifier(attacking_move, conditions.get(constants.LIGHT_SCREEN))
-        modifier *= reflect_modifier(attacking_move, conditions.get(constants.REFLECT))
-        modifier *= aurora_veil_modifier(conditions.get(constants.AURORA_VEIL))
         modifier *= terrain_modifier(attacker, defender, attacking_move, conditions.get(constants.TERRAIN))
+
+        if attacker.ability != 'infiltrator':
+            modifier *= light_screen_modifier(attacking_move, conditions.get(constants.LIGHT_SCREEN))
+            modifier *= reflect_modifier(attacking_move, conditions.get(constants.REFLECT))
+            modifier *= aurora_veil_modifier(conditions.get(constants.AURORA_VEIL))
 
         return modifier
 
@@ -149,6 +151,11 @@ class DamageCalculator:
 
         attacking_stats = attacker.calculate_boosted_stats()
         defending_stats = defender.calculate_boosted_stats()
+
+        if attacker.ability == 'unaware':
+            defending_stats[defense] = getattr(defender, defense)
+        if defender.ability == 'unaware':
+            attacking_stats[attack] = getattr(attacker, attack)
 
         # rock types get 1.5x SPDEF in sand
         try:
