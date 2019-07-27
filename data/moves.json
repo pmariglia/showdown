@@ -13054,7 +13054,7 @@
         "name": "Wish",
         "priority": 0,
         "secondary": false,
-        "side_conditions": "Wish",
+        "side_conditions": "wish",
         "target": "self",
         "type": "normal",
         "pp": 10

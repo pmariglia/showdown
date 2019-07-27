@@ -193,6 +193,7 @@ AURORA_VEIL = 'auroraveil'
 SAFEGUARD = 'safeguard'
 TAILWIND = 'tailwind'
 STICKY_WEB = 'stickyweb'
+WISH = "wish"
 HEALING_WISH = 'healingwish'
 
 # weather
