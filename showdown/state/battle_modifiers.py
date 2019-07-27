@@ -131,8 +131,9 @@ def move(battle, split_msg):
         pkmn = battle.opponent.active
         move = pkmn.get_move(move_name)
         if move is None:
-            pkmn.add_move(move_name)
-            pkmn.get_move(move_name).current_pp -= 1
+            new_move = pkmn.add_move(move_name)
+            if new_move is not None:
+                new_move.current_pp -= 1
         else:
             move.current_pp -= 1
             logger.debug("{} already has the move {}. Decrementing the PP by 1".format(pkmn.name, move_name))

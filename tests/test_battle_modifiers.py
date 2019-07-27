@@ -450,6 +450,20 @@ class TestMove(unittest.TestCase):
 
         self.assertIn(m, self.battle.opponent.active.moves)
 
+    def test_new_move_has_one_pp_less_than_max(self):
+        split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
+
+        move(self.battle, split_msg)
+        m = self.battle.opponent.active.get_move("String Shot")
+        expected_pp = m.max_pp - 1
+
+        self.assertEqual(expected_pp, m.current_pp)
+
+    def test_unknown_move_does_not_try_to_decrement(self):
+        split_msg = ['', 'move', 'p2a: Caterpie', 'some-random-unknown-move']
+
+        move(self.battle, split_msg)
+
     def test_add_revealed_move_does_not_add_move_twice(self):
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
 

@@ -73,9 +73,12 @@ class Pokemon:
 
     def add_move(self, move_name: str):
         try:
-            self.moves.append(Move(move_name))
+            new_move = Move(move_name)
+            self.moves.append(new_move)
+            return new_move
         except KeyError:
             logger.warning("{} is not a known move".format(move_name))
+            return None
 
     def get_move(self, move_name: str):
         for m in self.moves:
