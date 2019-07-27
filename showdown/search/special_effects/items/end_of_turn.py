@@ -2,11 +2,13 @@ import constants
 
 
 def leftovers(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    return (
-        constants.MUTATOR_HEAL,
-        attacking_side,
-        min(attacking_pokemon.maxhp - attacking_pokemon.hp, round(0.0625 * attacking_pokemon.maxhp))
-    )
+    if attacking_pokemon.hp:
+        return (
+            constants.MUTATOR_HEAL,
+            attacking_side,
+            min(attacking_pokemon.maxhp - attacking_pokemon.hp, round(0.0625 * attacking_pokemon.maxhp))
+        )
+    return None
 
 
 def blacksludge(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):

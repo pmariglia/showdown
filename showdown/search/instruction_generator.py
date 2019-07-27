@@ -682,7 +682,7 @@ class InstructionGenerator:
             side = self.get_side_from_state(mutator.state, attacker)
             pkmn = side.active
 
-            if pkmn.ability == 'magicguard':
+            if pkmn.ability == 'magicguard' or not pkmn.hp:
                 mutator.reverse(instruction.instructions)
                 continue
 
@@ -743,7 +743,7 @@ class InstructionGenerator:
             side = self.get_side_from_state(mutator.state, attacker)
             pkmn = side.active
 
-            if pkmn.ability == 'magicguard':
+            if pkmn.ability == 'magicguard' or not pkmn.hp:
                 mutator.reverse(instruction.instructions)
                 continue
 
@@ -784,11 +784,11 @@ class InstructionGenerator:
             pkmn = side.active
             defending_pkmn = defending_side.active
 
-            if pkmn.ability == 'magicguard':
+            if pkmn.ability == 'magicguard' or not pkmn.hp or not defending_pkmn.hp:
                 mutator.reverse(instruction.instructions)
                 continue
 
-            if constants.LEECH_SEED in pkmn.volatile_status and defending_pkmn.hp > 0:
+            if constants.LEECH_SEED in pkmn.volatile_status:
                 damage_sapped = max(0, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
                 instructions_to_add.append(
                     (

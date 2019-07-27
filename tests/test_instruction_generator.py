@@ -2974,20 +2974,8 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
             5
         )
 
-        # leechseed shouldnt take effect because poison kills
-        leech_seed_damage = (
-            constants.MUTATOR_DAMAGE,
-            constants.SELF,
-            0
-        )
-        leech_seed_heal = (
-            constants.MUTATOR_HEAL,
-            constants.OPPONENT,
-            0
-        )
-
         expected_instructions = [
-            TransposeInstruction(1.0, [damage_instruction, leech_seed_damage, leech_seed_heal], False),
+            TransposeInstruction(1.0, [damage_instruction], False),
         ]
 
         self.assertEqual(expected_instructions, instructions)
@@ -3006,20 +2994,8 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
             1
         )
 
-        # leechseed shouldnt take effect because poison kills
-        leech_seed_damage = (
-            constants.MUTATOR_DAMAGE,
-            constants.SELF,
-            0
-        )
-        leech_seed_heal = (
-            constants.MUTATOR_HEAL,
-            constants.OPPONENT,
-            0
-        )
-
         expected_instructions = [
-            TransposeInstruction(1.0, [damage_instruction, leech_seed_damage, leech_seed_heal], False),
+            TransposeInstruction(1.0, [damage_instruction], False),
         ]
 
         self.assertEqual(expected_instructions, instructions)
@@ -3337,17 +3313,6 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
             constants.OPPONENT,
             6
         )
-        self_leech_damage = (
-            constants.MUTATOR_DAMAGE,
-            constants.SELF,
-            0
-        )
-        opponent_leech_heal = (
-            constants.MUTATOR_HEAL,
-            constants.OPPONENT,
-            0
-        )
-        # no leech instructions here for the opponent's pokemon because the bot's pokemon is dead
 
         expected_instructions = [
             TransposeInstruction(
@@ -3359,8 +3324,6 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
                     opponent_poison,
                     self_hail,
                     opponent_hail,
-                    self_leech_damage,
-                    opponent_leech_heal
                 ],
                 False
             ),

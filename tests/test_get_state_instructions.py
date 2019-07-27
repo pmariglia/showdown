@@ -2208,6 +2208,69 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_killing_a_pokemon_with_various_end_of_turn_action_items(self):
+        bot_move = "return102"
+        opponent_move = "splash"
+        self.state.weather = constants.SAND
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.hp = 40
+        self.state.opponent.active.item = 'leftovers'
+        self.state.opponent.active.volatile_status.add(constants.LEECH_SEED)
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 40),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_killing_a_pokemon_with_poisonheal(self):
+        bot_move = "return102"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.hp = 40
+        self.state.opponent.active.status = constants.TOXIC
+        self.state.opponent.active.ability = 'poisonheal'
+        self.state.opponent.active.volatile_status.add(constants.LEECH_SEED)
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 40),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_killing_a_pokemon_with_poison(self):
+        bot_move = "return102"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.hp = 40
+        self.state.opponent.active.status = constants.POISON
+        self.state.opponent.active.volatile_status.add(constants.LEECH_SEED)
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 40),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_opponent_with_unaware_does_not_make_him_take_more_damage(self):
         bot_move = "tackle"
         opponent_move = "splash"
