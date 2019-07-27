@@ -683,6 +683,7 @@ class InstructionGenerator:
             pkmn = side.active
 
             if pkmn.ability == 'magicguard':
+                mutator.reverse(instruction.instructions)
                 continue
 
             if constants.TOXIC == pkmn.status and pkmn.ability != 'poisonheal':
@@ -743,6 +744,7 @@ class InstructionGenerator:
             pkmn = side.active
 
             if pkmn.ability == 'magicguard':
+                mutator.reverse(instruction.instructions)
                 continue
 
             if mutator.state.weather == constants.SAND:
@@ -783,6 +785,7 @@ class InstructionGenerator:
             defending_pkmn = defending_side.active
 
             if pkmn.ability == 'magicguard':
+                mutator.reverse(instruction.instructions)
                 continue
 
             if constants.LEECH_SEED in pkmn.volatile_status and defending_pkmn.hp > 0:
