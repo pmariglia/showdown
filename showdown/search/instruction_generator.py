@@ -655,7 +655,6 @@ class InstructionGenerator:
             sides = [constants.OPPONENT, constants.SELF]
 
         for attacker in sides:
-            instructions_to_add = []
             mutator.apply(instruction.instructions)
             defender = self.possible_affected_strings[attacker]
             side = self.get_side_from_state(mutator.state, attacker)
@@ -675,9 +674,16 @@ class InstructionGenerator:
                 instruction.add_instruction(ability_instruction)
                 mutator.apply(instruction.instructions)
 
+            mutator.reverse(instruction.instructions)
+
+        for attacker in sides:
+            instructions_to_add = []
+            mutator.apply(instruction.instructions)
+            side = self.get_side_from_state(mutator.state, attacker)
+            pkmn = side.active
+
             if pkmn.ability == 'magicguard':
-                mutator.reverse(instruction.instructions)
-                return [instruction]
+                continue
 
             if constants.TOXIC == pkmn.status and pkmn.ability != 'poisonheal':
                 instructions_to_add.append(
@@ -729,6 +735,16 @@ class InstructionGenerator:
                 instruction.add_instruction(poison_damage_instruction)
                 mutator.apply(instruction.instructions)
 
+            mutator.reverse(instruction.instructions)
+
+        for attacker in sides:
+            mutator.apply(instruction.instructions)
+            side = self.get_side_from_state(mutator.state, attacker)
+            pkmn = side.active
+
+            if pkmn.ability == 'magicguard':
+                continue
+
             if mutator.state.weather == constants.SAND:
                 if not any(t in pkmn.types for t in ['steel', 'rock', 'ground']):
                     sand_damage_instruction = (
@@ -744,7 +760,7 @@ class InstructionGenerator:
 
             elif mutator.state.weather == constants.HAIL:
                 if 'ice' not in pkmn.types:
-                    sand_damage_instruction = (
+                    ice_damage_instruction = (
                         (
                             constants.MUTATOR_DAMAGE,
                             attacker,
@@ -752,8 +768,22 @@ class InstructionGenerator:
                         )
                     )
                     mutator.reverse(instruction.instructions)
-                    instruction.add_instruction(sand_damage_instruction)
+                    instruction.add_instruction(ice_damage_instruction)
                     mutator.apply(instruction.instructions)
+
+            mutator.reverse(instruction.instructions)
+
+        for attacker in sides:
+            instructions_to_add = []
+            mutator.apply(instruction.instructions)
+            defender = self.possible_affected_strings[attacker]
+            side = self.get_side_from_state(mutator.state, attacker)
+            defending_side = self.get_side_from_state(mutator.state, defender)
+            pkmn = side.active
+            defending_pkmn = defending_side.active
+
+            if pkmn.ability == 'magicguard':
+                continue
 
             if constants.LEECH_SEED in pkmn.volatile_status and defending_pkmn.hp > 0:
                 damage_sapped = max(0, int(min(pkmn.maxhp * 0.125, pkmn.hp)))

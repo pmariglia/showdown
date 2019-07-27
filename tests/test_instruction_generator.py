@@ -3199,6 +3199,175 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_double_leftovers_and_poison_and_weather_and_leechseed_executes_in_correct_order(self):
+        self.state.weather = constants.HAIL
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 30
+        self.state.self.active.status = constants.POISON
+        self.state.self.active.item = 'leftovers'
+        self.state.self.active.volatile_status.add(constants.LEECH_SEED)
+        self.state.self.active.types = ['normal']
+
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 30
+        self.state.opponent.active.status = constants.POISON
+        self.state.opponent.active.item = 'leftovers'
+        self.state.opponent.active.volatile_status.add(constants.LEECH_SEED)
+        self.state.opponent.active.types = ['normal']
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        self_leftovers = (
+            constants.MUTATOR_HEAL,
+            constants.SELF,
+            6
+        )
+        opponent_leftovers = (
+            constants.MUTATOR_HEAL,
+            constants.OPPONENT,
+            6
+        )
+        self_poison = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            12
+        )
+        opponent_poison = (
+            constants.MUTATOR_DAMAGE,
+            constants.OPPONENT,
+            12
+        )
+        self_hail = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            6
+        )
+        opponent_hail = (
+            constants.MUTATOR_DAMAGE,
+            constants.OPPONENT,
+            6
+        )
+        self_leech_damage = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            12
+        )
+        opponent_leech_heal = (
+            constants.MUTATOR_HEAL,
+            constants.OPPONENT,
+            12
+        )
+        opponent_leech_damage = (
+            constants.MUTATOR_DAMAGE,
+            constants.OPPONENT,
+            12
+        )
+        self_leech_heal = (
+            constants.MUTATOR_HEAL,
+            constants.SELF,
+            12
+        )
+
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    self_leftovers,
+                    opponent_leftovers,
+                    self_poison,
+                    opponent_poison,
+                    self_hail,
+                    opponent_hail,
+                    self_leech_damage,
+                    opponent_leech_heal,
+                    opponent_leech_damage,
+                    self_leech_heal
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_instructions_stop_when_weather_kills(self):
+        self.state.weather = constants.HAIL
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 10
+        self.state.self.active.status = constants.POISON
+        self.state.self.active.item = 'leftovers'
+        self.state.self.active.volatile_status.add(constants.LEECH_SEED)
+        self.state.self.active.types = ['normal']
+
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 30
+        self.state.opponent.active.status = constants.POISON
+        self.state.opponent.active.item = 'leftovers'
+        self.state.opponent.active.volatile_status.add(constants.LEECH_SEED)
+        self.state.opponent.active.types = ['normal']
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        self_leftovers = (
+            constants.MUTATOR_HEAL,
+            constants.SELF,
+            6
+        )
+        opponent_leftovers = (
+            constants.MUTATOR_HEAL,
+            constants.OPPONENT,
+            6
+        )
+        self_poison = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            12
+        )
+        opponent_poison = (
+            constants.MUTATOR_DAMAGE,
+            constants.OPPONENT,
+            12
+        )
+        self_hail = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            4  # kills self's pokemon
+        )
+        opponent_hail = (
+            constants.MUTATOR_DAMAGE,
+            constants.OPPONENT,
+            6
+        )
+        self_leech_damage = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            0
+        )
+        opponent_leech_heal = (
+            constants.MUTATOR_HEAL,
+            constants.OPPONENT,
+            0
+        )
+        # no leech instructions here for the opponent's pokemon because the bot's pokemon is dead
+
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    self_leftovers,
+                    opponent_leftovers,
+                    self_poison,
+                    opponent_poison,
+                    self_hail,
+                    opponent_hail,
+                    self_leech_damage,
+                    opponent_leech_heal
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
 
 if __name__ == '__main__':
     unittest.main()
