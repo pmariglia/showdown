@@ -2910,6 +2910,199 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_poison_damage_and_leftovers_heal_together(self):
+        self.state.self.active.item = 'leftovers'
+        self.state.self.active.status = constants.POISON
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 50
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.DAMAGE,
+            constants.SELF,
+            12
+        )
+        heal_instruction = (
+            constants.HEAL,
+            constants.SELF,
+            6
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [heal_instruction, damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_poison_damage_and_leftovers_heal_together_when_poison_kills(self):
+        self.state.self.active.item = 'leftovers'
+        self.state.self.active.status = constants.POISON
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 5
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.DAMAGE,
+            constants.SELF,
+            11
+        )
+        heal_instruction = (
+            constants.HEAL,
+            constants.SELF,
+            6
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [heal_instruction, damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_poison_killing_into_leechseed(self):
+        self.state.self.active.volatile_status.add(constants.LEECH_SEED)
+        self.state.self.active.status = constants.POISON
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 5
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            5
+        )
+
+        # leechseed shouldnt take effect because poison kills
+        leech_seed_damage = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            0
+        )
+        leech_seed_heal = (
+            constants.MUTATOR_HEAL,
+            constants.OPPONENT,
+            0
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [damage_instruction, leech_seed_damage, leech_seed_heal], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_burn_killing_into_leechseed(self):
+        self.state.self.active.volatile_status.add(constants.LEECH_SEED)
+        self.state.self.active.status = constants.BURN
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 1
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            1
+        )
+
+        # leechseed shouldnt take effect because poison kills
+        leech_seed_damage = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            0
+        )
+        leech_seed_heal = (
+            constants.MUTATOR_HEAL,
+            constants.OPPONENT,
+            0
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [damage_instruction, leech_seed_damage, leech_seed_heal], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_toxic_status_with_leftovers_when_toxic_kills(self):
+        self.state.self.active.status = constants.TOXIC
+        self.state.self.side_conditions[constants.TOXIC_COUNT] = 2
+        self.state.self.active.item = 'leftovers'
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 6
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        heal_instruction = (
+            constants.MUTATOR_HEAL,
+            constants.SELF,
+            6
+        )
+
+        additional_toxic_count_instruction = (
+            constants.MUTATOR_SIDE_START,
+            constants.SELF,
+            constants.TOXIC_COUNT,
+            1
+        )
+
+        damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            12
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [heal_instruction, additional_toxic_count_instruction, damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_faster_pokemon_dying_from_poison_into_leech_seed_from_other_side(self):
+        self.state.self.active.status = constants.POISON
+        self.state.opponent.active.volatile_status.add(constants.LEECH_SEED)
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 6
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            6
+        )
+
+        # pokemon should be dead, so no leechseed should happen
+        expected_instructions = [
+            TransposeInstruction(1.0, [damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_previous_instructions_are_interpreted_correctly(self):
+        self.state.self.active.status = constants.POISON
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 30
+        mutator = StateMutator(self.state)
+
+        previous_instruction = (constants.MUTATOR_DAMAGE, constants.SELF, 25)
+        self.previous_instruction = TransposeInstruction(1.0, [previous_instruction], False)
+
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            5
+        )
+
+        # pokemon should be dead, so no leechseed should happen
+        expected_instructions = [
+            TransposeInstruction(1.0, [previous_instruction, damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -663,6 +663,18 @@ class InstructionGenerator:
             pkmn = side.active
             defending_pkmn = defending_side.active
 
+            item_instruction = item_end_of_turn(side.active.item, mutator.state, attacker, pkmn, defender, defending_pkmn)
+            if item_instruction is not None:
+                mutator.reverse(instruction.instructions)
+                instruction.add_instruction(item_instruction)
+                mutator.apply(instruction.instructions)
+
+            ability_instruction = ability_end_of_turn(side.active.ability, mutator.state, attacker, pkmn, defender, defending_pkmn)
+            if ability_instruction is not None:
+                mutator.reverse(instruction.instructions)
+                instruction.add_instruction(ability_instruction)
+                mutator.apply(instruction.instructions)
+
             if pkmn.ability == 'magicguard':
                 mutator.reverse(instruction.instructions)
                 return [instruction]
@@ -678,7 +690,7 @@ class InstructionGenerator:
                 )
                 toxic_count = side.side_conditions[constants.TOXIC_COUNT]
                 toxic_multiplier = (1 / 16) * toxic_count + (1 / 16)
-                toxic_damage = max(1, int(min(pkmn.maxhp * toxic_multiplier, pkmn.hp)))
+                toxic_damage = max(0, int(min(pkmn.maxhp * toxic_multiplier, pkmn.hp)))
                 instructions_to_add.append(
                     (
                         constants.MUTATOR_DAMAGE,
@@ -686,24 +698,39 @@ class InstructionGenerator:
                         toxic_damage
                     )
                 )
+
+                mutator.reverse(instruction.instructions)
+                for i in instructions_to_add:
+                    instruction.add_instruction(i)
+                mutator.apply(instruction.instructions)
+                instructions_to_add.clear()
+
             elif constants.BURN == pkmn.status:
-                instructions_to_add.append(
+                burn_damage_instruction = (
                     (
                         constants.MUTATOR_DAMAGE,
                         attacker,
-                        max(1, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
+                        max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
                     )
                 )
+                mutator.reverse(instruction.instructions)
+                instruction.add_instruction(burn_damage_instruction)
+                mutator.apply(instruction.instructions)
+
             elif constants.POISON == pkmn.status and pkmn.ability != 'poisonheal':
-                instructions_to_add.append(
+                poison_damage_instruction = (
                     (
                         constants.MUTATOR_DAMAGE,
                         attacker,
-                        max(1, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
+                        max(0, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
                     )
                 )
+                mutator.reverse(instruction.instructions)
+                instruction.add_instruction(poison_damage_instruction)
+                mutator.apply(instruction.instructions)
+
             if constants.LEECH_SEED in pkmn.volatile_status and defending_pkmn.hp > 0:
-                damage_sapped = max(1, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
+                damage_sapped = max(0, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
                 instructions_to_add.append(
                     (
                         constants.MUTATOR_DAMAGE,
@@ -719,14 +746,6 @@ class InstructionGenerator:
                         min(damage_sapped, damage_from_full)
                     )
                 )
-
-            item_instruction = item_end_of_turn(side.active.item, mutator.state, attacker, side.active, defender, defending_side.active)
-            if item_instruction is not None:
-                instructions_to_add.append(item_instruction)
-
-            ability_instruction = ability_end_of_turn(side.active.ability, mutator.state, attacker, side.active, defender, defending_side.active)
-            if ability_instruction is not None:
-                instructions_to_add.append(ability_instruction)
 
             mutator.reverse(instruction.instructions)
 
