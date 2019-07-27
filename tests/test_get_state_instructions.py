@@ -2170,7 +2170,7 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    def test_unaware_ignore_special_defense_boost(self):
+    def test_unaware_ignore_defense_boost(self):
         bot_move = "tackle"
         opponent_move = "splash"
         self.state.opponent.active.types = ['normal']
@@ -2182,6 +2182,25 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25)  # 25 is unboosted damage
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_unaware_ignore_special_defense_boost(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.self.active.ability = 'unaware'
+        self.state.opponent.active.special_defense_boost = 6
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22)
                 ],
                 False
             )

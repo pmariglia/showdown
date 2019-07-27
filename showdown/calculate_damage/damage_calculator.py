@@ -153,9 +153,15 @@ class DamageCalculator:
         defending_stats = defender.calculate_boosted_stats()
 
         if attacker.ability == 'unaware':
-            defending_stats[defense] = getattr(defender, defense)
+            if defense == constants.DEFENSE:
+                defending_stats[defense] = defender.defense
+            elif defense == constants.SPECIAL_DEFENSE:
+                defending_stats[defense] = defender.special_defense
         if defender.ability == 'unaware':
-            attacking_stats[attack] = getattr(attacker, attack)
+            if attack == constants.ATTACK:
+                attacking_stats[attack] = attacker.attack
+            elif defense == constants.SPECIAL_ATTACK:
+                attacking_stats[attack] = attacker.special_attack
 
         # rock types get 1.5x SPDEF in sand
         try:
