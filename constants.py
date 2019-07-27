@@ -198,7 +198,7 @@ HEALING_WISH = 'healingwish'
 # weather
 RAIN = "raindance"
 SUN = "sunnyday"
-SAND = "sandstream"
+SAND = "sandstorm"
 HAIL = "snowwarning"
 DESOLATE_LAND = "desolateland"
 HEAVY_RAIN = "primordialsea"
