@@ -3,6 +3,8 @@ from copy import copy
 from config import logger
 
 from showdown.search.special_effects.abilities.on_switch_in import ability_on_switch_in
+from showdown.search.special_effects.items.end_of_turn import item_end_of_turn
+from showdown.search.special_effects.abilities.end_of_turn import ability_end_of_turn
 from showdown.calculate_damage import damage_multipication_array
 from showdown.calculate_damage import pokemon_type_indicies
 
@@ -665,7 +667,7 @@ class InstructionGenerator:
                 mutator.reverse(instruction.instructions)
                 return [instruction]
 
-            if constants.TOXIC == pkmn.status:
+            if constants.TOXIC == pkmn.status and pkmn.ability != 'poisonheal':
                 instructions_to_add.append(
                     (
                         constants.MUTATOR_SIDE_START,
@@ -692,7 +694,7 @@ class InstructionGenerator:
                         max(1, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
                     )
                 )
-            elif constants.POISON == pkmn.status:
+            elif constants.POISON == pkmn.status and pkmn.ability != 'poisonheal':
                 instructions_to_add.append(
                     (
                         constants.MUTATOR_DAMAGE,
@@ -717,6 +719,14 @@ class InstructionGenerator:
                         min(damage_sapped, damage_from_full)
                     )
                 )
+
+            item_instruction = item_end_of_turn(side.active.item, mutator.state, attacker, side.active, defender, defending_side.active)
+            if item_instruction is not None:
+                instructions_to_add.append(item_instruction)
+
+            ability_instruction = ability_end_of_turn(side.active.ability, mutator.state, attacker, side.active, defender, defending_side.active)
+            if ability_instruction is not None:
+                instructions_to_add.append(ability_instruction)
 
             mutator.reverse(instruction.instructions)
 

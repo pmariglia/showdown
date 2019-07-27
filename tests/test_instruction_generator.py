@@ -2793,6 +2793,123 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_leftovers_causes_heal(self):
+        self.state.self.active.item = 'leftovers'
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 1
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.MUTATOR_HEAL,
+            constants.SELF,
+            6
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_blacksludge_causes_heal(self):
+        self.state.self.active.item = 'leftovers'
+        self.state.self.active.types = ['poison']
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 1
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.MUTATOR_HEAL,
+            constants.SELF,
+            6
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_leftovers_does_not_overheal(self):
+        self.state.self.active.item = 'leftovers'
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 99
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.MUTATOR_HEAL,
+            constants.SELF,
+            1
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_blacksludge_does_not_overkill(self):
+        self.state.self.active.item = 'blacksludge'
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 1
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            1
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_blacksludge_does_damage(self):
+        self.state.self.active.item = 'blacksludge'
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 100
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            6
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_poisonheal_heals(self):
+        self.state.self.active.item = 'toxicorb'
+        self.state.self.active.ability = 'poisonheal'
+        self.state.self.active.status = constants.POISON
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 50
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.HEAL,
+            constants.SELF,
+            12
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
 
 if __name__ == '__main__':
     unittest.main()
