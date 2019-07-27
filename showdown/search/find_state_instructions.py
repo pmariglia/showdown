@@ -336,12 +336,6 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
             temp_instructions += state_generator.get_states_from_flinching_moves(defender, flinch_accuracy, first_move, instruction_set)
         all_instructions = temp_instructions
 
-    # technically this block should occur after both moves happen (i.e. at the end of the turn)
-    temp_instructions = []
-    for instruction_set in all_instructions:
-        temp_instructions += state_generator.get_state_from_status_damage(mutator, attacker, instruction_set)
-    all_instructions = temp_instructions
-
     temp_instructions = []
     for instruction_set in all_instructions:
         temp_instructions += state_generator.get_state_from_drag(mutator, attacking_move, attacker, move_target, instruction_set)
@@ -378,5 +372,10 @@ def get_all_state_instructions(mutator, user_move_string, opponent_move_string):
         instructions = get_state_instructions_from_move(mutator, opponent_move, user_move, constants.OPPONENT, constants.SELF, True, instructions)
         for instruction in instructions:
             all_instructions += get_state_instructions_from_move(mutator, user_move, opponent_move, constants.SELF, constants.OPPONENT, False, instruction)
+
+    temp_instructions = []
+    for instruction_set in all_instructions:
+        temp_instructions += state_generator.get_end_of_turn_instructions(mutator, instruction_set, bot_moves_first)
+    all_instructions = temp_instructions
 
     return all_instructions

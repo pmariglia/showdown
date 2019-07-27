@@ -646,78 +646,82 @@ class InstructionGenerator:
 
         return [instruction]
 
-    def get_state_from_status_damage(self, mutator, attacker, instruction):
-        if attacker not in self.possible_affected_strings:
-            raise ValueError("attacker parameter must be one of: {}".format(', '.join(self.possible_affected_strings)))
+    def get_end_of_turn_instructions(self, mutator, instruction, bot_moves_first):
+        if bot_moves_first:
+            sides = [constants.SELF, constants.OPPONENT]
+        else:
+            sides = [constants.OPPONENT, constants.SELF]
 
-        mutator.apply(instruction.instructions)
-        defender = self.possible_affected_strings[attacker]
-        side = self.get_side_from_state(mutator.state, attacker)
-        defending_side = self.get_side_from_state(mutator.state, defender)
-        pkmn = side.active
-        defending_pkmn = defending_side.active
+        for attacker in sides:
+            instructions_to_add = []
+            mutator.apply(instruction.instructions)
+            defender = self.possible_affected_strings[attacker]
+            side = self.get_side_from_state(mutator.state, attacker)
+            defending_side = self.get_side_from_state(mutator.state, defender)
+            pkmn = side.active
+            defending_pkmn = defending_side.active
 
-        if pkmn.ability == 'magicguard':
+            if pkmn.ability == 'magicguard':
+                mutator.reverse(instruction.instructions)
+                return [instruction]
+
+            if constants.TOXIC == pkmn.status:
+                instructions_to_add.append(
+                    (
+                        constants.MUTATOR_SIDE_START,
+                        attacker,
+                        constants.TOXIC_COUNT,
+                        1
+                    )
+                )
+                toxic_count = side.side_conditions[constants.TOXIC_COUNT]
+                toxic_multiplier = (1 / 16) * toxic_count + (1 / 16)
+                toxic_damage = max(1, int(min(pkmn.maxhp * toxic_multiplier, pkmn.hp)))
+                instructions_to_add.append(
+                    (
+                        constants.MUTATOR_DAMAGE,
+                        attacker,
+                        toxic_damage
+                    )
+                )
+            elif constants.BURN == pkmn.status:
+                instructions_to_add.append(
+                    (
+                        constants.MUTATOR_DAMAGE,
+                        attacker,
+                        max(1, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
+                    )
+                )
+            elif constants.POISON == pkmn.status:
+                instructions_to_add.append(
+                    (
+                        constants.MUTATOR_DAMAGE,
+                        attacker,
+                        max(1, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
+                    )
+                )
+            if constants.LEECH_SEED in pkmn.volatile_status and defending_pkmn.hp > 0:
+                damage_sapped = max(1, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
+                instructions_to_add.append(
+                    (
+                        constants.MUTATOR_DAMAGE,
+                        attacker,
+                        damage_sapped
+                    )
+                )
+                damage_from_full = defending_pkmn.maxhp - defending_pkmn.hp
+                instructions_to_add.append(
+                    (
+                        constants.MUTATOR_HEAL,
+                        defender,
+                        min(damage_sapped, damage_from_full)
+                    )
+                )
+
             mutator.reverse(instruction.instructions)
-            return [instruction]
 
-        instructions_to_add = []
-        if constants.TOXIC == pkmn.status:
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_SIDE_START,
-                    attacker,
-                    constants.TOXIC_COUNT,
-                    1
-                )
-            )
-            toxic_count = side.side_conditions[constants.TOXIC_COUNT]
-            toxic_multiplier = (1 / 16) * toxic_count + (1 / 16)
-            toxic_damage = max(1, int(min(pkmn.maxhp * toxic_multiplier, pkmn.hp)))
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_DAMAGE,
-                    attacker,
-                    toxic_damage
-                )
-            )
-        elif constants.BURN == pkmn.status:
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_DAMAGE,
-                    attacker,
-                    max(1, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
-                )
-            )
-        elif constants.POISON == pkmn.status:
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_DAMAGE,
-                    attacker,
-                    max(1, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
-                )
-            )
-        if constants.LEECH_SEED in pkmn.volatile_status and defending_pkmn.hp > 0:
-            damage_sapped = max(1, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_DAMAGE,
-                    attacker,
-                    damage_sapped
-                )
-            )
-            damage_from_full = defending_pkmn.maxhp - defending_pkmn.hp
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_HEAL,
-                    defender,
-                    min(damage_sapped, damage_from_full)
-                )
-            )
-
-        mutator.reverse(instruction.instructions)
-        for i in instructions_to_add:
-            instruction.add_instruction(i)
+            for i in instructions_to_add:
+                instruction.add_instruction(i)
 
         return [instruction]
 

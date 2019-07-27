@@ -2582,7 +2582,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         side = constants.SELF
         self.state.self.active.status = constants.POISON
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_status_damage(mutator, side, self.previous_instruction)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2601,7 +2601,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.status = constants.TOXIC
         self.state.self.side_conditions[constants.TOXIC_COUNT] = 0
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_status_damage(mutator, side, self.previous_instruction)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2627,7 +2627,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.status = constants.TOXIC
         self.state.self.side_conditions[constants.TOXIC_COUNT] = 1
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_status_damage(mutator, side, self.previous_instruction)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2653,7 +2653,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.status = constants.TOXIC
         self.state.self.side_conditions[constants.TOXIC_COUNT] = 3
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_status_damage(mutator, side, self.previous_instruction)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2679,7 +2679,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.status = constants.POISON
         self.state.self.active.hp = 1
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_status_damage(mutator, side, self.previous_instruction)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2694,14 +2694,13 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.assertEqual(expected_instructions, instructions)
 
     def test_leech_seed_saps_health(self):
-        side = constants.SELF
         self.state.self.active.volatile_status.add(constants.LEECH_SEED)
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 100
         self.state.opponent.active.maxhp = 100
         self.state.opponent.active.hp = 50
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_status_damage(mutator, side, self.previous_instruction)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2721,14 +2720,13 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.assertEqual(expected_instructions, instructions)
 
     def test_leech_seed_only_saps_1_when_pokemon_has_1_hp(self):
-        side = constants.SELF
         self.state.self.active.volatile_status.add(constants.LEECH_SEED)
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 1
         self.state.opponent.active.maxhp = 100
         self.state.opponent.active.hp = 50
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_status_damage(mutator, side, self.previous_instruction)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2748,14 +2746,13 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.assertEqual(expected_instructions, instructions)
 
     def test_leech_seed_does_not_overheal(self):
-        side = constants.SELF
         self.state.self.active.volatile_status.add(constants.LEECH_SEED)
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 100
         self.state.opponent.active.maxhp = 100
         self.state.opponent.active.hp = 99
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_status_damage(mutator, side, self.previous_instruction)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2770,6 +2767,28 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
 
         expected_instructions = [
             TransposeInstruction(1.0, [damage_instruction, heal_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_dying_from_poison_causes_leechseed_not_to_sap(self):
+        self.state.self.active.status = constants.POISON
+        self.state.opponent.active.volatile_status.add(constants.LEECH_SEED)
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 1
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 99
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            1
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [damage_instruction], False),
         ]
 
         self.assertEqual(expected_instructions, instructions)

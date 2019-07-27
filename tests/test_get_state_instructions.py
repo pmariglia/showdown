@@ -768,8 +768,8 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.SELF, 74),
                     (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.BURN),
-                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),
                     (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),  # burn damage
                 ],
                 False
             ),
@@ -1532,7 +1532,8 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     (constants.MUTATOR_SWITCH, constants.SELF, "raichu", "starmie"),
                     (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.POISON),
-                    (constants.MUTATOR_DAMAGE, constants.SELF, 24),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 24),  # tackle damage
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 28),  # poison damage
                 ],
                 False
             )
@@ -1552,6 +1553,8 @@ class TestGetStateInstructions(unittest.TestCase):
                     (constants.MUTATOR_SWITCH, constants.SELF, "raichu", "starmie"),
                     (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.TOXIC),
                     (constants.MUTATOR_SIDE_START, constants.SELF, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.TOXIC_COUNT, 1),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 14),  # poison damage
                 ],
                 False
             )
@@ -2614,8 +2617,8 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 12),
-                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),
                     (constants.MUTATOR_DAMAGE, constants.SELF, 52),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),  # burn damage
                 ],
                 False
             )
@@ -5795,7 +5798,7 @@ class TestGetStateInstructions(unittest.TestCase):
                         'special_attack_boost': 0,
                         'special_defense_boost': 0,
                         'speed_boost': 0,
-                        'status': 'brn',
+                        'status': None,
                         'volatileStatus': [
 
                         ],
@@ -5840,8 +5843,8 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    ('damage', 'opponent', 115.24),
-                    ('heal', 'self', -228.0)
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 115.24),
+                    (constants.MUTATOR_HEAL, constants.SELF, -228.0)
                 ],
                 False
             )
