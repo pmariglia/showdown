@@ -96,7 +96,7 @@ def get_all_possible_moves_for_standard_battle(pkmn_name, known_moves):
         sets = _get_standard_battle_set(pkmn_name)
     except KeyError:
         logger.warning("{} not in the sets lookup".format(pkmn_name))
-        return []
+        return get_all_possible_moves_for_random_battle(pkmn_name, known_moves)
 
     new_move_count = 6 - len(known_moves)
     moves_added = 0
@@ -117,8 +117,8 @@ def get_most_likely_ability_for_standard_battle(pkmn_name):
     try:
         sets = _get_standard_battle_set(pkmn_name)
     except KeyError:
-        logger.warning("{} not in the sets lookup".format(pkmn_name))
-        return None
+        logger.warning("{} not in the sets lookup, using random battle abilities".format(pkmn_name))
+        return get_most_likely_ability_for_random_battle(pkmn_name)
 
     return sets[ability_string][0]
 
@@ -127,8 +127,8 @@ def get_most_likely_item_for_standard_battle_pokemon(pkmn_name):
     try:
         sets = _get_standard_battle_set(pkmn_name)
     except KeyError:
-        logger.warning("{} not in the sets lookup".format(pkmn_name))
-        return None
+        logger.warning("{} not in the sets lookup, using random battle items".format(pkmn_name))
+        return get_most_likely_item_for_random_battle_pokemon(pkmn_name)
 
     for item in sets[item_string]:
         if item not in PASS_ITEMS:
