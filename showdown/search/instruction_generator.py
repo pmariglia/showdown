@@ -729,6 +729,32 @@ class InstructionGenerator:
                 instruction.add_instruction(poison_damage_instruction)
                 mutator.apply(instruction.instructions)
 
+            if mutator.state.weather == constants.SAND:
+                if not any(t in pkmn.types for t in ['steel', 'rock', 'ground']):
+                    sand_damage_instruction = (
+                        (
+                            constants.MUTATOR_DAMAGE,
+                            attacker,
+                            max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
+                        )
+                    )
+                    mutator.reverse(instruction.instructions)
+                    instruction.add_instruction(sand_damage_instruction)
+                    mutator.apply(instruction.instructions)
+
+            elif mutator.state.weather == constants.HAIL:
+                if 'ice' not in pkmn.types:
+                    sand_damage_instruction = (
+                        (
+                            constants.MUTATOR_DAMAGE,
+                            attacker,
+                            max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
+                        )
+                    )
+                    mutator.reverse(instruction.instructions)
+                    instruction.add_instruction(sand_damage_instruction)
+                    mutator.apply(instruction.instructions)
+
             if constants.LEECH_SEED in pkmn.volatile_status and defending_pkmn.hp > 0:
                 damage_sapped = max(0, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
                 instructions_to_add.append(

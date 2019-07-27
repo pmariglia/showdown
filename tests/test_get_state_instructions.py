@@ -1855,7 +1855,8 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    ('damage', 'opponent', 64),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 64),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),
                 ],
                 False
             )
@@ -1873,7 +1874,8 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    ('damage', 'opponent', 96),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 96),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),
                 ],
                 False
             )
@@ -2559,7 +2561,9 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 97)
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 97),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18)
                 ],
                 False
             )
@@ -2578,7 +2582,9 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25)
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18)
                 ],
                 False
             )

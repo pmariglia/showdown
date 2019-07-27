@@ -3103,6 +3103,102 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_sand_damages_pokemon(self):
+        self.state.weather = constants.SAND
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 30
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 30
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        self_damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            6
+        )
+        opponent_damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.OPPONENT,
+            6
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [self_damage_instruction, opponent_damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_ice_damages_pokemon(self):
+        self.state.weather = constants.HAIL
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 30
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 30
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        self_damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.SELF,
+            6
+        )
+        opponent_damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.OPPONENT,
+            6
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [self_damage_instruction, opponent_damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_sand_does_not_damage_steel_type(self):
+        self.state.weather = constants.SAND
+        self.state.self.active.types = ['steel']
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 30
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 30
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        opponent_damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.OPPONENT,
+            6
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [opponent_damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_hail_does_not_damage_ice_type(self):
+        self.state.weather = constants.HAIL
+        self.state.self.active.types = ['ice']
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 30
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 30
+        mutator = StateMutator(self.state)
+        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+
+        opponent_damage_instruction = (
+            constants.MUTATOR_DAMAGE,
+            constants.OPPONENT,
+            6
+        )
+
+        expected_instructions = [
+            TransposeInstruction(1.0, [opponent_damage_instruction], False),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
 
 if __name__ == '__main__':
     unittest.main()
