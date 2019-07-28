@@ -98,7 +98,7 @@ def intimidate(state, attacking_side, attacking_pokemon, defending_side, defendi
             1
         )
     # I shouldn't be doing this here but w/e sue me
-    elif defending_pokemon.ability == 'defiant':
+    elif defending_pokemon.ability == 'defiant' and defending_pokemon.attack_boost < 6:
         return (
             constants.MUTATOR_BOOST,
             defending_side,
