@@ -89,19 +89,6 @@
         "type": "poison",
         "pp": 20
     },
-    "aciddownpour": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "aciddownpour",
-        "name": "Acid Downpour",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "poison",
-        "pp": 1
-    },
     "acidspray": {
         "accuracy": 100,
         "basePower": 40,
@@ -259,19 +246,6 @@
         "target": "any",
         "type": "flying",
         "pp": 15
-    },
-    "alloutpummeling": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "alloutpummeling",
-        "name": "All-Out Pummeling",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "fighting",
-        "pp": 1
     },
     "allyswitch": {
         "accuracy": true,
@@ -853,19 +827,6 @@
         "type": "dark",
         "pp": 25
     },
-    "blackholeeclipse": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "blackholeeclipse",
-        "name": "Black Hole Eclipse",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "dark",
-        "pp": 1
-    },
     "blastburn": {
         "accuracy": 90,
         "basePower": 150,
@@ -940,19 +901,6 @@
         "target": "normal",
         "type": "normal",
         "pp": 5
-    },
-    "bloomdoom": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "bloomdoom",
-        "name": "Bloom Doom",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "grass",
-        "pp": 1
     },
     "blueflare": {
         "accuracy": 85,
@@ -1127,19 +1075,6 @@
         "target": "any",
         "type": "flying",
         "pp": 15
-    },
-    "breakneckblitz": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "breakneckblitz",
-        "name": "Breakneck Blitz",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "normal",
-        "pp": 1
     },
     "brickbreak": {
         "accuracy": 100,
@@ -1767,19 +1702,6 @@
         "type": "normal",
         "pp": 35
     },
-    "continentalcrush": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "continentalcrush",
-        "name": "Continental Crush",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "rock",
-        "pp": 1
-    },
     "conversion": {
         "accuracy": true,
         "basePower": 0,
@@ -1838,19 +1760,6 @@
         "target": "allAdjacentFoes",
         "type": "dragon",
         "pp": 10
-    },
-    "corkscrewcrash": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "corkscrewcrash",
-        "name": "Corkscrew Crash",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "steel",
-        "pp": 1
     },
     "cosmicpower": {
         "accuracy": true,
@@ -2268,19 +2177,6 @@
         "type": "fighting",
         "volatileStatus": "protect",
         "pp": 5
-    },
-    "devastatingdrake": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "devastatingdrake",
-        "name": "Devastating Drake",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "dragon",
-        "pp": 1
     },
     "diamondstorm": {
         "accuracy": 95,
@@ -4361,19 +4257,6 @@
         "type": "normal",
         "pp": 5
     },
-    "gigavolthavoc": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "gigavolthavoc",
-        "name": "Gigavolt Havoc",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "electric",
-        "pp": 1
-    },
     "glaciate": {
         "accuracy": 95,
         "basePower": 65,
@@ -5790,19 +5673,6 @@
         "type": "water",
         "pp": 5
     },
-    "hydrovortex": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "hydrovortex",
-        "name": "Hydro Vortex",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "water",
-        "pp": 1
-    },
     "hyperbeam": {
         "accuracy": 90,
         "basePower": 150,
@@ -6159,19 +6029,6 @@
         "target": "normal",
         "type": "fire",
         "pp": 5
-    },
-    "infernooverdrive": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "infernooverdrive",
-        "name": "Inferno Overdrive",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "fire",
-        "pp": 1
     },
     "infestation": {
         "accuracy": 100,
@@ -7780,19 +7637,6 @@
         "target": "normal",
         "type": "grass",
         "pp": 15
-    },
-    "neverendingnightmare": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "neverendingnightmare",
-        "name": "Never-Ending Nightmare",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "ghost",
-        "pp": 1
     },
     "nightdaze": {
         "accuracy": 95,
@@ -9809,19 +9653,6 @@
         "type": "rock",
         "pp": 10
     },
-    "savagespinout": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "savagespinout",
-        "name": "Savage Spin-Out",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "bug",
-        "pp": 1
-    },
     "scald": {
         "accuracy": 100,
         "basePower": 80,
@@ -10164,19 +9995,6 @@
         "target": "self",
         "type": "normal",
         "pp": 30
-    },
-    "shatteredpsyche": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "shatteredpsyche",
-        "name": "Shattered Psyche",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "psychic",
-        "pp": 1
     },
     "sheercold": {
         "accuracy": 30,
@@ -11526,19 +11344,6 @@
         "volatileStatus": "substitute",
         "pp": 10
     },
-    "subzeroslammer": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "subzeroslammer",
-        "name": "Subzero Slammer",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "ice",
-        "pp": 1
-    },
     "suckerpunch": {
         "accuracy": 100,
         "basePower": 70,
@@ -11645,19 +11450,6 @@
         "type": "normal",
         "volatileStatus": "confusion",
         "pp": 20
-    },
-    "supersonicskystrike": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "supersonicskystrike",
-        "name": "Supersonic Skystrike",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "flying",
-        "pp": 1
     },
     "surf": {
         "accuracy": 100,
@@ -12003,19 +11795,6 @@
         "target": "normal",
         "type": "normal",
         "pp": 5
-    },
-    "tectonicrage": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "tectonicrage",
-        "name": "Tectonic Rage",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "ground",
-        "pp": 1
     },
     "teeterdance": {
         "accuracy": 100,
@@ -12543,19 +12322,6 @@
         "target": "normal",
         "type": "bug",
         "pp": 20
-    },
-    "twinkletackle": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {},
-        "id": "twinkletackle",
-        "name": "Twinkle Tackle",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "fairy",
-        "pp": 1
     },
     "twister": {
         "accuracy": 100,
@@ -13390,77 +13156,5 @@
         "target": "normal",
         "type": "psychic",
         "pp": 5
-    },
-    "lightthatburnsthesky": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "special",
-        "flags": {
-            "contact": 1,
-            "recharge": 1,
-            "protect": 1,
-            "mirror": 1
-        },
-        "id": "lightthatburnsthesky",
-        "name": "lightthatburnsthesky",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "psychic",
-        "pp": 1
-    },
-    "soulstealing7starstrike": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {
-            "contact": 1,
-            "recharge": 1,
-            "protect": 1,
-            "mirror": 1
-        },
-        "id": "soulstealing7starstrike",
-        "name": "soulstealing7starstrike",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "ghost",
-        "pp": 1
-    },
-    "splinteredstormshards": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {
-            "contact": 1,
-            "recharge": 1,
-            "protect": 1,
-            "mirror": 1
-        },
-        "id": "splinteredstormshards",
-        "name": "splinteredstormshards",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "rock",
-        "pp": 1
-    },
-    "searingsunrazesmash": {
-        "accuracy": true,
-        "basePower": 1,
-        "category": "physical",
-        "flags": {
-            "contact": 1,
-            "recharge": 1,
-            "protect": 1,
-            "mirror": 1
-        },
-        "id": "searingsunrazesmash",
-        "name": "searingsunrazesmash",
-        "priority": 0,
-        "secondary": false,
-        "target": "normal",
-        "type": "steel",
-        "pp": 1
     }
 }
