@@ -17,11 +17,6 @@ from showdown.state.pokemon import Pokemon
 from showdown.state.battle_modifiers import update_battle
 from showdown.search.state_mutator import StateMutator
 
-from showdown.evaluate_state.evaluate_pokemon import evaluate_pokemon
-from showdown.evaluate_state.evaluate import evaluate
-from showdown.evaluate_state.evaluate_matchup import evaluate_matchup
-from showdown.evaluate_state.evaluate import pkmn_cache
-
 from websocket_communication import PSWebsocketClient
 
 
@@ -158,21 +153,7 @@ def _find_best_move(battle: Battle):
     return [message, str(battle.rqid)]
 
 
-def clear_caches():
-    logger.debug("Clearing caches...")
-    logger.debug("evaluate cache: {}".format(evaluate.cache_info()))
-    logger.debug("evaluate_pokemon cache: {}".format(evaluate_pokemon.cache_info()))
-    logger.debug("evaluate_matchup cache: {}".format(evaluate_matchup.cache_info()))
-    logger.debug("custom reserve pokemon cache size: {}".format(len(pkmn_cache)))
-    evaluate.cache_clear()
-    evaluate_pokemon.cache_clear()
-    evaluate_matchup.cache_clear()
-    pkmn_cache.clear()
-    logger.debug("Caches cleared")
-
-
 async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
-    clear_caches()
     if "random" in pokemon_battle_type:
         battle = await _start_random_battle(ps_websocket_client)
         await ps_websocket_client.send_message(battle.battle_tag, [config.greeting_message])

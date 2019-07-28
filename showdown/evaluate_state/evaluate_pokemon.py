@@ -1,11 +1,8 @@
-from functools import lru_cache
-
 from showdown.helpers import normalize_name
 import constants
 from . import scoring
 
 
-@lru_cache(maxsize=None)
 def evaluate_pokemon(pkmn):
     score = 0
     if pkmn.hp <= 0:

@@ -1,13 +1,8 @@
-from functools import lru_cache
-
 from . import scoring
 from .evaluate_pokemon import evaluate_pokemon
 from .evaluate_matchup import evaluate_matchup
 
-pkmn_cache = dict()
 
-
-@lru_cache(maxsize=None)
 def evaluate(state):
     score = 0
 
@@ -18,22 +13,14 @@ def evaluate(state):
     # evaluate the bot's pokemon
     score += evaluate_pokemon(state.self.active)
     for pkmn in state.self.reserve.values():
-        try:
-            score += pkmn_cache[(pkmn.id, pkmn.hp, pkmn.maxhp, pkmn.status)]
-        except KeyError:
-            this_pkmn_score = evaluate_pokemon(pkmn)
-            pkmn_cache[(pkmn.id, pkmn.hp, pkmn.maxhp, pkmn.status)] = this_pkmn_score
-            score += this_pkmn_score
+        this_pkmn_score = evaluate_pokemon(pkmn)
+        score += this_pkmn_score
 
     # evaluate the opponent's visible pokemon
     score -= evaluate_pokemon(state.opponent.active)
     for pkmn in state.opponent.reserve.values():
-        try:
-            score -= pkmn_cache[(pkmn.id, pkmn.hp, pkmn.maxhp, pkmn.status)]
-        except KeyError:
-            this_pkmn_score = evaluate_pokemon(pkmn)
-            pkmn_cache[(pkmn.id, pkmn.hp, pkmn.maxhp, pkmn.status)] = this_pkmn_score
-            score -= this_pkmn_score
+        this_pkmn_score = evaluate_pokemon(pkmn)
+        score -= this_pkmn_score
 
     # evaluate the side-conditions for the bot
     for condition, count in state.self.side_conditions.items():
