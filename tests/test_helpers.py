@@ -2,6 +2,7 @@ import unittest
 
 from showdown.helpers import battle_is_over
 from showdown.helpers import get_pokemon_info_from_condition
+from showdown.helpers import normalize_name
 from showdown.search.objects import State
 
 
@@ -47,6 +48,15 @@ class TestBattleIsOver(unittest.TestCase):
         for pkmn in self.state.opponent.reserve.values():
             pkmn.hp = 0
         self.assertFalse(battle_is_over(self.state))
+
+
+class TestNormalizeName(unittest.TestCase):
+    def test_removes_nonascii_characters(self):
+        n = 'Flabébé'
+        expected_result = 'flabebe'
+        result = normalize_name(n)
+
+        self.assertEqual(expected_result, result)
 
 
 class TestGetPokemonInfoFromCondition(unittest.TestCase):

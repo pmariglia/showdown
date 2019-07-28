@@ -56,7 +56,9 @@ def normalize_name(name):
         .replace("*", "")\
         .replace(":", "")\
         .strip()\
-        .lower()
+        .lower()\
+        .encode('ascii', 'ignore')\
+        .decode('utf-8')
 
 
 def _update_stats_from_nature(stats, nature):
