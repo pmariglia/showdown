@@ -8,16 +8,10 @@ def evaluate_pokemon(pkmn):
     if pkmn.hp <= 0:
         return score
 
-    # an alive pokemon's value decreases as it passes certain HP-percentage barriers
-    pkmn_hp_percent = (float(pkmn.hp) / pkmn.maxhp)
-    for k in sorted(scoring.POKEMON_ALIVE):
-        if pkmn_hp_percent <= k:
-            score += scoring.POKEMON_ALIVE[k]
-            break
+    score += scoring.POKEMON_ALIVE_STATIC
+    score += scoring.POKEMON_HP * (float(pkmn.hp) / pkmn.maxhp)
 
-    score += scoring.POKEMON_HP * pkmn_hp_percent
-
-    # boosts have diminishing returns in terms of value to the evaluation
+    # boosts have diminishing returns
     score += scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.attack_boost] * scoring.POKEMON_BOOSTS[constants.ATTACK]
     score += scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.defense_boost] * scoring.POKEMON_BOOSTS[constants.DEFENSE]
     score += scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.special_attack_boost] * scoring.POKEMON_BOOSTS[constants.SPECIAL_ATTACK]

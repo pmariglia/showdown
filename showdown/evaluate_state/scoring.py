@@ -2,11 +2,7 @@ import constants
 
 WON_BATTLE = 100
 
-POKEMON_ALIVE = {
-    0.15: 50,
-    0.50: 75,
-    1: 100
-}
+POKEMON_ALIVE_STATIC = 30
 POKEMON_HP = 100  # 100 points for 100% hp, 0 points for 0% hp. This is in addition to being alive
 POKEMON_HIDDEN = 10
 POKEMON_BOOSTS = {
