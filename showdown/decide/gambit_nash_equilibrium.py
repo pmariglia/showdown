@@ -1,6 +1,6 @@
 import subprocess
 
-from config import gambit_exe_path
+import config
 
 
 NFG_FORMAT_BASE = """NFG 1 R ""
@@ -42,7 +42,7 @@ def find_all_equilibria(matrix):
     string = format_string_for_options(num_rows, num_cols)
     string = append_items_to_string(matrix, string).encode()
 
-    cmd = [gambit_exe_path, '-q', '-d', '2']
+    cmd = [config.gambit_exe_path, '-q', '-d', '2']
     sp = subprocess.Popen(cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
     stdout = sp.communicate(string)[0].decode('utf-8').replace('\r', '')
 

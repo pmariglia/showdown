@@ -4,7 +4,7 @@ import logging
 
 import constants
 
-gambit_exe_path = "C:\Program Files (x86)\Gambit\gambit-enummixed.exe"
+gambit_exe_path = ""
 greeting_message = 'hf'
 battle_ending_message = 'gg'
 
