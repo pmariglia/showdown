@@ -127,9 +127,10 @@ def _find_best_move(battle: Battle):
     mutator = StateMutator(state)
 
     move_scores = get_move_combination_scores(mutator, depth=config.search_depth)
+    logger.debug("Score lookups produced: {}".format(move_scores))
+
     decision = pick_best_move(move_scores, config.decision_method)
 
-    logger.debug("Score lookups produced: {}".format(move_scores))
     logger.debug("Decision: {}".format(decision))
 
     if decision.startswith(constants.SWITCH_STRING) and decision != "switcheroo":
