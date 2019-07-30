@@ -20,5 +20,6 @@ COPY teams /showdown/teams
 COPY websocket_communication /showdown/websocket_communication
 
 ENV PYTHONIOENCODING=utf-8
+ENV GAMBIT_PATH=gambit-enummixed
 
 CMD ["python3", "run.py"]
