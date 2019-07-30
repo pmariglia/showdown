@@ -31,7 +31,6 @@ def battle_is_over(state):
 
 
 def get_pokemon_info_from_condition(condition_string: str):
-    logger.debug("Pokemon condition: {}".format(condition_string))
     if constants.FNT in condition_string:
         return 0, 0, None
 
