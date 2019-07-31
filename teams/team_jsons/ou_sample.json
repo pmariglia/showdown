@@ -84,12 +84,12 @@
     {
         "name": "Landorus-Therian",
         "species": "",
-        "item": "flyiniumz",
+        "item": "leftovers",
         "ability": "",
         "moves": [
             "stealthrock",
             "earthquake",
-            "fly",
+            "stoneedge",
             "uturn"
         ],
         "nature": "Impish",
