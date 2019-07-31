@@ -1418,28 +1418,6 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    def test_fly_with_z_crystal_does_not_charge(self):
-        bot_move = "fly"
-        opponent_move = "splash"
-        self.state.self.active.item = 'flyniumz'
-        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
-        expected_instructions = [
-            TransposeInstruction(
-                0.95,
-                [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 56)
-                ],
-                False
-            ),
-            TransposeInstruction(
-                0.050000000000000044,
-                [],
-                False
-            )
-        ]
-
-        self.assertEqual(expected_instructions, instructions)
-
     def test_fly_without_z_crystal_charges(self):
         bot_move = "fly"
         opponent_move = "splash"

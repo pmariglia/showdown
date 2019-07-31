@@ -163,18 +163,8 @@ def solarbeam(attacking_move, defending_move, attacking_pokemon, defending_pokem
     return attacking_move
 
 
-def fly(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
-    # fly is a special case that needs to be dealt with because it would otherwise be a 2-turn charge
-    if attacking_pokemon.item == 'flyniumz':
-        attacking_move = attacking_move.copy()
-        attacking_move[constants.FLAGS] = attacking_move[constants.FLAGS].copy()
-        attacking_move[constants.FLAGS].pop(constants.CHARGE)
-    return attacking_move
-
-
 move_lookup = {
     'multiattack': multiattack,
-    'fly': fly,
     'solarbeam': solarbeam,
     'hurricane': hurricane,
     'thunder': hurricane,
