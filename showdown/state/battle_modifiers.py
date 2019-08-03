@@ -117,6 +117,10 @@ def heal_or_damage(battle, split_msg):
     else:
         if len(split_msg) == 5 and constants.TOXIC in split_msg[3] and '[from] psn' in split_msg[4]:
             battle.user.side_conditions[constants.TOXIC_COUNT] += 1
+        elif len(split_msg) == 6 and split_msg[4].startswith('[from] ability:') and battle.opponent.name in split_msg[5]:
+            ability = normalize_name(split_msg[4].split('ability:')[-1])
+            logger.debug("Setting opponent's ability to {}".format(ability))
+            battle.opponent.active.ability = ability
 
 
 def faint(battle, split_msg):
