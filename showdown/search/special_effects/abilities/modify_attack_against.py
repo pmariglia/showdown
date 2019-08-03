@@ -84,6 +84,7 @@ def sapsipper(attacking_move, attacking_pokemon, defending_pokemon):
         attacking_move = attacking_move.copy()
         attacking_move[constants.ACCURACY] = True
         attacking_move[constants.BASE_POWER] = 0
+        attacking_move[constants.VOLATILE_STATUS] = None
         attacking_move[constants.TARGET] = constants.NORMAL
         attacking_move[constants.CATEGORY] = constants.STATUS
         attacking_move[constants.BOOSTS] = {
@@ -246,7 +247,7 @@ def tanglinghair(attacking_move, attacking_pokemon, defending_pokemon):
 
 
 def marvelscale(attacking_move, attacking_pokemon, defending_pokemon):
-    if defending_pokemon.status is not None:
+    if defending_pokemon.status is not None and attacking_move[constants.CATEGORY] == constants.PHYSICAL:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] /= 1.5
 

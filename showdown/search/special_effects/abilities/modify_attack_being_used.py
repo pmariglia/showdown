@@ -3,23 +3,6 @@ from showdown.calculate_damage import is_super_effective
 from showdown.calculate_damage import is_not_very_effective
 
 
-def speedboost(attacking_move, attacking_pokemon, defending_pokemon, first_move, weather):
-    attacking_move = attacking_move.copy()
-    if constants.SELF not in attacking_move:
-        attacking_move[constants.SELF] = dict()
-    else:
-        attacking_move[constants.SELF] = attacking_move[constants.SELF].copy()
-    if constants.BOOSTS not in attacking_move[constants.SELF]:
-        attacking_move[constants.SELF][constants.BOOSTS] = dict()
-    else:
-        attacking_move[constants.SELF][constants.BOOSTS] = attacking_move[constants.SELF][constants.BOOSTS].copy()
-    if constants.SPEED not in attacking_move[constants.SELF][constants.BOOSTS]:
-        attacking_move[constants.SELF][constants.BOOSTS][constants.SPEED] = 0
-        attacking_move[constants.SELF][constants.CHANCE] = 100
-    attacking_move[constants.SELF][constants.BOOSTS][constants.SPEED] += 1
-    return attacking_move
-
-
 def analytic(attacking_move, attacking_pokemon, defending_pokemon, first_move, weather):
     if not first_move:
         attacking_move = attacking_move.copy()
@@ -329,6 +312,7 @@ def fairyaura(attacking_move, attacking_pokemon, defending_pokemon, first_move, 
 
 
 ability_lookup = {
+    'toughclaws': toughclaws,
     'fairyaura': fairyaura,
     'darkaura': darkaura,
     'sandforce': sandforce,
@@ -364,7 +348,6 @@ ability_lookup = {
     'guts': guts,
     'parentalbond': parentalbond,
     'toxicboost': toxicboost,
-    'speedboost': speedboost,
     'tintedlens': tintedlens,
     'skilllink': skilllink
 }

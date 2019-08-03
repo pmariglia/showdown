@@ -11,7 +11,17 @@ def poisonheal(state, attacking_side, attacking_pokemon, defending_side, defendi
             )
 
 
+def speedboost(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    return (
+        constants.MUTATOR_BOOST,
+        attacking_side,
+        constants.SPEED,
+        1
+    )
+
+
 ability_lookup = {
+    "speedboost": speedboost,
     "poisonheal": poisonheal,
 }
 

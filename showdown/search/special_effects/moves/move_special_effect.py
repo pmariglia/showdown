@@ -163,7 +163,15 @@ def solarbeam(attacking_move, defending_move, attacking_pokemon, defending_pokem
     return attacking_move
 
 
+def toxic(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if 'poison' in attacking_pokemon.types:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.ACCURACY] = True
+    return attacking_move
+
+
 move_lookup = {
+    'toxic': toxic,
     'multiattack': multiattack,
     'solarbeam': solarbeam,
     'hurricane': hurricane,

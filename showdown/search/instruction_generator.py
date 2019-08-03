@@ -114,6 +114,7 @@ class InstructionGenerator:
         )
 
         switch_pkmn = attacking_side.reserve[switch_pokemon_name]
+        attacking_pokemon = attacking_side.active
         # account for stealth rock damage
         if attacking_side.side_conditions[constants.STEALTH_ROCK] == 1:
             multiplier = 1
@@ -153,7 +154,7 @@ class InstructionGenerator:
 
         # account for toxic spikes effect
         if attacking_side.side_conditions[constants.TOXIC_SPIKES] >= 1 and switch_pkmn.is_grounded():
-            if not self._immune_to_status(mutator.state, switch_pkmn, constants.POISON):
+            if not self._immune_to_status(mutator.state, switch_pkmn, attacking_pokemon, constants.POISON):
                 if attacking_side.side_conditions[constants.TOXIC_SPIKES] == 1:
                     instruction_additions.append(
                         (
@@ -486,13 +487,14 @@ class InstructionGenerator:
 
         mutator.apply(instruction.instructions)
         instruction_additions = []
-        side = self.get_side_from_state(mutator.state, defender)
+        defending_side = self.get_side_from_state(mutator.state, defender)
+        attacking_side = self.get_side_from_state(mutator.state, self.possible_affected_strings[defender])
 
-        if self._sleep_clause_activated(side, status):
+        if self._sleep_clause_activated(defending_side, status):
             mutator.reverse(instruction.instructions)
             return [instruction]
 
-        if self._immune_to_status(mutator.state, side.active, status):
+        if self._immune_to_status(mutator.state, defending_side.active, attacking_side.active, status):
             mutator.reverse(instruction.instructions)
             return [instruction]
 
@@ -937,27 +939,27 @@ class InstructionGenerator:
         return False
 
     @staticmethod
-    def _immune_to_status(state, pkmn, status):
-        if pkmn.status is not None:
+    def _immune_to_status(state, defending_pkmn, attacking_pkmn, status):
+        if defending_pkmn.status is not None:
             return True
-        if constants.SUBSTITUTE in pkmn.volatile_status:
+        if constants.SUBSTITUTE in defending_pkmn.volatile_status and attacking_pkmn.ability != 'infiltrator':
             return True
-        if pkmn.ability == 'shieldsdown' and ((pkmn.hp / pkmn.maxhp) > 0.5):
+        if defending_pkmn.ability == 'shieldsdown' and ((defending_pkmn.hp / defending_pkmn.maxhp) > 0.5):
             return True
-        if pkmn.ability == 'comatose':
+        if defending_pkmn.ability == 'comatose':
             return True
         if state.field == constants.MISTY_TERRAIN:
             return True
 
-        if status == constants.FROZEN and (pkmn.ability in constants.IMMUNE_TO_FROZEN_ABILITIES):
+        if status == constants.FROZEN and (defending_pkmn.ability in constants.IMMUNE_TO_FROZEN_ABILITIES):
             return True
-        elif status == constants.BURN and ('fire' in pkmn.types or pkmn.ability in constants.IMMUNE_TO_BURN_ABILITIES):
+        elif status == constants.BURN and ('fire' in defending_pkmn.types or defending_pkmn.ability in constants.IMMUNE_TO_BURN_ABILITIES):
             return True
-        elif status == constants.SLEEP and (pkmn.ability in constants.IMMUNE_TO_SLEEP_ABILITIES or state.field == constants.ELECTRIC_TERRAIN):
+        elif status == constants.SLEEP and (defending_pkmn.ability in constants.IMMUNE_TO_SLEEP_ABILITIES or state.field == constants.ELECTRIC_TERRAIN):
             return True
-        elif status in [constants.POISON, constants.TOXIC] and (any(t in ['poison', 'steel'] for t in pkmn.types) or pkmn.ability in constants.IMMUNE_TO_POISON_ABILITIES):
+        elif status in [constants.POISON, constants.TOXIC] and (any(t in ['poison', 'steel'] for t in defending_pkmn.types) or defending_pkmn.ability in constants.IMMUNE_TO_POISON_ABILITIES):
             return True
-        elif status == constants.PARALYZED and ('ground' in pkmn.types or pkmn.ability in constants.IMMUNE_TO_PARALYSIS_ABILITIES):
+        elif status == constants.PARALYZED and ('ground' in defending_pkmn.types or defending_pkmn.ability in constants.IMMUNE_TO_PARALYSIS_ABILITIES):
             return True
 
         return False
