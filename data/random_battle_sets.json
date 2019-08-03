@@ -1,31 +1,31 @@
 {
     "ambipom": {
         "sets": {
-            "fakeout|knockoff|return102|uturn": 35,
-            "knockoff|return102|seedbomb|switcheroo": 62,
-            "knockoff|lowkick|return102|switcheroo": 77,
-            "return102|seedbomb|switcheroo|uturn": 77,
-            "lowkick|return102|seedbomb|switcheroo": 70,
-            "lowkick|return102|switcheroo|uturn": 71,
-            "fakeout|return102|seedbomb|uturn": 55,
-            "fakeout|knockoff|return102|seedbomb": 47,
-            "fakeout|return102|switcheroo|uturn": 7,
-            "fakeout|lowkick|return102|seedbomb": 50,
-            "lowkick|return102|seedbomb|uturn": 37,
-            "knockoff|return102|seedbomb|uturn": 40,
-            "fakeout|knockoff|lowkick|return102": 45,
-            "fakeout|lowkick|return102|uturn": 49,
-            "knockoff|return102|switcheroo|uturn": 58,
-            "knockoff|lowkick|return102|uturn": 37,
-            "fakeout|return102|seedbomb|switcheroo": 10,
-            "knockoff|lowkick|return102|seedbomb": 30,
-            "fakeout|lowkick|return102|switcheroo": 6,
-            "fakeout|knockoff|return102|switcheroo": 10
+            "fakeout|knockoff|return|uturn": 35,
+            "knockoff|return|seedbomb|switcheroo": 62,
+            "knockoff|lowkick|return|switcheroo": 77,
+            "return|seedbomb|switcheroo|uturn": 77,
+            "lowkick|return|seedbomb|switcheroo": 70,
+            "lowkick|return|switcheroo|uturn": 71,
+            "fakeout|return|seedbomb|uturn": 55,
+            "fakeout|knockoff|return|seedbomb": 47,
+            "fakeout|return|switcheroo|uturn": 7,
+            "fakeout|lowkick|return|seedbomb": 50,
+            "lowkick|return|seedbomb|uturn": 37,
+            "knockoff|return|seedbomb|uturn": 40,
+            "fakeout|knockoff|lowkick|return": 45,
+            "fakeout|lowkick|return|uturn": 49,
+            "knockoff|return|switcheroo|uturn": 58,
+            "knockoff|lowkick|return|uturn": 37,
+            "fakeout|return|seedbomb|switcheroo": 10,
+            "knockoff|lowkick|return|seedbomb": 30,
+            "fakeout|lowkick|return|switcheroo": 6,
+            "fakeout|knockoff|return|switcheroo": 10
         },
         "moves": {
             "uturn": 466,
             "fakeout": 314,
-            "return102": 873,
+            "return": 873,
             "knockoff": 441,
             "switcheroo": 448,
             "seedbomb": 478,
@@ -806,25 +806,25 @@
     },
     "toucannon": {
         "sets": {
-            "beakblast|bulletseed|return102|swordsdance": 35,
-            "brickbreak|bulletseed|return102|swordsdance": 28,
-            "beakblast|brickbreak|return102|swordsdance": 29,
-            "beakblast|brickbreak|bulletseed|return102": 32,
+            "beakblast|bulletseed|return|swordsdance": 35,
+            "brickbreak|bulletseed|return|swordsdance": 28,
+            "beakblast|brickbreak|return|swordsdance": 29,
+            "beakblast|brickbreak|bulletseed|return": 32,
             "beakblast|brickbreak|roost|swordsdance": 31,
-            "brickbreak|return102|roost|swordsdance": 33,
-            "beakblast|bulletseed|return102|roost": 26,
-            "brickbreak|bulletseed|return102|roost": 30,
+            "brickbreak|return|roost|swordsdance": 33,
+            "beakblast|bulletseed|return|roost": 26,
+            "brickbreak|bulletseed|return|roost": 30,
             "beakblast|brickbreak|bulletseed|roost": 24,
-            "bulletseed|return102|roost|swordsdance": 33,
+            "bulletseed|return|roost|swordsdance": 33,
             "beakblast|bulletseed|roost|swordsdance": 35,
             "beakblast|brickbreak|bulletseed|swordsdance": 30,
-            "beakblast|brickbreak|return102|roost": 16,
-            "beakblast|return102|roost|swordsdance": 21
+            "beakblast|brickbreak|return|roost": 16,
+            "beakblast|return|roost|swordsdance": 21
         },
         "moves": {
             "beakblast": 279,
             "swordsdance": 275,
-            "return102": 283,
+            "return": 283,
             "bulletseed": 273,
             "brickbreak": 253,
             "roost": 249
@@ -1130,26 +1130,26 @@
     "farfetchd": {
         "sets": {
             "bravebird|knockoff|leafblade|swordsdance": 19,
-            "bravebird|knockoff|leafblade|return102": 29,
-            "bravebird|return102|roost|swordsdance": 33,
-            "bravebird|knockoff|return102|roost": 18,
-            "bravebird|leafblade|return102|swordsdance": 21,
-            "leafblade|return102|roost|swordsdance": 32,
+            "bravebird|knockoff|leafblade|return": 29,
+            "bravebird|return|roost|swordsdance": 33,
+            "bravebird|knockoff|return|roost": 18,
+            "bravebird|leafblade|return|swordsdance": 21,
+            "leafblade|return|roost|swordsdance": 32,
             "bravebird|leafblade|roost|swordsdance": 36,
-            "knockoff|return102|roost|swordsdance": 34,
+            "knockoff|return|roost|swordsdance": 34,
             "bravebird|knockoff|roost|swordsdance": 38,
             "bravebird|knockoff|leafblade|roost": 23,
-            "knockoff|leafblade|return102|swordsdance": 24,
-            "knockoff|leafblade|return102|roost": 27,
-            "bravebird|leafblade|return102|roost": 18,
-            "bravebird|knockoff|return102|swordsdance": 27
+            "knockoff|leafblade|return|swordsdance": 24,
+            "knockoff|leafblade|return|roost": 27,
+            "bravebird|leafblade|return|roost": 18,
+            "bravebird|knockoff|return|swordsdance": 27
         },
         "moves": {
             "leafblade": 229,
             "knockoff": 239,
             "bravebird": 262,
             "swordsdance": 264,
-            "return102": 263,
+            "return": 263,
             "roost": 259
         },
         "abilities": {
@@ -1807,7 +1807,7 @@
     "meloetta": {
         "sets": {
             "calmmind|focusblast|hypervoice|shadowball": 125,
-            "closecombat|knockoff|relicsong|return102": 699,
+            "closecombat|knockoff|relicsong|return": 699,
             "calmmind|hypervoice|psyshock|shadowball": 175,
             "calmmind|focusblast|hypervoice|psyshock": 221,
             "focusblast|hypervoice|psyshock|uturn": 50,
@@ -1822,7 +1822,7 @@
             "focusblast": 500,
             "knockoff": 699,
             "relicsong": 699,
-            "return102": 699,
+            "return": 699,
             "closecombat": 699,
             "psyshock": 564,
             "uturn": 170
@@ -2007,22 +2007,22 @@
     },
     "salamencemega": {
         "sets": {
-            "dragondance|earthquake|return102|roost": 118,
-            "doubleedge|dragondance|return102|roost": 7,
-            "dracometeor|earthquake|return102|roost": 43,
+            "dragondance|earthquake|return|roost": 118,
+            "doubleedge|dragondance|return|roost": 7,
+            "dracometeor|earthquake|return|roost": 43,
             "doubleedge|dracometeor|earthquake|roost": 69,
             "doubleedge|dragondance|earthquake|roost": 368,
-            "dracometeor|earthquake|fireblast|return102": 25,
+            "dracometeor|earthquake|fireblast|return": 25,
             "doubleedge|dracometeor|dragondance|earthquake": 124,
             "doubleedge|dracometeor|fireblast|roost": 71,
-            "dracometeor|dragondance|earthquake|return102": 50,
-            "dracometeor|fireblast|return102|roost": 30,
+            "dracometeor|dragondance|earthquake|return": 50,
+            "dracometeor|fireblast|return|roost": 30,
             "doubleedge|dracometeor|earthquake|fireblast": 44,
-            "earthquake|fireblast|return102|roost": 28,
+            "earthquake|fireblast|return|roost": 28,
             "doubleedge|earthquake|fireblast|roost": 50
         },
         "moves": {
-            "return102": 301,
+            "return": 301,
             "dragondance": 667,
             "roost": 784,
             "earthquake": 919,
@@ -2041,14 +2041,14 @@
     "raticatealola": {
         "sets": {
             "doubleedge|knockoff|suckerpunch|swordsdance": 337,
-            "knockoff|return102|suckerpunch|swordsdance": 79
+            "knockoff|return|suckerpunch|swordsdance": 79
         },
         "moves": {
             "knockoff": 416,
             "swordsdance": 416,
             "doubleedge": 337,
             "suckerpunch": 416,
-            "return102": 79
+            "return": 79
         },
         "abilities": {
             "thickfat": 358,
@@ -2103,20 +2103,20 @@
     },
     "kangaskhan": {
         "sets": {
-            "crunch|fakeout|return102|suckerpunch": 8,
-            "crunch|earthquake|fakeout|return102": 36,
-            "drainpunch|earthquake|fakeout|return102": 26,
-            "crunch|drainpunch|earthquake|return102": 43,
-            "earthquake|fakeout|return102|suckerpunch": 32,
-            "crunch|drainpunch|fakeout|return102": 49,
-            "drainpunch|fakeout|return102|suckerpunch": 22,
-            "drainpunch|earthquake|return102|suckerpunch": 16
+            "crunch|fakeout|return|suckerpunch": 8,
+            "crunch|earthquake|fakeout|return": 36,
+            "drainpunch|earthquake|fakeout|return": 26,
+            "crunch|drainpunch|earthquake|return": 43,
+            "earthquake|fakeout|return|suckerpunch": 32,
+            "crunch|drainpunch|fakeout|return": 49,
+            "drainpunch|fakeout|return|suckerpunch": 22,
+            "drainpunch|earthquake|return|suckerpunch": 16
         },
         "moves": {
             "fakeout": 173,
             "suckerpunch": 78,
             "crunch": 136,
-            "return102": 232,
+            "return": 232,
             "earthquake": 153,
             "drainpunch": 156
         },
@@ -3605,50 +3605,50 @@
     },
     "braviary": {
         "sets": {
-            "bravebird|return102|rockslide|uturn": 20,
-            "bravebird|return102|roost|uturn": 24,
-            "bravebird|return102|rockslide|substitute": 23,
+            "bravebird|return|rockslide|uturn": 20,
+            "bravebird|return|roost|uturn": 24,
+            "bravebird|return|rockslide|substitute": 23,
             "bravebird|rockslide|roost|substitute": 20,
-            "bulkup|return102|rockslide|roost": 55,
+            "bulkup|return|rockslide|roost": 55,
             "bravebird|bulkup|rockslide|roost": 44,
-            "bravebird|bulkup|return102|superpower": 38,
-            "bulkup|return102|roost|superpower": 38,
+            "bravebird|bulkup|return|superpower": 38,
+            "bulkup|return|roost|superpower": 38,
             "bravebird|rockslide|roost|uturn": 24,
             "bravebird|bulkup|rockslide|substitute": 25,
-            "bravebird|bulkup|return102|roost": 63,
-            "bulkup|return102|substitute|superpower": 32,
+            "bravebird|bulkup|return|roost": 63,
+            "bulkup|return|substitute|superpower": 32,
             "bravebird|rockslide|superpower|uturn": 14,
-            "return102|rockslide|roost|uturn": 30,
-            "bravebird|return102|rockslide|superpower": 26,
-            "return102|rockslide|roost|superpower": 24,
+            "return|rockslide|roost|uturn": 30,
+            "bravebird|return|rockslide|superpower": 26,
+            "return|rockslide|roost|superpower": 24,
             "bravebird|bulkup|substitute|superpower": 32,
             "bravebird|roost|superpower|uturn": 23,
             "bravebird|rockslide|substitute|superpower": 19,
-            "bulkup|return102|rockslide|superpower": 36,
-            "bravebird|return102|substitute|superpower": 18,
-            "bravebird|return102|superpower|uturn": 23,
+            "bulkup|return|rockslide|superpower": 36,
+            "bravebird|return|substitute|superpower": 18,
+            "bravebird|return|superpower|uturn": 23,
             "bravebird|rockslide|roost|superpower": 23,
-            "return102|roost|superpower|uturn": 30,
+            "return|roost|superpower|uturn": 30,
             "bravebird|bulkup|roost|superpower": 39,
-            "bravebird|bulkup|return102|substitute": 42,
-            "return102|rockslide|superpower|uturn": 27,
-            "bravebird|bulkup|return102|rockslide": 42,
+            "bravebird|bulkup|return|substitute": 42,
+            "return|rockslide|superpower|uturn": 27,
+            "bravebird|bulkup|return|rockslide": 42,
             "bravebird|roost|substitute|superpower": 12,
             "bravebird|bulkup|rockslide|superpower": 38,
-            "return102|rockslide|substitute|superpower": 18,
-            "bravebird|return102|rockslide|roost": 16,
-            "return102|roost|substitute|superpower": 13,
-            "bravebird|bulkup|return102|uturn": 2,
-            "bulkup|return102|rockslide|substitute": 34,
-            "return102|rockslide|roost|substitute": 19,
-            "bravebird|return102|roost|superpower": 8,
-            "bravebird|return102|roost|substitute": 9
+            "return|rockslide|substitute|superpower": 18,
+            "bravebird|return|rockslide|roost": 16,
+            "return|roost|substitute|superpower": 13,
+            "bravebird|bulkup|return|uturn": 2,
+            "bulkup|return|rockslide|substitute": 34,
+            "return|rockslide|roost|substitute": 19,
+            "bravebird|return|roost|superpower": 8,
+            "bravebird|return|roost|substitute": 9
         },
         "moves": {
             "bravebird": 667,
             "rockslide": 577,
             "uturn": 217,
-            "return102": 710,
+            "return": 710,
             "roost": 514,
             "substitute": 316,
             "bulkup": 560,
@@ -4509,42 +4509,42 @@
     "dodrio": {
         "sets": {
             "bravebird|quickattack|roost|swordsdance": 48,
-            "bravebird|quickattack|return102|roost": 35,
-            "jumpkick|quickattack|return102|roost": 31,
-            "bravebird|return102|roost|swordsdance": 28,
-            "bravebird|quickattack|return102|swordsdance": 30,
+            "bravebird|quickattack|return|roost": 35,
+            "jumpkick|quickattack|return|roost": 31,
+            "bravebird|return|roost|swordsdance": 28,
+            "bravebird|quickattack|return|swordsdance": 30,
             "bravebird|jumpkick|quickattack|roost": 30,
             "bravebird|knockoff|quickattack|swordsdance": 31,
-            "quickattack|return102|roost|swordsdance": 36,
+            "quickattack|return|roost|swordsdance": 36,
             "bravebird|jumpkick|knockoff|swordsdance": 31,
-            "jumpkick|quickattack|return102|swordsdance": 36,
+            "jumpkick|quickattack|return|swordsdance": 36,
             "bravebird|jumpkick|knockoff|quickattack": 30,
             "bravebird|jumpkick|roost|swordsdance": 60,
-            "bravebird|jumpkick|return102|swordsdance": 21,
+            "bravebird|jumpkick|return|swordsdance": 21,
             "bravebird|knockoff|quickattack|roost": 39,
-            "bravebird|knockoff|quickattack|return102": 31,
-            "knockoff|quickattack|return102|roost": 40,
+            "bravebird|knockoff|quickattack|return": 31,
+            "knockoff|quickattack|return|roost": 40,
             "bravebird|knockoff|roost|swordsdance": 38,
-            "bravebird|jumpkick|knockoff|return102": 30,
+            "bravebird|jumpkick|knockoff|return": 30,
             "bravebird|jumpkick|knockoff|roost": 23,
-            "jumpkick|knockoff|return102|swordsdance": 38,
-            "bravebird|jumpkick|return102|roost": 23,
-            "bravebird|knockoff|return102|swordsdance": 35,
-            "knockoff|return102|roost|swordsdance": 50,
-            "jumpkick|knockoff|return102|roost": 37,
+            "jumpkick|knockoff|return|swordsdance": 38,
+            "bravebird|jumpkick|return|roost": 23,
+            "bravebird|knockoff|return|swordsdance": 35,
+            "knockoff|return|roost|swordsdance": 50,
+            "jumpkick|knockoff|return|roost": 37,
             "bravebird|jumpkick|quickattack|swordsdance": 23,
-            "knockoff|quickattack|return102|swordsdance": 33,
-            "jumpkick|return102|roost|swordsdance": 41,
-            "bravebird|knockoff|return102|roost": 28,
-            "jumpkick|knockoff|quickattack|return102": 24,
-            "bravebird|jumpkick|quickattack|return102": 25
+            "knockoff|quickattack|return|swordsdance": 33,
+            "jumpkick|return|roost|swordsdance": 41,
+            "bravebird|knockoff|return|roost": 28,
+            "jumpkick|knockoff|quickattack|return": 24,
+            "bravebird|jumpkick|quickattack|return": 25
         },
         "moves": {
             "quickattack": 522,
             "roost": 587,
             "bravebird": 639,
             "swordsdance": 579,
-            "return102": 652,
+            "return": 652,
             "jumpkick": 503,
             "knockoff": 538
         },
@@ -4562,15 +4562,15 @@
     },
     "typenull": {
         "sets": {
-            "rest|return102|sleeptalk|swordsdance": 263,
-            "rest|return102|sleeptalk|uturn": 70,
-            "rest|return102|swordsdance|uturn": 37
+            "rest|return|sleeptalk|swordsdance": 263,
+            "rest|return|sleeptalk|uturn": 70,
+            "rest|return|swordsdance|uturn": 37
         },
         "moves": {
             "swordsdance": 300,
             "rest": 370,
             "sleeptalk": 333,
-            "return102": 370,
+            "return": 370,
             "uturn": 107
         },
         "abilities": {
@@ -5748,18 +5748,18 @@
     },
     "watchog": {
         "sets": {
-            "knockoff|return102|substitute|swordsdance": 136,
-            "hypnosis|knockoff|return102|substitute": 60,
-            "hypnosis|knockoff|return102|swordsdance": 151,
-            "hypnosis|return102|substitute|swordsdance": 20,
-            "hypnosis|return102|superfang|swordsdance": 3,
-            "return102|substitute|superfang|swordsdance": 6,
-            "hypnosis|return102|substitute|superfang": 3
+            "knockoff|return|substitute|swordsdance": 136,
+            "hypnosis|knockoff|return|substitute": 60,
+            "hypnosis|knockoff|return|swordsdance": 151,
+            "hypnosis|return|substitute|swordsdance": 20,
+            "hypnosis|return|superfang|swordsdance": 3,
+            "return|substitute|superfang|swordsdance": 6,
+            "hypnosis|return|substitute|superfang": 3
         },
         "moves": {
             "substitute": 225,
             "swordsdance": 316,
-            "return102": 379,
+            "return": 379,
             "knockoff": 347,
             "hypnosis": 237,
             "superfang": 12
@@ -6406,16 +6406,16 @@
     },
     "stoutland": {
         "sets": {
-            "crunch|return102|superpower|wildcharge": 258,
-            "icefang|return102|superpower|wildcharge": 206,
-            "crunch|icefang|return102|wildcharge": 244,
-            "crunch|icefang|return102|superpower": 228
+            "crunch|return|superpower|wildcharge": 258,
+            "icefang|return|superpower|wildcharge": 206,
+            "crunch|icefang|return|wildcharge": 244,
+            "crunch|icefang|return|superpower": 228
         },
         "moves": {
             "superpower": 692,
             "wildcharge": 708,
             "crunch": 730,
-            "return102": 936,
+            "return": 936,
             "icefang": 678
         },
         "abilities": {
@@ -6772,15 +6772,15 @@
     },
     "sawsbuck": {
         "sets": {
-            "hornleech|return102|substitute|swordsdance": 133,
+            "hornleech|return|substitute|swordsdance": 133,
             "hornleech|jumpkick|substitute|swordsdance": 76,
-            "hornleech|jumpkick|return102|substitute": 78,
-            "hornleech|jumpkick|return102|swordsdance": 112
+            "hornleech|jumpkick|return|substitute": 78,
+            "hornleech|jumpkick|return|swordsdance": 112
         },
         "moves": {
             "substitute": 287,
             "swordsdance": 321,
-            "return102": 323,
+            "return": 323,
             "hornleech": 399,
             "jumpkick": 266
         },
@@ -7106,22 +7106,22 @@
     },
     "regigigas": {
         "sets": {
-            "knockoff|return102|substitute|thunderwave": 60,
-            "confuseray|drainpunch|return102|substitute": 44,
-            "confuseray|knockoff|return102|substitute": 56,
-            "drainpunch|knockoff|return102|substitute": 63,
-            "drainpunch|return102|substitute|thunderwave": 68,
-            "confuseray|return102|substitute|thunderwave": 55,
-            "confuseray|drainpunch|knockoff|return102": 7,
-            "confuseray|knockoff|return102|thunderwave": 8,
-            "confuseray|drainpunch|return102|thunderwave": 10,
-            "drainpunch|knockoff|return102|thunderwave": 5
+            "knockoff|return|substitute|thunderwave": 60,
+            "confuseray|drainpunch|return|substitute": 44,
+            "confuseray|knockoff|return|substitute": 56,
+            "drainpunch|knockoff|return|substitute": 63,
+            "drainpunch|return|substitute|thunderwave": 68,
+            "confuseray|return|substitute|thunderwave": 55,
+            "confuseray|drainpunch|knockoff|return": 7,
+            "confuseray|knockoff|return|thunderwave": 8,
+            "confuseray|drainpunch|return|thunderwave": 10,
+            "drainpunch|knockoff|return|thunderwave": 5
         },
         "moves": {
             "thunderwave": 206,
             "substitute": 346,
             "knockoff": 199,
-            "return102": 376,
+            "return": 376,
             "drainpunch": 197,
             "confuseray": 180
         },
@@ -7950,31 +7950,31 @@
     },
     "furfrou": {
         "sets": {
-            "rest|return102|suckerpunch|toxic": 43,
-            "cottonguard|rest|return102|suckerpunch": 18,
-            "rest|return102|toxic|uturn": 51,
-            "return102|suckerpunch|toxic|uturn": 35,
-            "return102|suckerpunch|thunderwave|uturn": 24,
-            "rest|return102|thunderwave|uturn": 32,
-            "rest|return102|suckerpunch|thunderwave": 27,
-            "cottonguard|rest|return102|uturn": 27,
-            "return102|substitute|suckerpunch|toxic": 25,
-            "return102|substitute|suckerpunch|thunderwave": 14,
-            "cottonguard|rest|return102|substitute": 5,
-            "cottonguard|rest|return102|toxic": 28,
-            "rest|return102|substitute|suckerpunch": 2,
-            "cottonguard|rest|return102|thunderwave": 29,
-            "rest|return102|suckerpunch|uturn": 19,
-            "rest|return102|substitute|uturn": 2,
-            "rest|return102|substitute|toxic": 6,
-            "rest|return102|substitute|thunderwave": 7,
-            "rest|return102|thunderwave|toxic": 3
+            "rest|return|suckerpunch|toxic": 43,
+            "cottonguard|rest|return|suckerpunch": 18,
+            "rest|return|toxic|uturn": 51,
+            "return|suckerpunch|toxic|uturn": 35,
+            "return|suckerpunch|thunderwave|uturn": 24,
+            "rest|return|thunderwave|uturn": 32,
+            "rest|return|suckerpunch|thunderwave": 27,
+            "cottonguard|rest|return|uturn": 27,
+            "return|substitute|suckerpunch|toxic": 25,
+            "return|substitute|suckerpunch|thunderwave": 14,
+            "cottonguard|rest|return|substitute": 5,
+            "cottonguard|rest|return|toxic": 28,
+            "rest|return|substitute|suckerpunch": 2,
+            "cottonguard|rest|return|thunderwave": 29,
+            "rest|return|suckerpunch|uturn": 19,
+            "rest|return|substitute|uturn": 2,
+            "rest|return|substitute|toxic": 6,
+            "rest|return|substitute|thunderwave": 7,
+            "rest|return|thunderwave|toxic": 3
         },
         "moves": {
             "rest": 299,
             "suckerpunch": 207,
             "toxic": 191,
-            "return102": 397,
+            "return": 397,
             "cottonguard": 107,
             "uturn": 190,
             "thunderwave": 136,
@@ -8184,41 +8184,41 @@
             "bodyslam|crunch|earthquake|pursuit": 24,
             "bodyslam|earthquake|firepunch|whirlwind": 14,
             "bodyslam|crunch|curse|firepunch": 70,
-            "crunch|rest|return102|sleeptalk": 6,
-            "earthquake|firepunch|pursuit|return102": 9,
-            "earthquake|pursuit|return102|whirlwind": 8,
+            "crunch|rest|return|sleeptalk": 6,
+            "earthquake|firepunch|pursuit|return": 9,
+            "earthquake|pursuit|return|whirlwind": 8,
             "bodyslam|crunch|curse|earthquake": 96,
             "bodyslam|curse|earthquake|firepunch": 83,
             "bodyslam|curse|earthquake|whirlwind": 3,
             "bodyslam|curse|rest|sleeptalk": 41,
-            "crunch|earthquake|firepunch|return102": 10,
-            "bodyslam|curse|firepunch|return102": 6,
+            "crunch|earthquake|firepunch|return": 10,
+            "bodyslam|curse|firepunch|return": 6,
             "bodyslam|crunch|firepunch|whirlwind": 17,
             "bodyslam|crunch|firepunch|pursuit": 17,
             "bodyslam|crunch|earthquake|firepunch": 23,
-            "crunch|firepunch|pursuit|return102": 19,
-            "bodyslam|crunch|curse|return102": 8,
+            "crunch|firepunch|pursuit|return": 19,
+            "bodyslam|crunch|curse|return": 8,
             "bodyslam|crunch|earthquake|whirlwind": 17,
-            "crunch|curse|earthquake|return102": 31,
+            "crunch|curse|earthquake|return": 31,
             "bodyslam|rest|sleeptalk|whirlwind": 15,
-            "firepunch|pursuit|return102|whirlwind": 13,
-            "crunch|earthquake|return102|whirlwind": 8,
-            "crunch|firepunch|return102|whirlwind": 20,
-            "crunch|curse|firepunch|return102": 38,
+            "firepunch|pursuit|return|whirlwind": 13,
+            "crunch|earthquake|return|whirlwind": 8,
+            "crunch|firepunch|return|whirlwind": 20,
+            "crunch|curse|firepunch|return": 38,
             "bodyslam|firepunch|pursuit|whirlwind": 14,
             "bodyslam|crunch|pursuit|whirlwind": 16,
-            "crunch|pursuit|return102|whirlwind": 15,
+            "crunch|pursuit|return|whirlwind": 15,
             "bodyslam|earthquake|firepunch|pursuit": 8,
-            "curse|rest|return102|sleeptalk": 41,
-            "bodyslam|curse|earthquake|return102": 12,
-            "firepunch|rest|return102|sleeptalk": 18,
-            "curse|earthquake|firepunch|return102": 29,
-            "bodyslam|curse|pursuit|return102": 2,
-            "rest|return102|sleeptalk|whirlwind": 11,
-            "earthquake|rest|return102|sleeptalk": 7,
-            "crunch|earthquake|pursuit|return102": 16,
+            "curse|rest|return|sleeptalk": 41,
+            "bodyslam|curse|earthquake|return": 12,
+            "firepunch|rest|return|sleeptalk": 18,
+            "curse|earthquake|firepunch|return": 29,
+            "bodyslam|curse|pursuit|return": 2,
+            "rest|return|sleeptalk|whirlwind": 11,
+            "earthquake|rest|return|sleeptalk": 7,
+            "crunch|earthquake|pursuit|return": 16,
             "bodyslam|earthquake|rest|sleeptalk": 12,
-            "earthquake|firepunch|return102|whirlwind": 9,
+            "earthquake|firepunch|return|whirlwind": 9,
             "bodyslam|firepunch|rest|sleeptalk": 9,
             "bodyslam|crunch|rest|sleeptalk": 12,
             "bodyslam|curse|earthquake|rest": 1,
@@ -8234,7 +8234,7 @@
             "whirlwind": 194,
             "curse": 462,
             "sleeptalk": 172,
-            "return102": 336,
+            "return": 336,
             "rest": 173
         },
         "abilities": {
@@ -8507,12 +8507,12 @@
     },
     "slurpuff": {
         "sets": {
-            "bellydrum|drainpunch|playrough|return102": 1509
+            "bellydrum|drainpunch|playrough|return": 1509
         },
         "moves": {
             "drainpunch": 1509,
             "bellydrum": 1509,
-            "return102": 1509,
+            "return": 1509,
             "playrough": 1509
         },
         "abilities": {
@@ -8662,12 +8662,12 @@
     },
     "lopunnymega": {
         "sets": {
-            "fakeout|highjumpkick|icepunch|return102": 78,
-            "highjumpkick|icepunch|return102|substitute": 247
+            "fakeout|highjumpkick|icepunch|return": 78,
+            "highjumpkick|icepunch|return|substitute": 247
         },
         "moves": {
             "fakeout": 78,
-            "return102": 325,
+            "return": 325,
             "icepunch": 325,
             "highjumpkick": 325,
             "substitute": 247
@@ -9150,13 +9150,13 @@
     "bewear": {
         "sets": {
             "doubleedge|hammerarm|icepunch|swordsdance": 262,
-            "hammerarm|icepunch|return102|shadowclaw": 45,
+            "hammerarm|icepunch|return|shadowclaw": 45,
             "doubleedge|hammerarm|icepunch|shadowclaw": 155,
-            "hammerarm|icepunch|return102|swordsdance": 78,
+            "hammerarm|icepunch|return|swordsdance": 78,
             "hammerarm|icepunch|shadowclaw|swordsdance": 72,
             "doubleedge|hammerarm|shadowclaw|swordsdance": 246,
-            "hammerarm|return102|shadowclaw|swordsdance": 94,
-            "doubleedge|hammerarm|return102|swordsdance": 56
+            "hammerarm|return|shadowclaw|swordsdance": 94,
+            "doubleedge|hammerarm|return|swordsdance": 56
         },
         "moves": {
             "doubleedge": 719,
@@ -9164,7 +9164,7 @@
             "swordsdance": 808,
             "hammerarm": 1008,
             "shadowclaw": 612,
-            "return102": 273
+            "return": 273
         },
         "abilities": {
             "fluffy": 1008
@@ -9592,17 +9592,17 @@
     },
     "purugly": {
         "sets": {
-            "fakeout|knockoff|return102|uturn": 174,
-            "fakeout|return102|suckerpunch|uturn": 69,
-            "fakeout|knockoff|return102|suckerpunch": 32,
-            "knockoff|quickattack|return102|uturn": 53,
-            "quickattack|return102|suckerpunch|uturn": 32,
-            "fakeout|quickattack|return102|uturn": 18,
-            "fakeout|knockoff|quickattack|return102": 25,
-            "fakeout|quickattack|return102|suckerpunch": 14
+            "fakeout|knockoff|return|uturn": 174,
+            "fakeout|return|suckerpunch|uturn": 69,
+            "fakeout|knockoff|return|suckerpunch": 32,
+            "knockoff|quickattack|return|uturn": 53,
+            "quickattack|return|suckerpunch|uturn": 32,
+            "fakeout|quickattack|return|uturn": 18,
+            "fakeout|knockoff|quickattack|return": 25,
+            "fakeout|quickattack|return|suckerpunch": 14
         },
         "moves": {
-            "return102": 417,
+            "return": 417,
             "fakeout": 332,
             "knockoff": 284,
             "uturn": 346,
@@ -9863,13 +9863,13 @@
         "sets": {
             "stealthrock|stoneedge|thunderpunch|toxic": 12,
             "earthquake|stoneedge|thunderpunch|toxic": 19,
-            "earthquake|return102|stoneedge|toxic": 59,
-            "earthquake|return102|stealthrock|toxic": 31,
-            "return102|stealthrock|stoneedge|toxic": 33,
+            "earthquake|return|stoneedge|toxic": 59,
+            "earthquake|return|stealthrock|toxic": 31,
+            "return|stealthrock|stoneedge|toxic": 33,
             "earthquake|stealthrock|stoneedge|thunderpunch": 15,
-            "earthquake|return102|stealthrock|stoneedge": 27,
+            "earthquake|return|stealthrock|stoneedge": 27,
             "earthquake|stealthrock|thunderpunch|toxic": 13,
-            "earthquake|return102|stoneedge|thunderpunch": 1
+            "earthquake|return|stoneedge|thunderpunch": 1
         },
         "moves": {
             "toxic": 167,
@@ -9877,7 +9877,7 @@
             "thunderpunch": 60,
             "stealthrock": 131,
             "earthquake": 165,
-            "return102": 151
+            "return": 151
         },
         "abilities": {
             "magnetpull": 59,
@@ -10736,21 +10736,21 @@
     },
     "kangaskhanmega": {
         "sets": {
-            "crunch|earthquake|poweruppunch|return102": 247,
-            "crunch|poweruppunch|return102|suckerpunch": 22,
-            "crunch|earthquake|fakeout|return102": 144,
-            "earthquake|poweruppunch|return102|suckerpunch": 141,
-            "earthquake|fakeout|return102|suckerpunch": 72,
-            "fakeout|poweruppunch|return102|suckerpunch": 15,
-            "earthquake|fakeout|poweruppunch|return102": 14,
-            "crunch|fakeout|poweruppunch|return102": 25,
-            "crunch|earthquake|return102|suckerpunch": 7,
-            "crunch|fakeout|return102|suckerpunch": 13
+            "crunch|earthquake|poweruppunch|return": 247,
+            "crunch|poweruppunch|return|suckerpunch": 22,
+            "crunch|earthquake|fakeout|return": 144,
+            "earthquake|poweruppunch|return|suckerpunch": 141,
+            "earthquake|fakeout|return|suckerpunch": 72,
+            "fakeout|poweruppunch|return|suckerpunch": 15,
+            "earthquake|fakeout|poweruppunch|return": 14,
+            "crunch|fakeout|poweruppunch|return": 25,
+            "crunch|earthquake|return|suckerpunch": 7,
+            "crunch|fakeout|return|suckerpunch": 13
         },
         "moves": {
             "poweruppunch": 464,
             "crunch": 458,
-            "return102": 700,
+            "return": 700,
             "earthquake": 625,
             "suckerpunch": 270,
             "fakeout": 283
@@ -11151,25 +11151,25 @@
     },
     "lycanrocdusk": {
         "sets": {
-            "drillrun|firefang|return102|stoneedge": 21,
-            "accelerock|drillrun|return102|stoneedge": 19,
+            "drillrun|firefang|return|stoneedge": 21,
+            "accelerock|drillrun|return|stoneedge": 19,
             "drillrun|firefang|stoneedge|swordsdance": 26,
-            "accelerock|drillrun|return102|swordsdance": 27,
+            "accelerock|drillrun|return|swordsdance": 27,
             "accelerock|drillrun|firefang|stoneedge": 25,
             "accelerock|drillrun|firefang|swordsdance": 31,
-            "firefang|return102|stoneedge|swordsdance": 32,
-            "accelerock|return102|stoneedge|swordsdance": 27,
+            "firefang|return|stoneedge|swordsdance": 32,
+            "accelerock|return|stoneedge|swordsdance": 27,
             "accelerock|drillrun|stoneedge|swordsdance": 24,
-            "accelerock|drillrun|firefang|return102": 18,
-            "accelerock|firefang|return102|stoneedge": 18,
+            "accelerock|drillrun|firefang|return": 18,
+            "accelerock|firefang|return|stoneedge": 18,
             "accelerock|firefang|stoneedge|swordsdance": 18,
-            "drillrun|return102|stoneedge|swordsdance": 26,
-            "accelerock|firefang|return102|swordsdance": 29
+            "drillrun|return|stoneedge|swordsdance": 26,
+            "accelerock|firefang|return|swordsdance": 29
         },
         "moves": {
             "drillrun": 217,
             "stoneedge": 236,
-            "return102": 217,
+            "return": 217,
             "firefang": 218,
             "accelerock": 236,
             "swordsdance": 240
@@ -12317,16 +12317,16 @@
     },
     "bibarel": {
         "sets": {
-            "liquidation|quickattack|return102|swordsdance": 81,
+            "liquidation|quickattack|return|swordsdance": 81,
             "aquajet|liquidation|quickattack|swordsdance": 69,
-            "aquajet|liquidation|quickattack|return102": 77,
-            "aquajet|liquidation|return102|swordsdance": 88,
-            "aquajet|quickattack|return102|swordsdance": 80
+            "aquajet|liquidation|quickattack|return": 77,
+            "aquajet|liquidation|return|swordsdance": 88,
+            "aquajet|quickattack|return|swordsdance": 80
         },
         "moves": {
             "swordsdance": 318,
             "liquidation": 315,
-            "return102": 326,
+            "return": 326,
             "quickattack": 307,
             "aquajet": 314
         },
@@ -12548,15 +12548,15 @@
     },
     "pinsirmega": {
         "sets": {
-            "closecombat|quickattack|return102|swordsdance": 90,
-            "earthquake|quickattack|return102|swordsdance": 109,
-            "closecombat|earthquake|return102|swordsdance": 92,
-            "closecombat|earthquake|quickattack|return102": 62
+            "closecombat|quickattack|return|swordsdance": 90,
+            "earthquake|quickattack|return|swordsdance": 109,
+            "closecombat|earthquake|return|swordsdance": 92,
+            "closecombat|earthquake|quickattack|return": 62
         },
         "moves": {
             "closecombat": 244,
             "swordsdance": 291,
-            "return102": 353,
+            "return": 353,
             "quickattack": 261,
             "earthquake": 263
         },
@@ -13539,22 +13539,22 @@
     },
     "carnivine": {
         "sets": {
-            "knockoff|powerwhip|return102|substitute": 31,
+            "knockoff|powerwhip|return|substitute": 31,
             "knockoff|powerwhip|sleeppowder|substitute": 23,
-            "knockoff|powerwhip|return102|swordsdance": 46,
+            "knockoff|powerwhip|return|swordsdance": 46,
             "knockoff|powerwhip|sleeppowder|swordsdance": 38,
-            "powerwhip|return102|substitute|swordsdance": 52,
-            "powerwhip|return102|sleeppowder|substitute": 26,
+            "powerwhip|return|substitute|swordsdance": 52,
+            "powerwhip|return|sleeppowder|substitute": 26,
             "knockoff|powerwhip|substitute|swordsdance": 63,
             "powerwhip|sleeppowder|substitute|swordsdance": 15,
-            "powerwhip|return102|sleeppowder|swordsdance": 53,
-            "knockoff|powerwhip|return102|sleeppowder": 27
+            "powerwhip|return|sleeppowder|swordsdance": 53,
+            "knockoff|powerwhip|return|sleeppowder": 27
         },
         "moves": {
             "knockoff": 228,
             "substitute": 210,
             "powerwhip": 374,
-            "return102": 235,
+            "return": 235,
             "sleeppowder": 182,
             "swordsdance": 267
         },
@@ -14816,22 +14816,22 @@
     },
     "komala": {
         "sets": {
-            "earthquake|return102|uturn|woodhammer": 40,
-            "return102|suckerpunch|uturn|woodhammer": 47,
-            "playrough|return102|suckerpunch|woodhammer": 34,
-            "earthquake|playrough|return102|uturn": 42,
-            "earthquake|return102|suckerpunch|woodhammer": 33,
-            "playrough|return102|suckerpunch|uturn": 45,
-            "earthquake|playrough|return102|suckerpunch": 41,
-            "playrough|return102|uturn|woodhammer": 36,
-            "earthquake|playrough|return102|woodhammer": 36,
-            "earthquake|return102|suckerpunch|uturn": 42
+            "earthquake|return|uturn|woodhammer": 40,
+            "return|suckerpunch|uturn|woodhammer": 47,
+            "playrough|return|suckerpunch|woodhammer": 34,
+            "earthquake|playrough|return|uturn": 42,
+            "earthquake|return|suckerpunch|woodhammer": 33,
+            "playrough|return|suckerpunch|uturn": 45,
+            "earthquake|playrough|return|suckerpunch": 41,
+            "playrough|return|uturn|woodhammer": 36,
+            "earthquake|playrough|return|woodhammer": 36,
+            "earthquake|return|suckerpunch|uturn": 42
         },
         "moves": {
             "earthquake": 234,
             "uturn": 252,
             "woodhammer": 226,
-            "return102": 396,
+            "return": 396,
             "suckerpunch": 242,
             "playrough": 234
         },
@@ -15274,15 +15274,15 @@
     },
     "klinklang": {
         "sets": {
-            "geargrind|return102|shiftgear|wildcharge": 257,
+            "geargrind|return|shiftgear|wildcharge": 257,
             "geargrind|shiftgear|substitute|wildcharge": 324,
-            "geargrind|return102|substitute|wildcharge": 215,
-            "geargrind|return102|shiftgear|substitute": 290
+            "geargrind|return|substitute|wildcharge": 215,
+            "geargrind|return|shiftgear|substitute": 290
         },
         "moves": {
             "wildcharge": 796,
             "geargrind": 1086,
-            "return102": 762,
+            "return": 762,
             "shiftgear": 871,
             "substitute": 829
         },
@@ -15460,33 +15460,33 @@
     },
     "diggersby": {
         "sets": {
-            "earthquake|return102|swordsdance|wildcharge": 97,
-            "earthquake|quickattack|return102|swordsdance": 216,
-            "agility|earthquake|return102|swordsdance": 205,
+            "earthquake|return|swordsdance|wildcharge": 97,
+            "earthquake|quickattack|return|swordsdance": 216,
+            "agility|earthquake|return|swordsdance": 205,
             "agility|earthquake|swordsdance|wildcharge": 80,
             "earthquake|knockoff|quickattack|swordsdance": 46,
             "earthquake|quickattack|swordsdance|wildcharge": 53,
-            "earthquake|quickattack|return102|wildcharge": 30,
-            "agility|earthquake|return102|wildcharge": 84,
-            "agility|earthquake|knockoff|return102": 92,
-            "earthquake|return102|uturn|wildcharge": 28,
-            "earthquake|knockoff|return102|swordsdance": 91,
+            "earthquake|quickattack|return|wildcharge": 30,
+            "agility|earthquake|return|wildcharge": 84,
+            "agility|earthquake|knockoff|return": 92,
+            "earthquake|return|uturn|wildcharge": 28,
+            "earthquake|knockoff|return|swordsdance": 91,
             "agility|earthquake|knockoff|swordsdance": 78,
             "agility|earthquake|knockoff|wildcharge": 56,
-            "earthquake|knockoff|return102|wildcharge": 28,
-            "earthquake|quickattack|return102|uturn": 29,
+            "earthquake|knockoff|return|wildcharge": 28,
+            "earthquake|quickattack|return|uturn": 29,
             "earthquake|knockoff|swordsdance|wildcharge": 28,
             "earthquake|knockoff|quickattack|uturn": 18,
-            "earthquake|return102|swordsdance|uturn": 19,
+            "earthquake|return|swordsdance|uturn": 19,
             "earthquake|quickattack|uturn|wildcharge": 22,
             "earthquake|knockoff|quickattack|wildcharge": 29,
             "earthquake|knockoff|uturn|wildcharge": 27,
-            "earthquake|knockoff|quickattack|return102": 31,
-            "earthquake|knockoff|return102|uturn": 16
+            "earthquake|knockoff|quickattack|return": 31,
+            "earthquake|knockoff|return|uturn": 16
         },
         "moves": {
             "swordsdance": 913,
-            "return102": 966,
+            "return": 966,
             "wildcharge": 562,
             "earthquake": 1403,
             "quickattack": 474,
@@ -16181,37 +16181,37 @@
     },
     "altariamega": {
         "sets": {
-            "dracometeor|earthquake|healbell|return102": 6,
-            "dragondance|earthquake|healbell|return102": 70,
+            "dracometeor|earthquake|healbell|return": 6,
+            "dragondance|earthquake|healbell|return": 70,
             "dracometeor|healbell|hypervoice|roost": 6,
-            "dracometeor|healbell|return102|roost": 14,
-            "dragondance|earthquake|return102|roost": 102,
+            "dracometeor|healbell|return|roost": 14,
+            "dragondance|earthquake|return|roost": 102,
             "earthquake|fireblast|hypervoice|roost": 5,
-            "dracometeor|earthquake|return102|roost": 13,
+            "dracometeor|earthquake|return|roost": 13,
             "dracometeor|fireblast|hypervoice|roost": 10,
-            "earthquake|healbell|return102|roost": 12,
-            "earthquake|fireblast|return102|roost": 5,
-            "dracometeor|fireblast|return102|roost": 8,
+            "earthquake|healbell|return|roost": 12,
+            "earthquake|fireblast|return|roost": 5,
+            "dracometeor|fireblast|return|roost": 8,
             "dracometeor|earthquake|hypervoice|roost": 8,
-            "fireblast|healbell|return102|roost": 12,
+            "fireblast|healbell|return|roost": 12,
             "earthquake|fireblast|healbell|hypervoice": 6,
-            "dragondance|healbell|return102|roost": 6,
+            "dragondance|healbell|return|roost": 6,
             "dracometeor|fireblast|healbell|hypervoice": 12,
-            "dracometeor|dragondance|earthquake|return102": 15,
+            "dracometeor|dragondance|earthquake|return": 15,
             "fireblast|healbell|hypervoice|roost": 6,
-            "earthquake|fireblast|healbell|return102": 7,
+            "earthquake|fireblast|healbell|return": 7,
             "dracometeor|earthquake|healbell|hypervoice": 7,
             "earthquake|healbell|hypervoice|roost": 4,
-            "fireblast|healbell|hypervoice|return102": 1,
-            "healbell|hypervoice|return102|roost": 4,
-            "dracometeor|fireblast|healbell|return102": 8,
-            "dracometeor|dragondance|healbell|return102": 1,
-            "dracometeor|dragondance|return102|roost": 1,
+            "fireblast|healbell|hypervoice|return": 1,
+            "healbell|hypervoice|return|roost": 4,
+            "dracometeor|fireblast|healbell|return": 8,
+            "dracometeor|dragondance|healbell|return": 1,
+            "dracometeor|dragondance|return|roost": 1,
             "dracometeor|dragondance|healbell|roost": 1
         },
         "moves": {
             "healbell": 183,
-            "return102": 285,
+            "return": 285,
             "earthquake": 260,
             "dracometeor": 110,
             "dragondance": 196,
@@ -16338,39 +16338,39 @@
     },
     "unfezant": {
         "sets": {
-            "hypnosis|pluck|return102|uturn": 12,
+            "hypnosis|pluck|return|uturn": 12,
             "nightslash|pluck|roost|tailwind": 32,
             "hypnosis|pluck|roost|uturn": 14,
-            "pluck|return102|tailwind|uturn": 4,
-            "nightslash|return102|roost|uturn": 23,
+            "pluck|return|tailwind|uturn": 4,
+            "nightslash|return|roost|uturn": 23,
             "nightslash|pluck|roost|uturn": 24,
-            "return102|roost|tailwind|uturn": 13,
+            "return|roost|tailwind|uturn": 13,
             "hypnosis|nightslash|pluck|tailwind": 11,
-            "hypnosis|nightslash|return102|tailwind": 8,
+            "hypnosis|nightslash|return|tailwind": 8,
             "hypnosis|nightslash|pluck|uturn": 8,
-            "hypnosis|return102|roost|uturn": 15,
-            "pluck|return102|roost|tailwind": 14,
+            "hypnosis|return|roost|uturn": 15,
+            "pluck|return|roost|tailwind": 14,
             "hypnosis|nightslash|pluck|roost": 14,
             "hypnosis|pluck|tailwind|uturn": 12,
-            "nightslash|pluck|return102|roost": 17,
-            "nightslash|return102|roost|tailwind": 12,
-            "hypnosis|return102|tailwind|uturn": 12,
-            "pluck|return102|roost|uturn": 13,
+            "nightslash|pluck|return|roost": 17,
+            "nightslash|return|roost|tailwind": 12,
+            "hypnosis|return|tailwind|uturn": 12,
+            "pluck|return|roost|uturn": 13,
             "pluck|roost|tailwind|uturn": 14,
             "nightslash|pluck|tailwind|uturn": 12,
-            "hypnosis|nightslash|return102|uturn": 9,
-            "nightslash|pluck|return102|tailwind": 18,
-            "hypnosis|return102|roost|tailwind": 14,
+            "hypnosis|nightslash|return|uturn": 9,
+            "nightslash|pluck|return|tailwind": 18,
+            "hypnosis|return|roost|tailwind": 14,
             "hypnosis|pluck|roost|tailwind": 10,
-            "hypnosis|nightslash|return102|roost": 13,
-            "hypnosis|nightslash|pluck|return102": 9,
-            "nightslash|pluck|return102|uturn": 14,
-            "hypnosis|pluck|return102|tailwind": 9,
-            "nightslash|return102|tailwind|uturn": 11,
-            "hypnosis|pluck|return102|roost": 5
+            "hypnosis|nightslash|return|roost": 13,
+            "hypnosis|nightslash|pluck|return": 9,
+            "nightslash|pluck|return|uturn": 14,
+            "hypnosis|pluck|return|tailwind": 9,
+            "nightslash|return|tailwind|uturn": 11,
+            "hypnosis|pluck|return|roost": 5
         },
         "moves": {
-            "return102": 245,
+            "return": 245,
             "uturn": 210,
             "hypnosis": 175,
             "pluck": 266,
@@ -17009,12 +17009,12 @@
     },
     "spinda": {
         "sets": {
-            "return102|suckerpunch|superpower|trickroom": 370
+            "return|suckerpunch|superpower|trickroom": 370
         },
         "moves": {
             "trickroom": 370,
             "superpower": 370,
-            "return102": 370,
+            "return": 370,
             "suckerpunch": 370
         },
         "abilities": {
@@ -17706,13 +17706,13 @@
     },
     "gumshoos": {
         "sets": {
-            "earthquake|firepunch|return102|uturn": 111,
-            "crunch|firepunch|return102|uturn": 103,
-            "crunch|earthquake|return102|uturn": 81,
-            "crunch|earthquake|firepunch|return102": 92
+            "earthquake|firepunch|return|uturn": 111,
+            "crunch|firepunch|return|uturn": 103,
+            "crunch|earthquake|return|uturn": 81,
+            "crunch|earthquake|firepunch|return": 92
         },
         "moves": {
-            "return102": 387,
+            "return": 387,
             "earthquake": 284,
             "firepunch": 306,
             "uturn": 295,
@@ -18337,14 +18337,14 @@
     },
     "persian": {
         "sets": {
-            "fakeout|knockoff|return102|uturn": 64,
-            "fakeout|knockoff|return102|taunt": 53,
-            "fakeout|return102|taunt|uturn": 57,
-            "knockoff|return102|taunt|uturn": 34
+            "fakeout|knockoff|return|uturn": 64,
+            "fakeout|knockoff|return|taunt": 53,
+            "fakeout|return|taunt|uturn": 57,
+            "knockoff|return|taunt|uturn": 34
         },
         "moves": {
             "uturn": 155,
-            "return102": 208,
+            "return": 208,
             "knockoff": 151,
             "fakeout": 174,
             "taunt": 144
@@ -18762,7 +18762,7 @@
             "sleeppowder": 1,
             "blueflare": 1,
             "firepunch": 2,
-            "return102": 3,
+            "return": 3,
             "stoneedge": 3,
             "calmmind": 3,
             "psyshock": 1,
@@ -18848,7 +18848,7 @@
             "sleeppowder": 1,
             "blueflare": 1,
             "firepunch": 2,
-            "return102": 3,
+            "return": 3,
             "stoneedge": 3,
             "calmmind": 3,
             "psyshock": 1,
@@ -20019,11 +20019,11 @@
             "doubleedge|drillrun|pursuit|uturn": 55,
             "doubleedge|drillpeck|drillrun|pursuit": 68,
             "doubleedge|drillpeck|pursuit|uturn": 62,
-            "drillpeck|drillrun|return102|uturn": 28,
-            "drillpeck|pursuit|return102|uturn": 25,
+            "drillpeck|drillrun|return|uturn": 28,
+            "drillpeck|pursuit|return|uturn": 25,
             "doubleedge|drillpeck|drillrun|uturn": 65,
-            "drillpeck|drillrun|pursuit|return102": 21,
-            "drillrun|pursuit|return102|uturn": 31,
+            "drillpeck|drillrun|pursuit|return": 21,
+            "drillrun|pursuit|return|uturn": 31,
             "drillpeck|drillrun|pursuit|uturn": 28
         },
         "moves": {
@@ -20032,7 +20032,7 @@
             "doubleedge": 250,
             "uturn": 294,
             "drillpeck": 297,
-            "return102": 105
+            "return": 105
         },
         "abilities": {
             "sniper": 383
@@ -20360,14 +20360,14 @@
     },
     "lopunny": {
         "sets": {
-            "healingwish|highjumpkick|icepunch|return102": 35,
-            "highjumpkick|icepunch|return102|switcheroo": 7,
-            "healingwish|icepunch|return102|switcheroo": 3
+            "healingwish|highjumpkick|icepunch|return": 35,
+            "highjumpkick|icepunch|return|switcheroo": 7,
+            "healingwish|icepunch|return|switcheroo": 3
         },
         "moves": {
             "healingwish": 38,
             "highjumpkick": 42,
-            "return102": 45,
+            "return": 45,
             "icepunch": 45,
             "switcheroo": 10
         },
@@ -20728,19 +20728,19 @@
     },
     "glaliemega": {
         "sets": {
-            "earthquake|freezedry|return102|spikes": 204,
-            "explosion|freezedry|return102|spikes": 13,
-            "earthquake|iceshard|return102|spikes": 20,
-            "explosion|iceshard|return102|spikes": 24,
-            "earthquake|explosion|return102|spikes": 25,
-            "freezedry|iceshard|return102|spikes": 14,
-            "earthquake|freezedry|iceshard|return102": 15,
-            "earthquake|explosion|iceshard|return102": 29,
-            "earthquake|explosion|freezedry|return102": 9
+            "earthquake|freezedry|return|spikes": 204,
+            "explosion|freezedry|return|spikes": 13,
+            "earthquake|iceshard|return|spikes": 20,
+            "explosion|iceshard|return|spikes": 24,
+            "earthquake|explosion|return|spikes": 25,
+            "freezedry|iceshard|return|spikes": 14,
+            "earthquake|freezedry|iceshard|return": 15,
+            "earthquake|explosion|iceshard|return": 29,
+            "earthquake|explosion|freezedry|return": 9
         },
         "moves": {
             "freezedry": 255,
-            "return102": 353,
+            "return": 353,
             "spikes": 300,
             "earthquake": 302,
             "explosion": 100,
@@ -21187,18 +21187,18 @@
     },
     "pidgeot": {
         "sets": {
-            "bravebird|defog|return102|roost": 7,
-            "bravebird|heatwave|return102|roost": 6,
-            "heatwave|return102|roost|uturn": 5,
-            "bravebird|defog|return102|uturn": 11,
+            "bravebird|defog|return|roost": 7,
+            "bravebird|heatwave|return|roost": 6,
+            "heatwave|return|roost|uturn": 5,
+            "bravebird|defog|return|uturn": 11,
             "bravebird|heatwave|roost|uturn": 6,
-            "bravebird|defog|heatwave|return102": 5,
-            "defog|return102|roost|uturn": 6,
-            "bravebird|heatwave|return102|uturn": 8,
-            "defog|heatwave|return102|uturn": 4,
-            "defog|heatwave|return102|roost": 4,
+            "bravebird|defog|heatwave|return": 5,
+            "defog|return|roost|uturn": 6,
+            "bravebird|heatwave|return|uturn": 8,
+            "defog|heatwave|return|uturn": 4,
+            "defog|heatwave|return|roost": 4,
             "bravebird|defog|roost|uturn": 4,
-            "bravebird|return102|roost|uturn": 4,
+            "bravebird|return|roost|uturn": 4,
             "bravebird|defog|heatwave|roost": 3,
             "bravebird|defog|heatwave|uturn": 3
         },
@@ -21206,7 +21206,7 @@
             "defog": 47,
             "roost": 45,
             "bravebird": 57,
-            "return102": 60,
+            "return": 60,
             "heatwave": 44,
             "uturn": 51
         },
@@ -21547,16 +21547,16 @@
     "silvally": {
         "sets": {
             "crunch|doubleedge|ironhead|swordsdance": 3,
-            "crunch|ironhead|return102|swordsdance": 2,
+            "crunch|ironhead|return|swordsdance": 2,
             "crunch|doubleedge|ironhead|uturn": 1,
-            "icebeam|ironhead|return102|uturn": 1,
-            "flamecharge|icebeam|ironhead|return102": 1,
+            "icebeam|ironhead|return|uturn": 1,
+            "flamecharge|icebeam|ironhead|return": 1,
             "crunch|doubleedge|flamecharge|swordsdance": 2,
             "doubleedge|flamecharge|icebeam|uturn": 1,
-            "flamethrower|ironhead|return102|uturn": 1,
+            "flamethrower|ironhead|return|uturn": 1,
             "crunch|doubleedge|flamecharge|uturn": 1,
             "crunch|doubleedge|flamecharge|ironhead": 1,
-            "flamethrower|icebeam|ironhead|return102": 1,
+            "flamethrower|icebeam|ironhead|return": 1,
             "crunch|doubleedge|flamethrower|uturn": 1,
             "doubleedge|flamethrower|icebeam|uturn": 1,
             "crunch|doubleedge|flamethrower|ironhead": 1
@@ -21566,7 +21566,7 @@
             "crunch": 12,
             "doubleedge": 12,
             "swordsdance": 7,
-            "return102": 6,
+            "return": 6,
             "uturn": 7,
             "icebeam": 5,
             "flamecharge": 6,
