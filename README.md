@@ -68,7 +68,7 @@ RUN_COUNT=1
 
 ## Decision Logic
 
-The bot searches through the game-tree for two turns and can make a decision in two different ways. Decisions can be made using Minimax or a Nash-Equilibrium
+The bot searches through the game-tree for two turns and can make a decision in the two different ways explained below.
 
 For decisions with random outcomes a weighted average is taken for all possible end states.
 For example: If using draco meteor versus some arbitrary other move results in a score of 1000 if it hits (90%) and a score of 900 if it misses (10%), the overall score for using
@@ -90,10 +90,11 @@ Most aspects of Pokémon are accounted for, such as:
 
 7. Weather
 
-### Minimax
+### Safest
 use DECISION_LOGIC=safest (default unless otherwise specified)
 
-[Minimax](https://en.wikipedia.org/wiki/Minimax) means that the bot will make a move that minimizes the possible loss for a turn. 
+Safest means that the bot will make a move that minimizes the possible loss for a turn.
+This is equivalent to the [Maximin](https://en.wikipedia.org/wiki/Minimax#Maximin) strategy
 
 This decision type is deterministic - the bot will always make the same move given the same situation again.
 
@@ -112,7 +113,7 @@ This decision method is **not** deterministic. The bot **may** make a different 
 
 In general the bot will perform much better in random battles and when using the "safest" decision making method.
 
-These are the bot's rankings after several hundred games in each of the OU, PU, and RandomBattle formats:
+These are the bot's rankings after several hundred games in each of the OU, PU, and RandomBattle formats using the "safest" decision making method:
  
  ![SafestRankings](https://i.imgur.com/CkNzN8v.png)
 
