@@ -1838,6 +1838,40 @@
         },
         "count": 1441
     },
+    "meloettapirouette": {
+        "sets": {
+            "calmmind|focusblast|hypervoice|shadowball": 125,
+            "closecombat|knockoff|relicsong|return": 699,
+            "calmmind|hypervoice|psyshock|shadowball": 175,
+            "calmmind|focusblast|hypervoice|psyshock": 221,
+            "focusblast|hypervoice|psyshock|uturn": 50,
+            "hypervoice|psyshock|shadowball|uturn": 67,
+            "focusblast|hypervoice|psyshock|shadowball": 51,
+            "focusblast|hypervoice|shadowball|uturn": 53
+        },
+        "moves": {
+            "calmmind": 521,
+            "shadowball": 471,
+            "hypervoice": 742,
+            "focusblast": 500,
+            "knockoff": 699,
+            "relicsong": 699,
+            "return": 699,
+            "closecombat": 699,
+            "psyshock": 564,
+            "uturn": 170
+        },
+        "abilities": {
+            "serenegrace": 1441
+        },
+        "items": {
+            "leftovers": 521,
+            "assaultvest": 745,
+            "choicescarf": 164,
+            "choicespecs": 11
+        },
+        "count": 1441
+    },
     "hoopa": {
         "sets": {
             "focusblast|nastyplot|psyshock|shadowball": 516,
