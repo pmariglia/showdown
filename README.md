@@ -4,7 +4,7 @@ Showdown is a Pokémon battle-bot that can play battles on [Pokemon Showdown](ht
 The bot can play games in generations 4 through 7 however some of the evaluation logic is assuming gen7 mechanics.
 
 ## Python version
-Developed and testing using Python 3.6.3.
+Developed and tested using Python 3.6.3.
 
 ## Getting Started
 
