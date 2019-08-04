@@ -39,9 +39,6 @@ async def showdown():
     original_pokedex = deepcopy(pokedex)
     original_move_json = deepcopy(all_move_json)
 
-    if bot_mode not in constants.BOT_MODES:
-        raise ValueError("{} is not a valid bot mode".format(bot_mode))
-
     ps_websocket_client = await PSWebsocketClient.create(username, password, websocket_uri)
     await ps_websocket_client.login()
 
