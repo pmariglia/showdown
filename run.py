@@ -22,6 +22,7 @@ async def showdown():
     config.log_to_file = env.bool("LOG_TO_FILE", config.log_to_file)
     config.save_replay = env.bool("SAVE_REPLAY", config.save_replay)
     config.decision_method = env("DECISION_METHOD", config.decision_method)
+    config.use_relative_weights = env.bool("USE_RELATIVE_WEIGHTS", config.use_relative_weights)
     config.gambit_exe_path = env("GAMBIT_PATH", config.gambit_exe_path)
     config.search_depth = int(env("MAX_SEARCH_DEPTH", config.search_depth))
     config.greeting_message = env("GREETING_MESSAGE", config.greeting_message)

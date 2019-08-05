@@ -26,4 +26,6 @@ def evaluate_pokemon(pkmn):
         except KeyError:
             pass
 
+    score *= pkmn.scoring_multiplier
+
     return round(score)

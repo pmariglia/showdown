@@ -25,13 +25,4 @@ def evaluate_matchup(user_pkmn, opponent_pkmn):
         if is_super_effective(opponent_type, user_pkmn.types):
             score -= scoring.WEAK_TO_OPPONENT_TYPE
 
-    # bonus for super effective damaging moves (only the bot's moves are looked at)
-    # extra for being faster as well
-    for user_move in user_pkmn.moves:
-        move = all_move_json[user_move[constants.ID]]
-        if move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES and is_super_effective(move[constants.TYPE], opponent_pkmn.types):
-            score += scoring.SUPER_EFFECTIVE_DAMAGING_MOVE
-            if user_pkmn.speed > opponent_pkmn.speed:
-                score += scoring.FASTER_POKEMON_WITH_SUPER_EFFECTIVE_DAMAGING_MOVE
-
     return score

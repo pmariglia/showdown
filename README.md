@@ -10,7 +10,7 @@ Developed and tested using Python 3.6.3.
 
 
 ### Configuration
-Environment variables are used for configuration
+Environment variables are used for configuration which are by default read from a file named `.env`
 
 The configurations available are:
 ```
@@ -21,6 +21,7 @@ WEBSOCKET_URI: (string, default is the official PokemonShowdown websocket addres
 PS_USERNAME: (string, required) Pokemon Showdown username
 PS_PASSWORD: (string) Pokemon Showdown password
 DECISION_METHOD: (string, default "safest") The decision making method. Options are "safest" and "nash". More on this in the Decision Logic section
+USE_RELATIVE_WEIGHTS: (bool, default True) Specifies whether or not to analyze each state and determine how valuable each pokemon is 
 BOT_MODE: (string, required) The mode the the bot will operate in. Options are "CHALLENGE_USER", "SEARCH_LADDER", or "ACCEPT_CHALLENGE"
 USER_TO_CHALLENGE: (string, required if BOT_MODE is "CHALLENGE_USER") The user to challenge
 POKEMON_MODE: (string, required) The type of game this bot will play games in
@@ -28,23 +29,7 @@ TEAM_NAME: (string, required if POKEMON_MODE is one where a team is required) Th
 RUN_COUNT: (integer, required) The amount of games this bot will play before quitting
 ```
 
-### Running without Docker
-
-#### Clone
-
-Clone the repository with `git clone https://github.com/pmariglia/showdown.git`
-
-Install the requirements with `pip install -r requirements.txt`.
-
-Be sure to use a virtual environment to isolate your packages.
-
-#### Tests
-Run all tests with `python -m unittest discover -s tests/ -t .`
-
-#### Run
-Running with `python run.py` will start the bot with configurations specified by environment variables in a file named `.env`
-
-Here is a sample `.env` file, this configuration will log-in and search for a gen7randombattle:
+Here is a minimal `.env` file. This configuration will log-in and search for a gen7randombattle:
 ```
 WEBSOCKET_URI=sim.smogon.com:8000
 PS_USERNAME=MyCoolUsername
@@ -53,6 +38,21 @@ BOT_MODE=SEARCH_LADDER
 POKEMON_MODE=gen7randombattle
 RUN_COUNT=1
 ```
+
+### Running without Docker
+
+#### Clone
+
+Clone the repository with `git clone https://github.com/pmariglia/showdown.git`
+
+#### Install Requirements
+
+Install the requirements with `pip install -r requirements.txt`.
+
+Be sure to use a virtual environment to isolate your packages.
+
+#### Run
+Running with `python run.py` will start the bot with configurations specified by environment variables read from a file named `.env`
 
 ### Running with Docker
 
@@ -90,7 +90,15 @@ Most aspects of Pokémon are accounted for, such as:
 
 7. Weather
 
-### Safest
+### Relative Pokemon Weights
+
+A natural strategy in Pokémon is to preserve win-conditions.
+The bot attempts to do this by assigning each Pokémon a multiplier based on how valuable they are in defeating the opponent's team.
+Experimentation with this has proven to produce better results on the PokemonShowdown ladder.
+
+### Decision Methods
+
+#### Safest
 use DECISION_LOGIC=safest (default unless otherwise specified)
 
 Safest means that the bot will make a move that minimizes the possible loss for a turn.
@@ -98,7 +106,7 @@ This is equivalent to the [Maximin](https://en.wikipedia.org/wiki/Minimax#Maximi
 
 This decision type is deterministic - the bot will always make the same move given the same situation again.
 
-### Nash-Equilibrium
+#### Nash-Equilibrium (experimental)
 use DECISION_LOGIC=nash
 
 Using the information it has, plus some assumptions about the opponent, the bot will calculate the [Nash-Equilibrium](https://en.wikipedia.org/wiki/Nash_equilibrium) with the highest payoff
@@ -111,17 +119,12 @@ This decision method is **not** deterministic. The bot **may** make a different 
 
 ## Performance
 
-In general the bot will perform much better in random battles and when using the "safest" decision making method.
+The bot will perform best when using the "safest" decision making method
+and when taking the time to give each Pokémon a multiplier before deciding a move.
 
-These are the bot's rankings after several hundred games in each of the OU, PU, and RandomBattle formats using the "safest" decision making method:
- 
- ![SafestRankings](https://i.imgur.com/CkNzN8v.png)
+These are the current results in three different formats for roughly 75 games played on a fresh account:
 
-
-The non-deterministic Nash-Equilibrium decision making has similar results for standard formats,
-but poorer results for random battles:
-
-![NashRankings](https://i.imgur.com/T6973FO.png)
+![RelativeWeightsRankings](https://i.imgur.com/eNpIlVg.png)
 
 ## Specifying Teams
 The user can specify teams in JSON format to be used for non-random battles. Examples can be found in `teams/team_jsons/`.

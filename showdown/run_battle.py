@@ -1,17 +1,19 @@
 import json
 import asyncio
 import concurrent.futures
-
+import itertools
+from collections import defaultdict
 from copy import deepcopy
 
 import constants
 import config
 from config import logger
 from config import reset_logger
+from showdown.evaluate_state import scoring
 from showdown.decide.decide import pick_best_move
 from showdown.search.select_best_move import get_move_combination_scores
-from showdown.search.select_best_move import move_item_to_front_of_list
-from showdown.search.select_best_move import get_all_options
+from showdown.decide.decide import pick_safest
+from showdown.evaluate_state.evaluate import evaluate
 from showdown.state.battle import Battle
 from showdown.state.pokemon import Pokemon
 from showdown.state.battle_modifiers import update_battle
@@ -115,6 +117,69 @@ async def _start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon
     return battle
 
 
+def find_winner(mutator, p1, p2):
+    mutator = deepcopy(mutator)
+    mutator.state.self.reserve = dict()
+    mutator.state.self.active = p1
+    mutator.state.opponent.reserve = dict()
+    mutator.state.opponent.active = p2
+
+    evaluation = evaluate(mutator.state)
+
+    scores = get_move_combination_scores(mutator, depth=2)
+    safest = pick_safest(scores)
+
+    return safest[1] > evaluation
+
+
+def set_multipliers(side, multipliers):
+    for mon, v in multipliers.items():
+        if mon == side.active.id:
+            side.active.scoring_multiplier = v
+        else:
+            side.reserve[mon].scoring_multiplier = v
+
+
+def get_new_mutator_with_relative_pokemon_worth(mutator):
+    mutator_copy = deepcopy(mutator)
+    bot_pkmn = [mutator_copy.state.self.active] + list(filter(lambda x: x.hp > 0, mutator_copy.state.self.reserve.values()))
+    opponent_pkmn = [mutator_copy.state.opponent.active] + list(filter(lambda x: x.hp > 0, mutator_copy.state.opponent.reserve.values()))
+
+    pairings = list(itertools.product(bot_pkmn, opponent_pkmn))
+    one_v_one_outcomes = dict()
+    bot_pkmn_wins = defaultdict(lambda: 0)
+    opponent_pkmn_wins = defaultdict(lambda: 0)
+    for pair in pairings:
+        bot_wins = find_winner(mutator_copy, *pair)
+        one_v_one_outcomes[(pair[0].id, pair[1].id)] = bot_wins
+        if bot_wins:
+            bot_pkmn_wins[pair[0].id] += 1
+        else:
+            opponent_pkmn_wins[pair[1].id] += 1
+
+    bot_pkmn_multipliers = defaultdict(lambda: 1.0)
+    opponent_pkmn_multipliers = defaultdict(lambda: 1.0)
+    for pair in pairings:
+        if one_v_one_outcomes[(pair[0].id, pair[1].id)]:
+            bot_pkmn_multipliers[pair[0].id] = round(bot_pkmn_multipliers[pair[0].id] + 0.1 * opponent_pkmn_wins[pair[1].id], 1)
+        else:
+            opponent_pkmn_multipliers[pair[1].id] = round(opponent_pkmn_multipliers[pair[1].id] + 0.1 * bot_pkmn_wins[pair[0].id], 1)
+
+    bot_pkmn_multipliers_average = sum(bot_pkmn_multipliers.values()) / len(bot_pkmn_multipliers) if bot_pkmn_multipliers else {}
+    bot_pkmn_multipliers = {k: v / bot_pkmn_multipliers_average for k, v in bot_pkmn_multipliers.items()}
+
+    opponent_pkmn_multipliers_average = sum(opponent_pkmn_multipliers.values()) / len(opponent_pkmn_multipliers) if opponent_pkmn_multipliers else {}
+    opponent_pkmn_multipliers = {k: v / opponent_pkmn_multipliers_average for k, v in opponent_pkmn_multipliers.items()}
+
+    logger.debug("Bot pkmn multipliers: {}".format(dict(bot_pkmn_multipliers)))
+    logger.debug("Opponent pkmn multipliers: {}".format(dict(opponent_pkmn_multipliers)))
+
+    set_multipliers(mutator_copy.state.self, bot_pkmn_multipliers)
+    set_multipliers(mutator_copy.state.opponent, opponent_pkmn_multipliers)
+
+    return mutator_copy
+
+
 def _find_best_move(battle: Battle):
     battle = deepcopy(battle)
     if battle.battle_type == constants.RANDOM_BATTLE:
@@ -123,9 +188,13 @@ def _find_best_move(battle: Battle):
         battle.prepare_standard_battle()
 
     state = battle.to_object()
-    logger.debug("Attempting to find best move from: {}".format(state))
     mutator = StateMutator(state)
 
+    if config.use_relative_weights:
+        logger.debug("Analyzing state...")
+        mutator = get_new_mutator_with_relative_pokemon_worth(mutator)
+
+    logger.debug("Attempting to find best move from: {}".format(mutator.state))
     move_scores = get_move_combination_scores(mutator, depth=config.search_depth)
     logger.debug("Score lookups produced: {}".format(move_scores))
 
@@ -156,6 +225,7 @@ def _find_best_move(battle: Battle):
 
 async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
     if "random" in pokemon_battle_type:
+        scoring.POKEMON_ALIVE_STATIC = 30  # random battle benefits from a lower static score for an alive pkmn
         battle = await _start_random_battle(ps_websocket_client)
         await ps_websocket_client.send_message(battle.battle_tag, [config.greeting_message])
         loop = asyncio.get_event_loop()
@@ -170,7 +240,7 @@ async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_
     await ps_websocket_client.send_message(battle.battle_tag, ['/timer on'])
     while True:
         msg = await ps_websocket_client.receive_message()
-        if constants.WIN_STRING in msg and not constants.CHAT_STRING in msg:
+        if constants.WIN_STRING in msg and constants.CHAT_STRING not in msg:
             winner = msg.split(constants.WIN_STRING)[-1].split('\n')[0].strip()
             logger.debug("Winner: {}".format(winner))
             await ps_websocket_client.send_message(battle.battle_tag, [config.battle_ending_message])

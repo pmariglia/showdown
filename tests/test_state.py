@@ -34,6 +34,7 @@ class TestPokemonInit(unittest.TestCase):
               'special_defense_boost': 0,
               'speed_boost': 0,
               'status': None,
+              'scoring_multiplier': 1,
               'volatileStatus': [
 
               ],
@@ -66,6 +67,7 @@ class TestPokemonInit(unittest.TestCase):
             },
             'reserve': {
               'greninja': {
+                'scoring_multiplier': 1,
                 'id': 'greninja',
                 'level': 100,
                 'hp': 285,
@@ -123,6 +125,7 @@ class TestPokemonInit(unittest.TestCase):
                 'canMegaEvo': False
               },
               'mawile': {
+                'scoring_multiplier': 1,
                 'id': 'mawile',
                 'level': 100,
                 'hp': 261.0,
@@ -180,6 +183,7 @@ class TestPokemonInit(unittest.TestCase):
                 'canMegaEvo': False
               },
               'ferrothorn': {
+                'scoring_multiplier': 1,
                 'id': 'ferrothorn',
                 'level': 100,
                 'hp': 352.0,
@@ -237,6 +241,7 @@ class TestPokemonInit(unittest.TestCase):
                 'canMegaEvo': False
               },
               'heatran': {
+                'scoring_multiplier': 1,
                 'id': 'heatran',
                 'level': 100,
                 'hp': 385,
@@ -294,6 +299,7 @@ class TestPokemonInit(unittest.TestCase):
                 'canMegaEvo': False
               },
               'garchomp': {
+                'scoring_multiplier': 1,
                 'id': 'garchomp',
                 'level': 100,
                 'hp': 379,
@@ -367,6 +373,7 @@ class TestPokemonInit(unittest.TestCase):
           'opponent': {
             'active': {
               'id': 'landorustherian',
+              'scoring_multiplier': 1,
               'level': 100,
               'hp': 319.0,
               'maxhp': 319,
@@ -430,6 +437,7 @@ class TestPokemonInit(unittest.TestCase):
             'reserve': {
               'ferrothorn': {
                 'id': 'ferrothorn',
+                'scoring_multiplier': 1,
                 'level': 100,
                 'hp': 352.0,
                 'maxhp': 352,
@@ -487,6 +495,7 @@ class TestPokemonInit(unittest.TestCase):
               },
               'rotomwash': {
                 'id': 'rotomwash',
+                'scoring_multiplier': 1,
                 'level': 100,
                 'hp': 304.0,
                 'maxhp': 304,
@@ -544,6 +553,7 @@ class TestPokemonInit(unittest.TestCase):
               },
               'mawile': {
                 'id': 'mawile',
+                'scoring_multiplier': 1,
                 'level': 100,
                 'hp': 303.0,
                 'maxhp': 303,
@@ -601,6 +611,7 @@ class TestPokemonInit(unittest.TestCase):
               },
               'greninja': {
                 'id': 'greninja',
+                'scoring_multiplier': 1,
                 'level': 100,
                 'hp': 285.0,
                 'maxhp': 285,
@@ -658,6 +669,7 @@ class TestPokemonInit(unittest.TestCase):
               },
               'scolipede': {
                 'id': 'scolipede',
+                'scoring_multiplier': 1,
                 'level': 100,
                 'hp': 261.0,
                 'maxhp': 261,

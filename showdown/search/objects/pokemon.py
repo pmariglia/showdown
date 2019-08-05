@@ -27,7 +27,8 @@ class Pokemon(object):
         'volatile_status',
         'moves',
         'types',
-        'can_mega_evo'
+        'can_mega_evo',
+        'scoring_multiplier'
     )
 
     def __init__(self,
@@ -54,7 +55,8 @@ class Pokemon(object):
                  volatile_status,
                  moves,
                  types,
-                 can_mega_evo):
+                 can_mega_evo,
+                 scoring_multiplier=1):
         self.id = identifier
         self.level = level
         self.hp = hp
@@ -79,6 +81,7 @@ class Pokemon(object):
         self.moves = moves
         self.types = types
         self.can_mega_evo = can_mega_evo
+        self.scoring_multiplier = scoring_multiplier
 
     @classmethod
     def from_state_pokemon_dict(cls, d):
@@ -106,7 +109,8 @@ class Pokemon(object):
             d[constants.VOLATILE_STATUS],
             d[constants.MOVES],
             d[constants.TYPES],
-            d[constants.CAN_MEGA_EVO]
+            d[constants.CAN_MEGA_EVO],
+            d.get(constants.SCORING_MULTIPLIER, 1)
         )
 
     @classmethod
@@ -135,7 +139,8 @@ class Pokemon(object):
             set(d[constants.VOLATILE_STATUS]),
             d[constants.MOVES],
             d[constants.TYPES],
-            d[constants.CAN_MEGA_EVO]
+            d[constants.CAN_MEGA_EVO],
+            d.get(constants.SCORING_MULTIPLIER, 1)
         )
 
     def calculate_boosted_stats(self):
@@ -175,7 +180,8 @@ class Pokemon(object):
                 constants.VOLATILE_STATUS: list(self.volatile_status),
                 constants.MOVES: self.moves,
                 constants.TYPES: self.types,
-                constants.CAN_MEGA_EVO: self.can_mega_evo
+                constants.CAN_MEGA_EVO: self.can_mega_evo,
+                constants.SCORING_MULTIPLIER: self.scoring_multiplier
             })
 
     def active_hash(self):
