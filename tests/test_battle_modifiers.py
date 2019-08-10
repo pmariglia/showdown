@@ -401,6 +401,11 @@ class TestHealOrDamage(unittest.TestCase):
         heal_or_damage(self.battle, split_msg)
         self.assertEqual('ironbarbs', self.battle.opponent.active.ability)
 
+    def test_sets_item_when_it_causes_the_bot_damage(self):
+        split_msg = ['', '-damage', 'p1a: Kartana', '167/319', '[from] item: Rocky Helmet', '[of] p2a: Ferrothorn']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual('rockyhelmet', self.battle.opponent.active.item)
+
     def test_damage_sets_opponents_active_pokemon_to_correct_hp(self):
         split_msg = ['', '-damage', 'p2a: Caterpie', '80/100']
         heal_or_damage(self.battle, split_msg)

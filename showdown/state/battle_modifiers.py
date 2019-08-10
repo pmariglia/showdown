@@ -111,7 +111,7 @@ def heal_or_damage(battle, split_msg):
         # set the ability if the information is shown
         if len(split_msg) >= 5 and constants.ABILITY in split_msg[4]:
             ability = normalize_name(split_msg[4].split(constants.ABILITY)[-1].strip(": "))
-            logger.debug("Setting opponent's item ability {}".format(ability))
+            logger.debug("Setting opponent's ability to: {}".format(ability))
             pkmn.ability = ability
 
     else:
@@ -119,8 +119,12 @@ def heal_or_damage(battle, split_msg):
             battle.user.side_conditions[constants.TOXIC_COUNT] += 1
         elif len(split_msg) == 6 and split_msg[4].startswith('[from] ability:') and battle.opponent.name in split_msg[5]:
             ability = normalize_name(split_msg[4].split('ability:')[-1])
-            logger.debug("Setting opponent's ability to {}".format(ability))
+            logger.debug("Setting opponent's ability to: {}".format(ability))
             battle.opponent.active.ability = ability
+        elif len(split_msg) == 6 and split_msg[4].startswith('[from] item:') and battle.opponent.name in split_msg[5]:
+            item = normalize_name(split_msg[4].split('item:')[-1])
+            logger.debug("Setting opponent's item to: {}".format(item))
+            battle.opponent.active.item = item
 
 
 def faint(battle, split_msg):
