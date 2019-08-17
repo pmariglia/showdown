@@ -184,7 +184,15 @@ def strengthsap(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
+def revelationdance(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.TYPE] = attacking_pokemon.types[0]
+
+    return attacking_move
+
+
 move_lookup = {
+    'revelationdance': revelationdance,
     'strengthsap': strengthsap,
     'toxic': toxic,
     'multiattack': multiattack,

@@ -505,6 +505,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_revelationdance_changes_type(self):
+        bot_move = "revelationdance"
+        opponent_move = "splash"
+        self.state.self.active.types = ['fire', 'water']
+        self.state.opponent.active.types = ['grass']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 144)  # would normally do 48 damage as a normal type move
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_moonblast_boosts_opponent_with_contrary(self):
         bot_move = "moonblast"
         opponent_move = "splash"
