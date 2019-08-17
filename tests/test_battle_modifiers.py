@@ -22,6 +22,7 @@ from showdown.state.battle_modifiers import set_opponent_ability_from_ability_ta
 from showdown.state.battle_modifiers import form_change
 from showdown.state.battle_modifiers import inactive
 from showdown.state.battle_modifiers import zpower
+from showdown.state.battle_modifiers import clearnegativeboost
 
 
 class TestRequestMessage(unittest.TestCase):
@@ -914,6 +915,69 @@ class TestInactive(unittest.TestCase):
         inactive(self.battle, split_msg)
 
         self.assertEqual(1, self.battle.time_remaining)
+
+
+class TestClearNegativeBoost(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.user_active = Pokemon('weedle', 100)
+        self.battle.user.active = self.user_active
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+
+    def test_clears_negative_boosts(self):
+        self.battle.opponent.active.boosts = {
+            constants.ATTACK: -1
+        }
+        split_msg = ['-clearnegativeboost', 'p2a: caterpie', '[silent]']
+        clearnegativeboost(self.battle, split_msg)
+
+        self.assertEqual(0, self.battle.opponent.active.boosts[constants.ATTACK])
+
+    def test_clears_multiple_negative_boosts(self):
+        self.battle.opponent.active.boosts = {
+            constants.ATTACK: -1,
+            constants.SPEED: -1
+        }
+        split_msg = ['-clearnegativeboost', 'p2a: caterpie', '[silent]']
+        clearnegativeboost(self.battle, split_msg)
+
+        self.assertEqual(0, self.battle.opponent.active.boosts[constants.ATTACK])
+        self.assertEqual(0, self.battle.opponent.active.boosts[constants.SPEED])
+
+    def test_does_not_clear_positive_boost(self):
+        self.battle.opponent.active.boosts = {
+            constants.ATTACK: 1
+        }
+        split_msg = ['-clearnegativeboost', 'p2a: caterpie', '[silent]']
+        clearnegativeboost(self.battle, split_msg)
+
+        self.assertEqual(1, self.battle.opponent.active.boosts[constants.ATTACK])
+
+    def test_clears_only_negative_boosts(self):
+        self.battle.opponent.active.boosts = {
+            constants.ATTACK: 1,
+            constants.SPECIAL_ATTACK: 1,
+            constants.SPEED: 1,
+            constants.DEFENSE: -1,
+            constants.SPECIAL_DEFENSE: -1
+        }
+        split_msg = ['-clearnegativeboost', 'p2a: caterpie', '[silent]']
+        clearnegativeboost(self.battle, split_msg)
+
+        expected_boosts = {
+            constants.ATTACK: 1,
+            constants.SPECIAL_ATTACK: 1,
+            constants.SPEED: 1,
+            constants.DEFENSE: 0,
+            constants.SPECIAL_DEFENSE: 0
+        }
+
+        self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
 
 
 class TestZPower(unittest.TestCase):

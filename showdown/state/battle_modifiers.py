@@ -356,6 +356,18 @@ def zpower(battle, split_msg):
         battle.opponent.active.item = None
 
 
+def clearnegativeboost(battle, split_msg):
+    if is_opponent(battle, split_msg):
+        pkmn = battle.opponent.active
+    else:
+        pkmn = battle.user.active
+
+    for stat, value in pkmn.boosts.items():
+        if value < 0:
+            logger.debug("Setting {}'s {} stat to 0".format(pkmn.name, stat))
+            pkmn.boosts[stat] = 0
+
+
 async def update_battle(battle, msg):
     msg_lines = msg.split('\n')
 
@@ -398,7 +410,8 @@ async def update_battle(battle, msg):
             'detailschange': form_change,
             'replace': form_change,
             '-formechange': form_change,
-            '-zpower': zpower
+            '-zpower': zpower,
+            '-clearnegativeboost': clearnegativeboost
         }
 
         function_to_call = battle_modifiers_lookup.get(action)
