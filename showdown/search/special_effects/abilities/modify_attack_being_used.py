@@ -235,7 +235,6 @@ def steelworker(attacking_move, attacking_pokemon, defending_pokemon, first_move
     if attacking_move[constants.TYPE] == 'steel':
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.5
-
     return attacking_move
 
 
@@ -243,7 +242,6 @@ def neuroforce(attacking_move, attacking_pokemon, defending_pokemon, first_move,
     if is_super_effective(attacking_move[constants.TYPE], defending_pokemon.types):
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.25
-
     return attacking_move
 
 
@@ -251,7 +249,6 @@ def blaze(attacking_move, attacking_pokemon, defending_pokemon, first_move, weat
     if attacking_move[constants.TYPE] == 'fire' and (attacking_pokemon.hp / attacking_pokemon.maxhp) <= 1/3:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.5
-
     return attacking_move
 
 
@@ -267,7 +264,6 @@ def overgrow(attacking_move, attacking_pokemon, defending_pokemon, first_move, w
     if attacking_move[constants.TYPE] == 'grass' and (attacking_pokemon.hp / attacking_pokemon.maxhp) <= 1/3:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.5
-
     return attacking_move
 
 
@@ -275,7 +271,6 @@ def swarm(attacking_move, attacking_pokemon, defending_pokemon, first_move, weat
     if attacking_move[constants.TYPE] == 'bug' and (attacking_pokemon.hp / attacking_pokemon.maxhp) <= 1/3:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.5
-
     return attacking_move
 
 
@@ -291,7 +286,6 @@ def sandforce(attacking_move, attacking_pokemon, defending_pokemon, first_move, 
     if weather == constants.SAND and attacking_move[constants.TYPE] in ['ground', 'rock', 'steel']:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.3
-
     return attacking_move
 
 
@@ -307,11 +301,17 @@ def fairyaura(attacking_move, attacking_pokemon, defending_pokemon, first_move, 
     if attacking_move[constants.TYPE] == 'fairy' and defending_pokemon.ability != 'aurabreak':
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.33
+    return attacking_move
 
+
+def prankster(attacking_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_move[constants.CATEGORY] == constants.STATUS:
+        attacking_move[constants.ACCURACY] = False
     return attacking_move
 
 
 ability_lookup = {
+    'prankster': prankster,
     'toughclaws': toughclaws,
     'fairyaura': fairyaura,
     'darkaura': darkaura,

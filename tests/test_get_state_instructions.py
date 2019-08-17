@@ -453,6 +453,40 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_prankster_spore_does_not_work_on_dark_type(self):
+        bot_move = "spore"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'prankster'
+        self.state.opponent.active.types = ['dark']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_prankster_physical_move_has_the_same_effect_on_dark_type(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'prankster'
+        self.state.opponent.active.types = ['dark']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_moonblast_boosts_opponent_with_contrary(self):
         bot_move = "moonblast"
         opponent_move = "splash"
