@@ -400,6 +400,59 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_thickclub_with_random_pokemon_does_not_double_attack(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.item = 'thickclub'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_thickclub_with_marowak_doubles_attack(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.item = 'thickclub'
+        self.state.self.active.id = 'marowak'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 49)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_thickclub_with_marowak_does_not_double_special_attack(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.self.active.item = 'thickclub'
+        self.state.self.active.id = 'marowak'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_moonblast_boosts_opponent_with_contrary(self):
         bot_move = "moonblast"
         opponent_move = "splash"
