@@ -40,7 +40,18 @@ def thickclub(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def whiteherb(attacking_move, attacking_pokemon, defending_pokemon):
+    if constants.BOOSTS in attacking_move and attacking_move[constants.TARGET] in constants.MOVE_TARGET_SELF:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
+        for k in attacking_move[constants.BOOSTS].copy():
+            if attacking_move[constants.BOOSTS][k] < 0:
+                del attacking_move[constants.BOOSTS][k]
+    return attacking_move
+
+
 item_lookup = {
+    'whiteherb': whiteherb,
     'thickclub': thickclub,
     'choiceband': choiceband,
     'choicespecs': choicespecs,

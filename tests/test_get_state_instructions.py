@@ -593,6 +593,25 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_shellsmash_with_whiteherb_doesnt_lower_stats(self):
+        bot_move = "shellsmash"
+        opponent_move = "splash"
+        self.state.self.active.item = 'whiteherb'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 2)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_superfang_does_half_health(self):
         bot_move = "superfang"
         opponent_move = "splash"
