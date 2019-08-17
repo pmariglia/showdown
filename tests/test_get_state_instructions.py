@@ -339,6 +339,67 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_strengthsap_lowers_attack_and_heals_user(self):
+        bot_move = "strengthsap"
+        opponent_move = "splash"
+        self.state.opponent.active.attack = 100
+        self.state.self.active.hp = 100
+        self.state.self.active.maxhp = 250
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -1),
+                    (constants.MUTATOR_HEAL, constants.SELF, 100)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_strengthsap_does_not_overheal(self):
+        bot_move = "strengthsap"
+        opponent_move = "splash"
+        self.state.opponent.active.attack = 100
+        self.state.self.active.hp = 200
+        self.state.self.active.maxhp = 250
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -1),
+                    (constants.MUTATOR_HEAL, constants.SELF, 50)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_strengthsap_when_targets_attack_is_lowered(self):
+        bot_move = "strengthsap"
+        opponent_move = "splash"
+        self.state.opponent.active.attack = 300
+        self.state.opponent.active.attack_boost = -1
+        self.state.self.active.hp = 1
+        self.state.self.active.maxhp = 250
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -1),
+                    (constants.MUTATOR_HEAL, constants.SELF, 200)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_moonblast_boosts_opponent_with_contrary(self):
         bot_move = "moonblast"
         opponent_move = "splash"

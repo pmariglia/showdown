@@ -170,7 +170,22 @@ def toxic(attacking_move, defending_move, attacking_pokemon, defending_pokemon, 
     return attacking_move
 
 
+def strengthsap(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.BOOSTS] = {
+        constants.ATTACK: -1
+    }
+    attacking_move[constants.HEAL] = [
+        defending_pokemon.calculate_boosted_stats()[constants.ATTACK],
+        attacking_pokemon.maxhp
+    ]
+    attacking_move[constants.HEAL_TARGET] = constants.SELF
+
+    return attacking_move
+
+
 move_lookup = {
+    'strengthsap': strengthsap,
     'toxic': toxic,
     'multiattack': multiattack,
     'solarbeam': solarbeam,
