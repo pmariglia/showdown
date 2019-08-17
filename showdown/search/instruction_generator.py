@@ -258,7 +258,7 @@ class InstructionGenerator:
 
         return instructions
 
-    def get_states_from_damage(self, mutator, defender, damage, accuracy, drain, recoil, crash, instruction):
+    def get_states_from_damage(self, mutator, defender, damage, accuracy, attacking_move, instruction):
         """Given self.state, generate multiple states based on all of the possible damage combinations
            This versions assumes that all damage deals a constant amount
            The different states are based on whether or not the attack misses
@@ -274,6 +274,11 @@ class InstructionGenerator:
         # for example, will-o-wisp
         if instruction.frozen or damage is None:
             return [instruction]
+
+        crash = attacking_move.get(constants.CRASH)
+        recoil = attacking_move.get(constants.RECOIL)
+        drain = attacking_move.get(constants.DRAIN)
+        move_flags = attacking_move.get(constants.FLAGS, {})
 
         mutator.apply(instruction.instructions)
 
@@ -306,7 +311,7 @@ class InstructionGenerator:
         instruction_additions = []
         move_missed_instruction = copy(instruction)
         if percent_hit > 0:
-            if constants.SUBSTITUTE in damage_side.active.volatile_status:
+            if constants.SUBSTITUTE in damage_side.active.volatile_status and constants.SOUND not in move_flags:
                 if damage >= damage_side.active.maxhp * 0.25:
                     actual_damage = damage_side.active.maxhp * 0.25
                     instruction_additions.append(

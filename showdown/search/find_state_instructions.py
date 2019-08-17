@@ -291,7 +291,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
             for dmg in damage_amounts:
                 these_instructions = copy(instruction_set)
                 these_instructions.update_percentage(1 / amount_of_damage_rolls)
-                temp_instructions += state_generator.get_states_from_damage(mutator, defender, dmg, move_accuracy, attacking_move.get(constants.DRAIN), attacking_move.get(constants.RECOIL), attacking_move.get(constants.CRASH), these_instructions)
+                temp_instructions += state_generator.get_states_from_damage(mutator, defender, dmg, move_accuracy, attacking_move, these_instructions)
         all_instructions = temp_instructions
 
     if side_condition is not None:

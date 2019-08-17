@@ -487,6 +487,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_sound_move_goes_through_substitute(self):
+        bot_move = "boomburst"
+        opponent_move = "splash"
+        self.state.opponent.active.hp = 1
+        self.state.opponent.active.volatile_status.add(constants.SUBSTITUTE)
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_moonblast_boosts_opponent_with_contrary(self):
         bot_move = "moonblast"
         opponent_move = "splash"
