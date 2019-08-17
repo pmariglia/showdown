@@ -523,6 +523,51 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_hydration_cures_sleep_at_end_of_turn_in_rain(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.active.status = constants.SLEEP
+        self.state.self.active.ability = 'hydration'
+        self.state.weather = constants.RAIN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.33,
+                [
+                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.SLEEP)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.6699999999999999,
+                [
+                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.SLEEP)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_hydration_cures_poison_before_it_does_damage(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.active.status = constants.POISON
+        self.state.self.active.ability = 'hydration'
+        self.state.weather = constants.RAIN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.POISON)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_moonblast_boosts_opponent_with_contrary(self):
         bot_move = "moonblast"
         opponent_move = "splash"

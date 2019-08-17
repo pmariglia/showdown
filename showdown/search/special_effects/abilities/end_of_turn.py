@@ -21,7 +21,17 @@ def speedboost(state, attacking_side, attacking_pokemon, defending_side, defendi
         )
 
 
+def hydration(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    if attacking_pokemon.status is not None and state.weather in [constants.RAIN, constants.HEAVY_RAIN]:
+        return (
+            constants.MUTATOR_REMOVE_STATUS,
+            attacking_side,
+            attacking_pokemon.status
+        )
+
+
 ability_lookup = {
+    "hydration": hydration,
     "speedboost": speedboost,
     "poisonheal": poisonheal,
 }
