@@ -3,10 +3,12 @@ import config
 
 from .find_state_instructions import get_all_state_instructions
 from showdown.helpers import battle_is_over
-from showdown.evaluate_state import evaluate
-from showdown.evaluate_state import scoring
-from showdown.decide.decide import pick_safest
+from showdown.evaluate import evaluate
+from showdown.decide import pick_safest
 from showdown.search.state_mutator import StateMutator
+
+
+WON_BATTLE = 100
 
 
 def get_possible_switches(side):
@@ -94,7 +96,7 @@ def get_move_combination_scores(mutator, depth=2, forced_options=None):
     """
     winner = battle_is_over(mutator.state)
     if winner:
-        return {(constants.DO_NOTHING_MOVE, constants.DO_NOTHING_MOVE): evaluate(mutator.state) + scoring.WON_BATTLE*depth*winner}
+        return {(constants.DO_NOTHING_MOVE, constants.DO_NOTHING_MOVE): evaluate(mutator.state) + WON_BATTLE*depth*winner}
 
     depth -= 1
     if forced_options:

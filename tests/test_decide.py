@@ -1,6 +1,6 @@
 import unittest
 
-from showdown.decide.decide import pick_safest
+from showdown.decide import pick_safest
 
 
 class TestPickSafest(unittest.TestCase):

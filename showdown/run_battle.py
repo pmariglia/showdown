@@ -9,11 +9,11 @@ import constants
 import config
 from config import logger
 from config import reset_logger
-from showdown.evaluate_state import scoring
-from showdown.decide.decide import pick_best_move
+from showdown.evaluate import Scoring
+from showdown.decide import pick_best_move
 from showdown.search.select_best_move import get_move_combination_scores
-from showdown.decide.decide import pick_safest
-from showdown.evaluate_state.evaluate import evaluate
+from showdown.decide import pick_safest
+from showdown.evaluate import evaluate
 from showdown.state.battle import Battle
 from showdown.state.pokemon import Pokemon
 from showdown.state.battle_modifiers import update_battle
@@ -225,7 +225,7 @@ def _find_best_move(battle: Battle):
 
 async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
     if "random" in pokemon_battle_type:
-        scoring.POKEMON_ALIVE_STATIC = 30  # random battle benefits from a lower static score for an alive pkmn
+        Scoring.POKEMON_ALIVE_STATIC = 30  # random battle benefits from a lower static score for an alive pkmn
         battle = await _start_random_battle(ps_websocket_client)
         await ps_websocket_client.send_message(battle.battle_tag, [config.greeting_message])
         loop = asyncio.get_event_loop()

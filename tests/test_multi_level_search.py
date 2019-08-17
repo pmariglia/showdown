@@ -5,7 +5,7 @@ import constants
 
 from collections import defaultdict
 from showdown.search.select_best_move import get_move_combination_scores
-from showdown.decide.decide import decide_from_safest
+from showdown.decide import decide_from_safest
 from showdown.search import select_best_move
 from showdown.search.objects import State
 from showdown.search.objects import Side

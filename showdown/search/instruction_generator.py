@@ -5,8 +5,8 @@ from config import logger
 from showdown.search.special_effects.abilities.on_switch_in import ability_on_switch_in
 from showdown.search.special_effects.items.end_of_turn import item_end_of_turn
 from showdown.search.special_effects.abilities.end_of_turn import ability_end_of_turn
-from showdown.calculate_damage import damage_multipication_array
-from showdown.calculate_damage import pokemon_type_indicies
+from showdown.damage_calculator import damage_multipication_array
+from showdown.damage_calculator import pokemon_type_indicies
 
 
 class InstructionGenerator:

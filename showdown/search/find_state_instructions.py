@@ -2,7 +2,7 @@ import config
 import constants
 from data import all_move_json
 from showdown.search.instruction_generator import InstructionGenerator
-from showdown.calculate_damage import DamageCalculator
+from showdown.damage_calculator import DamageCalculator
 from showdown.helpers import boost_multiplier_lookup
 from showdown.search.transpose_instruction import TransposeInstruction
 

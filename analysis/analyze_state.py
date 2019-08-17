@@ -2,8 +2,7 @@ import pandas as pd
 from showdown.search.objects import State
 from showdown.search.state_mutator import StateMutator
 from showdown.search.select_best_move import get_move_combination_scores
-from showdown.decide.decide import pick_from_nash_equilibria
-from showdown.decide.decide import pick_safest
+from showdown.decide import pick_safest
 from showdown.search.select_best_move import get_all_state_instructions
 
 import logging
