@@ -5,8 +5,14 @@ import json
 import time
 
 from config import logger
-from .exceptions import LoginError
-from .exceptions import SaveReplayError
+
+
+class LoginError(Exception):
+    pass
+
+
+class SaveReplayError(Exception):
+    pass
 
 
 class PSWebsocketClient:

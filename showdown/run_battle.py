@@ -19,7 +19,7 @@ from showdown.state.pokemon import Pokemon
 from showdown.state.battle_modifiers import update_battle
 from showdown.search.state_mutator import StateMutator
 
-from websocket_communication import PSWebsocketClient
+from showdown.websocket_client import PSWebsocketClient
 
 
 async def _handle_team_preview(battle: Battle, ps_websocket_client: PSWebsocketClient):

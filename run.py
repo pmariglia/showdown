@@ -8,7 +8,7 @@ from data.mods.apply_mods import apply_mods
 
 from teams import load_team
 from showdown.run_battle import pokemon_battle
-from websocket_communication import PSWebsocketClient
+from showdown.websocket_client import PSWebsocketClient
 
 import json
 from data import all_move_json
