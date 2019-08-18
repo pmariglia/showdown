@@ -127,6 +127,35 @@ class TestGetMovesForRandomBattles(unittest.TestCase):
         p.update_moves_for_random_battles()
         self.assertEqual(expected_moves, p.moves)
 
+    def test_gets_all_moves_when_an_unknown_set_is_there(self):
+        self.get_sets_mock.return_value = {
+            constants.SETS: {
+                "grassknot|hiddenpowerice60|voltswitch|volttackle": 16,
+                "grassknot|hiddenpowerice60|irontail|poisonjab": 33
+            },
+            constants.MOVES: {
+                "grassknot": 1,
+                "hiddenpowerice60": 1,
+                "voltswitch": 1,
+                "volttackle": 1,
+                "irontail": 1,
+                "poisonjab": 1,
+            }
+        }
+        expected_moves = [
+            Move("tackle"),
+            Move("grassknot"),
+            Move("hiddenpowerice60"),
+            Move("voltswitch"),
+            Move("volttackle"),
+            Move("irontail"),
+            Move("poisonjab")
+        ]
+        p = Pokemon('pikachu', 100)
+        p.moves = [Move("tackle")]
+        p.update_moves_for_random_battles()
+        self.assertEqual(expected_moves, p.moves)
+
     def test_gets_only_set_available(self):
         self.get_sets_mock.return_value = {
             constants.SETS: {

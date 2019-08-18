@@ -60,6 +60,11 @@ def get_all_possible_moves_for_random_battle(pkmn_name, known_moves):
             for m in filter(lambda x: x not in new_moves + known_moves, this_set_moves):
                 new_moves.append(m)
 
+    if not new_moves:
+        for m in sets[constants.MOVES]:
+            if m not in known_moves:
+                new_moves.append(m)
+
     return new_moves
 
 

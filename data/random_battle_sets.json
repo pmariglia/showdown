@@ -16312,6 +16312,57 @@
         },
         "count": 1142
     },
+    "ferroseed": {
+        "sets": {
+            "knockoff|leechseed|powerwhip|stealthrock": 28,
+            "gyroball|knockoff|protect|spikes": 56,
+            "powerwhip|protect|spikes|stealthrock": 35,
+            "leechseed|powerwhip|protect|stealthrock": 44,
+            "gyroball|leechseed|powerwhip|protect": 46,
+            "gyroball|leechseed|protect|spikes": 57,
+            "gyroball|protect|spikes|stealthrock": 42,
+            "gyroball|knockoff|leechseed|spikes": 29,
+            "gyroball|knockoff|powerwhip|protect": 32,
+            "gyroball|leechseed|spikes|stealthrock": 40,
+            "gyroball|leechseed|protect|stealthrock": 33,
+            "knockoff|leechseed|powerwhip|spikes": 44,
+            "gyroball|knockoff|leechseed|protect": 52,
+            "gyroball|leechseed|powerwhip|spikes": 43,
+            "gyroball|knockoff|spikes|stealthrock": 26,
+            "knockoff|powerwhip|protect|spikes": 52,
+            "leechseed|powerwhip|spikes|stealthrock": 28,
+            "leechseed|powerwhip|protect|spikes": 43,
+            "knockoff|leechseed|powerwhip|protect": 41,
+            "knockoff|powerwhip|spikes|stealthrock": 42,
+            "knockoff|powerwhip|protect|stealthrock": 31,
+            "gyroball|knockoff|leechseed|powerwhip": 46,
+            "gyroball|powerwhip|protect|spikes": 41,
+            "gyroball|knockoff|protect|stealthrock": 34,
+            "gyroball|knockoff|leechseed|stealthrock": 36,
+            "gyroball|knockoff|powerwhip|spikes": 47,
+            "gyroball|leechseed|powerwhip|stealthrock": 18,
+            "gyroball|knockoff|powerwhip|stealthrock": 24,
+            "gyroball|powerwhip|spikes|stealthrock": 24,
+            "gyroball|powerwhip|protect|stealthrock": 28
+        },
+        "moves": {
+            "knockoff": 620,
+            "leechseed": 628,
+            "powerwhip": 737,
+            "stealthrock": 513,
+            "spikes": 649,
+            "protect": 667,
+            "gyroball": 754
+        },
+        "abilities": {
+            "ironbarbs": 1142
+        },
+        "items": {
+            "rockyhelmet": 235,
+            "leftovers": 907
+        },
+        "count": 1142
+    },
     "swampertmega": {
         "sets": {
             "earthquake|raindance|superpower|waterfall": 315,
