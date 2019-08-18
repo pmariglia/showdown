@@ -24,6 +24,10 @@ PASS_ITEMS = {
     'lifeorb'
 }
 
+PASS_ABILITIES = {
+    'moldbreaker',
+}
+
 
 def _get_random_battle_set(pkmn):
     return all_random_battle_sets[pkmn]
@@ -71,7 +75,14 @@ def get_most_likely_ability_for_random_battle(pkmn_name):
         logger.warning("{} has no abilities in the random battle lookup!")
         return None
 
-    return sorted(abilities.items(), key=operator.itemgetter(1), reverse=True)[0][0]
+    best_ability = None
+    best_value = float('-inf')
+    for ability, value in sorted(abilities.items(), key=operator.itemgetter(1), reverse=True):
+        if value > best_value and ability not in PASS_ABILITIES:
+            best_value = value
+            best_ability = ability
+
+    return best_ability
 
 
 def get_most_likely_item_for_random_battle_pokemon(pkmn_name):
