@@ -306,6 +306,7 @@ def fairyaura(attacking_move, attacking_pokemon, defending_pokemon, first_move, 
 
 def prankster(attacking_move, attacking_pokemon, defending_pokemon, first_move, weather):
     if attacking_move[constants.CATEGORY] == constants.STATUS:
+        attacking_move = attacking_move.copy()
         attacking_move[constants.ACCURACY] = False
     return attacking_move
 
