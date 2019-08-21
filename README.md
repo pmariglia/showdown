@@ -21,7 +21,7 @@ WEBSOCKET_URI: (string, default is the official PokemonShowdown websocket addres
 PS_USERNAME: (string, required) Pokemon Showdown username
 PS_PASSWORD: (string) Pokemon Showdown password
 DECISION_METHOD: (string, default "safest") The decision making method. Options are "safest" and "nash". More on this in the Decision Logic section
-USE_RELATIVE_WEIGHTS: (bool, default True) Specifies whether or not to analyze each state and determine how valuable each pokemon is 
+USE_RELATIVE_WEIGHTS: (bool, default False) Specifies whether or not to analyze each state and determine how valuable each pokemon is 
 BOT_MODE: (string, required) The mode the the bot will operate in. Options are "CHALLENGE_USER", "SEARCH_LADDER", or "ACCEPT_CHALLENGE"
 USER_TO_CHALLENGE: (string, required if BOT_MODE is "CHALLENGE_USER") The user to challenge
 POKEMON_MODE: (string, required) The type of game this bot will play games in
