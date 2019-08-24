@@ -2,12 +2,12 @@ import unittest
 from collections import defaultdict
 
 import constants
-from showdown.search.state_mutator import StateMutator
-from showdown.search.objects.state import State
-from showdown.search.objects.side import Side
-from showdown.search.objects.pokemon import Pokemon
-from showdown.state.pokemon import Pokemon as StatePokemon
-from showdown.search.select_best_move import get_all_options
+from showdown.engine.state_mutator import StateMutator
+from showdown.engine.objects import State
+from showdown.engine.objects import Side
+from showdown.engine.objects import Pokemon
+from showdown.battle import Pokemon as StatePokemon
+from showdown.engine.select_best_move import get_all_options
 
 
 class TestGetAllOptions(unittest.TestCase):

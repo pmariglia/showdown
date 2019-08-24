@@ -1,9 +1,9 @@
 import pandas as pd
-from showdown.search.objects import State
-from showdown.search.state_mutator import StateMutator
-from showdown.search.select_best_move import get_move_combination_scores
+from showdown.engine.objects import State
+from showdown.engine.state_mutator import StateMutator
+from showdown.engine.select_best_move import get_payoff_matrix
 from showdown.decide import pick_safest
-from showdown.search.select_best_move import get_all_state_instructions
+from showdown.engine.select_best_move import get_all_state_instructions
 
 import logging
 from config import logger
@@ -18,7 +18,7 @@ mutator = StateMutator(state)
 
 instruction = get_all_state_instructions(mutator, 'flareblitz', 'nastyplot')
 
-scores = get_move_combination_scores(mutator, depth=2)
+scores = get_payoff_matrix(mutator, depth=2)
 
 df = pd.Series(scores).unstack()
 averages = df.mean(axis=1)

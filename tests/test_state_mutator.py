@@ -3,11 +3,11 @@ import unittest
 from collections import defaultdict
 import constants
 
-from showdown.state.pokemon import Pokemon as StatePokemon
-from showdown.search.objects import State
-from showdown.search.objects import Side
-from showdown.search.objects import Pokemon
-from showdown.search.state_mutator import StateMutator
+from showdown.battle import Pokemon as StatePokemon
+from showdown.engine.objects import State
+from showdown.engine.objects import Side
+from showdown.engine.objects import Pokemon
+from showdown.engine.state_mutator import StateMutator
 
 
 class TestStatemutator(unittest.TestCase):

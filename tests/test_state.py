@@ -1,6 +1,6 @@
 import unittest
 
-from showdown.search.objects.state import State
+from showdown.engine.objects import State
 
 
 class TestPokemonInit(unittest.TestCase):

@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import MagicMock
 import constants
-from showdown.search.special_effects.items.modify_attack_being_used import item_modify_attack_being_used
-from showdown.search.special_effects.items.modify_attack_against import item_modify_attack_against
+from showdown.engine.special_effects.items.modify_attack_being_used import item_modify_attack_being_used
+from showdown.engine.special_effects.items.modify_attack_against import item_modify_attack_against
 
 
 class TestChoiceBand(unittest.TestCase):

@@ -1,12 +1,12 @@
 import unittest
 import constants
-from showdown.search.instruction_generator import InstructionGenerator
-from showdown.state.pokemon import Pokemon as StatePokemon
-from showdown.search.state_mutator import StateMutator
-from showdown.search.objects import State
-from showdown.search.objects import Side
-from showdown.search.objects import Pokemon
-from showdown.search.transpose_instruction import TransposeInstruction
+from showdown.engine import instruction_generator
+from showdown.battle import Pokemon as StatePokemon
+from showdown.engine.state_mutator import StateMutator
+from showdown.engine.objects import State
+from showdown.engine.objects import Side
+from showdown.engine.objects import Pokemon
+from showdown.engine.transpose_instruction import TransposeInstruction
 from collections import defaultdict
 
 
@@ -43,7 +43,6 @@ class TestGetInstructionsFromFlinched(unittest.TestCase):
             False,
             False
         )
-        self.state_generator = InstructionGenerator()
         self.previous_instructions = TransposeInstruction(1, [], False)
 
     def test_flinch_sets_state_to_frozen_and_returns_one_state(self):
@@ -51,7 +50,7 @@ class TestGetInstructionsFromFlinched(unittest.TestCase):
 
         self.state.self.active.volatile_status.add(constants.FLINCH)
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_flinched(mutator, defender, self.previous_instructions)
+        instructions = instruction_generator.get_instructions_from_flinched(mutator, defender, self.previous_instructions)
 
         flinch_instruction = (
             constants.MUTATOR_REMOVE_VOLATILE_STATUS,
@@ -69,7 +68,7 @@ class TestGetInstructionsFromFlinched(unittest.TestCase):
         defender = constants.SELF
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_flinched(mutator, defender, self.previous_instructions)
+        instructions = instruction_generator.get_instructions_from_flinched(mutator, defender, self.previous_instructions)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False)
@@ -112,7 +111,6 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
             False,
             False
         )
-        self.state_generator = InstructionGenerator()
         self.move = {constants.FLAGS: dict()}
 
     def test_paralyzed_attacker_results_in_two_instructions(self):
@@ -122,7 +120,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         previous_instruction = TransposeInstruction(1.0, [], False)
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, previous_instruction)
+        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1 - constants.FULLY_PARALYZED_PERCENT, [], False),
@@ -138,7 +136,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         previous_instruction = TransposeInstruction(1.0, [], False)
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, previous_instruction)
+        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(constants.THAW_PERCENT, [], False),
@@ -154,7 +152,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         previous_instruction = TransposeInstruction(1.0, [], False)
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, previous_instruction)
+        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(constants.WAKE_UP_PERCENT, [], False),
@@ -175,7 +173,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, previous_instruction)
+        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], True)
@@ -196,7 +194,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, previous_instruction)
+        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(constants.WAKE_UP_PERCENT, [], True),
@@ -217,7 +215,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, previous_instruction)
+        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False)
@@ -260,7 +258,6 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
             False,
             False
         )
-        self.state_generator = InstructionGenerator()
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
     def test_100_percent_move_returns_one_state(self):
@@ -269,7 +266,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         accuracy = 100
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
 
         mutator_instructions = (
             constants.MUTATOR_DAMAGE,
@@ -292,7 +289,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         self.state.opponent.active.hp = 10
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {constants.DRAIN: [1, 2]}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {constants.DRAIN: [1, 2]}, self.previous_instruction)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -318,7 +315,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         accuracy = 100
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {constants.RECOIL: [1, 2]}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {constants.RECOIL: [1, 2]}, self.previous_instruction)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -344,7 +341,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         accuracy = 95
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {constants.CRASH: [1, 2]}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {constants.CRASH: [1, 2]}, self.previous_instruction)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -371,7 +368,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         accuracy = 100
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {constants.CRASH: [1, 2]}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {constants.CRASH: [1, 2]}, self.previous_instruction)
 
         crash_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -391,7 +388,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         accuracy = 95
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {constants.CRASH: [1, 2]}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {constants.CRASH: [1, 2]}, self.previous_instruction)
 
         crash_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -411,7 +408,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         accuracy = 50
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], True)
@@ -425,7 +422,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         accuracy = 100
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
 
         mutator_instructions = (
             constants.MUTATOR_DAMAGE,
@@ -445,7 +442,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         accuracy = 50
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
 
         mutator_instructions = (
             constants.MUTATOR_DAMAGE,
@@ -466,7 +463,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         accuracy = 75
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
 
         mutator_instructions = (
             constants.MUTATOR_DAMAGE,
@@ -487,7 +484,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         accuracy = 0
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], True),
@@ -504,7 +501,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         self.previous_instruction.percentage = 0.5
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
 
         mutator_instructions = (
             constants.MUTATOR_DAMAGE,
@@ -528,7 +525,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
         self.previous_instruction.frozen = True
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_damage(mutator, defender, damage, accuracy, {}, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(0.1, [], True)
@@ -570,7 +567,6 @@ class TestGetInstructionsFromSideConditions(unittest.TestCase):
             False,
             False
         )
-        self.state_generator = InstructionGenerator()
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
     def test_using_stealthrock_sets_side_condition(self):
@@ -578,7 +574,7 @@ class TestGetInstructionsFromSideConditions(unittest.TestCase):
         condition = constants.STEALTH_ROCK
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_side_conditions(mutator, constants.SELF, side_string, condition, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_side_conditions(mutator, constants.SELF, side_string, condition, self.previous_instruction)
 
         expected_mutator_instructions = (
             constants.MUTATOR_SIDE_START,
@@ -598,7 +594,7 @@ class TestGetInstructionsFromSideConditions(unittest.TestCase):
         condition = constants.SPIKES
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_side_conditions(mutator, constants.SELF, side_string, condition, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_side_conditions(mutator, constants.SELF, side_string, condition, self.previous_instruction)
 
         expected_mutator_instructions = (
             constants.MUTATOR_SIDE_START,
@@ -620,7 +616,7 @@ class TestGetInstructionsFromSideConditions(unittest.TestCase):
         self.state.opponent.side_conditions[constants.SPIKES] = 1
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_side_conditions(mutator, constants.SELF, side_string, condition, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_side_conditions(mutator, constants.SELF, side_string, condition, self.previous_instruction)
 
         expected_mutator_instructions = (
             constants.MUTATOR_SIDE_START,
@@ -642,7 +638,7 @@ class TestGetInstructionsFromSideConditions(unittest.TestCase):
         self.state.opponent.side_conditions[constants.SPIKES] = 3
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_side_conditions(mutator, constants.SELF, side_string, condition, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_side_conditions(mutator, constants.SELF, side_string, condition, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False)
@@ -657,7 +653,7 @@ class TestGetInstructionsFromSideConditions(unittest.TestCase):
         self.state.opponent.side_conditions[constants.STEALTH_ROCK] = 1
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_side_conditions(mutator, constants.SELF, side_string, condition, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_side_conditions(mutator, constants.SELF, side_string, condition, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False)
@@ -699,7 +695,6 @@ class TestGetInstructionsFromHazardClearingMoves(unittest.TestCase):
             False,
             False
         )
-        self.state_generator = InstructionGenerator()
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
     def test_rapidspin_clears_stealthrocks(self):
@@ -711,7 +706,7 @@ class TestGetInstructionsFromHazardClearingMoves(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, self.previous_instruction)
 
         expected_mutator_instructions = [(
             constants.MUTATOR_SIDE_END,
@@ -736,7 +731,7 @@ class TestGetInstructionsFromHazardClearingMoves(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, self.previous_instruction)
 
         expected_mutator_instructions = [
             (
@@ -773,7 +768,7 @@ class TestGetInstructionsFromHazardClearingMoves(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, self.previous_instruction)
 
         expected_mutator_instructions = [
             (
@@ -824,7 +819,7 @@ class TestGetInstructionsFromHazardClearingMoves(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, self.previous_instruction)
 
         expected_mutator_instructions = []
 
@@ -869,7 +864,6 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
             False,
             False
         )
-        self.state_generator = InstructionGenerator()
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
     def test_100_percent_status_returns_one_state(self):
@@ -878,7 +872,7 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
         defender = constants.SELF
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
 
         mutator_instructions = (
             constants.MUTATOR_APPLY_STATUS,
@@ -899,7 +893,7 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
         defender = constants.SELF
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False)
@@ -913,7 +907,7 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
         defender = constants.SELF
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
 
         mutator_instructions = (
             constants.MUTATOR_APPLY_STATUS,
@@ -937,7 +931,7 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
         self.state.self.active.status = constants.FROZEN
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False),
@@ -953,7 +947,7 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
         self.state.self.reserve['rattata'].status = constants.SLEEP
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False),
@@ -969,7 +963,7 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
         self.state.self.active.types = ['poison']
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False),
@@ -995,7 +989,7 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(
@@ -1015,7 +1009,7 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
         self.state.self.active.types = ['steel']
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False),
@@ -1032,7 +1026,7 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
         self.previous_instruction.frozen = True
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_status_effects(mutator, defender, status, accuracy, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], True),
@@ -1075,7 +1069,6 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
             False,
             False
         )
-        self.state_generator = InstructionGenerator()
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
     def test_no_boosts_results_in_one_unchanged_state(self):
@@ -1084,7 +1077,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         side = constants.SELF
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False)
@@ -1101,7 +1094,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         side = constants.SELF
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
 
         boost_instruction = (
             constants.MUTATOR_BOOST,
@@ -1125,7 +1118,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         side = constants.SELF
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
 
         boost_instruction = (
             constants.MUTATOR_BOOST,
@@ -1157,7 +1150,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         side = constants.SELF
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
 
         boost_instruction = (
             constants.MUTATOR_BOOST,
@@ -1197,7 +1190,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         side = constants.SELF
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
 
         boost_instruction = (
             constants.MUTATOR_BOOST,
@@ -1236,7 +1229,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         side = constants.SELF
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
 
         boost_instruction = (
             constants.MUTATOR_BOOST,
@@ -1259,7 +1252,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         side = constants.SELF
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
 
         boost_instruction = (
             constants.MUTATOR_BOOST,
@@ -1284,7 +1277,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         side = constants.SELF
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
 
         boost_instruction = (
             constants.MUTATOR_BOOST,
@@ -1308,7 +1301,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
 
         self.state.self.active.defense_boost = 1
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
 
         boost_instruction = (
             constants.MUTATOR_BOOST,
@@ -1334,7 +1327,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         self.state.self.active.defense_boost = 1
         self.state.self.active.speed_boost = 1
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_boosts(mutator, side, boosts, accuracy, self.previous_instruction)
 
         attack_boost_instruction = (
             constants.MUTATOR_BOOST,
@@ -1390,14 +1383,13 @@ class TestGetInstructionsFromFlinchingMoves(unittest.TestCase):
             False,
             False
         )
-        self.state_generator = InstructionGenerator()
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
     def test_30_percent_flinching_move_returns_two_states(self):
         accuracy = 30
         defender = constants.SELF
 
-        instructions = self.state_generator.get_states_from_flinching_moves(defender, accuracy, True, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_flinching_moves(defender, accuracy, True, self.previous_instruction)
 
         flinched_instruction = (
             constants.MUTATOR_APPLY_VOLATILE_STATUS,
@@ -1416,7 +1408,7 @@ class TestGetInstructionsFromFlinchingMoves(unittest.TestCase):
         accuracy = 100
         defender = constants.SELF
 
-        instructions = self.state_generator.get_states_from_flinching_moves(defender, accuracy, True, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_flinching_moves(defender, accuracy, True, self.previous_instruction)
 
         flinched_instruction = (
             constants.MUTATOR_APPLY_VOLATILE_STATUS,
@@ -1434,7 +1426,7 @@ class TestGetInstructionsFromFlinchingMoves(unittest.TestCase):
         accuracy = 0
         defender = constants.SELF
 
-        instructions = self.state_generator.get_states_from_flinching_moves(defender, accuracy, True, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_flinching_moves(defender, accuracy, True, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False),
@@ -1447,7 +1439,7 @@ class TestGetInstructionsFromFlinchingMoves(unittest.TestCase):
         defender = constants.SELF
 
         self.previous_instruction.percentage = 0.5
-        instructions = self.state_generator.get_states_from_flinching_moves(defender, accuracy, True, self.previous_instruction)
+        instructions = instruction_generator.get_states_from_flinching_moves(defender, accuracy, True, self.previous_instruction)
 
         flinched_instruction = (
             constants.MUTATOR_APPLY_VOLATILE_STATUS,
@@ -1497,7 +1489,6 @@ class TestGetStateFromSwitch(unittest.TestCase):
             False,
             False
         )
-        self.state_generator = InstructionGenerator()
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
     def test_basic_switch_with_no_side_effects(self):
@@ -1514,7 +1505,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ], False)]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1550,7 +1541,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         )]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1576,7 +1567,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1603,7 +1594,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1630,7 +1621,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1655,7 +1646,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1683,7 +1674,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1711,7 +1702,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1733,7 +1724,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1758,7 +1749,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1780,7 +1771,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1806,7 +1797,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1828,7 +1819,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1850,7 +1841,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1872,7 +1863,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1903,7 +1894,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1934,7 +1925,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1960,7 +1951,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -1991,7 +1982,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -2023,7 +2014,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -2054,7 +2045,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -2085,7 +2076,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -2112,7 +2103,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -2144,7 +2135,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -2176,7 +2167,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -2208,7 +2199,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -2235,7 +2226,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         ]
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
 
         self.assertEqual(expected_instructions, instructions)
 
@@ -2273,7 +2264,6 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
             False,
             False
         )
-        self.state_generator = InstructionGenerator()
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
     def test_returns_one_state_with_health_recovered(self):
@@ -2286,7 +2276,7 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
 
         heal_instruction = (
             constants.MUTATOR_HEAL,
@@ -2318,7 +2308,7 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
 
         heal_instruction = (
             constants.MUTATOR_HEAL,
@@ -2351,7 +2341,7 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, self.previous_instruction.instructions, False),
@@ -2369,7 +2359,7 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False),
@@ -2386,7 +2376,7 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
 
         heal_instruction = (
             constants.MUTATOR_HEAL,
@@ -2411,7 +2401,7 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
         self.previous_instruction.frozen = True
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_attacker_recovery(mutator, attacker, move, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], True),
@@ -2453,7 +2443,6 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
             False,
             False
         )
-        self.state_generator = InstructionGenerator()
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
     def test_returns_one_state_with_volatile_status_set(self):
@@ -2461,7 +2450,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
         attacker = constants.OPPONENT
         target = constants.NORMAL
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
 
         instruction = (
             constants.MUTATOR_APPLY_VOLATILE_STATUS,
@@ -2482,7 +2471,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
         self.previous_instruction.frozen = True
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], True),
@@ -2497,7 +2486,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
         self.state.self.active.volatile_status.add('confusion')
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
 
         instruction = (
             constants.MUTATOR_APPLY_VOLATILE_STATUS,
@@ -2518,7 +2507,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
         self.state.self.active.volatile_status.add(volatile_status)
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False),
@@ -2533,7 +2522,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
         self.state.self.active.volatile_status.add('substitute')
 
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False),
@@ -2575,14 +2564,13 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
             False,
             False
         )
-        self.state_generator = InstructionGenerator()
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
     def test_poison_does_one_eigth_damage(self):
         side = constants.SELF
         self.state.self.active.status = constants.POISON
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2601,7 +2589,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.status = constants.TOXIC
         self.state.self.side_conditions[constants.TOXIC_COUNT] = 0
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2627,7 +2615,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.status = constants.TOXIC
         self.state.self.side_conditions[constants.TOXIC_COUNT] = 1
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2653,7 +2641,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.status = constants.TOXIC
         self.state.self.side_conditions[constants.TOXIC_COUNT] = 3
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2679,7 +2667,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.status = constants.POISON
         self.state.self.active.hp = 1
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2700,7 +2688,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.opponent.active.maxhp = 100
         self.state.opponent.active.hp = 50
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2726,7 +2714,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.opponent.active.maxhp = 100
         self.state.opponent.active.hp = 50
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2752,7 +2740,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.opponent.active.maxhp = 100
         self.state.opponent.active.hp = 99
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2779,7 +2767,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.opponent.active.maxhp = 100
         self.state.opponent.active.hp = 99
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2798,7 +2786,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 1
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_HEAL,
@@ -2818,7 +2806,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 1
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_HEAL,
@@ -2837,7 +2825,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 99
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_HEAL,
@@ -2856,7 +2844,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 1
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2875,7 +2863,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 100
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2896,7 +2884,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 50
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.HEAL,
@@ -2916,7 +2904,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 50
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.DAMAGE,
@@ -2941,7 +2929,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 5
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.DAMAGE,
@@ -2966,7 +2954,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 5
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -2986,7 +2974,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 1
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -3007,7 +2995,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 6
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         heal_instruction = (
             constants.MUTATOR_HEAL,
@@ -3040,7 +3028,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 6
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -3064,7 +3052,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         previous_instruction = (constants.MUTATOR_DAMAGE, constants.SELF, 25)
         self.previous_instruction = TransposeInstruction(1.0, [previous_instruction], False)
 
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -3086,7 +3074,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.opponent.active.maxhp = 100
         self.state.opponent.active.hp = 30
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         self_damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -3112,7 +3100,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.opponent.active.maxhp = 100
         self.state.opponent.active.hp = 30
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         self_damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -3139,7 +3127,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.opponent.active.maxhp = 100
         self.state.opponent.active.hp = 30
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         opponent_damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -3161,7 +3149,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.opponent.active.maxhp = 100
         self.state.opponent.active.hp = 30
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         opponent_damage_instruction = (
             constants.MUTATOR_DAMAGE,
@@ -3191,7 +3179,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.opponent.active.volatile_status.add(constants.LEECH_SEED)
         self.state.opponent.active.types = ['normal']
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         self_leftovers = (
             constants.MUTATOR_HEAL,
@@ -3281,7 +3269,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self.state.opponent.active.volatile_status.add(constants.LEECH_SEED)
         self.state.opponent.active.types = ['normal']
         mutator = StateMutator(self.state)
-        instructions = self.state_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
+        instructions = instruction_generator.get_end_of_turn_instructions(mutator, self.previous_instruction, True)
 
         self_leftovers = (
             constants.MUTATOR_HEAL,

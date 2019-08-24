@@ -1,6 +1,6 @@
 import unittest
-from showdown.state.battler import Battler
-from showdown.state.pokemon import Pokemon
+from showdown.battle import Battler
+from showdown.battle import Pokemon
 
 
 class TestInitializeBattler(unittest.TestCase):

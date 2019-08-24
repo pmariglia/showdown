@@ -3,8 +3,8 @@ from unittest import mock
 
 import constants
 
-from showdown.state.pokemon import Pokemon
-from showdown.state.pokemon import Move
+from showdown.battle import Pokemon
+from showdown.battle import Move
 
 
 class TestPokemonInit(unittest.TestCase):

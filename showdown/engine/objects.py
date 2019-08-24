@@ -1,5 +1,103 @@
+from collections import defaultdict
+
 import constants
 from showdown.helpers import boost_multiplier_lookup
+
+
+class State(object):
+    __slots__ = ('self', 'opponent', 'weather', 'force_switch', 'field', 'trick_room', 'wait')
+
+    def __init__(self, user, opponent, weather, field, trick_room, force_switch, wait):
+        self.self = user
+        self.opponent = opponent
+        self.weather = weather
+        self.field = field
+        self.trick_room = trick_room
+        self.force_switch = force_switch
+        self.wait = wait
+
+    @classmethod
+    def from_dict(cls, state_dict):
+        return State(
+            Side.from_dict(state_dict[constants.SELF]),
+            Side.from_dict(state_dict[constants.OPPONENT]),
+            state_dict[constants.WEATHER],
+            state_dict[constants.FIELD],
+            state_dict[constants.TRICK_ROOM],
+            state_dict[constants.FORCE_SWITCH],
+            state_dict[constants.WAIT],
+        )
+
+    def __repr__(self):
+        return str(
+            {
+                constants.SELF: self.self,
+                constants.OPPONENT: self.opponent,
+                constants.WEATHER: self.weather,
+                constants.FIELD: self.field,
+                constants.TRICK_ROOM: self.trick_room,
+                constants.FORCE_SWITCH: self.force_switch,
+                constants.WAIT: self.wait
+            }
+        )
+
+    def __key(self):
+        return (
+            hash(self.self),
+            hash(self.opponent),
+            self.weather,
+            self.field,
+            self.trick_room,
+            self.force_switch,
+            self.wait
+        )
+
+    def __hash__(self):
+        return hash(self.__key())
+
+    def __eq__(self, other):
+        return self.__key() == other.__key()
+
+
+class Side(object):
+    __slots__ = ('active', 'reserve', 'side_conditions', 'trapped')
+
+    def __init__(self, active, reserve, side_conditions, trapped):
+        self.active = active
+        self.reserve = reserve
+        self.side_conditions = side_conditions
+        self.trapped = trapped
+
+    @classmethod
+    def from_dict(cls, side_dict):
+        return Side(
+            Pokemon.from_dict(side_dict[constants.ACTIVE]),
+            {p[constants.ID]: Pokemon.from_dict(p) for p in side_dict[constants.RESERVE].values()},
+            defaultdict(int, side_dict[constants.SIDE_CONDITIONS]),
+            side_dict[constants.TRAPPED]
+        )
+
+    def __repr__(self):
+        return str({
+                constants.ACTIVE: self.active,
+                constants.RESERVE: self.reserve,
+                constants.SIDE_CONDITIONS: dict(self.side_conditions),
+                constants.TRAPPED: self.trapped
+            })
+
+    def __key(self):
+        return (
+            hash(self.active),
+            sum(hash(p.reserve_hash()) for p in self.reserve.values()),
+            hash(frozenset(self.side_conditions.items())),
+            self.trapped
+        )
+
+    def __eq__(self, other):
+        return self.__key() == other.__key()
+
+    def __hash__(self):
+        return hash(self.__key())
 
 
 class Pokemon(object):

@@ -1,23 +1,20 @@
+from copy import copy
+
 import config
 import constants
 from data import all_move_json
-from showdown.search.instruction_generator import InstructionGenerator
-from showdown.damage_calculator import DamageCalculator
+from showdown.damage_calculator import calculate_damage
 from showdown.helpers import boost_multiplier_lookup
-from showdown.search.transpose_instruction import TransposeInstruction
 
-from showdown.search.special_effects.abilities.modify_attack_against import ability_modify_attack_against
-from showdown.search.special_effects.abilities.modify_attack_being_used import ability_modify_attack_being_used
-from showdown.search.special_effects.items.modify_attack_against import item_modify_attack_against
-from showdown.search.special_effects.items.modify_attack_being_used import item_modify_attack_being_used
-from showdown.search.special_effects.moves.move_special_effect import modify_attack_being_used
-from showdown.search.switch_out_moves import switch_out_move_triggered
-from showdown.search.switch_out_moves import get_best_switch_pokemon
-
-from copy import copy
-
-damage_calculator = DamageCalculator()
-state_generator = InstructionGenerator()
+from . import instruction_generator
+from .transpose_instruction import TransposeInstruction
+from .special_effects.abilities.modify_attack_against import ability_modify_attack_against
+from .special_effects.abilities.modify_attack_being_used import ability_modify_attack_being_used
+from .special_effects.items.modify_attack_against import item_modify_attack_against
+from .special_effects.items.modify_attack_being_used import item_modify_attack_being_used
+from .special_effects.moves.move_special_effect import modify_attack_being_used
+from .switch_out_moves import switch_out_move_triggered
+from .switch_out_moves import get_best_switch_pokemon
 
 
 def lookup_move(move_name):
@@ -161,11 +158,11 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     instructions.frozen = False
 
     if constants.SWITCH_STRING in attacking_move:
-        return state_generator.get_instructions_from_switch(mutator, attacker, attacking_move[constants.SWITCH_STRING], instructions)
+        return instruction_generator.get_instructions_from_switch(mutator, attacker, attacking_move[constants.SWITCH_STRING], instructions)
 
     mutator.apply(instructions.instructions)
-    attacking_side = InstructionGenerator.get_side_from_state(mutator.state, attacker)
-    defending_side = InstructionGenerator.get_side_from_state(mutator.state, defender)
+    attacking_side = instruction_generator.get_side_from_state(mutator.state, attacker)
+    defending_side = instruction_generator.get_side_from_state(mutator.state, defender)
     attacking_pokemon = attacking_side.active
     defending_pokemon = defending_side.active
     active_weather = mutator.state.weather
@@ -183,7 +180,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     if attacking_pokemon.hp == 0:
         mutator.reverse(instructions.instructions)
-        all_instructions = state_generator.get_instructions_from_flinched(mutator, attacker, instructions)
+        all_instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
         return all_instructions
 
     attacking_move = update_damage_calc_from_abilities_and_items(
@@ -219,7 +216,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     # move is a damaging move
     if attacking_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
-        damage_amounts = damage_calculator.calculate_damage(attacking_pokemon, defending_pokemon, attacking_move, conditions=conditions, calc_type=config.damage_calc_type)
+        damage_amounts = calculate_damage(attacking_pokemon, defending_pokemon, attacking_move, conditions=conditions, calc_type=config.damage_calc_type)
 
         attacking_move_secondary = attacking_move[constants.SECONDARY]
         attacking_move_self = attacking_move.get(constants.SELF)
@@ -277,11 +274,11 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     mutator.reverse(instructions.instructions)
 
-    all_instructions = state_generator.get_instructions_from_flinched(mutator, attacker, instructions)
+    all_instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
 
     temp_instructions = []
     for instruction_set in all_instructions:
-        temp_instructions += state_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, attacking_move, instruction_set)
+        temp_instructions += instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, attacking_move, instruction_set)
     all_instructions = temp_instructions
 
     if damage_amounts is not None:
@@ -291,54 +288,54 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
             for dmg in damage_amounts:
                 these_instructions = copy(instruction_set)
                 these_instructions.update_percentage(1 / amount_of_damage_rolls)
-                temp_instructions += state_generator.get_states_from_damage(mutator, defender, dmg, move_accuracy, attacking_move, these_instructions)
+                temp_instructions += instruction_generator.get_states_from_damage(mutator, defender, dmg, move_accuracy, attacking_move, these_instructions)
         all_instructions = temp_instructions
 
     if side_condition is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += state_generator.get_instructions_from_side_conditions(mutator, attacker, move_target, side_condition, instruction_set)
+            temp_instructions += instruction_generator.get_instructions_from_side_conditions(mutator, attacker, move_target, side_condition, instruction_set)
         all_instructions = temp_instructions
 
     if hazard_clearing_move is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += state_generator.get_instructions_from_hazard_clearing_moves(mutator, attacker, attacking_move, instruction_set)
+            temp_instructions += instruction_generator.get_instructions_from_hazard_clearing_moves(mutator, attacker, attacking_move, instruction_set)
         all_instructions = temp_instructions
 
     if volatile_status is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += state_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, move_target, instruction_set)
+            temp_instructions += instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, move_target, instruction_set)
         all_instructions = temp_instructions
 
     if move_status_effect is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += state_generator.get_states_from_status_effects(mutator, move_status_target, move_status_effect, move_status_accuracy, instruction_set)
+            temp_instructions += instruction_generator.get_states_from_status_effects(mutator, move_status_target, move_status_effect, move_status_accuracy, instruction_set)
         all_instructions = temp_instructions
 
     if boosts is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += state_generator.get_states_from_boosts(mutator, boosts_target, boosts, boosts_chance, instruction_set)
+            temp_instructions += instruction_generator.get_states_from_boosts(mutator, boosts_target, boosts, boosts_chance, instruction_set)
         all_instructions = temp_instructions
 
     if attacking_move.get(constants.HEAL) is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += state_generator.get_state_from_attacker_recovery(mutator, attacker, attacking_move, instruction_set)
+            temp_instructions += instruction_generator.get_state_from_attacker_recovery(mutator, attacker, attacking_move, instruction_set)
         all_instructions = temp_instructions
 
     if flinch_accuracy is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += state_generator.get_states_from_flinching_moves(defender, flinch_accuracy, first_move, instruction_set)
+            temp_instructions += instruction_generator.get_states_from_flinching_moves(defender, flinch_accuracy, first_move, instruction_set)
         all_instructions = temp_instructions
 
     temp_instructions = []
     for instruction_set in all_instructions:
-        temp_instructions += state_generator.get_state_from_drag(mutator, attacking_move, attacker, move_target, instruction_set)
+        temp_instructions += instruction_generator.get_state_from_drag(mutator, attacking_move, attacker, move_target, instruction_set)
     all_instructions = temp_instructions
 
     if switch_out_move_triggered(attacking_move, damage_amounts):
@@ -346,7 +343,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         for i in all_instructions:
             best_switch = get_best_switch_pokemon(mutator, i, attacker, attacking_side, defending_move, first_move)
             if best_switch is not None:
-                temp_instructions += state_generator.get_instructions_from_switch(mutator, attacker, best_switch, i)
+                temp_instructions += instruction_generator.get_instructions_from_switch(mutator, attacker, best_switch, i)
             else:
                 temp_instructions.append(i)
 
@@ -375,7 +372,7 @@ def get_all_state_instructions(mutator, user_move_string, opponent_move_string):
 
     temp_instructions = []
     for instruction_set in all_instructions:
-        temp_instructions += state_generator.get_end_of_turn_instructions(mutator, instruction_set, bot_moves_first)
+        temp_instructions += instruction_generator.get_end_of_turn_instructions(mutator, instruction_set, bot_moves_first)
     all_instructions = temp_instructions
 
     return all_instructions

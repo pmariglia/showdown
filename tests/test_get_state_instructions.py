@@ -2,15 +2,15 @@ import unittest
 import config
 import constants
 from collections import defaultdict
-from showdown.search.transpose_instruction import TransposeInstruction
-from showdown.search.find_state_instructions import get_all_state_instructions
-from showdown.search.find_state_instructions import lookup_move
-from showdown.search.find_state_instructions import user_moves_first
-from showdown.search.objects import State
-from showdown.search.objects import Pokemon
-from showdown.search.objects import Side
-from showdown.state.pokemon import Pokemon as StatePokemon
-from showdown.search.state_mutator import StateMutator
+from showdown.engine.transpose_instruction import TransposeInstruction
+from showdown.engine.find_state_instructions import get_all_state_instructions
+from showdown.engine.find_state_instructions import lookup_move
+from showdown.engine.find_state_instructions import user_moves_first
+from showdown.engine.objects import State
+from showdown.engine.objects import Pokemon
+from showdown.engine.objects import Side
+from showdown.battle import Pokemon as StatePokemon
+from showdown.engine.state_mutator import StateMutator
 
 
 class TestGetStateInstructions(unittest.TestCase):

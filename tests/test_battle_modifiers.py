@@ -2,27 +2,27 @@ import unittest
 import json
 
 import constants
-from showdown.state.battle import Battle
-from showdown.state.pokemon import Pokemon
-from showdown.state.move import Move
+from showdown.battle import Battle
+from showdown.battle import Pokemon
+from showdown.battle import Move
 
-from showdown.state.battle_modifiers import request
-from showdown.state.battle_modifiers import switch_or_drag
-from showdown.state.battle_modifiers import heal_or_damage
-from showdown.state.battle_modifiers import move
-from showdown.state.battle_modifiers import boost
-from showdown.state.battle_modifiers import unboost
-from showdown.state.battle_modifiers import status
-from showdown.state.battle_modifiers import weather
-from showdown.state.battle_modifiers import curestatus
-from showdown.state.battle_modifiers import start_volatile_status
-from showdown.state.battle_modifiers import end_volatile_status
-from showdown.state.battle_modifiers import set_opponent_ability
-from showdown.state.battle_modifiers import set_opponent_ability_from_ability_tag
-from showdown.state.battle_modifiers import form_change
-from showdown.state.battle_modifiers import inactive
-from showdown.state.battle_modifiers import zpower
-from showdown.state.battle_modifiers import clearnegativeboost
+from showdown.battle_modifier import request
+from showdown.battle_modifier import switch_or_drag
+from showdown.battle_modifier import heal_or_damage
+from showdown.battle_modifier import move
+from showdown.battle_modifier import boost
+from showdown.battle_modifier import unboost
+from showdown.battle_modifier import status
+from showdown.battle_modifier import weather
+from showdown.battle_modifier import curestatus
+from showdown.battle_modifier import start_volatile_status
+from showdown.battle_modifier import end_volatile_status
+from showdown.battle_modifier import set_opponent_ability
+from showdown.battle_modifier import set_opponent_ability_from_ability_tag
+from showdown.battle_modifier import form_change
+from showdown.battle_modifier import inactive
+from showdown.battle_modifier import zpower
+from showdown.battle_modifier import clearnegativeboost
 
 
 class TestRequestMessage(unittest.TestCase):

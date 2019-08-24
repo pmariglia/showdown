@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import MagicMock
 import constants
-from showdown.search.special_effects.abilities.modify_attack_against import ability_modify_attack_against
-from showdown.search.special_effects.abilities.modify_attack_being_used import ability_modify_attack_being_used
+from showdown.engine.special_effects.abilities.modify_attack_against import ability_modify_attack_against
+from showdown.engine.special_effects.abilities.modify_attack_being_used import ability_modify_attack_being_used
 
 
 class TestLevitate(unittest.TestCase):

@@ -2,7 +2,7 @@ import re
 import json
 import constants
 from config import logger
-from showdown.state.pokemon import Pokemon
+from showdown.battle import Pokemon
 from showdown.helpers import normalize_name
 
 

@@ -3,7 +3,7 @@ import unittest
 from showdown.helpers import battle_is_over
 from showdown.helpers import get_pokemon_info_from_condition
 from showdown.helpers import normalize_name
-from showdown.search.objects import State
+from showdown.engine.objects import State
 
 
 class TestBattleIsOver(unittest.TestCase):
