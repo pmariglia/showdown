@@ -23,9 +23,10 @@ async def _handle_team_preview(battle: Battle, ps_websocket_client: PSWebsocketC
 
     loop = asyncio.get_event_loop()
     with concurrent.futures.ThreadPoolExecutor() as pool:
-        formatted_message = await loop.run_in_executor(
+        best_move = await loop.run_in_executor(
             pool, find_best_move, battle_copy
         )
+    formatted_message = await format_decision(battle, best_move)
     size_of_team = len(battle.user.reserve) + 1
     team_list_indexes = list(range(1, size_of_team))
     choice_digit = int(formatted_message[0].split()[-1])
@@ -111,6 +112,28 @@ async def _start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon
     return battle
 
 
+async def format_decision(battle, decision):
+    if decision.startswith(constants.SWITCH_STRING) and decision != "switcheroo":
+        switch_pokemon = decision.split("switch ")[-1]
+        for pkmn in battle.user.reserve:
+            if pkmn.name == switch_pokemon:
+                message = "/switch {}".format(pkmn.index)
+                break
+        else:
+            raise ValueError("Tried to switch to: {}".format(switch_pokemon))
+    else:
+        message = "/choose move {}".format(decision)
+        if battle.user.active.can_mega_evo:
+            message = "{} {}".format(message, constants.MEGA)
+        elif battle.user.active.can_ultra_burst:
+            message = "{} {}".format(message, constants.ULTRA_BURST)
+
+        if battle.user.active.get_move(decision).can_z:
+            message = "{} {}".format(message, constants.ZMOVE)
+
+    return [message, str(battle.rqid)]
+
+
 async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
     if "random" in pokemon_battle_type:
         Scoring.POKEMON_ALIVE_STATIC = 30  # random battle benefits from a lower static score for an alive pkmn
@@ -118,9 +141,10 @@ async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_
         await ps_websocket_client.send_message(battle.battle_tag, [config.greeting_message])
         loop = asyncio.get_event_loop()
         with concurrent.futures.ThreadPoolExecutor() as pool:
-            formatted_message = await loop.run_in_executor(
+            best_move = await loop.run_in_executor(
                 pool, find_best_move, battle
             )
+        formatted_message = await format_decision(battle, best_move)
         await ps_websocket_client.send_message(battle.battle_tag, formatted_message)
     else:
         battle = await _start_standard_battle(ps_websocket_client, pokemon_battle_type)
@@ -138,8 +162,8 @@ async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_
         if action_required and not battle.wait:
             loop = asyncio.get_event_loop()
             with concurrent.futures.ThreadPoolExecutor() as pool:
-                formatted_message = await loop.run_in_executor(
+                best_move = await loop.run_in_executor(
                     pool, find_best_move, battle
                 )
-            if formatted_message is not None:
-                await ps_websocket_client.send_message(battle.battle_tag, formatted_message)
+            formatted_message = await format_decision(battle, best_move)
+            await ps_websocket_client.send_message(battle.battle_tag, formatted_message)
