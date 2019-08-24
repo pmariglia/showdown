@@ -4557,6 +4557,27 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_misty_terrain_does_not_block_status_on_ungrounded_pkmn(self):
+        bot_move = "splash"
+        opponent_move = "spore"
+        self.state.self.active.types = ['flying']
+        self.state.field = constants.MISTY_TERRAIN
+        self.state.opponent.active.maxhp = 100
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 50
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.SLEEP)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_electric_terrain_blocks_sleep(self):
         bot_move = "splash"
         opponent_move = "spore"

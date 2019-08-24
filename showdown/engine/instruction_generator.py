@@ -968,7 +968,7 @@ def _immune_to_status(state, defending_pkmn, attacking_pkmn, status):
         return True
     if defending_pkmn.ability == 'comatose':
         return True
-    if state.field == constants.MISTY_TERRAIN:
+    if state.field == constants.MISTY_TERRAIN and defending_pkmn.is_grounded():
         return True
 
     if status == constants.FROZEN and (defending_pkmn.ability in constants.IMMUNE_TO_FROZEN_ABILITIES):
