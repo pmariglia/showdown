@@ -1,3 +1,4 @@
+import ntpath
 import re
 from datetime import datetime
 from dateutil import relativedelta
@@ -17,7 +18,7 @@ ability_string = "abilities"
 PERCENTAGES_REGEX = '[\d\.% ]'
 
 
-def get_smogon_stats_file_name(game_mode):
+def get_smogon_stats_file_name(game_mode, month_delta=1):
     """
     Gets the smogon stats url based on the game mode
     Uses the previous-month's statistics
@@ -26,7 +27,7 @@ def get_smogon_stats_file_name(game_mode):
     # always use the `-0` file - the higher ladder is for noobs
     smogon_url = "https://www.smogon.com/stats/{}-{}/moveset/{}-0.txt"
 
-    previous_month = datetime.now() - relativedelta.relativedelta(months=2)
+    previous_month = datetime.now() - relativedelta.relativedelta(months=month_delta)
     year = previous_month.year
     month = "{:02d}".format(previous_month.month)
 
@@ -38,6 +39,8 @@ def get_pokemon_information(smogon_stats_url):
        Returns a dictionary containing the most likely spreads, items, and moves for each pokemon in order of likelihood
     """
     r = requests.get(smogon_stats_url)
+    if r.status_code == 404:
+        r = requests.get(get_smogon_stats_file_name(ntpath.basename(smogon_stats_url.replace('-0.txt', '')), month_delta=2))
 
     split_string = str(r.content).split(new_pokemon_indicator)
 

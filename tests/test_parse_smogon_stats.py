@@ -15,20 +15,20 @@ class TestGetSmogonStatsFileName(unittest.TestCase):
 
     def test_returns_single_digit_month_properly(self):
         self.datetime_mock.now.return_value = self.current_date_mock
-        file_name = get_smogon_stats_file_name('gen7ou')
+        file_name = get_smogon_stats_file_name('gen7ou', month_delta=2)
 
         self.assertEqual('https://www.smogon.com/stats/2019-04/moveset/gen7ou-0.txt', file_name)
 
     def test_works_with_double_digit_month(self):
         self.current_date_mock = date(2019, 11, 5)
         self.datetime_mock.now.return_value = self.current_date_mock
-        file_name = get_smogon_stats_file_name('gen7ou')
+        file_name = get_smogon_stats_file_name('gen7ou', month_delta=2)
 
         self.assertEqual('https://www.smogon.com/stats/2019-09/moveset/gen7ou-0.txt', file_name)
 
     def test_returns_previous_year_properly(self):
         self.current_date_mock = date(2019, 1, 5)
         self.datetime_mock.now.return_value = self.current_date_mock
-        file_name = get_smogon_stats_file_name('gen7ou')
+        file_name = get_smogon_stats_file_name('gen7ou', month_delta=2)
 
         self.assertEqual('https://www.smogon.com/stats/2018-11/moveset/gen7ou-0.txt', file_name)

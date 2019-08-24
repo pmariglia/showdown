@@ -178,8 +178,8 @@ def get_standard_battle_sets(battle_mode):
         pu_data = get_pokemon_information(get_smogon_stats_file_name("gen7pu"))
         lc_data = get_pokemon_information(get_smogon_stats_file_name("gen7lc"))
 
-        smogon_usage_data = ou_data
-        for pkmn_data in [uu_data, ru_data, nu_data, pu_data, lc_data]:
+        smogon_usage_data = lc_data
+        for pkmn_data in [pu_data, nu_data, ru_data, uu_data, ou_data]:
             for pkmn_name in pkmn_data:
                 if pkmn_name not in smogon_usage_data:
                     smogon_usage_data[pkmn_name] = pkmn_data[pkmn_name]

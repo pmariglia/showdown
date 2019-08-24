@@ -27,7 +27,7 @@ UNKNOWN_ITEM = "unknown_item"
 
 UNKOWN_POKEMON_FORMES = ['silvally', 'arceus']
 
-SMOGON_HAS_STATS_PAGE_SUFFIXES = ["ou", "uu", "ru", "nu", "pu", "lc"]
+SMOGON_HAS_STATS_PAGE_SUFFIXES = ["ou", "uu", "ru", "nu", "pu", "lc", "oublitz"]
 
 # a lookup for the opponent's name given the bot's name
 # this has to do with the Pokemon-Showdown PROTOCOL
