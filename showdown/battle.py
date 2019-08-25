@@ -81,9 +81,6 @@ class Battle:
             pkmn.guess_standard_battle_attributes()
 
     def to_object(self):
-        if not self.started:
-            raise ValueError("Battle needs to be started first")
-
         user_active = TransposePokemon.from_state_pokemon_dict(self.user.active.to_dict())
         user_reserve = dict()
         for mon in self.user.reserve:
@@ -285,7 +282,7 @@ class Pokemon:
 
     def update_moves_for_random_battles(self):
         if len(self.moves) == 4:
-            logger.debug("{} revealed 4 moves, not guessing any more moves".format(self.name))
+            logger.debug("{} revealed 4 moves: {}".format(self.name, self.moves))
             return
         additional_moves = get_all_possible_moves_for_random_battle(self.name, [m.name for m in self.moves])
         logger.debug("Guessing additional moves for {}: {}".format(self.name, additional_moves))
@@ -294,7 +291,7 @@ class Pokemon:
 
     def update_ability_for_random_battles(self):
         if self.ability is not None:
-            logger.debug("{} has revealed it's ability, not guessing".format(self.name))
+            logger.debug("{} has revealed it's ability as {}, not guessing".format(self.name, self.ability))
             return
         ability = get_most_likely_ability_for_random_battle(self.name)
         logger.debug("Guessing ability={} for {}".format(ability, self.name))
@@ -302,7 +299,7 @@ class Pokemon:
 
     def update_item_for_random_battles(self):
         if self.item != constants.UNKNOWN_ITEM:
-            logger.debug("{} has revealed it's item, not guessing".format(self.name))
+            logger.debug("{} has revealed it's item as {}, not guessing".format(self.name, self.item))
             return
         item = get_most_likely_item_for_random_battle_pokemon(self.name)
         logger.debug("Guessing item={} for {}".format(item, self.name))
@@ -310,7 +307,7 @@ class Pokemon:
 
     def update_moves_for_standard_battles(self):
         if len(self.moves) == 4:
-            logger.debug("{} revealed 4 moves, not guessing any more moves".format(self.name))
+            logger.debug("{} revealed 4 moves: {}".format(self.name, self.moves))
             return
         additional_moves = get_all_possible_moves_for_standard_battle(self.name, [m.name for m in self.moves])
         logger.debug("Guessing additional moves for {}: {}".format(self.name, additional_moves))
@@ -319,7 +316,7 @@ class Pokemon:
 
     def update_ability_for_standard_battles(self):
         if self.ability is not None:
-            logger.debug("{} has revealed it's ability, not guessing".format(self.name))
+            logger.debug("{} has revealed it's ability as {}, not guessing".format(self.name, self.ability))
             return
         ability = get_most_likely_ability_for_standard_battle(self.name)
         logger.debug("Guessing ability={} for {}".format(ability, self.name))
@@ -327,7 +324,7 @@ class Pokemon:
 
     def update_item_for_standard_battles(self):
         if self.item != constants.UNKNOWN_ITEM:
-            logger.debug("{} has revealed it's item, not guessing".format(self.name))
+            logger.debug("{} has revealed it's item as {}, not guessing".format(self.name, self.item))
             return
         item = get_most_likely_item_for_standard_battle_pokemon(self.name)
         logger.debug("Guessing item={} for {}".format(item, self.name))

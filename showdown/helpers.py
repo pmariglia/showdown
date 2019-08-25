@@ -1,8 +1,6 @@
 import math
 import constants
 
-from config import logger
-
 
 boost_multiplier_lookup = {
     -6: 2/8,
@@ -121,4 +119,5 @@ def calculate_stats(base_stats, level, ivs=(31,) * 6, evs=(85,) * 6, nature='ser
                                                         level) + 5
 
     _update_stats_from_nature(new_stats, nature)
+    new_stats = {k: int(v) for k, v in new_stats.items()}
     return new_stats

@@ -23,6 +23,7 @@ from showdown.battle_modifier import form_change
 from showdown.battle_modifier import inactive
 from showdown.battle_modifier import zpower
 from showdown.battle_modifier import clearnegativeboost
+from showdown.battle_modifier import check_choicescarf
 
 
 class TestRequestMessage(unittest.TestCase):
@@ -1010,3 +1011,171 @@ class TestZPower(unittest.TestCase):
         zpower(self.battle, split_msg)
 
         self.assertEqual("some_item", self.battle.opponent.active.item)
+
+
+class TestGuessChoiceScarf(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+        self.battle.opponent.active.ability = None
+
+        self.user_active = Pokemon('caterpie', 100)
+        self.battle.user.active = self.user_active
+
+        self.username = "CoolUsername"
+
+        self.battle.username = self.username
+
+    def test_guesses_choicescarf_when_opponent_should_always_be_slower(self):
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual('choicescarf', self.battle.opponent.active.item)
+
+    def test_does_not_guess_scarf_in_trickroom(self):
+        self.battle.trick_room = True
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_scarf_under_trickroom_when_opponent_could_be_slower(self):
+        self.battle.trick_room = True
+        self.battle.user.active.stats[constants.SPEED] = 205  # opponent caterpie speed is 113 - 207
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_guesses_scarf_in_trickroom_when_opponent_cannot_be_slower(self):
+        self.battle.trick_room = True
+        self.battle.user.active.stats[constants.SPEED] = 110  # opponent caterpie speed is 113 - 207
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual('choicescarf', self.battle.opponent.active.item)
+
+    def test_unknown_moves_defaults_to_0_priority(self):
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+
+        messages = [
+            '|move|p2a: Caterpie|unknown-move|',
+            '|move|p1a: Caterpie|unknown-move|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual('choicescarf', self.battle.opponent.active.item)
+
+    def test_does_not_guess_item_when_bot_moves_first(self):
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+
+        messages = [
+            '|move|p1a: Caterpie|Stealth Rock|',
+            '|move|p2a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_item_when_moves_are_different_priority(self):
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+
+        messages = [
+            '|move|p2a: Caterpie|Quick Attack|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_item_when_opponent_can_be_faster(self):
+        self.battle.user.active.stats[constants.SPEED] = 200  # opponent's speed can be 207 (max speed caterpie)
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_swiftswim_causing_opponent_to_be_faster_results_in_not_guessing_choicescarf(self):
+        self.battle.opponent.active.ability = 'swiftswim'
+        self.battle.weather = constants.RAIN
+        self.battle.user.active.stats[constants.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim)
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_only_one_move_causes_no_ability_to_be_guessed(self):
+        self.battle.user.active.stats[constants.SPEED] = 210
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_choicescarf_when_item_is_none(self):
+        self.battle.opponent.active.item = None
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(None, self.battle.opponent.active.item)
+
+    def test_does_not_guess_choicescarf_when_item_is_known(self):
+        self.battle.opponent.active.item = 'leftovers'
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual('leftovers', self.battle.opponent.active.item)

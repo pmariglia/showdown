@@ -1,9 +1,14 @@
 import re
 import json
+from copy import deepcopy
+
 import constants
 from config import logger
+from data import all_move_json
 from showdown.battle import Pokemon
 from showdown.helpers import normalize_name
+from showdown.engine.find_state_instructions import get_effective_speed
+from showdown.helpers import boost_multiplier_lookup
 
 
 def find_pokemon_in_reserves(pkmn_name, reserves):
@@ -88,7 +93,6 @@ def switch_or_drag(battle, split_msg):
 
 
 def heal_or_damage(battle, split_msg):
-    """The opponent's active pokemon has healed"""
     if is_opponent(battle, split_msg):
         pkmn = battle.opponent.active
 
@@ -368,8 +372,46 @@ def clearnegativeboost(battle, split_msg):
             pkmn.boosts[stat] = 0
 
 
+def mega(battle, split_msg):
+    if is_opponent(battle, split_msg):
+        logger.debug("mega-evolving {}".format(split_msg[3]))
+
+
+def check_choicescarf(battle, msg_lines):
+    if battle.opponent.active is None or battle.opponent.active.item != constants.UNKNOWN_ITEM:
+        return
+
+    try:
+        moves = [(m.split('|')[2], all_move_json[normalize_name(m.split('|')[3])]) for m in msg_lines if m.startswith('|move|')]
+    except KeyError:
+        logger.debug("Unknown move - using standard 0 priority move")
+        moves = [(m.split('|')[2], {constants.PRIORITY: 0}) for m in msg_lines if m.startswith('|move|')]
+    if len(moves) != 2 or moves[0][0].startswith(battle.user.name) or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:
+        return
+
+    battle_copy = deepcopy(battle)
+    if battle.trick_room:
+        battle_copy.opponent.active.set_spread('quiet', '0,0,0,0,0,0')  # assume as slow as possible in trickroom
+    else:
+        battle_copy.opponent.active.set_spread('jolly', '0,0,0,0,0,252')  # assume as fast as possible
+    state = battle_copy.to_object()
+    opponent_effective_speed = get_effective_speed(state, state.opponent)
+    bot_effective_speed = get_effective_speed(state, state.self)
+
+    if battle.trick_room:
+        has_scarf = opponent_effective_speed > bot_effective_speed
+    else:
+        has_scarf = bot_effective_speed > opponent_effective_speed
+
+    if has_scarf:
+        logger.debug("Opponent {} could not have gone first - setting it's item to choicescarf".format(battle.opponent.active.name))
+        battle.opponent.active.item = 'choicescarf'
+
+
 async def update_battle(battle, msg):
     msg_lines = msg.split('\n')
+
+    check_choicescarf(battle, msg_lines)
 
     action = None
     for line in msg_lines:
@@ -410,6 +452,7 @@ async def update_battle(battle, msg):
             'detailschange': form_change,
             'replace': form_change,
             '-formechange': form_change,
+            '-mega': mega,
             '-zpower': zpower,
             '-clearnegativeboost': clearnegativeboost
         }
