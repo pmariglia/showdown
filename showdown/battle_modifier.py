@@ -378,14 +378,17 @@ def mega(battle, split_msg):
 
 
 def check_choicescarf(battle, msg_lines):
+    def get_move_information(m):
+        try:
+            return m.split('|')[2], all_move_json[normalize_name(m.split('|')[3])]
+        except KeyError:
+            logger.debug("Unknown move {} - using standard 0 priority move".format(normalize_name(m.split('|')[3])))
+            return m.split('|')[2], {constants.PRIORITY: 0}
+
     if battle.opponent.active is None or battle.opponent.active.item != constants.UNKNOWN_ITEM:
         return
 
-    try:
-        moves = [(m.split('|')[2], all_move_json[normalize_name(m.split('|')[3])]) for m in msg_lines if m.startswith('|move|')]
-    except KeyError:
-        logger.debug("Unknown move - using standard 0 priority move")
-        moves = [(m.split('|')[2], {constants.PRIORITY: 0}) for m in msg_lines if m.startswith('|move|')]
+    moves = [get_move_information(m) for m in msg_lines if m.startswith('|move|')]
     if len(moves) != 2 or moves[0][0].startswith(battle.user.name) or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:
         return
 

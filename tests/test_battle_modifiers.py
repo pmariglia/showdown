@@ -1042,6 +1042,32 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
         self.assertEqual('choicescarf', self.battle.opponent.active.item)
 
+    def test_does_not_guess_choicescarf_when_opponent_is_speed_boosted(self):
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.opponent.active.boosts[constants.SPEED] = 1
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_choicescarf_when_bot_is_speed_unboosted(self):
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.user.active.boosts[constants.SPEED] = -1
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
     def test_does_not_guess_scarf_in_trickroom(self):
         self.battle.trick_room = True
         self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
@@ -1092,6 +1118,18 @@ class TestGuessChoiceScarf(unittest.TestCase):
         check_choicescarf(self.battle, messages)
 
         self.assertEqual('choicescarf', self.battle.opponent.active.item)
+
+    def test_priority_move_with_unknown_move_does_not_cause_guess(self):
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+
+        messages = [
+            '|move|p2a: Caterpie|Quick Attack|',
+            '|move|p1a: Caterpie|unknown-move|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
     def test_does_not_guess_item_when_bot_moves_first(self):
         self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
