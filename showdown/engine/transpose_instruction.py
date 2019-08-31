@@ -15,11 +15,14 @@ class TransposeInstruction:
     def add_instruction(self, instruction):
         self.instructions.append(instruction)
 
+    def has_same_instructions_as(self, other):
+        return self.instructions == other.instructions
+
     def __copy__(self):
         return TransposeInstruction(self.percentage, copy(self.instructions), self.frozen)
 
     def __repr__(self):
-        return str(self.instructions)
+        return "{}: {}".format(self.percentage, str(self.instructions))
 
     def __eq__(self, other):
         return self.percentage == other.percentage and \

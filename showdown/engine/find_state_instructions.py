@@ -352,6 +352,19 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     return all_instructions
 
 
+def remove_duplicate_instructions(list_of_instructions):
+    new_instructions = [list_of_instructions[0]]
+    for instruction_1 in list_of_instructions[1:]:
+        for instruction_2 in new_instructions:
+            if instruction_1.has_same_instructions_as(instruction_2):
+                instruction_2.percentage += instruction_1.percentage
+                break
+        else:
+            new_instructions.append(instruction_1)
+
+    return new_instructions
+
+
 def get_all_state_instructions(mutator, user_move_string, opponent_move_string):
     user_move = lookup_move(user_move_string)
     opponent_move = lookup_move(opponent_move_string)
@@ -374,5 +387,7 @@ def get_all_state_instructions(mutator, user_move_string, opponent_move_string):
     for instruction_set in all_instructions:
         temp_instructions += instruction_generator.get_end_of_turn_instructions(mutator, instruction_set, bot_moves_first)
     all_instructions = temp_instructions
+
+    all_instructions = remove_duplicate_instructions(all_instructions)
 
     return all_instructions

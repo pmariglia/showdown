@@ -2,8 +2,10 @@ import unittest
 import config
 import constants
 from collections import defaultdict
+from copy import deepcopy
 from showdown.engine.transpose_instruction import TransposeInstruction
 from showdown.engine.find_state_instructions import get_all_state_instructions
+from showdown.engine.find_state_instructions import remove_duplicate_instructions
 from showdown.engine.find_state_instructions import lookup_move
 from showdown.engine.find_state_instructions import user_moves_first
 from showdown.engine.objects import State
@@ -532,14 +534,7 @@ class TestGetStateInstructions(unittest.TestCase):
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
-                0.33,
-                [
-                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.SLEEP)
-                ],
-                False
-            ),
-            TransposeInstruction(
-                0.6699999999999999,
+                1,
                 [
                     (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.SLEEP)
                 ],
@@ -1540,16 +1535,7 @@ class TestGetStateInstructions(unittest.TestCase):
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
-                0.44999999999999996,
-                [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 99),
-                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, constants.FLINCH),
-                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.FLINCH),
-                ],
-                True
-            ),
-            TransposeInstruction(
-                0.15,
+                0.6,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 99),
                     (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, constants.FLINCH),
@@ -4683,15 +4669,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 False
             ),
             TransposeInstruction(
-                0.1875,
-                [
-                    ('damage', 'opponent', 95),
-                    ('apply_status', 'opponent', 'par'),
-                ],
-                True
-            ),
-            TransposeInstruction(
-                0.125,
+                0.3125,
                 [
                     ('damage', 'opponent', 95),
                     ('apply_status', 'opponent', 'par'),
@@ -4721,20 +4699,12 @@ class TestGetStateInstructions(unittest.TestCase):
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
-                0.1575,
+                0.21,
                 [
                     ('damage', 'opponent', 88),
                     ('apply_status', 'opponent', 'par'),
                 ],
                 False
-            ),
-            TransposeInstruction(
-                0.0525,
-                [
-                    ('damage', 'opponent', 88),
-                    ('apply_status', 'opponent', 'par'),
-                ],
-                True
             ),
             TransposeInstruction(
                 0.48999999999999994,
@@ -4760,20 +4730,12 @@ class TestGetStateInstructions(unittest.TestCase):
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
-                0.05249999999999999,
+                0.06999999999999999,
                 [
                     ('damage', 'opponent', 88),
                     ('apply_status', 'opponent', 'par'),
                 ],
                 False
-            ),
-            TransposeInstruction(
-                0.017499999999999998,
-                [
-                    ('damage', 'opponent', 88),
-                    ('apply_status', 'opponent', 'par'),
-                ],
-                True
             ),
             TransposeInstruction(
                 0.1633333333333333,
@@ -4783,26 +4745,18 @@ class TestGetStateInstructions(unittest.TestCase):
                 False
             ),
             TransposeInstruction(
-                0.1,
+                0.30000000000000004,
                 [
                 ],
                 False
             ),
             TransposeInstruction(
-                0.05249999999999999,
+                0.06999999999999999,
                 [
                     ('damage', 'opponent', 81),
                     ('apply_status', 'opponent', 'par'),
                 ],
                 False
-            ),
-            TransposeInstruction(
-                0.017499999999999998,
-                [
-                    ('damage', 'opponent', 81),
-                    ('apply_status', 'opponent', 'par'),
-                ],
-                True
             ),
             TransposeInstruction(
                 0.1633333333333333,
@@ -4812,37 +4766,17 @@ class TestGetStateInstructions(unittest.TestCase):
                 False
             ),
             TransposeInstruction(
-                0.1,
-                [
-                ],
-                False
-            ),
-            TransposeInstruction(
-                0.05249999999999999,
+                0.06999999999999999,
                 [
                     ('damage', 'opponent', 96),
                     ('apply_status', 'opponent', 'par'),
                 ],
                 False
-            ),
-            TransposeInstruction(
-                0.017499999999999998,
-                [
-                    ('damage', 'opponent', 96),
-                    ('apply_status', 'opponent', 'par'),
-                ],
-                True
             ),
             TransposeInstruction(
                 0.1633333333333333,
                 [
                     ('damage', 'opponent', 96),
-                ],
-                False
-            ),
-            TransposeInstruction(
-                0.1,
-                [
                 ],
                 False
             ),
@@ -7497,6 +7431,254 @@ class TestGetStateInstructions(unittest.TestCase):
         ]
 
         self.assertEqual(expected_instructions, instructions)
+
+
+class TestRemoveDuplicateInstructions(unittest.TestCase):
+    def test_turns_two_identical_instructions_into_one(self):
+        instruction1 = TransposeInstruction(
+            0.5,
+            [
+                (constants.MUTATOR_DAMAGE, constants.SELF, 5)
+            ],
+            False
+        )
+        instruction2 = deepcopy(instruction1)
+        duplicated_instructions = [
+            instruction1,
+            instruction2
+        ]
+
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 5)
+                ],
+                False
+            )
+        ]
+
+        instructions = remove_duplicate_instructions(duplicated_instructions)
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_does_not_combine_when_instructions_are_different(self):
+        instruction1 = TransposeInstruction(
+            0.5,
+            [
+                (constants.MUTATOR_DAMAGE, constants.SELF, 5)
+            ],
+            False
+        )
+        instruction2 = TransposeInstruction(
+            0.5,
+            [
+                (constants.MUTATOR_DAMAGE, constants.SELF, 6)
+            ],
+            False
+        )
+        duplicated_instructions = [
+            instruction1,
+            instruction2
+        ]
+
+        instructions = remove_duplicate_instructions(duplicated_instructions)
+
+        self.assertEqual(duplicated_instructions, instructions)
+
+    def test_combines_two_instructions_but_keeps_the_other(self):
+        instructions = [
+            TransposeInstruction(
+                0.33,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 5)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.33,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 5)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.33,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 6)
+                ],
+                False
+            )
+        ]
+
+        new_instructions = remove_duplicate_instructions(instructions)
+
+        expected_instructions = [
+            TransposeInstruction(
+                0.66,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 5)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.33,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 6)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, new_instructions)
+
+    def test_combines_multiple_duplicates(self):
+        instructions = [
+            TransposeInstruction(
+                0.1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 5)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 5)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 6)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 6)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 7)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 7)
+                ],
+                False
+            )
+        ]
+
+        new_instructions = remove_duplicate_instructions(instructions)
+
+        expected_instructions = [
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 5)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.4,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 6)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.4,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 7)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, new_instructions)
+
+    def test_combines_two_instructions_but_keeps_many_others(self):
+        instructions = [
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 5)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 5)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 6)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 7)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 8)
+                ],
+                False
+            )
+        ]
+
+        new_instructions = remove_duplicate_instructions(instructions)
+
+        expected_instructions = [
+            TransposeInstruction(
+                0.4,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 5)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 6)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 7)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 8)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, new_instructions)
 
 
 class TestUserMovesFirst(unittest.TestCase):
