@@ -960,7 +960,7 @@ def _sleep_clause_activated(side, status):
 
 
 def _immune_to_status(state, defending_pkmn, attacking_pkmn, status):
-    if defending_pkmn.status is not None:
+    if defending_pkmn.status is not None or defending_pkmn.hp <= 0:
         return True
     if constants.SUBSTITUTE in defending_pkmn.volatile_status and attacking_pkmn.ability != 'infiltrator':
         return True
