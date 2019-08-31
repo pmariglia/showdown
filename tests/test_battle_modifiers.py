@@ -24,6 +24,7 @@ from showdown.battle_modifier import inactive
 from showdown.battle_modifier import zpower
 from showdown.battle_modifier import clearnegativeboost
 from showdown.battle_modifier import check_choicescarf
+from showdown.battle_modifier import singleturn
 
 
 class TestRequestMessage(unittest.TestCase):
@@ -1011,6 +1012,48 @@ class TestZPower(unittest.TestCase):
         zpower(self.battle, split_msg)
 
         self.assertEqual("some_item", self.battle.opponent.active.item)
+
+
+class TestSingleTurn(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+        self.battle.opponent.active.ability = None
+
+        self.user_active = Pokemon('weedle', 100)
+        self.battle.user.active = self.user_active
+
+        self.username = "CoolUsername"
+
+        self.battle.username = self.username
+
+    def test_sets_protect_side_condition_for_opponent_when_used(self):
+        split_msg = ['', '-singleturn', 'p2a: Caterpie', 'Protect']
+        singleturn(self.battle, split_msg)
+
+        self.assertEqual(2, self.battle.opponent.side_conditions[constants.PROTECT])
+
+    def test_does_not_set_for_non_protect_move(self):
+        split_msg = ['', '-singleturn', 'p2a: Caterpie', 'Roost']
+        singleturn(self.battle, split_msg)
+
+        self.assertEqual(0, self.battle.opponent.side_conditions[constants.PROTECT])
+
+    def test_sets_protect_side_condition_for_bot_when_used(self):
+        split_msg = ['', '-singleturn', 'p1a: Weedle', 'Protect']
+        singleturn(self.battle, split_msg)
+
+        self.assertEqual(2, self.battle.user.side_conditions[constants.PROTECT])
+
+    def test_sets_protect_side_condition_when_prefixed_by_move(self):
+        split_msg = ['', '-singleturn', 'p2a: Caterpie', 'move: Protect']
+        singleturn(self.battle, split_msg)
+
+        self.assertEqual(2, self.battle.opponent.side_conditions[constants.PROTECT])
 
 
 class TestGuessChoiceScarf(unittest.TestCase):

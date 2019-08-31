@@ -101,6 +101,37 @@ class TestSelectBestMove(unittest.TestCase):
 
         self.assertTrue(safest.startswith(constants.SWITCH_STRING))
 
+    def test_guaranteed_win_through_protecting(self):
+        """1-v-1 situation;
+        The enemy is faster and will kill
+        The enemy will die to poison
+        The bot can either attack or protect
+        Assert protect is chosen"""
+
+        self.state.self.active.moves.append(
+            {
+                'id': 'protect',
+                'disabled': False,
+                'current_pp': 16
+            }
+        )
+
+        # both die in 1 hit
+        self.state.self.active.hp = 1
+        self.state.opponent.active.hp = 1
+
+        # opponent is faster (bot has no priority)
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+
+        # opponent is poisoned
+        self.state.opponent.active.status = constants.POISON
+
+        scores = get_payoff_matrix(self.mutator, 2)
+        safest = decide_from_safest(scores)
+
+        self.assertEqual('protect', safest)
+
     def test_battle_ending_stops_the_calculations_early(self):
 
         self.state.self.reserve = {

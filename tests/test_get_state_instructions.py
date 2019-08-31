@@ -4371,6 +4371,466 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_using_protect_adds_volatile_status_and_side_condition(self):
+        bot_move = "protect"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_rocky_helmet_and_rough_skin_do_not_activate_on_protect(self):
+        bot_move = "protect"
+        opponent_move = "tackle"
+        self.state.self.active.ability = "roughskin"
+        self.state.self.active.item = "rockyhelmet"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_baneful_bunker_has_the_same_effect_as_protect(self):
+        bot_move = "banefulbunker"
+        opponent_move = "willowisp"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.BANEFUL_BUNKER),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.BANEFUL_BUNKER),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_spiky_shield_has_the_same_effect_as_protect(self):
+        bot_move = "spikyshield"
+        opponent_move = "willowisp"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.SPIKY_SHIELD),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SPIKY_SHIELD),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_spiky_shield_into_non_contact_move(self):
+        bot_move = "spikyshield"
+        opponent_move = "earthquake"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.SPIKY_SHIELD),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SPIKY_SHIELD),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_spiky_shield_into_contact_move(self):
+        bot_move = "spikyshield"
+        opponent_move = "tackle"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.SPIKY_SHIELD),
+                    (constants.MUTATOR_HEAL, constants.OPPONENT, -37),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SPIKY_SHIELD),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_spiky_shield_does_not_work_when_user_has_protect_side_condition(self):
+        bot_move = "spikyshield"
+        opponent_move = "tackle"
+        self.state.self.side_conditions[constants.PROTECT] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35),
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_spiky_shield_into_crash_attack(self):
+        bot_move = "spikyshield"
+        opponent_move = "highjumpkick"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.SPIKY_SHIELD),
+                    (constants.MUTATOR_HEAL, constants.OPPONENT, -185),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SPIKY_SHIELD),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_non_contact_move_with_banefulbunker(self):
+        bot_move = "banefulbunker"
+        opponent_move = "earthquake"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.BANEFUL_BUNKER),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.BANEFUL_BUNKER),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_crash_move_with_banefulbunker(self):
+        bot_move = "banefulbunker"
+        opponent_move = "highjumpkick"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.BANEFUL_BUNKER),
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.POISON),
+                    (constants.MUTATOR_HEAL, constants.OPPONENT, -148),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.BANEFUL_BUNKER),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_baneful_bunker_cannot_be_used_when_protect_is_in_the_side_conditions(self):
+        bot_move = "banefulbunker"
+        opponent_move = "earthquake"
+        self.state.self.side_conditions[constants.PROTECT] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 170),
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_baneful_bunker_with_contact_move_causes_poison(self):
+        bot_move = "banefulbunker"
+        opponent_move = "tackle"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.BANEFUL_BUNKER),
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.POISON),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.BANEFUL_BUNKER),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_only_first_protect_actives(self):
+        bot_move = "protect"
+        opponent_move = "protect"
+        self.state.self.active.speed = 2  # bot is faster - only its protect should activate
+        self.state.opponent.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_protect_cannot_be_used_when_it_exists_as_a_side_condition(self):
+        bot_move = "protect"
+        opponent_move = "splash"
+        self.state.self.side_conditions[constants.PROTECT] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_willowisp_misses_versus_protect(self):
+        bot_move = "protect"
+        opponent_move = "willowisp"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_protect_does_not_stop_weather_damage(self):
+        bot_move = "protect"
+        opponent_move = "splash"
+        self.state.weather = constants.SAND
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_protect_does_not_stop_status_damage(self):
+        bot_move = "protect"
+        opponent_move = "splash"
+        self.state.self.active.status = constants.BURN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_protect_behind_a_sub_works(self):
+        bot_move = "protect"
+        opponent_move = "splash"
+        self.state.self.active.volatile_status.add(constants.SUBSTITUTE)
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_protect_does_not_stop_leechseed_damage(self):
+        bot_move = "protect"
+        opponent_move = "splash"
+        self.state.self.active.volatile_status.add(constants.LEECH_SEED)
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 26),
+                    (constants.MUTATOR_HEAL, constants.OPPONENT, 0),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_protect_into_hjk_causes_crash_damage(self):
+        bot_move = "protect"
+        opponent_move = "highjumpkick"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, self.state.opponent.active.maxhp * 0.5),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_protect_and_hjk_interaction_when_protect_was_previously_used(self):
+        bot_move = "protect"
+        opponent_move = "highjumpkick"
+        self.state.self.side_conditions[constants.PROTECT] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.9,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 110),
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.09999999999999998,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, self.state.opponent.active.maxhp * 0.5),
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.PROTECT, 1)
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_non_protect_move_causes_protect_side_condition_to_be_removed(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.side_conditions[constants.PROTECT] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_having_protect_volatile_status_causes_tackle_to_miss(self):
+        bot_move = "protect"
+        opponent_move = "tackle"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1),
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_stealthrock_is_unaffected_by_protect(self):
+        bot_move = "protect"
+        opponent_move = "stealthrock"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_magicguard_does_not_take_leechseed_damage(self):
         bot_move = "splash"
         opponent_move = "splash"

@@ -372,6 +372,29 @@ def clearnegativeboost(battle, split_msg):
             pkmn.boosts[stat] = 0
 
 
+def singleturn(battle, split_msg):
+    if is_opponent(battle, split_msg):
+        side = battle.opponent
+    else:
+        side = battle.user
+
+    move_name = normalize_name(split_msg[3].split(':')[-1])
+    if move_name in constants.PROTECT_VOLATILE_STATUSES:
+        # set to 2 because the `upkeep` function will decrement by 1 on every end-of-turn
+        side.side_conditions[constants.PROTECT] = 2
+        logger.debug("{} used protect".format(side.active.name))
+
+
+def upkeep(battle, _):
+    if battle.user.side_conditions[constants.PROTECT] > 0:
+        battle.user.side_conditions[constants.PROTECT] -= 1
+        logger.debug("Setting protect to {} for the bot".format(battle.user.side_conditions[constants.PROTECT]))
+
+    if battle.opponent.side_conditions[constants.PROTECT] > 0:
+        battle.opponent.side_conditions[constants.PROTECT] -= 1
+        logger.debug("Setting protect to {} for the opponent".format(battle.opponent.side_conditions[constants.PROTECT]))
+
+
 def mega(battle, split_msg):
     if is_opponent(battle, split_msg):
         logger.debug("mega-evolving {}".format(split_msg[3]))
@@ -424,9 +447,6 @@ async def update_battle(battle, msg):
 
         action = split_msg[1].strip()
 
-        if action in ['turn', 'upkeep']:
-            return True
-
         battle_modifiers_lookup = {
             'request': request,
             'inactive': inactive,
@@ -457,12 +477,17 @@ async def update_battle(battle, msg):
             '-formechange': form_change,
             '-mega': mega,
             '-zpower': zpower,
-            '-clearnegativeboost': clearnegativeboost
+            '-clearnegativeboost': clearnegativeboost,
+            '-singleturn': singleturn,
+            'upkeep': upkeep
         }
 
         function_to_call = battle_modifiers_lookup.get(action)
         if function_to_call is not None:
             function_to_call(battle, split_msg)
+
+        if action in ['turn', 'upkeep']:
+            return True
 
     if action == 'inactive':
         return False

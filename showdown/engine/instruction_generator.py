@@ -32,7 +32,7 @@ opposing_side_strings = [
 ]
 
 
-def get_state_from_volatile_status(mutator, volatile_status, attacker, affected_side, instruction):
+def get_state_from_volatile_status(mutator, volatile_status, attacker, affected_side, first_move, instruction):
     if instruction.frozen or not volatile_status:
         return [instruction]
 
@@ -50,7 +50,7 @@ def get_state_from_volatile_status(mutator, volatile_status, attacker, affected_
         mutator.reverse(instruction.instructions)
         return [instruction]
 
-    if _can_be_statused(side.active, volatile_status) and volatile_status not in side.active.volatile_status:
+    if _can_be_volatile_statused(side, volatile_status, first_move) and volatile_status not in side.active.volatile_status:
         apply_status_instruction = (
             constants.MUTATOR_APPLY_VOLATILE_STATUS,
             affected_side,
@@ -286,6 +286,9 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
     recoil = attacking_move.get(constants.RECOIL)
     drain = attacking_move.get(constants.DRAIN)
     move_flags = attacking_move.get(constants.FLAGS, {})
+    if accuracy is True:
+        accuracy = 100
+    percent_hit = accuracy / 100
 
     mutator.apply(instruction.instructions)
 
@@ -311,10 +314,6 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
         raise ValueError("attacker parameter must be one of: {}".format(', '.join(possible_affected_strings)))
 
     instructions = []
-    if accuracy is True:
-        accuracy = 100
-    percent_hit = accuracy / 100
-
     instruction_additions = []
     move_missed_instruction = copy(instruction)
     if percent_hit > 0:
@@ -832,6 +831,53 @@ def get_end_of_turn_instructions(mutator, instruction, bot_moves_first):
         for i in instructions_to_add:
             instruction.add_instruction(i)
 
+    for attacker in sides:
+        instructions_to_add = []
+        mutator.apply(instruction.instructions)
+        side = get_side_from_state(mutator.state, attacker)
+        pkmn = side.active
+
+        if any(vs in constants.PROTECT_VOLATILE_STATUSES for vs in pkmn.volatile_status):
+            if constants.PROTECT in pkmn.volatile_status:
+                volatile_status_to_remove = constants.PROTECT
+            elif constants.BANEFUL_BUNKER in pkmn.volatile_status:
+                volatile_status_to_remove = constants.BANEFUL_BUNKER
+            elif constants.SPIKY_SHIELD in pkmn.volatile_status:
+                volatile_status_to_remove = constants.SPIKY_SHIELD
+            else:
+                # should never happen
+                raise Exception("Pokemon has volatile status that is not caught here: {}".format(pkmn.volatile_status))
+
+            instructions_to_add.append(
+                (
+                    constants.MUTATOR_REMOVE_VOLATILE_STATUS,
+                    attacker,
+                    volatile_status_to_remove
+                )
+            )
+            instructions_to_add.append(
+                (
+                    constants.MUTATOR_SIDE_START,
+                    attacker,
+                    constants.PROTECT,
+                    1
+                )
+            )
+        elif side.side_conditions[constants.PROTECT]:
+            instructions_to_add.append(
+                (
+                    constants.MUTATOR_SIDE_END,
+                    attacker,
+                    constants.PROTECT,
+                    side.side_conditions[constants.PROTECT]
+                )
+            )
+
+        mutator.reverse(instruction.instructions)
+
+        for i in instructions_to_add:
+            instruction.add_instruction(i)
+
     return [instruction]
 
 
@@ -944,10 +990,17 @@ def _get_boost_from_boost_string(side, boost_string):
         return 0
 
 
-def _can_be_statused(pkmn, volatile_status):
-    if constants.SUBSTITUTE in pkmn.volatile_status:
+def _can_be_volatile_statused(side, volatile_status, first_move):
+    if volatile_status in constants.PROTECT_VOLATILE_STATUSES:
+        if side.side_conditions[constants.PROTECT]:
+            return False
+        elif first_move:
+            return True
+        else:
+            return False
+    if constants.SUBSTITUTE in side.active.volatile_status:
         return False
-    if volatile_status == constants.SUBSTITUTE and pkmn.hp < pkmn.maxhp * 0.25:
+    if volatile_status == constants.SUBSTITUTE and side.active.hp < side.active.maxhp * 0.25:
         return False
 
     return True

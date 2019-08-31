@@ -151,7 +151,36 @@ def update_damage_calc_from_abilities_and_items(attacking_pokemon, defending_pok
         attacking_move[constants.TARGET] = constants.SELF
         attacking_move[constants.CATEGORY] = constants.STATUS
 
+    if any(vs in constants.PROTECT_VOLATILE_STATUSES for vs in defending_pokemon.volatile_status):
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.ACCURACY] = False
+        if constants.BANEFUL_BUNKER in defending_pokemon.volatile_status and constants.CONTACT in attacking_move[constants.FLAGS]:
+            attacking_move[constants.ACCURACY] = True
+            attacking_move[constants.CATEGORY] = constants.STATUS
+            attacking_move[constants.STATUS] = constants.POISON
+            attacking_move[constants.TARGET] = constants.SELF
+            if constants.CRASH in attacking_move:
+                attacking_move[constants.HEAL_TARGET] = constants.SELF
+                attacking_move[constants.HEAL] = [-1*attacking_move[constants.CRASH][0], attacking_move[constants.CRASH][1]]
+        elif constants.SPIKY_SHIELD in defending_pokemon.volatile_status and constants.CONTACT in attacking_move[constants.FLAGS]:
+            attacking_move[constants.ACCURACY] = True
+            attacking_move[constants.CATEGORY] = constants.STATUS
+            attacking_move[constants.STATUS] = None
+            attacking_move[constants.HEAL_TARGET] = constants.SELF
+            attacking_move[constants.HEAL] = [-1, 8]
+            if constants.CRASH in attacking_move:
+                crash_percent = attacking_move[constants.CRASH][0] / attacking_move[constants.CRASH][1]
+                damage_decimal = -1*(crash_percent + 1/8)
+                attacking_move[constants.HEAL] = damage_decimal.as_integer_ratio()
+
     return attacking_move
+
+
+def cannot_use_move(attacking_pokemon, attacking_move):
+    if constants.TAUNT in attacking_pokemon.volatile_status and attacking_move[constants.CATEGORY] not in constants.DAMAGING_CATEGORIES:
+        return True
+
+    return False
 
 
 def get_state_instructions_from_move(mutator, attacking_move, defending_move, attacker, defender, first_move, instructions):
@@ -167,7 +196,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     defending_pokemon = defending_side.active
     active_weather = mutator.state.weather
 
-    if constants.TAUNT in attacking_pokemon.volatile_status and attacking_move[constants.CATEGORY] not in constants.DAMAGING_CATEGORIES:
+    if cannot_use_move(attacking_pokemon, attacking_move):
         attacking_move = lookup_move(constants.DO_NOTHING_MOVE)
 
     conditions = {
@@ -306,7 +335,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     if volatile_status is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, move_target, instruction_set)
+            temp_instructions += instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, move_target, first_move, instruction_set)
         all_instructions = temp_instructions
 
     if move_status_effect is not None:

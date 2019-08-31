@@ -2450,7 +2450,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
         attacker = constants.OPPONENT
         target = constants.NORMAL
         mutator = StateMutator(self.state)
-        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, True, self.previous_instruction)
 
         instruction = (
             constants.MUTATOR_APPLY_VOLATILE_STATUS,
@@ -2471,7 +2471,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
         self.previous_instruction.frozen = True
 
         mutator = StateMutator(self.state)
-        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, True, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], True),
@@ -2486,7 +2486,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
         self.state.self.active.volatile_status.add('confusion')
 
         mutator = StateMutator(self.state)
-        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, True, self.previous_instruction)
 
         instruction = (
             constants.MUTATOR_APPLY_VOLATILE_STATUS,
@@ -2507,7 +2507,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
         self.state.self.active.volatile_status.add(volatile_status)
 
         mutator = StateMutator(self.state)
-        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, True, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False),
@@ -2522,7 +2522,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
         self.state.self.active.volatile_status.add('substitute')
 
         mutator = StateMutator(self.state)
-        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, self.previous_instruction)
+        instructions = instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, target, True, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False),

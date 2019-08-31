@@ -244,9 +244,14 @@ SWITCH_OUT_MOVES = {"uturn", "voltswitch", "partingshot"}
 # volatile statuses
 FLINCH = "flinch"
 CONFUSION = "confusion"
-LEECH_SEED = 'leechseed'
-SUBSTITUTE = 'substitute'
-TAUNT = 'taunt'
+LEECH_SEED = "leechseed"
+SUBSTITUTE = "substitute"
+TAUNT = "taunt"
+PROTECT = "protect"
+BANEFUL_BUNKER = "banefulbunker"
+SPIKY_SHIELD = "spikyshield"
+
+PROTECT_VOLATILE_STATUSES = [PROTECT, BANEFUL_BUNKER, SPIKY_SHIELD]
 
 # non-volatile statuses
 SLEEP = "slp"
