@@ -8,6 +8,7 @@ import data
 from data import all_move_json
 from data import pokedex
 from data.helpers import get_standard_battle_sets
+from data.helpers import get_mega_pkmn_name
 
 from showdown.engine.objects import State
 from showdown.engine.objects import Side
@@ -71,11 +72,17 @@ class Battle:
         self.rqid = user_json[constants.RQID]
 
     def prepare_random_battle(self):
+        if not self.opponent.mega_revealed():
+            self.opponent.active.try_convert_to_mega()
+
         self.opponent.active.guess_random_battle_attributes()
         for pkmn in filter(lambda x: x.is_alive(), self.opponent.reserve):
             pkmn.guess_random_battle_attributes()
 
     def prepare_standard_battle(self):
+        if not self.opponent.mega_revealed():
+            self.opponent.active.try_convert_to_mega()
+
         self.opponent.active.guess_standard_battle_attributes()
         for pkmn in filter(lambda x: x.is_alive(), self.opponent.reserve):
             pkmn.guess_standard_battle_attributes()
@@ -109,6 +116,9 @@ class Battler:
         self.trapped = False
 
         self.account_name = None
+
+    def mega_revealed(self):
+        return self.active.is_mega or any(p.is_mega for p in self.reserve)
 
     def from_json(self, user_json, first_turn=False):
         if first_turn:
@@ -244,6 +254,26 @@ class Pokemon:
         self.boosts = defaultdict(lambda: 0)
         self.can_mega_evo = False
         self.can_ultra_burst = True
+
+        self.is_mega = False
+
+    def forme_change(self, new_pkmn_name):
+        hp_percent = float(self.hp) / self.max_hp
+        moves = self.moves
+        boosts = self.boosts
+        status = self.status
+
+        self.__init__(new_pkmn_name, self.level)
+        self.hp = round(hp_percent * self.max_hp)
+        self.moves = moves
+        self.boosts = boosts
+        self.status = status
+
+    def try_convert_to_mega(self):
+        mega_pkmn_name = get_mega_pkmn_name(self.name)
+        if mega_pkmn_name:
+            logger.debug("Guessing mega-evolution: {}".format(mega_pkmn_name))
+            self.forme_change(mega_pkmn_name)
 
     def is_alive(self):
         return self.hp > 0

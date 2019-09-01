@@ -260,3 +260,60 @@ class TestGetMovesForRandomBattles(unittest.TestCase):
         ]
         p.update_moves_for_random_battles()
         self.assertEqual(expected_moves, p.moves)
+
+
+class TestConvertToMega(unittest.TestCase):
+    def setUp(self):
+        self.get_mega_name_patch = mock.patch('showdown.battle.get_mega_pkmn_name')
+        self.addCleanup(self.get_mega_name_patch.stop)
+        self.get_mega_name_mock = self.get_mega_name_patch.start()
+
+    def test_changes_venusaur_to_its_mega_form(self):
+        self.get_mega_name_mock.return_value = 'venusaurmega'
+
+        pkmn = Pokemon('venusaur', 100)
+        pkmn.try_convert_to_mega()
+        self.assertEqual('venusaurmega', pkmn.name)
+
+    def test_preserves_previous_hitpoints(self):
+        self.get_mega_name_mock.return_value = 'venusaurmega'
+
+        pkmn = Pokemon('venusaur', 100)
+        pkmn.hp = 1
+        pkmn.try_convert_to_mega()
+        self.assertEqual(1, pkmn.hp)
+
+    def test_preserves_previous_status_condition(self):
+        self.get_mega_name_mock.return_value = 'venusaurmega'
+
+        pkmn = Pokemon('venusaur', 100)
+        pkmn.status = constants.BURN
+        pkmn.try_convert_to_mega()
+        self.assertEqual(constants.BURN, pkmn.status)
+
+    def test_preserves_previous_boosts(self):
+        self.get_mega_name_mock.return_value = 'venusaurmega'
+
+        pkmn = Pokemon('venusaur', 100)
+        pkmn.boosts[constants.ATTACK] = 1
+        pkmn.try_convert_to_mega()
+        self.assertEqual(1, pkmn.boosts[constants.ATTACK])
+
+    def test_preserves_previous_moves(self):
+        self.get_mega_name_mock.return_value = 'venusaurmega'
+
+        pkmn = Pokemon('venusaur', 100)
+        pkmn.moves = [
+            {'1': '2'},
+            {'3': '4'},
+            {'5': '6'},
+            {'7': '8'},
+        ]
+        pkmn.try_convert_to_mega()
+        expected_moves = [
+            {'1': '2'},
+            {'3': '4'},
+            {'5': '6'},
+            {'7': '8'},
+        ]
+        self.assertEqual(expected_moves, pkmn.moves)

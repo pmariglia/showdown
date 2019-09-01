@@ -8,7 +8,6 @@ from data import all_move_json
 from showdown.battle import Pokemon
 from showdown.helpers import normalize_name
 from showdown.engine.find_state_instructions import get_effective_speed
-from showdown.helpers import boost_multiplier_lookup
 
 
 def find_pokemon_in_reserves(pkmn_name, reserves):
@@ -397,7 +396,8 @@ def upkeep(battle, _):
 
 def mega(battle, split_msg):
     if is_opponent(battle, split_msg):
-        logger.debug("mega-evolving {}".format(split_msg[3]))
+        battle.opponent.active.is_mega = True
+        logger.debug("Opponent Mega-Pokemon: {}".format(battle.opponent.active.name))
 
 
 def check_choicescarf(battle, msg_lines):
