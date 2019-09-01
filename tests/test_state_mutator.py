@@ -562,3 +562,56 @@ class TestStatemutator(unittest.TestCase):
         self.mutator.reverse(list_of_instructions)
 
         self.assertEqual(constants.GRASSY_TERRAIN, self.state.field)
+
+    def test_toggle_trickroom_sets_trickroom(self):
+        self.state.trick_room = False
+        instruction = (
+            constants.MUTATOR_TOGGLE_TRICKROOM,
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        self.assertTrue(self.state.trick_room)
+
+    def test_reverse_instruction_unsets_trickroom(self):
+        self.state.trick_room = True
+        instruction = (
+            constants.MUTATOR_TOGGLE_TRICKROOM,
+        )
+        list_of_instructions = [instruction]
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertFalse(self.state.trick_room)
+
+    def test_reverse_instruction_sets_trickroom(self):
+        self.state.trick_room = False
+        instruction = (
+            constants.MUTATOR_TOGGLE_TRICKROOM,
+        )
+        list_of_instructions = [instruction]
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertTrue(self.state.trick_room)
+
+    def test_toggle_trickroom_unsets_trickroom(self):
+        self.state.trick_room = True
+        instruction = (
+            constants.MUTATOR_TOGGLE_TRICKROOM,
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        self.assertFalse(self.state.trick_room)
+
+    def test_apply_and_reverse_trickroom(self):
+        self.state.trick_room = False
+        instruction = (
+            constants.MUTATOR_TOGGLE_TRICKROOM,
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+        if not self.state.trick_room:
+            self.fail("Trickroom was not set")
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertFalse(self.state.trick_room)

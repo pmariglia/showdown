@@ -1349,6 +1349,68 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         self.assertEqual(expected_instructions, instructions)
 
 
+class TestGetInstructionsFromSpecialLogicMoves(unittest.TestCase):
+    def setUp(self):
+        self.state = State(
+            Side(
+                Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
+                [
+                    Pokemon.from_state_pokemon_dict(StatePokemon("rattata", 100).to_dict()),
+                    Pokemon.from_state_pokemon_dict(StatePokemon("charmander", 100).to_dict()),
+                    Pokemon.from_state_pokemon_dict(StatePokemon("squirtle", 100).to_dict()),
+                    Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
+                    Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
+                ],
+                defaultdict(lambda: 0),
+                False
+            ),
+            Side(
+                Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
+                [
+                    Pokemon.from_state_pokemon_dict(StatePokemon("rattata", 100).to_dict()),
+                    Pokemon.from_state_pokemon_dict(StatePokemon("charmander", 100).to_dict()),
+                    Pokemon.from_state_pokemon_dict(StatePokemon("squirtle", 100).to_dict()),
+                    Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
+                    Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
+                ],
+                defaultdict(lambda: 0),
+                False
+            ),
+            None,
+            None,
+            False,
+            False,
+            False
+        )
+        self.previous_instruction = TransposeInstruction(1.0, [], False)
+
+    def test_works_with_previous_instructions(self):
+        self.previous_instruction = TransposeInstruction(
+            1,
+            [
+                (constants.MUTATOR_WEATHER_START, constants.SUN, None)
+            ],
+            False
+        )
+
+        move_name = constants.RAIN
+        mutator = StateMutator(self.state)
+        instructions = instruction_generator.get_instructions_from_special_logic_move(mutator, move_name, self.previous_instruction)
+
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_WEATHER_START, constants.SUN, None),
+                    (constants.MUTATOR_WEATHER_START, constants.RAIN, constants.SUN),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+
 class TestGetInstructionsFromFlinchingMoves(unittest.TestCase):
 
     def setUp(self):

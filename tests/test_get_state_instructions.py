@@ -4371,6 +4371,260 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_using_sunnyday_sets_the_weather(self):
+        bot_move = "sunnyday"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_WEATHER_START, constants.SUN, self.state.weather)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_sunnyday_changes_the_weather_from_rain(self):
+        bot_move = "sunnyday"
+        opponent_move = "splash"
+        self.state.weather = constants.RAIN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_WEATHER_START, constants.SUN, self.state.weather)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_raindance_sets_the_weather(self):
+        bot_move = "raindance"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_WEATHER_START, constants.RAIN, self.state.weather)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_raindance_sets_the_weather_correctly_as_a_second_move(self):
+        bot_move = "raindance"
+        opponent_move = "bulletpunch"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 17),
+                    (constants.MUTATOR_WEATHER_START, constants.RAIN, self.state.weather)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_fainted_pkmn_doesnt_move(self):
+        bot_move = "raindance"
+        opponent_move = "bulletpunch"
+        self.state.self.active.hp = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_has_no_effect_when_weather_is_already_active(self):
+        bot_move = "raindance"
+        opponent_move = "splash"
+        self.state.weather = constants.RAIN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_paralyzed_pokemon_reacts_properly_to_weather(self):
+        bot_move = "raindance"
+        opponent_move = "splash"
+        self.state.self.active.status = constants.PARALYZED
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.75,
+                [
+                    (constants.MUTATOR_WEATHER_START, constants.RAIN, None)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.25,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_trickroom_sets_trickroom(self):
+        bot_move = "trickroom"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_TOGGLE_TRICKROOM,)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_does_not_work_through_flinched(self):
+        bot_move = "raindance"
+        opponent_move = "ironhead"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 34),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.FLINCH),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.FLINCH),
+                ],
+                True
+            ),
+            TransposeInstruction(
+                0.7,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 34),
+                    (constants.MUTATOR_WEATHER_START, constants.RAIN, self.state.weather)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_double_weather_move_sets_weathers_properly(self):
+        bot_move = "raindance"
+        opponent_move = "sandstorm"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_WEATHER_START, constants.SAND, None),
+                    (constants.MUTATOR_WEATHER_START, constants.RAIN, constants.SAND)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_sandstorm_sets_the_weather(self):
+        bot_move = "sandstorm"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_WEATHER_START, constants.SAND, self.state.weather),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_hail_sets_the_weather(self):
+        bot_move = "hail"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_WEATHER_START, constants.HAIL, self.state.weather),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_sunnyday_in_heavyrain_does_not_change_weather(self):
+        bot_move = "sunnyday"
+        opponent_move = "splash"
+        self.state.weather = constants.HEAVY_RAIN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_sunnyday_into_solarbeam_causes_solarbeam_to_not_charge(self):
+        bot_move = "sunnyday"
+        opponent_move = "solarbeam"
+        self.state.self.active.speed = 2
+        self.state.opponent.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_WEATHER_START, constants.SUN, self.state.weather),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 99)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_using_protect_adds_volatile_status_and_side_condition(self):
         bot_move = "protect"
         opponent_move = "splash"

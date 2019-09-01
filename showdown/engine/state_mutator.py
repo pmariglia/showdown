@@ -21,6 +21,7 @@ class StateMutator:
             constants.MUTATOR_ENABLE_MOVE: self.enable_move,
             constants.MUTATOR_WEATHER_START: self.start_weather,
             constants.MUTATOR_FIELD_START: self.start_field,
+            constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom
         }
         self.reverse_instructions = {
             constants.MUTATOR_SWITCH: self.reverse_switch,
@@ -37,7 +38,8 @@ class StateMutator:
             constants.MUTATOR_DISABLE_MOVE: self.enable_move,
             constants.MUTATOR_ENABLE_MOVE: self.disable_move,
             constants.MUTATOR_WEATHER_START: self.reverse_start_weather,
-            constants.MUTATOR_FIELD_START: self.reverse_start_field
+            constants.MUTATOR_FIELD_START: self.reverse_start_field,
+            constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom
         }
 
     def apply(self, instructions):
@@ -161,6 +163,9 @@ class StateMutator:
 
     def reverse_start_field(self, _, old_field):
         self.state.field = old_field
+
+    def toggle_trickroom(self):
+        self.state.trick_room ^= True
 
     def __key(self):
         return self.state

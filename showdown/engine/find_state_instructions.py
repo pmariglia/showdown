@@ -310,6 +310,12 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         temp_instructions += instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, attacking_move, instruction_set)
     all_instructions = temp_instructions
 
+    if attacking_move[constants.ID] in instruction_generator.SPECIAL_LOGIC_MOVES:
+        temp_instructions = []
+        for instruction_set in all_instructions:
+            temp_instructions += instruction_generator.get_instructions_from_special_logic_move(mutator, attacking_move[constants.ID], instruction_set)
+        return temp_instructions
+
     if damage_amounts is not None:
         temp_instructions = []
         for instruction_set in all_instructions:

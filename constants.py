@@ -54,6 +54,7 @@ MUTATOR_WEATHER_START = "weather_start"
 MUTATOR_WEATHER_END = "weather_end"
 MUTATOR_FIELD_START = "field_start"
 MUTATOR_FIELD_END = "field_end"
+MUTATOR_TOGGLE_TRICKROOM = "toggle_trickroom"
 
 
 DAMAGE = 'damage'
@@ -205,6 +206,8 @@ SAND = "sandstorm"
 HAIL = "hail"
 DESOLATE_LAND = "desolateland"
 HEAVY_RAIN = "primordialsea"
+
+IRREVERSIBLE_WEATHER = {DESOLATE_LAND, HEAVY_RAIN}
 
 # Hazards
 STEALTH_ROCK = 'stealthrock'

@@ -32,6 +32,45 @@ opposing_side_strings = [
 ]
 
 
+weather_instructions = {
+    constants.SUN,
+    constants.RAIN,
+    constants.SAND,
+    constants.HAIL,
+}
+
+SPECIAL_LOGIC_MOVES = {
+    constants.SUN,
+    constants.RAIN,
+    constants.SAND,
+    constants.HAIL,
+    constants.TRICK_ROOM,
+}
+
+
+def get_instructions_from_special_logic_move(mutator, move_name, instructions):
+    if instructions.frozen:
+        return [instructions]
+
+    new_instructions = list()
+    mutator.apply(instructions.instructions)
+    if move_name in weather_instructions and mutator.state.weather != move_name and mutator.state.weather not in constants.IRREVERSIBLE_WEATHER:
+        new_instructions.append(
+            (constants.MUTATOR_WEATHER_START, move_name, mutator.state.weather)
+        )
+    elif move_name == constants.TRICK_ROOM:
+        new_instructions.append(
+            (constants.MUTATOR_TOGGLE_TRICKROOM,)
+        )
+
+    mutator.reverse(instructions.instructions)
+
+    for i in new_instructions:
+        instructions.add_instruction(i)
+
+    return [instructions]
+
+
 def get_state_from_volatile_status(mutator, volatile_status, attacker, affected_side, first_move, instruction):
     if instruction.frozen or not volatile_status:
         return [instruction]
