@@ -5085,6 +5085,25 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_move_without_protect_flag_goes_through_protect(self):
+        bot_move = "protect"
+        opponent_move = "feint"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 26),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_magicguard_does_not_take_leechseed_damage(self):
         bot_move = "splash"
         opponent_move = "splash"

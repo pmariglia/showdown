@@ -151,7 +151,7 @@ def update_damage_calc_from_abilities_and_items(attacking_pokemon, defending_pok
         attacking_move[constants.TARGET] = constants.SELF
         attacking_move[constants.CATEGORY] = constants.STATUS
 
-    if any(vs in constants.PROTECT_VOLATILE_STATUSES for vs in defending_pokemon.volatile_status):
+    if constants.PROTECT in attacking_move[constants.FLAGS] and any(vs in constants.PROTECT_VOLATILE_STATUSES for vs in defending_pokemon.volatile_status):
         attacking_move = attacking_move.copy()
         attacking_move[constants.ACCURACY] = False
         if constants.BANEFUL_BUNKER in defending_pokemon.volatile_status and constants.CONTACT in attacking_move[constants.FLAGS]:
