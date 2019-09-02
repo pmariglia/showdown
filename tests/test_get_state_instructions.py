@@ -5640,6 +5640,67 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_roost_volatilestatus_is_removed_at_end_of_turn(self):
+        bot_move = "splash"
+        opponent_move = "roost"
+        self.state.opponent.active.speed = 2
+        self.state.self.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, 'roost'),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, 'roost'),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_roost_volatilestatus_makes_ground_move_hit_flying_type(self):
+        bot_move = "earthquake"
+        opponent_move = "roost"
+        self.state.opponent.active.types = ['flying', 'ghost']
+        self.state.opponent.active.speed = 2
+        self.state.self.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, 'roost'),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, 'roost'),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_roost_volatilestatus_makes_ground_move_hit_pure_flying_type(self):
+        bot_move = "earthquake"
+        opponent_move = "roost"
+        self.state.opponent.active.types = ['flying']
+        self.state.opponent.active.speed = 2
+        self.state.self.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, 'roost'),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, 'roost'),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_thousandarrows_versus_double_type_does_not_change_the_original_type_list(self):
         bot_move = "thousandarrows"
         opponent_move = "splash"

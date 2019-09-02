@@ -9508,9 +9508,7 @@
         "name": "Roost",
         "priority": 0,
         "secondary": false,
-        "self": {
-            "volatileStatus": "roost"
-        },
+        "volatileStatus": "roost",
         "target": "self",
         "type": "flying",
         "pp": 10,

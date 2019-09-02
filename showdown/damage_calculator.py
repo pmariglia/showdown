@@ -105,6 +105,12 @@ def calculate_damage(attacker, defender, attacking_move, conditions=None, calc_t
     if attacking_move[constants.ID] == 'thousandarrows' and 'flying' in defending_types:
         defending_types = copy(defender.types)
         defending_types.remove('flying')
+    if attacking_move[constants.TYPE] == 'ground' and constants.ROOST in defender.volatile_status:
+        defending_types = copy(defender.types)
+        try:
+            defending_types.remove('flying')
+        except ValueError:
+            pass
 
     # rock types get 1.5x SPDEF in sand
     try:

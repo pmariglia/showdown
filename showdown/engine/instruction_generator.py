@@ -912,6 +912,15 @@ def get_end_of_turn_instructions(mutator, instruction, bot_moves_first):
                 )
             )
 
+        if constants.ROOST in pkmn.volatile_status:
+            instructions_to_add.append(
+                (
+                    constants.MUTATOR_REMOVE_VOLATILE_STATUS,
+                    attacker,
+                    constants.ROOST,
+                )
+            )
+
         mutator.reverse(instruction.instructions)
 
         for i in instructions_to_add:
