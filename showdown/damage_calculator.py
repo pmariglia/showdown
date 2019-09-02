@@ -1,3 +1,5 @@
+from copy import copy
+
 import constants
 from data import all_move_json
 
@@ -99,6 +101,11 @@ def calculate_damage(attacker, defender, attacking_move, conditions=None, calc_t
         elif defense == constants.SPECIAL_ATTACK:
             attacking_stats[attack] = attacker.special_attack
 
+    defending_types = defender.types
+    if attacking_move[constants.ID] == 'thousandarrows' and 'flying' in defending_types:
+        defending_types = copy(defender.types)
+        defending_types.remove('flying')
+
     # rock types get 1.5x SPDEF in sand
     try:
         if conditions[constants.WEATHER] == constants.SAND and 'rock' in defender.types:
@@ -109,7 +116,7 @@ def calculate_damage(attacker, defender, attacking_move, conditions=None, calc_t
     damage = int(int((2 * attacker.level) / 5) + 2) * attacking_move[constants.BASE_POWER]
     damage = int(damage * attacking_stats[attack] / defending_stats[defense])
     damage = int(damage / 50) + 2
-    damage *= calculate_modifier(attacker, defender, attacking_move, conditions)
+    damage *= calculate_modifier(attacker, defender, defending_types, attacking_move, conditions)
 
     damage_rolls = get_damage_rolls(damage, calc_type)
 
@@ -133,14 +140,15 @@ def is_not_very_effective(move_type, defending_pokemon_types):
     return multiplier < 1
 
 
-def calculate_modifier(attacker, defender, attacking_move, conditions):
+def calculate_modifier(attacker, defender, defending_types, attacking_move, conditions):
 
     modifier = 1
-    modifier *= type_effectiveness_modifier(attacking_move, defender)
+    modifier *= type_effectiveness_modifier(attacking_move, defending_types)
     modifier *= weather_modifier(attacking_move, conditions.get(constants.WEATHER))
     modifier *= stab_modifier(attacker, attacking_move)
     modifier *= burn_modifier(attacker, attacking_move)
     modifier *= terrain_modifier(attacker, defender, attacking_move, conditions.get(constants.TERRAIN))
+    modifier *= volatile_status_modifier(attacking_move, defender)
 
     if attacker.ability != 'infiltrator':
         modifier *= light_screen_modifier(attacking_move, conditions.get(constants.LIGHT_SCREEN))
@@ -216,10 +224,10 @@ def special_logic(move_name, attacker, defender):
             return [0]
 
 
-def type_effectiveness_modifier(attacking_move, defending_pokemon):
+def type_effectiveness_modifier(attacking_move, defending_types):
     modifier = 1
     attacking_type_index = pokemon_type_indicies[normalize_name(attacking_move[constants.TYPE])]
-    for pkmn_type in defending_pokemon.types:
+    for pkmn_type in defending_types:
         defending_type_index = pokemon_type_indicies[normalize_name(pkmn_type)]
         modifier *= damage_multipication_array[attacking_type_index][defending_type_index]
 
@@ -282,5 +290,11 @@ def terrain_modifier(attacker, defender, attacking_move, terrain):
     elif terrain == constants.PSYCHIC_TERRAIN and attacking_move[constants.TYPE] == 'psychic' and attacker.is_grounded():
         return 1.5
     elif terrain == constants.PSYCHIC_TERRAIN and attacking_move[constants.PRIORITY] > 0:
+        return 0
+    return 1
+
+
+def volatile_status_modifier(attacking_move, defender):
+    if 'magnetrise' in defender.volatile_status and attacking_move[constants.TYPE] == 'ground':
         return 0
     return 1

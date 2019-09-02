@@ -4,12 +4,10 @@ from showdown.damage_calculator import is_super_effective
 
 
 def levitate(attacking_move, attacking_pokemon, defending_pokemon):
-    if attacking_move[constants.TYPE] == 'ground' and attacking_move[constants.TARGET] in constants.MOVE_TARGET_OPPONENT:
+    if attacking_move[constants.TYPE] == 'ground' and attacking_move[constants.TARGET] in constants.MOVE_TARGET_OPPONENT and attacking_move[constants.ID] != 'thousandarrows':
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] = 0
-        return attacking_move
-    else:
-        return attacking_move
+    return attacking_move
 
 
 def lightningrod(attacking_move, attacking_pokemon, defending_pokemon):

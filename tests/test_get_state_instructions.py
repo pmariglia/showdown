@@ -5568,6 +5568,86 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_thousandarrows_versus_ungrounded_pokemon_hits(self):
+        bot_move = "thousandarrows"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['flying']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 56),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, 'smackdown'),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_thousandarrows_versus_levitate_hits(self):
+        bot_move = "thousandarrows"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'levitate'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 56),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, 'smackdown'),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_thousandarrows_versus_airballoon_hits(self):
+        bot_move = "thousandarrows"
+        opponent_move = "splash"
+        self.state.opponent.active.item = 'airballoon'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 56),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, 'smackdown'),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_magnetrise_versus_earthquake(self):
+        bot_move = "earthquake"
+        opponent_move = "magnetrise"
+        self.state.opponent.active.speed = 2
+        self.state.self.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, 'magnetrise'),
+                ],
+                True
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_thousandarrows_versus_double_type_does_not_change_the_original_type_list(self):
+        bot_move = "thousandarrows"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['flying', 'ground']
+        get_all_state_instructions(self.mutator, bot_move, opponent_move)
+
+        self.assertEqual(['flying', 'ground'], self.state.opponent.active.types)
+
     def test_flinching_as_second_move_does_not_produce_extra_state(self):
         bot_move = "switch xatu"
         opponent_move = "ironhead"

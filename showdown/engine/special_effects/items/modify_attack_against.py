@@ -25,7 +25,7 @@ def assaultvest(attacking_move, attacking_pokemon, defending_pokemon):
 
 
 def airballoon(attacking_move, attacking_pokemon, defending_pokemon):
-    if attacking_move[constants.TYPE] == 'ground':
+    if attacking_move[constants.TYPE] == 'ground' and attacking_move[constants.ID] != 'thousandarrows':
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] = 0
     return attacking_move

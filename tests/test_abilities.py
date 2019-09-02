@@ -12,12 +12,14 @@ class TestLevitate(unittest.TestCase):
 
     def test_ground_move_does_zero_damage_against_pokemon_with_levitate(self):
         move = {
+            constants.ID: "cool_move",
             constants.NAME: "cool_move",
             constants.TYPE: "ground",
             constants.TARGET: constants.NORMAL
         }
 
         expected_move = {
+            constants.ID: "cool_move",
             constants.NAME: "cool_move",
             constants.TYPE: "ground",
             constants.BASE_POWER: 0,
@@ -28,6 +30,7 @@ class TestLevitate(unittest.TestCase):
 
     def test_normal_move_does_zero_damage_against_pokemon_with_levitate(self):
         move = {
+            constants.ID: "cool_move",
             constants.NAME: "cool_move",
             constants.TYPE: "flying",
             constants.TARGET: constants.NORMAL
