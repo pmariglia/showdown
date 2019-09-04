@@ -268,6 +268,10 @@ class TestConvertToMega(unittest.TestCase):
         self.addCleanup(self.get_mega_name_patch.stop)
         self.get_mega_name_mock = self.get_mega_name_patch.start()
 
+        self.pkmn_sets_patch = mock.patch('showdown.battle.data')
+        self.addCleanup(self.pkmn_sets_patch.stop)
+        self.pkmn_sets_mock = self.pkmn_sets_patch.start()
+
     def test_changes_venusaur_to_its_mega_form(self):
         self.get_mega_name_mock.return_value = 'venusaurmega'
 
@@ -317,3 +321,47 @@ class TestConvertToMega(unittest.TestCase):
             {'7': '8'},
         ]
         self.assertEqual(expected_moves, pkmn.moves)
+
+    def test_converts_when_it_is_in_sets_lookup_and_check_sets_is_true(self):
+        self.pkmn_sets_mock.standard_battle_sets = {
+            "venusaurmega": {}
+        }
+        self.get_mega_name_mock.return_value = 'venusaurmega'
+
+        pkmn = Pokemon('venusaur', 100)
+        pkmn.try_convert_to_mega(check_in_sets=True)
+        self.assertEqual("venusaurmega", pkmn.name)
+
+    def test_converts_when_it_is_not_in_sets_lookup_and_check_sets_is_false(self):
+        self.pkmn_sets_mock.standard_battle_sets = {}
+        self.get_mega_name_mock.return_value = 'venusaurmega'
+
+        pkmn = Pokemon('venusaur', 100)
+        pkmn.try_convert_to_mega(check_in_sets=False)
+        self.assertEqual("venusaurmega", pkmn.name)
+
+    def test_does_not_convert_when_it_is_not_in_sets_lookup_and_check_sets_is_true(self):
+        self.pkmn_sets_mock.standard_battle_sets = {}
+        self.get_mega_name_mock.return_value = 'venusaurmega'
+
+        pkmn = Pokemon('venusaur', 100)
+        pkmn.try_convert_to_mega(check_in_sets=True)
+        self.assertEqual("venusaur", pkmn.name)
+
+    def test_does_not_convert_if_item_is_revealed(self):
+        self.pkmn_sets_mock.standard_battle_sets = {}
+        self.get_mega_name_mock.return_value = 'venusaurmega'
+
+        pkmn = Pokemon('venusaur', 100)
+        pkmn.item = 'leftovers'
+        pkmn.try_convert_to_mega()
+        self.assertEqual("venusaur", pkmn.name)
+
+    def test_does_not_convert_if_item_is_none(self):
+        self.pkmn_sets_mock.standard_battle_sets = {}
+        self.get_mega_name_mock.return_value = 'venusaurmega'
+
+        pkmn = Pokemon('venusaur', 100)
+        pkmn.item = None
+        pkmn.try_convert_to_mega()
+        self.assertEqual("venusaur", pkmn.name)

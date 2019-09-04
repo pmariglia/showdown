@@ -73,7 +73,8 @@ class Battle:
 
     def prepare_random_battle(self):
         if not self.opponent.mega_revealed():
-            self.opponent.active.try_convert_to_mega()
+            check_in_sets = self.battle_type == constants.STANDARD_BATTLE
+            self.opponent.active.try_convert_to_mega(check_in_sets=check_in_sets)
 
         self.opponent.active.guess_random_battle_attributes()
         for pkmn in filter(lambda x: x.is_alive(), self.opponent.reserve):
@@ -81,7 +82,8 @@ class Battle:
 
     def prepare_standard_battle(self):
         if not self.opponent.mega_revealed():
-            self.opponent.active.try_convert_to_mega()
+            check_in_sets = self.battle_type == constants.STANDARD_BATTLE
+            self.opponent.active.try_convert_to_mega(check_in_sets=check_in_sets)
 
         self.opponent.active.guess_standard_battle_attributes()
         for pkmn in filter(lambda x: x.is_alive(), self.opponent.reserve):
@@ -269,9 +271,13 @@ class Pokemon:
         self.boosts = boosts
         self.status = status
 
-    def try_convert_to_mega(self):
+    def try_convert_to_mega(self, check_in_sets=False):
+        if self.item != constants.UNKNOWN_ITEM:
+            return
         mega_pkmn_name = get_mega_pkmn_name(self.name)
-        if mega_pkmn_name:
+        in_sets_data = mega_pkmn_name in data.standard_battle_sets
+
+        if (mega_pkmn_name and check_in_sets and in_sets_data) or (mega_pkmn_name and not check_in_sets):
             logger.debug("Guessing mega-evolution: {}".format(mega_pkmn_name))
             self.forme_change(mega_pkmn_name)
 
