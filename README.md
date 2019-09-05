@@ -65,6 +65,9 @@ Running with `python run.py` will start the bot with configurations specified by
 #### Run with an environment variable file
 `docker run --env-file .env showdown`
 
+### Running on Heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Decision Logic
 
