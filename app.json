@@ -17,7 +17,7 @@
       "description": "Pokemon Showdown password"
     },
     "BOT_MODE": {
-      "description": "The mode the the bot will operate in. Options are "CHALLENGE_USER", "SEARCH_LADDER", or "ACCEPT_CHALLENGE"",
+      "description": "The mode the the bot will operate in. Options are CHALLENGE_USER, SEARCH_LADDER, or ACCEPT_CHALLENGE",
       "required": true
     },
     "POKEMON_MODE": {
