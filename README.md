@@ -69,6 +69,8 @@ Running with `python run.py` will start the bot with configurations specified by
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+After deploying, go to the Resources tab and turn on the worker.
+
 ## Decision Logic
 
 The bot searches through the game-tree for two turns and can make a decision in the two different ways explained below.
