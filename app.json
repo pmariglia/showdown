@@ -14,7 +14,8 @@
       "required": true
     },
      "PS_PASSWORD": {
-      "description": "Pokemon Showdown password"
+      "description": "Pokemon Showdown password",
+       "required": false
     },
     "BOT_MODE": {
       "description": "The mode the the bot will operate in. Options are CHALLENGE_USER, SEARCH_LADDER, or ACCEPT_CHALLENGE",
