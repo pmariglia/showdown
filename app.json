@@ -5,7 +5,7 @@
   "env": {
     "WEBSOCKET_URI": {
       "description": "The address to use to connect to the Pokemon Showdown websocket",
-      "value": "sim.smogon.com:8080",
+      "value": "sim.smogon.com:8000",
       "required": true
     },
     "PS_USERNAME": {
