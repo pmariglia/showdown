@@ -13,8 +13,8 @@ class Scoring:
         constants.SPECIAL_ATTACK: 15,
         constants.SPECIAL_DEFENSE: 15,
         constants.SPEED: 25,
-        constants.ACCURACY: 1,
-        constants.EVASION: 1
+        constants.ACCURACY: 30,
+        constants.EVASION: 30
     }
 
     POKEMON_BOOST_DIMINISHING_RETURNS = {
@@ -83,6 +83,8 @@ def evaluate_pokemon(pkmn):
     score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.special_attack_boost] * Scoring.POKEMON_BOOSTS[constants.SPECIAL_ATTACK]
     score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.special_defense_boost] * Scoring.POKEMON_BOOSTS[constants.SPECIAL_DEFENSE]
     score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.speed_boost] * Scoring.POKEMON_BOOSTS[constants.SPEED]
+    score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.accuracy_boost] * Scoring.POKEMON_BOOSTS[constants.ACCURACY]
+    score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.evasion_boost] * Scoring.POKEMON_BOOSTS[constants.EVASION]
 
     score += Scoring.POKEMON_STATUSES[pkmn.status]
 

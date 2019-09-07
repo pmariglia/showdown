@@ -4,6 +4,7 @@ from config import logger
 
 from showdown.damage_calculator import damage_multipication_array
 from showdown.damage_calculator import pokemon_type_indicies
+from showdown.helpers import accuracy_multiplier_lookup
 
 from .special_effects.abilities.on_switch_in import ability_on_switch_in
 from .special_effects.items.end_of_turn import item_end_of_turn
@@ -325,11 +326,14 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
     recoil = attacking_move.get(constants.RECOIL)
     drain = attacking_move.get(constants.DRAIN)
     move_flags = attacking_move.get(constants.FLAGS, {})
-    if accuracy is True:
-        accuracy = 100
-    percent_hit = accuracy / 100
 
     mutator.apply(instruction.instructions)
+
+    if accuracy is True:
+        accuracy = 100
+    else:
+        accuracy = min(100, accuracy * accuracy_multiplier_lookup[attacker_side.active.accuracy_boost] / accuracy_multiplier_lookup[damage_side.active.evasion_boost])
+    percent_hit = accuracy / 100
 
     # `damage == 0` means that the move deals damage, but not in this situation
     # for example: using Return against a Ghost-type

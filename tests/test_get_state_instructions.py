@@ -1141,6 +1141,147 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_accuracy_reduction_move(self):
+        bot_move = "flash"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ACCURACY, -1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_accuracy_reduction_move_into_tackle_causes_multiple_states(self):
+        bot_move = "flash"
+        opponent_move = "tackle"
+        self.state.self.active.speed = 2
+        self.state.opponent.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.75,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ACCURACY, -1),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.25,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ACCURACY, -1),
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_accuracy_reduction_move_into_contrary_with_tackle_causes_one_state(self):
+        bot_move = "flash"
+        opponent_move = "tackle"
+        self.state.self.active.speed = 2
+        self.state.opponent.active.speed = 1
+        self.state.opponent.active.ability = 'contrary'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ACCURACY, 1),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_evasion_boosting_move(self):
+        bot_move = "doubleteam"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.EVASION, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_evasion_boosting_move_causes_two_states(self):
+        bot_move = "doubleteam"
+        opponent_move = "tackle"
+        self.state.self.active.speed = 2
+        self.state.opponent.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.75,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.EVASION, 1),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.25,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.EVASION, 1),
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_evasion_boosting_move_with_contrary_causes_one_state(self):
+        bot_move = "doubleteam"
+        opponent_move = "tackle"
+        self.state.self.active.ability = 'contrary'
+        self.state.self.active.speed = 2
+        self.state.opponent.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.EVASION, -1),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_accuracy_increase_does_not_produce_two_states(self):
+        bot_move = "splash"
+        opponent_move = "tackle"
+        self.state.opponent.active.accuracy_boost = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_pokemon_with_active_substitute_switching_into_phazing_move(self):
         bot_move = "switch starmie"
         opponent_move = "roar"
