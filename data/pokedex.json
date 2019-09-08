@@ -19296,6 +19296,7 @@
         "types": [
             "rock"
         ],
+        "weight": 25,
         "most_likely_ability": "Tough Claws"
     },
     "wishiwashi": {
@@ -21501,6 +21502,7 @@
         "types": [
             "electric"
         ],
+        "weight": 44.5,
         "most_likely_ability": "Volt Absorb"
     },
     "naganadel": {
@@ -21520,6 +21522,7 @@
             "poison",
             "dragon"
         ],
+        "weight": 150,
         "most_likely_ability": "Volt Absorb"
     },
     "stakataka": {
@@ -21539,6 +21542,7 @@
             "rock",
             "steel"
         ],
+        "weight": 820,
         "most_likely_ability": "Beast Boost"
     },
     "necrozmadawnwings": {
@@ -21558,6 +21562,7 @@
             "psychic",
             "ghost"
         ],
+        "weight": 350,
         "most_likely_ability": "Prism Armor"
     },
     "blacephalon": {
@@ -21577,6 +21582,7 @@
             "fire",
             "ghost"
         ],
+        "weight": 13,
         "most_likely_ability": "Beast Boost"
     },
     "necrozmaduskmane": {
@@ -21596,6 +21602,7 @@
             "psychic",
             "steel"
         ],
+        "weight": 460,
         "most_likely_ability": "Prism Armor"
     },
     "necrozmaultra": {
@@ -21615,6 +21622,7 @@
             "psychic",
             "dragon"
         ],
+        "weight": 230,
         "most_likely_ability": "Neuroforce"
     },
     "raticatealolatotem": {
@@ -21634,6 +21642,7 @@
             "dark",
             "normal"
         ],
+        "weight": 105,
         "most_likely_ability": "Thick Fat"
     },
     "pikachuoriginal": {
@@ -21652,6 +21661,7 @@
         "abilities": {
             "0": "Static"
         },
+        "weight": 6,
         "most_likely_ability": "Static"
     },
     "pikachuhoenn": {
@@ -21670,6 +21680,7 @@
         "abilities": {
             "0": "Static"
         },
+        "weight": 6,
         "most_likely_ability": "Static"
     },
     "pikachusinnoh": {
@@ -21688,6 +21699,7 @@
         "abilities": {
             "0": "Static"
         },
+        "weight": 6,
         "most_likely_ability": "Static"
     },
     "pikachuunova": {
@@ -21706,6 +21718,7 @@
         "abilities": {
             "0": "Static"
         },
+        "weight": 6,
         "most_likely_ability": "Static"
     },
     "pikachukalos": {
@@ -21724,6 +21737,7 @@
         "abilities": {
             "0": "Static"
         },
+        "weight": 6,
         "most_likely_ability": "Static"
     },
     "pikachualola": {
@@ -21742,6 +21756,7 @@
         "abilities": {
             "0": "Static"
         },
+        "weight": 6,
         "most_likely_ability": "Static"
     },
     "pikachupartner": {
@@ -21760,6 +21775,7 @@
         "abilities": {
             "0": "Static"
         },
+        "weight": 6,
         "most_likely_ability": "Static"
     },
     "pikachustarter": {
@@ -21779,6 +21795,7 @@
             "0": "Static",
             "H": "Lightning Rod"
         },
+        "weight": 6,
         "most_likely_ability": "Lightning Rod"
     },
     "marowakalolatotem": {
@@ -21798,6 +21815,7 @@
         "abilities": {
             "0": "Rock Head"
         },
+        "weight": 98,
         "most_likely_ability": "Rock Head"
     },
     "eeveestarter": {
@@ -21818,6 +21836,7 @@
             "1": "Adaptability",
             "H": "Anticipation"
         },
+        "weight": 6.5,
         "most_likely_ability": "Adaptability"
     },
     "gumshoostotem": {
@@ -21836,6 +21855,7 @@
         "abilities": {
             "0": "Adaptability"
         },
+        "weight": 60,
         "most_likely_ability": "Adaptability"
     },
     "vikavolttotem": {
@@ -21855,6 +21875,7 @@
         "abilities": {
             "0": "Levitate"
         },
+        "weight": 147.5,
         "most_likely_ability": "Levitate"
     },
     "ribombeetotem": {
@@ -21874,6 +21895,7 @@
         "abilities": {
             "0": "Sweet Veil"
         },
+        "weight": 2,
         "most_likely_ability": "Sweet Veil"
     },
     "araquanidtotem": {
@@ -21893,6 +21915,7 @@
         "abilities": {
             "0": "Water Bubble"
         },
+        "weight": 217.5,
         "most_likely_ability": "Water Bubble"
     },
     "lurantistotem": {
@@ -21911,6 +21934,7 @@
         "abilities": {
             "0": "Leaf Guard"
         },
+        "weight": 58,
         "most_likely_ability": "Leaf Guard"
     },
     "salazzletotem": {
@@ -21930,6 +21954,7 @@
         "abilities": {
             "0": "Corrosion"
         },
+        "weight": 81,
         "most_likely_ability": "Corrosion"
     },
     "togedemarutotem": {
@@ -21949,6 +21974,7 @@
         "abilities": {
             "0": "Sturdy"
         },
+        "weight": 13,
         "most_likely_ability": "Sturdy"
     },
     "mimikyutotem": {
@@ -21968,6 +21994,7 @@
         "abilities": {
             "0": "Disguise"
         },
+        "weight": 2.8,
         "most_likely_ability": "Disguise"
     },
     "mimikyubustedtotem": {
@@ -21987,6 +22014,7 @@
         "abilities": {
             "0": "Disguise"
         },
+        "weight": 2.8,
         "most_likely_ability": "Disguise"
     },
     "kommoototem": {
@@ -22006,6 +22034,7 @@
         "abilities": {
             "0": "Overcoat"
         },
+        "weight": 207.5,
         "most_likely_ability": "Overcoat"
     },
     "magearnaoriginal": {
@@ -22025,6 +22054,7 @@
         "abilities": {
             "0": "Soul-Heart"
         },
+        "weight": 80.5,
         "most_likely_ability": "Soul-Heart"
     },
     "poipole": {
@@ -22043,6 +22073,7 @@
         "abilities": {
             "0": "Beast Boost"
         },
+        "weight": 1.8,
         "most_likely_ability": "Beast Boost"
     },
     "meltan": {
@@ -22061,6 +22092,7 @@
         "abilities": {
             "0": "Magnet Pull"
         },
+        "weight": 8,
         "most_likely_ability": "Magnet Pull"
     },
     "melmetal": {
@@ -22079,6 +22111,7 @@
         "abilities": {
             "0": "Iron Fist"
         },
+        "weight": 800,
         "most_likely_ability": "Iron Fist"
     }
 }
