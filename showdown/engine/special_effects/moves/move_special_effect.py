@@ -1,4 +1,5 @@
 import constants
+from data import pokedex
 
 
 def suckerpunch(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
@@ -191,7 +192,28 @@ def revelationdance(attacking_move, defending_move, attacking_pokemon, defending
     return attacking_move
 
 
+def lowkick(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    defending_pokemon_weight = pokedex[defending_pokemon.id][constants.WEIGHT]
+
+    if defending_pokemon_weight < 10:
+        attacking_move[constants.BASE_POWER] = 20
+    elif defending_pokemon_weight < 25:
+        attacking_move[constants.BASE_POWER] = 40
+    elif defending_pokemon_weight < 60:
+        attacking_move[constants.BASE_POWER] = 60
+    elif defending_pokemon_weight < 100:
+        attacking_move[constants.BASE_POWER] = 80
+    elif defending_pokemon_weight < 200:
+        attacking_move[constants.BASE_POWER] = 100
+    else:
+        attacking_move[constants.BASE_POWER] = 120
+
+    return attacking_move
+
+
 move_lookup = {
+    'lowkick': lowkick,
     'revelationdance': revelationdance,
     'strengthsap': strengthsap,
     'toxic': toxic,

@@ -525,6 +525,42 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_lowkick_does_damage_on_light_pokemon(self):
+        bot_move = "lowkick"
+        opponent_move = "splash"
+        self.state.opponent.active.id = 'castform'
+        self.state.opponent.active.types = ['rock']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 27)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_lowkick_does_damage_on_heavy_pokemon(self):
+        bot_move = "lowkick"
+        opponent_move = "splash"
+        self.state.opponent.active.id = 'golem'
+        self.state.opponent.active.types = ['rock']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 149)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_hydration_cures_sleep_at_end_of_turn_in_rain(self):
         bot_move = "splash"
         opponent_move = "splash"

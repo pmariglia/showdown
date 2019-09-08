@@ -100,6 +100,7 @@ STATUS = "status"
 TYPES = "types"
 TYPE = "type"
 BASE_POWER = "basePower"
+WEIGHT = "weight"
 
 SIDE = "side"
 POKEMON = "pokemon"
