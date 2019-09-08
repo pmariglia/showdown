@@ -400,6 +400,15 @@ def remove_duplicate_instructions(list_of_instructions):
     return new_instructions
 
 
+def end_of_turn_triggered(user_move, opponent_move):
+    if user_move.startswith(constants.SWITCH_STRING + ' ') and opponent_move == constants.DO_NOTHING_MOVE:
+        return False
+    elif opponent_move.startswith(constants.SWITCH_STRING + ' ') and user_move == constants.DO_NOTHING_MOVE:
+        return False
+
+    return True
+
+
 def get_all_state_instructions(mutator, user_move_string, opponent_move_string):
     user_move = lookup_move(user_move_string)
     opponent_move = lookup_move(opponent_move_string)
@@ -418,10 +427,11 @@ def get_all_state_instructions(mutator, user_move_string, opponent_move_string):
         for instruction in instructions:
             all_instructions += get_state_instructions_from_move(mutator, user_move, opponent_move, constants.SELF, constants.OPPONENT, False, instruction)
 
-    temp_instructions = []
-    for instruction_set in all_instructions:
-        temp_instructions += instruction_generator.get_end_of_turn_instructions(mutator, instruction_set, bot_moves_first)
-    all_instructions = temp_instructions
+    if end_of_turn_triggered(user_move_string, opponent_move_string):
+        temp_instructions = []
+        for instruction_set in all_instructions:
+            temp_instructions += instruction_generator.get_end_of_turn_instructions(mutator, instruction_set, bot_moves_first)
+        all_instructions = temp_instructions
 
     all_instructions = remove_duplicate_instructions(all_instructions)
 
