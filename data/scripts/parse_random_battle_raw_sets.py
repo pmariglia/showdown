@@ -33,6 +33,8 @@ with open(fp, 'r') as f:
 
 for l in lines:
     split_lines = l.strip().split('|')
+    if len(split_lines) != 8:
+        continue
     pkmn = split_lines[0]
     level = int(split_lines[1])
     if pkmn in ['unown', 'ditto']:
@@ -77,4 +79,4 @@ for l in lines:
 
 
 with open("out.json", 'w') as f:
-    json.dump(all_pokemon_dict, f, indent=4)
+    json.dump(all_pokemon_dict, f, indent=4, sort_keys=True)
