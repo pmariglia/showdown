@@ -106,7 +106,7 @@ def heal_or_damage(battle, split_msg):
                 battle.opponent.side_conditions[constants.TOXIC_COUNT] += 1
 
         # give that pokemon an item if this string specifies one
-        if len(split_msg) == 5 and constants.ITEM in split_msg[4]:
+        if len(split_msg) == 5 and constants.ITEM in split_msg[4] and pkmn.item is not None:
             item = normalize_name(split_msg[4].split(constants.ITEM)[-1].strip(": "))
             logger.debug("Setting opponent's item to: {}".format(item))
             pkmn.item = item

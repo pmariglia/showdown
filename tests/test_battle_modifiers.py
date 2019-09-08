@@ -409,6 +409,13 @@ class TestHealOrDamage(unittest.TestCase):
         heal_or_damage(self.battle, split_msg)
         self.assertEqual('rockyhelmet', self.battle.opponent.active.item)
 
+    def test_does_not_set_item_when_item_is_none(self):
+        # |-heal|p2a: Drifblim|37/100|[from] item: Sitrus Berry
+        split_msg = ['', '-heal', 'p2a: Drifblim', '37/100', '[from] item: Sitrus Berry']
+        self.battle.opponent.active.item = None
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual(None, self.battle.opponent.active.item)
+
     def test_damage_sets_opponents_active_pokemon_to_correct_hp(self):
         split_msg = ['', '-damage', 'p2a: Caterpie', '80/100']
         heal_or_damage(self.battle, split_msg)
