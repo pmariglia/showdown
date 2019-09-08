@@ -145,6 +145,8 @@ DEFENSE_BOOST = "defense_boost"
 SPECIAL_ATTACK_BOOST = "special_attack_boost"
 SPECIAL_DEFENSE_BOOST = "special_defense_boost"
 SPEED_BOOST = "speed_boost"
+ACCURACY_BOOST = "accuracy_boost"
+EVASION_BOOST = "evasion_boost"
 
 ABILITY = 'ability'
 REQUEST_DICT_ABILITY = ABILITY

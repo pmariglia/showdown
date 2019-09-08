@@ -33,6 +33,8 @@ class TestPokemonInit(unittest.TestCase):
               'special_attack_boost': 0,
               'special_defense_boost': 0,
               'speed_boost': 0,
+              'accuracy_boost': 1,
+              'evasion_boost': 1,
               'status': None,
               'scoring_multiplier': 1,
               'volatileStatus': [
@@ -92,6 +94,8 @@ class TestPokemonInit(unittest.TestCase):
                 'special_attack_boost': 0,
                 'special_defense_boost': 0,
                 'speed_boost': 0,
+                'accuracy_boost': 1,
+                'evasion_boost': 1,
                 'status': None,
                 'volatileStatus': [
 
@@ -150,6 +154,8 @@ class TestPokemonInit(unittest.TestCase):
                 'special_attack_boost': 0,
                 'special_defense_boost': 0,
                 'speed_boost': 0,
+                'accuracy_boost': 1,
+                'evasion_boost': 1,
                 'status': None,
                 'volatileStatus': [
 
@@ -208,6 +214,8 @@ class TestPokemonInit(unittest.TestCase):
                 'special_attack_boost': 0,
                 'special_defense_boost': 0,
                 'speed_boost': 0,
+                'accuracy_boost': 1,
+                'evasion_boost': 1,
                 'status': None,
                 'volatileStatus': [
 
@@ -266,6 +274,8 @@ class TestPokemonInit(unittest.TestCase):
                 'special_attack_boost': 0,
                 'special_defense_boost': 0,
                 'speed_boost': 0,
+                'accuracy_boost': 1,
+                'evasion_boost': 1,
                 'status': None,
                 'volatileStatus': [
 
@@ -324,6 +334,8 @@ class TestPokemonInit(unittest.TestCase):
                 'special_attack_boost': 0,
                 'special_defense_boost': 0,
                 'speed_boost': 0,
+                'accuracy_boost': 1,
+                'evasion_boost': 1,
                 'status': None,
                 'volatileStatus': [
 
@@ -397,6 +409,8 @@ class TestPokemonInit(unittest.TestCase):
               'special_attack_boost': 0,
               'special_defense_boost': 0,
               'speed_boost': 0,
+              'accuracy_boost': 1,
+              'evasion_boost': 1,
               'status': None,
               'volatileStatus': [
 
@@ -461,6 +475,8 @@ class TestPokemonInit(unittest.TestCase):
                 'special_attack_boost': 0,
                 'special_defense_boost': 0,
                 'speed_boost': 0,
+                'accuracy_boost': 1,
+                'evasion_boost': 1,
                 'status': None,
                 'volatileStatus': [
 
@@ -519,6 +535,8 @@ class TestPokemonInit(unittest.TestCase):
                 'special_attack_boost': 0,
                 'special_defense_boost': 0,
                 'speed_boost': 0,
+                'accuracy_boost': 1,
+                'evasion_boost': 1,
                 'status': None,
                 'volatileStatus': [
 
@@ -577,6 +595,8 @@ class TestPokemonInit(unittest.TestCase):
                 'special_attack_boost': 0,
                 'special_defense_boost': 0,
                 'speed_boost': 0,
+                'accuracy_boost': 1,
+                'evasion_boost': 1,
                 'status': None,
                 'volatileStatus': [
 
@@ -635,6 +655,8 @@ class TestPokemonInit(unittest.TestCase):
                 'special_attack_boost': 0,
                 'special_defense_boost': 0,
                 'speed_boost': 0,
+                'accuracy_boost': 1,
+                'evasion_boost': 1,
                 'status': None,
                 'volatileStatus': [
 
@@ -693,6 +715,8 @@ class TestPokemonInit(unittest.TestCase):
                 'special_attack_boost': 0,
                 'special_defense_boost': 0,
                 'speed_boost': 0,
+                'accuracy_boost': 1,
+                'evasion_boost': 1,
                 'status': None,
                 'volatileStatus': [
 
