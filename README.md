@@ -15,7 +15,7 @@ Environment variables are used for configuration which are by default read from 
 The configurations available are:
 ```
 SAVE_REPLAY: (bool, default False) Specifies whether or not to save replays of the battles
-LOG_TO_FILE: (bool, default False) Specifies whether or not to save for each battle to a file in {PWD}/logs/
+LOG_TO_FILE: (bool, default False) Specifies whether or not to write logs to files in {PWD}/logs/
 LOG_LEVEL: (string, default "DEBUG") The Python logging level 
 WEBSOCKET_URI: (string, default is the official PokemonShowdown websocket address: "sim.smogon.com:8000") The address to use to connect to the Pokemon Showdown websocket 
 PS_USERNAME: (string, required) Pokemon Showdown username
