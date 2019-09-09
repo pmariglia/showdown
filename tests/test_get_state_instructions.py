@@ -4240,6 +4240,133 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_using_move_with_choice_item_locks_other_moves(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        self.state.self.active.item = 'choicescarf'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'thunderwave'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'coil'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'sandattack'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_already_disabled_moves_are_not_disabled(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: True},
+            {constants.ID: 'coil', constants.DISABLED: True},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        self.state.self.active.item = 'choicescarf'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'sandattack'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_outrage_locks_other_moves(self):
+        bot_move = "outrage"
+        opponent_move = "splash"
+        self.state.self.active.moves = [
+            {constants.ID: 'outrage', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        self.state.self.active.item = 'choicescarf'
+        self.state.opponent.active.types = ['normal']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 74),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'thunderwave'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'coil'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'sandattack'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_move_with_choice_item(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.self.active.moves = [
+            {constants.ID: 'outrage', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        self.state.self.active.item = 'choicescarf'
+        self.state.opponent.active.types = ['normal']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'xatu')
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switching_out_unlocks_locked_moves(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.self.active.moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False, constants.CURRENT_PP: 10},
+            {constants.ID: 'thunderwave', constants.DISABLED: True, constants.CURRENT_PP: 10},
+            {constants.ID: 'coil', constants.DISABLED: True, constants.CURRENT_PP: 10},
+            {constants.ID: 'sandattack', constants.DISABLED: True, constants.CURRENT_PP: 10}
+        ]
+        self.state.self.active.item = 'choicescarf'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_ENABLE_MOVE, constants.SELF, 'thunderwave'),
+                    (constants.MUTATOR_ENABLE_MOVE, constants.SELF, 'coil'),
+                    (constants.MUTATOR_ENABLE_MOVE, constants.SELF, 'sandattack'),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'xatu'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_tanglinghair_drops_speed(self):
         bot_move = "tackle"
         opponent_move = "splash"

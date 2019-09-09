@@ -711,7 +711,7 @@ def get_state_from_attacker_recovery(mutator, attacker_string, move, instruction
     return [instruction]
 
 
-def get_end_of_turn_instructions(mutator, instruction, bot_moves_first):
+def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, bot_moves_first):
     if bot_moves_first:
         sides = [constants.SELF, constants.OPPONENT]
     else:
@@ -929,6 +929,29 @@ def get_end_of_turn_instructions(mutator, instruction, bot_moves_first):
 
         for i in instructions_to_add:
             instruction.add_instruction(i)
+
+    # disable other moves if choice-item is held (bot only)
+    instructions_to_add = []
+    try:
+        locking_move = bot_move[constants.SELF][constants.VOLATILE_STATUS] == constants.LOCKED_MOVE
+    except KeyError:
+        locking_move = False
+
+    mutator.apply(instruction.instructions)
+    if constants.SWITCH_STRING not in bot_move and (mutator.state.self.active.item in constants.CHOICE_ITEMS or locking_move):
+        move_used = bot_move[constants.ID]
+        for m in filter(lambda x: x[constants.ID] != move_used and not x[constants.DISABLED], mutator.state.self.active.moves):
+            instructions_to_add.append(
+                (
+                    constants.MUTATOR_DISABLE_MOVE,
+                    constants.SELF,
+                    m[constants.ID]
+                )
+            )
+
+    mutator.reverse(instruction.instructions)
+    for i in instructions_to_add:
+        instruction.add_instruction(i)
 
     return [instruction]
 

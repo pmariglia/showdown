@@ -191,6 +191,7 @@ SOUND = "sound"
 VOLATILE_STATUS = "volatileStatus"
 SECONDARY = "secondary"
 CHANCE = "chance"
+LOCKED_MOVE = "lockedmove"
 
 # Side-Effects
 REFLECT = 'reflect'
@@ -280,3 +281,5 @@ IMMUNE_TO_BURN_ABILITIES = {'waterveil', 'waterbubble'}
 IMMUNE_TO_FROZEN_ABILITIES = {'magmaarmor'}
 IMMUNE_TO_POISON_ABILITIES = {'immunity'}
 IMMUNE_TO_PARALYSIS_ABILITIES = {'limber'}
+
+CHOICE_ITEMS = {'choicescarf', 'choiceband', 'choicespecs'}

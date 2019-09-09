@@ -430,7 +430,7 @@ def get_all_state_instructions(mutator, user_move_string, opponent_move_string):
     if end_of_turn_triggered(user_move_string, opponent_move_string):
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += instruction_generator.get_end_of_turn_instructions(mutator, instruction_set, bot_moves_first)
+            temp_instructions += instruction_generator.get_end_of_turn_instructions(mutator, instruction_set, user_move, opponent_move, bot_moves_first)
         all_instructions = temp_instructions
 
     all_instructions = remove_duplicate_instructions(all_instructions)
