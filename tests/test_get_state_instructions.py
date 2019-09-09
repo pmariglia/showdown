@@ -3,7 +3,7 @@ import config
 import constants
 from collections import defaultdict
 from copy import deepcopy
-from showdown.engine.transpose_instruction import TransposeInstruction
+from showdown.engine.objects import TransposeInstruction
 from showdown.engine.find_state_instructions import get_all_state_instructions
 from showdown.engine.find_state_instructions import remove_duplicate_instructions
 from showdown.engine.find_state_instructions import lookup_move
@@ -12,7 +12,7 @@ from showdown.engine.objects import State
 from showdown.engine.objects import Pokemon
 from showdown.engine.objects import Side
 from showdown.battle import Pokemon as StatePokemon
-from showdown.engine.state_mutator import StateMutator
+from showdown.engine.objects import StateMutator
 
 
 class TestGetStateInstructions(unittest.TestCase):

@@ -1,6 +1,6 @@
 from showdown.engine.select_best_move import get_payoff_matrix
 from showdown.engine.objects import State
-from showdown.engine.state_mutator import StateMutator
+from showdown.engine.objects import StateMutator
 
 
 from config import logger

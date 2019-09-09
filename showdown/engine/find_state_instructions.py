@@ -7,7 +7,7 @@ from showdown.damage_calculator import calculate_damage
 from showdown.helpers import boost_multiplier_lookup
 
 from . import instruction_generator
-from .transpose_instruction import TransposeInstruction
+from .objects import TransposeInstruction
 from .special_effects.abilities.modify_attack_against import ability_modify_attack_against
 from .special_effects.abilities.modify_attack_being_used import ability_modify_attack_being_used
 from .special_effects.items.modify_attack_against import item_modify_attack_against

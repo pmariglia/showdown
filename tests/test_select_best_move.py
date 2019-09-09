@@ -2,7 +2,7 @@ import unittest
 from collections import defaultdict
 
 import constants
-from showdown.engine.state_mutator import StateMutator
+from showdown.engine.objects import StateMutator
 from showdown.engine.objects import State
 from showdown.engine.objects import Side
 from showdown.engine.objects import Pokemon

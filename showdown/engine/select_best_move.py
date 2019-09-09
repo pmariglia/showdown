@@ -11,7 +11,7 @@ from showdown.evaluate import evaluate
 from showdown.decide import pick_safest
 from showdown.helpers import battle_is_over
 
-from .state_mutator import StateMutator
+from .objects import StateMutator
 from .find_state_instructions import get_all_state_instructions
 
 

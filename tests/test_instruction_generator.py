@@ -2,11 +2,11 @@ import unittest
 import constants
 from showdown.engine import instruction_generator
 from showdown.battle import Pokemon as StatePokemon
-from showdown.engine.state_mutator import StateMutator
+from showdown.engine.objects import StateMutator
 from showdown.engine.objects import State
 from showdown.engine.objects import Side
 from showdown.engine.objects import Pokemon
-from showdown.engine.transpose_instruction import TransposeInstruction
+from showdown.engine.objects import TransposeInstruction
 from collections import defaultdict
 
 

@@ -11,7 +11,7 @@ from showdown.engine.objects import State
 from showdown.engine.objects import Side
 from showdown.battle import Pokemon as StatePokemon
 from showdown.engine.objects import Pokemon
-from showdown.engine.state_mutator import StateMutator
+from showdown.engine.objects import StateMutator
 
 
 class TestSelectBestMove(unittest.TestCase):
