@@ -1061,8 +1061,10 @@ def _get_boost_from_boost_string(side, boost_string):
         return side.active.special_defense_boost
     elif boost_string == constants.SPEED:
         return side.active.speed_boost
-    else:
-        return 0
+    elif boost_string == constants.ACCURACY:
+        return side.active.accuracy_boost
+    elif boost_string == constants.EVASION:
+        return side.active.evasion_boost
 
 
 def _can_be_volatile_statused(side, volatile_status, first_move):

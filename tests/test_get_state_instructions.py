@@ -1193,6 +1193,40 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_accuracy_does_not_go_below_negative_6(self):
+        bot_move = "flash"
+        opponent_move = "splash"
+        self.state.opponent.active.accuracy_boost = -6
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ACCURACY, 0)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_attack_does_not_go_above_6(self):
+        bot_move = "swordsdance"
+        opponent_move = "splash"
+        self.state.self.active.attack_boost = 6
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, 0)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_accuracy_reduction_move_into_tackle_causes_multiple_states(self):
         bot_move = "flash"
         opponent_move = "tackle"
