@@ -712,13 +712,16 @@ def get_state_from_attacker_recovery(mutator, attacker_string, move, instruction
 
 
 def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, bot_moves_first):
+    # determine which goes first
     if bot_moves_first:
         sides = [constants.SELF, constants.OPPONENT]
     else:
         sides = [constants.OPPONENT, constants.SELF]
 
+    mutator.apply(instruction.instructions)
+
+    # item and ability - they can add one instruction each
     for attacker in sides:
-        mutator.apply(instruction.instructions)
         defender = possible_affected_strings[attacker]
         side = get_side_from_state(mutator.state, attacker)
         defending_side = get_side_from_state(mutator.state, defender)
@@ -727,120 +730,90 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
 
         item_instruction = item_end_of_turn(side.active.item, mutator.state, attacker, pkmn, defender, defending_pkmn)
         if item_instruction is not None:
-            mutator.reverse(instruction.instructions)
+            mutator.apply_one(item_instruction)
             instruction.add_instruction(item_instruction)
-            mutator.apply(instruction.instructions)
 
         ability_instruction = ability_end_of_turn(side.active.ability, mutator.state, attacker, pkmn, defender, defending_pkmn)
         if ability_instruction is not None:
-            mutator.reverse(instruction.instructions)
+            mutator.apply_one(ability_instruction)
             instruction.add_instruction(ability_instruction)
-            mutator.apply(instruction.instructions)
 
-        mutator.reverse(instruction.instructions)
-
+    # poison, toxic, and burn damage
     for attacker in sides:
-        instructions_to_add = []
-        mutator.apply(instruction.instructions)
         side = get_side_from_state(mutator.state, attacker)
         pkmn = side.active
 
         if pkmn.ability == 'magicguard' or not pkmn.hp:
-            mutator.reverse(instruction.instructions)
             continue
 
         if constants.TOXIC == pkmn.status and pkmn.ability != 'poisonheal':
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_SIDE_START,
-                    attacker,
-                    constants.TOXIC_COUNT,
-                    1
-                )
-            )
             toxic_count = side.side_conditions[constants.TOXIC_COUNT]
             toxic_multiplier = (1 / 16) * toxic_count + (1 / 16)
             toxic_damage = max(0, int(min(pkmn.maxhp * toxic_multiplier, pkmn.hp)))
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_DAMAGE,
-                    attacker,
-                    toxic_damage
-                )
-            )
 
-            mutator.reverse(instruction.instructions)
-            for i in instructions_to_add:
-                instruction.add_instruction(i)
-            mutator.apply(instruction.instructions)
-            instructions_to_add.clear()
+            toxic_damage_instruction = (
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                toxic_damage
+            )
+            toxic_count_instruction = (
+                constants.MUTATOR_SIDE_START,
+                attacker,
+                constants.TOXIC_COUNT,
+                1
+            )
+            mutator.apply_one(toxic_damage_instruction)
+            mutator.apply_one(toxic_count_instruction)
+
+            instruction.add_instruction(toxic_damage_instruction)
+            instruction.add_instruction(toxic_count_instruction)
 
         elif constants.BURN == pkmn.status:
             burn_damage_instruction = (
-                (
-                    constants.MUTATOR_DAMAGE,
-                    attacker,
-                    max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
-                )
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
             )
-            mutator.reverse(instruction.instructions)
+            mutator.apply_one(burn_damage_instruction)
             instruction.add_instruction(burn_damage_instruction)
-            mutator.apply(instruction.instructions)
 
         elif constants.POISON == pkmn.status and pkmn.ability != 'poisonheal':
             poison_damage_instruction = (
-                (
-                    constants.MUTATOR_DAMAGE,
-                    attacker,
-                    max(0, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
-                )
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                max(0, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
             )
-            mutator.reverse(instruction.instructions)
+            mutator.apply_one(poison_damage_instruction)
             instruction.add_instruction(poison_damage_instruction)
-            mutator.apply(instruction.instructions)
 
-        mutator.reverse(instruction.instructions)
-
+    # weather damage - sand and hail
     for attacker in sides:
-        mutator.apply(instruction.instructions)
         side = get_side_from_state(mutator.state, attacker)
         pkmn = side.active
 
         if pkmn.ability == 'magicguard' or not pkmn.hp:
-            mutator.reverse(instruction.instructions)
             continue
 
-        if mutator.state.weather == constants.SAND:
-            if not any(t in pkmn.types for t in ['steel', 'rock', 'ground']):
-                sand_damage_instruction = (
-                    (
-                        constants.MUTATOR_DAMAGE,
-                        attacker,
-                        max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
-                    )
-                )
-                mutator.reverse(instruction.instructions)
-                instruction.add_instruction(sand_damage_instruction)
-                mutator.apply(instruction.instructions)
+        if mutator.state.weather == constants.SAND and not any(t in pkmn.types for t in ['steel', 'rock', 'ground']):
+            sand_damage_instruction = (
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
+            )
+            mutator.apply_one(sand_damage_instruction)
+            instruction.add_instruction(sand_damage_instruction)
 
-        elif mutator.state.weather == constants.HAIL:
-            if 'ice' not in pkmn.types:
-                ice_damage_instruction = (
-                    (
-                        constants.MUTATOR_DAMAGE,
-                        attacker,
-                        max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
-                    )
-                )
-                mutator.reverse(instruction.instructions)
-                instruction.add_instruction(ice_damage_instruction)
-                mutator.apply(instruction.instructions)
+        elif mutator.state.weather == constants.HAIL and 'ice' not in pkmn.types:
+            ice_damage_instruction = (
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
+            )
+            mutator.apply_one(ice_damage_instruction)
+            instruction.add_instruction(ice_damage_instruction)
 
-        mutator.reverse(instruction.instructions)
-
+    # leechseed sap damage
     for attacker in sides:
-        instructions_to_add = []
-        mutator.apply(instruction.instructions)
         defender = possible_affected_strings[attacker]
         side = get_side_from_state(mutator.state, attacker)
         defending_side = get_side_from_state(mutator.state, defender)
@@ -848,35 +821,32 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
         defending_pkmn = defending_side.active
 
         if pkmn.ability == 'magicguard' or not pkmn.hp or not defending_pkmn.hp:
-            mutator.reverse(instruction.instructions)
             continue
 
         if constants.LEECH_SEED in pkmn.volatile_status:
+            # damage taken
             damage_sapped = max(0, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_DAMAGE,
-                    attacker,
-                    damage_sapped
-                )
+            sap_instruction = (
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                damage_sapped
             )
+
+            # heal amount
             damage_from_full = defending_pkmn.maxhp - defending_pkmn.hp
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_HEAL,
-                    defender,
-                    min(damage_sapped, damage_from_full)
-                )
+            heal_instruction = (
+                constants.MUTATOR_HEAL,
+                defender,
+                min(damage_sapped, damage_from_full)
             )
 
-        mutator.reverse(instruction.instructions)
+            mutator.apply_one(sap_instruction)
+            mutator.apply_one(heal_instruction)
+            instruction.add_instruction(sap_instruction)
+            instruction.add_instruction(heal_instruction)
 
-        for i in instructions_to_add:
-            instruction.add_instruction(i)
-
+    # volatile-statuses
     for attacker in sides:
-        instructions_to_add = []
-        mutator.apply(instruction.instructions)
         side = get_side_from_state(mutator.state, attacker)
         pkmn = side.active
 
@@ -891,67 +861,59 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
                 # should never happen
                 raise Exception("Pokemon has volatile status that is not caught here: {}".format(pkmn.volatile_status))
 
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_REMOVE_VOLATILE_STATUS,
-                    attacker,
-                    volatile_status_to_remove
-                )
+            remove_protect_volatile_status_instruction = (
+                constants.MUTATOR_REMOVE_VOLATILE_STATUS,
+                attacker,
+                volatile_status_to_remove
             )
-            instructions_to_add.append(
-                (
+            start_protect_side_condition_instruction = (
                     constants.MUTATOR_SIDE_START,
                     attacker,
                     constants.PROTECT,
                     1
-                )
             )
+            mutator.apply_one(remove_protect_volatile_status_instruction)
+            mutator.apply_one(start_protect_side_condition_instruction)
+            instruction.add_instruction(remove_protect_volatile_status_instruction)
+            instruction.add_instruction(start_protect_side_condition_instruction)
+
         elif side.side_conditions[constants.PROTECT]:
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_SIDE_END,
-                    attacker,
-                    constants.PROTECT,
-                    side.side_conditions[constants.PROTECT]
-                )
+            end_protect_side_condition_instruction = (
+                constants.MUTATOR_SIDE_END,
+                attacker,
+                constants.PROTECT,
+                side.side_conditions[constants.PROTECT]
             )
+            mutator.apply_one(end_protect_side_condition_instruction)
+            instruction.add_instruction(end_protect_side_condition_instruction)
 
         if constants.ROOST in pkmn.volatile_status:
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_REMOVE_VOLATILE_STATUS,
-                    attacker,
-                    constants.ROOST,
-                )
+            remove_roost_instruction = (
+                constants.MUTATOR_REMOVE_VOLATILE_STATUS,
+                attacker,
+                constants.ROOST,
             )
-
-        mutator.reverse(instruction.instructions)
-
-        for i in instructions_to_add:
-            instruction.add_instruction(i)
+            mutator.apply_one(remove_roost_instruction)
+            instruction.add_instruction(remove_roost_instruction)
 
     # disable other moves if choice-item is held (bot only)
-    instructions_to_add = []
     try:
         locking_move = bot_move[constants.SELF][constants.VOLATILE_STATUS] == constants.LOCKED_MOVE
     except KeyError:
         locking_move = False
 
-    mutator.apply(instruction.instructions)
     if constants.SWITCH_STRING not in bot_move and (mutator.state.self.active.item in constants.CHOICE_ITEMS or locking_move):
         move_used = bot_move[constants.ID]
         for m in filter(lambda x: x[constants.ID] != move_used and not x[constants.DISABLED], mutator.state.self.active.moves):
-            instructions_to_add.append(
-                (
-                    constants.MUTATOR_DISABLE_MOVE,
-                    constants.SELF,
-                    m[constants.ID]
-                )
+            disable_instruction = (
+                constants.MUTATOR_DISABLE_MOVE,
+                constants.SELF,
+                m[constants.ID]
             )
+            mutator.apply_one(disable_instruction)
+            instruction.add_instruction(disable_instruction)
 
     mutator.reverse(instruction.instructions)
-    for i in instructions_to_add:
-        instruction.add_instruction(i)
 
     return [instruction]
 

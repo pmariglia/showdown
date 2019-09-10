@@ -208,6 +208,8 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     }
 
     if attacking_pokemon.hp == 0:
+        # if the attacker is dead, remove the 'flinched' volatile-status if it has it and exit early
+        # this triggers if the pokemon moves second but the first attack knocked it out
         mutator.reverse(instructions.instructions)
         all_instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
         return all_instructions

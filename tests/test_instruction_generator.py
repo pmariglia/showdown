@@ -2670,7 +2670,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         )
 
         expected_instructions = [
-            TransposeInstruction(1.0, [toxic_count_instruction, damage_instruction], False),
+            TransposeInstruction(1.0, [damage_instruction, toxic_count_instruction], False),
         ]
 
         self.assertEqual(expected_instructions, instructions)
@@ -2696,7 +2696,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         )
 
         expected_instructions = [
-            TransposeInstruction(1.0, [toxic_count_instruction, damage_instruction], False),
+            TransposeInstruction(1.0, [damage_instruction, toxic_count_instruction], False),
         ]
 
         self.assertEqual(expected_instructions, instructions)
@@ -2722,7 +2722,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         )
 
         expected_instructions = [
-            TransposeInstruction(1.0, [toxic_count_instruction, damage_instruction], False),
+            TransposeInstruction(1.0, [damage_instruction, toxic_count_instruction], False),
         ]
 
         self.assertEqual(expected_instructions, instructions)
@@ -3082,7 +3082,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         )
 
         expected_instructions = [
-            TransposeInstruction(1.0, [heal_instruction, additional_toxic_count_instruction, damage_instruction], False),
+            TransposeInstruction(1.0, [heal_instruction, damage_instruction, additional_toxic_count_instruction], False),
         ]
 
         self.assertEqual(expected_instructions, instructions)

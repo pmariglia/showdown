@@ -400,6 +400,10 @@ class StateMutator:
             constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom
         }
 
+    def apply_one(self, instruction):
+        method = self.apply_instructions[instruction[0]]
+        method(*instruction[1:])
+
     def apply(self, instructions):
         for instruction in instructions:
             method = self.apply_instructions[instruction[0]]

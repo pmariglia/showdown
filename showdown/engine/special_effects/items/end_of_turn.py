@@ -2,7 +2,7 @@ import constants
 
 
 def leftovers(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    if attacking_pokemon.hp:
+    if attacking_pokemon.hp < attacking_pokemon.maxhp:
         return (
             constants.MUTATOR_HEAL,
             attacking_side,
@@ -30,7 +30,7 @@ item_lookup = {
 
 def item_end_of_turn(item_name, state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
     item_func = item_lookup.get(item_name)
-    if item_func is not None:
+    if item_func is not None and attacking_pokemon.hp:
         return item_func(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon)
     else:
         return None
