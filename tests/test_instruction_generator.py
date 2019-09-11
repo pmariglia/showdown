@@ -111,7 +111,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
             False,
             False
         )
-        self.move = {constants.FLAGS: dict()}
+        self.move = {constants.FLAGS: dict(), constants.ID: constants.DO_NOTHING_MOVE, constants.TYPE: 'normal'}
 
     def test_paralyzed_attacker_results_in_two_instructions(self):
         attacker = constants.OPPONENT
@@ -120,7 +120,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         previous_instruction = TransposeInstruction(1.0, [], False)
 
         mutator = StateMutator(self.state)
-        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, previous_instruction)
+        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, self.move, previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1 - constants.FULLY_PARALYZED_PERCENT, [], False),
@@ -136,7 +136,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         previous_instruction = TransposeInstruction(1.0, [], False)
 
         mutator = StateMutator(self.state)
-        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, previous_instruction)
+        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, self.move, previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(constants.THAW_PERCENT, [('remove_status', 'opponent', 'frz')], False),
@@ -152,7 +152,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         previous_instruction = TransposeInstruction(1.0, [], False)
 
         mutator = StateMutator(self.state)
-        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, previous_instruction)
+        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, self.move, previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(constants.WAKE_UP_PERCENT, [('remove_status', 'opponent', 'slp')], False),
@@ -173,7 +173,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, previous_instruction)
+        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, self.move, previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], True)
@@ -194,7 +194,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, previous_instruction)
+        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, self.move, previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(constants.WAKE_UP_PERCENT, [('remove_status', 'opponent', 'slp')], True),
@@ -215,7 +215,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         }
 
         mutator = StateMutator(self.state)
-        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, previous_instruction)
+        instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, self.move, previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(1.0, [], False)

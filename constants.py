@@ -276,6 +276,9 @@ WAKE_UP_PERCENT = 0.33
 THAW_PERCENT = 0.20
 FULLY_PARALYZED_PERCENT = 0.25
 
+THAW_IF_USES = {'scald', 'flamewheel', 'sacredfire', 'flareblitz', 'fusionflare', 'steameruption'}
+THAW_IF_HIT_BY = {'scald', 'steameruption'}
+
 IMMUNE_TO_SLEEP_ABILITIES = {'insomnia', 'sweetveil', 'vitalspirit'}
 IMMUNE_TO_BURN_ABILITIES = {'waterveil', 'waterbubble'}
 IMMUNE_TO_FROZEN_ABILITIES = {'magmaarmor'}

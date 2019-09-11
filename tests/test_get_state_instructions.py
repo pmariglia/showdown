@@ -5962,6 +5962,212 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_using_scald_while_frozen_always_thaws_user(self):
+        bot_move = "scald"
+        opponent_move = "splash"
+        self.state.self.active.status = constants.FROZEN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.FROZEN),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 43),
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.BURN),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.7,
+                [
+                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.FROZEN),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 43),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_flareblitz_move_while_frozen_always_thaws_user(self):
+        bot_move = "flareblitz"
+        opponent_move = "splash"
+        self.state.self.active.status = constants.FROZEN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.1,
+                [
+                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.FROZEN),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 74),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 24),
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.BURN),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.9,
+                [
+                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.FROZEN),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 74),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 24),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_being_hit_by_fire_move_while_frozen_always_thaws(self):
+        bot_move = "splash"
+        opponent_move = "eruption"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        self.state.self.active.status = constants.FROZEN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 123),
+                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.FROZEN)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_being_hit_by_fire_move_while_slower_while_frozen_always_thaws(self):
+        bot_move = "splash"
+        opponent_move = "eruption"
+        self.state.self.active.status = constants.FROZEN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.FROZEN),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 123),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_ice_type_cannot_be_frozen(self):
+        bot_move = "icebeam"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['ice']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 24),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_cannot_be_frozen_in_harsh_sunlight(self):
+        bot_move = "icebeam"
+        opponent_move = "splash"
+        self.state.weather = constants.DESOLATE_LAND
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_frozen_pokemon_versus_switch(self):
+        bot_move = "splash"
+        opponent_move = "switch yveltal"
+        self.state.self.active.status = constants.FROZEN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
+                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.FROZEN),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.8,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_icebeam_into_scald(self):
+        bot_move = "icebeam"
+        opponent_move = "scald"
+        self.state.self.active.speed = 2
+        self.state.opponent.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.03,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.FROZEN),
+                    (constants.MUTATOR_REMOVE_STATUS, constants.OPPONENT, constants.FROZEN),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 66),
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.BURN),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.06999999999999999,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.FROZEN),
+                    (constants.MUTATOR_REMOVE_STATUS, constants.OPPONENT, constants.FROZEN),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 66),
+                ],
+                True
+            ),
+            TransposeInstruction(
+                0.27,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 66),
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.BURN),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.63,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 66),
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_electric_terrain_blocks_sleep(self):
         bot_move = "splash"
         opponent_move = "spore"

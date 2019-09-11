@@ -269,7 +269,7 @@ def get_instructions_from_flinched(mutator, attacker, instruction):
         return [instruction]
 
 
-def get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, instruction):
+def get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, opponent_move, instruction):
     instructions = [instruction]
     attacker_side = get_side_from_state(mutator.state, attacker)
     defender_side = get_side_from_state(mutator.state, defender)
@@ -299,9 +299,6 @@ def get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defe
 
     elif constants.FROZEN == attacker_side.active.status:
         still_frozen_instruction = copy(instruction)
-        still_frozen_instruction.update_percentage(1 - constants.THAW_PERCENT)
-        still_frozen_instruction.frozen = True
-        instruction.update_percentage(constants.THAW_PERCENT)
         instruction.add_instruction(
             (
                 constants.MUTATOR_REMOVE_STATUS,
@@ -309,7 +306,11 @@ def get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defe
                 constants.FROZEN
             )
         )
-        instructions.append(still_frozen_instruction)
+        if move[constants.ID] not in constants.THAW_IF_USES and opponent_move.get(constants.ID) not in constants.THAW_IF_HIT_BY and opponent_move.get(constants.TYPE) != 'fire':
+            still_frozen_instruction.update_percentage(1 - constants.THAW_PERCENT)
+            still_frozen_instruction.frozen = True
+            instruction.update_percentage(constants.THAW_PERCENT)
+            instructions.append(still_frozen_instruction)
 
     if constants.POWDER in move[constants.FLAGS] and ('grass' in defender_side.active.types or defender_side.active.ability == 'overcoat'):
         instruction.frozen = True
@@ -1077,7 +1078,7 @@ def _immune_to_status(state, defending_pkmn, attacking_pkmn, status):
     if state.field == constants.MISTY_TERRAIN and defending_pkmn.is_grounded():
         return True
 
-    if status == constants.FROZEN and (defending_pkmn.ability in constants.IMMUNE_TO_FROZEN_ABILITIES):
+    if status == constants.FROZEN and (defending_pkmn.ability in constants.IMMUNE_TO_FROZEN_ABILITIES or 'ice' in defending_pkmn.types or state.weather == constants.DESOLATE_LAND):
         return True
     elif status == constants.BURN and ('fire' in defending_pkmn.types or defending_pkmn.ability in constants.IMMUNE_TO_BURN_ABILITIES):
         return True
