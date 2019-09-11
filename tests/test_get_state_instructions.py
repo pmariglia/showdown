@@ -5916,6 +5916,52 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_waking_up_produces_wake_up_instruction(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.status = constants.SLEEP
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.33,
+                [
+                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.SLEEP),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.6699999999999999,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_thawing_produces_thaw_instruction(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.status = constants.FROZEN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_STATUS, constants.SELF, constants.FROZEN),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.8,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_electric_terrain_blocks_sleep(self):
         bot_move = "splash"
         opponent_move = "spore"

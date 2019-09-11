@@ -139,7 +139,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, previous_instruction)
 
         expected_instructions = [
-            TransposeInstruction(constants.THAW_PERCENT, [], False),
+            TransposeInstruction(constants.THAW_PERCENT, [('remove_status', 'opponent', 'frz')], False),
             TransposeInstruction(1 - constants.THAW_PERCENT, [], True)
         ]
 
@@ -155,7 +155,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, self.move, previous_instruction)
 
         expected_instructions = [
-            TransposeInstruction(constants.WAKE_UP_PERCENT, [], False),
+            TransposeInstruction(constants.WAKE_UP_PERCENT, [('remove_status', 'opponent', 'slp')], False),
             TransposeInstruction(1 - constants.WAKE_UP_PERCENT, [], True)
         ]
 
@@ -197,7 +197,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, previous_instruction)
 
         expected_instructions = [
-            TransposeInstruction(constants.WAKE_UP_PERCENT, [], True),
+            TransposeInstruction(constants.WAKE_UP_PERCENT, [('remove_status', 'opponent', 'slp')], True),
             TransposeInstruction(1-constants.WAKE_UP_PERCENT, [], True),
         ]
 

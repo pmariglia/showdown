@@ -288,6 +288,13 @@ def get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defe
         still_asleep_instruction.update_percentage(1 - constants.WAKE_UP_PERCENT)
         still_asleep_instruction.frozen = True
         instruction.update_percentage(constants.WAKE_UP_PERCENT)
+        instruction.add_instruction(
+            (
+                constants.MUTATOR_REMOVE_STATUS,
+                attacker,
+                constants.SLEEP
+            )
+        )
         instructions.append(still_asleep_instruction)
 
     elif constants.FROZEN == attacker_side.active.status:
@@ -295,6 +302,13 @@ def get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defe
         still_frozen_instruction.update_percentage(1 - constants.THAW_PERCENT)
         still_frozen_instruction.frozen = True
         instruction.update_percentage(constants.THAW_PERCENT)
+        instruction.add_instruction(
+            (
+                constants.MUTATOR_REMOVE_STATUS,
+                attacker,
+                constants.FROZEN
+            )
+        )
         instructions.append(still_frozen_instruction)
 
     if constants.POWDER in move[constants.FLAGS] and ('grass' in defender_side.active.types or defender_side.active.ability == 'overcoat'):
