@@ -50,12 +50,13 @@ damage_multipication_array = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1/2, 0, 1, 1,
 
 
 SPECIAL_LOGIC_MOVES = {
-    "seismictoss",
-    "nightshade",
-    "superfang",
-    "naturesmadness",
-    "finalgambit",
-    "endeavor"
+    "seismictoss": lambda attacker, defender: [int(attacker.level)] if "ghost" not in defender.types else None,
+    "nightshade": lambda attacker, defender: [int(attacker.level)] if "normal" not in defender.types else None,
+    "superfang": lambda attacker, defender: [int(defender.hp / 2)] if "ghost" not in defender.types else None,
+    "naturesmadness": lambda attacker, defender: [int(defender.hp / 2)],
+    "finalgambit": lambda attacker, defender: [int(attacker.hp)] if "ghost" not in defender.types else None,
+    "endeavor": lambda attacker, defender: [int(defender.hp - attacker.hp)] if defender.hp > attacker.hp and "ghost" not in defender.types else None,
+    "painsplit": lambda attacker, defender: [defender.hp - (attacker.hp + defender.hp)/2],
 }
 
 
@@ -78,8 +79,10 @@ def calculate_damage(attacker, defender, attacking_move, conditions=None, calc_t
     else:
         return None
 
-    if attacking_move[constants.ID] in SPECIAL_LOGIC_MOVES:
-        return special_logic(attacking_move[constants.ID], attacker, defender)
+    try:
+        return SPECIAL_LOGIC_MOVES[attacking_move[constants.ID]](attacker, defender)
+    except KeyError:
+        pass
 
     if attacking_move[constants.BASE_POWER] == 0:
         return [0]
@@ -210,24 +213,6 @@ def get_damage_rolls(damage, calc_type):
             int(damage * 0.99),
             int(damage)
         ]
-
-
-def special_logic(move_name, attacker, defender):
-    if move_name == "seismictoss" and "ghost" not in defender.types:
-        return [int(attacker.level)]
-    elif move_name == "nightshade" and "normal" not in defender.types:
-        return [int(attacker.level)]
-    elif move_name == "superfang" and "ghost" not in defender.types:
-        return [int(defender.hp / 2)]
-    elif move_name == "naturesmadness":
-        return [int(defender.hp / 2)]
-    elif move_name == "finalgambit" and "ghost" not in defender.types:
-        return [int(attacker.hp)]
-    elif move_name == "endeavor" and "ghost" not in defender.types:
-        if defender.hp > attacker.hp:
-            return [int(defender.hp - attacker.hp)]
-        else:
-            return [0]
 
 
 def type_effectiveness_modifier(attacking_move, defending_types):

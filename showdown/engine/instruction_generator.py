@@ -388,7 +388,9 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
             else:
                 actual_damage = damage
         else:
-            actual_damage = min(damage, damage_side.active.hp)
+            # dont drop hp below 0 (min() statement), and dont overheal (max() statement)
+            actual_damage = max(min(damage, damage_side.active.hp), -1*(damage_side.active.maxhp - damage_side.active.hp))
+
             if damage_side.active.ability == 'sturdy' and damage_side.active.hp == damage_side.active.maxhp:
                 actual_damage -= 1
 

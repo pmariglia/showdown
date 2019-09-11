@@ -212,7 +212,24 @@ def lowkick(attacking_move, defending_move, attacking_pokemon, defending_pokemon
     return attacking_move
 
 
+def painsplit(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    # damage done to the opponent is handled in the damage calculation module
+    attacking_move = attacking_move.copy()
+    total_hp = attacking_pokemon.hp + defending_pokemon.hp
+    damage_done = attacking_pokemon.hp - total_hp / 2
+    damage_fraction = -1*damage_done / attacking_pokemon.maxhp
+
+    attacking_move[constants.HEAL] = damage_fraction.as_integer_ratio()
+    attacking_move[constants.HEAL_TARGET] = constants.SELF
+
+    # this needs to be set so that the damage calculation is performed
+    attacking_move[constants.CATEGORY] = constants.PHYSICAL
+
+    return attacking_move
+
+
 move_lookup = {
+    'painsplit': painsplit,
     'lowkick': lowkick,
     'revelationdance': revelationdance,
     'strengthsap': strengthsap,

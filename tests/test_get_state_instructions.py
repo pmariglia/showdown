@@ -5861,9 +5861,6 @@ class TestGetStateInstructions(unittest.TestCase):
         bot_move = "psyshock"
         opponent_move = "splash"
         self.state.field = constants.PSYCHIC_TERRAIN
-        self.state.opponent.active.maxhp = 100
-        self.state.self.active.maxhp = 100
-        self.state.self.active.hp = 50
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
@@ -5881,9 +5878,6 @@ class TestGetStateInstructions(unittest.TestCase):
         bot_move = "splash"
         opponent_move = "spore"
         self.state.field = constants.MISTY_TERRAIN
-        self.state.opponent.active.maxhp = 100
-        self.state.self.active.maxhp = 100
-        self.state.self.active.hp = 50
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
@@ -5900,9 +5894,6 @@ class TestGetStateInstructions(unittest.TestCase):
         opponent_move = "spore"
         self.state.self.active.types = ['flying']
         self.state.field = constants.MISTY_TERRAIN
-        self.state.opponent.active.maxhp = 100
-        self.state.self.active.maxhp = 100
-        self.state.self.active.hp = 50
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
@@ -6117,6 +6108,69 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_painsplit_properly_splits_health(self):
+        bot_move = "painsplit"
+        opponent_move = "splash"
+        self.state.self.active.hp = 50
+        self.state.opponent.active.hp = 100
+        self.state.self.active.maxhp = 100
+        self.state.opponent.active.maxhp = 100
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                    (constants.MUTATOR_HEAL, constants.SELF, 25),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_painsplit_does_not_overheal(self):
+        bot_move = "painsplit"
+        opponent_move = "splash"
+        self.state.self.active.hp = 50
+        self.state.self.active.maxhp = 100
+        self.state.opponent.active.hp = 500
+        self.state.opponent.active.maxhp = 500
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 225),
+                    (constants.MUTATOR_HEAL, constants.SELF, 50),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_painsplit_does_not_overheal_enemy(self):
+        bot_move = "painsplit"
+        opponent_move = "splash"
+        self.state.self.active.hp = 500
+        self.state.self.active.maxhp = 500
+        self.state.opponent.active.hp = 50
+        self.state.opponent.active.maxhp = 100
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, -50),
+                    (constants.MUTATOR_HEAL, constants.SELF, -225),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_icebeam_into_scald(self):
         bot_move = "icebeam"
         opponent_move = "scald"
@@ -6213,6 +6267,7 @@ class TestGetStateInstructions(unittest.TestCase):
         opponent_move = "splash"
         self.state.opponent.active.volatile_status.add("leechseed")
         self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 100
         self.state.self.active.maxhp = 100
         self.state.self.active.hp = 50
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
