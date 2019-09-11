@@ -2975,6 +2975,44 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_end_of_turn_instructions_execute_in_correct_order(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.weather = constants.SAND
+        self.state.opponent.active.types = ['normal']
+        self.state.self.active.types = ['normal']
+        self.state.self.active.item = 'leftovers'
+        self.state.self.active.status = constants.POISON
+        self.state.opponent.active.volatile_status.add(constants.LEECH_SEED)
+        self.state.self.active.maxhp = 100
+        self.state.self.active.hp = 50
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 50
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    # sand
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 6),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 6),
+
+                    # leftovers
+                    (constants.MUTATOR_HEAL, constants.SELF, 6),
+
+                    # poison
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 12),
+
+                    # leechseed sap
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 12),
+                    (constants.MUTATOR_HEAL, constants.SELF, 12)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_leftovers_healing(self):
         bot_move = "splash"
         opponent_move = "splash"

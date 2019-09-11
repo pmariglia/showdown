@@ -720,6 +720,32 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
 
     mutator.apply(instruction.instructions)
 
+    # weather damage - sand and hail
+    for attacker in sides:
+        side = get_side_from_state(mutator.state, attacker)
+        pkmn = side.active
+
+        if pkmn.ability == 'magicguard' or not pkmn.hp:
+            continue
+
+        if mutator.state.weather == constants.SAND and not any(t in pkmn.types for t in ['steel', 'rock', 'ground']):
+            sand_damage_instruction = (
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
+            )
+            mutator.apply_one(sand_damage_instruction)
+            instruction.add_instruction(sand_damage_instruction)
+
+        elif mutator.state.weather == constants.HAIL and 'ice' not in pkmn.types:
+            ice_damage_instruction = (
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
+            )
+            mutator.apply_one(ice_damage_instruction)
+            instruction.add_instruction(ice_damage_instruction)
+
     # item and ability - they can add one instruction each
     for attacker in sides:
         defender = possible_affected_strings[attacker]
@@ -785,32 +811,6 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
             )
             mutator.apply_one(poison_damage_instruction)
             instruction.add_instruction(poison_damage_instruction)
-
-    # weather damage - sand and hail
-    for attacker in sides:
-        side = get_side_from_state(mutator.state, attacker)
-        pkmn = side.active
-
-        if pkmn.ability == 'magicguard' or not pkmn.hp:
-            continue
-
-        if mutator.state.weather == constants.SAND and not any(t in pkmn.types for t in ['steel', 'rock', 'ground']):
-            sand_damage_instruction = (
-                constants.MUTATOR_DAMAGE,
-                attacker,
-                max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
-            )
-            mutator.apply_one(sand_damage_instruction)
-            instruction.add_instruction(sand_damage_instruction)
-
-        elif mutator.state.weather == constants.HAIL and 'ice' not in pkmn.types:
-            ice_damage_instruction = (
-                constants.MUTATOR_DAMAGE,
-                attacker,
-                max(0, int(min(pkmn.maxhp * 0.0625, pkmn.hp)))
-            )
-            mutator.apply_one(ice_damage_instruction)
-            instruction.add_instruction(ice_damage_instruction)
 
     # leechseed sap damage
     for attacker in sides:

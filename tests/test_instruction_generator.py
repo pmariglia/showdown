@@ -3301,12 +3301,12 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
+                    self_hail,
+                    opponent_hail,
                     self_leftovers,
                     opponent_leftovers,
                     self_poison,
                     opponent_poison,
-                    self_hail,
-                    opponent_hail,
                     self_leech_damage,
                     opponent_leech_heal,
                     opponent_leech_damage,
@@ -3349,7 +3349,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self_poison = (
             constants.MUTATOR_DAMAGE,
             constants.SELF,
-            12
+            10  # kills self's pokemon so it is only 10
         )
         opponent_poison = (
             constants.MUTATOR_DAMAGE,
@@ -3359,7 +3359,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
         self_hail = (
             constants.MUTATOR_DAMAGE,
             constants.SELF,
-            4  # kills self's pokemon
+            6
         )
         opponent_hail = (
             constants.MUTATOR_DAMAGE,
@@ -3371,12 +3371,12 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
+                    self_hail,
+                    opponent_hail,
                     self_leftovers,
                     opponent_leftovers,
                     self_poison,
                     opponent_poison,
-                    self_hail,
-                    opponent_hail,
                 ],
                 False
             ),
