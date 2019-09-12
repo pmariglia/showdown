@@ -29,6 +29,8 @@ PASS_ABILITIES = {
     'moldbreaker',
 }
 
+MAX_STANDARD_BATTLE_MOVES = 6
+
 
 def _get_random_battle_set(pkmn):
     return all_random_battle_sets[pkmn]
@@ -115,10 +117,10 @@ def get_all_possible_moves_for_standard_battle(pkmn_name, known_moves):
         logger.warning("{} not in the sets lookup".format(pkmn_name))
         return get_all_possible_moves_for_random_battle(pkmn_name, known_moves)
 
-    new_move_count = 6 - len(known_moves)
+    new_move_count = MAX_STANDARD_BATTLE_MOVES - len(known_moves)
     moves_added = 0
     new_moves = list()
-    for m in sets[moves_string][:6]:
+    for m in sets[moves_string]:
         if m not in known_moves:
             if constants.HIDDEN_POWER in m:
                 m = "{}{}".format(m, constants.HIDDEN_POWER_ACTIVE_MOVE_BASE_DAMAGE_STRING)
