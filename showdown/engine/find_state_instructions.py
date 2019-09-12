@@ -268,25 +268,20 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
                     boosts_target = attacker
                     boosts_chance = attacking_move_secondary[constants.CHANCE]
 
-            # boosts from secondary, but it is a guaranteed boost (dracometeor)
-            elif attacking_move.get(constants.SELF) is not None:
-                if constants.BOOSTS in attacking_move[constants.SELF]:
-                    boosts = attacking_move[constants.SELF][constants.BOOSTS]
-                    boosts_target = attacker
-                    boosts_chance = 100
-
             # boosts from secondary, but to the defender (crunch)
             elif attacking_move_secondary and attacking_move_secondary.get(constants.BOOSTS) is not None:
                 boosts = attacking_move_secondary[constants.BOOSTS]
                 boosts_target = defender
                 boosts_chance = attacking_move_secondary[constants.CHANCE]
 
+        # boosts from secondary, but it is a guaranteed boost (dracometeor)
         elif attacking_move_self:
             if constants.BOOSTS in attacking_move_self:
                 boosts = attacking_move_self[constants.BOOSTS]
                 boosts_target = attacker
                 boosts_chance = 100
 
+        # guaranteed boosts from a damaging move (none in the moves JSON but items/abilities can cause this)
         elif constants.BOOSTS in attacking_move:
             boosts = attacking_move[constants.BOOSTS]
             boosts_target = attacker if attacking_move[constants.TARGET] in constants.MOVE_TARGET_SELF else defender
