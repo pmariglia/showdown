@@ -5,7 +5,7 @@ from showdown.damage_calculator import is_super_effective
 
 def eviolite(attacking_move, attacking_pokemon, defending_pokemon):
     attacking_move = attacking_move.copy()
-    attacking_move[constants.BASE_POWER] *= 0.5
+    attacking_move[constants.BASE_POWER] /= 1.5
     return attacking_move
 
 
@@ -20,7 +20,7 @@ def rockyhelmet(attacking_move, attacking_pokemon, defending_pokemon):
 def assaultvest(attacking_move, attacking_pokemon, defending_pokemon):
     if attacking_move[constants.CATEGORY] == constants.SPECIAL:
         attacking_move = attacking_move.copy()
-        attacking_move[constants.BASE_POWER] *= 0.5
+        attacking_move[constants.BASE_POWER] /= 1.5
     return attacking_move
 
 

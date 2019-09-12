@@ -2655,7 +2655,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     ('damage', 'opponent', 25),
-                    ('damage', 'self', 18)
+                    ('damage', 'self', 24)
                 ],
                 False
             )

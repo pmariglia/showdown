@@ -136,7 +136,7 @@ class TestEviolite(unittest.TestCase):
             "type": "normal",
             "pp": 15
         }
-        expected_move_power = 20
+        expected_move_power = 26.666666666666668
         pkmn = MagicMock()
         actual_power = item_modify_attack_against(self.item_name, move, pkmn, None)[constants.BASE_POWER]
 
@@ -160,7 +160,7 @@ class TestEviolite(unittest.TestCase):
             "type": "fire",
             "pp": 15
         }
-        expected_move_power = 45
+        expected_move_power = 60.0
         pkmn = MagicMock()
         actual_power = item_modify_attack_against(self.item_name, move, pkmn, None)[constants.BASE_POWER]
 
