@@ -11917,6 +11917,25 @@
             "acrobatics|earthquake|powergem|shellsmash": 527
         }
     },
+    "miniormeteor": {
+        "abilities": {
+            "shieldsdown": 527
+        },
+        "count": 527,
+        "items": {
+            "None": 2,
+            "whiteherb": 525
+        },
+        "moves": {
+            "acrobatics": 527,
+            "earthquake": 527,
+            "powergem": 527,
+            "shellsmash": 527
+        },
+        "sets": {
+            "acrobatics|earthquake|powergem|shellsmash": 527
+        }
+    },
     "minun": {
         "abilities": {
             "voltabsorb": 193
