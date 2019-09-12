@@ -67,7 +67,7 @@ Running with `python run.py` will start the bot with configurations specified by
 
 ### Running on Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/pmariglia/showdown)
 
 After deploying, go to the Resources tab and turn on the worker.
 
