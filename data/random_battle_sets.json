@@ -247,6 +247,57 @@
             "kingsshield|sacredsword|shadowclaw|swordsdance": 49
         }
     },
+    "aegislashblade": {
+        "abilities": {
+            "stancechange": 677
+        },
+        "count": 677,
+        "items": {
+            "leftovers": 272,
+            "lifeorb": 405
+        },
+        "moves": {
+            "flashcannon": 77,
+            "hiddenpowerice60": 100,
+            "ironhead": 520,
+            "kingsshield": 520,
+            "sacredsword": 298,
+            "shadowball": 161,
+            "shadowclaw": 227,
+            "shadowsneak": 386,
+            "swordsdance": 419
+        },
+        "sets": {
+            "flashcannon|hiddenpowerice60|kingsshield|shadowball": 6,
+            "flashcannon|hiddenpowerice60|kingsshield|shadowclaw": 10,
+            "flashcannon|hiddenpowerice60|kingsshield|shadowsneak": 6,
+            "flashcannon|hiddenpowerice60|sacredsword|shadowball": 1,
+            "flashcannon|kingsshield|sacredsword|shadowball": 12,
+            "flashcannon|kingsshield|sacredsword|shadowclaw": 8,
+            "flashcannon|kingsshield|sacredsword|shadowsneak": 14,
+            "flashcannon|kingsshield|shadowball|shadowsneak": 20,
+            "hiddenpowerice60|ironhead|kingsshield|shadowball": 21,
+            "hiddenpowerice60|ironhead|kingsshield|shadowclaw": 14,
+            "hiddenpowerice60|ironhead|kingsshield|shadowsneak": 13,
+            "hiddenpowerice60|ironhead|sacredsword|shadowball": 2,
+            "hiddenpowerice60|ironhead|sacredsword|shadowsneak": 4,
+            "hiddenpowerice60|ironhead|shadowball|shadowsneak": 2,
+            "hiddenpowerice60|kingsshield|sacredsword|shadowball": 8,
+            "hiddenpowerice60|kingsshield|sacredsword|shadowclaw": 8,
+            "hiddenpowerice60|kingsshield|shadowball|shadowsneak": 5,
+            "ironhead|kingsshield|sacredsword|shadowball": 14,
+            "ironhead|kingsshield|sacredsword|shadowclaw": 9,
+            "ironhead|kingsshield|sacredsword|shadowsneak": 11,
+            "ironhead|kingsshield|shadowball|shadowsneak": 59,
+            "ironhead|kingsshield|shadowclaw|swordsdance": 66,
+            "ironhead|kingsshield|shadowsneak|swordsdance": 157,
+            "ironhead|sacredsword|shadowball|shadowsneak": 1,
+            "ironhead|sacredsword|shadowclaw|swordsdance": 63,
+            "ironhead|sacredsword|shadowsneak|swordsdance": 84,
+            "kingsshield|sacredsword|shadowball|shadowsneak": 10,
+            "kingsshield|sacredsword|shadowclaw|swordsdance": 49
+        }
+    },
     "aerodactyl": {
         "abilities": {
             "pressure": 42,
@@ -7287,6 +7338,72 @@
             "icebeam|taunt|toxicspikes|uturn": 9
         }
     },
+    "greninjaash": {
+        "abilities": {
+            "battlebond": 280,
+            "protean": 260
+        },
+        "count": 540,
+        "items": {
+            "choicespecs": 164,
+            "expertbelt": 8,
+            "focussash": 34,
+            "leftovers": 206,
+            "lifeorb": 12,
+            "wateriumz": 116
+        },
+        "moves": {
+            "darkpulse": 280,
+            "gunkshot": 143,
+            "hydropump": 361,
+            "icebeam": 362,
+            "spikes": 159,
+            "taunt": 130,
+            "toxicspikes": 148,
+            "uturn": 356,
+            "watershuriken": 221
+        },
+        "sets": {
+            "darkpulse|hydropump|icebeam|uturn": 59,
+            "darkpulse|hydropump|icebeam|watershuriken": 86,
+            "darkpulse|hydropump|uturn|watershuriken": 71,
+            "darkpulse|icebeam|uturn|watershuriken": 64,
+            "gunkshot|hydropump|icebeam|spikes": 6,
+            "gunkshot|hydropump|icebeam|taunt": 5,
+            "gunkshot|hydropump|icebeam|toxicspikes": 4,
+            "gunkshot|hydropump|icebeam|uturn": 8,
+            "gunkshot|hydropump|spikes|taunt": 6,
+            "gunkshot|hydropump|spikes|toxicspikes": 7,
+            "gunkshot|hydropump|spikes|uturn": 6,
+            "gunkshot|hydropump|taunt|toxicspikes": 4,
+            "gunkshot|hydropump|taunt|uturn": 4,
+            "gunkshot|hydropump|toxicspikes|uturn": 11,
+            "gunkshot|icebeam|spikes|taunt": 5,
+            "gunkshot|icebeam|spikes|toxicspikes": 6,
+            "gunkshot|icebeam|spikes|uturn": 13,
+            "gunkshot|icebeam|taunt|toxicspikes": 4,
+            "gunkshot|icebeam|taunt|uturn": 8,
+            "gunkshot|icebeam|toxicspikes|uturn": 9,
+            "gunkshot|spikes|taunt|toxicspikes": 13,
+            "gunkshot|spikes|taunt|uturn": 8,
+            "gunkshot|spikes|toxicspikes|uturn": 12,
+            "gunkshot|taunt|toxicspikes|uturn": 4,
+            "hydropump|icebeam|spikes|taunt": 7,
+            "hydropump|icebeam|spikes|toxicspikes": 9,
+            "hydropump|icebeam|spikes|uturn": 11,
+            "hydropump|icebeam|taunt|toxicspikes": 9,
+            "hydropump|icebeam|taunt|uturn": 6,
+            "hydropump|icebeam|toxicspikes|uturn": 10,
+            "hydropump|spikes|taunt|toxicspikes": 7,
+            "hydropump|spikes|taunt|uturn": 9,
+            "hydropump|spikes|toxicspikes|uturn": 10,
+            "hydropump|taunt|toxicspikes|uturn": 6,
+            "icebeam|spikes|taunt|toxicspikes": 6,
+            "icebeam|spikes|taunt|uturn": 10,
+            "icebeam|spikes|toxicspikes|uturn": 8,
+            "icebeam|taunt|toxicspikes|uturn": 9
+        }
+    },
     "groudon": {
         "abilities": {
             "drought": 604
@@ -11898,6 +12015,27 @@
             "playrough|shadowsneak|swordsdance|taunt": 438
         }
     },
+    "mimikyubusted": {
+        "abilities": {
+            "disguise": 545
+        },
+        "count": 545,
+        "items": {
+            "leftovers": 49,
+            "mimikiumz": 496
+        },
+        "moves": {
+            "playrough": 545,
+            "shadowclaw": 107,
+            "shadowsneak": 438,
+            "swordsdance": 545,
+            "taunt": 545
+        },
+        "sets": {
+            "playrough|shadowclaw|swordsdance|taunt": 107,
+            "playrough|shadowsneak|swordsdance|taunt": 438
+        }
+    },
     "minior": {
         "abilities": {
             "shieldsdown": 527
@@ -12303,6 +12441,36 @@
         }
     },
     "necrozmadawnwings": {
+        "abilities": {
+            "prismarmor": 219
+        },
+        "count": 219,
+        "items": {
+            "choicescarf": 1,
+            "leftovers": 17,
+            "lifeorb": 2,
+            "lunaliumz": 39,
+            "ultranecroziumz": 160
+        },
+        "moves": {
+            "calmmind": 160,
+            "heatwave": 112,
+            "moongeistbeam": 219,
+            "photongeyser": 202,
+            "powergem": 142,
+            "trickroom": 41
+        },
+        "sets": {
+            "calmmind|heatwave|moongeistbeam|photongeyser": 64,
+            "calmmind|heatwave|moongeistbeam|powergem": 4,
+            "calmmind|moongeistbeam|photongeyser|powergem": 92,
+            "heatwave|moongeistbeam|photongeyser|powergem": 18,
+            "heatwave|moongeistbeam|photongeyser|trickroom": 13,
+            "heatwave|moongeistbeam|powergem|trickroom": 13,
+            "moongeistbeam|photongeyser|powergem|trickroom": 15
+        }
+    },
+    "necrozmaultra": {
         "abilities": {
             "prismarmor": 219
         },
@@ -14115,6 +14283,47 @@
         }
     },
     "rayquaza": {
+        "abilities": {
+            "airlock": 581
+        },
+        "count": 581,
+        "items": {
+            "assaultvest": 165,
+            "choiceband": 53,
+            "leftovers": 125,
+            "lumberry": 238
+        },
+        "moves": {
+            "dracometeor": 218,
+            "dragonclaw": 137,
+            "dragondance": 363,
+            "earthquake": 405,
+            "extremespeed": 411,
+            "outrage": 374,
+            "vcreate": 416
+        },
+        "sets": {
+            "dracometeor|dragonclaw|earthquake|extremespeed": 15,
+            "dracometeor|dragonclaw|earthquake|vcreate": 16,
+            "dracometeor|dragonclaw|extremespeed|vcreate": 15,
+            "dracometeor|dragondance|earthquake|extremespeed": 21,
+            "dracometeor|dragondance|earthquake|vcreate": 18,
+            "dracometeor|dragondance|extremespeed|vcreate": 14,
+            "dracometeor|earthquake|extremespeed|outrage": 34,
+            "dracometeor|earthquake|extremespeed|vcreate": 17,
+            "dracometeor|earthquake|outrage|vcreate": 29,
+            "dracometeor|extremespeed|outrage|vcreate": 39,
+            "dragonclaw|dragondance|earthquake|extremespeed": 22,
+            "dragonclaw|dragondance|earthquake|vcreate": 20,
+            "dragonclaw|dragondance|extremespeed|vcreate": 30,
+            "dragonclaw|earthquake|extremespeed|vcreate": 19,
+            "dragondance|earthquake|extremespeed|outrage": 73,
+            "dragondance|earthquake|outrage|vcreate": 87,
+            "dragondance|extremespeed|outrage|vcreate": 78,
+            "earthquake|extremespeed|outrage|vcreate": 34
+        }
+    },
+    "rayquazamega": {
         "abilities": {
             "airlock": 581
         },
@@ -19235,6 +19444,28 @@
             "hiddenpowergrass60|hydropump|icebeam|scald": 44
         }
     },
+    "wishiwashischool": {
+        "abilities": {
+            "schooling": 169
+        },
+        "count": 169,
+        "items": {
+            "choicespecs": 44,
+            "expertbelt": 125
+        },
+        "moves": {
+            "earthquake": 125,
+            "hiddenpowergrass60": 169,
+            "hydropump": 70,
+            "icebeam": 169,
+            "scald": 143
+        },
+        "sets": {
+            "earthquake|hiddenpowergrass60|hydropump|icebeam": 26,
+            "earthquake|hiddenpowergrass60|icebeam|scald": 99,
+            "hiddenpowergrass60|hydropump|icebeam|scald": 44
+        }
+    },
     "wobbuffet": {
         "abilities": {
             "shadowtag": 175
@@ -19769,6 +20000,28 @@
         }
     },
     "zygarde": {
+        "abilities": {
+            "powerconstruct": 309
+        },
+        "count": 309,
+        "items": {
+            "choiceband": 60,
+            "lumberry": 249
+        },
+        "moves": {
+            "dragondance": 249,
+            "extremespeed": 187,
+            "irontail": 182,
+            "outrage": 309,
+            "thousandarrows": 309
+        },
+        "sets": {
+            "dragondance|extremespeed|outrage|thousandarrows": 127,
+            "dragondance|irontail|outrage|thousandarrows": 122,
+            "extremespeed|irontail|outrage|thousandarrows": 60
+        }
+    },
+    "zygardecomplete": {
         "abilities": {
             "powerconstruct": 309
         },
