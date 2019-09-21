@@ -1,6 +1,8 @@
 import math
 import constants
 
+from data import all_move_json
+
 
 boost_multiplier_lookup = {
     -6: 2/8,
@@ -73,6 +75,35 @@ def normalize_name(name):
         .lower()\
         .encode('ascii', 'ignore')\
         .decode('utf-8')
+
+
+def set_makes_sense(nature, spread, item, ability, moves):
+    if item in constants.CHOICE_ITEMS and any(all_move_json[m][constants.CATEGORY] not in constants.DAMAGING_CATEGORIES and m != 'trick' for m in moves):
+        return False
+    return True
+
+
+def spreads_are_alike(s1, s2):
+    if s1[0] != s2[0]:
+        return False
+
+    s1 = [int(v) for v in s1[1].split(',')]
+    s2 = [int(v) for v in s2[1].split(',')]
+
+    diff = [abs(i-j) for i, j in zip(s1, s2)]
+
+    # 24 is arbitrarily chosen as the threshold for EVs to be "alike"
+    return all(v < 24 for v in diff)
+
+
+def remove_duplicate_spreads(list_of_spreads):
+    new_spreads = list()
+
+    for s1 in list_of_spreads:
+        if not any(spreads_are_alike(s1, s2) for s2 in new_spreads):
+            new_spreads.append(s1)
+
+    return new_spreads
 
 
 def _update_stats_from_nature(stats, nature):

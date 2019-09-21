@@ -4,13 +4,16 @@ import subprocess
 from collections import defaultdict
 
 import config
-import constants
 from config import logger
 
 NFG_FORMAT_BASE = """NFG 1 R ""
 { "Player 1" "Player 2" } { %s %s }
 
 """
+
+
+class CouldNotFindEquilibriumError(Exception):
+    pass
 
 
 def format_string_for_options(num_rows, num_cols):
@@ -46,8 +49,21 @@ def find_all_equilibria(matrix):
     string = append_items_to_string(matrix, string).encode()
 
     cmd = [config.gambit_exe_path, '-q', '-d', '2']
-    sp = subprocess.Popen(cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
-    stdout = sp.communicate(string)[0].decode('utf-8').replace('\r', '')
+
+    # sometimes this call fails and stdout is empty - repeating until completion seems to have fixed the issue
+    stdout = ''
+    stderr = ''
+    attempted = 0
+    while not stdout:
+        # for unknown and seemingly random reasons this subprocess communication sometimes fails
+        # retrying with the exact same input value does not fail
+        # if an STDOUT value is not obtained in 5 tries, raise an error
+        if attempted > 5:
+            raise CouldNotFindEquilibriumError(stderr)
+        sp = subprocess.Popen(cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+        stdout, stderr = sp.communicate(string)
+        stdout = stdout.decode('utf-8').replace('\r', '')
+        attempted += 1
 
     lines = stdout.split('\n')
 
@@ -105,12 +121,6 @@ def pick_safest(score_lookup):
     return worst_case[safest]
 
 
-def decide_from_safest(score_lookup):
-    safest = pick_safest(score_lookup)
-    logger.debug("Safest: {}, {}".format(safest[0][0], safest[1]))
-    return safest[0][0]
-
-
 def _find_best_nash_equilibrium(equilibria, df):
     from nashpy import Game
     game = Game(df)
@@ -160,20 +170,37 @@ def _log_nash_equilibria(bot_choices, opponent_choices, bot_percentages, opponen
     logger.debug("Payoff: {}".format(payoff))
 
 
-def pick_from_nash_equilibria(score_lookup):
-    bot_choices, opponent_choices, bot_percentages, opponent_percentages, payoff = find_nash_equilibrium(score_lookup)
+def get_weighted_choices_from_multiple_score_lookups(score_lookups):
+    bot_choice_percentages = defaultdict(lambda: 0)
+    number_of_score_lookups = len(score_lookups)
+    for sl in score_lookups:
+        eq = find_nash_equilibrium(sl)
+        _log_nash_equilibria(*eq)
+        for i, bot_choice in enumerate(eq[0]):
+            bot_choice_percentages[bot_choice] += eq[2][i]/number_of_score_lookups
 
-    _log_nash_equilibria(bot_choices, opponent_choices, bot_percentages, opponent_percentages, payoff)
-
-    s = sum(bot_percentages)
-    percentages = [p / s for p in bot_percentages]
-
-    return random.choices(bot_choices, weights=percentages)[0]
+    return list(bot_choice_percentages.items())
 
 
-def pick_best_move(score_lookup, decision_type):
-    if decision_type == constants.PICK_SAFEST:
-        return decide_from_safest(score_lookup)
-    elif decision_type == constants.PICK_NASH_EQUILIBRIUM:
-        return pick_from_nash_equilibria(score_lookup)
-    raise ValueError("Invalid decision type")
+def pick_move_in_equilibrium_from_multiple_score_lookups(score_lookups):
+    # This is the WRONG way to find a Nash Equilibrium from different potential games
+    # ... but it is a simple way that works (with crappy results)
+    #
+    # The games should be modelled properly based on incomplete information (see Harsanyi Transform),
+    # however that would require the bot to keep track of what it has revealed to the opponent
+    try:
+        weighted_choices = get_weighted_choices_from_multiple_score_lookups(score_lookups)
+    except CouldNotFindEquilibriumError as e:
+        logger.warning("Problem finding equilibria: {}".format(e))
+        return random.choice([pick_safest(sl)[0][0] for sl in score_lookups])
+
+    s = sum([wc[1] for wc in weighted_choices])
+    bot_choices = [wc[0] for wc in weighted_choices]
+    bot_percentages = [wc[1] / s for wc in weighted_choices]
+
+    choice = random.choices(bot_choices, weights=bot_percentages)[0]
+
+    logger.debug("Final Weights: {}".format([w for w in weighted_choices if w[1]]))
+    logger.debug("Choice: {}".format(choice))
+
+    return choice

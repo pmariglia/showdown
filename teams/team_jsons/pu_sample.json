@@ -91,29 +91,29 @@
     "level": ""
   },
   {
-    "name": "Froslass",
+    "name": "Ferroseed",
     "species": "",
-    "item": "colburberry",
-    "ability": "H",
+    "item": "eviolite",
+    "ability": "0",
     "moves": [
+      "leechseed",
       "spikes",
-      "willowisp",
-      "hex",
-      "taunt"
+      "thunderwave",
+      "stealthrock"
     ],
-    "nature": "Timid",
+    "nature": "Relaxed",
     "evs": {
-      "hp": "248",
-      "atk": "",
-      "def": "8",
+      "hp": "252",
+      "atk": "4",
+      "def": "252",
       "spa": "",
       "spd": "",
-      "spe": "252"
+      "spe": ""
     },
     "gender": "",
     "ivs": {
       "hp": "",
-      "atk": "0",
+      "atk": "",
       "def": "",
       "spa": "",
       "spd": "",

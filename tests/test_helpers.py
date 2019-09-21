@@ -3,6 +3,9 @@ import unittest
 from showdown.helpers import battle_is_over
 from showdown.helpers import get_pokemon_info_from_condition
 from showdown.helpers import normalize_name
+from showdown.helpers import set_makes_sense
+from showdown.helpers import spreads_are_alike
+from showdown.helpers import remove_duplicate_spreads
 from showdown.engine.objects import State
 
 
@@ -48,6 +51,117 @@ class TestBattleIsOver(unittest.TestCase):
         for pkmn in self.state.opponent.reserve.values():
             pkmn.hp = 0
         self.assertFalse(battle_is_over(self.state))
+
+
+class TestSpreadsAreAlike(unittest.TestCase):
+    def test_two_similar_spreads_are_alike(self):
+        s1 = ('jolly', '0,0,0,252,4,252')
+        s2 = ('jolly', '0,0,4,252,0,252')
+
+        self.assertTrue(spreads_are_alike(s1, s2))
+
+    def test_different_natures_are_not_alike(self):
+        s1 = ('jolly', '0,0,0,252,4,252')
+        s2 = ('modest', '0,0,4,252,0,252')
+
+        self.assertFalse(spreads_are_alike(s1, s2))
+
+    def test_custom_is_not_the_same_as_max_values(self):
+        s1 = ('jolly', '16,0,0,252,0,240')
+        s2 = ('modest', '0,0,4,252,0,252')
+
+        self.assertFalse(spreads_are_alike(s1, s2))
+
+    def test_very_similar_returns_true(self):
+        s1 = ('modest', '16,0,0,252,0,240')
+        s2 = ('modest', '28,0,4,252,0,252')
+
+        self.assertTrue(spreads_are_alike(s1, s2))
+
+
+class TestRemoveDuplicateSpreads(unittest.TestCase):
+    def test_only_one_spread_remains_when_all_are_alike(self):
+        s1 = ('jolly', '0,0,0,252,4,252')
+        s2 = ('jolly', '0,0,4,252,0,252')
+        s3 = ('jolly', '0,4,0,252,0,252')
+        s4 = ('jolly', '4,0,0,252,0,252')
+
+        spreads = [s1, s2, s3, s4]
+
+        expected_result = [s1]
+
+        self.assertEqual(expected_result, remove_duplicate_spreads(spreads))
+
+    def test_different_spreads_remain(self):
+        s1 = ('jolly', '0,0,0,252,4,252')
+        s2 = ('adamant', '0,0,4,252,0,252')
+        s3 = ('jolly', '0,4,0,252,0,252')
+        s4 = ('jolly', '4,0,0,252,0,252')
+
+        spreads = [s1, s2, s3, s4]
+
+        expected_result = [s1, s2]
+
+        self.assertEqual(expected_result, remove_duplicate_spreads(spreads))
+
+    def test_all_spreads_remain(self):
+        s1 = ('jolly', '0,0,0,252,4,252')
+        s2 = ('adamant', '0,0,4,252,0,252')
+        s3 = ('jolly', '0,108,0,148,0,252')
+        s4 = ('adamant', '104,0,0,152,0,252')
+
+        spreads = [s1, s2, s3, s4]
+
+        expected_result = [s1, s2, s3, s4]
+
+        self.assertEqual(expected_result, remove_duplicate_spreads(spreads))
+
+
+class TestSetMakesSense(unittest.TestCase):
+    def test_standard_set_makes_sense(self):
+        nature = 'jolly'
+        spread = '0,0,0,252,4,252'
+        item = 'unknown_item'
+        ability = 'intimidate'
+        moves = []
+
+        self.assertTrue(set_makes_sense(nature, spread, item, ability, moves))
+
+    def test_swordsdance_with_choiceband_does_not_make_sense(self):
+        nature = 'jolly'
+        spread = '0,0,0,252,4,252'
+        item = 'choiceband'
+        ability = 'intimidate'
+        moves = ['swordsdance']
+
+        self.assertFalse(set_makes_sense(nature, spread, item, ability, moves))
+
+    def test_nastyplot_with_choicespecs_does_not_make_sense(self):
+        nature = 'jolly'
+        spread = '0,0,0,252,4,252'
+        item = 'choicespecs'
+        ability = 'intimidate'
+        moves = ['nastyplot']
+
+        self.assertFalse(set_makes_sense(nature, spread, item, ability, moves))
+
+    def test_multiple_move_nastyplot_with_choicespecs_does_not_make_sense(self):
+        nature = 'jolly'
+        spread = '0,0,0,252,4,252'
+        item = 'choicespecs'
+        ability = 'intimidate'
+        moves = ['nastyplot', 'darkpulse', 'thunderbolt']
+
+        self.assertFalse(set_makes_sense(nature, spread, item, ability, moves))
+
+    def test_trick_with_scarf_makes_sense(self):
+        nature = 'jolly'
+        spread = '0,0,0,252,4,252'
+        item = 'choicescarf'
+        ability = 'intimidate'
+        moves = ['trick', 'darkpulse', 'thunderbolt']
+
+        self.assertTrue(set_makes_sense(nature, spread, item, ability, moves))
 
 
 class TestNormalizeName(unittest.TestCase):

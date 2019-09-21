@@ -4,18 +4,20 @@ from datetime import datetime
 from dateutil import relativedelta
 
 import requests
+
+import constants
 from showdown.helpers import normalize_name
 
-new_pokemon_indicator = """ +----------------------------------------+ \\n +----------------------------------------+"""
+NEW_PKMN_INDICATOR = """ +----------------------------------------+ \\n +----------------------------------------+"""
 
-section_end_string = "----------"
-other_string = "other"
-moves_string = "moves"
-item_string = "items"
-spreads_string = "spreads"
-ability_string = "abilities"
+SECTION_END_STRING = "----------"
+OTHER_STRING = "other"
+MOVES_STRING = "moves"
+ITEM_STRING = "items"
+SPREADS_STRING = "spreads"
+ABILITY_STRING = "abilities"
 
-PERCENTAGES_REGEX = '[\d\.% ]'
+PERCENTAGES_REGEX = '(\d+\.\d+%)'
 
 
 def get_smogon_stats_file_name(game_mode, month_delta=1):
@@ -42,7 +44,7 @@ def get_pokemon_information(smogon_stats_url):
     if r.status_code == 404:
         r = requests.get(get_smogon_stats_file_name(ntpath.basename(smogon_stats_url.replace('-0.txt', '')), month_delta=2))
 
-    split_string = str(r.content).split(new_pokemon_indicator)
+    split_string = str(r.content).split(NEW_PKMN_INDICATOR)
 
     pokemon_information = dict()
     for pokemon_data in split_string:
@@ -50,43 +52,49 @@ def get_pokemon_information(smogon_stats_url):
         it = iter(segments)
         pokemon_name = normalize_name(segments[1])
         pokemon_information[pokemon_name] = dict()
-        pokemon_information[pokemon_name][spreads_string] = list()
-        pokemon_information[pokemon_name][item_string] = list()
-        pokemon_information[pokemon_name][moves_string] = list()
-        pokemon_information[pokemon_name][ability_string] = list()
+        pokemon_information[pokemon_name][SPREADS_STRING] = list()
+        pokemon_information[pokemon_name][ITEM_STRING] = list()
+        pokemon_information[pokemon_name][MOVES_STRING] = list()
+        pokemon_information[pokemon_name][ABILITY_STRING] = list()
         for segment in it:
-            if normalize_name(segment) == spreads_string:
-                while section_end_string not in segment:
+            if normalize_name(segment) == SPREADS_STRING:
+                while SECTION_END_STRING not in segment:
                     segment = next(it)
                     if ':' in segment:
                         split_segment = segment.split()
                         spread = split_segment[0]
                         nature = normalize_name(spread.split(':')[0])
                         evs = spread.split(':')[1].replace('/', ',')
-                        pokemon_information[pokemon_name][spreads_string].append((nature, evs))
+                        percentage = float(re.search(PERCENTAGES_REGEX, segment).group()[:-1])
+                        pokemon_information[pokemon_name][SPREADS_STRING].append((nature, evs, percentage))
 
-            elif normalize_name(segment) == item_string:
-                while section_end_string not in segment:
+            elif normalize_name(segment) == ITEM_STRING:
+                while SECTION_END_STRING not in segment:
                     segment = next(it)
                     if '%' in segment:
                         item = normalize_name(re.sub(PERCENTAGES_REGEX, '', segment).strip())
-                        if item != other_string:
-                            pokemon_information[pokemon_name][item_string].append(item)
+                        percentage = float(re.search(PERCENTAGES_REGEX, segment).group()[:-1])
+                        if item != OTHER_STRING:
+                            pokemon_information[pokemon_name][ITEM_STRING].append((item, percentage))
 
-            elif normalize_name(segment) == moves_string:
-                while section_end_string not in segment:
+            elif normalize_name(segment) == MOVES_STRING:
+                while SECTION_END_STRING not in segment:
                     segment = next(it)
                     if '%' in segment:
                         move = normalize_name(re.sub(PERCENTAGES_REGEX, '', segment).strip())
-                        if move != other_string:
-                            pokemon_information[pokemon_name][moves_string].append(move)
+                        percentage = float(re.search(PERCENTAGES_REGEX, segment).group()[:-1])
+                        if move != OTHER_STRING:
+                            if constants.HIDDEN_POWER in move:
+                                move = "{}60".format(move)
+                            pokemon_information[pokemon_name][MOVES_STRING].append((move, percentage))
 
-            elif normalize_name(segment) == ability_string:
-                while section_end_string not in segment:
+            elif normalize_name(segment) == ABILITY_STRING:
+                while SECTION_END_STRING not in segment:
                     segment = next(it)
                     if '%' in segment:
                         ability = normalize_name(re.sub(PERCENTAGES_REGEX, '', segment).strip())
-                        if ability != other_string:
-                            pokemon_information[pokemon_name][ability_string].append(ability)
+                        percentage = float(re.search(PERCENTAGES_REGEX, segment).group()[:-1])
+                        if ability != OTHER_STRING:
+                            pokemon_information[pokemon_name][ABILITY_STRING].append((ability, percentage))
 
     return pokemon_information

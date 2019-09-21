@@ -1,14 +1,11 @@
 import constants
-import itertools
-from collections import defaultdict
-from copy import deepcopy
 
 import config
 from config import logger
 
-from showdown.decide import pick_best_move
 from showdown.evaluate import evaluate
 from showdown.decide import pick_safest
+from showdown.decide import pick_move_in_equilibrium_from_multiple_score_lookups
 from showdown.helpers import battle_is_over
 
 from .objects import StateMutator
@@ -94,13 +91,17 @@ def move_item_to_front_of_list(l, item):
     return [l[i] for i in all_indicies]
 
 
-def get_payoff_matrix(mutator, depth=2, forced_options=None):
+def get_payoff_matrix(mutator, depth=2, forced_options=None, prune=None):
     """
     :param mutator: a StateMutator object representing the state of the battle
     :param depth: the remaining depth before the state is evaluated
     :param forced_options: options that can be forced instead of using `get_all_options`
+    :param prune: specify whether or not to prune the tree
     :return: a dictionary representing the potential move combinations and their associated scores
     """
+    if prune is None:
+        prune = config.decision_method == constants.PICK_SAFEST
+
     winner = battle_is_over(mutator.state)
     if winner:
         return {(constants.DO_NOTHING_MOVE, constants.DO_NOTHING_MOVE): evaluate(mutator.state) + WON_BATTLE*depth*winner}
@@ -144,7 +145,7 @@ def get_payoff_matrix(mutator, depth=2, forced_options=None):
                 for instructions in state_instructions:
                     this_percentage = instructions.percentage
                     mutator.apply(instructions.instructions)
-                    safest = pick_safest(get_payoff_matrix(mutator, depth))
+                    safest = pick_safest(get_payoff_matrix(mutator, depth, prune=prune))
                     score += safest[1] * this_percentage
                     mutator.reverse(instructions.instructions)
 
@@ -153,7 +154,7 @@ def get_payoff_matrix(mutator, depth=2, forced_options=None):
             if score < worst_score_for_this_row:
                 worst_score_for_this_row = score
 
-            if config.decision_method == constants.PICK_SAFEST and score < best_score:
+            if prune and score < best_score:
                 skip = True
 
                 # MOST of the time in pokemon, an opponent's move that causes a prune will cause a prune elsewhere
@@ -166,88 +167,55 @@ def get_payoff_matrix(mutator, depth=2, forced_options=None):
     return state_scores
 
 
-def find_winner(mutator, p1, p2):
-    mutator = deepcopy(mutator)
-    mutator.state.self.reserve = dict()
-    mutator.state.self.active = p1
-    mutator.state.opponent.reserve = dict()
-    mutator.state.opponent.active = p2
+def prefix_opponent_move(score_lookup, prefix):
+    new_score_lookup = dict()
+    for k, v in score_lookup.items():
+        bot_move, opponent_move = k
+        new_opponent_move = "{}_{}".format(opponent_move, prefix)
+        new_score_lookup[(bot_move, new_opponent_move)] = v
 
-    evaluation = evaluate(mutator.state)
-
-    scores = get_payoff_matrix(mutator, depth=2)
-    safest = pick_safest(scores)
-
-    return safest[1] > evaluation
+    return new_score_lookup
 
 
-def set_multipliers(side, multipliers):
-    for mon, v in multipliers.items():
-        if mon == side.active.id:
-            side.active.scoring_multiplier = v
-        else:
-            side.reserve[mon].scoring_multiplier = v
+def find_best_move_safest(battles):
+    all_scores = dict()
+    for i, b in enumerate(battles):
+        state = b.to_object()
+        mutator = StateMutator(state)
+        logger.debug("Attempting to find best move from: {}".format(mutator.state))
+        scores = get_payoff_matrix(mutator, depth=config.search_depth, prune=True)
+        prefixed_scores = prefix_opponent_move(scores, str(i))
+        all_scores = {**all_scores, **prefixed_scores}
+
+    decision, payoff = pick_safest(all_scores)
+    bot_choice = decision[0]
+    logger.debug("Safest: {}, {}".format(bot_choice, payoff))
+    return bot_choice
 
 
-def get_new_mutator_with_relative_pokemon_worth(mutator):
-    mutator_copy = deepcopy(mutator)
-    bot_pkmn = [mutator_copy.state.self.active] + list(filter(lambda x: x.hp > 0, mutator_copy.state.self.reserve.values()))
-    opponent_pkmn = [mutator_copy.state.opponent.active] + list(filter(lambda x: x.hp > 0, mutator_copy.state.opponent.reserve.values()))
+def find_best_move_nash(battles):
+    list_of_payoffs = list()
+    for b in battles:
+        state = b.to_object()
+        mutator = StateMutator(state)
+        logger.debug("Attempting to find best move from: {}".format(mutator.state))
+        scores = get_payoff_matrix(mutator, depth=config.search_depth)
+        list_of_payoffs.append(scores)
 
-    pairings = list(itertools.product(bot_pkmn, opponent_pkmn))
-    one_v_one_outcomes = dict()
-    bot_pkmn_wins = defaultdict(lambda: 0)
-    opponent_pkmn_wins = defaultdict(lambda: 0)
-    for pair in pairings:
-        bot_wins = find_winner(mutator_copy, *pair)
-        one_v_one_outcomes[(pair[0].id, pair[1].id)] = bot_wins
-        if bot_wins:
-            bot_pkmn_wins[pair[0].id] += 1
-        else:
-            opponent_pkmn_wins[pair[1].id] += 1
-
-    bot_pkmn_multipliers = defaultdict(lambda: 1.0)
-    opponent_pkmn_multipliers = defaultdict(lambda: 1.0)
-    for pair in pairings:
-        if one_v_one_outcomes[(pair[0].id, pair[1].id)]:
-            bot_pkmn_multipliers[pair[0].id] = round(bot_pkmn_multipliers[pair[0].id] + 0.1 * opponent_pkmn_wins[pair[1].id], 1)
-        else:
-            opponent_pkmn_multipliers[pair[1].id] = round(opponent_pkmn_multipliers[pair[1].id] + 0.1 * bot_pkmn_wins[pair[0].id], 1)
-
-    bot_pkmn_multipliers_average = sum(bot_pkmn_multipliers.values()) / len(bot_pkmn_multipliers) if bot_pkmn_multipliers else {}
-    bot_pkmn_multipliers = {k: v / bot_pkmn_multipliers_average for k, v in bot_pkmn_multipliers.items()}
-
-    opponent_pkmn_multipliers_average = sum(opponent_pkmn_multipliers.values()) / len(opponent_pkmn_multipliers) if opponent_pkmn_multipliers else {}
-    opponent_pkmn_multipliers = {k: v / opponent_pkmn_multipliers_average for k, v in opponent_pkmn_multipliers.items()}
-
-    logger.debug("Bot pkmn multipliers: {}".format(dict(bot_pkmn_multipliers)))
-    logger.debug("Opponent pkmn multipliers: {}".format(dict(opponent_pkmn_multipliers)))
-
-    set_multipliers(mutator_copy.state.self, bot_pkmn_multipliers)
-    set_multipliers(mutator_copy.state.opponent, opponent_pkmn_multipliers)
-
-    return mutator_copy
+    return pick_move_in_equilibrium_from_multiple_score_lookups(list_of_payoffs)
 
 
 def find_best_move(battle):
-    battle = deepcopy(battle)
-    if battle.battle_type == constants.RANDOM_BATTLE:
-        battle.prepare_random_battle()
+    if config.decision_method == constants.PICK_SAFEST:
+        battles = battle.prepare_battles(join_moves_together=True)
+        return find_best_move_safest(battles)
+    elif config.decision_method == constants.PICK_NASH_EQUILIBRIUM:
+        battles = battle.prepare_battles()
+        if len(battles) > 7:
+            logger.debug("Not enough is known about the opponent's active pokemon - falling back to safest decision making")
+            battles = battle.prepare_battles(join_moves_together=True)
+            return find_best_move_safest(battles)
+        else:
+            return find_best_move_nash(battles)
     else:
-        battle.prepare_standard_battle()
-
-    state = battle.to_object()
-    mutator = StateMutator(state)
-
-    if config.use_relative_weights:
-        logger.debug("Analyzing state...")
-        mutator = get_new_mutator_with_relative_pokemon_worth(mutator)
-
-    logger.debug("Attempting to find best move from: {}".format(mutator.state))
-    move_scores = get_payoff_matrix(mutator, depth=config.search_depth)
-    logger.debug("Score lookups produced: {}".format(move_scores))
-
-    decision = pick_best_move(move_scores, config.decision_method)
-
-    logger.debug("Decision: {}".format(decision))
-    return decision
+        raise ValueError("Invalid decision method: {}".format(config.decision_method))

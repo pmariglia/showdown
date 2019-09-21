@@ -1,12 +1,19 @@
-import constants
+import itertools
 from collections import defaultdict
 from copy import copy
+from copy import deepcopy
 
+import constants
 from config import logger
 
 import data
 from data import all_move_json
 from data import pokedex
+from data.parse_smogon_stats import MOVES_STRING
+from data.parse_smogon_stats import SPREADS_STRING
+from data.parse_smogon_stats import ABILITY_STRING
+from data.parse_smogon_stats import ITEM_STRING
+from data.helpers import get_pokemon_sets
 from data.helpers import get_standard_battle_sets
 from data.helpers import get_mega_pkmn_name
 
@@ -14,16 +21,18 @@ from showdown.engine.objects import State
 from showdown.engine.objects import Side
 from showdown.engine.objects import Pokemon as TransposePokemon
 
+from showdown.helpers import remove_duplicate_spreads
 from showdown.helpers import get_pokemon_info_from_condition
+from showdown.helpers import set_makes_sense
 from showdown.helpers import normalize_name
 from showdown.helpers import calculate_stats
+from data.helpers import PASS_ITEMS
+from data.helpers import PASS_ABILITIES
+from data.helpers import get_all_likely_moves
+from data.helpers import get_most_likely_item
+from data.helpers import get_most_likely_ability
+from data.helpers import get_most_likely_spread
 from data.helpers import get_all_possible_moves_for_random_battle
-from data.helpers import get_most_likely_item_for_random_battle_pokemon
-from data.helpers import get_most_likely_ability_for_random_battle
-from data.helpers import get_all_possible_moves_for_standard_battle
-from data.helpers import get_most_likely_item_for_standard_battle_pokemon
-from data.helpers import get_most_likely_ability_for_standard_battle
-from data.helpers import get_most_likely_spread_for_standard_battle
 
 
 class Battle:
@@ -56,7 +65,7 @@ class Battle:
             self.opponent.reserve.append(pokemon)
 
         smogon_usage_data = get_standard_battle_sets(battle_mode)
-        data.standard_battle_sets = smogon_usage_data
+        data.pokemon_sets = smogon_usage_data
 
         self.started = True
         self.rqid = user_json[constants.RQID]
@@ -68,26 +77,73 @@ class Battle:
         pkmn = Pokemon.from_switch_string(pkmn_information)
         self.opponent.active = pkmn
 
+        data.pokemon_sets = data.random_battle_sets
+
         self.started = True
         self.rqid = user_json[constants.RQID]
 
-    def prepare_random_battle(self):
-        if not self.opponent.mega_revealed():
-            check_in_sets = self.battle_type == constants.STANDARD_BATTLE
-            self.opponent.active.try_convert_to_mega(check_in_sets=check_in_sets)
+    def prepare_battles(self, join_moves_together=False):
+        """Returns a list of battles based on this one
+        The battles have the opponent's reserve pokemon's unknowns filled in
+        The opponent's active pokemon in each of the battles has a different set"""
+        battle_copy = deepcopy(self)
 
-        self.opponent.active.guess_random_battle_attributes()
-        for pkmn in filter(lambda x: x.is_alive(), self.opponent.reserve):
-            pkmn.guess_random_battle_attributes()
+        if not battle_copy.opponent.mega_revealed():
+            check_in_sets = battle_copy.battle_type == constants.STANDARD_BATTLE
+            battle_copy.opponent.active.try_convert_to_mega(check_in_sets=check_in_sets)
 
-    def prepare_standard_battle(self):
-        if not self.opponent.mega_revealed():
-            check_in_sets = self.battle_type == constants.STANDARD_BATTLE
-            self.opponent.active.try_convert_to_mega(check_in_sets=check_in_sets)
+        # for reserve pokemon only guess their most likely item/ability/spread and guess all moves
+        for pkmn in filter(lambda x: x.is_alive(), battle_copy.opponent.reserve):
+            pkmn.guess_most_likely_attributes()
 
-        self.opponent.active.guess_standard_battle_attributes()
-        for pkmn in filter(lambda x: x.is_alive(), self.opponent.reserve):
-            pkmn.guess_standard_battle_attributes()
+        try:
+            pokemon_sets = get_pokemon_sets(battle_copy.opponent.active.name)
+        except KeyError:
+            logger.warning("No set for {}".format(battle_copy.opponent.active.name))
+            return [battle_copy]
+
+        possible_spreads = sorted(pokemon_sets[SPREADS_STRING], key=lambda x: x[2], reverse=True)
+        possible_abilities = sorted(pokemon_sets[ABILITY_STRING], key=lambda x: x[1], reverse=True)
+        possible_items = sorted(pokemon_sets[ITEM_STRING], key=lambda x: x[1], reverse=True)
+        possible_moves = sorted(pokemon_sets[MOVES_STRING], key=lambda x: x[1], reverse=True)
+
+        spreads = battle_copy.opponent.active.get_possible_spreads(possible_spreads)
+        items = battle_copy.opponent.active.get_possible_items(possible_items)
+        abilities = battle_copy.opponent.active.get_possible_abilities(possible_abilities)
+        expected_moves, chance_moves = battle_copy.opponent.active.get_possible_moves(possible_moves, battle_copy.battle_type)
+
+        if join_moves_together:
+            chance_move_combinations = [chance_moves]
+        else:
+            number_of_unknown_moves = max(4 - len(battle_copy.opponent.active.moves) - len(expected_moves), 0)
+            chance_move_combinations = list(itertools.combinations(chance_moves, number_of_unknown_moves))
+
+        combinations = list(itertools.product(spreads, items, abilities, chance_move_combinations))
+
+        logger.debug("Guessing these moves for the opponent's {}: {}".format(battle_copy.opponent.active.name, expected_moves))
+
+        # create battle clones for each of the combinations
+        battles = list()
+        for c in combinations:
+            new_battle = deepcopy(battle_copy)
+
+            all_moves = [m.name for m in new_battle.opponent.active.moves]
+            all_moves += expected_moves
+            all_moves += c[3]
+
+            if join_moves_together or set_makes_sense(c[0][0], c[0][1], c[1], c[2], all_moves):
+                new_battle.opponent.active.set_spread(c[0][0], c[0][1])
+                new_battle.opponent.active.item = c[1]
+                new_battle.opponent.active.ability = c[2]
+                for m in expected_moves:
+                    new_battle.opponent.active.add_move(m)
+                for m in c[3]:
+                    new_battle.opponent.active.add_move(m)
+
+                logger.debug("Possible set for opponent's {}: {}".format(battle_copy.opponent.active.name, c))
+                battles.append(new_battle)
+
+        return battles if battles else [battle_copy]
 
     def to_object(self):
         user_active = TransposePokemon.from_state_pokemon_dict(self.user.active.to_dict())
@@ -177,14 +233,7 @@ class Battler:
                 self.reserve.append(pkmn)
 
             for move_name in pkmn_dict[constants.MOVES]:
-                if move_name.startswith(constants.HIDDEN_POWER):
-                    pkmn.add_move('{}{}'.format(
-                        move_name,
-                        constants.HIDDEN_POWER_RESERVE_MOVE_BASE_DAMAGE_STRING
-                        )
-                    )
-                else:
-                    pkmn.add_move(move_name)
+                pkmn.add_move(move_name)
 
         # if there is no active pokemon, we do not want to look through it's moves
         if constants.ACTIVE not in user_json:
@@ -200,10 +249,9 @@ class Battler:
         # this assumes that there is only one active pokemon (single-battle)
         for index, move in enumerate(user_json[constants.ACTIVE][0][constants.MOVES]):
             if move[constants.ID] == constants.HIDDEN_POWER:
-                self.active.add_move('{}{}{}'.format(
+                self.active.add_move('{}{}'.format(
                         constants.HIDDEN_POWER,
-                        move['move'].split()[constants.HIDDEN_POWER_TYPE_STRING_INDEX].lower(),
-                        constants.HIDDEN_POWER_ACTIVE_MOVE_BASE_DAMAGE_STRING
+                        move['move'].split()[constants.HIDDEN_POWER_TYPE_STRING_INDEX].lower()
                     )
                 )
             else:
@@ -275,7 +323,7 @@ class Pokemon:
         if self.item != constants.UNKNOWN_ITEM:
             return
         mega_pkmn_name = get_mega_pkmn_name(self.name)
-        in_sets_data = mega_pkmn_name in data.standard_battle_sets
+        in_sets_data = mega_pkmn_name in data.pokemon_sets
 
         if (mega_pkmn_name and check_in_sets and in_sets_data) or (mega_pkmn_name and not check_in_sets):
             logger.debug("Guessing mega-evolution: {}".format(mega_pkmn_name))
@@ -316,71 +364,106 @@ class Pokemon:
                 return m
         return None
 
-    def update_moves_for_random_battles(self):
+    def set_likely_moves_unless_revealed(self):
         if len(self.moves) == 4:
             logger.debug("{} revealed 4 moves: {}".format(self.name, self.moves))
             return
-        additional_moves = get_all_possible_moves_for_random_battle(self.name, [m.name for m in self.moves])
+        additional_moves = get_all_likely_moves(self.name, [m.name for m in self.moves])
         logger.debug("Guessing additional moves for {}: {}".format(self.name, additional_moves))
         for m in additional_moves:
             self.moves.append(Move(m))
 
-    def update_ability_for_random_battles(self):
+    def set_most_likely_ability_unless_revealed(self):
         if self.ability is not None:
             logger.debug("{} has revealed it's ability as {}, not guessing".format(self.name, self.ability))
             return
-        ability = get_most_likely_ability_for_random_battle(self.name)
+        ability = get_most_likely_ability(self.name)
         logger.debug("Guessing ability={} for {}".format(ability, self.name))
         self.ability = ability
 
-    def update_item_for_random_battles(self):
+    def set_most_likely_item_unless_revealed(self):
         if self.item != constants.UNKNOWN_ITEM:
             logger.debug("{} has revealed it's item as {}, not guessing".format(self.name, self.item))
             return
-        item = get_most_likely_item_for_random_battle_pokemon(self.name)
+        item = get_most_likely_item(self.name)
         logger.debug("Guessing item={} for {}".format(item, self.name))
         self.item = item
 
-    def update_moves_for_standard_battles(self):
-        if len(self.moves) == 4:
-            logger.debug("{} revealed 4 moves: {}".format(self.name, self.moves))
-            return
-        additional_moves = get_all_possible_moves_for_standard_battle(self.name, [m.name for m in self.moves])
-        logger.debug("Guessing additional moves for {}: {}".format(self.name, additional_moves))
-        for m in additional_moves:
-            self.moves.append(Move(m))
-
-    def update_ability_for_standard_battles(self):
-        if self.ability is not None:
-            logger.debug("{} has revealed it's ability as {}, not guessing".format(self.name, self.ability))
-            return
-        ability = get_most_likely_ability_for_standard_battle(self.name)
-        logger.debug("Guessing ability={} for {}".format(ability, self.name))
-        self.ability = ability
-
-    def update_item_for_standard_battles(self):
-        if self.item != constants.UNKNOWN_ITEM:
-            logger.debug("{} has revealed it's item as {}, not guessing".format(self.name, self.item))
-            return
-        item = get_most_likely_item_for_standard_battle_pokemon(self.name)
-        logger.debug("Guessing item={} for {}".format(item, self.name))
-        self.item = item
-
-    def update_spread_for_standard_battles(self):
-        nature, evs = get_most_likely_spread_for_standard_battle(self.name)
+    def set_most_likely_spread(self):
+        nature, evs, _ = get_most_likely_spread(self.name)
         logger.debug("Spread assumption for {}: {}, {}".format(self.name, nature, evs))
         self.set_spread(nature, evs)
 
-    def guess_random_battle_attributes(self):
-        self.update_ability_for_random_battles()
-        self.update_item_for_random_battles()
-        self.update_moves_for_random_battles()
+    def guess_most_likely_attributes(self):
+        self.set_most_likely_ability_unless_revealed()
+        self.set_most_likely_item_unless_revealed()
+        self.set_likely_moves_unless_revealed()
+        self.set_most_likely_spread()
 
-    def guess_standard_battle_attributes(self):
-        self.update_ability_for_standard_battles()
-        self.update_item_for_standard_battles()
-        self.update_moves_for_standard_battles()
-        self.update_spread_for_standard_battles()
+    def get_possible_spreads(self, spreads):
+        # update this once you can use previous attacks to rule out spreads
+        cumulative_percentage = 0
+        possible_spreads = []
+        for s in spreads:
+            cumulative_percentage += s[2]
+            possible_spreads.append(s[:2])
+            if s[2] < 20 or cumulative_percentage >= 80:
+                break
+
+        return remove_duplicate_spreads(possible_spreads)
+
+    def get_possible_items(self, items):
+        if self.item == constants.UNKNOWN_ITEM:
+            cumulative_percentage = 0
+            possible_items = []
+            for i in items:
+                if i[1] < 10 or cumulative_percentage >= 80:
+                    return possible_items if possible_items else [constants.UNKNOWN_ITEM]
+                elif i[0] not in PASS_ITEMS:
+                    possible_items.append(i[0])
+
+                cumulative_percentage += i[1]
+
+            return possible_items if possible_items else [constants.UNKNOWN_ITEM]
+
+        else:
+            return [self.item]
+
+    def get_possible_abilities(self, abilities):
+        if self.ability is None:
+            cumulative_percentage = 0
+            possible_abilities = []
+            for i in abilities:
+                if i[1] < 10 or cumulative_percentage >= 80:
+                    return possible_abilities if possible_abilities else [None]
+                elif i[0] not in PASS_ABILITIES:
+                    possible_abilities.append(i[0])
+
+                cumulative_percentage += i[1]
+
+            return possible_abilities if possible_abilities else [None]
+        else:
+            return [self.ability]
+
+    def get_possible_moves(self, moves, battle_type=constants.STANDARD_BATTLE):
+        if battle_type == constants.RANDOM_BATTLE:
+            known_move_names = [m.name for m in self.moves]
+            return [], get_all_possible_moves_for_random_battle(self.name, known_move_names)
+
+        moves_remaining = 4-len(self.moves)
+        expected_moves = list()
+        chance_moves = list()
+
+        for m in moves:
+            if moves_remaining == 0:
+                break
+            elif m[1] > 60 and self.get_move(m[0]) is None:
+                expected_moves.append(m[0])
+                moves_remaining -= 1
+            elif m[1] > 20 and self.get_move(m[0]) is None:
+                chance_moves.append(m[0])
+
+        return expected_moves, chance_moves
 
     def to_dict(self):
         return {
@@ -420,6 +503,8 @@ class Pokemon:
 class Move:
     def __init__(self, name):
         name = normalize_name(name)
+        if constants.HIDDEN_POWER in name and not name.endswith(constants.HIDDEN_POWER_ACTIVE_MOVE_BASE_DAMAGE_STRING):
+            name = "{}{}".format(name, constants.HIDDEN_POWER_ACTIVE_MOVE_BASE_DAMAGE_STRING)
         move_json = all_move_json[name]
         self.name = name
         self.max_pp = int(move_json.get(constants.PP) * 1.6)

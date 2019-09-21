@@ -17,6 +17,13 @@ class TestCalculateDamage(unittest.TestCase):
         dmg = calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
         self.assertEqual([300], dmg)
 
+    def test_flashfire_increases_fire_move_damage(self):
+        move = 'fire Blast'
+        self.charizard.volatile_status.add('flashfire')
+
+        dmg = calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        self.assertEqual([450], dmg)
+
     def test_stab_without_weakness_calculates_properly(self):
         move = 'sludge bomb'
 

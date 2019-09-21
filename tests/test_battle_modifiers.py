@@ -697,6 +697,12 @@ class TestStartVolatileStatus(unittest.TestCase):
 
         self.assertEqual(expected_volatile_statuese, self.battle.opponent.active.volatile_statuses)
 
+    def test_flashfire_sets_ability(self):
+        split_msg = ['', '-start', 'p2a: Caterpie', 'ability: Flash Fire']
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual('flashfire', self.battle.opponent.active.ability)
+
     def test_volatile_status_is_set_on_user_pokemon(self):
         split_msg = ['', '-start', 'p1a: Weedle', 'Encore']
         start_volatile_status(self.battle, split_msg)
@@ -1231,7 +1237,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
-    def test_only_one_move_causes_no_ability_to_be_guessed(self):
+    def test_only_one_move_causes_no_item_to_be_guessed(self):
         self.battle.user.active.stats[constants.SPEED] = 210
 
         messages = [

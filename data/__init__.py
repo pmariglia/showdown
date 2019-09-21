@@ -13,7 +13,7 @@ with open(pkmn_json_location, 'r') as f:
 
 random_battle_set_location = os.path.join(PWD, 'random_battle_sets.json')
 with open(random_battle_set_location, 'r') as f:
-    all_random_battle_sets = json.load(f)
+    random_battle_sets = json.load(f)
 
 
-standard_battle_sets = dict()
+pokemon_sets = dict()

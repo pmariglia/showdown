@@ -48,7 +48,6 @@ def inactive(battle, split_msg):
         capture = re.search(regex_string, split_msg[2])
         try:
             battle.time_remaining = int(capture.group(1))
-            logger.debug("Time remaining: {}".format(capture.group(1)))
         except ValueError:
             logger.warning("{} is not a valid int".format(capture.group(1)))
         except AttributeError:
@@ -194,6 +193,9 @@ def start_volatile_status(battle, split_msg):
     if volatile_status not in pkmn.volatile_statuses:
         logger.debug("Starting the volatile status {} on {}".format(volatile_status, pkmn.name))
         pkmn.volatile_statuses.append(volatile_status)
+
+    if is_opponent(battle, split_msg) and constants.ABILITY in split_msg[3]:
+        pkmn.ability = volatile_status
 
 
 def end_volatile_status(battle, split_msg):

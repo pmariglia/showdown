@@ -401,7 +401,6 @@ class TestInitializeBattler(unittest.TestCase):
         self.battler.active = Pokemon('pikachu', 100)
         self.battler.from_json(request_dict)
 
-        # photongeyser is a z-move with the request dict given above
         hiddenpowerfire = self.battler.active.get_move('hiddenpowerfire60')
 
         self.assertTrue(hiddenpowerfire)
