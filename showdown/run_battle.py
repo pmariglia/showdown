@@ -16,7 +16,7 @@ from showdown.engine import find_best_move
 from showdown.websocket_client import PSWebsocketClient
 
 
-async def _handle_team_preview(battle: Battle, ps_websocket_client: PSWebsocketClient):
+async def handle_team_preview(battle: Battle, ps_websocket_client: PSWebsocketClient):
     battle_copy = deepcopy(battle)
     battle_copy.user.active = Pokemon.get_dummy()
     battle_copy.opponent.active = Pokemon.get_dummy()
@@ -50,7 +50,7 @@ async def get_battle_tag_and_opponent(ps_websocket_client: PSWebsocketClient):
             return battle_tag, opponent_name
 
 
-async def _initialize_battle_with_tag(ps_websocket_client: PSWebsocketClient):
+async def initialize_battle_with_tag(ps_websocket_client: PSWebsocketClient):
     battle_tag, opponent_name = await get_battle_tag_and_opponent(ps_websocket_client)
     while True:
         msg = await ps_websocket_client.receive_message()
@@ -65,8 +65,8 @@ async def _initialize_battle_with_tag(ps_websocket_client: PSWebsocketClient):
             return battle, opponent_id, user_json
 
 
-async def _start_random_battle(ps_websocket_client: PSWebsocketClient):
-    battle, opponent_id, user_json = await _initialize_battle_with_tag(ps_websocket_client)
+async def start_random_battle(ps_websocket_client: PSWebsocketClient):
+    battle, opponent_id, user_json = await initialize_battle_with_tag(ps_websocket_client)
     battle.battle_type = constants.RANDOM_BATTLE
     reset_logger(logger, "{}-{}.log".format(battle.opponent.account_name, battle.battle_tag))
     while True:
@@ -85,8 +85,8 @@ async def _start_random_battle(ps_websocket_client: PSWebsocketClient):
             return battle
 
 
-async def _start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
-    battle, opponent_id, user_json = await _initialize_battle_with_tag(ps_websocket_client)
+async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
+    battle, opponent_id, user_json = await initialize_battle_with_tag(ps_websocket_client)
     battle.battle_type = constants.STANDARD_BATTLE
     await ps_websocket_client.send_message(battle.battle_tag, [config.greeting_message])
     reset_logger(logger, "{}-{}.log".format(battle.opponent.account_name, battle.battle_tag))
@@ -107,7 +107,7 @@ async def _start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon
             opponent_pokemon.append(split_line[3])
 
     battle.initialize_team_preview(user_json, opponent_pokemon, pokemon_battle_type)
-    await _handle_team_preview(battle, ps_websocket_client)
+    await handle_team_preview(battle, ps_websocket_client)
 
     return battle
 
@@ -137,7 +137,7 @@ async def format_decision(battle, decision):
 async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
     if "random" in pokemon_battle_type:
         Scoring.POKEMON_ALIVE_STATIC = 30  # random battle benefits from a lower static score for an alive pkmn
-        battle = await _start_random_battle(ps_websocket_client)
+        battle = await start_random_battle(ps_websocket_client)
         await ps_websocket_client.send_message(battle.battle_tag, [config.greeting_message])
         loop = asyncio.get_event_loop()
         with concurrent.futures.ThreadPoolExecutor() as pool:
@@ -147,7 +147,7 @@ async def pokemon_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_
         formatted_message = await format_decision(battle, best_move)
         await ps_websocket_client.send_message(battle.battle_tag, formatted_message)
     else:
-        battle = await _start_standard_battle(ps_websocket_client, pokemon_battle_type)
+        battle = await start_standard_battle(ps_websocket_client, pokemon_battle_type)
 
     await ps_websocket_client.send_message(battle.battle_tag, ['/timer on'])
     while True:

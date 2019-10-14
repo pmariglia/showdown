@@ -121,7 +121,7 @@ def pick_safest(score_lookup):
     return worst_case[safest]
 
 
-def _find_best_nash_equilibrium(equilibria, df):
+def find_best_nash_equilibrium(equilibria, df):
     from nashpy import Game
     game = Game(df)
 
@@ -144,7 +144,7 @@ def find_nash_equilibrium(score_lookup):
     df = pd.Series(modified_score_lookup).unstack()
 
     equilibria = find_all_equilibria(df)
-    best_eq, score = _find_best_nash_equilibrium(equilibria, df)
+    best_eq, score = find_best_nash_equilibrium(equilibria, df)
     bot_percentages = best_eq[0]
     opponent_percentages = best_eq[1]
 
@@ -154,7 +154,7 @@ def find_nash_equilibrium(score_lookup):
     return bot_choices, opponent_choices, bot_percentages, opponent_percentages, score
 
 
-def _log_nash_equilibria(bot_choices, opponent_choices, bot_percentages, opponent_percentages, payoff):
+def log_nash_equilibria(bot_choices, opponent_choices, bot_percentages, opponent_percentages, payoff):
     bot_options = []
     for i, percentage in enumerate(bot_percentages):
         if percentage:
@@ -175,7 +175,7 @@ def get_weighted_choices_from_multiple_score_lookups(score_lookups):
     number_of_score_lookups = len(score_lookups)
     for sl in score_lookups:
         eq = find_nash_equilibrium(sl)
-        _log_nash_equilibria(*eq)
+        log_nash_equilibria(*eq)
         for i, bot_choice in enumerate(eq[0]):
             bot_choice_percentages[bot_choice] += eq[2][i]/number_of_score_lookups
 

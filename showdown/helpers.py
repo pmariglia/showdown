@@ -106,7 +106,7 @@ def remove_duplicate_spreads(list_of_spreads):
     return new_spreads
 
 
-def _update_stats_from_nature(stats, nature):
+def update_stats_from_nature(stats, nature):
     if nature in ['lonely', 'adamant', 'naughty', 'brave']:
         stats[constants.ATTACK] *= 1.1
     if nature in ['bold', 'impish', 'lax', 'relaxed']:
@@ -130,42 +130,55 @@ def _update_stats_from_nature(stats, nature):
         stats[constants.SPEED] /= 1.1
 
 
+def common_pkmn_stat_calc(stat: int, iv: int, ev: int, level: int):
+    return math.floor(((2 * stat + iv + math.floor(ev / 4)) * level) / 100)
+
+
 def calculate_stats(base_stats, level, ivs=(31,) * 6, evs=(85,) * 6, nature='serious'):
-
-    def _common_pkmn_stat_calc(stat: int, iv: int, ev: int, level: int):
-        return math.floor(((2 * stat + iv + math.floor(ev / 4)) * level) / 100)
-
     new_stats = dict()
 
-    new_stats[constants.HITPOINTS] = _common_pkmn_stat_calc(base_stats[constants.HITPOINTS],
-                                                            ivs[0],
-                                                            evs[0],
-                                                            level) + level + 10
+    new_stats[constants.HITPOINTS] = common_pkmn_stat_calc(
+        base_stats[constants.HITPOINTS],
+        ivs[0],
+        evs[0],
+        level
+    ) + level + 10
 
-    new_stats[constants.ATTACK] = _common_pkmn_stat_calc(base_stats[constants.ATTACK],
-                                                         ivs[1],
-                                                         evs[1],
-                                                         level) + 5
+    new_stats[constants.ATTACK] = common_pkmn_stat_calc(
+        base_stats[constants.ATTACK],
+        ivs[1],
+        evs[1],
+        level
+    ) + 5
 
-    new_stats[constants.DEFENSE] = _common_pkmn_stat_calc(base_stats[constants.DEFENSE],
-                                                          ivs[2],
-                                                          evs[2],
-                                                          level) + 5
+    new_stats[constants.DEFENSE] = common_pkmn_stat_calc(
+        base_stats[constants.DEFENSE],
+        ivs[2],
+        evs[2],
+        level
+    ) + 5
 
-    new_stats[constants.SPECIAL_ATTACK] = _common_pkmn_stat_calc(base_stats[constants.SPECIAL_ATTACK],
-                                                                 ivs[3],
-                                                                 evs[3],
-                                                                 level) + 5
+    new_stats[constants.SPECIAL_ATTACK] = common_pkmn_stat_calc(
+        base_stats[constants.SPECIAL_ATTACK],
+        ivs[3],
+        evs[3],
+        level
+    ) + 5
 
-    new_stats[constants.SPECIAL_DEFENSE] = _common_pkmn_stat_calc(base_stats[constants.SPECIAL_DEFENSE],
-                                                                  ivs[4],
-                                                                  evs[4],
-                                                                  level) + 5
-    new_stats[constants.SPEED] = _common_pkmn_stat_calc(base_stats[constants.SPEED],
-                                                        ivs[5],
-                                                        evs[5],
-                                                        level) + 5
+    new_stats[constants.SPECIAL_DEFENSE] = common_pkmn_stat_calc(
+        base_stats[constants.SPECIAL_DEFENSE],
+        ivs[4],
+        evs[4],
+        level
+    ) + 5
 
-    _update_stats_from_nature(new_stats, nature)
+    new_stats[constants.SPEED] = common_pkmn_stat_calc(
+        base_stats[constants.SPEED],
+        ivs[5],
+        evs[5],
+        level
+    ) + 5
+
+    update_stats_from_nature(new_stats, nature)
     new_stats = {k: int(v) for k, v in new_stats.items()}
     return new_stats

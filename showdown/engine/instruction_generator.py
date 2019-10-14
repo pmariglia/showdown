@@ -90,7 +90,7 @@ def get_state_from_volatile_status(mutator, volatile_status, attacker, affected_
         mutator.reverse(instruction.instructions)
         return [instruction]
 
-    if _can_be_volatile_statused(side, volatile_status, first_move) and volatile_status not in side.active.volatile_status:
+    if can_be_volatile_statused(side, volatile_status, first_move) and volatile_status not in side.active.volatile_status:
         apply_status_instruction = (
             constants.MUTATOR_APPLY_VOLATILE_STATUS,
             affected_side,
@@ -198,7 +198,7 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
 
     # account for toxic spikes effect
     if attacking_side.side_conditions[constants.TOXIC_SPIKES] >= 1 and switch_pkmn.is_grounded():
-        if not _immune_to_status(mutator.state, switch_pkmn, attacking_pokemon, constants.POISON):
+        if not immune_to_status(mutator.state, switch_pkmn, attacking_pokemon, constants.POISON):
             if attacking_side.side_conditions[constants.TOXIC_SPIKES] == 1:
                 instruction_additions.append(
                     (
@@ -564,11 +564,11 @@ def get_states_from_status_effects(mutator, defender, status, accuracy, instruct
     defending_side = get_side_from_state(mutator.state, defender)
     attacking_side = get_side_from_state(mutator.state, possible_affected_strings[defender])
 
-    if _sleep_clause_activated(defending_side, status):
+    if sleep_clause_activated(defending_side, status):
         mutator.reverse(instruction.instructions)
         return [instruction]
 
-    if _immune_to_status(mutator.state, defending_side.active, attacking_side.active, status):
+    if immune_to_status(mutator.state, defending_side.active, attacking_side.active, status):
         mutator.reverse(instruction.instructions)
         return [instruction]
 
@@ -619,7 +619,7 @@ def get_states_from_boosts(mutator, side_string, boosts, accuracy, instruction):
     side = get_side_from_state(mutator.state, side_string)
     if percent_hit > 0:
         for k, v in boosts.items():
-            pkmn_boost = _get_boost_from_boost_string(side, k)
+            pkmn_boost = get_boost_from_boost_string(side, k)
             if v > 0:
                 new_boost = pkmn_boost + v
                 if new_boost > constants.MAX_BOOSTS:
@@ -1029,7 +1029,7 @@ def get_side_from_state(state, side_string):
         raise ValueError("Invalid value for `side`")
 
 
-def _get_boost_from_boost_string(side, boost_string):
+def get_boost_from_boost_string(side, boost_string):
     if boost_string == constants.ATTACK:
         return side.active.attack_boost
     elif boost_string == constants.DEFENSE:
@@ -1046,7 +1046,7 @@ def _get_boost_from_boost_string(side, boost_string):
         return side.active.evasion_boost
 
 
-def _can_be_volatile_statused(side, volatile_status, first_move):
+def can_be_volatile_statused(side, volatile_status, first_move):
     if volatile_status in constants.PROTECT_VOLATILE_STATUSES:
         if side.side_conditions[constants.PROTECT]:
             return False
@@ -1062,13 +1062,13 @@ def _can_be_volatile_statused(side, volatile_status, first_move):
     return True
 
 
-def _sleep_clause_activated(side, status):
+def sleep_clause_activated(side, status):
     if status == constants.SLEEP and constants.SLEEP in [p.status for p in side.reserve.values()]:
         return True
     return False
 
 
-def _immune_to_status(state, defending_pkmn, attacking_pkmn, status):
+def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
     if defending_pkmn.status is not None or defending_pkmn.hp <= 0:
         return True
     if constants.SUBSTITUTE in defending_pkmn.volatile_status and attacking_pkmn.ability != 'infiltrator':

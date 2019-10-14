@@ -414,11 +414,11 @@ class StateMutator:
             method = self.reverse_instructions[instruction[0]]
             method(*instruction[1:])
 
-    def _get_side(self, side):
+    def get_side(self, side):
         return getattr(self.state, side)
 
     def disable_move(self, side, move_name):
-        side = self._get_side(side)
+        side = self.get_side(side)
         try:
             move = next(filter(lambda x: x[constants.ID] == move_name, side.active.moves))
         except StopIteration:
@@ -427,7 +427,7 @@ class StateMutator:
         move[constants.DISABLED] = True
 
     def enable_move(self, side, move_name):
-        side = self._get_side(side)
+        side = self.get_side(side)
         try:
             move = next(filter(lambda x: x[constants.ID] == move_name, side.active.moves))
         except StopIteration:
@@ -438,7 +438,7 @@ class StateMutator:
     def switch(self, side, _, switch_pokemon_name):
         # the second parameter to this function is the current active pokemon
         # this value must be here for reversing purposes
-        side = self._get_side(side)
+        side = self.get_side(side)
 
         side.reserve[side.active.id] = side.active
         side.active = side.reserve.pop(switch_pokemon_name)
@@ -447,23 +447,23 @@ class StateMutator:
         self.switch(side, current_active, previous_active)
 
     def apply_volatile_status(self, side, volatile_status):
-        side = self._get_side(side)
+        side = self.get_side(side)
         side.active.volatile_status.add(volatile_status)
 
     def remove_volatile_status(self, side, volatile_status):
-        side = self._get_side(side)
+        side = self.get_side(side)
         side.active.volatile_status.remove(volatile_status)
 
     def damage(self, side, amount):
-        side = self._get_side(side)
+        side = self.get_side(side)
         side.active.hp -= amount
 
     def heal(self, side, amount):
-        side = self._get_side(side)
+        side = self.get_side(side)
         side.active.hp += amount
 
     def boost(self, side, stat, amount):
-        side = self._get_side(side)
+        side = self.get_side(side)
         if stat == constants.ATTACK:
             side.active.attack_boost += amount
         elif stat == constants.DEFENSE:
@@ -485,7 +485,7 @@ class StateMutator:
         self.boost(side, stat, -1*amount)
 
     def apply_status(self, side, status):
-        side = self._get_side(side)
+        side = self.get_side(side)
         side.active.status = status
 
     def remove_status(self, side, _):
@@ -494,17 +494,17 @@ class StateMutator:
         self.apply_status(side, None)
 
     def side_start(self, side, effect, amount):
-        side = self._get_side(side)
+        side = self.get_side(side)
         side.side_conditions[effect] += amount
 
     def reverse_side_start(self, side, effect, amount):
-        side = self._get_side(side)
+        side = self.get_side(side)
         side.side_conditions[effect] -= amount
 
     def side_end(self, side, effect, _):
         # the third parameter of this function is the amount being removed
         # this value must be here for reverse purposes
-        side = self._get_side(side)
+        side = self.get_side(side)
         side.side_conditions[effect] = 0
 
     def reverse_side_end(self, side, effect, amount):

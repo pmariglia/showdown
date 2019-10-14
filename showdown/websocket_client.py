@@ -46,7 +46,7 @@ class PSWebsocketClient:
         self.last_message = message
         logger.debug("Sent to websocket: {}".format(message))
 
-    async def _get_id_and_challstr(self):
+    async def get_id_and_challstr(self):
         while True:
             message = await self.receive_message()
             split_message = message.split('|')
@@ -54,7 +54,7 @@ class PSWebsocketClient:
                 return split_message[2], split_message[3]
 
     async def login(self):
-        client_id, challstr = await self._get_id_and_challstr()
+        client_id, challstr = await self.get_id_and_challstr()
         if self.password:
             response = requests.post(
                 self.login_uri,
