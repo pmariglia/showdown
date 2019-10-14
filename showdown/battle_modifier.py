@@ -418,10 +418,13 @@ def check_choicescarf(battle, msg_lines):
         return
 
     battle_copy = deepcopy(battle)
-    if battle.trick_room:
-        battle_copy.opponent.active.set_spread('quiet', '0,0,0,0,0,0')  # assume as slow as possible in trickroom
+    if battle.battle_type == constants.RANDOM_BATTLE:
+        battle_copy.opponent.active.set_spread('serious', '85,85,85,85,85,85')  # random battles have known spreads
     else:
-        battle_copy.opponent.active.set_spread('jolly', '0,0,0,0,0,252')  # assume as fast as possible
+        if battle.trick_room:
+            battle_copy.opponent.active.set_spread('quiet', '0,0,0,0,0,0')  # assume as slow as possible in trickroom
+        else:
+            battle_copy.opponent.active.set_spread('jolly', '0,0,0,0,0,252')  # assume as fast as possible
     state = battle_copy.to_object()
     opponent_effective_speed = get_effective_speed(state, state.opponent)
     bot_effective_speed = get_effective_speed(state, state.self)

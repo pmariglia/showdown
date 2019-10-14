@@ -1273,3 +1273,22 @@ class TestGuessChoiceScarf(unittest.TestCase):
         check_choicescarf(self.battle, messages)
 
         self.assertEqual('leftovers', self.battle.opponent.active.item)
+
+    def test_uses_randombattle_spread_when_guessing_for_randombattle(self):
+        self.battle.battle_type = constants.RANDOM_BATTLE
+
+        # opponent's speed should be 193 WITHOUT a choicescarf
+        # HOWEVER, max-speed should still outspeed this value
+        self.battle.user.active.stats[constants.SPEED] = 195
+
+        self.opponent_active = Pokemon('floetteeternal', 80)  # randombattle level for Floette-E
+        self.battle.opponent.active = self.opponent_active
+
+        messages = [
+            '|move|p2a: Floette-Eternal|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual('choicescarf', self.battle.opponent.active.item)
