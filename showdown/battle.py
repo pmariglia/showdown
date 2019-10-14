@@ -179,6 +179,9 @@ class Battler:
         return self.active.is_mega or any(p.is_mega for p in self.reserve)
 
     def from_json(self, user_json, first_turn=False):
+
+        # user_json does not track boosts or volatile statuses
+        # they must be taken from the current battle
         if first_turn:
             existing_conditions = (None, None, None)
         else:
@@ -190,26 +193,6 @@ class Battler:
             self.trapped = trapped or maybe_trapped
         except KeyError:
             self.trapped = False
-
-        try:
-            can_mega_evo = user_json[constants.ACTIVE][0][constants.CAN_MEGA_EVO]
-        except KeyError:
-            can_mega_evo = False
-
-        try:
-            can_ultra_burst = user_json[constants.ACTIVE][0][constants.CAN_ULTRA_BURST]
-        except KeyError:
-            can_ultra_burst = False
-
-        try:
-            can_z_move = []
-            for m in user_json[constants.ACTIVE][0][constants.CAN_Z_MOVE]:
-                if m is not None:
-                    can_z_move.append(True)
-                else:
-                    can_z_move.append(False)
-        except KeyError:
-            can_z_move = [False, False, False, False]
 
         self.name = user_json[constants.SIDE][constants.ID]
         self.reserve.clear()
@@ -239,8 +222,15 @@ class Battler:
         if constants.ACTIVE not in user_json:
             return
 
-        self.active.can_mega_evo = can_mega_evo
-        self.active.can_ultra_burst = can_ultra_burst
+        try:
+            self.active.can_mega_evo = user_json[constants.ACTIVE][0][constants.CAN_MEGA_EVO]
+        except KeyError:
+            self.active.can_mega_evo = False
+
+        try:
+            self.active.can_ultra_burst = user_json[constants.ACTIVE][0][constants.CAN_ULTRA_BURST]
+        except KeyError:
+            self.active.can_ultra_burst = False
 
         # clear the active moves so they can be reset by the options available
         self.active.moves.clear()
@@ -248,6 +238,8 @@ class Battler:
         # update the active pokemon's moves to show disabled status/pp remaining
         # this assumes that there is only one active pokemon (single-battle)
         for index, move in enumerate(user_json[constants.ACTIVE][0][constants.MOVES]):
+            # hidden power's ID is always 'hiddenpower' regardless of the type
+            # the type needs to be parsed separately from the 'move' attribute
             if move[constants.ID] == constants.HIDDEN_POWER:
                 self.active.add_move('{}{}'.format(
                         constants.HIDDEN_POWER,
@@ -258,8 +250,11 @@ class Battler:
                 self.active.add_move(move[constants.ID])
             self.active.moves[-1].disabled = move.get(constants.DISABLED, False)
             self.active.moves[-1].current_pp = move.get(constants.PP, 1)
-            if can_z_move[index]:
-                self.active.moves[index].can_z = True
+
+            try:
+                self.active.moves[index].can_z = user_json[constants.ACTIVE][0][constants.CAN_Z_MOVE][index]
+            except KeyError:
+                pass
 
     def to_dict(self):
         return {
