@@ -38,6 +38,90 @@ accuracy_multiplier_lookup = {
 }
 
 
+natures = {
+    'lonely': {
+        'plus': constants.ATTACK,
+        'minus': constants.DEFENSE
+    },
+    'adamant': {
+        'plus': constants.ATTACK,
+        'minus': constants.SPECIAL_ATTACK
+    },
+    'naughty': {
+        'plus': constants.ATTACK,
+        'minus': constants.SPECIAL_DEFENSE
+    },
+    'brave': {
+        'plus': constants.ATTACK,
+        'minus': constants.SPEED
+    },
+    'bold': {
+        'plus': constants.DEFENSE,
+        'minus': constants.ATTACK
+    },
+    'impish': {
+        'plus': constants.DEFENSE,
+        'minus': constants.SPECIAL_ATTACK
+    },
+    'lax': {
+        'plus': constants.DEFENSE,
+        'minus': constants.SPECIAL_DEFENSE
+    },
+    'relaxed': {
+        'plus': constants.DEFENSE,
+        'minus': constants.SPEED
+    },
+    'modest': {
+        'plus': constants.SPECIAL_ATTACK,
+        'minus': constants.ATTACK
+    },
+    'mild': {
+        'plus': constants.SPECIAL_ATTACK,
+        'minus': constants.DEFENSE
+    },
+    'rash': {
+        'plus': constants.SPECIAL_ATTACK,
+        'minus': constants.SPECIAL_DEFENSE
+    },
+    'quiet': {
+        'plus': constants.SPECIAL_ATTACK,
+        'minus': constants.SPEED
+    },
+    'calm': {
+        'plus': constants.SPECIAL_DEFENSE,
+        'minus': constants.ATTACK
+    },
+    'gentle': {
+        'plus': constants.SPECIAL_DEFENSE,
+        'minus': constants.DEFENSE
+    },
+    'careful': {
+        'plus': constants.SPECIAL_DEFENSE,
+        'minus': constants.SPECIAL_ATTACK
+    },
+    'sassy': {
+        'plus': constants.SPECIAL_DEFENSE,
+        'minus': constants.SPEED
+    },
+    'timid': {
+        'plus': constants.SPEED,
+        'minus': constants.ATTACK
+    },
+    'hasty': {
+        'plus': constants.SPEED,
+        'minus': constants.DEFENSE
+    },
+    'jolly': {
+        'plus': constants.SPEED,
+        'minus': constants.SPECIAL_ATTACK
+    },
+    'naive': {
+        'plus': constants.SPEED,
+        'minus': constants.SPECIAL_DEFENSE
+    },
+}
+
+
 def battle_is_over(state):
     if state.self.active.hp <= 0 and not any(pkmn.hp for pkmn in state.self.reserve.values()):
         return -1
@@ -107,27 +191,14 @@ def remove_duplicate_spreads(list_of_spreads):
 
 
 def update_stats_from_nature(stats, nature):
-    if nature in ['lonely', 'adamant', 'naughty', 'brave']:
-        stats[constants.ATTACK] *= 1.1
-    if nature in ['bold', 'impish', 'lax', 'relaxed']:
-        stats[constants.DEFENSE] *= 1.1
-    if nature in ['modest', 'mild', 'rash', 'quiet']:
-        stats[constants.SPECIAL_ATTACK] *= 1.1
-    if nature in ['calm', 'gentle', 'careful', 'sassy']:
-        stats[constants.SPECIAL_ATTACK] *= 1.1
-    if nature in ['timid', 'hasty', 'jolly', 'naive']:
-        stats[constants.SPEED] *= 1.1
+    new_stats = stats.copy()
+    try:
+        new_stats[natures[nature]['plus']] *= 1.1
+        new_stats[natures[nature]['minus']] /= 1.1
+    except KeyError:
+        pass
 
-    if nature in ['bold', 'modest', 'calm', 'timid']:
-        stats[constants.ATTACK] /= 1.1
-    if nature in ['lonely', 'mild', 'gentle', 'hasty']:
-        stats[constants.DEFENSE] /= 1.1
-    if nature in ['adamant', 'impish', 'careful', 'jolly']:
-        stats[constants.SPECIAL_ATTACK] /= 1.1
-    if nature in ['naughty', 'lax', 'rash', 'naive']:
-        stats[constants.SPECIAL_DEFENSE] /= 1.1
-    if nature in ['brave', 'relaxed', 'quiet', 'sassy']:
-        stats[constants.SPEED] /= 1.1
+    return new_stats
 
 
 def common_pkmn_stat_calc(stat: int, iv: int, ev: int, level: int):
@@ -179,6 +250,6 @@ def calculate_stats(base_stats, level, ivs=(31,) * 6, evs=(85,) * 6, nature='ser
         level
     ) + 5
 
-    update_stats_from_nature(new_stats, nature)
+    new_stats = update_stats_from_nature(new_stats, nature)
     new_stats = {k: int(v) for k, v in new_stats.items()}
     return new_stats
