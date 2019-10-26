@@ -24,13 +24,13 @@ search_depth = 2
 save_replay = False
 log_to_file = False
 logging_directory = "{}/{}".format(os.getcwd(), "logs/")
-if not os.path.exists(logging_directory):
-    os.makedirs(logging_directory)
 
 
 def reset_logger(lgr, new_file_name):
     if not log_to_file:
         return
+    if not os.path.exists(logging_directory):
+        os.makedirs(logging_directory)
     handlers = lgr.handlers[:]  # don't iterate over a list and delete elements within it
     for old_handler in handlers:
         old_handler.close()
