@@ -6,6 +6,7 @@ import constants
 from config import logger
 from data import all_move_json
 from showdown.battle import Pokemon
+from showdown.battle import LastUsedMove
 from showdown.helpers import normalize_name
 from showdown.engine.find_state_instructions import get_effective_speed
 
@@ -58,6 +59,12 @@ def switch_or_drag(battle, split_msg):
     """The opponent's pokemon has changed
        If the new one hasn't been seen, create it"""
     if is_opponent(battle, split_msg):
+        logger.debug("Opponent has switched - clearing the last used move")
+        battle.opponent.last_used_move = LastUsedMove(
+            pokemon_name=None,
+            move='switch'
+        )
+
         battle.opponent.side_conditions[constants.TOXIC_COUNT] = 0
 
         if battle.opponent.active is not None:
@@ -136,7 +143,7 @@ def faint(battle, split_msg):
 
 def move(battle, split_msg):
     """The opponent's pokemon has made a move - add it to that pokemon's move list if necessary"""
-    move_name = split_msg[3].strip().lower()
+    move_name = normalize_name(split_msg[3].strip().lower())
     if is_opponent(battle, split_msg):
         pkmn = battle.opponent.active
         move = pkmn.get_move(move_name)
@@ -147,6 +154,12 @@ def move(battle, split_msg):
         else:
             move.current_pp -= 1
             logger.debug("{} already has the move {}. Decrementing the PP by 1".format(pkmn.name, move_name))
+
+        logger.debug("Setting opponent's last used move: {} - {}".format(battle.opponent.active.name, move_name))
+        battle.opponent.last_used_move = LastUsedMove(
+            pokemon_name=battle.opponent.active.name,
+            move=move_name
+        )
 
 
 def boost(battle, split_msg):

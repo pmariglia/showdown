@@ -4453,6 +4453,56 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_opponent_using_move_with_choice_item_locks_other_moves(self):
+        bot_move = "splash"
+        opponent_move = "tackle"
+        self.state.opponent.active.moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        self.state.opponent.active.item = 'choicescarf'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.OPPONENT, 'thunderwave'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.OPPONENT, 'coil'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.OPPONENT, 'sandattack'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_opponent_using_move_with_choice_item_locks_non_disabled_moves(self):
+        bot_move = "splash"
+        opponent_move = "tackle"
+        self.state.opponent.active.moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: True},  # disabled already
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: True}  # disabled already
+        ]
+        self.state.opponent.active.item = 'choicescarf'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.OPPONENT, 'coil'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_already_disabled_moves_are_not_disabled(self):
         bot_move = "tackle"
         opponent_move = "splash"

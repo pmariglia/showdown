@@ -41,7 +41,7 @@ def get_opponent_options(side):
     if side.active.hp <= 0:
         possible_moves = []
     else:
-        possible_moves = [s[constants.ID] for s in side.active.moves]
+        possible_moves = [m[constants.ID] for m in side.active.moves if not m[constants.DISABLED]]
 
     possible_switches = get_possible_switches(side)
 

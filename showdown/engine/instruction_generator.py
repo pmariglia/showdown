@@ -913,22 +913,31 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
             mutator.apply_one(remove_roost_instruction)
             instruction.add_instruction(remove_roost_instruction)
 
-    # disable other moves if choice-item is held (bot only)
-    try:
-        locking_move = bot_move[constants.SELF][constants.VOLATILE_STATUS] == constants.LOCKED_MOVE
-    except KeyError:
-        locking_move = False
+    # disable not used moves if choice-item is held
+    for attacker in sides:
+        side = get_side_from_state(mutator.state, attacker)
+        pkmn = side.active
 
-    if constants.SWITCH_STRING not in bot_move and (mutator.state.self.active.item in constants.CHOICE_ITEMS or locking_move):
-        move_used = bot_move[constants.ID]
-        for m in filter(lambda x: x[constants.ID] != move_used and not x[constants.DISABLED], mutator.state.self.active.moves):
-            disable_instruction = (
-                constants.MUTATOR_DISABLE_MOVE,
-                constants.SELF,
-                m[constants.ID]
-            )
-            mutator.apply_one(disable_instruction)
-            instruction.add_instruction(disable_instruction)
+        if attacker == constants.SELF:
+            move = bot_move
+        else:
+            move = opponent_move
+
+        try:
+            locking_move = move[constants.SELF][constants.VOLATILE_STATUS] == constants.LOCKED_MOVE
+        except KeyError:
+            locking_move = False
+
+        if constants.SWITCH_STRING not in move and (pkmn.item in constants.CHOICE_ITEMS or locking_move):
+            move_used = move[constants.ID]
+            for m in filter(lambda x: x[constants.ID] != move_used and not x[constants.DISABLED], pkmn.moves):
+                disable_instruction = (
+                    constants.MUTATOR_DISABLE_MOVE,
+                    attacker,
+                    m[constants.ID]
+                )
+                mutator.apply_one(disable_instruction)
+                instruction.add_instruction(disable_instruction)
 
     mutator.reverse(instruction.instructions)
 

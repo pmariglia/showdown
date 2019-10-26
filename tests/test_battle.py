@@ -3,6 +3,8 @@ from unittest import mock
 
 import constants
 
+from showdown.battle import LastUsedMove
+from showdown.battle import Battler
 from showdown.battle import Pokemon
 from showdown.battle import Move
 
@@ -505,3 +507,57 @@ class TestConvertToMega(unittest.TestCase):
         pkmn.item = None
         pkmn.try_convert_to_mega()
         self.assertEqual("venusaur", pkmn.name)
+
+
+class TestBattlerActiveLockedIntoMove(unittest.TestCase):
+    def setUp(self):
+        self.battler = Battler()
+        self.battler.active = Pokemon('pikachu', 100)
+        self.battler.active.moves = [
+            Move('thunderbolt'),
+            Move('volttackle'),
+            Move('agility'),
+            Move('doubleteam'),
+        ]
+
+    def test_choice_item_with_previous_move_used_by_this_pokemon_returns_true(self):
+        self.battler.active.item = 'choicescarf'
+        self.battler.last_used_move = LastUsedMove(
+            pokemon_name='pikachu',
+            move='volttackle'
+        )
+
+        self.battler.lock_moves()
+
+        self.assertFalse(self.battler.active.get_move('volttackle').disabled)
+
+        self.assertTrue(self.battler.active.get_move('thunderbolt').disabled)
+        self.assertTrue(self.battler.active.get_move('agility').disabled)
+        self.assertTrue(self.battler.active.get_move('doubleteam').disabled)
+
+    def test_choice_item_with_previous_move_being_a_switch_returns_false(self):
+        self.battler.active.item = 'choicescarf'
+        self.battler.last_used_move = LastUsedMove(
+            pokemon_name='caterpie',
+            move='switch'
+        )
+        self.battler.lock_moves()
+
+        self.assertFalse(self.battler.active.get_move('volttackle').disabled)
+        self.assertFalse(self.battler.active.get_move('thunderbolt').disabled)
+        self.assertFalse(self.battler.active.get_move('agility').disabled)
+        self.assertFalse(self.battler.active.get_move('doubleteam').disabled)
+
+    def test_non_choice_item_possession_returns_false(self):
+        self.battler.active.item = ''
+        self.battler.last_used_move = LastUsedMove(
+            pokemon_name='pikachu',
+            move='tackle'
+        )
+        self.battler.lock_moves()
+
+        self.assertFalse(self.battler.active.get_move('volttackle').disabled)
+        self.assertFalse(self.battler.active.get_move('thunderbolt').disabled)
+        self.assertFalse(self.battler.active.get_move('agility').disabled)
+        self.assertFalse(self.battler.active.get_move('doubleteam').disabled)
+

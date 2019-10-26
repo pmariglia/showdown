@@ -122,6 +122,7 @@ MEGA = "mega"
 ACTIVE = "active"
 RESERVE = "reserve"
 SIDE_CONDITIONS = "side_conditions"
+LAST_USED_MOVE = "last_used_move"
 WEATHER = "weather"
 FIELD = "field"
 

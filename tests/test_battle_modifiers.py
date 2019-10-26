@@ -5,6 +5,7 @@ import constants
 from showdown.battle import Battle
 from showdown.battle import Pokemon
 from showdown.battle import Move
+from showdown.battle import LastUsedMove
 
 from showdown.battle_modifier import request
 from showdown.battle_modifier import switch_or_drag
@@ -377,6 +378,14 @@ class TestSwitchOrDrag(unittest.TestCase):
 
         self.assertFalse(self.battle.opponent.reserve)
 
+    def test_switching_sets_last_move_to_none(self):
+        split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        expected_last_move = LastUsedMove(None, 'switch')
+
+        self.assertEqual(expected_last_move, self.battle.opponent.last_used_move)
+
 
 class TestHealOrDamage(unittest.TestCase):
     def setUp(self):
@@ -500,6 +509,15 @@ class TestMove(unittest.TestCase):
         move(self.battle, split_msg)
 
         self.assertEqual(4, m.current_pp)
+
+    def test_properly_sets_last_used_move(self):
+        split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
+
+        move(self.battle, split_msg)
+
+        expected_last_used_move = LastUsedMove(pokemon_name='caterpie', move='stringshot')
+
+        self.assertEqual(expected_last_used_move, self.battle.opponent.last_used_move)
 
 
 class TestWeather(unittest.TestCase):

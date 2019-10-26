@@ -1,5 +1,6 @@
 import itertools
 from collections import defaultdict
+from collections import namedtuple
 from copy import copy
 from copy import deepcopy
 
@@ -33,6 +34,9 @@ from data.helpers import get_most_likely_item
 from data.helpers import get_most_likely_ability
 from data.helpers import get_most_likely_spread
 from data.helpers import get_all_possible_moves_for_random_battle
+
+
+LastUsedMove = namedtuple('LastUsedMove', ['pokemon_name', 'move'])
 
 
 class Battle:
@@ -146,6 +150,9 @@ class Battle:
         return battles if battles else [battle_copy]
 
     def to_object(self):
+        # the bot knows the disabled status of it's own moves - this only needs to be done for the opponent
+        self.opponent.lock_moves()
+
         user_active = TransposePokemon.from_state_pokemon_dict(self.user.active.to_dict())
         user_reserve = dict()
         for mon in self.user.reserve:
@@ -175,8 +182,17 @@ class Battler:
 
         self.account_name = None
 
+        self.last_used_move = LastUsedMove('', '')
+
     def mega_revealed(self):
         return self.active.is_mega or any(p.is_mega for p in self.reserve)
+
+    def lock_moves(self):
+        # if the active pokemon has a choice item and their last used move was by this pokemon -> lock their other moves
+        if self.active.item in constants.CHOICE_ITEMS and self.last_used_move.pokemon_name == self.active.name:
+            for m in self.active.moves:
+                if m.name != self.last_used_move.move:
+                    m.disabled = True
 
     def from_json(self, user_json, first_turn=False):
 
