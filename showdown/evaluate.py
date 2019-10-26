@@ -33,15 +33,19 @@ class Scoring:
         6: 3.30,
     }
 
-    POKEMON_STATUSES = {
-        constants.BURN: -20,
-        constants.FROZEN: -50,
+    POKEMON_STATIC_STATUSES = {
+        constants.FROZEN: -40,
         constants.SLEEP: -25,
         constants.PARALYZED: -25,
         constants.TOXIC: -30,
         constants.POISON: -10,
         None: 0
     }
+
+    @staticmethod
+    def BURN(burn_multiplier):
+        return -25*burn_multiplier
+
     POKEMON_VOLATILE_STATUSES = {
         constants.LEECH_SEED: -30,
         constants.SUBSTITUTE: 40,
@@ -86,7 +90,11 @@ def evaluate_pokemon(pkmn):
     score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.accuracy_boost] * Scoring.POKEMON_BOOSTS[constants.ACCURACY]
     score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.evasion_boost] * Scoring.POKEMON_BOOSTS[constants.EVASION]
 
-    score += Scoring.POKEMON_STATUSES[pkmn.status]
+    try:
+        score += Scoring.POKEMON_STATIC_STATUSES[pkmn.status]
+    except KeyError:
+        # KeyError only happens when the status is BURN
+        score += Scoring.BURN(pkmn.burn_multiplier)
 
     for vol_stat in pkmn.volatile_status:
         try:

@@ -1,6 +1,9 @@
 import unittest
 
+import constants
 from showdown.engine.objects import State
+from showdown.battle import Pokemon as StatePokemon
+from showdown.engine.objects import Pokemon
 
 
 class TestPokemonInit(unittest.TestCase):
@@ -776,3 +779,18 @@ class TestPokemonInit(unittest.TestCase):
         new_state_dict = eval(str(state))
 
         self.assertEqual(state_json, new_state_dict)
+
+    def test_pokemon_init_gives_correct_number_of_physical_moves(self):
+        # 2 moves that are physical
+        moves = [
+          {constants.ID: 'flamethrower'},
+          {constants.ID: 'flareblitz'},
+          {constants.ID: 'flamewheel'},
+          {constants.ID: 'reflect'},
+        ]
+
+        state_pkmn_dict = StatePokemon('charizardmegax', 100).to_dict()
+        state_pkmn_dict[constants.MOVES] = moves
+        pkmn = Pokemon.from_state_pokemon_dict(state_pkmn_dict)
+
+        self.assertEqual(2, pkmn.burn_multiplier)

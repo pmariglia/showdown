@@ -1,6 +1,7 @@
 from collections import defaultdict
 from copy import copy
 
+from data import all_move_json
 import constants
 from showdown.helpers import boost_multiplier_lookup
 
@@ -127,6 +128,7 @@ class Pokemon(object):
         'moves',
         'types',
         'can_mega_evo',
+        'burn_multiplier',
         'scoring_multiplier'
     )
 
@@ -181,6 +183,23 @@ class Pokemon(object):
         self.types = types
         self.can_mega_evo = can_mega_evo
         self.scoring_multiplier = scoring_multiplier
+
+        # evaluation relies on a multiplier for the burn status
+        # it is calculated here to save time during evaluation
+        self.burn_multiplier = self.calculate_burn_multiplier()
+
+    def calculate_burn_multiplier(self):
+        # +1 to the multiplier for each physical move
+        burn_multiplier = len([m for m in self.moves if all_move_json[m[constants.ID]][constants.CATEGORY] == constants.PHYSICAL])
+
+        # evaluation could use more than 4 moves for opponent's pokemon - dont go over 4
+        burn_multiplier = min(4, burn_multiplier)
+
+        # dont make this as punishing for special attackers
+        if self.special_attack > self.attack:
+            burn_multiplier = int(burn_multiplier / 2)
+
+        return burn_multiplier
 
     @classmethod
     def from_state_pokemon_dict(cls, d):
