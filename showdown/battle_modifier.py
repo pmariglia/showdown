@@ -156,6 +156,16 @@ def move(battle, split_msg):
             logger.debug("{} already has the move {}. Decrementing the PP by 1".format(pkmn.name, move_name))
 
         logger.debug("Setting opponent's last used move: {} - {}".format(battle.opponent.active.name, move_name))
+
+        # if this pokemon used two different moves without switching,
+        # set a flag to signify that it cannot have a choice item
+        if (
+            battle.opponent.last_used_move.pokemon_name == battle.opponent.active.name and
+            battle.opponent.last_used_move.move != move_name
+        ):
+            logger.debug("Opponent's {} used two different moves - it cannot have a choice item".format(battle.opponent.active.name))
+            battle.opponent.active.can_have_choice_item = False
+
         battle.opponent.last_used_move = LastUsedMove(
             pokemon_name=battle.opponent.active.name,
             move=move_name

@@ -315,8 +315,8 @@ class Pokemon:
         self.boosts = defaultdict(lambda: 0)
         self.can_mega_evo = False
         self.can_ultra_burst = True
-
         self.is_mega = False
+        self.can_have_choice_item = True
 
     def forme_change(self, new_pkmn_name):
         hp_percent = float(self.hp) / self.max_hp
@@ -430,6 +430,8 @@ class Pokemon:
             for i in items:
                 if i[1] < 10 or cumulative_percentage >= 80:
                     return possible_items if possible_items else [constants.UNKNOWN_ITEM]
+                elif i[0] in constants.CHOICE_ITEMS and not self.can_have_choice_item:
+                    pass
                 elif i[0] not in PASS_ITEMS:
                     possible_items.append(i[0])
 

@@ -519,6 +519,35 @@ class TestMove(unittest.TestCase):
 
         self.assertEqual(expected_last_used_move, self.battle.opponent.last_used_move)
 
+    def test_sets_can_have_choice_item_to_false_if_two_different_moves_are_used_when_the_pkmn_has_an_unknown_item(self):
+        self.battle.opponent.active.can_have_choice_item = True
+        split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle')
+
+        move(self.battle, split_msg)
+
+        self.assertFalse(self.battle.opponent.active.can_have_choice_item)
+
+    def test_does_not_set_can_have_choice_item_to_false_if_the_same_move_is_used_when_the_pkmn_has_an_unknown_item(self):
+        self.battle.opponent.active.can_have_choice_item = True
+        split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'stringshot')
+
+        move(self.battle, split_msg)
+
+        self.assertTrue(self.battle.opponent.active.can_have_choice_item)
+
+    def test_sets_can_have_choice_item_to_false_even_if_item_is_known(self):
+        # if the item is known - this flag doesn't matter anyways
+        self.battle.opponent.active.can_have_choice_item = True
+        self.battle.opponent.active.item = 'leftovers'
+        split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle')
+
+        move(self.battle, split_msg)
+
+        self.assertFalse(self.battle.opponent.active.can_have_choice_item)
+
 
 class TestWeather(unittest.TestCase):
     def setUp(self):
