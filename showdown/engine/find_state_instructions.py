@@ -82,10 +82,14 @@ def user_moves_first(state, user_move, opponent_move):
 
     # user selected a switch
     elif constants.SWITCH_STRING in user_move:
+        if opponent_move[constants.ID] == 'pursuit':
+            return False
         return True
 
     # opponent selected a switch
     elif constants.SWITCH_STRING in opponent_move:
+        if user_move[constants.ID] == 'pursuit':
+            return True
         return False
 
     user_priority = get_effective_priority(state.self, user_move)

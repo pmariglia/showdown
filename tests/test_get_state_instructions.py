@@ -2000,6 +2000,44 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_pursuit_into_switch_causes_pursuit_to_happen_first(self):
+        bot_move = "pursuit"
+        opponent_move = "switch yveltal"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 12),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_dying_when_being_pursuited(self):
+        bot_move = "pursuit"
+        opponent_move = "switch yveltal"
+        self.state.opponent.active.hp = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 1),
+
+                    # this is technically wrong - the opponent would get the option to switch on the next turn.
+                    # This doesn't matter in the eyes of the bot since they need to switch anyways
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_opposite_pokemon_darkaura_boosts_damage(self):
         bot_move = "pursuit"
         opponent_move = "splash"
@@ -9741,3 +9779,25 @@ class TestUserMovesFirst(unittest.TestCase):
         opponent.active.speed = 2
 
         self.assertFalse(user_moves_first(self.state, user_move, opponent_move))
+
+    def test_pursuit_moves_second_when_slower(self):
+        user = self.state.self
+        opponent = self.state.opponent
+        user_move = lookup_move('pursuit')
+        opponent_move = lookup_move('quickattack')
+
+        user.active.speed = 1
+        opponent.active.speed = 2
+
+        self.assertFalse(user_moves_first(self.state, user_move, opponent_move))
+
+    def test_pursuit_moves_first_when_opponent_is_switching(self):
+        user = self.state.self
+        opponent = self.state.opponent
+        user_move = lookup_move('pursuit')
+        opponent_move = 'switch yveltal'
+
+        user.active.speed = 1
+        opponent.active.speed = 2
+
+        self.assertTrue(user_moves_first(self.state, user_move, opponent_move))
