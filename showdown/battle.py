@@ -92,6 +92,12 @@ class Battle:
         The opponent's active pokemon in each of the battles has a different set"""
         battle_copy = deepcopy(self)
 
+        if battle_copy.user.active.can_mega_evo:
+            # mega-evolving here gives the pkmn the random-battle spread (Serious + 85s)
+            # unfortunately the correct spread is not stored anywhere as of this being written
+            # this only happens on the turn the pkmn mega-evolves - the next turn will be fine
+            battle_copy.user.active.forme_change(get_mega_pkmn_name(battle_copy.user.active.name))
+
         if not battle_copy.opponent.mega_revealed():
             check_in_sets = battle_copy.battle_type == constants.STANDARD_BATTLE
             battle_copy.opponent.active.try_convert_to_mega(check_in_sets=check_in_sets)
