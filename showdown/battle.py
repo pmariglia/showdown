@@ -460,10 +460,12 @@ class Pokemon:
 
     def get_possible_moves(self, moves, battle_type=constants.STANDARD_BATTLE):
         if battle_type == constants.RANDOM_BATTLE:
+            if len(self.moves) == 4:
+                return [], []
             known_move_names = [m.name for m in self.moves]
             return [], get_all_possible_moves_for_random_battle(self.name, known_move_names)
 
-        moves_remaining = 4-len(self.moves)
+        moves_remaining = 4 - len(self.moves)
         expected_moves = list()
         chance_moves = list()
 
