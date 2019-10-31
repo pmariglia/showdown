@@ -41,7 +41,8 @@ def hex(attacking_move, defending_move, attacking_pokemon, defending_pokemon, fi
 
 def foulplay(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
     attacking_move = attacking_move.copy()
-    attacking_move[constants.BASE_POWER] *= defending_pokemon.calculate_boosted_stats()[constants.ATTACK] / attacking_pokemon.attack
+    attacking_move[constants.BASE_POWER] *= defending_pokemon.calculate_boosted_stats()[constants.ATTACK] / \
+                                            attacking_pokemon.calculate_boosted_stats()[constants.ATTACK]
     return attacking_move
 
 
