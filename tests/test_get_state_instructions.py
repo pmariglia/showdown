@@ -624,6 +624,44 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_own_boost_does_not_affect_foulplay(self):
+        bot_move = "foulplay"
+        opponent_move = "splash"
+
+        self.state.self.active.attack_boost = 2
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 27)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_opponent_boost_does_affect_foulplay(self):
+        bot_move = "foulplay"
+        opponent_move = "splash"
+
+        self.state.opponent.active.attack_boost = 2
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 55)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_shellsmash_with_whiteherb_doesnt_lower_stats(self):
         bot_move = "shellsmash"
         opponent_move = "splash"
