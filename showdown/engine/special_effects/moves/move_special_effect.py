@@ -229,7 +229,15 @@ def painsplit(attacking_move, defending_move, attacking_pokemon, defending_pokem
     return attacking_move
 
 
+def pursuit(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if defending_move.get(constants.SWITCH_STRING):
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 2
+    return attacking_move
+
+
 move_lookup = {
+    'pursuit': pursuit,
     'painsplit': painsplit,
     'lowkick': lowkick,
     'revelationdance': revelationdance,

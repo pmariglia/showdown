@@ -2038,7 +2038,7 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    def test_pursuit_into_switch_causes_pursuit_to_happen_first(self):
+    def test_pursuit_into_switch_causes_pursuit_to_happen_first_with_double_damage(self):
         bot_move = "pursuit"
         opponent_move = "switch yveltal"
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
@@ -2046,7 +2046,7 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 12),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 24),  # normal damage is 12
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
                 ],
                 False
@@ -9822,7 +9822,7 @@ class TestUserMovesFirst(unittest.TestCase):
         user = self.state.self
         opponent = self.state.opponent
         user_move = lookup_move('pursuit')
-        opponent_move = lookup_move('quickattack')
+        opponent_move = lookup_move('tackle')
 
         user.active.speed = 1
         opponent.active.speed = 2
