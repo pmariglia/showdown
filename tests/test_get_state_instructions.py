@@ -6449,7 +6449,6 @@ class TestGetStateInstructions(unittest.TestCase):
                     ('damage', 'opponent', 95),
                     ('apply_status', 'opponent', 'par'),
                     ('damage', 'self', 49),
-                    ('apply_status', 'self', 'par')
                 ],
                 False
             ),
@@ -6465,7 +6464,6 @@ class TestGetStateInstructions(unittest.TestCase):
                 0.25,
                 [
                     ('damage', 'self', 49),
-                    ('apply_status', 'self', 'par')
                 ],
                 False
             ),
@@ -9196,6 +9194,21 @@ class TestGetStateInstructions(unittest.TestCase):
         bot_move = "thunderwave"
         opponent_move = "splash"
 
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_electric_immune_to_thunderwave(self):
+        bot_move = "thunderwave"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ["electric"]
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
