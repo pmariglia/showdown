@@ -1098,7 +1098,16 @@ def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
     elif status in [constants.POISON, constants.TOXIC] and (
             any(t in ['poison', 'steel'] for t in defending_pkmn.types) or defending_pkmn.ability in constants.IMMUNE_TO_POISON_ABILITIES):
         return True
-    elif status == constants.PARALYZED and ('ground' in defending_pkmn.types or defending_pkmn.ability in constants.IMMUNE_TO_PARALYSIS_ABILITIES):
+    elif status == constants.PARALYZED and is_immune_to_paralysis(defending_pkmn):
         return True
 
     return False
+
+
+def is_immune_to_paralysis(defending_pkmn):
+    # not entirely correct as ground pokemon can be paralyzed by non-electric attacks
+    return (
+            'ground' in defending_pkmn.types
+            or 'electric' in defending_pkmn.types
+            or defending_pkmn.ability in constants.IMMUNE_TO_PARALYSIS_ABILITIES
+    )
