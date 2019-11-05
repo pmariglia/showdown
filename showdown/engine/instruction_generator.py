@@ -1106,6 +1106,8 @@ def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
 
 def is_immune_to_paralysis(defending_pkmn):
     # not entirely correct as ground pokemon can be paralyzed by non-electric attacks
-    return 'ground' in defending_pkmn.types \
-           or 'electric' in defending_pkmn.types \
-           or defending_pkmn.ability in constants.IMMUNE_TO_PARALYSIS_ABILITIES
+    return (
+            'ground' in defending_pkmn.types
+            or 'electric' in defending_pkmn.types
+            or defending_pkmn.ability in constants.IMMUNE_TO_PARALYSIS_ABILITIES
+    )
