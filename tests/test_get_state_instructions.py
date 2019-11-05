@@ -6440,13 +6440,15 @@ class TestGetStateInstructions(unittest.TestCase):
 
         # raichu's default ability should be lightningrod
         self.state.self.active.ability = None
+        # Raichu is electric type and can't as such get paralyzed
+        self.state.self.active.types = ["ghost", "grass"]
 
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
                 0.1875,
                 [
-                    ('damage', 'opponent', 95),
+                    ('damage', 'opponent', 63),
                     ('apply_status', 'opponent', 'par'),
                     ('damage', 'self', 49),
                     ('apply_status', 'self', 'par')
@@ -6456,7 +6458,7 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 0.3125,
                 [
-                    ('damage', 'opponent', 95),
+                    ('damage', 'opponent', 63),
                     ('apply_status', 'opponent', 'par'),
                 ],
                 True
@@ -9196,6 +9198,21 @@ class TestGetStateInstructions(unittest.TestCase):
         bot_move = "thunderwave"
         opponent_move = "splash"
 
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_electric_immune_to_thunderwave(self):
+        bot_move = "thunderwave"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ["electric"]
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
