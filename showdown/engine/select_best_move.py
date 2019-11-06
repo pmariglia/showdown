@@ -23,11 +23,11 @@ def get_possible_switches(side):
     return switches
 
 
-def get_user_options(side, force_switch):
+def get_user_options(side, force_switch, weather):
     if force_switch:
         possible_moves = []
     else:
-        possible_moves = [m[constants.ID] for m in side.active.moves if not m[constants.DISABLED]]
+        possible_moves = [m[constants.ID] for m in side.active.moves if is_move_usable(m, weather)]
 
     if side.trapped:
         possible_switches = []
@@ -37,15 +37,21 @@ def get_user_options(side, force_switch):
     return possible_moves + possible_switches
 
 
-def get_opponent_options(side):
+def get_opponent_options(side, weather):
     if side.active.hp <= 0:
         possible_moves = []
     else:
-        possible_moves = [m[constants.ID] for m in side.active.moves if not m[constants.DISABLED]]
+        possible_moves = [m[constants.ID] for m in side.active.moves if is_move_usable(m, weather)]
 
     possible_switches = get_possible_switches(side)
 
     return possible_moves + possible_switches
+
+
+def is_move_usable(move, weather):
+    if move[constants.ID] == constants.AURORA_VEIL and weather != constants.HAIL:
+        return False
+    return not move[constants.DISABLED]
 
 
 def get_all_options(mutator: StateMutator):
@@ -57,8 +63,8 @@ def get_all_options(mutator: StateMutator):
         mutator.state.self.trapped = False
         mutator.state.force_switch = False
         mutator.state.wait = False
-        user_options = get_user_options(mutator.state.self, force_switch) or [constants.DO_NOTHING_MOVE]
-        opponent_options = get_opponent_options(mutator.state.opponent) or [constants.DO_NOTHING_MOVE]
+        user_options = get_user_options(mutator.state.self, force_switch, mutator.state.weather) or [constants.DO_NOTHING_MOVE]
+        opponent_options = get_opponent_options(mutator.state.opponent, mutator.state.weather) or [constants.DO_NOTHING_MOVE]
         return user_options, opponent_options
 
     if force_switch:
@@ -67,12 +73,12 @@ def get_all_options(mutator: StateMutator):
         mutator.state.self.trapped = False
         wait = False
     else:
-        opponent_options = get_opponent_options(mutator.state.opponent)
+        opponent_options = get_opponent_options(mutator.state.opponent, mutator.state.weather)
 
     if wait:
         user_options = [constants.DO_NOTHING_MOVE]
     else:
-        user_options = get_user_options(mutator.state.self, force_switch)
+        user_options = get_user_options(mutator.state.self, force_switch, mutator.state.weather)
 
     if not user_options:
         user_options = [constants.DO_NOTHING_MOVE]

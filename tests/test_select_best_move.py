@@ -88,6 +88,67 @@ class TestGetAllOptions(unittest.TestCase):
 
         self.assertEqual(expected_options, options)
 
+    def test_aurora_veil_is_option_under_hail(self):
+        expected_options = (
+            [
+                'auroraveil',
+                'switch xatu',
+                'switch starmie',
+                'switch gyarados',
+                'switch dragonite',
+                'switch hitmonlee'
+            ],
+            [
+                'tackle',
+                'charm',
+                'growl',
+                'stringshot',
+                'switch yveltal',
+                'switch slurpuff',
+                'switch victini',
+                'switch toxapex',
+                'switch bronzong'
+            ]
+        )
+
+        self.state.self.active.moves = [
+            {constants.ID: 'auroraveil', constants.DISABLED: False}
+        ]
+        self.state.weather = constants.HAIL
+
+        options = get_all_options(self.mutator)
+
+        self.assertEqual(expected_options, options)
+
+    def test_aurora_veil_is_not_option_without_hail(self):
+        expected_options = (
+            [
+                'switch xatu',
+                'switch starmie',
+                'switch gyarados',
+                'switch dragonite',
+                'switch hitmonlee'
+            ],
+            [
+                'tackle',
+                'charm',
+                'growl',
+                'stringshot',
+                'switch yveltal',
+                'switch slurpuff',
+                'switch victini',
+                'switch toxapex',
+                'switch bronzong'
+            ]
+        )
+
+        self.state.self.active.moves = [
+            {constants.ID: 'auroraveil', constants.DISABLED: False}
+        ]
+        options = get_all_options(self.mutator)
+
+        self.assertEqual(expected_options, options)
+
     def test_returns_only_switches_for_user_and_nothing_for_opponent_when_user_active_is_dead(self):
         expected_options = (
             [
