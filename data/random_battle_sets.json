@@ -115,7 +115,7 @@
                 72.751
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 70.951
             ],
             [
@@ -128,14 +128,14 @@
             ]
         ],
         "sets": {
-            "blizzard|earthquake|gigadrain|hiddenpowerfire60": 14.653,
+            "blizzard|earthquake|gigadrain|hiddenpowerfire": 14.653,
             "blizzard|earthquake|gigadrain|iceshard": 20.308,
-            "blizzard|earthquake|hiddenpowerfire60|woodhammer": 5.913,
+            "blizzard|earthquake|hiddenpowerfire|woodhammer": 5.913,
             "blizzard|earthquake|iceshard|woodhammer": 8.74,
-            "blizzard|gigadrain|hiddenpowerfire60|iceshard": 16.71,
-            "blizzard|hiddenpowerfire60|iceshard|woodhammer": 10.54,
-            "earthquake|gigadrain|hiddenpowerfire60|iceshard": 16.71,
-            "earthquake|hiddenpowerfire60|iceshard|woodhammer": 6.427
+            "blizzard|gigadrain|hiddenpowerfire|iceshard": 16.71,
+            "blizzard|hiddenpowerfire|iceshard|woodhammer": 10.54,
+            "earthquake|gigadrain|hiddenpowerfire|iceshard": 16.71,
+            "earthquake|hiddenpowerfire|iceshard|woodhammer": 6.427
         },
         "spreads": [
             [
@@ -317,7 +317,7 @@
                 43.145
             ],
             [
-                "hiddenpowerrock60",
+                "hiddenpowerrock",
                 44.96
             ],
             [
@@ -347,39 +347,39 @@
         ],
         "sets": {
             "bugbuzz|encore|energyball|focusblast": 4.032,
-            "bugbuzz|encore|energyball|hiddenpowerrock60": 3.024,
+            "bugbuzz|encore|energyball|hiddenpowerrock": 3.024,
             "bugbuzz|encore|energyball|spikes": 2.621,
             "bugbuzz|encore|energyball|toxicspikes": 4.234,
             "bugbuzz|encore|energyball|yawn": 2.823,
-            "bugbuzz|encore|focusblast|hiddenpowerrock60": 3.629,
+            "bugbuzz|encore|focusblast|hiddenpowerrock": 3.629,
             "bugbuzz|encore|focusblast|spikes": 3.226,
             "bugbuzz|encore|focusblast|toxicspikes": 1.815,
             "bugbuzz|encore|focusblast|yawn": 2.218,
-            "bugbuzz|encore|hiddenpowerrock60|spikes": 3.024,
-            "bugbuzz|encore|hiddenpowerrock60|toxicspikes": 2.621,
-            "bugbuzz|encore|hiddenpowerrock60|yawn": 4.032,
+            "bugbuzz|encore|hiddenpowerrock|spikes": 3.024,
+            "bugbuzz|encore|hiddenpowerrock|toxicspikes": 2.621,
+            "bugbuzz|encore|hiddenpowerrock|yawn": 4.032,
             "bugbuzz|encore|spikes|toxicspikes": 2.218,
             "bugbuzz|encore|spikes|yawn": 2.621,
             "bugbuzz|encore|toxicspikes|yawn": 1.815,
-            "bugbuzz|energyball|focusblast|hiddenpowerrock60": 2.218,
+            "bugbuzz|energyball|focusblast|hiddenpowerrock": 2.218,
             "bugbuzz|energyball|focusblast|spikes": 2.419,
             "bugbuzz|energyball|focusblast|toxicspikes": 3.226,
             "bugbuzz|energyball|focusblast|yawn": 3.024,
-            "bugbuzz|energyball|hiddenpowerrock60|spikes": 4.637,
-            "bugbuzz|energyball|hiddenpowerrock60|toxicspikes": 2.823,
-            "bugbuzz|energyball|hiddenpowerrock60|yawn": 3.629,
+            "bugbuzz|energyball|hiddenpowerrock|spikes": 4.637,
+            "bugbuzz|energyball|hiddenpowerrock|toxicspikes": 2.823,
+            "bugbuzz|energyball|hiddenpowerrock|yawn": 3.629,
             "bugbuzz|energyball|spikes|toxicspikes": 2.419,
             "bugbuzz|energyball|spikes|yawn": 2.621,
             "bugbuzz|energyball|toxicspikes|yawn": 3.024,
-            "bugbuzz|focusblast|hiddenpowerrock60|spikes": 2.621,
-            "bugbuzz|focusblast|hiddenpowerrock60|toxicspikes": 2.823,
-            "bugbuzz|focusblast|hiddenpowerrock60|yawn": 3.024,
+            "bugbuzz|focusblast|hiddenpowerrock|spikes": 2.621,
+            "bugbuzz|focusblast|hiddenpowerrock|toxicspikes": 2.823,
+            "bugbuzz|focusblast|hiddenpowerrock|yawn": 3.024,
             "bugbuzz|focusblast|spikes|toxicspikes": 4.032,
             "bugbuzz|focusblast|spikes|yawn": 1.815,
             "bugbuzz|focusblast|toxicspikes|yawn": 3.024,
-            "bugbuzz|hiddenpowerrock60|spikes|toxicspikes": 1.411,
-            "bugbuzz|hiddenpowerrock60|spikes|yawn": 2.621,
-            "bugbuzz|hiddenpowerrock60|toxicspikes|yawn": 2.823,
+            "bugbuzz|hiddenpowerrock|spikes|toxicspikes": 1.411,
+            "bugbuzz|hiddenpowerrock|spikes|yawn": 2.621,
+            "bugbuzz|hiddenpowerrock|toxicspikes|yawn": 2.823,
             "bugbuzz|spikes|toxicspikes|yawn": 1.815
         },
         "spreads": [
@@ -442,28 +442,28 @@
                 11.374
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 14.771
             ]
         ],
         "sets": {
-            "flashcannon|hiddenpowerice60|kingsshield|shadowball": 0.886,
-            "flashcannon|hiddenpowerice60|kingsshield|shadowclaw": 1.477,
-            "flashcannon|hiddenpowerice60|kingsshield|shadowsneak": 0.886,
-            "flashcannon|hiddenpowerice60|sacredsword|shadowball": 0.148,
+            "flashcannon|hiddenpowerice|kingsshield|shadowball": 0.886,
+            "flashcannon|hiddenpowerice|kingsshield|shadowclaw": 1.477,
+            "flashcannon|hiddenpowerice|kingsshield|shadowsneak": 0.886,
+            "flashcannon|hiddenpowerice|sacredsword|shadowball": 0.148,
             "flashcannon|kingsshield|sacredsword|shadowball": 1.773,
             "flashcannon|kingsshield|sacredsword|shadowclaw": 1.182,
             "flashcannon|kingsshield|sacredsword|shadowsneak": 2.068,
             "flashcannon|kingsshield|shadowball|shadowsneak": 2.954,
-            "hiddenpowerice60|ironhead|kingsshield|shadowball": 3.102,
-            "hiddenpowerice60|ironhead|kingsshield|shadowclaw": 2.068,
-            "hiddenpowerice60|ironhead|kingsshield|shadowsneak": 1.92,
-            "hiddenpowerice60|ironhead|sacredsword|shadowball": 0.295,
-            "hiddenpowerice60|ironhead|sacredsword|shadowsneak": 0.591,
-            "hiddenpowerice60|ironhead|shadowball|shadowsneak": 0.295,
-            "hiddenpowerice60|kingsshield|sacredsword|shadowball": 1.182,
-            "hiddenpowerice60|kingsshield|sacredsword|shadowclaw": 1.182,
-            "hiddenpowerice60|kingsshield|shadowball|shadowsneak": 0.739,
+            "hiddenpowerice|ironhead|kingsshield|shadowball": 3.102,
+            "hiddenpowerice|ironhead|kingsshield|shadowclaw": 2.068,
+            "hiddenpowerice|ironhead|kingsshield|shadowsneak": 1.92,
+            "hiddenpowerice|ironhead|sacredsword|shadowball": 0.295,
+            "hiddenpowerice|ironhead|sacredsword|shadowsneak": 0.591,
+            "hiddenpowerice|ironhead|shadowball|shadowsneak": 0.295,
+            "hiddenpowerice|kingsshield|sacredsword|shadowball": 1.182,
+            "hiddenpowerice|kingsshield|sacredsword|shadowclaw": 1.182,
+            "hiddenpowerice|kingsshield|shadowball|shadowsneak": 0.739,
             "ironhead|kingsshield|sacredsword|shadowball": 2.068,
             "ironhead|kingsshield|sacredsword|shadowclaw": 1.329,
             "ironhead|kingsshield|sacredsword|shadowsneak": 1.625,
@@ -829,7 +829,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 57.923
             ],
             [
@@ -845,7 +845,7 @@
                 100.0
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 42.077
             ],
             [
@@ -854,10 +854,10 @@
             ]
         ],
         "sets": {
-            "focusblast|hiddenpowerfire60|psychic|shadowball": 10.929,
-            "focusblast|hiddenpowerfire60|psyshock|shadowball": 46.995,
-            "focusblast|hiddenpowerice60|psychic|shadowball": 9.29,
-            "focusblast|hiddenpowerice60|psyshock|shadowball": 32.787
+            "focusblast|hiddenpowerfire|psychic|shadowball": 10.929,
+            "focusblast|hiddenpowerfire|psyshock|shadowball": 46.995,
+            "focusblast|hiddenpowerice|psychic|shadowball": 9.29,
+            "focusblast|hiddenpowerice|psyshock|shadowball": 32.787
         },
         "spreads": [
             [
@@ -1241,7 +1241,7 @@
                 42.565
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 45.911
             ],
             [
@@ -1254,52 +1254,52 @@
             ]
         ],
         "sets": {
-            "clearsmog|foulplay|gigadrain|hiddenpowerfire60": 1.115,
+            "clearsmog|foulplay|gigadrain|hiddenpowerfire": 1.115,
             "clearsmog|foulplay|gigadrain|sludgebomb": 1.859,
             "clearsmog|foulplay|gigadrain|spore": 4.089,
             "clearsmog|foulplay|gigadrain|stunspore": 1.673,
             "clearsmog|foulplay|gigadrain|synthesis": 2.045,
-            "clearsmog|foulplay|hiddenpowerfire60|sludgebomb": 2.602,
+            "clearsmog|foulplay|hiddenpowerfire|sludgebomb": 2.602,
             "clearsmog|foulplay|sludgebomb|spore": 2.23,
             "clearsmog|foulplay|sludgebomb|stunspore": 1.115,
             "clearsmog|foulplay|sludgebomb|synthesis": 2.974,
-            "clearsmog|gigadrain|hiddenpowerfire60|sludgebomb": 1.859,
-            "clearsmog|gigadrain|hiddenpowerfire60|spore": 2.23,
-            "clearsmog|gigadrain|hiddenpowerfire60|stunspore": 1.487,
-            "clearsmog|gigadrain|hiddenpowerfire60|synthesis": 2.23,
+            "clearsmog|gigadrain|hiddenpowerfire|sludgebomb": 1.859,
+            "clearsmog|gigadrain|hiddenpowerfire|spore": 2.23,
+            "clearsmog|gigadrain|hiddenpowerfire|stunspore": 1.487,
+            "clearsmog|gigadrain|hiddenpowerfire|synthesis": 2.23,
             "clearsmog|gigadrain|sludgebomb|spore": 2.045,
             "clearsmog|gigadrain|sludgebomb|stunspore": 1.487,
             "clearsmog|gigadrain|sludgebomb|synthesis": 1.673,
             "clearsmog|gigadrain|spore|synthesis": 4.833,
             "clearsmog|gigadrain|stunspore|synthesis": 1.673,
-            "clearsmog|hiddenpowerfire60|sludgebomb|spore": 2.23,
-            "clearsmog|hiddenpowerfire60|sludgebomb|stunspore": 2.602,
-            "clearsmog|hiddenpowerfire60|sludgebomb|synthesis": 3.532,
+            "clearsmog|hiddenpowerfire|sludgebomb|spore": 2.23,
+            "clearsmog|hiddenpowerfire|sludgebomb|stunspore": 2.602,
+            "clearsmog|hiddenpowerfire|sludgebomb|synthesis": 3.532,
             "clearsmog|sludgebomb|spore|synthesis": 4.647,
             "clearsmog|sludgebomb|stunspore|synthesis": 3.346,
-            "foulplay|gigadrain|hiddenpowerfire60|sludgebomb": 1.487,
-            "foulplay|gigadrain|hiddenpowerfire60|spore": 1.673,
-            "foulplay|gigadrain|hiddenpowerfire60|stunspore": 1.115,
-            "foulplay|gigadrain|hiddenpowerfire60|synthesis": 2.416,
+            "foulplay|gigadrain|hiddenpowerfire|sludgebomb": 1.487,
+            "foulplay|gigadrain|hiddenpowerfire|spore": 1.673,
+            "foulplay|gigadrain|hiddenpowerfire|stunspore": 1.115,
+            "foulplay|gigadrain|hiddenpowerfire|synthesis": 2.416,
             "foulplay|gigadrain|sludgebomb|spore": 2.045,
             "foulplay|gigadrain|sludgebomb|stunspore": 1.487,
             "foulplay|gigadrain|sludgebomb|synthesis": 2.416,
             "foulplay|gigadrain|spore|synthesis": 2.602,
             "foulplay|gigadrain|stunspore|synthesis": 2.045,
-            "foulplay|hiddenpowerfire60|sludgebomb|spore": 2.974,
-            "foulplay|hiddenpowerfire60|sludgebomb|stunspore": 1.487,
-            "foulplay|hiddenpowerfire60|sludgebomb|synthesis": 2.045,
+            "foulplay|hiddenpowerfire|sludgebomb|spore": 2.974,
+            "foulplay|hiddenpowerfire|sludgebomb|stunspore": 1.487,
+            "foulplay|hiddenpowerfire|sludgebomb|synthesis": 2.045,
             "foulplay|sludgebomb|spore|synthesis": 2.974,
             "foulplay|sludgebomb|stunspore|synthesis": 1.115,
-            "gigadrain|hiddenpowerfire60|sludgebomb|spore": 2.416,
-            "gigadrain|hiddenpowerfire60|sludgebomb|stunspore": 1.859,
-            "gigadrain|hiddenpowerfire60|sludgebomb|synthesis": 1.859,
-            "gigadrain|hiddenpowerfire60|spore|synthesis": 1.301,
-            "gigadrain|hiddenpowerfire60|stunspore|synthesis": 2.045,
+            "gigadrain|hiddenpowerfire|sludgebomb|spore": 2.416,
+            "gigadrain|hiddenpowerfire|sludgebomb|stunspore": 1.859,
+            "gigadrain|hiddenpowerfire|sludgebomb|synthesis": 1.859,
+            "gigadrain|hiddenpowerfire|spore|synthesis": 1.301,
+            "gigadrain|hiddenpowerfire|stunspore|synthesis": 2.045,
             "gigadrain|sludgebomb|spore|synthesis": 2.602,
             "gigadrain|sludgebomb|stunspore|synthesis": 1.115,
-            "hiddenpowerfire60|sludgebomb|spore|synthesis": 1.673,
-            "hiddenpowerfire60|sludgebomb|stunspore|synthesis": 1.673
+            "hiddenpowerfire|sludgebomb|spore|synthesis": 1.673,
+            "hiddenpowerfire|sludgebomb|stunspore|synthesis": 1.673
         },
         "spreads": [
             [
@@ -1341,7 +1341,7 @@
                 68.571
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 51.429
             ],
             [
@@ -1370,24 +1370,24 @@
             ]
         ],
         "sets": {
-            "focusblast|healbell|hiddenpowerice60|thunderbolt": 5.714,
-            "focusblast|healbell|hiddenpowerice60|voltswitch": 5.714,
+            "focusblast|healbell|hiddenpowerice|thunderbolt": 5.714,
+            "focusblast|healbell|hiddenpowerice|voltswitch": 5.714,
             "focusblast|healbell|thunderbolt|toxic": 2.857,
             "focusblast|healbell|thunderbolt|voltswitch": 5.714,
-            "focusblast|hiddenpowerice60|thunderbolt|voltswitch": 8.571,
-            "focusblast|hiddenpowerice60|toxic|voltswitch": 2.857,
+            "focusblast|hiddenpowerice|thunderbolt|voltswitch": 8.571,
+            "focusblast|hiddenpowerice|toxic|voltswitch": 2.857,
             "focusblast|lightscreen|reflect|thunderbolt": 2.857,
             "focusblast|lightscreen|reflect|voltswitch": 2.857,
             "focusblast|lightscreen|toxic|voltswitch": 2.857,
             "focusblast|thunderbolt|toxic|voltswitch": 2.857,
-            "healbell|hiddenpowerice60|lightscreen|voltswitch": 2.857,
-            "healbell|hiddenpowerice60|thunderbolt|toxic": 8.571,
-            "healbell|hiddenpowerice60|toxic|voltswitch": 2.857,
+            "healbell|hiddenpowerice|lightscreen|voltswitch": 2.857,
+            "healbell|hiddenpowerice|thunderbolt|toxic": 8.571,
+            "healbell|hiddenpowerice|toxic|voltswitch": 2.857,
             "healbell|lightscreen|reflect|voltswitch": 2.857,
             "healbell|lightscreen|thunderbolt|voltswitch": 2.857,
             "healbell|thunderbolt|toxic|voltswitch": 11.429,
-            "hiddenpowerice60|lightscreen|reflect|thunderbolt": 2.857,
-            "hiddenpowerice60|thunderbolt|toxic|voltswitch": 11.429,
+            "hiddenpowerice|lightscreen|reflect|thunderbolt": 2.857,
+            "hiddenpowerice|thunderbolt|toxic|voltswitch": 11.429,
             "lightscreen|reflect|thunderbolt|toxic": 8.571,
             "lightscreen|reflect|toxic|voltswitch": 2.857
         },
@@ -4152,7 +4152,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerfighting60",
+                "hiddenpowerfighting",
                 73.016
             ],
             [
@@ -4173,10 +4173,10 @@
             ]
         ],
         "sets": {
-            "bugbuzz|energyball|hiddenpowerfighting60|psychic": 19.048,
-            "bugbuzz|energyball|hiddenpowerfighting60|quiverdance": 25.926,
+            "bugbuzz|energyball|hiddenpowerfighting|psychic": 19.048,
+            "bugbuzz|energyball|hiddenpowerfighting|quiverdance": 25.926,
             "bugbuzz|energyball|psychic|quiverdance": 26.984,
-            "bugbuzz|hiddenpowerfighting60|psychic|quiverdance": 28.042
+            "bugbuzz|hiddenpowerfighting|psychic|quiverdance": 28.042
         },
         "spreads": [
             [
@@ -4339,7 +4339,7 @@
                 28.804
             ],
             [
-                "hiddenpowerfighting60",
+                "hiddenpowerfighting",
                 67.935
             ],
             [
@@ -4360,19 +4360,19 @@
             ]
         ],
         "sets": {
-            "hiddenpowerfighting60|nastyplot|psychic|signalbeam": 5.435,
-            "hiddenpowerfighting60|nastyplot|psychic|thunderbolt": 4.891,
-            "hiddenpowerfighting60|nastyplot|psyshock|signalbeam": 12.5,
-            "hiddenpowerfighting60|nastyplot|psyshock|thunderbolt": 16.304,
-            "hiddenpowerfighting60|psychic|signalbeam|thunderbolt": 3.261,
-            "hiddenpowerfighting60|psychic|signalbeam|trickroom": 2.174,
-            "hiddenpowerfighting60|psychic|thunderbolt|trick": 1.63,
-            "hiddenpowerfighting60|psychic|thunderbolt|trickroom": 3.261,
-            "hiddenpowerfighting60|psyshock|signalbeam|thunderbolt": 4.891,
-            "hiddenpowerfighting60|psyshock|signalbeam|trick": 3.804,
-            "hiddenpowerfighting60|psyshock|signalbeam|trickroom": 2.174,
-            "hiddenpowerfighting60|psyshock|thunderbolt|trick": 2.717,
-            "hiddenpowerfighting60|psyshock|thunderbolt|trickroom": 4.891,
+            "hiddenpowerfighting|nastyplot|psychic|signalbeam": 5.435,
+            "hiddenpowerfighting|nastyplot|psychic|thunderbolt": 4.891,
+            "hiddenpowerfighting|nastyplot|psyshock|signalbeam": 12.5,
+            "hiddenpowerfighting|nastyplot|psyshock|thunderbolt": 16.304,
+            "hiddenpowerfighting|psychic|signalbeam|thunderbolt": 3.261,
+            "hiddenpowerfighting|psychic|signalbeam|trickroom": 2.174,
+            "hiddenpowerfighting|psychic|thunderbolt|trick": 1.63,
+            "hiddenpowerfighting|psychic|thunderbolt|trickroom": 3.261,
+            "hiddenpowerfighting|psyshock|signalbeam|thunderbolt": 4.891,
+            "hiddenpowerfighting|psyshock|signalbeam|trick": 3.804,
+            "hiddenpowerfighting|psyshock|signalbeam|trickroom": 2.174,
+            "hiddenpowerfighting|psyshock|thunderbolt|trick": 2.717,
+            "hiddenpowerfighting|psyshock|thunderbolt|trickroom": 4.891,
             "nastyplot|psychic|signalbeam|thunderbolt": 3.804,
             "nastyplot|psyshock|signalbeam|thunderbolt": 14.13,
             "psychic|signalbeam|thunderbolt|trick": 1.087,
@@ -4424,7 +4424,7 @@
                 73.77
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 46.448
             ],
             [
@@ -4436,17 +4436,17 @@
                 71.585
             ],
             [
-                "hiddenpowerrock60",
+                "hiddenpowerrock",
                 39.891
             ]
         ],
         "sets": {
-            "gigadrain|hiddenpowerfire60|moonblast|quiverdance": 17.486,
-            "gigadrain|hiddenpowerfire60|moonblast|sleeppowder": 16.393,
-            "gigadrain|hiddenpowerfire60|quiverdance|sleeppowder": 12.568,
-            "gigadrain|hiddenpowerrock60|moonblast|quiverdance": 14.208,
-            "gigadrain|hiddenpowerrock60|moonblast|sleeppowder": 12.022,
-            "gigadrain|hiddenpowerrock60|quiverdance|sleeppowder": 13.661,
+            "gigadrain|hiddenpowerfire|moonblast|quiverdance": 17.486,
+            "gigadrain|hiddenpowerfire|moonblast|sleeppowder": 16.393,
+            "gigadrain|hiddenpowerfire|quiverdance|sleeppowder": 12.568,
+            "gigadrain|hiddenpowerrock|moonblast|quiverdance": 14.208,
+            "gigadrain|hiddenpowerrock|moonblast|sleeppowder": 12.022,
+            "gigadrain|hiddenpowerrock|quiverdance|sleeppowder": 13.661,
             "gigadrain|moonblast|quiverdance|sleeppowder": 13.661
         },
         "spreads": [
@@ -4690,7 +4690,7 @@
                 100.0
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 83.186
             ],
             [
@@ -4707,17 +4707,17 @@
             ]
         ],
         "sets": {
-            "calmmind|fireblast|hiddenpowerice60|shadowball": 17.522,
-            "calmmind|hiddenpowerice60|mindblown|shadowball": 49.912,
-            "explosion|fireblast|hiddenpowerice60|shadowball": 2.301,
+            "calmmind|fireblast|hiddenpowerice|shadowball": 17.522,
+            "calmmind|hiddenpowerice|mindblown|shadowball": 49.912,
+            "explosion|fireblast|hiddenpowerice|shadowball": 2.301,
             "explosion|fireblast|mindblown|shadowball": 4.071,
             "explosion|fireblast|shadowball|trick": 2.832,
-            "explosion|hiddenpowerice60|mindblown|shadowball": 3.894,
+            "explosion|hiddenpowerice|mindblown|shadowball": 3.894,
             "explosion|mindblown|shadowball|trick": 3.717,
-            "fireblast|hiddenpowerice60|mindblown|shadowball": 4.956,
-            "fireblast|hiddenpowerice60|shadowball|trick": 2.124,
+            "fireblast|hiddenpowerice|mindblown|shadowball": 4.956,
+            "fireblast|hiddenpowerice|shadowball|trick": 2.124,
             "fireblast|mindblown|shadowball|trick": 6.195,
-            "hiddenpowerice60|mindblown|shadowball|trick": 2.478
+            "hiddenpowerice|mindblown|shadowball|trick": 2.478
         },
         "spreads": [
             [
@@ -4898,7 +4898,7 @@
                 100.0
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 67.778
             ],
             [
@@ -4907,9 +4907,9 @@
             ]
         ],
         "sets": {
-            "fireblast|hiddenpowerice60|highjumpkick|knockoff": 23.889,
-            "fireblast|hiddenpowerice60|highjumpkick|protect": 27.222,
-            "fireblast|hiddenpowerice60|knockoff|protect": 16.667,
+            "fireblast|hiddenpowerice|highjumpkick|knockoff": 23.889,
+            "fireblast|hiddenpowerice|highjumpkick|protect": 27.222,
+            "fireblast|hiddenpowerice|knockoff|protect": 16.667,
             "fireblast|highjumpkick|knockoff|protect": 32.222
         },
         "spreads": [
@@ -5679,7 +5679,7 @@
                 100.0
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 43.333
             ],
             [
@@ -5700,16 +5700,16 @@
             ]
         ],
         "sets": {
-            "earthpower|fireblast|hiddenpowergrass60|roar": 3.333,
-            "earthpower|fireblast|hiddenpowergrass60|rockpolish": 16.667,
-            "earthpower|fireblast|hiddenpowergrass60|stealthrock": 3.333,
-            "earthpower|fireblast|hiddenpowergrass60|stoneedge": 3.333,
+            "earthpower|fireblast|hiddenpowergrass|roar": 3.333,
+            "earthpower|fireblast|hiddenpowergrass|rockpolish": 16.667,
+            "earthpower|fireblast|hiddenpowergrass|stealthrock": 3.333,
+            "earthpower|fireblast|hiddenpowergrass|stoneedge": 3.333,
             "earthpower|fireblast|roar|stealthrock": 3.333,
             "earthpower|fireblast|roar|stoneedge": 6.667,
             "earthpower|fireblast|rockpolish|stoneedge": 33.333,
             "earthpower|fireblast|stealthrock|stoneedge": 3.333,
-            "earthpower|hiddenpowergrass60|lavaplume|rockpolish": 13.333,
-            "earthpower|hiddenpowergrass60|lavaplume|stoneedge": 3.333,
+            "earthpower|hiddenpowergrass|lavaplume|rockpolish": 13.333,
+            "earthpower|hiddenpowergrass|lavaplume|stoneedge": 3.333,
             "earthpower|lavaplume|rockpolish|stoneedge": 10.0
         },
         "spreads": [
@@ -6138,7 +6138,7 @@
                 48.952
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 34.095
             ],
             [
@@ -6155,12 +6155,12 @@
             ]
         ],
         "sets": {
-            "earthpower|gigadrain|hiddenpowerfire60|leafstorm": 0.762,
-            "earthpower|gigadrain|hiddenpowerfire60|nastyplot": 4.381,
-            "earthpower|gigadrain|hiddenpowerfire60|psychic": 0.571,
-            "earthpower|gigadrain|hiddenpowerfire60|recover": 0.571,
-            "earthpower|gigadrain|hiddenpowerfire60|thunderwave": 1.524,
-            "earthpower|gigadrain|hiddenpowerfire60|uturn": 0.381,
+            "earthpower|gigadrain|hiddenpowerfire|leafstorm": 0.762,
+            "earthpower|gigadrain|hiddenpowerfire|nastyplot": 4.381,
+            "earthpower|gigadrain|hiddenpowerfire|psychic": 0.571,
+            "earthpower|gigadrain|hiddenpowerfire|recover": 0.571,
+            "earthpower|gigadrain|hiddenpowerfire|thunderwave": 1.524,
+            "earthpower|gigadrain|hiddenpowerfire|uturn": 0.381,
             "earthpower|gigadrain|leafstorm|psychic": 0.571,
             "earthpower|gigadrain|nastyplot|psychic": 4.762,
             "earthpower|gigadrain|nastyplot|recover": 7.048,
@@ -6170,11 +6170,11 @@
             "earthpower|gigadrain|recover|thunderwave": 0.571,
             "earthpower|gigadrain|recover|uturn": 1.143,
             "earthpower|gigadrain|thunderwave|uturn": 0.381,
-            "earthpower|hiddenpowerfire60|leafstorm|nastyplot": 2.095,
-            "earthpower|hiddenpowerfire60|leafstorm|psychic": 0.762,
-            "earthpower|hiddenpowerfire60|leafstorm|recover": 1.143,
-            "earthpower|hiddenpowerfire60|leafstorm|thunderwave": 1.333,
-            "earthpower|hiddenpowerfire60|leafstorm|uturn": 0.952,
+            "earthpower|hiddenpowerfire|leafstorm|nastyplot": 2.095,
+            "earthpower|hiddenpowerfire|leafstorm|psychic": 0.762,
+            "earthpower|hiddenpowerfire|leafstorm|recover": 1.143,
+            "earthpower|hiddenpowerfire|leafstorm|thunderwave": 1.333,
+            "earthpower|hiddenpowerfire|leafstorm|uturn": 0.952,
             "earthpower|leafstorm|nastyplot|psychic": 4.19,
             "earthpower|leafstorm|nastyplot|recover": 4.381,
             "earthpower|leafstorm|psychic|recover": 1.905,
@@ -6183,26 +6183,26 @@
             "earthpower|leafstorm|recover|thunderwave": 0.952,
             "earthpower|leafstorm|recover|uturn": 1.905,
             "earthpower|leafstorm|thunderwave|uturn": 2.286,
-            "gigadrain|hiddenpowerfire60|leafstorm|psychic": 0.381,
-            "gigadrain|hiddenpowerfire60|nastyplot|psychic": 3.81,
-            "gigadrain|hiddenpowerfire60|psychic|recover": 1.524,
-            "gigadrain|hiddenpowerfire60|psychic|thunderwave": 0.381,
-            "gigadrain|hiddenpowerfire60|psychic|uturn": 1.333,
-            "gigadrain|hiddenpowerfire60|recover|thunderwave": 0.571,
-            "gigadrain|hiddenpowerfire60|recover|uturn": 1.333,
-            "gigadrain|hiddenpowerfire60|thunderwave|uturn": 0.952,
+            "gigadrain|hiddenpowerfire|leafstorm|psychic": 0.381,
+            "gigadrain|hiddenpowerfire|nastyplot|psychic": 3.81,
+            "gigadrain|hiddenpowerfire|psychic|recover": 1.524,
+            "gigadrain|hiddenpowerfire|psychic|thunderwave": 0.381,
+            "gigadrain|hiddenpowerfire|psychic|uturn": 1.333,
+            "gigadrain|hiddenpowerfire|recover|thunderwave": 0.571,
+            "gigadrain|hiddenpowerfire|recover|uturn": 1.333,
+            "gigadrain|hiddenpowerfire|thunderwave|uturn": 0.952,
             "gigadrain|nastyplot|psychic|recover": 11.81,
             "gigadrain|psychic|recover|thunderwave": 1.714,
             "gigadrain|psychic|recover|uturn": 1.143,
             "gigadrain|psychic|thunderwave|uturn": 1.143,
             "gigadrain|recover|thunderwave|uturn": 0.952,
-            "hiddenpowerfire60|leafstorm|nastyplot|psychic": 1.905,
-            "hiddenpowerfire60|leafstorm|psychic|recover": 1.714,
-            "hiddenpowerfire60|leafstorm|psychic|thunderwave": 0.571,
-            "hiddenpowerfire60|leafstorm|psychic|uturn": 1.143,
-            "hiddenpowerfire60|leafstorm|recover|thunderwave": 1.714,
-            "hiddenpowerfire60|leafstorm|recover|uturn": 0.571,
-            "hiddenpowerfire60|leafstorm|thunderwave|uturn": 1.714,
+            "hiddenpowerfire|leafstorm|nastyplot|psychic": 1.905,
+            "hiddenpowerfire|leafstorm|psychic|recover": 1.714,
+            "hiddenpowerfire|leafstorm|psychic|thunderwave": 0.571,
+            "hiddenpowerfire|leafstorm|psychic|uturn": 1.143,
+            "hiddenpowerfire|leafstorm|recover|thunderwave": 1.714,
+            "hiddenpowerfire|leafstorm|recover|uturn": 0.571,
+            "hiddenpowerfire|leafstorm|thunderwave|uturn": 1.714,
             "leafstorm|nastyplot|psychic|recover": 8.381,
             "leafstorm|psychic|recover|thunderwave": 1.524,
             "leafstorm|psychic|recover|uturn": 0.762,
@@ -6349,7 +6349,7 @@
                 100.0
             ],
             [
-                "hiddenpowerground60",
+                "hiddenpowerground",
                 33.516
             ],
             [
@@ -6367,16 +6367,16 @@
         ],
         "sets": {
             "calmmind|energyball|fireblast|shadowball": 16.85,
-            "calmmind|fireblast|hiddenpowerground60|shadowball": 18.498,
+            "calmmind|fireblast|hiddenpowerground|shadowball": 18.498,
             "calmmind|fireblast|painsplit|shadowball": 19.231,
             "calmmind|fireblast|shadowball|substitute": 13.187,
-            "energyball|fireblast|hiddenpowerground60|shadowball": 2.381,
+            "energyball|fireblast|hiddenpowerground|shadowball": 2.381,
             "energyball|fireblast|painsplit|shadowball": 5.495,
             "energyball|fireblast|shadowball|substitute": 3.663,
             "energyball|fireblast|shadowball|trick": 3.663,
-            "fireblast|hiddenpowerground60|painsplit|shadowball": 5.128,
-            "fireblast|hiddenpowerground60|shadowball|substitute": 3.846,
-            "fireblast|hiddenpowerground60|shadowball|trick": 3.663,
+            "fireblast|hiddenpowerground|painsplit|shadowball": 5.128,
+            "fireblast|hiddenpowerground|shadowball|substitute": 3.846,
+            "fireblast|hiddenpowerground|shadowball|trick": 3.663,
             "fireblast|painsplit|shadowball|substitute": 4.396
         },
         "spreads": [
@@ -6680,7 +6680,7 @@
                 78.125
             ],
             [
-                "hiddenpowerground60",
+                "hiddenpowerground",
                 48.438
             ],
             [
@@ -6693,21 +6693,21 @@
             ]
         ],
         "sets": {
-            "boomburst|chatter|heatwave|hiddenpowerground60": 3.125,
+            "boomburst|chatter|heatwave|hiddenpowerground": 3.125,
             "boomburst|chatter|heatwave|nastyplot": 10.417,
             "boomburst|chatter|heatwave|substitute": 2.604,
             "boomburst|chatter|heatwave|uturn": 7.812,
-            "boomburst|chatter|hiddenpowerground60|nastyplot": 8.854,
-            "boomburst|chatter|hiddenpowerground60|substitute": 3.125,
-            "boomburst|chatter|hiddenpowerground60|uturn": 4.688,
+            "boomburst|chatter|hiddenpowerground|nastyplot": 8.854,
+            "boomburst|chatter|hiddenpowerground|substitute": 3.125,
+            "boomburst|chatter|hiddenpowerground|uturn": 4.688,
             "boomburst|chatter|nastyplot|substitute": 14.062,
-            "boomburst|heatwave|hiddenpowerground60|nastyplot": 7.292,
-            "boomburst|heatwave|hiddenpowerground60|substitute": 3.646,
-            "boomburst|heatwave|hiddenpowerground60|uturn": 3.125,
+            "boomburst|heatwave|hiddenpowerground|nastyplot": 7.292,
+            "boomburst|heatwave|hiddenpowerground|substitute": 3.646,
+            "boomburst|heatwave|hiddenpowerground|uturn": 3.125,
             "boomburst|heatwave|nastyplot|substitute": 9.375,
-            "chatter|heatwave|hiddenpowerground60|nastyplot": 9.375,
-            "chatter|heatwave|hiddenpowerground60|substitute": 2.604,
-            "chatter|heatwave|hiddenpowerground60|uturn": 2.604,
+            "chatter|heatwave|hiddenpowerground|nastyplot": 9.375,
+            "chatter|heatwave|hiddenpowerground|substitute": 2.604,
+            "chatter|heatwave|hiddenpowerground|uturn": 2.604,
             "chatter|heatwave|nastyplot|substitute": 7.292
         },
         "spreads": [
@@ -6746,7 +6746,7 @@
                 38.725
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 50.98
             ],
             [
@@ -6766,7 +6766,7 @@
                 10.784
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 49.02
             ],
             [
@@ -6783,10 +6783,10 @@
             ]
         ],
         "sets": {
-            "dazzlinggleam|energyball|healingwish|hiddenpowerfire60": 10.784,
-            "dazzlinggleam|energyball|hiddenpowerfire60|synthesis": 38.235,
-            "gigadrain|hiddenpowerice60|sunnyday|weatherball": 38.725,
-            "hiddenpowerice60|solarbeam|sunnyday|weatherball": 12.255
+            "dazzlinggleam|energyball|healingwish|hiddenpowerfire": 10.784,
+            "dazzlinggleam|energyball|hiddenpowerfire|synthesis": 38.235,
+            "gigadrain|hiddenpowerice|sunnyday|weatherball": 38.725,
+            "hiddenpowerice|solarbeam|sunnyday|weatherball": 12.255
         },
         "spreads": [
             [
@@ -7301,7 +7301,7 @@
                 19.89
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 23.02
             ],
             [
@@ -7314,19 +7314,19 @@
             ]
         ],
         "sets": {
-            "closecombat|hiddenpowerice60|ironhead|stealthrock": 0.737,
-            "closecombat|hiddenpowerice60|ironhead|stoneedge": 0.921,
-            "closecombat|hiddenpowerice60|ironhead|substitute": 0.184,
-            "closecombat|hiddenpowerice60|ironhead|taunt": 0.737,
-            "closecombat|hiddenpowerice60|ironhead|voltswitch": 1.473,
-            "closecombat|hiddenpowerice60|stealthrock|stoneedge": 1.289,
-            "closecombat|hiddenpowerice60|stealthrock|substitute": 0.921,
-            "closecombat|hiddenpowerice60|stealthrock|taunt": 0.737,
-            "closecombat|hiddenpowerice60|stealthrock|voltswitch": 1.289,
-            "closecombat|hiddenpowerice60|stoneedge|substitute": 0.737,
-            "closecombat|hiddenpowerice60|stoneedge|taunt": 1.473,
-            "closecombat|hiddenpowerice60|stoneedge|voltswitch": 0.921,
-            "closecombat|hiddenpowerice60|taunt|voltswitch": 2.394,
+            "closecombat|hiddenpowerice|ironhead|stealthrock": 0.737,
+            "closecombat|hiddenpowerice|ironhead|stoneedge": 0.921,
+            "closecombat|hiddenpowerice|ironhead|substitute": 0.184,
+            "closecombat|hiddenpowerice|ironhead|taunt": 0.737,
+            "closecombat|hiddenpowerice|ironhead|voltswitch": 1.473,
+            "closecombat|hiddenpowerice|stealthrock|stoneedge": 1.289,
+            "closecombat|hiddenpowerice|stealthrock|substitute": 0.921,
+            "closecombat|hiddenpowerice|stealthrock|taunt": 0.737,
+            "closecombat|hiddenpowerice|stealthrock|voltswitch": 1.289,
+            "closecombat|hiddenpowerice|stoneedge|substitute": 0.737,
+            "closecombat|hiddenpowerice|stoneedge|taunt": 1.473,
+            "closecombat|hiddenpowerice|stoneedge|voltswitch": 0.921,
+            "closecombat|hiddenpowerice|taunt|voltswitch": 2.394,
             "closecombat|ironhead|stealthrock|stoneedge": 0.184,
             "closecombat|ironhead|stealthrock|substitute": 0.184,
             "closecombat|ironhead|stealthrock|taunt": 1.289,
@@ -7345,13 +7345,13 @@
             "closecombat|stoneedge|substitute|swordsdance": 3.683,
             "closecombat|stoneedge|swordsdance|taunt": 7.551,
             "closecombat|stoneedge|taunt|voltswitch": 2.026,
-            "hiddenpowerice60|ironhead|stealthrock|stoneedge": 0.737,
-            "hiddenpowerice60|ironhead|stealthrock|substitute": 0.737,
-            "hiddenpowerice60|ironhead|stealthrock|taunt": 1.105,
-            "hiddenpowerice60|ironhead|stealthrock|voltswitch": 1.473,
-            "hiddenpowerice60|ironhead|stoneedge|substitute": 1.473,
-            "hiddenpowerice60|ironhead|stoneedge|taunt": 2.578,
-            "hiddenpowerice60|ironhead|taunt|voltswitch": 1.105,
+            "hiddenpowerice|ironhead|stealthrock|stoneedge": 0.737,
+            "hiddenpowerice|ironhead|stealthrock|substitute": 0.737,
+            "hiddenpowerice|ironhead|stealthrock|taunt": 1.105,
+            "hiddenpowerice|ironhead|stealthrock|voltswitch": 1.473,
+            "hiddenpowerice|ironhead|stoneedge|substitute": 1.473,
+            "hiddenpowerice|ironhead|stoneedge|taunt": 2.578,
+            "hiddenpowerice|ironhead|taunt|voltswitch": 1.105,
             "ironhead|stealthrock|stoneedge|substitute": 0.921,
             "ironhead|stealthrock|stoneedge|taunt": 1.105,
             "ironhead|stealthrock|stoneedge|voltswitch": 0.921,
@@ -7390,7 +7390,7 @@
                 49.756
             ],
             [
-                "hiddenpowerfighting60",
+                "hiddenpowerfighting",
                 79.34
             ],
             [
@@ -7415,24 +7415,24 @@
             ]
         ],
         "sets": {
-            "haze|hiddenpowerfighting60|nastyplot|shadowball": 4.645,
-            "haze|hiddenpowerfighting60|painsplit|shadowball": 3.178,
-            "haze|hiddenpowerfighting60|shadowball|toxicspikes": 2.2,
-            "haze|hiddenpowerfighting60|shadowball|trickroom": 0.122,
-            "haze|hiddenpowerfighting60|shadowball|willowisp": 3.178,
+            "haze|hiddenpowerfighting|nastyplot|shadowball": 4.645,
+            "haze|hiddenpowerfighting|painsplit|shadowball": 3.178,
+            "haze|hiddenpowerfighting|shadowball|toxicspikes": 2.2,
+            "haze|hiddenpowerfighting|shadowball|trickroom": 0.122,
+            "haze|hiddenpowerfighting|shadowball|willowisp": 3.178,
             "haze|painsplit|shadowball|toxicspikes": 5.134,
             "haze|painsplit|shadowball|willowisp": 4.645,
             "haze|shadowball|toxicspikes|willowisp": 5.012,
-            "hiddenpowerfighting60|nastyplot|painsplit|shadowball": 18.093,
-            "hiddenpowerfighting60|nastyplot|shadowball|toxicspikes": 5.623,
-            "hiddenpowerfighting60|nastyplot|shadowball|trickroom": 3.667,
-            "hiddenpowerfighting60|nastyplot|shadowball|willowisp": 17.726,
-            "hiddenpowerfighting60|painsplit|shadowball|toxicspikes": 2.934,
-            "hiddenpowerfighting60|painsplit|shadowball|trickroom": 3.545,
-            "hiddenpowerfighting60|painsplit|shadowball|willowisp": 4.645,
-            "hiddenpowerfighting60|shadowball|toxicspikes|trickroom": 3.178,
-            "hiddenpowerfighting60|shadowball|toxicspikes|willowisp": 3.667,
-            "hiddenpowerfighting60|shadowball|trickroom|willowisp": 2.934,
+            "hiddenpowerfighting|nastyplot|painsplit|shadowball": 18.093,
+            "hiddenpowerfighting|nastyplot|shadowball|toxicspikes": 5.623,
+            "hiddenpowerfighting|nastyplot|shadowball|trickroom": 3.667,
+            "hiddenpowerfighting|nastyplot|shadowball|willowisp": 17.726,
+            "hiddenpowerfighting|painsplit|shadowball|toxicspikes": 2.934,
+            "hiddenpowerfighting|painsplit|shadowball|trickroom": 3.545,
+            "hiddenpowerfighting|painsplit|shadowball|willowisp": 4.645,
+            "hiddenpowerfighting|shadowball|toxicspikes|trickroom": 3.178,
+            "hiddenpowerfighting|shadowball|toxicspikes|willowisp": 3.667,
+            "hiddenpowerfighting|shadowball|trickroom|willowisp": 2.934,
             "painsplit|shadowball|toxicspikes|willowisp": 5.868
         },
         "spreads": [
@@ -8046,7 +8046,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerground60",
+                "hiddenpowerground",
                 58.725
             ],
             [
@@ -8075,25 +8075,25 @@
             ]
         ],
         "sets": {
-            "freezedry|haze|hiddenpowerground60|rapidspin": 3.691,
-            "freezedry|haze|hiddenpowerground60|recover": 7.886,
-            "freezedry|haze|hiddenpowerground60|toxic": 7.215,
+            "freezedry|haze|hiddenpowerground|rapidspin": 3.691,
+            "freezedry|haze|hiddenpowerground|recover": 7.886,
+            "freezedry|haze|hiddenpowerground|toxic": 7.215,
             "freezedry|haze|rapidspin|recover": 8.221,
             "freezedry|haze|rapidspin|toxic": 4.698,
             "freezedry|haze|recover|toxic": 9.564,
-            "freezedry|hiddenpowerground60|rapidspin|recover": 5.537,
-            "freezedry|hiddenpowerground60|rapidspin|toxic": 6.04,
-            "freezedry|hiddenpowerground60|recover|toxic": 8.893,
+            "freezedry|hiddenpowerground|rapidspin|recover": 5.537,
+            "freezedry|hiddenpowerground|rapidspin|toxic": 6.04,
+            "freezedry|hiddenpowerground|recover|toxic": 8.893,
             "freezedry|rapidspin|recover|toxic": 4.866,
-            "haze|hiddenpowerground60|icebeam|rapidspin": 2.181,
-            "haze|hiddenpowerground60|icebeam|recover": 3.523,
-            "haze|hiddenpowerground60|icebeam|toxic": 3.188,
+            "haze|hiddenpowerground|icebeam|rapidspin": 2.181,
+            "haze|hiddenpowerground|icebeam|recover": 3.523,
+            "haze|hiddenpowerground|icebeam|toxic": 3.188,
             "haze|icebeam|rapidspin|recover": 3.859,
             "haze|icebeam|rapidspin|toxic": 3.523,
             "haze|icebeam|recover|toxic": 4.362,
-            "hiddenpowerground60|icebeam|rapidspin|recover": 3.356,
-            "hiddenpowerground60|icebeam|rapidspin|toxic": 4.195,
-            "hiddenpowerground60|icebeam|recover|toxic": 3.02,
+            "hiddenpowerground|icebeam|rapidspin|recover": 3.356,
+            "hiddenpowerground|icebeam|rapidspin|toxic": 4.195,
+            "hiddenpowerground|icebeam|recover|toxic": 3.02,
             "icebeam|rapidspin|recover|toxic": 2.181
         },
         "spreads": [
@@ -8317,7 +8317,7 @@
                 100.0
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 49.495
             ],
             [
@@ -8338,22 +8338,22 @@
             ]
         ],
         "sets": {
-            "grassknot|hiddenpowerice60|nuzzle|thunderbolt": 1.515,
-            "grassknot|hiddenpowerice60|recycle|thunderbolt": 4.545,
-            "grassknot|hiddenpowerice60|substitute|thunderbolt": 5.051,
-            "grassknot|hiddenpowerice60|thunderbolt|toxic": 2.525,
+            "grassknot|hiddenpowerice|nuzzle|thunderbolt": 1.515,
+            "grassknot|hiddenpowerice|recycle|thunderbolt": 4.545,
+            "grassknot|hiddenpowerice|substitute|thunderbolt": 5.051,
+            "grassknot|hiddenpowerice|thunderbolt|toxic": 2.525,
             "grassknot|nuzzle|recycle|thunderbolt": 4.545,
             "grassknot|nuzzle|substitute|thunderbolt": 5.051,
             "grassknot|nuzzle|thunderbolt|toxic": 4.545,
             "grassknot|recycle|substitute|thunderbolt": 5.051,
             "grassknot|recycle|thunderbolt|toxic": 7.576,
             "grassknot|substitute|thunderbolt|toxic": 5.556,
-            "hiddenpowerice60|nuzzle|recycle|thunderbolt": 8.586,
-            "hiddenpowerice60|nuzzle|substitute|thunderbolt": 5.556,
-            "hiddenpowerice60|nuzzle|thunderbolt|toxic": 5.051,
-            "hiddenpowerice60|recycle|substitute|thunderbolt": 5.556,
-            "hiddenpowerice60|recycle|thunderbolt|toxic": 4.545,
-            "hiddenpowerice60|substitute|thunderbolt|toxic": 6.566,
+            "hiddenpowerice|nuzzle|recycle|thunderbolt": 8.586,
+            "hiddenpowerice|nuzzle|substitute|thunderbolt": 5.556,
+            "hiddenpowerice|nuzzle|thunderbolt|toxic": 5.051,
+            "hiddenpowerice|recycle|substitute|thunderbolt": 5.556,
+            "hiddenpowerice|recycle|thunderbolt|toxic": 4.545,
+            "hiddenpowerice|substitute|thunderbolt|toxic": 6.566,
             "nuzzle|recycle|substitute|thunderbolt": 5.556,
             "nuzzle|recycle|thunderbolt|toxic": 7.071,
             "nuzzle|substitute|thunderbolt|toxic": 3.535,
@@ -9139,7 +9139,7 @@
                 38.462
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 69.231
             ],
             [
@@ -9148,15 +9148,15 @@
             ]
         ],
         "sets": {
-            "diamondstorm|hiddenpowerfire60|lightscreen|moonblast": 10.256,
-            "diamondstorm|hiddenpowerfire60|lightscreen|reflect": 5.983,
-            "diamondstorm|hiddenpowerfire60|lightscreen|stealthrock": 6.838,
-            "diamondstorm|hiddenpowerfire60|moonblast|stealthrock": 31.624,
+            "diamondstorm|hiddenpowerfire|lightscreen|moonblast": 10.256,
+            "diamondstorm|hiddenpowerfire|lightscreen|reflect": 5.983,
+            "diamondstorm|hiddenpowerfire|lightscreen|stealthrock": 6.838,
+            "diamondstorm|hiddenpowerfire|moonblast|stealthrock": 31.624,
             "diamondstorm|lightscreen|moonblast|reflect": 13.675,
             "diamondstorm|lightscreen|moonblast|stealthrock": 8.547,
             "diamondstorm|lightscreen|reflect|stealthrock": 3.419,
-            "hiddenpowerfire60|lightscreen|moonblast|reflect": 10.256,
-            "hiddenpowerfire60|lightscreen|moonblast|stealthrock": 4.274,
+            "hiddenpowerfire|lightscreen|moonblast|reflect": 10.256,
+            "hiddenpowerfire|lightscreen|moonblast|stealthrock": 4.274,
             "lightscreen|moonblast|reflect|stealthrock": 5.128
         },
         "spreads": [
@@ -9195,7 +9195,7 @@
                 67.677
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 70.455
             ],
             [
@@ -9208,13 +9208,13 @@
             ]
         ],
         "sets": {
-            "calmmind|earthpower|hiddenpowerfire60|moonblast": 22.727,
+            "calmmind|earthpower|hiddenpowerfire|moonblast": 22.727,
             "calmmind|earthpower|moonblast|psyshock": 24.242,
-            "calmmind|hiddenpowerfire60|moonblast|psyshock": 22.727,
-            "diamondstorm|earthpower|hiddenpowerfire60|moonblast": 9.596,
+            "calmmind|hiddenpowerfire|moonblast|psyshock": 22.727,
+            "diamondstorm|earthpower|hiddenpowerfire|moonblast": 9.596,
             "diamondstorm|earthpower|moonblast|psyshock": 5.303,
-            "diamondstorm|hiddenpowerfire60|moonblast|psyshock": 7.323,
-            "earthpower|hiddenpowerfire60|moonblast|psyshock": 8.081
+            "diamondstorm|hiddenpowerfire|moonblast|psyshock": 7.323,
+            "earthpower|hiddenpowerfire|moonblast|psyshock": 8.081
         },
         "spreads": [
             [
@@ -9560,7 +9560,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 53.065
             ],
             [
@@ -9589,17 +9589,17 @@
             ]
         ],
         "sets": {
-            "dracometeor|focusblast|hiddenpowerfire60|sludgewave": 10.153,
+            "dracometeor|focusblast|hiddenpowerfire|sludgewave": 10.153,
             "dracometeor|focusblast|scald|sludgewave": 11.686,
             "dracometeor|focusblast|sludgewave|toxicspikes": 11.303,
-            "dracometeor|hiddenpowerfire60|scald|sludgewave": 16.667,
-            "dracometeor|hiddenpowerfire60|sludgewave|toxicspikes": 12.069,
+            "dracometeor|hiddenpowerfire|scald|sludgewave": 16.667,
+            "dracometeor|hiddenpowerfire|sludgewave|toxicspikes": 12.069,
             "dracometeor|scald|sludgewave|toxicspikes": 8.046,
-            "dragonpulse|focusblast|hiddenpowerfire60|sludgewave": 4.215,
+            "dragonpulse|focusblast|hiddenpowerfire|sludgewave": 4.215,
             "dragonpulse|focusblast|scald|sludgewave": 4.598,
             "dragonpulse|focusblast|sludgewave|toxicspikes": 4.789,
-            "dragonpulse|hiddenpowerfire60|scald|sludgewave": 5.364,
-            "dragonpulse|hiddenpowerfire60|sludgewave|toxicspikes": 4.598,
+            "dragonpulse|hiddenpowerfire|scald|sludgewave": 5.364,
+            "dragonpulse|hiddenpowerfire|sludgewave|toxicspikes": 4.598,
             "dragonpulse|scald|sludgewave|toxicspikes": 6.513
         },
         "spreads": [
@@ -10684,7 +10684,7 @@
         ],
         "moves": [
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 66.667
             ],
             [
@@ -10709,19 +10709,19 @@
             ]
         ],
         "sets": {
-            "foulplay|hiddenpowergrass60|signalbeam|thunderbolt": 6.989,
-            "foulplay|hiddenpowergrass60|signalbeam|voltswitch": 8.602,
-            "foulplay|hiddenpowergrass60|taunt|thunderbolt": 10.215,
-            "foulplay|hiddenpowergrass60|taunt|voltswitch": 8.065,
-            "foulplay|hiddenpowergrass60|thunderbolt|voltswitch": 1.613,
+            "foulplay|hiddenpowergrass|signalbeam|thunderbolt": 6.989,
+            "foulplay|hiddenpowergrass|signalbeam|voltswitch": 8.602,
+            "foulplay|hiddenpowergrass|taunt|thunderbolt": 10.215,
+            "foulplay|hiddenpowergrass|taunt|voltswitch": 8.065,
+            "foulplay|hiddenpowergrass|thunderbolt|voltswitch": 1.613,
             "foulplay|signalbeam|taunt|thunderbolt": 2.151,
             "foulplay|signalbeam|taunt|voltswitch": 7.527,
             "foulplay|signalbeam|thunderbolt|voltswitch": 5.376,
             "foulplay|taunt|thunderbolt|voltswitch": 7.527,
-            "hiddenpowergrass60|signalbeam|taunt|thunderbolt": 11.29,
-            "hiddenpowergrass60|signalbeam|taunt|voltswitch": 6.989,
-            "hiddenpowergrass60|signalbeam|thunderbolt|voltswitch": 8.065,
-            "hiddenpowergrass60|taunt|thunderbolt|voltswitch": 4.839,
+            "hiddenpowergrass|signalbeam|taunt|thunderbolt": 11.29,
+            "hiddenpowergrass|signalbeam|taunt|voltswitch": 6.989,
+            "hiddenpowergrass|signalbeam|thunderbolt|voltswitch": 8.065,
+            "hiddenpowergrass|taunt|thunderbolt|voltswitch": 4.839,
             "signalbeam|taunt|thunderbolt|voltswitch": 10.753
         },
         "spreads": [
@@ -11308,7 +11308,7 @@
                 73.333
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 64.762
             ],
             [
@@ -11317,12 +11317,12 @@
             ]
         ],
         "sets": {
-            "gigadrain|hiddenpowerfire60|leechseed|psychic": 20.952,
-            "gigadrain|hiddenpowerfire60|leechseed|sleeppowder": 8.571,
-            "gigadrain|hiddenpowerfire60|leechseed|substitute": 8.571,
-            "gigadrain|hiddenpowerfire60|psychic|sleeppowder": 8.571,
-            "gigadrain|hiddenpowerfire60|psychic|substitute": 10.476,
-            "gigadrain|hiddenpowerfire60|sleeppowder|substitute": 7.619,
+            "gigadrain|hiddenpowerfire|leechseed|psychic": 20.952,
+            "gigadrain|hiddenpowerfire|leechseed|sleeppowder": 8.571,
+            "gigadrain|hiddenpowerfire|leechseed|substitute": 8.571,
+            "gigadrain|hiddenpowerfire|psychic|sleeppowder": 8.571,
+            "gigadrain|hiddenpowerfire|psychic|substitute": 10.476,
+            "gigadrain|hiddenpowerfire|sleeppowder|substitute": 7.619,
             "gigadrain|leechseed|psychic|sleeppowder": 15.238,
             "gigadrain|leechseed|psychic|substitute": 9.524,
             "gigadrain|leechseed|sleeppowder|substitute": 1.905,
@@ -11887,7 +11887,7 @@
                 100.0
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 50.743
             ],
             [
@@ -11899,13 +11899,13 @@
                 100.0
             ],
             [
-                "hiddenpowerground60",
+                "hiddenpowerground",
                 49.257
             ]
         ],
         "sets": {
-            "hiddenpowerfire60|lightofruin|moonblast|psychic": 50.743,
-            "hiddenpowerground60|lightofruin|moonblast|psychic": 49.257
+            "hiddenpowerfire|lightofruin|moonblast|psychic": 50.743,
+            "hiddenpowerground|lightofruin|moonblast|psychic": 49.257
         },
         "spreads": [
             [
@@ -12535,7 +12535,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 50.296
             ],
             [
@@ -12560,20 +12560,20 @@
             ]
         ],
         "sets": {
-            "bugbuzz|gigadrain|hiddenpowerice60|thunder": 1.972,
-            "bugbuzz|gigadrain|hiddenpowerice60|voltswitch": 0.592,
+            "bugbuzz|gigadrain|hiddenpowerice|thunder": 1.972,
+            "bugbuzz|gigadrain|hiddenpowerice|voltswitch": 0.592,
             "bugbuzz|gigadrain|stickyweb|thunder": 17.16,
             "bugbuzz|gigadrain|stickyweb|voltswitch": 8.087,
             "bugbuzz|gigadrain|thunder|voltswitch": 0.592,
-            "bugbuzz|hiddenpowerice60|stickyweb|thunder": 15.976,
-            "bugbuzz|hiddenpowerice60|stickyweb|voltswitch": 8.284,
-            "bugbuzz|hiddenpowerice60|thunder|voltswitch": 0.394,
+            "bugbuzz|hiddenpowerice|stickyweb|thunder": 15.976,
+            "bugbuzz|hiddenpowerice|stickyweb|voltswitch": 8.284,
+            "bugbuzz|hiddenpowerice|thunder|voltswitch": 0.394,
             "bugbuzz|stickyweb|thunder|voltswitch": 14.201,
-            "gigadrain|hiddenpowerice60|stickyweb|thunder": 8.679,
-            "gigadrain|hiddenpowerice60|stickyweb|voltswitch": 5.128,
-            "gigadrain|hiddenpowerice60|thunder|voltswitch": 0.394,
+            "gigadrain|hiddenpowerice|stickyweb|thunder": 8.679,
+            "gigadrain|hiddenpowerice|stickyweb|voltswitch": 5.128,
+            "gigadrain|hiddenpowerice|thunder|voltswitch": 0.394,
             "gigadrain|stickyweb|thunder|voltswitch": 9.665,
-            "hiddenpowerice60|stickyweb|thunder|voltswitch": 8.876
+            "hiddenpowerice|stickyweb|thunder|voltswitch": 8.876
         },
         "spreads": [
             [
@@ -13731,27 +13731,27 @@
                 62.5
             ],
             [
-                "hiddenpowerground60",
+                "hiddenpowerground",
                 45.192
             ]
         ],
         "sets": {
-            "healbell|hiddenpowerground60|icebeam|protect": 2.885,
-            "healbell|hiddenpowerground60|icebeam|shadowball": 2.404,
-            "healbell|hiddenpowerground60|icebeam|toxic": 3.846,
-            "healbell|hiddenpowerground60|icebeam|wish": 8.654,
+            "healbell|hiddenpowerground|icebeam|protect": 2.885,
+            "healbell|hiddenpowerground|icebeam|shadowball": 2.404,
+            "healbell|hiddenpowerground|icebeam|toxic": 3.846,
+            "healbell|hiddenpowerground|icebeam|wish": 8.654,
             "healbell|icebeam|protect|shadowball": 1.923,
             "healbell|icebeam|protect|toxic": 6.25,
             "healbell|icebeam|protect|wish": 6.731,
             "healbell|icebeam|shadowball|toxic": 7.212,
             "healbell|icebeam|shadowball|wish": 6.25,
             "healbell|icebeam|toxic|wish": 6.25,
-            "hiddenpowerground60|icebeam|protect|shadowball": 3.365,
-            "hiddenpowerground60|icebeam|protect|toxic": 3.365,
-            "hiddenpowerground60|icebeam|protect|wish": 8.173,
-            "hiddenpowerground60|icebeam|shadowball|toxic": 2.885,
-            "hiddenpowerground60|icebeam|shadowball|wish": 5.288,
-            "hiddenpowerground60|icebeam|toxic|wish": 4.327,
+            "hiddenpowerground|icebeam|protect|shadowball": 3.365,
+            "hiddenpowerground|icebeam|protect|toxic": 3.365,
+            "hiddenpowerground|icebeam|protect|wish": 8.173,
+            "hiddenpowerground|icebeam|shadowball|toxic": 2.885,
+            "hiddenpowerground|icebeam|shadowball|wish": 5.288,
+            "hiddenpowerground|icebeam|toxic|wish": 4.327,
             "icebeam|protect|shadowball|toxic": 3.365,
             "icebeam|protect|shadowball|wish": 7.692,
             "icebeam|protect|toxic|wish": 5.288,
@@ -14577,7 +14577,7 @@
         ],
         "moves": [
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 76.316
             ],
             [
@@ -14598,9 +14598,9 @@
             ]
         ],
         "sets": {
-            "hiddenpowergrass60|hydropump|icebeam|shellsmash": 24.737,
-            "hiddenpowergrass60|hydropump|icebeam|substitute": 12.632,
-            "hiddenpowergrass60|hydropump|shellsmash|substitute": 38.947,
+            "hiddenpowergrass|hydropump|icebeam|shellsmash": 24.737,
+            "hiddenpowergrass|hydropump|icebeam|substitute": 12.632,
+            "hiddenpowergrass|hydropump|shellsmash|substitute": 38.947,
             "hydropump|icebeam|shellsmash|substitute": 23.684
         },
         "spreads": [
@@ -16027,7 +16027,7 @@
                 61.308
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 61.121
             ],
             [
@@ -16048,21 +16048,21 @@
             ]
         ],
         "sets": {
-            "darkpulse|hiddenpowerice60|hypervoice|thunderbolt": 15.701,
-            "darkpulse|hiddenpowerice60|hypervoice|voltswitch": 6.916,
-            "darkpulse|hiddenpowerice60|surf|thunderbolt": 5.047,
-            "darkpulse|hiddenpowerice60|surf|voltswitch": 3.551,
-            "darkpulse|hiddenpowerice60|thunderbolt|voltswitch": 4.299,
+            "darkpulse|hiddenpowerice|hypervoice|thunderbolt": 15.701,
+            "darkpulse|hiddenpowerice|hypervoice|voltswitch": 6.916,
+            "darkpulse|hiddenpowerice|surf|thunderbolt": 5.047,
+            "darkpulse|hiddenpowerice|surf|voltswitch": 3.551,
+            "darkpulse|hiddenpowerice|thunderbolt|voltswitch": 4.299,
             "darkpulse|hypervoice|surf|thunderbolt": 4.673,
             "darkpulse|hypervoice|surf|voltswitch": 3.178,
             "darkpulse|hypervoice|thunderbolt|voltswitch": 8.598,
             "darkpulse|raindance|surf|thunder": 6.729,
             "darkpulse|surf|thunderbolt|voltswitch": 2.617,
-            "hiddenpowerice60|hypervoice|surf|thunderbolt": 5.607,
-            "hiddenpowerice60|hypervoice|surf|voltswitch": 2.991,
-            "hiddenpowerice60|hypervoice|thunderbolt|voltswitch": 7.103,
-            "hiddenpowerice60|raindance|surf|thunder": 7.103,
-            "hiddenpowerice60|surf|thunderbolt|voltswitch": 2.804,
+            "hiddenpowerice|hypervoice|surf|thunderbolt": 5.607,
+            "hiddenpowerice|hypervoice|surf|voltswitch": 2.991,
+            "hiddenpowerice|hypervoice|thunderbolt|voltswitch": 7.103,
+            "hiddenpowerice|raindance|surf|thunder": 7.103,
+            "hiddenpowerice|surf|thunderbolt|voltswitch": 2.804,
             "hypervoice|raindance|surf|thunder": 9.159,
             "hypervoice|surf|thunderbolt|voltswitch": 3.925
         },
@@ -16847,7 +16847,7 @@
                 82.843
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 100.0
             ],
             [
@@ -16856,8 +16856,8 @@
             ]
         ],
         "sets": {
-            "darkpulse|fireblast|hiddenpowergrass60|nastyplot": 82.843,
-            "darkpulse|fireblast|hiddenpowergrass60|suckerpunch": 17.157
+            "darkpulse|fireblast|hiddenpowergrass|nastyplot": 82.843,
+            "darkpulse|fireblast|hiddenpowergrass|suckerpunch": 17.157
         },
         "spreads": [
             [
@@ -16899,13 +16899,13 @@
                 62.888
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 57.404
             ]
         ],
         "sets": {
-            "darkpulse|fireblast|hiddenpowergrass60|nastyplot": 37.112,
-            "darkpulse|fireblast|hiddenpowergrass60|taunt": 20.293,
+            "darkpulse|fireblast|hiddenpowergrass|nastyplot": 37.112,
+            "darkpulse|fireblast|hiddenpowergrass|taunt": 20.293,
             "darkpulse|fireblast|nastyplot|taunt": 42.596
         },
         "spreads": [
@@ -17710,15 +17710,15 @@
                 81.684
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 78.947
             ]
         ],
         "sets": {
-            "hiddenpowerice60|shadowball|signalbeam|thunderbolt": 19.368,
-            "hiddenpowerice60|shadowball|signalbeam|voltswitch": 22.316,
-            "hiddenpowerice60|shadowball|thunderbolt|voltswitch": 18.947,
-            "hiddenpowerice60|signalbeam|thunderbolt|voltswitch": 18.316,
+            "hiddenpowerice|shadowball|signalbeam|thunderbolt": 19.368,
+            "hiddenpowerice|shadowball|signalbeam|voltswitch": 22.316,
+            "hiddenpowerice|shadowball|thunderbolt|voltswitch": 18.947,
+            "hiddenpowerice|signalbeam|thunderbolt|voltswitch": 18.316,
             "shadowball|signalbeam|thunderbolt|voltswitch": 21.053
         },
         "spreads": [
@@ -18307,7 +18307,7 @@
                 39.266
             ],
             [
-                "hiddenpowerflying60",
+                "hiddenpowerflying",
                 30.275
             ],
             [
@@ -18323,7 +18323,7 @@
                 38.165
             ],
             [
-                "hiddenpowerelectric60",
+                "hiddenpowerelectric",
                 33.945
             ],
             [
@@ -18332,28 +18332,28 @@
             ]
         ],
         "sets": {
-            "calmmind|hiddenpowerelectric60|hydropump|secretsword": 5.505,
-            "calmmind|hiddenpowerelectric60|scald|secretsword": 10.826,
-            "calmmind|hiddenpowerflying60|hydropump|secretsword": 4.404,
-            "calmmind|hiddenpowerflying60|scald|secretsword": 9.174,
+            "calmmind|hiddenpowerelectric|hydropump|secretsword": 5.505,
+            "calmmind|hiddenpowerelectric|scald|secretsword": 10.826,
+            "calmmind|hiddenpowerflying|hydropump|secretsword": 4.404,
+            "calmmind|hiddenpowerflying|scald|secretsword": 9.174,
             "calmmind|hydropump|icywind|secretsword": 4.954,
             "calmmind|hydropump|secretsword|substitute": 3.67,
             "calmmind|icywind|scald|secretsword": 11.56,
             "calmmind|scald|secretsword|substitute": 8.257,
-            "hiddenpowerelectric60|hydropump|icywind|secretsword": 0.917,
-            "hiddenpowerelectric60|hydropump|icywind|substitute": 3.67,
-            "hiddenpowerelectric60|hydropump|scald|secretsword": 3.67,
-            "hiddenpowerelectric60|hydropump|secretsword|substitute": 1.835,
-            "hiddenpowerelectric60|icywind|scald|secretsword": 2.018,
-            "hiddenpowerelectric60|icywind|scald|substitute": 2.385,
-            "hiddenpowerelectric60|scald|secretsword|substitute": 3.119,
-            "hiddenpowerflying60|hydropump|icywind|secretsword": 2.018,
-            "hiddenpowerflying60|hydropump|icywind|substitute": 0.734,
-            "hiddenpowerflying60|hydropump|scald|secretsword": 1.468,
-            "hiddenpowerflying60|hydropump|secretsword|substitute": 1.651,
-            "hiddenpowerflying60|icywind|scald|secretsword": 3.119,
-            "hiddenpowerflying60|icywind|scald|substitute": 3.486,
-            "hiddenpowerflying60|scald|secretsword|substitute": 4.22,
+            "hiddenpowerelectric|hydropump|icywind|secretsword": 0.917,
+            "hiddenpowerelectric|hydropump|icywind|substitute": 3.67,
+            "hiddenpowerelectric|hydropump|scald|secretsword": 3.67,
+            "hiddenpowerelectric|hydropump|secretsword|substitute": 1.835,
+            "hiddenpowerelectric|icywind|scald|secretsword": 2.018,
+            "hiddenpowerelectric|icywind|scald|substitute": 2.385,
+            "hiddenpowerelectric|scald|secretsword|substitute": 3.119,
+            "hiddenpowerflying|hydropump|icywind|secretsword": 2.018,
+            "hiddenpowerflying|hydropump|icywind|substitute": 0.734,
+            "hiddenpowerflying|hydropump|scald|secretsword": 1.468,
+            "hiddenpowerflying|hydropump|secretsword|substitute": 1.651,
+            "hiddenpowerflying|icywind|scald|secretsword": 3.119,
+            "hiddenpowerflying|icywind|scald|substitute": 3.486,
+            "hiddenpowerflying|scald|secretsword|substitute": 4.22,
             "hydropump|icywind|scald|secretsword": 2.202,
             "hydropump|icywind|secretsword|substitute": 2.569,
             "icywind|scald|secretsword|substitute": 2.569
@@ -19550,7 +19550,7 @@
                 55.319
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 37.943
             ],
             [
@@ -19563,10 +19563,10 @@
             ]
         ],
         "sets": {
-            "healbell|hiddenpowergrass60|hydropump|thunderbolt": 2.128,
-            "healbell|hiddenpowergrass60|hydropump|voltswitch": 1.064,
-            "healbell|hiddenpowergrass60|scald|thunderbolt": 2.128,
-            "healbell|hiddenpowergrass60|scald|voltswitch": 1.596,
+            "healbell|hiddenpowergrass|hydropump|thunderbolt": 2.128,
+            "healbell|hiddenpowergrass|hydropump|voltswitch": 1.064,
+            "healbell|hiddenpowergrass|scald|thunderbolt": 2.128,
+            "healbell|hiddenpowergrass|scald|voltswitch": 1.596,
             "healbell|hydropump|icebeam|thunderbolt": 1.418,
             "healbell|hydropump|icebeam|voltswitch": 2.482,
             "healbell|hydropump|thunderbolt|thunderwave": 1.596,
@@ -19581,22 +19581,22 @@
             "healbell|scald|thunderbolt|voltswitch": 1.064,
             "healbell|scald|thunderwave|voltswitch": 1.95,
             "healbell|scald|toxic|voltswitch": 3.723,
-            "hiddenpowergrass60|hydropump|icebeam|thunderbolt": 1.596,
-            "hiddenpowergrass60|hydropump|icebeam|voltswitch": 1.241,
-            "hiddenpowergrass60|hydropump|scald|thunderbolt": 1.596,
-            "hiddenpowergrass60|hydropump|scald|voltswitch": 1.596,
-            "hiddenpowergrass60|hydropump|thunderbolt|thunderwave": 1.773,
-            "hiddenpowergrass60|hydropump|thunderbolt|toxic": 1.596,
-            "hiddenpowergrass60|hydropump|thunderbolt|voltswitch": 2.128,
-            "hiddenpowergrass60|hydropump|thunderwave|voltswitch": 1.418,
-            "hiddenpowergrass60|hydropump|toxic|voltswitch": 0.709,
-            "hiddenpowergrass60|icebeam|scald|thunderbolt": 3.014,
-            "hiddenpowergrass60|icebeam|scald|voltswitch": 1.064,
-            "hiddenpowergrass60|scald|thunderbolt|thunderwave": 3.369,
-            "hiddenpowergrass60|scald|thunderbolt|toxic": 3.546,
-            "hiddenpowergrass60|scald|thunderbolt|voltswitch": 1.95,
-            "hiddenpowergrass60|scald|thunderwave|voltswitch": 1.95,
-            "hiddenpowergrass60|scald|toxic|voltswitch": 2.482,
+            "hiddenpowergrass|hydropump|icebeam|thunderbolt": 1.596,
+            "hiddenpowergrass|hydropump|icebeam|voltswitch": 1.241,
+            "hiddenpowergrass|hydropump|scald|thunderbolt": 1.596,
+            "hiddenpowergrass|hydropump|scald|voltswitch": 1.596,
+            "hiddenpowergrass|hydropump|thunderbolt|thunderwave": 1.773,
+            "hiddenpowergrass|hydropump|thunderbolt|toxic": 1.596,
+            "hiddenpowergrass|hydropump|thunderbolt|voltswitch": 2.128,
+            "hiddenpowergrass|hydropump|thunderwave|voltswitch": 1.418,
+            "hiddenpowergrass|hydropump|toxic|voltswitch": 0.709,
+            "hiddenpowergrass|icebeam|scald|thunderbolt": 3.014,
+            "hiddenpowergrass|icebeam|scald|voltswitch": 1.064,
+            "hiddenpowergrass|scald|thunderbolt|thunderwave": 3.369,
+            "hiddenpowergrass|scald|thunderbolt|toxic": 3.546,
+            "hiddenpowergrass|scald|thunderbolt|voltswitch": 1.95,
+            "hiddenpowergrass|scald|thunderwave|voltswitch": 1.95,
+            "hiddenpowergrass|scald|toxic|voltswitch": 2.482,
             "hydropump|icebeam|scald|thunderbolt": 1.95,
             "hydropump|icebeam|scald|voltswitch": 1.596,
             "hydropump|icebeam|thunderbolt|thunderwave": 1.773,
@@ -19711,7 +19711,7 @@
                 42.969
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 56.25
             ],
             [
@@ -19732,21 +19732,21 @@
             ]
         ],
         "sets": {
-            "defog|dracometeor|healingwish|hiddenpowerfire60": 5.469,
+            "defog|dracometeor|healingwish|hiddenpowerfire": 5.469,
             "defog|dracometeor|healingwish|psyshock": 2.344,
             "defog|dracometeor|healingwish|thunderbolt": 2.344,
-            "defog|dracometeor|hiddenpowerfire60|psyshock": 1.562,
-            "defog|dracometeor|hiddenpowerfire60|roost": 5.469,
-            "defog|dracometeor|hiddenpowerfire60|thunderbolt": 1.562,
+            "defog|dracometeor|hiddenpowerfire|psyshock": 1.562,
+            "defog|dracometeor|hiddenpowerfire|roost": 5.469,
+            "defog|dracometeor|hiddenpowerfire|thunderbolt": 1.562,
             "defog|dracometeor|psyshock|roost": 17.188,
             "defog|dracometeor|psyshock|thunderbolt": 0.781,
             "defog|dracometeor|roost|thunderbolt": 1.562,
-            "dracometeor|healingwish|hiddenpowerfire60|psyshock": 3.125,
-            "dracometeor|healingwish|hiddenpowerfire60|thunderbolt": 5.469,
+            "dracometeor|healingwish|hiddenpowerfire|psyshock": 3.125,
+            "dracometeor|healingwish|hiddenpowerfire|thunderbolt": 5.469,
             "dracometeor|healingwish|psyshock|thunderbolt": 3.906,
-            "dracometeor|hiddenpowerfire60|psyshock|roost": 21.875,
-            "dracometeor|hiddenpowerfire60|psyshock|thunderbolt": 6.25,
-            "dracometeor|hiddenpowerfire60|roost|thunderbolt": 5.469,
+            "dracometeor|hiddenpowerfire|psyshock|roost": 21.875,
+            "dracometeor|hiddenpowerfire|psyshock|thunderbolt": 6.25,
+            "dracometeor|hiddenpowerfire|roost|thunderbolt": 5.469,
             "dracometeor|psyshock|roost|thunderbolt": 15.625
         },
         "spreads": [
@@ -19773,7 +19773,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 39.796
             ],
             [
@@ -19806,28 +19806,28 @@
             ]
         ],
         "sets": {
-            "calmmind|dracometeor|hiddenpowerfire60|psyshock": 5.357,
-            "calmmind|dracometeor|hiddenpowerfire60|surf": 3.827,
+            "calmmind|dracometeor|hiddenpowerfire|psyshock": 5.357,
+            "calmmind|dracometeor|hiddenpowerfire|surf": 3.827,
             "calmmind|dracometeor|psyshock|roost": 12.755,
             "calmmind|dracometeor|psyshock|surf": 6.122,
             "calmmind|dracometeor|roost|surf": 10.459,
-            "calmmind|dragonpulse|hiddenpowerfire60|psyshock": 2.551,
-            "calmmind|dragonpulse|hiddenpowerfire60|surf": 0.765,
+            "calmmind|dragonpulse|hiddenpowerfire|psyshock": 2.551,
+            "calmmind|dragonpulse|hiddenpowerfire|surf": 0.765,
             "calmmind|dragonpulse|psyshock|roost": 5.357,
             "calmmind|dragonpulse|psyshock|substitute": 3.061,
             "calmmind|dragonpulse|psyshock|surf": 2.296,
             "calmmind|dragonpulse|roost|surf": 2.296,
             "calmmind|dragonpulse|substitute|surf": 2.551,
-            "dracometeor|hiddenpowerfire60|psyshock|roost": 6.633,
-            "dracometeor|hiddenpowerfire60|psyshock|surf": 6.378,
-            "dracometeor|hiddenpowerfire60|roost|surf": 5.102,
+            "dracometeor|hiddenpowerfire|psyshock|roost": 6.633,
+            "dracometeor|hiddenpowerfire|psyshock|surf": 6.378,
+            "dracometeor|hiddenpowerfire|roost|surf": 5.102,
             "dracometeor|psyshock|roost|surf": 6.888,
-            "dragonpulse|hiddenpowerfire60|psyshock|roost": 2.296,
-            "dragonpulse|hiddenpowerfire60|psyshock|substitute": 0.51,
-            "dragonpulse|hiddenpowerfire60|psyshock|surf": 2.551,
-            "dragonpulse|hiddenpowerfire60|roost|substitute": 0.765,
-            "dragonpulse|hiddenpowerfire60|roost|surf": 2.041,
-            "dragonpulse|hiddenpowerfire60|substitute|surf": 1.02,
+            "dragonpulse|hiddenpowerfire|psyshock|roost": 2.296,
+            "dragonpulse|hiddenpowerfire|psyshock|substitute": 0.51,
+            "dragonpulse|hiddenpowerfire|psyshock|surf": 2.551,
+            "dragonpulse|hiddenpowerfire|roost|substitute": 0.765,
+            "dragonpulse|hiddenpowerfire|roost|surf": 2.041,
+            "dragonpulse|hiddenpowerfire|substitute|surf": 1.02,
             "dragonpulse|psyshock|roost|substitute": 2.806,
             "dragonpulse|psyshock|roost|surf": 2.551,
             "dragonpulse|psyshock|substitute|surf": 1.276,
@@ -19877,7 +19877,7 @@
                 62.5
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 43.75
             ],
             [
@@ -19902,25 +19902,25 @@
             ]
         ],
         "sets": {
-            "defog|dracometeor|hiddenpowerfire60|psyshock": 1.705,
-            "defog|dracometeor|hiddenpowerfire60|roost": 5.114,
-            "defog|dracometeor|hiddenpowerfire60|surf": 2.273,
-            "defog|dracometeor|hiddenpowerfire60|thunderbolt": 2.841,
+            "defog|dracometeor|hiddenpowerfire|psyshock": 1.705,
+            "defog|dracometeor|hiddenpowerfire|roost": 5.114,
+            "defog|dracometeor|hiddenpowerfire|surf": 2.273,
+            "defog|dracometeor|hiddenpowerfire|thunderbolt": 2.841,
             "defog|dracometeor|psyshock|roost": 11.932,
             "defog|dracometeor|psyshock|surf": 2.273,
             "defog|dracometeor|psyshock|thunderbolt": 2.273,
             "defog|dracometeor|roost|surf": 2.841,
             "defog|dracometeor|roost|thunderbolt": 3.409,
             "defog|dracometeor|surf|thunderbolt": 1.136,
-            "dracometeor|hiddenpowerfire60|psyshock|roost": 10.795,
-            "dracometeor|hiddenpowerfire60|psyshock|surf": 2.273,
-            "dracometeor|hiddenpowerfire60|psyshock|thunderbolt": 2.841,
-            "dracometeor|hiddenpowerfire60|psyshock|trick": 3.409,
-            "dracometeor|hiddenpowerfire60|roost|surf": 3.977,
-            "dracometeor|hiddenpowerfire60|roost|thunderbolt": 2.841,
-            "dracometeor|hiddenpowerfire60|surf|thunderbolt": 1.136,
-            "dracometeor|hiddenpowerfire60|surf|trick": 2.841,
-            "dracometeor|hiddenpowerfire60|thunderbolt|trick": 1.705,
+            "dracometeor|hiddenpowerfire|psyshock|roost": 10.795,
+            "dracometeor|hiddenpowerfire|psyshock|surf": 2.273,
+            "dracometeor|hiddenpowerfire|psyshock|thunderbolt": 2.841,
+            "dracometeor|hiddenpowerfire|psyshock|trick": 3.409,
+            "dracometeor|hiddenpowerfire|roost|surf": 3.977,
+            "dracometeor|hiddenpowerfire|roost|thunderbolt": 2.841,
+            "dracometeor|hiddenpowerfire|surf|thunderbolt": 1.136,
+            "dracometeor|hiddenpowerfire|surf|trick": 2.841,
+            "dracometeor|hiddenpowerfire|thunderbolt|trick": 1.705,
             "dracometeor|psyshock|roost|surf": 8.523,
             "dracometeor|psyshock|roost|thunderbolt": 10.795,
             "dracometeor|psyshock|surf|thunderbolt": 1.705,
@@ -19969,7 +19969,7 @@
                 100.0
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 39.4
             ],
             [
@@ -19978,12 +19978,12 @@
             ]
         ],
         "sets": {
-            "calmmind|dracometeor|hiddenpowerfire60|psyshock": 16.698,
+            "calmmind|dracometeor|hiddenpowerfire|psyshock": 16.698,
             "calmmind|dracometeor|psyshock|roost": 53.846,
-            "defog|dracometeor|hiddenpowerfire60|psyshock": 6.191,
-            "defog|dracometeor|hiddenpowerfire60|roost": 6.379,
+            "defog|dracometeor|hiddenpowerfire|psyshock": 6.191,
+            "defog|dracometeor|hiddenpowerfire|roost": 6.379,
             "defog|dracometeor|psyshock|roost": 6.754,
-            "dracometeor|hiddenpowerfire60|psyshock|roost": 10.131
+            "dracometeor|hiddenpowerfire|psyshock|roost": 10.131
         },
         "spreads": [
             [
@@ -20486,11 +20486,11 @@
                 100.0
             ],
             [
-                "hiddenpowerrock60",
+                "hiddenpowerrock",
                 51.199
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 48.801
             ],
             [
@@ -20499,10 +20499,10 @@
             ]
         ],
         "sets": {
-            "gigadrain|hiddenpowerfire60|quiverdance|sleeppowder": 10.437,
-            "gigadrain|hiddenpowerrock60|quiverdance|sleeppowder": 11.707,
-            "hiddenpowerfire60|petaldance|quiverdance|sleeppowder": 38.364,
-            "hiddenpowerrock60|petaldance|quiverdance|sleeppowder": 39.492
+            "gigadrain|hiddenpowerfire|quiverdance|sleeppowder": 10.437,
+            "gigadrain|hiddenpowerrock|quiverdance|sleeppowder": 11.707,
+            "hiddenpowerfire|petaldance|quiverdance|sleeppowder": 38.364,
+            "hiddenpowerrock|petaldance|quiverdance|sleeppowder": 39.492
         },
         "spreads": [
             [
@@ -21251,7 +21251,7 @@
                 79.604
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 73.069
             ],
             [
@@ -21264,9 +21264,9 @@
             ]
         ],
         "sets": {
-            "hiddenpowerice60|knockoff|leafstorm|superpower": 20.792,
-            "hiddenpowerice60|knockoff|leafstorm|synthesis": 20.396,
-            "hiddenpowerice60|leafstorm|superpower|synthesis": 31.881,
+            "hiddenpowerice|knockoff|leafstorm|superpower": 20.792,
+            "hiddenpowerice|knockoff|leafstorm|synthesis": 20.396,
+            "hiddenpowerice|leafstorm|superpower|synthesis": 31.881,
             "knockoff|leafstorm|superpower|synthesis": 26.931
         },
         "spreads": [
@@ -21698,7 +21698,7 @@
                 49.746
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 42.64
             ],
             [
@@ -21731,54 +21731,54 @@
             ]
         ],
         "sets": {
-            "ancientpower|earthpower|fireblast|hiddenpowergrass60": 0.508,
+            "ancientpower|earthpower|fireblast|hiddenpowergrass": 0.508,
             "ancientpower|earthpower|fireblast|shellsmash": 3.553,
             "ancientpower|earthpower|fireblast|toxic": 2.03,
-            "ancientpower|earthpower|hiddenpowergrass60|lavaplume": 1.015,
+            "ancientpower|earthpower|hiddenpowergrass|lavaplume": 1.015,
             "ancientpower|earthpower|lavaplume|recover": 2.538,
             "ancientpower|earthpower|lavaplume|shellsmash": 1.523,
             "ancientpower|earthpower|lavaplume|stealthrock": 1.523,
             "ancientpower|earthpower|lavaplume|toxic": 1.015,
-            "ancientpower|fireblast|hiddenpowergrass60|recover": 1.015,
-            "ancientpower|fireblast|hiddenpowergrass60|shellsmash": 2.03,
-            "ancientpower|fireblast|hiddenpowergrass60|stealthrock": 1.015,
-            "ancientpower|fireblast|hiddenpowergrass60|toxic": 1.015,
+            "ancientpower|fireblast|hiddenpowergrass|recover": 1.015,
+            "ancientpower|fireblast|hiddenpowergrass|shellsmash": 2.03,
+            "ancientpower|fireblast|hiddenpowergrass|stealthrock": 1.015,
+            "ancientpower|fireblast|hiddenpowergrass|toxic": 1.015,
             "ancientpower|fireblast|recover|shellsmash": 12.183,
             "ancientpower|fireblast|recover|stealthrock": 1.523,
             "ancientpower|fireblast|recover|toxic": 1.523,
             "ancientpower|fireblast|stealthrock|toxic": 0.508,
-            "ancientpower|hiddenpowergrass60|lavaplume|recover": 2.538,
-            "ancientpower|hiddenpowergrass60|lavaplume|shellsmash": 3.553,
-            "ancientpower|hiddenpowergrass60|lavaplume|stealthrock": 2.03,
-            "ancientpower|hiddenpowergrass60|lavaplume|toxic": 2.03,
+            "ancientpower|hiddenpowergrass|lavaplume|recover": 2.538,
+            "ancientpower|hiddenpowergrass|lavaplume|shellsmash": 3.553,
+            "ancientpower|hiddenpowergrass|lavaplume|stealthrock": 2.03,
+            "ancientpower|hiddenpowergrass|lavaplume|toxic": 2.03,
             "ancientpower|lavaplume|recover|shellsmash": 8.122,
             "ancientpower|lavaplume|recover|stealthrock": 2.538,
             "ancientpower|lavaplume|recover|toxic": 4.061,
             "ancientpower|lavaplume|stealthrock|toxic": 2.538,
-            "earthpower|fireblast|hiddenpowergrass60|recover": 0.508,
-            "earthpower|fireblast|hiddenpowergrass60|shellsmash": 5.584,
-            "earthpower|fireblast|hiddenpowergrass60|stealthrock": 0.508,
-            "earthpower|fireblast|hiddenpowergrass60|toxic": 0.508,
+            "earthpower|fireblast|hiddenpowergrass|recover": 0.508,
+            "earthpower|fireblast|hiddenpowergrass|shellsmash": 5.584,
+            "earthpower|fireblast|hiddenpowergrass|stealthrock": 0.508,
+            "earthpower|fireblast|hiddenpowergrass|toxic": 0.508,
             "earthpower|fireblast|recover|shellsmash": 1.015,
             "earthpower|fireblast|recover|stealthrock": 1.015,
             "earthpower|fireblast|stealthrock|toxic": 0.508,
-            "earthpower|hiddenpowergrass60|lavaplume|recover": 1.523,
-            "earthpower|hiddenpowergrass60|lavaplume|shellsmash": 1.523,
-            "earthpower|hiddenpowergrass60|lavaplume|stealthrock": 0.508,
-            "earthpower|hiddenpowergrass60|lavaplume|toxic": 1.015,
+            "earthpower|hiddenpowergrass|lavaplume|recover": 1.523,
+            "earthpower|hiddenpowergrass|lavaplume|shellsmash": 1.523,
+            "earthpower|hiddenpowergrass|lavaplume|stealthrock": 0.508,
+            "earthpower|hiddenpowergrass|lavaplume|toxic": 1.015,
             "earthpower|lavaplume|recover|shellsmash": 3.046,
             "earthpower|lavaplume|recover|stealthrock": 1.015,
             "earthpower|lavaplume|recover|toxic": 0.508,
             "earthpower|lavaplume|stealthrock|toxic": 2.03,
-            "fireblast|hiddenpowergrass60|recover|shellsmash": 3.046,
-            "fireblast|hiddenpowergrass60|recover|stealthrock": 0.508,
-            "fireblast|hiddenpowergrass60|recover|toxic": 0.508,
-            "fireblast|hiddenpowergrass60|stealthrock|toxic": 1.523,
+            "fireblast|hiddenpowergrass|recover|shellsmash": 3.046,
+            "fireblast|hiddenpowergrass|recover|stealthrock": 0.508,
+            "fireblast|hiddenpowergrass|recover|toxic": 0.508,
+            "fireblast|hiddenpowergrass|stealthrock|toxic": 1.523,
             "fireblast|recover|stealthrock|toxic": 1.015,
-            "hiddenpowergrass60|lavaplume|recover|shellsmash": 4.569,
-            "hiddenpowergrass60|lavaplume|recover|stealthrock": 1.523,
-            "hiddenpowergrass60|lavaplume|recover|toxic": 2.03,
-            "hiddenpowergrass60|lavaplume|stealthrock|toxic": 0.508,
+            "hiddenpowergrass|lavaplume|recover|shellsmash": 4.569,
+            "hiddenpowergrass|lavaplume|recover|stealthrock": 1.523,
+            "hiddenpowergrass|lavaplume|recover|toxic": 2.03,
+            "hiddenpowergrass|lavaplume|stealthrock|toxic": 0.508,
             "lavaplume|recover|stealthrock|toxic": 2.03
         },
         "spreads": [
@@ -21909,7 +21909,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 36.81
             ],
             [
@@ -21925,7 +21925,7 @@
                 61.145
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 35.992
             ],
             [
@@ -21938,22 +21938,22 @@
             ]
         ],
         "sets": {
-            "earthquake|fireblast|focusblast|hiddenpowergrass60": 6.953,
-            "earthquake|fireblast|focusblast|hiddenpowerice60": 7.362,
+            "earthquake|fireblast|focusblast|hiddenpowergrass": 6.953,
+            "earthquake|fireblast|focusblast|hiddenpowerice": 7.362,
             "earthquake|fireblast|focusblast|substitute": 6.339,
             "earthquake|fireblast|focusblast|thunderbolt": 6.748,
-            "earthquake|fireblast|hiddenpowergrass60|substitute": 5.93,
-            "earthquake|fireblast|hiddenpowergrass60|thunderbolt": 6.135,
-            "earthquake|fireblast|hiddenpowerice60|substitute": 5.112,
-            "earthquake|fireblast|hiddenpowerice60|thunderbolt": 8.384,
+            "earthquake|fireblast|hiddenpowergrass|substitute": 5.93,
+            "earthquake|fireblast|hiddenpowergrass|thunderbolt": 6.135,
+            "earthquake|fireblast|hiddenpowerice|substitute": 5.112,
+            "earthquake|fireblast|hiddenpowerice|thunderbolt": 8.384,
             "earthquake|fireblast|substitute|thunderbolt": 8.18,
-            "fireblast|focusblast|hiddenpowergrass60|substitute": 5.521,
-            "fireblast|focusblast|hiddenpowergrass60|thunderbolt": 5.726,
-            "fireblast|focusblast|hiddenpowerice60|substitute": 5.112,
-            "fireblast|focusblast|hiddenpowerice60|thunderbolt": 5.112,
+            "fireblast|focusblast|hiddenpowergrass|substitute": 5.521,
+            "fireblast|focusblast|hiddenpowergrass|thunderbolt": 5.726,
+            "fireblast|focusblast|hiddenpowerice|substitute": 5.112,
+            "fireblast|focusblast|hiddenpowerice|thunderbolt": 5.112,
             "fireblast|focusblast|substitute|thunderbolt": 5.93,
-            "fireblast|hiddenpowergrass60|substitute|thunderbolt": 5.726,
-            "fireblast|hiddenpowerice60|substitute|thunderbolt": 5.726
+            "fireblast|hiddenpowergrass|substitute|thunderbolt": 5.726,
+            "fireblast|hiddenpowerice|substitute|thunderbolt": 5.726
         },
         "spreads": [
             [
@@ -21995,7 +21995,7 @@
                 100.0
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 50.334
             ],
             [
@@ -22003,7 +22003,7 @@
                 100.0
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 49.666
             ],
             [
@@ -22012,10 +22012,10 @@
             ]
         ],
         "sets": {
-            "flashcannon|hiddenpowerfire60|substitute|thunderbolt": 10.702,
-            "flashcannon|hiddenpowerfire60|thunderbolt|voltswitch": 38.963,
-            "flashcannon|hiddenpowerice60|substitute|thunderbolt": 11.873,
-            "flashcannon|hiddenpowerice60|thunderbolt|voltswitch": 38.462
+            "flashcannon|hiddenpowerfire|substitute|thunderbolt": 10.702,
+            "flashcannon|hiddenpowerfire|thunderbolt|voltswitch": 38.963,
+            "flashcannon|hiddenpowerice|substitute|thunderbolt": 11.873,
+            "flashcannon|hiddenpowerice|thunderbolt|voltswitch": 38.462
         },
         "spreads": [
             [
@@ -22315,7 +22315,7 @@
         ],
         "moves": [
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 46.237
             ],
             [
@@ -22331,7 +22331,7 @@
                 100.0
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 53.763
             ],
             [
@@ -22340,10 +22340,10 @@
             ]
         ],
         "sets": {
-            "flamethrower|hiddenpowergrass60|thunderbolt|voltswitch": 10.753,
-            "flamethrower|hiddenpowerice60|thunderbolt|voltswitch": 11.828,
-            "hiddenpowergrass60|overheat|thunderbolt|voltswitch": 35.484,
-            "hiddenpowerice60|overheat|thunderbolt|voltswitch": 41.935
+            "flamethrower|hiddenpowergrass|thunderbolt|voltswitch": 10.753,
+            "flamethrower|hiddenpowerice|thunderbolt|voltswitch": 11.828,
+            "hiddenpowergrass|overheat|thunderbolt|voltswitch": 35.484,
+            "hiddenpowerice|overheat|thunderbolt|voltswitch": 41.935
         },
         "spreads": [
             [
@@ -22373,7 +22373,7 @@
                 100.0
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 48.363
             ],
             [
@@ -22385,13 +22385,13 @@
                 100.0
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 51.637
             ]
         ],
         "sets": {
-            "hiddenpowergrass60|overheat|thunderbolt|voltswitch": 51.637,
-            "hiddenpowerice60|overheat|thunderbolt|voltswitch": 48.363
+            "hiddenpowergrass|overheat|thunderbolt|voltswitch": 51.637,
+            "hiddenpowerice|overheat|thunderbolt|voltswitch": 48.363
         },
         "spreads": [
             [
@@ -22483,7 +22483,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 46.524
             ],
             [
@@ -22512,16 +22512,16 @@
             ]
         ],
         "sets": {
-            "gigadrain|hiddenpowerfire60|leechseed|spikes": 6.952,
-            "gigadrain|hiddenpowerfire60|leechseed|spikyshield": 3.743,
-            "gigadrain|hiddenpowerfire60|leechseed|suckerpunch": 7.487,
-            "gigadrain|hiddenpowerfire60|leechseed|toxic": 5.882,
-            "gigadrain|hiddenpowerfire60|spikes|spikyshield": 5.882,
-            "gigadrain|hiddenpowerfire60|spikes|suckerpunch": 3.209,
-            "gigadrain|hiddenpowerfire60|spikes|toxic": 2.674,
-            "gigadrain|hiddenpowerfire60|spikyshield|suckerpunch": 2.674,
-            "gigadrain|hiddenpowerfire60|spikyshield|toxic": 3.743,
-            "gigadrain|hiddenpowerfire60|suckerpunch|toxic": 4.278,
+            "gigadrain|hiddenpowerfire|leechseed|spikes": 6.952,
+            "gigadrain|hiddenpowerfire|leechseed|spikyshield": 3.743,
+            "gigadrain|hiddenpowerfire|leechseed|suckerpunch": 7.487,
+            "gigadrain|hiddenpowerfire|leechseed|toxic": 5.882,
+            "gigadrain|hiddenpowerfire|spikes|spikyshield": 5.882,
+            "gigadrain|hiddenpowerfire|spikes|suckerpunch": 3.209,
+            "gigadrain|hiddenpowerfire|spikes|toxic": 2.674,
+            "gigadrain|hiddenpowerfire|spikyshield|suckerpunch": 2.674,
+            "gigadrain|hiddenpowerfire|spikyshield|toxic": 3.743,
+            "gigadrain|hiddenpowerfire|suckerpunch|toxic": 4.278,
             "gigadrain|leechseed|spikes|spikyshield": 4.278,
             "gigadrain|leechseed|spikes|suckerpunch": 5.348,
             "gigadrain|leechseed|spikes|toxic": 2.674,
@@ -23415,7 +23415,7 @@
                 36.492
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 51.008
             ],
             [
@@ -23444,20 +23444,20 @@
             ]
         ],
         "sets": {
-            "calmmind|energyball|hiddenpowerfire60|psychic": 2.419,
-            "calmmind|energyball|hiddenpowerfire60|psyshock": 6.855,
+            "calmmind|energyball|hiddenpowerfire|psychic": 2.419,
+            "calmmind|energyball|hiddenpowerfire|psyshock": 6.855,
             "calmmind|energyball|icebeam|psychic": 2.621,
             "calmmind|energyball|icebeam|psyshock": 5.04,
             "calmmind|energyball|psychic|signalbeam": 2.419,
             "calmmind|energyball|psyshock|signalbeam": 3.831,
-            "calmmind|hiddenpowerfire60|icebeam|psychic": 3.024,
-            "calmmind|hiddenpowerfire60|icebeam|psyshock": 6.048,
-            "calmmind|hiddenpowerfire60|psychic|signalbeam": 1.411,
-            "calmmind|hiddenpowerfire60|psyshock|signalbeam": 4.032,
+            "calmmind|hiddenpowerfire|icebeam|psychic": 3.024,
+            "calmmind|hiddenpowerfire|icebeam|psyshock": 6.048,
+            "calmmind|hiddenpowerfire|psychic|signalbeam": 1.411,
+            "calmmind|hiddenpowerfire|psyshock|signalbeam": 4.032,
             "calmmind|icebeam|psychic|signalbeam": 2.218,
             "calmmind|icebeam|psyshock|signalbeam": 6.25,
-            "energyball|healingwish|hiddenpowerfire60|psychic": 0.403,
-            "energyball|healingwish|hiddenpowerfire60|psyshock": 1.411,
+            "energyball|healingwish|hiddenpowerfire|psychic": 0.403,
+            "energyball|healingwish|hiddenpowerfire|psyshock": 1.411,
             "energyball|healingwish|icebeam|psychic": 0.806,
             "energyball|healingwish|icebeam|psyshock": 0.806,
             "energyball|healingwish|psychic|signalbeam": 1.21,
@@ -23466,14 +23466,14 @@
             "energyball|healingwish|psyshock|signalbeam": 1.21,
             "energyball|healingwish|psyshock|stealthrock": 1.008,
             "energyball|healingwish|psyshock|uturn": 2.419,
-            "energyball|hiddenpowerfire60|icebeam|psychic": 1.21,
-            "energyball|hiddenpowerfire60|icebeam|psyshock": 0.605,
-            "energyball|hiddenpowerfire60|psychic|signalbeam": 0.806,
-            "energyball|hiddenpowerfire60|psychic|stealthrock": 0.605,
-            "energyball|hiddenpowerfire60|psychic|uturn": 1.411,
-            "energyball|hiddenpowerfire60|psyshock|signalbeam": 1.008,
-            "energyball|hiddenpowerfire60|psyshock|stealthrock": 1.411,
-            "energyball|hiddenpowerfire60|psyshock|uturn": 1.008,
+            "energyball|hiddenpowerfire|icebeam|psychic": 1.21,
+            "energyball|hiddenpowerfire|icebeam|psyshock": 0.605,
+            "energyball|hiddenpowerfire|psychic|signalbeam": 0.806,
+            "energyball|hiddenpowerfire|psychic|stealthrock": 0.605,
+            "energyball|hiddenpowerfire|psychic|uturn": 1.411,
+            "energyball|hiddenpowerfire|psyshock|signalbeam": 1.008,
+            "energyball|hiddenpowerfire|psyshock|stealthrock": 1.411,
+            "energyball|hiddenpowerfire|psyshock|uturn": 1.008,
             "energyball|icebeam|psychic|signalbeam": 0.806,
             "energyball|icebeam|psychic|stealthrock": 0.403,
             "energyball|icebeam|psychic|uturn": 1.008,
@@ -23484,14 +23484,14 @@
             "energyball|psychic|stealthrock|uturn": 1.613,
             "energyball|psyshock|signalbeam|stealthrock": 0.403,
             "energyball|psyshock|stealthrock|uturn": 1.21,
-            "healingwish|hiddenpowerfire60|icebeam|psychic": 0.806,
-            "healingwish|hiddenpowerfire60|icebeam|psyshock": 1.613,
-            "healingwish|hiddenpowerfire60|psychic|signalbeam": 1.008,
-            "healingwish|hiddenpowerfire60|psychic|stealthrock": 0.605,
-            "healingwish|hiddenpowerfire60|psychic|uturn": 0.605,
-            "healingwish|hiddenpowerfire60|psyshock|signalbeam": 1.613,
-            "healingwish|hiddenpowerfire60|psyshock|stealthrock": 0.806,
-            "healingwish|hiddenpowerfire60|psyshock|uturn": 1.411,
+            "healingwish|hiddenpowerfire|icebeam|psychic": 0.806,
+            "healingwish|hiddenpowerfire|icebeam|psyshock": 1.613,
+            "healingwish|hiddenpowerfire|psychic|signalbeam": 1.008,
+            "healingwish|hiddenpowerfire|psychic|stealthrock": 0.605,
+            "healingwish|hiddenpowerfire|psychic|uturn": 0.605,
+            "healingwish|hiddenpowerfire|psyshock|signalbeam": 1.613,
+            "healingwish|hiddenpowerfire|psyshock|stealthrock": 0.806,
+            "healingwish|hiddenpowerfire|psyshock|uturn": 1.411,
             "healingwish|icebeam|psychic|signalbeam": 0.806,
             "healingwish|icebeam|psychic|stealthrock": 0.202,
             "healingwish|icebeam|psychic|uturn": 0.605,
@@ -23501,15 +23501,15 @@
             "healingwish|psychic|stealthrock|uturn": 0.403,
             "healingwish|psyshock|signalbeam|stealthrock": 0.403,
             "healingwish|psyshock|stealthrock|uturn": 1.008,
-            "hiddenpowerfire60|icebeam|psychic|signalbeam": 0.806,
-            "hiddenpowerfire60|icebeam|psychic|stealthrock": 0.403,
-            "hiddenpowerfire60|icebeam|psychic|uturn": 1.613,
-            "hiddenpowerfire60|icebeam|psyshock|signalbeam": 0.806,
-            "hiddenpowerfire60|icebeam|psyshock|stealthrock": 1.008,
-            "hiddenpowerfire60|icebeam|psyshock|uturn": 1.411,
-            "hiddenpowerfire60|psychic|stealthrock|uturn": 0.202,
-            "hiddenpowerfire60|psyshock|signalbeam|stealthrock": 1.613,
-            "hiddenpowerfire60|psyshock|stealthrock|uturn": 1.008,
+            "hiddenpowerfire|icebeam|psychic|signalbeam": 0.806,
+            "hiddenpowerfire|icebeam|psychic|stealthrock": 0.403,
+            "hiddenpowerfire|icebeam|psychic|uturn": 1.613,
+            "hiddenpowerfire|icebeam|psyshock|signalbeam": 0.806,
+            "hiddenpowerfire|icebeam|psyshock|stealthrock": 1.008,
+            "hiddenpowerfire|icebeam|psyshock|uturn": 1.411,
+            "hiddenpowerfire|psychic|stealthrock|uturn": 0.202,
+            "hiddenpowerfire|psyshock|signalbeam|stealthrock": 1.613,
+            "hiddenpowerfire|psyshock|stealthrock|uturn": 1.008,
             "icebeam|psychic|signalbeam|stealthrock": 0.806,
             "icebeam|psychic|stealthrock|uturn": 0.605,
             "icebeam|psyshock|signalbeam|stealthrock": 0.806,
@@ -24506,7 +24506,7 @@
                 100.0
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 100.0
             ],
             [
@@ -24523,9 +24523,9 @@
             ]
         ],
         "sets": {
-            "encore|hiddenpowerice60|nastyplot|thunderbolt": 32.124,
-            "encore|hiddenpowerice60|substitute|thunderbolt": 27.979,
-            "hiddenpowerice60|nastyplot|substitute|thunderbolt": 39.896
+            "encore|hiddenpowerice|nastyplot|thunderbolt": 32.124,
+            "encore|hiddenpowerice|substitute|thunderbolt": 27.979,
+            "hiddenpowerice|nastyplot|substitute|thunderbolt": 39.896
         },
         "spreads": [
             [
@@ -25690,7 +25690,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 36.158
             ],
             [
@@ -25719,29 +25719,29 @@
             ]
         ],
         "sets": {
-            "auroraveil|blizzard|freezedry|hiddenpowerfire60": 3.955,
+            "auroraveil|blizzard|freezedry|hiddenpowerfire": 3.955,
             "auroraveil|blizzard|freezedry|moonblast": 3.107,
             "auroraveil|blizzard|freezedry|nastyplot": 7.345,
             "auroraveil|blizzard|freezedry|substitute": 4.52,
-            "auroraveil|blizzard|hiddenpowerfire60|moonblast": 2.542,
-            "auroraveil|blizzard|hiddenpowerfire60|substitute": 2.542,
+            "auroraveil|blizzard|hiddenpowerfire|moonblast": 2.542,
+            "auroraveil|blizzard|hiddenpowerfire|substitute": 2.542,
             "auroraveil|blizzard|moonblast|nastyplot": 6.78,
             "auroraveil|blizzard|moonblast|substitute": 3.955,
-            "auroraveil|freezedry|hiddenpowerfire60|moonblast": 3.39,
-            "auroraveil|freezedry|hiddenpowerfire60|substitute": 2.26,
+            "auroraveil|freezedry|hiddenpowerfire|moonblast": 3.39,
+            "auroraveil|freezedry|hiddenpowerfire|substitute": 2.26,
             "auroraveil|freezedry|moonblast|nastyplot": 8.757,
             "auroraveil|freezedry|moonblast|substitute": 3.672,
-            "blizzard|freezedry|hiddenpowerfire60|moonblast": 1.13,
-            "blizzard|freezedry|hiddenpowerfire60|nastyplot": 3.39,
-            "blizzard|freezedry|hiddenpowerfire60|substitute": 3.955,
+            "blizzard|freezedry|hiddenpowerfire|moonblast": 1.13,
+            "blizzard|freezedry|hiddenpowerfire|nastyplot": 3.39,
+            "blizzard|freezedry|hiddenpowerfire|substitute": 3.955,
             "blizzard|freezedry|moonblast|nastyplot": 2.542,
             "blizzard|freezedry|moonblast|substitute": 1.412,
             "blizzard|freezedry|nastyplot|substitute": 8.475,
-            "blizzard|hiddenpowerfire60|moonblast|nastyplot": 2.542,
-            "blizzard|hiddenpowerfire60|moonblast|substitute": 3.955,
+            "blizzard|hiddenpowerfire|moonblast|nastyplot": 2.542,
+            "blizzard|hiddenpowerfire|moonblast|substitute": 3.955,
             "blizzard|moonblast|nastyplot|substitute": 5.367,
-            "freezedry|hiddenpowerfire60|moonblast|nastyplot": 3.672,
-            "freezedry|hiddenpowerfire60|moonblast|substitute": 2.825,
+            "freezedry|hiddenpowerfire|moonblast|nastyplot": 3.672,
+            "freezedry|hiddenpowerfire|moonblast|substitute": 2.825,
             "freezedry|moonblast|nastyplot|substitute": 7.91
         },
         "spreads": [
@@ -26996,7 +26996,7 @@
                 78.906
             ],
             [
-                "hiddenpowerfighting60",
+                "hiddenpowerfighting",
                 73.438
             ],
             [
@@ -27013,9 +27013,9 @@
             ]
         ],
         "sets": {
-            "darkpulse|hiddenpowerfighting60|hypnosis|nastyplot": 25.391,
-            "darkpulse|hiddenpowerfighting60|hypnosis|powergem": 21.094,
-            "darkpulse|hiddenpowerfighting60|nastyplot|powergem": 26.953,
+            "darkpulse|hiddenpowerfighting|hypnosis|nastyplot": 25.391,
+            "darkpulse|hiddenpowerfighting|hypnosis|powergem": 21.094,
+            "darkpulse|hiddenpowerfighting|nastyplot|powergem": 26.953,
             "darkpulse|hypnosis|nastyplot|powergem": 26.562
         },
         "spreads": [
@@ -27293,7 +27293,7 @@
                 52.033
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 65.854
             ],
             [
@@ -27314,15 +27314,15 @@
             ]
         ],
         "sets": {
-            "grassknot|hiddenpowerice60|irontail|volttackle": 19.512,
-            "grassknot|hiddenpowerice60|knockoff|volttackle": 10.569,
-            "grassknot|hiddenpowerice60|voltswitch|volttackle": 12.195,
+            "grassknot|hiddenpowerice|irontail|volttackle": 19.512,
+            "grassknot|hiddenpowerice|knockoff|volttackle": 10.569,
+            "grassknot|hiddenpowerice|voltswitch|volttackle": 12.195,
             "grassknot|irontail|knockoff|volttackle": 8.13,
             "grassknot|irontail|voltswitch|volttackle": 9.756,
             "grassknot|knockoff|voltswitch|volttackle": 10.569,
-            "hiddenpowerice60|irontail|knockoff|volttackle": 9.756,
-            "hiddenpowerice60|irontail|voltswitch|volttackle": 7.317,
-            "hiddenpowerice60|knockoff|voltswitch|volttackle": 6.504,
+            "hiddenpowerice|irontail|knockoff|volttackle": 9.756,
+            "hiddenpowerice|irontail|voltswitch|volttackle": 7.317,
+            "hiddenpowerice|knockoff|voltswitch|volttackle": 6.504,
             "irontail|knockoff|voltswitch|volttackle": 5.691
         },
         "spreads": [
@@ -27357,7 +27357,7 @@
                 67.677
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 63.636
             ],
             [
@@ -27374,15 +27374,15 @@
             ]
         ],
         "sets": {
-            "grassknot|hiddenpowerice60|irontail|volttackle": 15.152,
-            "grassknot|hiddenpowerice60|knockoff|volttackle": 11.111,
-            "grassknot|hiddenpowerice60|voltswitch|volttackle": 10.101,
+            "grassknot|hiddenpowerice|irontail|volttackle": 15.152,
+            "grassknot|hiddenpowerice|knockoff|volttackle": 11.111,
+            "grassknot|hiddenpowerice|voltswitch|volttackle": 10.101,
             "grassknot|irontail|knockoff|volttackle": 17.172,
             "grassknot|irontail|voltswitch|volttackle": 6.061,
             "grassknot|knockoff|voltswitch|volttackle": 8.081,
-            "hiddenpowerice60|irontail|knockoff|volttackle": 15.152,
-            "hiddenpowerice60|irontail|voltswitch|volttackle": 4.04,
-            "hiddenpowerice60|knockoff|voltswitch|volttackle": 8.081,
+            "hiddenpowerice|irontail|knockoff|volttackle": 15.152,
+            "hiddenpowerice|irontail|voltswitch|volttackle": 4.04,
+            "hiddenpowerice|knockoff|voltswitch|volttackle": 8.081,
             "irontail|knockoff|voltswitch|volttackle": 5.051
         },
         "spreads": [
@@ -27413,7 +27413,7 @@
                 72.414
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 66.667
             ],
             [
@@ -27434,15 +27434,15 @@
             ]
         ],
         "sets": {
-            "grassknot|hiddenpowerice60|irontail|volttackle": 13.793,
-            "grassknot|hiddenpowerice60|knockoff|volttackle": 14.943,
-            "grassknot|hiddenpowerice60|voltswitch|volttackle": 5.747,
+            "grassknot|hiddenpowerice|irontail|volttackle": 13.793,
+            "grassknot|hiddenpowerice|knockoff|volttackle": 14.943,
+            "grassknot|hiddenpowerice|voltswitch|volttackle": 5.747,
             "grassknot|irontail|knockoff|volttackle": 18.391,
             "grassknot|irontail|voltswitch|volttackle": 2.299,
             "grassknot|knockoff|voltswitch|volttackle": 5.747,
-            "hiddenpowerice60|irontail|knockoff|volttackle": 20.69,
-            "hiddenpowerice60|irontail|voltswitch|volttackle": 5.747,
-            "hiddenpowerice60|knockoff|voltswitch|volttackle": 5.747,
+            "hiddenpowerice|irontail|knockoff|volttackle": 20.69,
+            "hiddenpowerice|irontail|voltswitch|volttackle": 5.747,
+            "hiddenpowerice|knockoff|voltswitch|volttackle": 5.747,
             "irontail|knockoff|voltswitch|volttackle": 6.897
         },
         "spreads": [
@@ -27473,7 +27473,7 @@
                 68.235
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 62.353
             ],
             [
@@ -27494,15 +27494,15 @@
             ]
         ],
         "sets": {
-            "grassknot|hiddenpowerice60|irontail|volttackle": 18.824,
-            "grassknot|hiddenpowerice60|knockoff|volttackle": 15.294,
-            "grassknot|hiddenpowerice60|voltswitch|volttackle": 4.706,
+            "grassknot|hiddenpowerice|irontail|volttackle": 18.824,
+            "grassknot|hiddenpowerice|knockoff|volttackle": 15.294,
+            "grassknot|hiddenpowerice|voltswitch|volttackle": 4.706,
             "grassknot|irontail|knockoff|volttackle": 15.294,
             "grassknot|irontail|voltswitch|volttackle": 5.882,
             "grassknot|knockoff|voltswitch|volttackle": 8.235,
-            "hiddenpowerice60|irontail|knockoff|volttackle": 12.941,
-            "hiddenpowerice60|irontail|voltswitch|volttackle": 2.353,
-            "hiddenpowerice60|knockoff|voltswitch|volttackle": 8.235,
+            "hiddenpowerice|irontail|knockoff|volttackle": 12.941,
+            "hiddenpowerice|irontail|voltswitch|volttackle": 2.353,
+            "hiddenpowerice|knockoff|voltswitch|volttackle": 8.235,
             "irontail|knockoff|voltswitch|volttackle": 8.235
         },
         "spreads": [
@@ -27529,7 +27529,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 67.544
             ],
             [
@@ -27554,15 +27554,15 @@
             ]
         ],
         "sets": {
-            "grassknot|hiddenpowerice60|irontail|volttackle": 16.667,
-            "grassknot|hiddenpowerice60|knockoff|volttackle": 13.158,
-            "grassknot|hiddenpowerice60|voltswitch|volttackle": 8.772,
+            "grassknot|hiddenpowerice|irontail|volttackle": 16.667,
+            "grassknot|hiddenpowerice|knockoff|volttackle": 13.158,
+            "grassknot|hiddenpowerice|voltswitch|volttackle": 8.772,
             "grassknot|irontail|knockoff|volttackle": 18.421,
             "grassknot|irontail|voltswitch|volttackle": 2.632,
             "grassknot|knockoff|voltswitch|volttackle": 5.263,
-            "hiddenpowerice60|irontail|knockoff|volttackle": 15.789,
-            "hiddenpowerice60|irontail|voltswitch|volttackle": 7.018,
-            "hiddenpowerice60|knockoff|voltswitch|volttackle": 6.14,
+            "hiddenpowerice|irontail|knockoff|volttackle": 15.789,
+            "hiddenpowerice|irontail|voltswitch|volttackle": 7.018,
+            "hiddenpowerice|knockoff|voltswitch|volttackle": 6.14,
             "irontail|knockoff|voltswitch|volttackle": 6.14
         },
         "spreads": [
@@ -27589,7 +27589,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 59.633
             ],
             [
@@ -27614,15 +27614,15 @@
             ]
         ],
         "sets": {
-            "grassknot|hiddenpowerice60|irontail|volttackle": 11.009,
-            "grassknot|hiddenpowerice60|knockoff|volttackle": 11.927,
-            "grassknot|hiddenpowerice60|voltswitch|volttackle": 6.422,
+            "grassknot|hiddenpowerice|irontail|volttackle": 11.009,
+            "grassknot|hiddenpowerice|knockoff|volttackle": 11.927,
+            "grassknot|hiddenpowerice|voltswitch|volttackle": 6.422,
             "grassknot|irontail|knockoff|volttackle": 21.101,
             "grassknot|irontail|voltswitch|volttackle": 3.67,
             "grassknot|knockoff|voltswitch|volttackle": 5.505,
-            "hiddenpowerice60|irontail|knockoff|volttackle": 13.761,
-            "hiddenpowerice60|irontail|voltswitch|volttackle": 10.092,
-            "hiddenpowerice60|knockoff|voltswitch|volttackle": 6.422,
+            "hiddenpowerice|irontail|knockoff|volttackle": 13.761,
+            "hiddenpowerice|irontail|voltswitch|volttackle": 10.092,
+            "hiddenpowerice|knockoff|voltswitch|volttackle": 6.422,
             "irontail|knockoff|voltswitch|volttackle": 10.092
         },
         "spreads": [
@@ -27669,20 +27669,20 @@
                 44.444
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 60.606
             ]
         ],
         "sets": {
-            "grassknot|hiddenpowerice60|irontail|volttackle": 9.091,
-            "grassknot|hiddenpowerice60|knockoff|volttackle": 17.172,
-            "grassknot|hiddenpowerice60|voltswitch|volttackle": 8.081,
+            "grassknot|hiddenpowerice|irontail|volttackle": 9.091,
+            "grassknot|hiddenpowerice|knockoff|volttackle": 17.172,
+            "grassknot|hiddenpowerice|voltswitch|volttackle": 8.081,
             "grassknot|irontail|knockoff|volttackle": 16.162,
             "grassknot|irontail|voltswitch|volttackle": 7.071,
             "grassknot|knockoff|voltswitch|volttackle": 5.051,
-            "hiddenpowerice60|irontail|knockoff|volttackle": 13.131,
-            "hiddenpowerice60|irontail|voltswitch|volttackle": 9.091,
-            "hiddenpowerice60|knockoff|voltswitch|volttackle": 4.04,
+            "hiddenpowerice|irontail|knockoff|volttackle": 13.131,
+            "hiddenpowerice|irontail|voltswitch|volttackle": 9.091,
+            "hiddenpowerice|knockoff|voltswitch|volttackle": 4.04,
             "irontail|knockoff|voltswitch|volttackle": 11.111
         },
         "spreads": [
@@ -27709,7 +27709,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 66.364
             ],
             [
@@ -27734,15 +27734,15 @@
             ]
         ],
         "sets": {
-            "grassknot|hiddenpowerice60|irontail|volttackle": 11.818,
-            "grassknot|hiddenpowerice60|knockoff|volttackle": 12.727,
-            "grassknot|hiddenpowerice60|voltswitch|volttackle": 10.0,
+            "grassknot|hiddenpowerice|irontail|volttackle": 11.818,
+            "grassknot|hiddenpowerice|knockoff|volttackle": 12.727,
+            "grassknot|hiddenpowerice|voltswitch|volttackle": 10.0,
             "grassknot|irontail|knockoff|volttackle": 19.091,
             "grassknot|irontail|voltswitch|volttackle": 5.455,
             "grassknot|knockoff|voltswitch|volttackle": 6.364,
-            "hiddenpowerice60|irontail|knockoff|volttackle": 11.818,
-            "hiddenpowerice60|irontail|voltswitch|volttackle": 10.0,
-            "hiddenpowerice60|knockoff|voltswitch|volttackle": 10.0,
+            "hiddenpowerice|irontail|knockoff|volttackle": 11.818,
+            "hiddenpowerice|irontail|voltswitch|volttackle": 10.0,
+            "hiddenpowerice|knockoff|voltswitch|volttackle": 10.0,
             "irontail|knockoff|voltswitch|volttackle": 2.727
         },
         "spreads": [
@@ -27903,7 +27903,7 @@
                 100.0
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 100.0
             ],
             [
@@ -27916,9 +27916,9 @@
             ]
         ],
         "sets": {
-            "encore|hiddenpowerice60|nastyplot|thunderbolt": 34.01,
-            "encore|hiddenpowerice60|substitute|thunderbolt": 26.396,
-            "hiddenpowerice60|nastyplot|substitute|thunderbolt": 39.594
+            "encore|hiddenpowerice|nastyplot|thunderbolt": 34.01,
+            "encore|hiddenpowerice|substitute|thunderbolt": 26.396,
+            "hiddenpowerice|nastyplot|substitute|thunderbolt": 39.594
         },
         "spreads": [
             [
@@ -28338,7 +28338,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 75.148
             ],
             [
@@ -28359,9 +28359,9 @@
             ]
         ],
         "sets": {
-            "hiddenpowerfire60|hydropump|moonblast|psychic": 21.893,
-            "hiddenpowerfire60|hydropump|moonblast|scald": 27.219,
-            "hiddenpowerfire60|moonblast|psychic|scald": 26.036,
+            "hiddenpowerfire|hydropump|moonblast|psychic": 21.893,
+            "hiddenpowerfire|hydropump|moonblast|scald": 27.219,
+            "hiddenpowerfire|moonblast|psychic|scald": 26.036,
             "hydropump|moonblast|psychic|scald": 24.852
         },
         "spreads": [
@@ -28887,7 +28887,7 @@
                 63.83
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 55.319
             ],
             [
@@ -28914,24 +28914,24 @@
         "sets": {
             "encore|focusblast|grassknot|thunderbolt": 1.064,
             "encore|focusblast|grassknot|voltswitch": 4.255,
-            "encore|focusblast|hiddenpowerice60|thunderbolt": 7.447,
-            "encore|focusblast|hiddenpowerice60|voltswitch": 2.128,
+            "encore|focusblast|hiddenpowerice|thunderbolt": 7.447,
+            "encore|focusblast|hiddenpowerice|voltswitch": 2.128,
             "encore|focusblast|nastyplot|thunderbolt": 11.702,
             "encore|focusblast|thunderbolt|voltswitch": 2.128,
-            "encore|grassknot|hiddenpowerice60|thunderbolt": 6.383,
-            "encore|grassknot|hiddenpowerice60|voltswitch": 3.191,
+            "encore|grassknot|hiddenpowerice|thunderbolt": 6.383,
+            "encore|grassknot|hiddenpowerice|voltswitch": 3.191,
             "encore|grassknot|nastyplot|thunderbolt": 8.511,
             "encore|grassknot|thunderbolt|voltswitch": 6.383,
-            "encore|hiddenpowerice60|nastyplot|thunderbolt": 9.574,
-            "encore|hiddenpowerice60|thunderbolt|voltswitch": 1.064,
-            "focusblast|grassknot|hiddenpowerice60|thunderbolt": 1.064,
-            "focusblast|grassknot|hiddenpowerice60|voltswitch": 3.191,
+            "encore|hiddenpowerice|nastyplot|thunderbolt": 9.574,
+            "encore|hiddenpowerice|thunderbolt|voltswitch": 1.064,
+            "focusblast|grassknot|hiddenpowerice|thunderbolt": 1.064,
+            "focusblast|grassknot|hiddenpowerice|voltswitch": 3.191,
             "focusblast|grassknot|nastyplot|thunderbolt": 9.574,
             "focusblast|grassknot|thunderbolt|voltswitch": 1.064,
-            "focusblast|hiddenpowerice60|nastyplot|thunderbolt": 10.638,
-            "focusblast|hiddenpowerice60|thunderbolt|voltswitch": 1.064,
-            "grassknot|hiddenpowerice60|nastyplot|thunderbolt": 5.319,
-            "grassknot|hiddenpowerice60|thunderbolt|voltswitch": 4.255
+            "focusblast|hiddenpowerice|nastyplot|thunderbolt": 10.638,
+            "focusblast|hiddenpowerice|thunderbolt|voltswitch": 1.064,
+            "grassknot|hiddenpowerice|nastyplot|thunderbolt": 5.319,
+            "grassknot|hiddenpowerice|thunderbolt|voltswitch": 4.255
         },
         "spreads": [
             [
@@ -29051,7 +29051,7 @@
                 62.025
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 63.291
             ],
             [
@@ -29073,19 +29073,19 @@
         ],
         "sets": {
             "aurasphere|calmmind|extrasensory|thunderbolt": 13.291,
-            "aurasphere|calmmind|hiddenpowerice60|thunderbolt": 12.869,
+            "aurasphere|calmmind|hiddenpowerice|thunderbolt": 12.869,
             "aurasphere|calmmind|substitute|thunderbolt": 9.072,
-            "aurasphere|extrasensory|hiddenpowerice60|thunderbolt": 3.586,
-            "aurasphere|extrasensory|hiddenpowerice60|voltswitch": 6.329,
+            "aurasphere|extrasensory|hiddenpowerice|thunderbolt": 3.586,
+            "aurasphere|extrasensory|hiddenpowerice|voltswitch": 6.329,
             "aurasphere|extrasensory|substitute|thunderbolt": 2.532,
             "aurasphere|extrasensory|thunderbolt|voltswitch": 5.274,
-            "aurasphere|hiddenpowerice60|substitute|thunderbolt": 3.376,
-            "aurasphere|hiddenpowerice60|thunderbolt|voltswitch": 5.696,
-            "calmmind|extrasensory|hiddenpowerice60|thunderbolt": 15.823,
+            "aurasphere|hiddenpowerice|substitute|thunderbolt": 3.376,
+            "aurasphere|hiddenpowerice|thunderbolt|voltswitch": 5.696,
+            "calmmind|extrasensory|hiddenpowerice|thunderbolt": 15.823,
             "calmmind|extrasensory|substitute|thunderbolt": 6.54,
-            "calmmind|hiddenpowerice60|substitute|thunderbolt": 7.595,
-            "extrasensory|hiddenpowerice60|substitute|thunderbolt": 3.586,
-            "extrasensory|hiddenpowerice60|thunderbolt|voltswitch": 4.43
+            "calmmind|hiddenpowerice|substitute|thunderbolt": 7.595,
+            "extrasensory|hiddenpowerice|substitute|thunderbolt": 3.586,
+            "extrasensory|hiddenpowerice|thunderbolt|voltswitch": 4.43
         },
         "spreads": [
             [
@@ -30044,7 +30044,7 @@
                 100.0
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 39.226
             ],
             [
@@ -30057,8 +30057,8 @@
             ]
         ],
         "sets": {
-            "bugbuzz|hiddenpowerfire60|moonblast|quiverdance": 19.484,
-            "bugbuzz|hiddenpowerfire60|moonblast|roost": 19.742,
+            "bugbuzz|hiddenpowerfire|moonblast|quiverdance": 19.484,
+            "bugbuzz|hiddenpowerfire|moonblast|roost": 19.742,
             "bugbuzz|moonblast|quiverdance|roost": 60.774
         },
         "spreads": [
@@ -30129,7 +30129,7 @@
                 46.331
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 53.04
             ],
             [
@@ -30138,17 +30138,17 @@
             ]
         ],
         "sets": {
-            "gigadrain|hiddenpowerfire60|leafstorm|sludgebomb": 1.677,
-            "gigadrain|hiddenpowerfire60|sleeppowder|sludgebomb": 1.887,
-            "gigadrain|hiddenpowerfire60|sleeppowder|spikes": 2.096,
-            "gigadrain|hiddenpowerfire60|sleeppowder|synthesis": 1.677,
-            "gigadrain|hiddenpowerfire60|sleeppowder|toxicspikes": 1.468,
-            "gigadrain|hiddenpowerfire60|sludgebomb|spikes": 0.839,
-            "gigadrain|hiddenpowerfire60|sludgebomb|synthesis": 1.048,
-            "gigadrain|hiddenpowerfire60|sludgebomb|toxicspikes": 1.258,
-            "gigadrain|hiddenpowerfire60|spikes|synthesis": 2.096,
-            "gigadrain|hiddenpowerfire60|spikes|toxicspikes": 1.677,
-            "gigadrain|hiddenpowerfire60|synthesis|toxicspikes": 2.516,
+            "gigadrain|hiddenpowerfire|leafstorm|sludgebomb": 1.677,
+            "gigadrain|hiddenpowerfire|sleeppowder|sludgebomb": 1.887,
+            "gigadrain|hiddenpowerfire|sleeppowder|spikes": 2.096,
+            "gigadrain|hiddenpowerfire|sleeppowder|synthesis": 1.677,
+            "gigadrain|hiddenpowerfire|sleeppowder|toxicspikes": 1.468,
+            "gigadrain|hiddenpowerfire|sludgebomb|spikes": 0.839,
+            "gigadrain|hiddenpowerfire|sludgebomb|synthesis": 1.048,
+            "gigadrain|hiddenpowerfire|sludgebomb|toxicspikes": 1.258,
+            "gigadrain|hiddenpowerfire|spikes|synthesis": 2.096,
+            "gigadrain|hiddenpowerfire|spikes|toxicspikes": 1.677,
+            "gigadrain|hiddenpowerfire|synthesis|toxicspikes": 2.516,
             "gigadrain|sleeppowder|sludgebomb|spikes": 2.725,
             "gigadrain|sleeppowder|sludgebomb|synthesis": 1.677,
             "gigadrain|sleeppowder|sludgebomb|toxicspikes": 1.887,
@@ -30159,22 +30159,22 @@
             "gigadrain|sludgebomb|spikes|toxicspikes": 1.677,
             "gigadrain|sludgebomb|synthesis|toxicspikes": 1.048,
             "gigadrain|spikes|synthesis|toxicspikes": 2.096,
-            "hiddenpowerfire60|leafstorm|sleeppowder|sludgebomb": 1.887,
-            "hiddenpowerfire60|leafstorm|sleeppowder|spikes": 3.354,
-            "hiddenpowerfire60|leafstorm|sleeppowder|synthesis": 2.516,
-            "hiddenpowerfire60|leafstorm|sleeppowder|toxicspikes": 1.677,
-            "hiddenpowerfire60|leafstorm|sludgebomb|spikes": 1.258,
-            "hiddenpowerfire60|leafstorm|sludgebomb|synthesis": 1.468,
-            "hiddenpowerfire60|leafstorm|sludgebomb|toxicspikes": 1.468,
-            "hiddenpowerfire60|leafstorm|spikes|synthesis": 2.935,
-            "hiddenpowerfire60|leafstorm|spikes|toxicspikes": 3.145,
-            "hiddenpowerfire60|leafstorm|synthesis|toxicspikes": 2.516,
-            "hiddenpowerfire60|sleeppowder|sludgebomb|spikes": 1.677,
-            "hiddenpowerfire60|sleeppowder|sludgebomb|synthesis": 2.306,
-            "hiddenpowerfire60|sleeppowder|sludgebomb|toxicspikes": 1.468,
-            "hiddenpowerfire60|sludgebomb|spikes|synthesis": 2.935,
-            "hiddenpowerfire60|sludgebomb|spikes|toxicspikes": 2.306,
-            "hiddenpowerfire60|sludgebomb|synthesis|toxicspikes": 1.887,
+            "hiddenpowerfire|leafstorm|sleeppowder|sludgebomb": 1.887,
+            "hiddenpowerfire|leafstorm|sleeppowder|spikes": 3.354,
+            "hiddenpowerfire|leafstorm|sleeppowder|synthesis": 2.516,
+            "hiddenpowerfire|leafstorm|sleeppowder|toxicspikes": 1.677,
+            "hiddenpowerfire|leafstorm|sludgebomb|spikes": 1.258,
+            "hiddenpowerfire|leafstorm|sludgebomb|synthesis": 1.468,
+            "hiddenpowerfire|leafstorm|sludgebomb|toxicspikes": 1.468,
+            "hiddenpowerfire|leafstorm|spikes|synthesis": 2.935,
+            "hiddenpowerfire|leafstorm|spikes|toxicspikes": 3.145,
+            "hiddenpowerfire|leafstorm|synthesis|toxicspikes": 2.516,
+            "hiddenpowerfire|sleeppowder|sludgebomb|spikes": 1.677,
+            "hiddenpowerfire|sleeppowder|sludgebomb|synthesis": 2.306,
+            "hiddenpowerfire|sleeppowder|sludgebomb|toxicspikes": 1.468,
+            "hiddenpowerfire|sludgebomb|spikes|synthesis": 2.935,
+            "hiddenpowerfire|sludgebomb|spikes|toxicspikes": 2.306,
+            "hiddenpowerfire|sludgebomb|synthesis|toxicspikes": 1.887,
             "leafstorm|sleeppowder|sludgebomb|spikes": 2.096,
             "leafstorm|sleeppowder|sludgebomb|synthesis": 2.725,
             "leafstorm|sleeppowder|sludgebomb|toxicspikes": 2.935,
@@ -30234,7 +30234,7 @@
                 38.202
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 51.685
             ],
             [
@@ -30263,14 +30263,14 @@
             ]
         ],
         "sets": {
-            "hiddenpowerice60|painsplit|shadowball|thunderbolt": 5.618,
-            "hiddenpowerice60|painsplit|shadowball|voltswitch": 6.742,
-            "hiddenpowerice60|shadowball|substitute|thunderbolt": 10.112,
-            "hiddenpowerice60|shadowball|thunderbolt|trick": 4.494,
-            "hiddenpowerice60|shadowball|thunderbolt|voltswitch": 11.236,
-            "hiddenpowerice60|shadowball|thunderbolt|willowisp": 3.371,
-            "hiddenpowerice60|shadowball|trick|voltswitch": 4.494,
-            "hiddenpowerice60|shadowball|voltswitch|willowisp": 5.618,
+            "hiddenpowerice|painsplit|shadowball|thunderbolt": 5.618,
+            "hiddenpowerice|painsplit|shadowball|voltswitch": 6.742,
+            "hiddenpowerice|shadowball|substitute|thunderbolt": 10.112,
+            "hiddenpowerice|shadowball|thunderbolt|trick": 4.494,
+            "hiddenpowerice|shadowball|thunderbolt|voltswitch": 11.236,
+            "hiddenpowerice|shadowball|thunderbolt|willowisp": 3.371,
+            "hiddenpowerice|shadowball|trick|voltswitch": 4.494,
+            "hiddenpowerice|shadowball|voltswitch|willowisp": 5.618,
             "painsplit|shadowball|substitute|thunderbolt": 8.989,
             "painsplit|shadowball|thunderbolt|voltswitch": 5.618,
             "painsplit|shadowball|thunderbolt|willowisp": 4.494,
@@ -30473,7 +30473,7 @@
                 100.0
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 47.917
             ],
             [
@@ -30486,11 +30486,11 @@
             ]
         ],
         "sets": {
-            "hiddenpowerice60|overheat|painsplit|thunderbolt": 13.542,
-            "hiddenpowerice60|overheat|painsplit|voltswitch": 5.208,
-            "hiddenpowerice60|overheat|thunderbolt|voltswitch": 9.375,
-            "hiddenpowerice60|overheat|thunderbolt|willowisp": 16.667,
-            "hiddenpowerice60|overheat|voltswitch|willowisp": 3.125,
+            "hiddenpowerice|overheat|painsplit|thunderbolt": 13.542,
+            "hiddenpowerice|overheat|painsplit|voltswitch": 5.208,
+            "hiddenpowerice|overheat|thunderbolt|voltswitch": 9.375,
+            "hiddenpowerice|overheat|thunderbolt|willowisp": 16.667,
+            "hiddenpowerice|overheat|voltswitch|willowisp": 3.125,
             "overheat|painsplit|thunderbolt|voltswitch": 16.667,
             "overheat|painsplit|thunderbolt|willowisp": 14.583,
             "overheat|painsplit|voltswitch|willowisp": 11.458,
@@ -30544,7 +30544,7 @@
                 17.568
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 51.351
             ],
             [
@@ -30565,16 +30565,16 @@
             ]
         ],
         "sets": {
-            "defog|hiddenpowerfire60|leafstorm|thunderbolt": 14.865,
-            "defog|hiddenpowerfire60|leafstorm|voltswitch": 1.351,
+            "defog|hiddenpowerfire|leafstorm|thunderbolt": 14.865,
+            "defog|hiddenpowerfire|leafstorm|voltswitch": 1.351,
             "defog|leafstorm|thunderbolt|voltswitch": 12.162,
             "defog|leafstorm|thunderbolt|willowisp": 12.162,
             "defog|leafstorm|voltswitch|willowisp": 6.757,
-            "hiddenpowerfire60|leafstorm|thunderbolt|trick": 4.054,
-            "hiddenpowerfire60|leafstorm|thunderbolt|voltswitch": 8.108,
-            "hiddenpowerfire60|leafstorm|thunderbolt|willowisp": 10.811,
-            "hiddenpowerfire60|leafstorm|trick|voltswitch": 6.757,
-            "hiddenpowerfire60|leafstorm|voltswitch|willowisp": 5.405,
+            "hiddenpowerfire|leafstorm|thunderbolt|trick": 4.054,
+            "hiddenpowerfire|leafstorm|thunderbolt|voltswitch": 8.108,
+            "hiddenpowerfire|leafstorm|thunderbolt|willowisp": 10.811,
+            "hiddenpowerfire|leafstorm|trick|voltswitch": 6.757,
+            "hiddenpowerfire|leafstorm|voltswitch|willowisp": 5.405,
             "leafstorm|thunderbolt|trick|voltswitch": 6.757,
             "leafstorm|thunderbolt|voltswitch|willowisp": 10.811
         },
@@ -30622,7 +30622,7 @@
                 74.038
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 49.038
             ],
             [
@@ -30647,13 +30647,13 @@
             ]
         ],
         "sets": {
-            "hiddenpowerice60|hydropump|painsplit|thunderbolt": 11.538,
-            "hiddenpowerice60|hydropump|painsplit|voltswitch": 9.615,
-            "hiddenpowerice60|hydropump|thunderbolt|trick": 6.731,
-            "hiddenpowerice60|hydropump|thunderbolt|voltswitch": 5.769,
-            "hiddenpowerice60|hydropump|thunderbolt|willowisp": 7.692,
-            "hiddenpowerice60|hydropump|trick|voltswitch": 5.769,
-            "hiddenpowerice60|hydropump|voltswitch|willowisp": 1.923,
+            "hiddenpowerice|hydropump|painsplit|thunderbolt": 11.538,
+            "hiddenpowerice|hydropump|painsplit|voltswitch": 9.615,
+            "hiddenpowerice|hydropump|thunderbolt|trick": 6.731,
+            "hiddenpowerice|hydropump|thunderbolt|voltswitch": 5.769,
+            "hiddenpowerice|hydropump|thunderbolt|willowisp": 7.692,
+            "hiddenpowerice|hydropump|trick|voltswitch": 5.769,
+            "hiddenpowerice|hydropump|voltswitch|willowisp": 1.923,
             "hydropump|painsplit|thunderbolt|voltswitch": 11.538,
             "hydropump|painsplit|thunderbolt|willowisp": 12.5,
             "hydropump|painsplit|voltswitch|willowisp": 8.654,
@@ -30941,7 +30941,7 @@
                 100.0
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 100.0
             ],
             [
@@ -30950,7 +30950,7 @@
             ]
         ],
         "sets": {
-            "fireblast|hiddenpowergrass60|nastyplot|sludgewave": 100.0
+            "fireblast|hiddenpowergrass|nastyplot|sludgewave": 100.0
         },
         "spreads": [
             [
@@ -31359,7 +31359,7 @@
                 100.0
             ],
             [
-                "hiddenpowerflying60",
+                "hiddenpowerflying",
                 50.847
             ],
             [
@@ -31371,13 +31371,13 @@
                 100.0
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 49.153
             ]
         ],
         "sets": {
-            "focusblast|gigadrain|hiddenpowerflying60|leafstorm": 50.847,
-            "focusblast|gigadrain|hiddenpowerice60|leafstorm": 49.153
+            "focusblast|gigadrain|hiddenpowerflying|leafstorm": 50.847,
+            "focusblast|gigadrain|hiddenpowerice|leafstorm": 49.153
         },
         "spreads": [
             [
@@ -31435,36 +31435,36 @@
                 27.838
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 22.973
             ]
         ],
         "sets": {
             "dragonpulse|earthquake|focusblast|gigadrain": 1.081,
             "dragonpulse|earthquake|focusblast|leafblade": 0.27,
-            "dragonpulse|earthquake|gigadrain|hiddenpowerfire60": 2.432,
+            "dragonpulse|earthquake|gigadrain|hiddenpowerfire": 2.432,
             "dragonpulse|earthquake|gigadrain|substitute": 1.081,
-            "dragonpulse|earthquake|hiddenpowerfire60|leafblade": 1.081,
+            "dragonpulse|earthquake|hiddenpowerfire|leafblade": 1.081,
             "dragonpulse|earthquake|leafblade|substitute": 0.541,
-            "dragonpulse|focusblast|gigadrain|hiddenpowerfire60": 1.622,
+            "dragonpulse|focusblast|gigadrain|hiddenpowerfire": 1.622,
             "dragonpulse|focusblast|gigadrain|substitute": 2.973,
-            "dragonpulse|focusblast|hiddenpowerfire60|leafblade": 0.27,
+            "dragonpulse|focusblast|hiddenpowerfire|leafblade": 0.27,
             "dragonpulse|focusblast|leafblade|substitute": 0.27,
-            "dragonpulse|gigadrain|hiddenpowerfire60|substitute": 2.162,
-            "dragonpulse|hiddenpowerfire60|leafblade|substitute": 0.811,
+            "dragonpulse|gigadrain|hiddenpowerfire|substitute": 2.162,
+            "dragonpulse|hiddenpowerfire|leafblade|substitute": 0.811,
             "earthquake|focusblast|gigadrain|outrage": 2.703,
             "earthquake|focusblast|leafblade|outrage": 1.081,
-            "earthquake|gigadrain|hiddenpowerfire60|outrage": 2.162,
+            "earthquake|gigadrain|hiddenpowerfire|outrage": 2.162,
             "earthquake|gigadrain|outrage|substitute": 2.703,
-            "earthquake|hiddenpowerfire60|leafblade|outrage": 1.622,
+            "earthquake|hiddenpowerfire|leafblade|outrage": 1.622,
             "earthquake|leafblade|outrage|substitute": 2.432,
             "earthquake|leafblade|outrage|swordsdance": 28.108,
-            "focusblast|gigadrain|hiddenpowerfire60|outrage": 2.432,
+            "focusblast|gigadrain|hiddenpowerfire|outrage": 2.432,
             "focusblast|gigadrain|outrage|substitute": 2.162,
-            "focusblast|hiddenpowerfire60|leafblade|outrage": 2.432,
+            "focusblast|hiddenpowerfire|leafblade|outrage": 2.432,
             "focusblast|leafblade|outrage|substitute": 2.703,
-            "gigadrain|hiddenpowerfire60|outrage|substitute": 4.324,
-            "hiddenpowerfire60|leafblade|outrage|substitute": 1.622,
+            "gigadrain|hiddenpowerfire|outrage|substitute": 4.324,
+            "hiddenpowerfire|leafblade|outrage|substitute": 1.622,
             "leafblade|outrage|substitute|swordsdance": 28.919
         },
         "spreads": [
@@ -32068,7 +32068,7 @@
                 64.055
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 57.581
             ],
             [
@@ -32081,16 +32081,16 @@
             ]
         ],
         "sets": {
-            "dragonpulse|glare|hiddenpowerfire60|leafstorm": 8.518,
+            "dragonpulse|glare|hiddenpowerfire|leafstorm": 8.518,
             "dragonpulse|glare|leafstorm|leechseed": 10.733,
             "dragonpulse|glare|leafstorm|substitute": 13.629,
-            "dragonpulse|hiddenpowerfire60|leafstorm|leechseed": 10.051,
-            "dragonpulse|hiddenpowerfire60|leafstorm|substitute": 8.859,
+            "dragonpulse|hiddenpowerfire|leafstorm|leechseed": 10.051,
+            "dragonpulse|hiddenpowerfire|leafstorm|substitute": 8.859,
             "dragonpulse|leafstorm|leechseed|substitute": 8.688,
-            "glare|hiddenpowerfire60|leafstorm|leechseed": 10.733,
-            "glare|hiddenpowerfire60|leafstorm|substitute": 11.073,
+            "glare|hiddenpowerfire|leafstorm|leechseed": 10.733,
+            "glare|hiddenpowerfire|leafstorm|substitute": 11.073,
             "glare|leafstorm|leechseed|substitute": 9.37,
-            "hiddenpowerfire60|leafstorm|leechseed|substitute": 8.348
+            "hiddenpowerfire|leafstorm|leechseed|substitute": 8.348
         },
         "spreads": [
             [
@@ -32439,7 +32439,7 @@
                 46.032
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 49.206
             ],
             [
@@ -32449,21 +32449,21 @@
         ],
         "sets": {
             "airslash|earthpower|healingwish|seedflare": 10.159,
-            "airslash|earthpower|hiddenpowerice60|seedflare": 4.127,
+            "airslash|earthpower|hiddenpowerice|seedflare": 4.127,
             "airslash|earthpower|leechseed|seedflare": 4.762,
             "airslash|earthpower|seedflare|substitute": 11.111,
-            "airslash|healingwish|hiddenpowerice60|seedflare": 11.429,
+            "airslash|healingwish|hiddenpowerice|seedflare": 11.429,
             "airslash|healingwish|leechseed|seedflare": 6.667,
-            "airslash|hiddenpowerice60|leechseed|seedflare": 4.762,
-            "airslash|hiddenpowerice60|seedflare|substitute": 9.524,
+            "airslash|hiddenpowerice|leechseed|seedflare": 4.762,
+            "airslash|hiddenpowerice|seedflare|substitute": 9.524,
             "airslash|leechseed|seedflare|substitute": 11.429,
-            "earthpower|healingwish|hiddenpowerice60|seedflare": 4.444,
+            "earthpower|healingwish|hiddenpowerice|seedflare": 4.444,
             "earthpower|healingwish|leechseed|seedflare": 2.857,
-            "earthpower|hiddenpowerice60|leechseed|seedflare": 2.54,
-            "earthpower|hiddenpowerice60|seedflare|substitute": 6.984,
+            "earthpower|hiddenpowerice|leechseed|seedflare": 2.54,
+            "earthpower|hiddenpowerice|seedflare|substitute": 6.984,
             "earthpower|leechseed|seedflare|substitute": 3.81,
-            "healingwish|hiddenpowerice60|leechseed|seedflare": 2.222,
-            "hiddenpowerice60|leechseed|seedflare|substitute": 3.175
+            "healingwish|hiddenpowerice|leechseed|seedflare": 2.222,
+            "hiddenpowerice|leechseed|seedflare|substitute": 3.175
         },
         "spreads": [
             [
@@ -33786,7 +33786,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 87.634
             ],
             [
@@ -33819,22 +33819,22 @@
             ]
         ],
         "sets": {
-            "focusblast|gigadrain|hiddenpowerice60|knockoff": 0.538,
-            "focusblast|gigadrain|hiddenpowerice60|leafstorm": 2.151,
-            "focusblast|gigadrain|hiddenpowerice60|nastyplot": 21.505,
-            "focusblast|gigadrain|hiddenpowerice60|substitute": 2.151,
+            "focusblast|gigadrain|hiddenpowerice|knockoff": 0.538,
+            "focusblast|gigadrain|hiddenpowerice|leafstorm": 2.151,
+            "focusblast|gigadrain|hiddenpowerice|nastyplot": 21.505,
+            "focusblast|gigadrain|hiddenpowerice|substitute": 2.151,
             "focusblast|gigadrain|knockoff|substitute": 0.538,
             "focusblast|gigadrain|nastyplot|substitute": 7.527,
-            "focusblast|hiddenpowerice60|knockoff|leafstorm": 2.688,
-            "focusblast|hiddenpowerice60|leafstorm|nastyplot": 15.054,
-            "gigadrain|hiddenpowerice60|knockoff|substitute": 1.613,
-            "gigadrain|hiddenpowerice60|knockoff|superpower": 2.688,
-            "gigadrain|hiddenpowerice60|nastyplot|substitute": 7.527,
-            "gigadrain|hiddenpowerice60|nastyplot|superpower": 7.527,
-            "gigadrain|hiddenpowerice60|substitute|superpower": 1.075,
+            "focusblast|hiddenpowerice|knockoff|leafstorm": 2.688,
+            "focusblast|hiddenpowerice|leafstorm|nastyplot": 15.054,
+            "gigadrain|hiddenpowerice|knockoff|substitute": 1.613,
+            "gigadrain|hiddenpowerice|knockoff|superpower": 2.688,
+            "gigadrain|hiddenpowerice|nastyplot|substitute": 7.527,
+            "gigadrain|hiddenpowerice|nastyplot|superpower": 7.527,
+            "gigadrain|hiddenpowerice|substitute|superpower": 1.075,
             "gigadrain|knockoff|substitute|superpower": 4.301,
-            "hiddenpowerice60|knockoff|leafstorm|superpower": 13.441,
-            "hiddenpowerice60|leafstorm|nastyplot|superpower": 9.677
+            "hiddenpowerice|knockoff|leafstorm|superpower": 13.441,
+            "hiddenpowerice|leafstorm|nastyplot|superpower": 9.677
         },
         "spreads": [
             [
@@ -33884,7 +33884,7 @@
                 70.0
             ],
             [
-                "hiddenpowerrock60",
+                "hiddenpowerrock",
                 53.5
             ],
             [
@@ -33897,16 +33897,16 @@
             ]
         ],
         "sets": {
-            "fireblast|focusblast|grassknot|hiddenpowerrock60": 5.5,
+            "fireblast|focusblast|grassknot|hiddenpowerrock": 5.5,
             "fireblast|focusblast|grassknot|nastyplot": 11.5,
             "fireblast|focusblast|grassknot|substitute": 8.0,
-            "fireblast|focusblast|hiddenpowerrock60|nastyplot": 10.0,
-            "fireblast|focusblast|hiddenpowerrock60|substitute": 6.5,
+            "fireblast|focusblast|hiddenpowerrock|nastyplot": 10.0,
+            "fireblast|focusblast|hiddenpowerrock|substitute": 6.5,
             "fireblast|focusblast|nastyplot|substitute": 15.5,
-            "fireblast|grassknot|hiddenpowerrock60|nastyplot": 7.5,
-            "fireblast|grassknot|hiddenpowerrock60|substitute": 10.0,
+            "fireblast|grassknot|hiddenpowerrock|nastyplot": 7.5,
+            "fireblast|grassknot|hiddenpowerrock|substitute": 10.0,
             "fireblast|grassknot|nastyplot|substitute": 11.5,
-            "fireblast|hiddenpowerrock60|nastyplot|substitute": 14.0
+            "fireblast|hiddenpowerrock|nastyplot|substitute": 14.0
         },
         "spreads": [
             [
@@ -35517,7 +35517,7 @@
                 79.727
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 57.7
             ],
             [
@@ -35538,11 +35538,11 @@
             ]
         ],
         "sets": {
-            "calmmind|hiddenpowergrass60|hydropump|icebeam": 9.552,
-            "calmmind|hiddenpowergrass60|icebeam|scald": 38.596,
+            "calmmind|hiddenpowergrass|hydropump|icebeam": 9.552,
+            "calmmind|hiddenpowergrass|icebeam|scald": 38.596,
             "calmmind|icebeam|rest|scald": 1.559,
             "calmmind|rest|scald|sleeptalk": 30.019,
-            "hiddenpowergrass60|hydropump|icebeam|scald": 9.552,
+            "hiddenpowergrass|hydropump|icebeam|scald": 9.552,
             "icebeam|rest|scald|sleeptalk": 10.721
         },
         "spreads": [
@@ -35573,7 +35573,7 @@
                 79.781
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 100.0
             ],
             [
@@ -35590,8 +35590,8 @@
             ]
         ],
         "sets": {
-            "earthpower|gigadrain|hiddenpowerfire60|sunnyday": 79.781,
-            "earthpower|hiddenpowerfire60|solarbeam|sunnyday": 20.219
+            "earthpower|gigadrain|hiddenpowerfire|sunnyday": 79.781,
+            "earthpower|hiddenpowerfire|solarbeam|sunnyday": 20.219
         },
         "spreads": [
             [
@@ -36037,7 +36037,7 @@
                 60.075
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 68.738
             ],
             [
@@ -36046,12 +36046,12 @@
             ]
         ],
         "sets": {
-            "calmmind|hiddenpowerfire60|hypervoice|psyshock": 15.819,
-            "calmmind|hiddenpowerfire60|hypervoice|wish": 28.814,
+            "calmmind|hiddenpowerfire|hypervoice|psyshock": 15.819,
+            "calmmind|hiddenpowerfire|hypervoice|wish": 28.814,
             "calmmind|hypervoice|psyshock|wish": 22.411,
-            "hiddenpowerfire60|hypervoice|protect|psyshock": 4.896,
-            "hiddenpowerfire60|hypervoice|protect|wish": 11.111,
-            "hiddenpowerfire60|hypervoice|psyshock|wish": 8.098,
+            "hiddenpowerfire|hypervoice|protect|psyshock": 4.896,
+            "hiddenpowerfire|hypervoice|protect|wish": 11.111,
+            "hiddenpowerfire|hypervoice|psyshock|wish": 8.098,
             "hypervoice|protect|psyshock|wish": 8.851
         },
         "spreads": [
@@ -36153,7 +36153,7 @@
                 50.254
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 49.746
             ],
             [
@@ -36178,42 +36178,42 @@
             ]
         ],
         "sets": {
-            "earthquake|gigadrain|hiddenpowerfire60|knockoff": 1.692,
-            "earthquake|gigadrain|hiddenpowerfire60|rockslide": 1.692,
-            "earthquake|gigadrain|hiddenpowerfire60|sleeppowder": 0.508,
-            "earthquake|gigadrain|hiddenpowerfire60|synthesis": 1.692,
+            "earthquake|gigadrain|hiddenpowerfire|knockoff": 1.692,
+            "earthquake|gigadrain|hiddenpowerfire|rockslide": 1.692,
+            "earthquake|gigadrain|hiddenpowerfire|sleeppowder": 0.508,
+            "earthquake|gigadrain|hiddenpowerfire|synthesis": 1.692,
             "earthquake|gigadrain|knockoff|rockslide": 1.015,
             "earthquake|gigadrain|knockoff|sleeppowder": 1.354,
             "earthquake|gigadrain|knockoff|synthesis": 3.384,
             "earthquake|gigadrain|rockslide|sleeppowder": 0.846,
             "earthquake|gigadrain|rockslide|synthesis": 2.876,
             "earthquake|gigadrain|sleeppowder|synthesis": 1.692,
-            "earthquake|hiddenpowerfire60|knockoff|leafstorm": 3.892,
-            "earthquake|hiddenpowerfire60|leafstorm|rockslide": 3.215,
-            "earthquake|hiddenpowerfire60|leafstorm|sleeppowder": 1.861,
-            "earthquake|hiddenpowerfire60|leafstorm|synthesis": 3.892,
+            "earthquake|hiddenpowerfire|knockoff|leafstorm": 3.892,
+            "earthquake|hiddenpowerfire|leafstorm|rockslide": 3.215,
+            "earthquake|hiddenpowerfire|leafstorm|sleeppowder": 1.861,
+            "earthquake|hiddenpowerfire|leafstorm|synthesis": 3.892,
             "earthquake|knockoff|leafstorm|rockslide": 2.707,
             "earthquake|knockoff|leafstorm|sleeppowder": 2.707,
             "earthquake|knockoff|leafstorm|synthesis": 4.061,
             "earthquake|leafstorm|rockslide|sleeppowder": 2.538,
             "earthquake|leafstorm|rockslide|synthesis": 3.046,
             "earthquake|leafstorm|sleeppowder|synthesis": 2.707,
-            "gigadrain|hiddenpowerfire60|knockoff|rockslide": 3.046,
-            "gigadrain|hiddenpowerfire60|knockoff|sleeppowder": 1.523,
-            "gigadrain|hiddenpowerfire60|knockoff|synthesis": 2.03,
-            "gigadrain|hiddenpowerfire60|rockslide|sleeppowder": 1.354,
-            "gigadrain|hiddenpowerfire60|rockslide|synthesis": 2.707,
-            "gigadrain|hiddenpowerfire60|sleeppowder|synthesis": 3.215,
+            "gigadrain|hiddenpowerfire|knockoff|rockslide": 3.046,
+            "gigadrain|hiddenpowerfire|knockoff|sleeppowder": 1.523,
+            "gigadrain|hiddenpowerfire|knockoff|synthesis": 2.03,
+            "gigadrain|hiddenpowerfire|rockslide|sleeppowder": 1.354,
+            "gigadrain|hiddenpowerfire|rockslide|synthesis": 2.707,
+            "gigadrain|hiddenpowerfire|sleeppowder|synthesis": 3.215,
             "gigadrain|knockoff|rockslide|sleeppowder": 1.015,
             "gigadrain|knockoff|rockslide|synthesis": 1.861,
             "gigadrain|knockoff|sleeppowder|synthesis": 1.692,
             "gigadrain|rockslide|sleeppowder|synthesis": 2.538,
-            "hiddenpowerfire60|knockoff|leafstorm|rockslide": 3.553,
-            "hiddenpowerfire60|knockoff|leafstorm|sleeppowder": 2.03,
-            "hiddenpowerfire60|knockoff|leafstorm|synthesis": 2.369,
-            "hiddenpowerfire60|leafstorm|rockslide|sleeppowder": 3.215,
-            "hiddenpowerfire60|leafstorm|rockslide|synthesis": 2.538,
-            "hiddenpowerfire60|leafstorm|sleeppowder|synthesis": 3.723,
+            "hiddenpowerfire|knockoff|leafstorm|rockslide": 3.553,
+            "hiddenpowerfire|knockoff|leafstorm|sleeppowder": 2.03,
+            "hiddenpowerfire|knockoff|leafstorm|synthesis": 2.369,
+            "hiddenpowerfire|leafstorm|rockslide|sleeppowder": 3.215,
+            "hiddenpowerfire|leafstorm|rockslide|synthesis": 2.538,
+            "hiddenpowerfire|leafstorm|sleeppowder|synthesis": 3.723,
             "knockoff|leafstorm|rockslide|sleeppowder": 3.553,
             "knockoff|leafstorm|rockslide|synthesis": 4.23,
             "knockoff|leafstorm|sleeppowder|synthesis": 2.538,
@@ -36464,23 +36464,23 @@
                 32.865
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 41.652
             ]
         ],
         "sets": {
             "calmmind|focusblast|moonblast|psychic": 7.206,
             "calmmind|focusblast|moonblast|psyshock": 15.993,
-            "calmmind|hiddenpowerfire60|moonblast|psychic": 5.448,
-            "calmmind|hiddenpowerfire60|moonblast|psyshock": 16.52,
+            "calmmind|hiddenpowerfire|moonblast|psychic": 5.448,
+            "calmmind|hiddenpowerfire|moonblast|psyshock": 16.52,
             "calmmind|moonblast|psychic|taunt": 8.26,
             "calmmind|moonblast|psyshock|taunt": 16.344,
-            "focusblast|hiddenpowerfire60|moonblast|psychic": 4.394,
-            "focusblast|hiddenpowerfire60|moonblast|psyshock": 6.503,
+            "focusblast|hiddenpowerfire|moonblast|psychic": 4.394,
+            "focusblast|hiddenpowerfire|moonblast|psyshock": 6.503,
             "focusblast|moonblast|psychic|taunt": 4.218,
             "focusblast|moonblast|psyshock|taunt": 6.327,
-            "hiddenpowerfire60|moonblast|psychic|taunt": 3.339,
-            "hiddenpowerfire60|moonblast|psyshock|taunt": 5.448
+            "hiddenpowerfire|moonblast|psychic|taunt": 3.339,
+            "hiddenpowerfire|moonblast|psyshock|taunt": 5.448
         },
         "spreads": [
             [
@@ -36798,11 +36798,11 @@
                 20.413
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 22.997
             ],
             [
-                "hiddenpowerflying60",
+                "hiddenpowerflying",
                 52.972
             ],
             [
@@ -36815,16 +36815,16 @@
             ]
         ],
         "sets": {
-            "focusblast|hiddenpowerflying60|knockoff|thunderbolt": 1.034,
-            "focusblast|hiddenpowerflying60|nastyplot|thunderbolt": 12.403,
-            "focusblast|hiddenpowerflying60|substitute|thunderbolt": 1.55,
-            "focusblast|hiddenpowerflying60|taunt|thunderbolt": 3.101,
-            "focusblast|hiddenpowerflying60|thunderbolt|thunderwave": 1.809,
-            "focusblast|hiddenpowerice60|knockoff|thunderbolt": 1.55,
-            "focusblast|hiddenpowerice60|nastyplot|thunderbolt": 8.269,
-            "focusblast|hiddenpowerice60|substitute|thunderbolt": 1.292,
-            "focusblast|hiddenpowerice60|taunt|thunderbolt": 1.034,
-            "focusblast|hiddenpowerice60|thunderbolt|thunderwave": 1.034,
+            "focusblast|hiddenpowerflying|knockoff|thunderbolt": 1.034,
+            "focusblast|hiddenpowerflying|nastyplot|thunderbolt": 12.403,
+            "focusblast|hiddenpowerflying|substitute|thunderbolt": 1.55,
+            "focusblast|hiddenpowerflying|taunt|thunderbolt": 3.101,
+            "focusblast|hiddenpowerflying|thunderbolt|thunderwave": 1.809,
+            "focusblast|hiddenpowerice|knockoff|thunderbolt": 1.55,
+            "focusblast|hiddenpowerice|nastyplot|thunderbolt": 8.269,
+            "focusblast|hiddenpowerice|substitute|thunderbolt": 1.292,
+            "focusblast|hiddenpowerice|taunt|thunderbolt": 1.034,
+            "focusblast|hiddenpowerice|thunderbolt|thunderwave": 1.034,
             "focusblast|knockoff|substitute|thunderbolt": 1.292,
             "focusblast|knockoff|taunt|thunderbolt": 1.809,
             "focusblast|knockoff|thunderbolt|thunderwave": 0.517,
@@ -36832,20 +36832,20 @@
             "focusblast|nastyplot|taunt|thunderbolt": 7.494,
             "focusblast|substitute|thunderbolt|thunderwave": 0.775,
             "focusblast|taunt|thunderbolt|thunderwave": 1.55,
-            "hiddenpowerflying60|knockoff|substitute|thunderbolt": 2.067,
-            "hiddenpowerflying60|knockoff|taunt|thunderbolt": 2.584,
-            "hiddenpowerflying60|knockoff|thunderbolt|thunderwave": 1.809,
-            "hiddenpowerflying60|nastyplot|substitute|thunderbolt": 9.044,
-            "hiddenpowerflying60|nastyplot|taunt|thunderbolt": 12.403,
-            "hiddenpowerflying60|substitute|thunderbolt|thunderwave": 1.292,
-            "hiddenpowerflying60|taunt|thunderbolt|thunderwave": 3.876,
-            "hiddenpowerice60|knockoff|substitute|thunderbolt": 1.034,
-            "hiddenpowerice60|knockoff|taunt|thunderbolt": 1.292,
-            "hiddenpowerice60|knockoff|thunderbolt|thunderwave": 1.292,
-            "hiddenpowerice60|nastyplot|substitute|thunderbolt": 1.034,
-            "hiddenpowerice60|nastyplot|taunt|thunderbolt": 0.775,
-            "hiddenpowerice60|substitute|thunderbolt|thunderwave": 1.55,
-            "hiddenpowerice60|taunt|thunderbolt|thunderwave": 2.842,
+            "hiddenpowerflying|knockoff|substitute|thunderbolt": 2.067,
+            "hiddenpowerflying|knockoff|taunt|thunderbolt": 2.584,
+            "hiddenpowerflying|knockoff|thunderbolt|thunderwave": 1.809,
+            "hiddenpowerflying|nastyplot|substitute|thunderbolt": 9.044,
+            "hiddenpowerflying|nastyplot|taunt|thunderbolt": 12.403,
+            "hiddenpowerflying|substitute|thunderbolt|thunderwave": 1.292,
+            "hiddenpowerflying|taunt|thunderbolt|thunderwave": 3.876,
+            "hiddenpowerice|knockoff|substitute|thunderbolt": 1.034,
+            "hiddenpowerice|knockoff|taunt|thunderbolt": 1.292,
+            "hiddenpowerice|knockoff|thunderbolt|thunderwave": 1.292,
+            "hiddenpowerice|nastyplot|substitute|thunderbolt": 1.034,
+            "hiddenpowerice|nastyplot|taunt|thunderbolt": 0.775,
+            "hiddenpowerice|substitute|thunderbolt|thunderwave": 1.55,
+            "hiddenpowerice|taunt|thunderbolt|thunderwave": 2.842,
             "knockoff|substitute|thunderbolt|thunderwave": 1.292,
             "knockoff|taunt|thunderbolt|thunderwave": 2.842
         },
@@ -36897,11 +36897,11 @@
                 100.0
             ],
             [
-                "hiddenpowerflying60",
+                "hiddenpowerflying",
                 53.433
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 46.567
             ],
             [
@@ -36910,10 +36910,10 @@
             ]
         ],
         "sets": {
-            "focusblast|hiddenpowerflying60|nastyplot|thunderbolt": 41.194,
-            "focusblast|hiddenpowerflying60|thunderbolt|voltswitch": 12.239,
-            "focusblast|hiddenpowerice60|nastyplot|thunderbolt": 39.403,
-            "focusblast|hiddenpowerice60|thunderbolt|voltswitch": 7.164
+            "focusblast|hiddenpowerflying|nastyplot|thunderbolt": 41.194,
+            "focusblast|hiddenpowerflying|thunderbolt|voltswitch": 12.239,
+            "focusblast|hiddenpowerice|nastyplot|thunderbolt": 39.403,
+            "focusblast|hiddenpowerice|thunderbolt|voltswitch": 7.164
         },
         "spreads": [
             [
@@ -37936,15 +37936,15 @@
                 78.4
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 73.6
             ]
         ],
         "sets": {
             "eruption|extrasensory|fireblast|focusblast": 26.4,
-            "eruption|extrasensory|fireblast|hiddenpowergrass60": 24.6,
-            "eruption|fireblast|focusblast|hiddenpowergrass60": 27.4,
-            "extrasensory|fireblast|focusblast|hiddenpowergrass60": 21.6
+            "eruption|extrasensory|fireblast|hiddenpowergrass": 24.6,
+            "eruption|fireblast|focusblast|hiddenpowergrass": 27.4,
+            "extrasensory|fireblast|focusblast|hiddenpowergrass": 21.6
         },
         "spreads": [
             [
@@ -38484,7 +38484,7 @@
                 69.886
             ],
             [
-                "hiddenpowerground60",
+                "hiddenpowerground",
                 62.516
             ],
             [
@@ -38499,18 +38499,18 @@
         "sets": {
             "autotomize|blizzard|explosion|flashcannon": 9.276,
             "autotomize|blizzard|explosion|freezedry": 7.624,
-            "autotomize|blizzard|explosion|hiddenpowerground60": 7.116,
+            "autotomize|blizzard|explosion|hiddenpowerground": 7.116,
             "autotomize|blizzard|flashcannon|freezedry": 6.734,
-            "autotomize|blizzard|flashcannon|hiddenpowerground60": 9.022,
-            "autotomize|blizzard|freezedry|hiddenpowerground60": 4.447,
+            "autotomize|blizzard|flashcannon|hiddenpowerground": 9.022,
+            "autotomize|blizzard|freezedry|hiddenpowerground": 4.447,
             "autotomize|explosion|flashcannon|freezedry": 8.132,
-            "autotomize|explosion|freezedry|hiddenpowerground60": 6.861,
-            "autotomize|flashcannon|freezedry|hiddenpowerground60": 7.624,
+            "autotomize|explosion|freezedry|hiddenpowerground": 6.861,
+            "autotomize|flashcannon|freezedry|hiddenpowerground": 7.624,
             "blizzard|explosion|flashcannon|freezedry": 5.718,
-            "blizzard|explosion|flashcannon|hiddenpowerground60": 7.751,
-            "blizzard|explosion|freezedry|hiddenpowerground60": 5.591,
-            "blizzard|flashcannon|freezedry|hiddenpowerground60": 6.607,
-            "explosion|flashcannon|freezedry|hiddenpowerground60": 7.497
+            "blizzard|explosion|flashcannon|hiddenpowerground": 7.751,
+            "blizzard|explosion|freezedry|hiddenpowerground": 5.591,
+            "blizzard|flashcannon|freezedry|hiddenpowerground": 6.607,
+            "explosion|flashcannon|freezedry|hiddenpowerground": 7.497
         },
         "spreads": [
             [
@@ -38681,7 +38681,7 @@
                 35.685
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 67.635
             ],
             [
@@ -38690,16 +38690,16 @@
             ]
         ],
         "sets": {
-            "gigadrain|hiddenpowerfire60|leechseed|sleeppowder": 2.49,
-            "gigadrain|hiddenpowerfire60|leechseed|sludgebomb": 3.32,
-            "gigadrain|hiddenpowerfire60|leechseed|substitute": 5.394,
-            "gigadrain|hiddenpowerfire60|leechseed|sunnyday": 3.32,
-            "gigadrain|hiddenpowerfire60|sleeppowder|sludgebomb": 4.149,
-            "gigadrain|hiddenpowerfire60|sleeppowder|substitute": 3.32,
-            "gigadrain|hiddenpowerfire60|sleeppowder|sunnyday": 3.32,
-            "gigadrain|hiddenpowerfire60|sludgebomb|substitute": 4.564,
-            "gigadrain|hiddenpowerfire60|sludgebomb|sunnyday": 1.66,
-            "gigadrain|hiddenpowerfire60|substitute|sunnyday": 4.979,
+            "gigadrain|hiddenpowerfire|leechseed|sleeppowder": 2.49,
+            "gigadrain|hiddenpowerfire|leechseed|sludgebomb": 3.32,
+            "gigadrain|hiddenpowerfire|leechseed|substitute": 5.394,
+            "gigadrain|hiddenpowerfire|leechseed|sunnyday": 3.32,
+            "gigadrain|hiddenpowerfire|sleeppowder|sludgebomb": 4.149,
+            "gigadrain|hiddenpowerfire|sleeppowder|substitute": 3.32,
+            "gigadrain|hiddenpowerfire|sleeppowder|sunnyday": 3.32,
+            "gigadrain|hiddenpowerfire|sludgebomb|substitute": 4.564,
+            "gigadrain|hiddenpowerfire|sludgebomb|sunnyday": 1.66,
+            "gigadrain|hiddenpowerfire|substitute|sunnyday": 4.979,
             "gigadrain|leechseed|sleeppowder|sludgebomb": 4.979,
             "gigadrain|leechseed|sleeppowder|substitute": 4.979,
             "gigadrain|leechseed|sludgebomb|substitute": 4.979,
@@ -38707,12 +38707,12 @@
             "gigadrain|sleeppowder|sludgebomb|substitute": 5.809,
             "gigadrain|sleeppowder|sludgebomb|sunnyday": 3.32,
             "gigadrain|sludgebomb|substitute|sunnyday": 2.075,
-            "hiddenpowerfire60|leechseed|sleeppowder|sludgebomb": 2.905,
-            "hiddenpowerfire60|leechseed|sludgebomb|substitute": 5.809,
-            "hiddenpowerfire60|leechseed|sludgebomb|sunnyday": 4.149,
-            "hiddenpowerfire60|sleeppowder|sludgebomb|substitute": 7.884,
-            "hiddenpowerfire60|sleeppowder|sludgebomb|sunnyday": 5.394,
-            "hiddenpowerfire60|sludgebomb|substitute|sunnyday": 4.979,
+            "hiddenpowerfire|leechseed|sleeppowder|sludgebomb": 2.905,
+            "hiddenpowerfire|leechseed|sludgebomb|substitute": 5.809,
+            "hiddenpowerfire|leechseed|sludgebomb|sunnyday": 4.149,
+            "hiddenpowerfire|sleeppowder|sludgebomb|substitute": 7.884,
+            "hiddenpowerfire|sleeppowder|sludgebomb|sunnyday": 5.394,
+            "hiddenpowerfire|sludgebomb|substitute|sunnyday": 4.979,
             "leechseed|sleeppowder|sludgebomb|substitute": 3.734
         },
         "spreads": [
@@ -38767,16 +38767,16 @@
                 27.963
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 45.556
             ]
         ],
         "sets": {
-            "earthquake|gigadrain|hiddenpowerfire60|knockoff": 1.296,
-            "earthquake|gigadrain|hiddenpowerfire60|leechseed": 2.037,
-            "earthquake|gigadrain|hiddenpowerfire60|sleeppowder": 2.222,
-            "earthquake|gigadrain|hiddenpowerfire60|sludgebomb": 1.481,
-            "earthquake|gigadrain|hiddenpowerfire60|synthesis": 2.037,
+            "earthquake|gigadrain|hiddenpowerfire|knockoff": 1.296,
+            "earthquake|gigadrain|hiddenpowerfire|leechseed": 2.037,
+            "earthquake|gigadrain|hiddenpowerfire|sleeppowder": 2.222,
+            "earthquake|gigadrain|hiddenpowerfire|sludgebomb": 1.481,
+            "earthquake|gigadrain|hiddenpowerfire|synthesis": 2.037,
             "earthquake|gigadrain|knockoff|leechseed": 2.222,
             "earthquake|gigadrain|knockoff|sleeppowder": 2.407,
             "earthquake|gigadrain|knockoff|sludgebomb": 1.852,
@@ -38786,24 +38786,24 @@
             "earthquake|gigadrain|sleeppowder|sludgebomb": 2.222,
             "earthquake|gigadrain|sleeppowder|synthesis": 1.852,
             "earthquake|gigadrain|sludgebomb|synthesis": 1.111,
-            "earthquake|hiddenpowerfire60|knockoff|sludgebomb": 2.593,
-            "earthquake|hiddenpowerfire60|leechseed|sludgebomb": 2.778,
-            "earthquake|hiddenpowerfire60|sleeppowder|sludgebomb": 2.222,
-            "earthquake|hiddenpowerfire60|sludgebomb|synthesis": 2.407,
+            "earthquake|hiddenpowerfire|knockoff|sludgebomb": 2.593,
+            "earthquake|hiddenpowerfire|leechseed|sludgebomb": 2.778,
+            "earthquake|hiddenpowerfire|sleeppowder|sludgebomb": 2.222,
+            "earthquake|hiddenpowerfire|sludgebomb|synthesis": 2.407,
             "earthquake|knockoff|leechseed|sludgebomb": 2.407,
             "earthquake|knockoff|sleeppowder|sludgebomb": 1.667,
             "earthquake|knockoff|sludgebomb|synthesis": 1.852,
             "earthquake|leechseed|sleeppowder|sludgebomb": 2.963,
             "earthquake|sleeppowder|sludgebomb|synthesis": 1.852,
-            "gigadrain|hiddenpowerfire60|knockoff|leechseed": 2.778,
-            "gigadrain|hiddenpowerfire60|knockoff|sleeppowder": 0.926,
-            "gigadrain|hiddenpowerfire60|knockoff|sludgebomb": 0.741,
-            "gigadrain|hiddenpowerfire60|knockoff|synthesis": 1.667,
-            "gigadrain|hiddenpowerfire60|leechseed|sleeppowder": 2.037,
-            "gigadrain|hiddenpowerfire60|leechseed|sludgebomb": 2.963,
-            "gigadrain|hiddenpowerfire60|sleeppowder|sludgebomb": 1.296,
-            "gigadrain|hiddenpowerfire60|sleeppowder|synthesis": 1.296,
-            "gigadrain|hiddenpowerfire60|sludgebomb|synthesis": 0.556,
+            "gigadrain|hiddenpowerfire|knockoff|leechseed": 2.778,
+            "gigadrain|hiddenpowerfire|knockoff|sleeppowder": 0.926,
+            "gigadrain|hiddenpowerfire|knockoff|sludgebomb": 0.741,
+            "gigadrain|hiddenpowerfire|knockoff|synthesis": 1.667,
+            "gigadrain|hiddenpowerfire|leechseed|sleeppowder": 2.037,
+            "gigadrain|hiddenpowerfire|leechseed|sludgebomb": 2.963,
+            "gigadrain|hiddenpowerfire|sleeppowder|sludgebomb": 1.296,
+            "gigadrain|hiddenpowerfire|sleeppowder|synthesis": 1.296,
+            "gigadrain|hiddenpowerfire|sludgebomb|synthesis": 0.556,
             "gigadrain|knockoff|leechseed|sleeppowder": 4.074,
             "gigadrain|knockoff|leechseed|sludgebomb": 3.333,
             "gigadrain|knockoff|sleeppowder|sludgebomb": 2.407,
@@ -38811,11 +38811,11 @@
             "gigadrain|knockoff|sludgebomb|synthesis": 1.111,
             "gigadrain|leechseed|sleeppowder|sludgebomb": 3.333,
             "gigadrain|sleeppowder|sludgebomb|synthesis": 1.852,
-            "hiddenpowerfire60|knockoff|leechseed|sludgebomb": 2.593,
-            "hiddenpowerfire60|knockoff|sleeppowder|sludgebomb": 1.852,
-            "hiddenpowerfire60|knockoff|sludgebomb|synthesis": 1.667,
-            "hiddenpowerfire60|leechseed|sleeppowder|sludgebomb": 4.259,
-            "hiddenpowerfire60|sleeppowder|sludgebomb|synthesis": 1.852,
+            "hiddenpowerfire|knockoff|leechseed|sludgebomb": 2.593,
+            "hiddenpowerfire|knockoff|sleeppowder|sludgebomb": 1.852,
+            "hiddenpowerfire|knockoff|sludgebomb|synthesis": 1.667,
+            "hiddenpowerfire|leechseed|sleeppowder|sludgebomb": 4.259,
+            "hiddenpowerfire|sleeppowder|sludgebomb|synthesis": 1.852,
             "knockoff|leechseed|sleeppowder|sludgebomb": 3.333,
             "knockoff|sleeppowder|sludgebomb|synthesis": 2.407
         },
@@ -39033,7 +39033,7 @@
                 44.32
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 35.94
             ],
             [
@@ -39046,22 +39046,22 @@
             ]
         ],
         "sets": {
-            "gigadrain|hiddenpowerfire60|knockoff|sleeppowder": 1.117,
-            "gigadrain|hiddenpowerfire60|knockoff|sludgebomb": 2.98,
-            "gigadrain|hiddenpowerfire60|sleeppowder|sludgebomb": 1.304,
-            "gigadrain|hiddenpowerfire60|sludgebomb|suckerpunch": 2.793,
+            "gigadrain|hiddenpowerfire|knockoff|sleeppowder": 1.117,
+            "gigadrain|hiddenpowerfire|knockoff|sludgebomb": 2.98,
+            "gigadrain|hiddenpowerfire|sleeppowder|sludgebomb": 1.304,
+            "gigadrain|hiddenpowerfire|sludgebomb|suckerpunch": 2.793,
             "gigadrain|knockoff|powerwhip|sludgebomb": 0.186,
             "gigadrain|knockoff|powerwhip|swordsdance": 2.421,
             "gigadrain|knockoff|sleeppowder|sludgebomb": 2.048,
             "gigadrain|powerwhip|suckerpunch|swordsdance": 0.931,
             "gigadrain|sleeppowder|sludgebomb|suckerpunch": 1.304,
-            "hiddenpowerfire60|knockoff|powerwhip|sleeppowder": 5.214,
-            "hiddenpowerfire60|knockoff|powerwhip|sludgebomb": 5.214,
-            "hiddenpowerfire60|knockoff|powerwhip|swordsdance": 2.048,
-            "hiddenpowerfire60|knockoff|sleeppowder|sludgebomb": 1.49,
-            "hiddenpowerfire60|powerwhip|sleeppowder|sludgebomb": 7.635,
-            "hiddenpowerfire60|powerwhip|sludgebomb|suckerpunch": 4.842,
-            "hiddenpowerfire60|powerwhip|suckerpunch|swordsdance": 1.304,
+            "hiddenpowerfire|knockoff|powerwhip|sleeppowder": 5.214,
+            "hiddenpowerfire|knockoff|powerwhip|sludgebomb": 5.214,
+            "hiddenpowerfire|knockoff|powerwhip|swordsdance": 2.048,
+            "hiddenpowerfire|knockoff|sleeppowder|sludgebomb": 1.49,
+            "hiddenpowerfire|powerwhip|sleeppowder|sludgebomb": 7.635,
+            "hiddenpowerfire|powerwhip|sludgebomb|suckerpunch": 4.842,
+            "hiddenpowerfire|powerwhip|suckerpunch|swordsdance": 1.304,
             "knockoff|powerwhip|sleeppowder|sludgebomb": 6.331,
             "knockoff|powerwhip|sleeppowder|swordsdance": 38.734,
             "knockoff|powerwhip|sludgebomb|swordsdance": 2.793,
@@ -39105,7 +39105,7 @@
                 79.35
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 64.818
             ],
             [
@@ -39127,13 +39127,13 @@
         ],
         "sets": {
             "agility|bugbuzz|energyball|thunderbolt": 28.489,
-            "agility|bugbuzz|hiddenpowerice60|thunderbolt": 24.283,
-            "agility|energyball|hiddenpowerice60|thunderbolt": 13.384,
-            "bugbuzz|energyball|hiddenpowerice60|thunderbolt": 6.119,
-            "bugbuzz|energyball|hiddenpowerice60|voltswitch": 7.839,
+            "agility|bugbuzz|hiddenpowerice|thunderbolt": 24.283,
+            "agility|energyball|hiddenpowerice|thunderbolt": 13.384,
+            "bugbuzz|energyball|hiddenpowerice|thunderbolt": 6.119,
+            "bugbuzz|energyball|hiddenpowerice|voltswitch": 7.839,
             "bugbuzz|energyball|thunderbolt|voltswitch": 6.692,
-            "bugbuzz|hiddenpowerice60|thunderbolt|voltswitch": 5.927,
-            "energyball|hiddenpowerice60|thunderbolt|voltswitch": 7.266
+            "bugbuzz|hiddenpowerice|thunderbolt|voltswitch": 5.927,
+            "energyball|hiddenpowerice|thunderbolt|voltswitch": 7.266
         },
         "spreads": [
             [
@@ -39175,7 +39175,7 @@
                 73.171
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 64.634
             ],
             [
@@ -39196,20 +39196,20 @@
             ]
         ],
         "sets": {
-            "aromatherapy|gigadrain|hiddenpowerfire60|sleeppowder": 6.504,
-            "aromatherapy|gigadrain|hiddenpowerfire60|sludgebomb": 7.317,
-            "aromatherapy|gigadrain|hiddenpowerfire60|strengthsap": 7.182,
+            "aromatherapy|gigadrain|hiddenpowerfire|sleeppowder": 6.504,
+            "aromatherapy|gigadrain|hiddenpowerfire|sludgebomb": 7.317,
+            "aromatherapy|gigadrain|hiddenpowerfire|strengthsap": 7.182,
             "aromatherapy|gigadrain|sleeppowder|sludgebomb": 8.13,
             "aromatherapy|gigadrain|sleeppowder|strengthsap": 7.182,
             "aromatherapy|gigadrain|sludgebomb|strengthsap": 6.64,
-            "aromatherapy|hiddenpowerfire60|sleeppowder|sludgebomb": 7.046,
-            "aromatherapy|hiddenpowerfire60|sludgebomb|strengthsap": 8.808,
+            "aromatherapy|hiddenpowerfire|sleeppowder|sludgebomb": 7.046,
+            "aromatherapy|hiddenpowerfire|sludgebomb|strengthsap": 8.808,
             "aromatherapy|sleeppowder|sludgebomb|strengthsap": 7.588,
-            "gigadrain|hiddenpowerfire60|sleeppowder|sludgebomb": 7.182,
-            "gigadrain|hiddenpowerfire60|sleeppowder|strengthsap": 5.962,
-            "gigadrain|hiddenpowerfire60|sludgebomb|strengthsap": 7.453,
+            "gigadrain|hiddenpowerfire|sleeppowder|sludgebomb": 7.182,
+            "gigadrain|hiddenpowerfire|sleeppowder|strengthsap": 5.962,
+            "gigadrain|hiddenpowerfire|sludgebomb|strengthsap": 7.453,
             "gigadrain|sleeppowder|sludgebomb|strengthsap": 5.827,
-            "hiddenpowerfire60|sleeppowder|sludgebomb|strengthsap": 7.182
+            "hiddenpowerfire|sleeppowder|sludgebomb|strengthsap": 7.182
         },
         "spreads": [
             [
@@ -39271,7 +39271,7 @@
                 46.293
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 31.663
             ],
             [
@@ -39280,26 +39280,26 @@
             ]
         ],
         "sets": {
-            "calmmind|closecombat|gigadrain|hiddenpowerice60": 1.202,
-            "calmmind|focusblast|gigadrain|hiddenpowerice60": 16.232,
+            "calmmind|closecombat|gigadrain|hiddenpowerice": 1.202,
+            "calmmind|focusblast|gigadrain|hiddenpowerice": 16.232,
             "calmmind|focusblast|gigadrain|substitute": 23.447,
-            "closecombat|gigadrain|hiddenpowerice60|stoneedge": 1.603,
-            "closecombat|gigadrain|hiddenpowerice60|substitute": 2.605,
+            "closecombat|gigadrain|hiddenpowerice|stoneedge": 1.603,
+            "closecombat|gigadrain|hiddenpowerice|substitute": 2.605,
             "closecombat|gigadrain|leafblade|stoneedge": 0.2,
             "closecombat|gigadrain|stoneedge|substitute": 2.605,
-            "closecombat|hiddenpowerice60|leafblade|stoneedge": 1.804,
-            "closecombat|hiddenpowerice60|leafblade|substitute": 1.002,
+            "closecombat|hiddenpowerice|leafblade|stoneedge": 1.804,
+            "closecombat|hiddenpowerice|leafblade|substitute": 1.002,
             "closecombat|leafblade|stoneedge|substitute": 1.403,
             "closecombat|leafblade|stoneedge|swordsdance": 18.236,
             "closecombat|leafblade|substitute|swordsdance": 20.842,
-            "focusblast|gigadrain|hiddenpowerice60|stoneedge": 2.204,
-            "focusblast|gigadrain|hiddenpowerice60|substitute": 1.603,
+            "focusblast|gigadrain|hiddenpowerice|stoneedge": 2.204,
+            "focusblast|gigadrain|hiddenpowerice|substitute": 1.603,
             "focusblast|gigadrain|stoneedge|substitute": 1.202,
-            "focusblast|hiddenpowerice60|leafblade|stoneedge": 0.601,
-            "focusblast|hiddenpowerice60|leafblade|substitute": 0.601,
+            "focusblast|hiddenpowerice|leafblade|stoneedge": 0.601,
+            "focusblast|hiddenpowerice|leafblade|substitute": 0.601,
             "focusblast|leafblade|stoneedge|substitute": 0.401,
-            "gigadrain|hiddenpowerice60|stoneedge|substitute": 1.202,
-            "hiddenpowerice60|leafblade|stoneedge|substitute": 1.002
+            "gigadrain|hiddenpowerice|stoneedge|substitute": 1.202,
+            "hiddenpowerice|leafblade|stoneedge|substitute": 1.002
         },
         "spreads": [
             [
@@ -39534,7 +39534,7 @@
         ],
         "moves": [
             [
-                "hiddenpowerground60",
+                "hiddenpowerground",
                 31.217
             ],
             [
@@ -39562,38 +39562,38 @@
                 55.556
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 28.748
             ]
         ],
         "sets": {
-            "bugbuzz|fierydance|gigadrain|hiddenpowerground60": 2.293,
-            "bugbuzz|fierydance|gigadrain|hiddenpowerice60": 1.587,
+            "bugbuzz|fierydance|gigadrain|hiddenpowerground": 2.293,
+            "bugbuzz|fierydance|gigadrain|hiddenpowerice": 1.587,
             "bugbuzz|fierydance|gigadrain|quiverdance": 2.293,
             "bugbuzz|fierydance|gigadrain|roost": 2.116,
-            "bugbuzz|fierydance|hiddenpowerground60|quiverdance": 2.646,
-            "bugbuzz|fierydance|hiddenpowerground60|roost": 2.646,
-            "bugbuzz|fierydance|hiddenpowerice60|quiverdance": 2.116,
-            "bugbuzz|fierydance|hiddenpowerice60|roost": 2.469,
+            "bugbuzz|fierydance|hiddenpowerground|quiverdance": 2.646,
+            "bugbuzz|fierydance|hiddenpowerground|roost": 2.646,
+            "bugbuzz|fierydance|hiddenpowerice|quiverdance": 2.116,
+            "bugbuzz|fierydance|hiddenpowerice|roost": 2.469,
             "bugbuzz|fierydance|quiverdance|roost": 7.76,
-            "bugbuzz|fireblast|gigadrain|hiddenpowerground60": 3.527,
-            "bugbuzz|fireblast|gigadrain|hiddenpowerice60": 4.233,
+            "bugbuzz|fireblast|gigadrain|hiddenpowerground": 3.527,
+            "bugbuzz|fireblast|gigadrain|hiddenpowerice": 4.233,
             "bugbuzz|fireblast|gigadrain|quiverdance": 2.469,
             "bugbuzz|fireblast|gigadrain|roost": 4.056,
-            "bugbuzz|fireblast|hiddenpowerground60|quiverdance": 2.469,
-            "bugbuzz|fireblast|hiddenpowerground60|roost": 4.056,
-            "bugbuzz|fireblast|hiddenpowerice60|quiverdance": 4.233,
-            "bugbuzz|fireblast|hiddenpowerice60|roost": 3.88,
+            "bugbuzz|fireblast|hiddenpowerground|quiverdance": 2.469,
+            "bugbuzz|fireblast|hiddenpowerground|roost": 4.056,
+            "bugbuzz|fireblast|hiddenpowerice|quiverdance": 4.233,
+            "bugbuzz|fireblast|hiddenpowerice|roost": 3.88,
             "bugbuzz|fireblast|quiverdance|roost": 12.169,
-            "fierydance|gigadrain|hiddenpowerground60|quiverdance": 2.822,
-            "fierydance|gigadrain|hiddenpowerground60|roost": 3.175,
-            "fierydance|gigadrain|hiddenpowerice60|quiverdance": 2.822,
-            "fierydance|gigadrain|hiddenpowerice60|roost": 0.882,
+            "fierydance|gigadrain|hiddenpowerground|quiverdance": 2.822,
+            "fierydance|gigadrain|hiddenpowerground|roost": 3.175,
+            "fierydance|gigadrain|hiddenpowerice|quiverdance": 2.822,
+            "fierydance|gigadrain|hiddenpowerice|roost": 0.882,
             "fierydance|gigadrain|quiverdance|roost": 2.822,
-            "fireblast|gigadrain|hiddenpowerground60|quiverdance": 3.704,
-            "fireblast|gigadrain|hiddenpowerground60|roost": 3.88,
-            "fireblast|gigadrain|hiddenpowerice60|quiverdance": 3.527,
-            "fireblast|gigadrain|hiddenpowerice60|roost": 2.998,
+            "fireblast|gigadrain|hiddenpowerground|quiverdance": 3.704,
+            "fireblast|gigadrain|hiddenpowerground|roost": 3.88,
+            "fireblast|gigadrain|hiddenpowerice|quiverdance": 3.527,
+            "fireblast|gigadrain|hiddenpowerice|roost": 2.998,
             "fireblast|gigadrain|quiverdance|roost": 6.349
         },
         "spreads": [
@@ -39628,7 +39628,7 @@
                 100.0
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 50.242
             ],
             [
@@ -39636,13 +39636,13 @@
                 100.0
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 49.758
             ]
         ],
         "sets": {
-            "hiddenpowerfire60|hydropump|icebeam|waterspout": 50.242,
-            "hiddenpowergrass60|hydropump|icebeam|waterspout": 49.758
+            "hiddenpowerfire|hydropump|icebeam|waterspout": 50.242,
+            "hiddenpowergrass|hydropump|icebeam|waterspout": 49.758
         },
         "spreads": [
             [
@@ -40209,7 +40209,7 @@
                 41.42
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 100.0
             ],
             [
@@ -40218,9 +40218,9 @@
             ]
         ],
         "sets": {
-            "earthquake|hiddenpowergrass60|hydropump|icebeam": 15.385,
-            "earthquake|hiddenpowergrass60|icebeam|scald": 58.58,
-            "hiddenpowergrass60|hydropump|icebeam|scald": 26.036
+            "earthquake|hiddenpowergrass|hydropump|icebeam": 15.385,
+            "earthquake|hiddenpowergrass|icebeam|scald": 58.58,
+            "hiddenpowergrass|hydropump|icebeam|scald": 26.036
         },
         "spreads": [
             [
@@ -40322,7 +40322,7 @@
                 100.0
             ],
             [
-                "hiddenpowerrock60",
+                "hiddenpowerrock",
                 100.0
             ],
             [
@@ -40331,9 +40331,9 @@
             ]
         ],
         "sets": {
-            "bugbuzz|gigadrain|hiddenpowerrock60|leafstorm": 17.647,
-            "bugbuzz|gigadrain|hiddenpowerrock60|quiverdance": 58.824,
-            "bugbuzz|hiddenpowerrock60|leafstorm|quiverdance": 23.529
+            "bugbuzz|gigadrain|hiddenpowerrock|leafstorm": 17.647,
+            "bugbuzz|gigadrain|hiddenpowerrock|quiverdance": 58.824,
+            "bugbuzz|hiddenpowerrock|leafstorm|quiverdance": 23.529
         },
         "spreads": [
             [
@@ -40536,7 +40536,7 @@
                 44.567
             ],
             [
-                "hiddenpowerfire60",
+                "hiddenpowerfire",
                 50.236
             ],
             [
@@ -40561,30 +40561,30 @@
             ]
         ],
         "sets": {
-            "closecombat|geomancy|hiddenpowerfire60|moonblast": 0.945,
+            "closecombat|geomancy|hiddenpowerfire|moonblast": 0.945,
             "closecombat|geomancy|moonblast|psyshock": 0.787,
             "closecombat|geomancy|moonblast|thunderbolt": 0.787,
-            "closecombat|hiddenpowerfire60|moonblast|psyshock": 1.89,
-            "closecombat|hiddenpowerfire60|moonblast|rockslide": 2.047,
-            "closecombat|hiddenpowerfire60|moonblast|thunderbolt": 2.047,
+            "closecombat|hiddenpowerfire|moonblast|psyshock": 1.89,
+            "closecombat|hiddenpowerfire|moonblast|rockslide": 2.047,
+            "closecombat|hiddenpowerfire|moonblast|thunderbolt": 2.047,
             "closecombat|moonblast|psyshock|rockslide": 2.677,
             "closecombat|moonblast|psyshock|thunderbolt": 2.992,
             "closecombat|moonblast|rockslide|thunderbolt": 2.835,
-            "focusblast|geomancy|hiddenpowerfire60|moonblast": 10.709,
+            "focusblast|geomancy|hiddenpowerfire|moonblast": 10.709,
             "focusblast|geomancy|moonblast|psyshock": 10.709,
             "focusblast|geomancy|moonblast|thunderbolt": 11.024,
-            "focusblast|hiddenpowerfire60|moonblast|psyshock": 2.205,
-            "focusblast|hiddenpowerfire60|moonblast|rockslide": 1.89,
-            "focusblast|hiddenpowerfire60|moonblast|thunderbolt": 1.575,
+            "focusblast|hiddenpowerfire|moonblast|psyshock": 2.205,
+            "focusblast|hiddenpowerfire|moonblast|rockslide": 1.89,
+            "focusblast|hiddenpowerfire|moonblast|thunderbolt": 1.575,
             "focusblast|moonblast|psyshock|rockslide": 2.52,
             "focusblast|moonblast|psyshock|thunderbolt": 2.047,
             "focusblast|moonblast|rockslide|thunderbolt": 1.89,
-            "geomancy|hiddenpowerfire60|moonblast|psyshock": 10.394,
-            "geomancy|hiddenpowerfire60|moonblast|thunderbolt": 10.709,
+            "geomancy|hiddenpowerfire|moonblast|psyshock": 10.394,
+            "geomancy|hiddenpowerfire|moonblast|thunderbolt": 10.709,
             "geomancy|moonblast|psyshock|thunderbolt": 9.606,
-            "hiddenpowerfire60|moonblast|psyshock|rockslide": 1.417,
-            "hiddenpowerfire60|moonblast|psyshock|thunderbolt": 2.835,
-            "hiddenpowerfire60|moonblast|rockslide|thunderbolt": 1.575,
+            "hiddenpowerfire|moonblast|psyshock|rockslide": 1.417,
+            "hiddenpowerfire|moonblast|psyshock|thunderbolt": 2.835,
+            "hiddenpowerfire|moonblast|rockslide|thunderbolt": 1.575,
             "moonblast|psyshock|rockslide|thunderbolt": 1.89
         },
         "spreads": [
@@ -40631,7 +40631,7 @@
                 72.197
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 77.13
             ],
             [
@@ -40645,13 +40645,13 @@
         ],
         "sets": {
             "dazzlinggleam|electricterrain|energyball|thunderbolt": 15.994,
-            "dazzlinggleam|electricterrain|hiddenpowerice60|thunderbolt": 19.133,
-            "dazzlinggleam|energyball|hiddenpowerice60|thunderbolt": 13.901,
-            "dazzlinggleam|energyball|hiddenpowerice60|voltswitch": 6.428,
+            "dazzlinggleam|electricterrain|hiddenpowerice|thunderbolt": 19.133,
+            "dazzlinggleam|energyball|hiddenpowerice|thunderbolt": 13.901,
+            "dazzlinggleam|energyball|hiddenpowerice|voltswitch": 6.428,
             "dazzlinggleam|energyball|thunderbolt|voltswitch": 6.876,
-            "dazzlinggleam|hiddenpowerice60|thunderbolt|voltswitch": 8.67,
-            "electricterrain|energyball|hiddenpowerice60|thunderbolt": 21.674,
-            "energyball|hiddenpowerice60|thunderbolt|voltswitch": 7.324
+            "dazzlinggleam|hiddenpowerice|thunderbolt|voltswitch": 8.67,
+            "electricterrain|energyball|hiddenpowerice|thunderbolt": 21.674,
+            "energyball|hiddenpowerice|thunderbolt|voltswitch": 7.324
         },
         "spreads": [
             [
@@ -40965,7 +40965,7 @@
                 49.817
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 51.832
             ],
             [
@@ -40974,25 +40974,25 @@
             ]
         ],
         "sets": {
-            "defog|heatwave|hiddenpowerice60|thunderbolt": 3.663,
+            "defog|heatwave|hiddenpowerice|thunderbolt": 3.663,
             "defog|heatwave|roost|thunderbolt": 6.593,
             "defog|heatwave|thunderbolt|toxic": 2.747,
             "defog|heatwave|thunderbolt|uturn": 2.564,
-            "defog|hiddenpowerice60|roost|thunderbolt": 5.861,
-            "defog|hiddenpowerice60|thunderbolt|toxic": 3.114,
-            "defog|hiddenpowerice60|thunderbolt|uturn": 2.747,
+            "defog|hiddenpowerice|roost|thunderbolt": 5.861,
+            "defog|hiddenpowerice|thunderbolt|toxic": 3.114,
+            "defog|hiddenpowerice|thunderbolt|uturn": 2.747,
             "defog|roost|thunderbolt|toxic": 4.212,
             "defog|roost|thunderbolt|uturn": 5.861,
             "defog|thunderbolt|toxic|uturn": 2.747,
-            "heatwave|hiddenpowerice60|roost|thunderbolt": 8.059,
-            "heatwave|hiddenpowerice60|thunderbolt|toxic": 5.128,
-            "heatwave|hiddenpowerice60|thunderbolt|uturn": 4.029,
+            "heatwave|hiddenpowerice|roost|thunderbolt": 8.059,
+            "heatwave|hiddenpowerice|thunderbolt|toxic": 5.128,
+            "heatwave|hiddenpowerice|thunderbolt|uturn": 4.029,
             "heatwave|roost|thunderbolt|toxic": 3.846,
             "heatwave|roost|thunderbolt|uturn": 8.242,
             "heatwave|thunderbolt|toxic|uturn": 2.381,
-            "hiddenpowerice60|roost|thunderbolt|toxic": 6.96,
-            "hiddenpowerice60|roost|thunderbolt|uturn": 7.326,
-            "hiddenpowerice60|thunderbolt|toxic|uturn": 4.945,
+            "hiddenpowerice|roost|thunderbolt|toxic": 6.96,
+            "hiddenpowerice|roost|thunderbolt|uturn": 7.326,
+            "hiddenpowerice|thunderbolt|toxic|uturn": 4.945,
             "roost|thunderbolt|toxic|uturn": 8.974
         },
         "spreads": [
@@ -41039,7 +41039,7 @@
                 78.505
             ],
             [
-                "hiddenpowergrass60",
+                "hiddenpowergrass",
                 100.0
             ],
             [
@@ -41052,9 +41052,9 @@
             ]
         ],
         "sets": {
-            "hiddenpowergrass60|overheat|thunderbolt|voltswitch": 21.495,
-            "hiddenpowergrass60|overheat|thunderbolt|wildcharge": 17.29,
-            "hiddenpowergrass60|overheat|voltswitch|wildcharge": 61.215
+            "hiddenpowergrass|overheat|thunderbolt|voltswitch": 21.495,
+            "hiddenpowergrass|overheat|thunderbolt|wildcharge": 17.29,
+            "hiddenpowergrass|overheat|voltswitch|wildcharge": 61.215
         },
         "spreads": [
             [
@@ -41185,7 +41185,7 @@
                 100.0
             ],
             [
-                "hiddenpowerice60",
+                "hiddenpowerice",
                 51.195
             ],
             [
@@ -41203,21 +41203,21 @@
         ],
         "sets": {
             "bulkup|closecombat|knockoff|plasmafists": 9.96,
-            "closecombat|grassknot|hiddenpowerice60|plasmafists": 5.976,
+            "closecombat|grassknot|hiddenpowerice|plasmafists": 5.976,
             "closecombat|grassknot|knockoff|plasmafists": 5.578,
             "closecombat|grassknot|plasmafists|voltswitch": 2.191,
             "closecombat|grassknot|plasmafists|workup": 12.948,
-            "closecombat|hiddenpowerice60|knockoff|plasmafists": 3.187,
-            "closecombat|hiddenpowerice60|plasmafists|voltswitch": 3.586,
-            "closecombat|hiddenpowerice60|plasmafists|workup": 7.968,
+            "closecombat|hiddenpowerice|knockoff|plasmafists": 3.187,
+            "closecombat|hiddenpowerice|plasmafists|voltswitch": 3.586,
+            "closecombat|hiddenpowerice|plasmafists|workup": 7.968,
             "closecombat|knockoff|plasmafists|voltswitch": 4.582,
-            "grassknot|hiddenpowerice60|knockoff|plasmafists": 6.773,
-            "grassknot|hiddenpowerice60|plasmafists|voltswitch": 2.59,
-            "grassknot|hiddenpowerice60|plasmafists|workup": 9.562,
+            "grassknot|hiddenpowerice|knockoff|plasmafists": 6.773,
+            "grassknot|hiddenpowerice|plasmafists|voltswitch": 2.59,
+            "grassknot|hiddenpowerice|plasmafists|workup": 9.562,
             "grassknot|knockoff|plasmafists|voltswitch": 3.386,
             "grassknot|knockoff|plasmafists|workup": 10.159,
-            "hiddenpowerice60|knockoff|plasmafists|voltswitch": 2.988,
-            "hiddenpowerice60|knockoff|plasmafists|workup": 8.566
+            "hiddenpowerice|knockoff|plasmafists|voltswitch": 2.988,
+            "hiddenpowerice|knockoff|plasmafists|workup": 8.566
         },
         "spreads": [
             [

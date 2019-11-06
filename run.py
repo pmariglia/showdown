@@ -17,10 +17,6 @@ from data import pokedex
 from data.mods.apply_mods import apply_mods
 
 
-original_pokedex = deepcopy(pokedex)
-original_move_json = deepcopy(all_move_json)
-
-
 def parse_configs():
     env = Env()
     env.read_env()
@@ -47,7 +43,7 @@ def parse_configs():
     logger.setLevel(env("LOG_LEVEL", "DEBUG"))
 
 
-def check_dictionaries_are_unmodified():
+def check_dictionaries_are_unmodified(original_pokedex, original_move_json):
     # The bot should not modify the data dictionaries
     # This is a "just-in-case" check to make sure and will stop the bot if it mutates either of them
     if original_move_json != all_move_json:
@@ -71,6 +67,10 @@ async def showdown():
     parse_configs()
 
     apply_mods(config.pokemon_mode)
+
+    original_pokedex = deepcopy(pokedex)
+    original_move_json = deepcopy(all_move_json)
+
     ps_websocket_client = await PSWebsocketClient.create(config.username, config.password, config.websocket_uri)
     await ps_websocket_client.login()
 
@@ -98,7 +98,7 @@ async def showdown():
 
         logger.info("\nW: {}\nL: {}\n".format(wins, losses))
 
-        check_dictionaries_are_unmodified()
+        check_dictionaries_are_unmodified(original_pokedex, original_move_json)
 
         battles_run += 1
         if battles_run >= config.run_count:
