@@ -4,9 +4,14 @@ from unittest import mock
 import constants
 
 from showdown.battle import LastUsedMove
+from showdown.battle import Battle
 from showdown.battle import Battler
 from showdown.battle import Pokemon
 from showdown.battle import Move
+
+
+# so we can instantiate a Battle object for testing
+Battle.__abstractmethods__ = set()
 
 
 class TestPokemonInit(unittest.TestCase):
@@ -598,3 +603,280 @@ class TestBattlerActiveLockedIntoMove(unittest.TestCase):
         self.assertFalse(self.battler.active.get_move('agility').disabled)
         self.assertFalse(self.battler.active.get_move('doubleteam').disabled)
 
+
+class TestBattle(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.active = Pokemon('Pikachu', 100)
+        self.battle.opponent.active = Pokemon('Pikachu', 100)
+
+    def test_gets_only_move_for_both_sides(self):
+        self.battle.user.active.moves = [
+            Move('thunderbolt')
+        ]
+        self.battle.opponent.active.moves = [
+            Move('thunderbolt')
+        ]
+
+        expected_options = ['thunderbolt'], ['thunderbolt']
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_gets_multiple_moves_for_both_sides(self):
+        self.battle.user.active.moves = [
+            Move('thunderbolt'),
+            Move('agility'),
+            Move('tackle'),
+            Move('charm'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('thunderbolt'),
+            Move('swift'),
+            Move('dragondance'),
+            Move('stealthrock'),
+        ]
+
+        expected_options = (
+            [
+                'thunderbolt',
+                'agility',
+                'tackle',
+                'charm'
+            ],
+            [
+                'thunderbolt',
+                'swift',
+                'dragondance',
+                'stealthrock'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_gets_one_switch_and_splash(self):
+        self.battle.user.active.moves = []
+        self.battle.opponent.active.moves = []
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100)]
+
+        expected_options = (
+            [
+                'switch caterpie'
+            ],
+            [
+                'splash',
+                'switch caterpie'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_gets_multiple_switches_and_splash(self):
+        self.battle.user.active.moves = []
+        self.battle.opponent.active.moves = []
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100), Pokemon('houndour', 100)]
+
+        expected_options = (
+            [
+                'switch caterpie',
+                'switch spinarak'
+            ],
+            [
+                'splash',
+                'switch caterpie',
+                'switch houndour'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_gets_multiple_switches_and_multiple_moves(self):
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('tackle'),
+            Move('thunderbolt'),
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100), Pokemon('houndour', 100)]
+
+        expected_options = (
+            [
+                'tackle',
+                'charm',
+                'switch caterpie',
+                'switch spinarak'
+            ],
+            [
+                'tackle',
+                'thunderbolt',
+                'switch caterpie',
+                'switch houndour'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_ignores_moves_and_gives_opponent_no_option_when_user_active_is_dead(self):
+        self.battle.user.active.hp = 0
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('tackle'),
+            Move('thunderbolt'),
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100), Pokemon('houndour', 100)]
+
+        expected_options = (
+            [
+                'switch caterpie',
+                'switch spinarak'
+            ],
+            [
+                'splash'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_ignores_moves_and_gives_opponent_no_option_when_force_switch_is_true(self):
+        self.battle.force_switch = True
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('tackle'),
+            Move('thunderbolt'),
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100), Pokemon('houndour', 100)]
+
+        expected_options = (
+            [
+                'switch caterpie',
+                'switch spinarak'
+            ],
+            [
+                'splash'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_gives_no_options_for_user_and_only_switches_for_opponent_when_wait_is_true(self):
+        self.battle.wait = True
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('tackle'),
+            Move('thunderbolt'),
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100), Pokemon('houndour', 100)]
+
+        expected_options = (
+            [
+                'splash'
+            ],
+            [
+                'switch caterpie',
+                'switch houndour'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_gives_no_options_for_user_and_only_switches_for_opponent_when_opponent_active_is_dead(self):
+        self.battle.opponent.active.hp = 0
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('tackle'),
+            Move('thunderbolt'),
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100), Pokemon('houndour', 100)]
+
+        expected_options = (
+            [
+                'splash'
+            ],
+            [
+                'switch caterpie',
+                'switch houndour'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_double_fainted_active_pokemon(self):
+        self.battle.user.active.hp = 0
+        self.battle.opponent.active.hp = 0
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('tackle'),
+            Move('thunderbolt'),
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100), Pokemon('houndour', 100)]
+
+        expected_options = (
+            [
+                'switch caterpie',
+                'switch spinarak'
+            ],
+            [
+                'switch caterpie',
+                'switch houndour'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_opponent_has_no_moves_results_in_splash_or_switches(self):
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+        self.battle.opponent.active.moves = [
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100)]
+
+        expected_options = (
+            [
+                'tackle',
+                'charm',
+                'switch caterpie',
+                'switch spinarak'
+            ],
+            [
+                'splash',
+                'switch caterpie',
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())

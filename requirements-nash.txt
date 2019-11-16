@@ -1,4 +1,0 @@
-# requirements for using the nash equilibrium decision making
-nashpy==0.0.17
-pandas==0.23.4
-numpy==1.16.2

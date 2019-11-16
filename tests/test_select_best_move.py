@@ -2,12 +2,10 @@ import unittest
 from collections import defaultdict
 
 import constants
-from showdown.engine.objects import StateMutator
 from showdown.engine.objects import State
 from showdown.engine.objects import Side
 from showdown.engine.objects import Pokemon
 from showdown.battle import Pokemon as StatePokemon
-from showdown.engine.select_best_move import get_all_options
 
 
 class TestGetAllOptions(unittest.TestCase):
@@ -43,8 +41,6 @@ class TestGetAllOptions(unittest.TestCase):
                         False,
                         False
                     )
-
-        self.mutator = StateMutator(self.state)
 
         self.state.self.active.moves = [
             {constants.ID: 'tackle', constants.DISABLED: False},
@@ -84,7 +80,7 @@ class TestGetAllOptions(unittest.TestCase):
                 'switch bronzong'
             ]
         )
-        options = get_all_options(self.mutator)
+        options = self.state.get_all_options()
 
         self.assertEqual(expected_options, options)
 
@@ -103,24 +99,23 @@ class TestGetAllOptions(unittest.TestCase):
         )
         self.state.self.active.hp = 0
 
-        options = get_all_options(self.mutator)
+        options = self.state.get_all_options()
 
         self.assertEqual(expected_options, options)
 
-    def test_returns_nothing_for_user_when_wait_is_active(self):
-        self.state.wait = True
+    def test_returns_nothing_for_user_when_opponent_active_is_dead(self):
+        self.state.opponent.active.hp = 0
         expected_user_options = [
             constants.DO_NOTHING_MOVE
         ]
 
-        options = get_all_options(self.mutator)
+        options = self.state.get_all_options()
 
         self.assertEqual(expected_user_options, options[0])
 
     def test_double_faint_returns_correct_decisions(self):
         self.state.self.active.hp = 0
         self.state.opponent.active.hp = 0
-        self.state.force_switch = True
         expected_options = (
             [
                 'switch xatu',
@@ -138,14 +133,13 @@ class TestGetAllOptions(unittest.TestCase):
             ],
         )
 
-        options = get_all_options(self.mutator)
+        options = self.state.get_all_options()
 
         self.assertEqual(expected_options, options)
 
     def test_double_faint_with_no_reserve_pokemon_returns_correct_decisions(self):
         self.state.self.active.hp = 0
         self.state.opponent.active.hp = 0
-        self.state.force_switch = True
 
         for mon in self.state.self.reserve.values():
             mon.hp = 0
@@ -163,6 +157,6 @@ class TestGetAllOptions(unittest.TestCase):
             ],
         )
 
-        options = get_all_options(self.mutator)
+        options = self.state.get_all_options()
 
         self.assertEqual(expected_options, options)

@@ -448,7 +448,7 @@ def check_choicescarf(battle, msg_lines):
             battle_copy.opponent.active.set_spread('quiet', '0,0,0,0,0,0')  # assume as slow as possible in trickroom
         else:
             battle_copy.opponent.active.set_spread('jolly', '0,0,0,0,0,252')  # assume as fast as possible
-    state = battle_copy.to_object()
+    state = battle_copy.create_state()
     opponent_effective_speed = get_effective_speed(state, state.opponent)
     bot_effective_speed = get_effective_speed(state, state.self)
 

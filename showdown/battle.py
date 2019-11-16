@@ -3,6 +3,8 @@ from collections import defaultdict
 from collections import namedtuple
 from copy import copy
 from copy import deepcopy
+from abc import ABC
+from abc import abstractmethod
 
 import constants
 from config import logger
@@ -39,7 +41,7 @@ from data.helpers import get_all_possible_moves_for_random_battle
 LastUsedMove = namedtuple('LastUsedMove', ['pokemon_name', 'move'])
 
 
-class Battle:
+class Battle(ABC):
 
     def __init__(self, battle_tag):
         self.battle_tag = battle_tag
@@ -91,6 +93,7 @@ class Battle:
         The battles have the opponent's reserve pokemon's unknowns filled in
         The opponent's active pokemon in each of the battles has a different set"""
         battle_copy = deepcopy(self)
+        battle_copy.opponent.lock_moves()
 
         if battle_copy.user.active.can_mega_evo:
             # mega-evolving here gives the pkmn the random-battle spread (Serious + 85s)
@@ -140,6 +143,7 @@ class Battle:
             all_moves = [m.name for m in new_battle.opponent.active.moves]
             all_moves += expected_moves
             all_moves += c[3]
+            all_moves = [Move(m) for m in all_moves]
 
             if join_moves_together or set_makes_sense(c[0][0], c[0][1], c[1], c[2], all_moves):
                 new_battle.opponent.active.set_spread(c[0][0], c[0][1])
@@ -153,12 +157,11 @@ class Battle:
                 logger.debug("Possible set for opponent's {}: {}".format(battle_copy.opponent.active.name, c))
                 battles.append(new_battle)
 
+            new_battle.opponent.lock_moves()
+
         return battles if battles else [battle_copy]
 
-    def to_object(self):
-        # the bot knows the disabled status of it's own moves - this only needs to be done for the opponent
-        self.opponent.lock_moves()
-
+    def create_state(self):
         user_active = TransposePokemon.from_state_pokemon_dict(self.user.active.to_dict())
         user_reserve = dict()
         for mon in self.user.reserve:
@@ -174,6 +177,35 @@ class Battle:
 
         state = State(user, opponent, self.weather, self.field, self.trick_room, self.force_switch, self.wait)
         return state
+
+    def get_all_options(self):
+        force_switch = self.force_switch or self.user.active.hp <= 0
+        wait = self.wait or self.opponent.active.hp <= 0
+
+        # double faint or team preview
+        if force_switch and wait:
+            user_options = self.user.get_switches() or [constants.DO_NOTHING_MOVE]
+            opponent_options = self.opponent.get_switches() or [constants.DO_NOTHING_MOVE]
+            return user_options, opponent_options
+
+        if force_switch:
+            opponent_options = [constants.DO_NOTHING_MOVE]
+            user_options = self.user.get_switches()
+        elif wait:
+            opponent_options = self.opponent.get_switches()
+            user_options = [constants.DO_NOTHING_MOVE]
+        else:
+            user_options = [m.name for m in self.user.active.moves if not m.disabled]
+            user_options += self.user.get_switches()
+
+            opponent_options = [m.name for m in self.opponent.active.moves if not m.disabled] or [constants.DO_NOTHING_MOVE]
+            opponent_options += self.opponent.get_switches()
+
+        return user_options, opponent_options
+
+    @abstractmethod
+    def find_best_move(self):
+        ...
 
 
 class Battler:
@@ -278,6 +310,16 @@ class Battler:
             except KeyError:
                 pass
 
+    def get_switches(self):
+        if self.trapped:
+            return []
+
+        switches = []
+        for pkmn in self.reserve:
+            if pkmn.hp > 0:
+                switches.append("{} {}".format(constants.SWITCH_STRING, pkmn.name))
+        return switches
+
     def to_dict(self):
         return {
             constants.TRAPPED: self.trapped,
@@ -320,7 +362,7 @@ class Pokemon:
         self.volatile_statuses = []
         self.boosts = defaultdict(lambda: 0)
         self.can_mega_evo = False
-        self.can_ultra_burst = True
+        self.can_ultra_burst = False
         self.is_mega = False
         self.can_have_choice_item = True
 
