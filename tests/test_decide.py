@@ -1,8 +1,8 @@
 import unittest
 from unittest import mock
 
-from showdown.decide import pick_safest
-from showdown.decide import get_weighted_choices_from_multiple_score_lookups
+from showdown.engine.select_best_move import pick_safest
+from showdown.battle_bots.nash_equilibrium import get_weighted_choices_from_multiple_score_lookups
 
 
 class TestPickSafest(unittest.TestCase):
@@ -58,7 +58,7 @@ class TestPickSafest(unittest.TestCase):
 
 class TestGetWeightedChoices(unittest.TestCase):
     def setUp(self):
-        self.find_nash_equilibrium_patch = mock.patch('showdown.decide.find_nash_equilibrium')
+        self.find_nash_equilibrium_patch = mock.patch('showdown.battle_bots.nash_equilibrium.find_nash_equilibrium')
         self.addCleanup(self.find_nash_equilibrium_patch.stop)
         self.find_nash_mock = self.find_nash_equilibrium_patch.start()
 

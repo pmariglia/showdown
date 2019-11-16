@@ -162,7 +162,7 @@ def normalize_name(name):
 
 
 def set_makes_sense(nature, spread, item, ability, moves):
-    if item in constants.CHOICE_ITEMS and any(all_move_json[m][constants.CATEGORY] not in constants.DAMAGING_CATEGORIES and m != 'trick' for m in moves):
+    if item in constants.CHOICE_ITEMS and any(all_move_json[m.name][constants.CATEGORY] not in constants.DAMAGING_CATEGORIES and m.name != 'trick' for m in moves):
         return False
     return True
 

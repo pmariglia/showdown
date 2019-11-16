@@ -28,6 +28,10 @@ from showdown.battle_modifier import check_choicescarf
 from showdown.battle_modifier import singleturn
 
 
+# so we can instantiate a Battle object for testing
+Battle.__abstractmethods__ = set()
+
+
 class TestRequestMessage(unittest.TestCase):
     def setUp(self):
         self.battle = Battle(None)

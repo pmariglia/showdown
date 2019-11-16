@@ -3,6 +3,8 @@ from collections import defaultdict
 from collections import namedtuple
 from copy import copy
 from copy import deepcopy
+from abc import ABC
+from abc import abstractmethod
 
 import constants
 from config import logger
@@ -18,6 +20,10 @@ from data.helpers import get_pokemon_sets
 from data.helpers import get_standard_battle_sets
 from data.helpers import get_mega_pkmn_name
 
+from showdown.engine.find_state_instructions import get_all_state_instructions
+from showdown.engine.find_state_instructions import user_moves_first
+from showdown.engine.select_best_move import get_all_options
+from showdown.engine.objects import StateMutator
 from showdown.engine.objects import State
 from showdown.engine.objects import Side
 from showdown.engine.objects import Pokemon as TransposePokemon
@@ -39,7 +45,7 @@ from data.helpers import get_all_possible_moves_for_random_battle
 LastUsedMove = namedtuple('LastUsedMove', ['pokemon_name', 'move'])
 
 
-class Battle:
+class Battle(ABC):
 
     def __init__(self, battle_tag):
         self.battle_tag = battle_tag
@@ -140,6 +146,7 @@ class Battle:
             all_moves = [m.name for m in new_battle.opponent.active.moves]
             all_moves += expected_moves
             all_moves += c[3]
+            all_moves = [Move(m) for m in all_moves]
 
             if join_moves_together or set_makes_sense(c[0][0], c[0][1], c[1], c[2], all_moves):
                 new_battle.opponent.active.set_spread(c[0][0], c[0][1])
@@ -155,7 +162,7 @@ class Battle:
 
         return battles if battles else [battle_copy]
 
-    def to_object(self):
+    def create_state(self):
         # the bot knows the disabled status of it's own moves - this only needs to be done for the opponent
         self.opponent.lock_moves()
 
@@ -174,6 +181,31 @@ class Battle:
 
         state = State(user, opponent, self.weather, self.field, self.trick_room, self.force_switch, self.wait)
         return state
+
+    def get_instructions(self, my_move, opponent_move):
+        state = self.create_state()
+        mutator = StateMutator(state)
+        return get_all_state_instructions(mutator, my_move, opponent_move)
+
+    def bot_moves_first(self, my_move, opponent_move):
+        state = self.create_state()
+        my_move_dict = all_move_json[my_move]
+        opponent_move_dict = all_move_json[opponent_move]
+        return user_moves_first(state, my_move_dict, opponent_move_dict)
+
+    def get_my_options(self):
+        return self.get_all_options()[0]
+
+    def get_opponent_options(self):
+        return self.get_all_options()[1]
+
+    def get_all_options(self):
+        state = self.create_state()
+        return get_all_options(state)
+
+    @abstractmethod
+    def find_best_move(self):
+        ...
 
 
 class Battler:

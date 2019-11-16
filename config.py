@@ -4,6 +4,7 @@ import logging
 
 import constants
 
+battle_bot_module = None
 websocket_uri = None
 username = None
 password = None
@@ -16,7 +17,6 @@ gambit_exe_path = ""
 greeting_message = 'hf'
 battle_ending_message = 'gg'
 
-decision_method = constants.PICK_SAFEST
 use_relative_weights = False
 damage_calc_type = 'average'
 search_depth = 2

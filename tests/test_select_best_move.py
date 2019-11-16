@@ -44,8 +44,6 @@ class TestGetAllOptions(unittest.TestCase):
                         False
                     )
 
-        self.mutator = StateMutator(self.state)
-
         self.state.self.active.moves = [
             {constants.ID: 'tackle', constants.DISABLED: False},
             {constants.ID: 'charm', constants.DISABLED: False},
@@ -84,7 +82,7 @@ class TestGetAllOptions(unittest.TestCase):
                 'switch bronzong'
             ]
         )
-        options = get_all_options(self.mutator)
+        options = get_all_options(self.state)
 
         self.assertEqual(expected_options, options)
 
@@ -103,7 +101,7 @@ class TestGetAllOptions(unittest.TestCase):
         )
         self.state.self.active.hp = 0
 
-        options = get_all_options(self.mutator)
+        options = get_all_options(self.state)
 
         self.assertEqual(expected_options, options)
 
@@ -113,7 +111,7 @@ class TestGetAllOptions(unittest.TestCase):
             constants.DO_NOTHING_MOVE
         ]
 
-        options = get_all_options(self.mutator)
+        options = get_all_options(self.state)
 
         self.assertEqual(expected_user_options, options[0])
 
@@ -138,7 +136,7 @@ class TestGetAllOptions(unittest.TestCase):
             ],
         )
 
-        options = get_all_options(self.mutator)
+        options = get_all_options(self.state)
 
         self.assertEqual(expected_options, options)
 
@@ -163,6 +161,6 @@ class TestGetAllOptions(unittest.TestCase):
             ],
         )
 
-        options = get_all_options(self.mutator)
+        options = get_all_options(self.state)
 
         self.assertEqual(expected_options, options)

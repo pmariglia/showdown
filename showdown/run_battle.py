@@ -1,3 +1,4 @@
+import importlib
 import json
 import asyncio
 import concurrent.futures
@@ -7,11 +8,9 @@ import constants
 import config
 from config import logger
 from config import reset_logger
-from showdown.evaluate import Scoring
-from showdown.battle import Battle
+from showdown.engine.evaluate import Scoring
 from showdown.battle import Pokemon
 from showdown.battle_modifier import update_battle
-from showdown.engine import find_best_move
 
 from showdown.websocket_client import PSWebsocketClient
 
@@ -46,12 +45,12 @@ async def async_pick_move(battle):
     loop = asyncio.get_event_loop()
     with concurrent.futures.ThreadPoolExecutor() as pool:
         best_move = await loop.run_in_executor(
-            pool, find_best_move, battle
+            pool, battle.find_best_move
         )
     return format_decision(battle, best_move)
 
 
-async def handle_team_preview(battle: Battle, ps_websocket_client: PSWebsocketClient):
+async def handle_team_preview(battle, ps_websocket_client):
     battle_copy = deepcopy(battle)
     battle_copy.user.active = Pokemon.get_dummy()
     battle_copy.opponent.active = Pokemon.get_dummy()
@@ -81,6 +80,8 @@ async def get_battle_tag_and_opponent(ps_websocket_client: PSWebsocketClient):
 
 
 async def initialize_battle_with_tag(ps_websocket_client: PSWebsocketClient):
+    battle_module = importlib.import_module('showdown.battle_bots.{}'.format(config.battle_bot_module))
+
     battle_tag, opponent_name = await get_battle_tag_and_opponent(ps_websocket_client)
     while True:
         msg = await ps_websocket_client.receive_message()
@@ -89,7 +90,7 @@ async def initialize_battle_with_tag(ps_websocket_client: PSWebsocketClient):
             user_json = json.loads(split_msg[2].strip('\''))
             user_id = user_json[constants.SIDE][constants.ID]
             opponent_id = constants.ID_LOOKUP[user_id]
-            battle = Battle(battle_tag)
+            battle = battle_module.BattleBot(battle_tag)
             battle.opponent.name = opponent_id
             battle.opponent.account_name = opponent_name
             return battle, opponent_id, user_json

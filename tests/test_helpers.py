@@ -1,5 +1,6 @@
 import unittest
 
+from showdown.battle import Move
 from showdown.helpers import battle_is_over
 from showdown.helpers import get_pokemon_info_from_condition
 from showdown.helpers import normalize_name
@@ -132,7 +133,7 @@ class TestSetMakesSense(unittest.TestCase):
         spread = '0,0,0,252,4,252'
         item = 'choiceband'
         ability = 'intimidate'
-        moves = ['swordsdance']
+        moves = [Move('swordsdance')]
 
         self.assertFalse(set_makes_sense(nature, spread, item, ability, moves))
 
@@ -141,7 +142,7 @@ class TestSetMakesSense(unittest.TestCase):
         spread = '0,0,0,252,4,252'
         item = 'choicespecs'
         ability = 'intimidate'
-        moves = ['nastyplot']
+        moves = [Move('nastyplot')]
 
         self.assertFalse(set_makes_sense(nature, spread, item, ability, moves))
 
@@ -150,7 +151,11 @@ class TestSetMakesSense(unittest.TestCase):
         spread = '0,0,0,252,4,252'
         item = 'choicespecs'
         ability = 'intimidate'
-        moves = ['nastyplot', 'darkpulse', 'thunderbolt']
+        moves = [
+            Move('nastyplot'),
+            Move('darkpulse'),
+            Move('thunderbolt'),
+        ]
 
         self.assertFalse(set_makes_sense(nature, spread, item, ability, moves))
 
@@ -159,7 +164,11 @@ class TestSetMakesSense(unittest.TestCase):
         spread = '0,0,0,252,4,252'
         item = 'choicescarf'
         ability = 'intimidate'
-        moves = ['trick', 'darkpulse', 'thunderbolt']
+        moves = [
+            Move('trick'),
+            Move('darkpulse'),
+            Move('thunderbolt'),
+        ]
 
         self.assertTrue(set_makes_sense(nature, spread, item, ability, moves))
 
