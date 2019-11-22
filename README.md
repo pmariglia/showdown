@@ -106,7 +106,7 @@ These are the default battle-bot's results in three different formats for roughl
 ## Write your own bot
 Create a package in `showdown/battle_bots` with a module named `main.py`. In this module, create a class named `BattleBot`, override the Battle class, and implement your own `find_best_move` function.
 
-Set the `BATTLE_BOT` environment variable to the name of your module and your function will be called each time PokemonShowdown prompts the bot for a move
+Set the `BATTLE_BOT` environment variable to the name of your package and your function will be called each time PokemonShowdown prompts the bot for a move
 
 ## Specifying Teams
 The user can specify teams in JSON format to be used for non-random battles. Examples can be found in `teams/team_jsons/`.
