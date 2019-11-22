@@ -11,8 +11,8 @@ def switch_out_move_triggered(move, damage_amounts):
 
 def get_best_switch_pokemon(mutator, instructions, attacker, attacking_side, defending_move, first_move):
     from .select_best_move import get_payoff_matrix
-    from .select_best_move import get_possible_switches
-    switches = get_possible_switches(attacking_side)
+
+    switches = attacking_side.get_switches()
     if not switches or instructions.frozen:
         return None
 
@@ -22,8 +22,8 @@ def get_best_switch_pokemon(mutator, instructions, attacker, attacking_side, def
         other_move = constants.DO_NOTHING_MOVE
 
     if attacker == constants.SELF:
-        best_switch = max(get_payoff_matrix(mutator, depth=1, forced_options=(switches, [other_move])).items(), key=lambda x: x[1])[0][0]
+        best_switch = max(get_payoff_matrix(mutator, switches, [other_move], depth=1).items(), key=lambda x: x[1])[0][0]
     else:
-        best_switch = min(get_payoff_matrix(mutator, depth=1, forced_options=([other_move], switches)).items(), key=lambda x: x[1])[0][1]
+        best_switch = min(get_payoff_matrix(mutator, [other_move], switches, depth=1).items(), key=lambda x: x[1])[0][1]
 
     return best_switch.split()[-1].strip()

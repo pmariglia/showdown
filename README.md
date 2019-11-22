@@ -3,6 +3,8 @@ Showdown is a Pokémon battle-bot that can play battles on [Pokemon Showdown](ht
 
 The bot can play single battles in generations 4 through 7 however some of the evaluation logic is assuming gen7 mechanics.
 
+Gen 8 Soon™
+
 ## Python version
 Developed and tested using Python 3.6.3.
 
@@ -14,14 +16,13 @@ Environment variables are used for configuration which are by default read from 
 
 The configurations available are:
 ```
+BATTLE_BOT: (string, default "safest") The BattleBot module to use. More on this below
 SAVE_REPLAY: (bool, default False) Specifies whether or not to save replays of the battles
 LOG_TO_FILE: (bool, default False) Specifies whether or not to write logs to files in {PWD}/logs/
 LOG_LEVEL: (string, default "DEBUG") The Python logging level 
 WEBSOCKET_URI: (string, default is the official PokemonShowdown websocket address: "sim.smogon.com:8000") The address to use to connect to the Pokemon Showdown websocket 
 PS_USERNAME: (string, required) Pokemon Showdown username
-PS_PASSWORD: (string) Pokemon Showdown password
-DECISION_METHOD: (string, default "safest") The decision making method. Options are "safest" and "nash". More on this in the Decision Logic section
-USE_RELATIVE_WEIGHTS: (bool, default False) Specifies whether or not to analyze each state and determine how valuable each pokemon is 
+PS_PASSWORD: (string) Pokemon Showdown password 
 BOT_MODE: (string, required) The mode the the bot will operate in. Options are "CHALLENGE_USER", "SEARCH_LADDER", or "ACCEPT_CHALLENGE"
 USER_TO_CHALLENGE: (string, required if BOT_MODE is "CHALLENGE_USER") The user to challenge
 POKEMON_MODE: (string, required) The type of game this bot will play games in
@@ -29,7 +30,7 @@ TEAM_NAME: (string, required if POKEMON_MODE is one where a team is required) Th
 RUN_COUNT: (integer, required) The amount of games this bot will play before quitting
 ```
 
-Here is a minimal `.env` file. This configuration will log-in and search for a gen7randombattle:
+Here is a minimal `.env` file. This configuration will log in and search for a gen7randombattle:
 ```
 WEBSOCKET_URI=sim.smogon.com:8000
 PS_USERNAME=MyCoolUsername
@@ -71,50 +72,24 @@ Running with `python run.py` will start the bot with configurations specified by
 
 After deploying, go to the Resources tab and turn on the worker.
 
-## Decision Logic
+## Battle Bots
 
-The bot searches through the game-tree for two turns and can make a decision in the two different ways explained below.
+### Safest
+use BATTLE_BOT=safest (default unless otherwise specified)
+
+The bot searches through the game-tree for two turns and selects the move that minimizes the possible loss for a turn.
+This is equivalent to the [Maximin](https://en.wikipedia.org/wiki/Minimax#Maximin) strategy
 
 For decisions with random outcomes a weighted average is taken for all possible end states.
 For example: If using draco meteor versus some arbitrary other move results in a score of 1000 if it hits (90%) and a score of 900 if it misses (10%), the overall score for using
 draco meteor is (0.9 * 1000) + (0.1 * 900) = 990.
 
-Most aspects of Pokémon are accounted for, such as:
-
-1. Damage Rolls
-
-2. Spreads
-
-3. Move-Sets
-
-4. Abilities
-
-5. Items
-
-6. Hazards
-
-7. Weather
-
-### Relative Pokemon Weights
-
-A natural strategy in Pokémon is to preserve win-conditions.
-The bot attempts to do this by assigning each Pokémon a multiplier based on how valuable they are in defeating the opponent's team.
-Experimentation with this has proven to produce better results on the PokemonShowdown ladder.
-
-### Decision Methods
-
-#### Safest
-use DECISION_LOGIC=safest (default unless otherwise specified)
-
-Safest means that the bot will make a move that minimizes the possible loss for a turn.
-This is equivalent to the [Maximin](https://en.wikipedia.org/wiki/Minimax#Maximin) strategy
-
 This decision type is deterministic - the bot will always make the same move given the same situation again.
 
-#### Nash-Equilibrium (experimental)
-use DECISION_LOGIC=nash
+### Nash-Equilibrium (experimental)
+use BATTLE_BOT=nash_equilibrium
 
-Using the information it has, plus some assumptions about the opponent, the bot will calculate the [Nash-Equilibrium](https://en.wikipedia.org/wiki/Nash_equilibrium) with the highest payoff
+Using the information it has, plus some assumptions about the opponent, the bot will attempt to calculate the [Nash-Equilibrium](https://en.wikipedia.org/wiki/Nash_equilibrium) with the highest payoff
 and select a move from that distribution.
 
 The Nash Equilibrium is calculated using command-line tools provided by the [Gambit](http://www.gambit-project.org/) project.
@@ -124,12 +99,14 @@ This decision method is **not** deterministic. The bot **may** make a different 
 
 ## Performance
 
-The bot will perform best when using the "safest" decision making method
-and when taking the time to give each Pokémon a multiplier before deciding a move.
-
-These are the current results in three different formats for roughly 75 games played on a fresh account:
+These are the default battle-bot's results in three different formats for roughly 75 games played on a fresh account:
 
 ![RelativeWeightsRankings](https://i.imgur.com/eNpIlVg.png)
+
+## Write your own bot
+Create a package in `showdown/battle_bots` with a module named `main.py`. In this module, create a class named `BattleBot`, override the Battle class, and implement your own `find_best_move` function.
+
+Set the `BATTLE_BOT` environment variable to the name of your module and your function will be called each time PokemonShowdown prompts the bot for a move
 
 ## Specifying Teams
 The user can specify teams in JSON format to be used for non-random battles. Examples can be found in `teams/team_jsons/`.

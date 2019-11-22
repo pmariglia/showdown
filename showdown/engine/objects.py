@@ -18,6 +18,57 @@ class State(object):
         self.force_switch = force_switch
         self.wait = wait
 
+    def get_self_options(self, force_switch):
+        if force_switch:
+            possible_moves = []
+        else:
+            possible_moves = [m[constants.ID] for m in self.self.active.moves if not m[constants.DISABLED]]
+
+        if self.self.trapped:
+            possible_switches = []
+        else:
+            possible_switches = self.self.get_switches()
+
+        return possible_moves + possible_switches
+
+    def get_opponent_options(self):
+        if self.opponent.active.hp <= 0:
+            possible_moves = []
+        else:
+            possible_moves = [m[constants.ID] for m in self.opponent.active.moves if not m[constants.DISABLED]]
+
+        possible_switches = self.opponent.get_switches()
+
+        return possible_moves + possible_switches
+
+    def get_all_options(self):
+        force_switch = self.self.active.hp <= 0
+        wait = self.opponent.active.hp <= 0
+
+        # double faint or team preview
+        if force_switch and wait:
+            user_options = self.get_self_options(force_switch) or [constants.DO_NOTHING_MOVE]
+            opponent_options = self.get_opponent_options() or [constants.DO_NOTHING_MOVE]
+            return user_options, opponent_options
+
+        if force_switch:
+            opponent_options = [constants.DO_NOTHING_MOVE]
+        else:
+            opponent_options = self.get_opponent_options()
+
+        if wait:
+            user_options = [constants.DO_NOTHING_MOVE]
+        else:
+            user_options = self.get_self_options(force_switch)
+
+        if not user_options:
+            user_options = [constants.DO_NOTHING_MOVE]
+
+        if not opponent_options:
+            opponent_options = [constants.DO_NOTHING_MOVE]
+
+        return user_options, opponent_options
+
     @classmethod
     def from_dict(cls, state_dict):
         return State(
@@ -69,6 +120,13 @@ class Side(object):
         self.reserve = reserve
         self.side_conditions = side_conditions
         self.trapped = trapped
+
+    def get_switches(self):
+        switches = []
+        for pkmn_name, pkmn in self.reserve.items():
+            if pkmn.hp > 0:
+                switches.append("{} {}".format(constants.SWITCH_STRING, pkmn_name))
+        return switches
 
     @classmethod
     def from_dict(cls, side_dict):
