@@ -1543,7 +1543,7 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    def test_substitute_into_string_attack_removes_volatile_status(self):
+    def test_substitute_into_strong_attack_removes_volatile_status(self):
         self.state.self.active.speed = 100
         self.state.opponent.active.speed = 99
         bot_move = "substitute"
