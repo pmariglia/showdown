@@ -378,7 +378,16 @@ def fairyaura(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def icescales(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.CATEGORY] == constants.SPECIAL:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 0.5
+
+    return attacking_move
+
+
 ability_lookup = {
+    'icescales': icescales,
     'fairyaura': fairyaura,
     'darkaura': darkaura,
     'soundproof': soundproof,
