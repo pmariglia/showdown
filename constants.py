@@ -283,7 +283,7 @@ THAW_IF_HIT_BY = {'scald', 'steameruption'}
 IMMUNE_TO_SLEEP_ABILITIES = {'insomnia', 'sweetveil', 'vitalspirit'}
 IMMUNE_TO_BURN_ABILITIES = {'waterveil', 'waterbubble'}
 IMMUNE_TO_FROZEN_ABILITIES = {'magmaarmor'}
-IMMUNE_TO_POISON_ABILITIES = {'immunity'}
+IMMUNE_TO_POISON_ABILITIES = {'immunity', 'pastelveil'}
 IMMUNE_TO_PARALYSIS_ABILITIES = {'limber'}
 
 CHOICE_ITEMS = {'choicescarf', 'choiceband', 'choicespecs'}

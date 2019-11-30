@@ -2106,6 +2106,21 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_pastelveil_prevents_poison(self):
+        bot_move = "toxic"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'pastelveil'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_pursuit_into_switch_causes_pursuit_to_happen_first_with_double_damage(self):
         bot_move = "pursuit"
         opponent_move = "switch yveltal"
