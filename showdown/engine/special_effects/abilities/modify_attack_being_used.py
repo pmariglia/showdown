@@ -318,7 +318,15 @@ def gorillatactics(attacking_move, attacking_pokemon, defending_pokemon, first_m
     return attacking_move
 
 
+def punkrock(attacking_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if constants.SOUND in attacking_move[constants.FLAGS]:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.3
+    return attacking_move
+
+
 ability_lookup = {
+    'punkrock': punkrock,
     'gorillatactics': gorillatactics,
     'prankster': prankster,
     'toughclaws': toughclaws,

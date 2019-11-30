@@ -386,7 +386,15 @@ def icescales(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def punkrock(attacking_move, attacking_pokemon, defending_pokemon):
+    if constants.SOUND in attacking_move[constants.FLAGS]:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 0.5
+    return attacking_move
+
+
 ability_lookup = {
+    'punkrock': punkrock,
     'icescales': icescales,
     'fairyaura': fairyaura,
     'darkaura': darkaura,
