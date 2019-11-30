@@ -17530,10 +17530,10 @@
         },
         "baseStats": {
             "hp": 60,
-            "attack": 150,
-            "defense": 150,
-            "special-attack": 150,
-            "special-defense": 150,
+            "attack": 140,
+            "defense": 140,
+            "special-attack": 140,
+            "special-defense": 140,
             "speed": 60
         },
         "height": 1.7,
@@ -17551,9 +17551,9 @@
         },
         "baseStats": {
             "hp": 60,
-            "attack": 150,
+            "attack": 140,
             "defense": 50,
-            "special-attack": 150,
+            "special-attack": 140,
             "special-defense": 50,
             "speed": 60
         },

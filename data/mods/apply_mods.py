@@ -5,7 +5,7 @@ from data import all_move_json
 from data import pokedex
 
 
-CURRENT_GEN = 7
+CURRENT_GEN = 8
 PWD = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -49,6 +49,11 @@ def apply_gen_6_mods():
     apply_pokedex_mods(6)
 
 
+def apply_gen_7_mods():
+    apply_move_mods(7)
+    apply_pokedex_mods(7)
+
+
 def apply_mods(game_mode):
     if "gen4" in game_mode:
         apply_gen_4_mods()
@@ -56,3 +61,5 @@ def apply_mods(game_mode):
         apply_gen_5_mods()
     elif "gen6" in game_mode:
         apply_gen_6_mods()
+    elif "gen7" in game_mode:
+        apply_gen_7_mods()

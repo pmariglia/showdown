@@ -2372,8 +2372,9 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.SPIKES, 1),
-                    (constants.MUTATOR_DAMAGE, constants.SELF, 18),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 43),
                     (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.SPIKES, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 1)
                 ],
                 False
             )
@@ -4941,7 +4942,7 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 112)
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 149)
                 ],
                 False
             )
@@ -4959,7 +4960,7 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 28)
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37)
                 ],
                 False
             )

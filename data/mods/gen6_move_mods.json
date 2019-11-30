@@ -4,7 +4,7 @@
       "chance": 50,
       "self": {
           "boosts": {
-              "def": 1
+              "defense": 1
           }
       }
     }
