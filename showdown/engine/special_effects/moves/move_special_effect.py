@@ -236,7 +236,15 @@ def pursuit(attacking_move, defending_move, attacking_pokemon, defending_pokemon
     return attacking_move
 
 
+def aurawheel(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_pokemon.id == "morpekohangry":
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = 'dark'
+    return attacking_move
+
+
 move_lookup = {
+    'aurawheel': aurawheel,
     'pursuit': pursuit,
     'painsplit': painsplit,
     'lowkick': lowkick,

@@ -270,6 +270,40 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_ground_immune_to_aurawheel(self):
+        bot_move = "aurawheel"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ["ground"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_ground_not_immune_to_aurawheel_when_morpeko_hangry_is_active(self):
+        bot_move = "aurawheel"
+        opponent_move = "splash"
+        self.state.self.active.id = "morpekohangry"
+        self.state.opponent.active.types = ["ground"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 68),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_contrary_boosts_leafstorm(self):
         bot_move = "leafstorm"
         opponent_move = "splash"
