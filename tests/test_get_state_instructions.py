@@ -4190,6 +4190,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_gorillatactics_boost_damage(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'gorillatactics'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),  # normal damage is 25
+
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_hugepower(self):
         bot_move = "tackle"
         opponent_move = "splash"
@@ -4520,6 +4538,60 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'thunderwave'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'coil'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'sandattack'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_gorilla_tactics_locks_other_moves_even_without_choice_item(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        self.state.self.active.item = None
+        self.state.self.active.ability = 'gorillatactics'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'thunderwave'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'coil'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'sandattack'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_gorilla_tactics_with_choice_item_locks_moves(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        self.state.self.active.item = 'choicescarf'
+        self.state.self.active.ability = 'gorillatactics'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
                     (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'thunderwave'),
                     (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'coil'),
                     (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'sandattack'),

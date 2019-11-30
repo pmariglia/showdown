@@ -311,7 +311,15 @@ def prankster(attacking_move, attacking_pokemon, defending_pokemon, first_move, 
     return attacking_move
 
 
+def gorillatactics(attacking_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_move[constants.CATEGORY] == constants.PHYSICAL:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.5
+    return attacking_move
+
+
 ability_lookup = {
+    'gorillatactics': gorillatactics,
     'prankster': prankster,
     'toughclaws': toughclaws,
     'fairyaura': fairyaura,

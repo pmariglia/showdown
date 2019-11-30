@@ -928,7 +928,10 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
         except KeyError:
             locking_move = False
 
-        if constants.SWITCH_STRING not in move and (pkmn.item in constants.CHOICE_ITEMS or locking_move):
+        if (
+            constants.SWITCH_STRING not in move and
+            (pkmn.item in constants.CHOICE_ITEMS or locking_move or pkmn.ability == 'gorillatactics')
+        ):
             move_used = move[constants.ID]
             for m in filter(lambda x: x[constants.ID] != move_used and not x[constants.DISABLED], pkmn.moves):
                 disable_instruction = (
