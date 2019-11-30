@@ -90,7 +90,10 @@ def mistysurge(state, attacking_side, attacking_pokemon, defending_side, defendi
 
 
 def intimidate(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    if defending_pokemon.ability not in ['fullmetalbody', 'clearbody', 'hypercutter', 'whitesmoke', 'defiant'] and defending_pokemon.attack_boost > -6:
+    if (
+            defending_pokemon.ability not in ['fullmetalbody', 'clearbody', 'hypercutter', 'whitesmoke', 'defiant', 'innerfocus', 'oblivious', 'owntempo', 'scrappy'] and
+            defending_pokemon.attack_boost > -6
+    ):
         return (
             constants.MUTATOR_UNBOOST,
             defending_side,

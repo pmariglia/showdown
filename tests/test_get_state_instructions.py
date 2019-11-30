@@ -4818,6 +4818,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_innerfocus_immune_to_intimidate(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.self.reserve['xatu'].ability = 'intimidate'
+        self.state.opponent.active.ability = 'innerfocus'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'xatu'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_dousedrive_makes_waterabsorb_activate(self):
         bot_move = "technoblast"
         opponent_move = "splash"
