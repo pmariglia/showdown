@@ -244,6 +244,26 @@ def tanglinghair(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def cottondown(attacking_move, attacking_pokemon, defending_pokemon):
+    attacking_move = attacking_move.copy()
+    if constants.SELF in attacking_move:
+        attacking_move[constants.SELF] = attacking_move[constants.SELF].copy()
+    else:
+        attacking_move[constants.SELF] = dict()
+
+    if constants.BOOSTS in attacking_move[constants.SELF]:
+        attacking_move[constants.SELF][constants.BOOSTS] = attacking_move[constants.SELF][constants.BOOSTS].copy()
+    else:
+        attacking_move[constants.SELF][constants.BOOSTS] = dict()
+
+    if constants.SPEED in attacking_move[constants.SELF][constants.BOOSTS]:
+        attacking_move[constants.SELF][constants.BOOSTS][constants.SPEED] -= 1
+    else:
+        attacking_move[constants.SELF][constants.BOOSTS][constants.SPEED] = -1
+
+    return attacking_move
+
+
 def marvelscale(attacking_move, attacking_pokemon, defending_pokemon):
     if defending_pokemon.status is not None and attacking_move[constants.CATEGORY] == constants.PHYSICAL:
         attacking_move = attacking_move.copy()
@@ -370,6 +390,7 @@ ability_lookup = {
     'justified': justified,
     'marvelscale': marvelscale,
     'tanglinghair': tanglinghair,
+    'cottondown': cottondown,
     'queenlymajesty': queenlymajesty,
     'waterbubble': waterbubble,
     'stamina': stamina,
