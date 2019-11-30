@@ -4838,6 +4838,42 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switch_in_with_dauntless_shield_causes_defense_to_raise(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.self.reserve['xatu'].ability = 'dauntlessshield'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'xatu'),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.DEFENSE, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_in_with_intrepid_sword_causes_attack_to_raise(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.self.reserve['xatu'].ability = 'intrepidsword'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'xatu'),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_switch_into_intimidate_causes_opponent_attack_to_lower(self):
         bot_move = "switch xatu"
         opponent_move = "splash"

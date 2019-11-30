@@ -111,7 +111,27 @@ def intimidate(state, attacking_side, attacking_pokemon, defending_side, defendi
     return None
 
 
+def dauntlessshield(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    return (
+        constants.MUTATOR_BOOST,
+        attacking_side,
+        constants.DEFENSE,
+        1
+    )
+
+
+def intrepidsword(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    return (
+        constants.MUTATOR_BOOST,
+        attacking_side,
+        constants.ATTACK,
+        1
+    )
+
+
 ability_lookup = {
+    "intrepidsword": intrepidsword,
+    "dauntlessshield": dauntlessshield,
     "mistysurge": mistysurge,
     "grassysurge": grassysurge,
     "psychicsurge": psychicsurge,
