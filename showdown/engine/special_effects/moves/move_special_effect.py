@@ -250,7 +250,14 @@ def dynamaxcannon(attacking_move, defending_move, attacking_pokemon, defending_p
     return attacking_move
 
 
+def dragondarts(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.BASE_POWER] *= 2
+    return attacking_move
+
+
 move_lookup = {
+    'dragondarts': dragondarts,
     'dynamaxcannon': dynamaxcannon,
     'aurawheel': aurawheel,
     'pursuit': pursuit,
