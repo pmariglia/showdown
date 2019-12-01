@@ -38,6 +38,8 @@ ability_lookup = {
 
 
 def ability_end_of_turn(ability_name, state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    if attacking_pokemon.ability == 'neutralizinggas' or defending_pokemon.ability == 'neutralizinggas':
+        return None
     ability_func = ability_lookup.get(ability_name)
     if ability_func is not None and attacking_pokemon.hp:
         return ability_func(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon)

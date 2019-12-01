@@ -379,6 +379,8 @@ ability_lookup = {
 
 
 def ability_modify_attack_being_used(ability_name, attacking_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_pokemon.ability == 'neutralizinggas' or defending_pokemon.ability == 'neutralizinggas':
+        return attacking_move
     ability_func = ability_lookup.get(ability_name)
     if ability_func is not None:
         return ability_func(attacking_move, attacking_pokemon, defending_pokemon, first_move, weather)

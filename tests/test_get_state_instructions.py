@@ -1710,6 +1710,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_tackle_into_ironbarbs_causes_no_recoil_when_attacker_has_neutralizing_gas(self):
+        bot_move = "splash"
+        opponent_move = "tackle"
+        self.state.self.active.ability = 'ironbarbs'
+        self.state.opponent.active.ability = 'neutralizinggas'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_tackle_into_roughskin_causes_recoil(self):
         bot_move = "splash"
         opponent_move = "tackle"
