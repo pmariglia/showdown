@@ -292,7 +292,15 @@ def lifedew(attacking_move, defending_move, attacking_pokemon, defending_pokemon
     return attacking_move
 
 
+def steelbeam(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.HEAL] = [-1, 2]
+    attacking_move[constants.HEAL_TARGET] = constants.SELF
+    return attacking_move
+
+
 move_lookup = {
+    'steelbeam': steelbeam,
     'lifedew': lifedew,
     'bodypress': bodypress,
     'clangoroussoul': clangoroussoul,

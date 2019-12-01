@@ -862,6 +862,51 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_steel_beam_reduces_hp_by_half(self):
+        bot_move = "steelbeam"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.95,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 149),
+                    (constants.MUTATOR_HEAL, constants.SELF, -104),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.050000000000000044,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_steel_beam_only_does_as_much_damage_as_the_user_has_hitpoints(self):
+        bot_move = "steelbeam"
+        opponent_move = "splash"
+        self.state.self.active.hp = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.95,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 149),
+                    (constants.MUTATOR_HEAL, constants.SELF, -1),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.050000000000000044,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_knockoff_does_not_amplify_damage_for_mega(self):
         bot_move = "knockoff"
         opponent_move = "splash"
