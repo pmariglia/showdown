@@ -2002,6 +2002,42 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_clangoroussoul(self):
+        bot_move = "clangoroussoul"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 1),
+                    (constants.MUTATOR_HEAL, constants.SELF, -69.33333333333333)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_clanorous_soul_fails_when_at_less_than_one_third_hp(self):
+        bot_move = "clangoroussoul"
+        opponent_move = "splash"
+        self.state.self.active.hp = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_boosting_move_with_speedboost(self):
         bot_move = "swordsdance"
         opponent_move = "splash"

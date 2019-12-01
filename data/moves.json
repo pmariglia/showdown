@@ -13679,6 +13679,7 @@
     "noretreat": {
       "accuracy": true,
       "basePower": 0,
+      "category": "status",
       "boosts": {
         "attack": 1,
         "defense": 1,
@@ -13686,7 +13687,6 @@
         "special-defense": 1,
         "speed": 1
       },
-      "category": "status",
       "flags": {
         "snatch": 1
       },

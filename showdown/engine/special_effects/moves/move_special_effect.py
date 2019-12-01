@@ -263,7 +263,23 @@ def boltbeak(attacking_move, defending_move, attacking_pokemon, defending_pokemo
     return attacking_move
 
 
+def clangoroussoul(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_pokemon.hp > int(attacking_pokemon.maxhp / 3):
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.HEAL_TARGET] = constants.SELF
+        attacking_move[constants.HEAL] = [-1, 3]
+        attacking_move[constants.BOOSTS] = {
+            constants.ATTACK: 1,
+            constants.DEFENSE: 1,
+            constants.SPECIAL_ATTACK: 1,
+            constants.SPECIAL_DEFENSE: 1,
+            constants.SPEED: 1
+          }
+    return attacking_move
+
+
 move_lookup = {
+    'clangoroussoul': clangoroussoul,
     'fishiousrend': boltbeak,
     'boltbeak': boltbeak,
     'dragondarts': dragondarts,
