@@ -1763,6 +1763,26 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_noretreat_boosts_own_stats(self):
+        bot_move = "noretreat"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_tackle_into_roughskin_causes_recoil(self):
         bot_move = "splash"
         opponent_move = "tackle"
