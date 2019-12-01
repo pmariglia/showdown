@@ -74,6 +74,7 @@ def switch_or_drag(battle, split_msg):
             if constants.DYNAMAX in battle.opponent.active.volatile_statuses:
                 battle.opponent.active.hp /= 2
                 battle.opponent.active.max_hp /= 2
+                logger.debug("Opponent ended dynamax - halving their HP to {}/{}".format(battle.opponent.active.hp, battle.opponent.active.max_hp))
 
             # reset the volatile statuses of the pokemon being replaced
             battle.opponent.active.volatile_statuses.clear()
