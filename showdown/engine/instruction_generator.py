@@ -226,7 +226,7 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
             )
 
     # account for switch-in abilities
-    ability_switch_in_instruction = ability_on_switch_in(
+    ability_switch_in_instructions = ability_on_switch_in(
         switch_pkmn.ability,
         mutator.state,
         attacker,
@@ -234,10 +234,11 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
         possible_affected_strings[attacker],
         defending_side.active
     )
-    if ability_switch_in_instruction is not None:
-        instruction_additions.append(
-            ability_switch_in_instruction
-        )
+    if ability_switch_in_instructions is not None:
+        for i in ability_switch_in_instructions:
+            instruction_additions.append(
+                i
+            )
 
     mutator.reverse(instructions.instructions)
     for i in instruction_additions:
