@@ -22137,7 +22137,7 @@
             "H": "Grassy Surge"
         },
         "heightm": 0.3,
-        "weightkg": 5,
+        "weight": 5,
         "color": "Green",
         "evos": [
             "thwackey"
@@ -22170,7 +22170,7 @@
             "H": "Grassy Surge"
         },
         "heightm": 0.7,
-        "weightkg": 14,
+        "weight": 14,
         "color": "Green",
         "prevo": "grookey",
         "evoLevel": 16,
@@ -22205,7 +22205,7 @@
             "H": "Grassy Surge"
         },
         "heightm": 2.1,
-        "weightkg": 90,
+        "weight": 90,
         "color": "Green",
         "prevo": "thwackey",
         "evoLevel": 35,
@@ -22237,7 +22237,7 @@
             "H": "Libero"
         },
         "heightm": 0.3,
-        "weightkg": 4.5,
+        "weight": 4.5,
         "color": "White",
         "evos": [
             "raboot"
@@ -22270,7 +22270,7 @@
             "H": "Libero"
         },
         "heightm": 0.6,
-        "weightkg": 9,
+        "weight": 9,
         "color": "Gray",
         "prevo": "scorbunny",
         "evoLevel": 16,
@@ -22305,7 +22305,7 @@
             "H": "Libero"
         },
         "heightm": 1.4,
-        "weightkg": 33,
+        "weight": 33,
         "color": "White",
         "evoLevel": 35,
         "prevo": "raboot",
@@ -22337,7 +22337,7 @@
             "H": "Sniper"
         },
         "heightm": 0.3,
-        "weightkg": 4,
+        "weight": 4,
         "color": "Blue",
         "evos": [
             "drizzile"
@@ -22370,7 +22370,7 @@
             "H": "Sniper"
         },
         "heightm": 0.7,
-        "weightkg": 11.5,
+        "weight": 11.5,
         "color": "Blue",
         "prevo": "sobble",
         "evoLevel": 16,
@@ -22405,7 +22405,7 @@
             "H": "Sniper"
         },
         "heightm": 1.9,
-        "weightkg": 45.2,
+        "weight": 45.2,
         "color": "Blue",
         "prevo": "drizzile",
         "evoLevel": 35,
@@ -22433,7 +22433,7 @@
             "H": "Gluttony"
         },
         "heightm": 0.3,
-        "weightkg": 2.5,
+        "weight": 2.5,
         "color": "Brown",
         "evos": [
             "greedent"
@@ -22461,7 +22461,7 @@
             "H": "Gluttony"
         },
         "heightm": 0.6,
-        "weightkg": 6,
+        "weight": 6,
         "color": "Brown",
         "prevo": "skwovet",
         "evoLevel": 24,
@@ -22489,7 +22489,7 @@
             "H": "Big Pecks"
         },
         "heightm": 0.2,
-        "weightkg": 1.8,
+        "weight": 1.8,
         "color": "Blue",
         "evos": [
             "corvisquire"
@@ -22518,7 +22518,7 @@
             "H": "Big Pecks"
         },
         "heightm": 0.8,
-        "weightkg": 16,
+        "weight": 16,
         "color": "Blue",
         "prevo": "rookidee",
         "evoLevel": 18,
@@ -22550,7 +22550,7 @@
             "H": "Mirror Armor"
         },
         "heightm": 2.2,
-        "weightkg": 75,
+        "weight": 75,
         "color": "Purple",
         "prevo": "corvisquire",
         "evoLevel": 38,
@@ -22585,7 +22585,7 @@
             "H": "Mirror Armor"
         },
         "heightm": 14,
-        "weightkg": 0,
+        "weight": 0,
         "color": "Purple",
         "eggGroups": [
             "Flying"
@@ -22611,7 +22611,7 @@
             "H": "Telepathy"
         },
         "heightm": 0.4,
-        "weightkg": 8,
+        "weight": 8,
         "color": "Blue",
         "evos": [
             "dottler"
@@ -22641,7 +22641,7 @@
             "H": "Telepathy"
         },
         "heightm": 0.4,
-        "weightkg": 19.5,
+        "weight": 19.5,
         "color": "Yellow",
         "prevo": "blipbug",
         "evoLevel": 10,
@@ -22673,7 +22673,7 @@
             "H": "Telepathy"
         },
         "heightm": 0.4,
-        "weightkg": 40.8,
+        "weight": 40.8,
         "color": "Red",
         "prevo": "dottler",
         "evoLevel": 30,
@@ -22707,7 +22707,7 @@
             "1": "Frisk",
             "H": "Telepathy"
         },
-        "weightkg": 0,
+        "weight": 0,
         "color": "Red",
         "eggGroups": [
             "Bug"
@@ -22733,7 +22733,7 @@
             "H": "Stakeout"
         },
         "heightm": 0.6,
-        "weightkg": 8.9,
+        "weight": 8.9,
         "color": "Brown",
         "evos": [
             "thievul"
@@ -22762,7 +22762,7 @@
             "H": "Stakeout"
         },
         "heightm": 1.2,
-        "weightkg": 19.9,
+        "weight": 19.9,
         "color": "Brown",
         "prevo": "nickit",
         "evoLevel": 18,
@@ -22790,7 +22790,7 @@
             "H": "Effect Spore"
         },
         "heightm": 0.4,
-        "weightkg": 2.2,
+        "weight": 2.2,
         "color": "Green",
         "evos": [
             "eldegoss"
@@ -22819,7 +22819,7 @@
             "H": "Effect Spore"
         },
         "heightm": 0.5,
-        "weightkg": 2.5,
+        "weight": 2.5,
         "color": "Green",
         "prevo": "gossifleur",
         "evoLevel": 20,
@@ -22847,7 +22847,7 @@
             "H": "Bulletproof"
         },
         "heightm": 0.6,
-        "weightkg": 6,
+        "weight": 6,
         "color": "White",
         "evos": [
             "dubwool"
@@ -22876,7 +22876,7 @@
             "H": "Bulletproof"
         },
         "heightm": 1.3,
-        "weightkg": 43,
+        "weight": 43,
         "color": "White",
         "prevo": "wooloo",
         "evoLevel": 24,
@@ -22904,7 +22904,7 @@
             "H": "Swift Swim"
         },
         "heightm": 0.3,
-        "weightkg": 8.5,
+        "weight": 8.5,
         "color": "Green",
         "evos": [
             "drednaw"
@@ -22935,7 +22935,7 @@
             "H": "Swift Swim"
         },
         "heightm": 1,
-        "weightkg": 115.5,
+        "weight": 115.5,
         "color": "Green",
         "prevo": "chewtle",
         "evoLevel": 22,
@@ -22971,7 +22971,7 @@
             "H": "Swift Swim"
         },
         "heightm": 24,
-        "weightkg": 0,
+        "weight": 0,
         "color": "Green",
         "eggGroups": [
             "Monster",
@@ -22997,7 +22997,7 @@
             "H": "Rattled"
         },
         "heightm": 0.3,
-        "weightkg": 13.5,
+        "weight": 13.5,
         "color": "Yellow",
         "evos": [
             "boltund"
@@ -23025,7 +23025,7 @@
             "H": "Competitive"
         },
         "heightm": 1,
-        "weightkg": 34,
+        "weight": 34,
         "color": "Yellow",
         "prevo": "yamper",
         "evoLevel": 25,
@@ -23053,7 +23053,7 @@
             "H": "Flash Fire"
         },
         "heightm": 0.3,
-        "weightkg": 12,
+        "weight": 12,
         "color": "Black",
         "evos": [
             "carkol"
@@ -23083,7 +23083,7 @@
             "H": "Flash Fire"
         },
         "heightm": 1.1,
-        "weightkg": 78,
+        "weight": 78,
         "color": "Black",
         "prevo": "rolycoly",
         "evoLevel": 18,
@@ -23115,7 +23115,7 @@
             "H": "Flash Fire"
         },
         "heightm": 2.8,
-        "weightkg": 310.5,
+        "weight": 310.5,
         "color": "Black",
         "prevo": "carkol",
         "evoLevel": 34,
@@ -23149,7 +23149,7 @@
             "1": "Flame Body",
             "H": "Flash Fire"
         },
-        "weightkg": 0,
+        "weight": 0,
         "color": "Black",
         "eggGroups": [
             "Mineral"
@@ -23176,7 +23176,7 @@
             "H": "Bulletproof"
         },
         "heightm": 0.2,
-        "weightkg": 0.5,
+        "weight": 0.5,
         "color": "Green",
         "evos": [
             "flapple",
@@ -23208,7 +23208,7 @@
             "H": "Hustle"
         },
         "heightm": 0.3,
-        "weightkg": 1,
+        "weight": 1,
         "color": "Green",
         "prevo": "applin",
         "evoType": "useItem",
@@ -23244,7 +23244,7 @@
             "1": "Gluttony",
             "H": "Hustle"
         },
-        "weightkg": 0,
+        "weight": 0,
         "color": "Green",
         "eggGroups": [
             "Grass",
@@ -23272,7 +23272,7 @@
             "H": "Thick Fat"
         },
         "heightm": 0.4,
-        "weightkg": 13,
+        "weight": 13,
         "color": "Green",
         "prevo": "applin",
         "evoType": "useItem",
@@ -23308,7 +23308,7 @@
             "1": "Gluttony",
             "H": "Thick Fat"
         },
-        "weightkg": 0,
+        "weight": 0,
         "color": "Green",
         "eggGroups": [
             "Grass",
@@ -23335,7 +23335,7 @@
             "H": "Sand Veil"
         },
         "heightm": 2.2,
-        "weightkg": 7.6,
+        "weight": 7.6,
         "color": "Green",
         "evos": [
             "sandaconda"
@@ -23365,7 +23365,7 @@
             "H": "Sand Veil"
         },
         "heightm": 3.8,
-        "weightkg": 65.5,
+        "weight": 65.5,
         "color": "Green",
         "prevo": "silicobra",
         "evoLevel": 36,
@@ -23399,7 +23399,7 @@
             "1": "Shed Skin",
             "H": "Sand Veil"
         },
-        "weightkg": 0,
+        "weight": 0,
         "color": "Green",
         "eggGroups": [
             "Field",
@@ -23425,7 +23425,7 @@
             "0": "Gulp Missile"
         },
         "heightm": 0.8,
-        "weightkg": 18,
+        "weight": 18,
         "color": "Blue",
         "eggGroups": [
             "Water 1",
@@ -23458,7 +23458,7 @@
             "0": "Gulp Missile"
         },
         "heightm": 0.8,
-        "weightkg": 18,
+        "weight": 18,
         "color": "Blue",
         "eggGroups": [
             "Water 1",
@@ -23487,7 +23487,7 @@
             "0": "Gulp Missile"
         },
         "heightm": 0.8,
-        "weightkg": 18,
+        "weight": 18,
         "color": "Blue",
         "eggGroups": [
             "Water 1",
@@ -23513,7 +23513,7 @@
             "H": "Propeller Tail"
         },
         "heightm": 0.5,
-        "weightkg": 1,
+        "weight": 1,
         "color": "Brown",
         "evos": [
             "barraskewda"
@@ -23541,7 +23541,7 @@
             "H": "Propeller Tail"
         },
         "heightm": 1.3,
-        "weightkg": 30,
+        "weight": 30,
         "color": "Brown",
         "prevo": "arrokuda",
         "evoLevel": 26,
@@ -23570,7 +23570,7 @@
             "H": "Klutz"
         },
         "heightm": 0.4,
-        "weightkg": 11,
+        "weight": 11,
         "color": "Purple",
         "evos": [
             "toxtricity",
@@ -23602,7 +23602,7 @@
             "H": "Technician"
         },
         "heightm": 1.6,
-        "weightkg": 40,
+        "weight": 40,
         "color": "Purple",
         "prevo": "toxel",
         "evoLevel": 30,
@@ -23638,7 +23638,7 @@
             "H": "Technician"
         },
         "heightm": 1.6,
-        "weightkg": 40,
+        "weight": 40,
         "color": "Purple",
         "prevo": "toxel",
         "evoLevel": 30,
@@ -23669,7 +23669,7 @@
             "1": "Plus",
             "H": "Technician"
         },
-        "weightkg": 0,
+        "weight": 0,
         "color": "Purple",
         "eggGroups": [
             "Human-Like"
@@ -23696,7 +23696,7 @@
             "H": "Flame Body"
         },
         "heightm": 0.7,
-        "weightkg": 1,
+        "weight": 1,
         "color": "Red",
         "evos": [
             "centiskorch"
@@ -23726,7 +23726,7 @@
             "H": "Flame Body"
         },
         "heightm": 3,
-        "weightkg": 120,
+        "weight": 120,
         "color": "Red",
         "prevo": "sizzlipede",
         "evoLevel": 28,
@@ -23760,7 +23760,7 @@
             "1": "White Smoke",
             "H": "Flame Body"
         },
-        "weightkg": 0,
+        "weight": 0,
         "color": "Red",
         "eggGroups": [
             "Bug"
@@ -23785,7 +23785,7 @@
             "H": "Technician"
         },
         "heightm": 0.6,
-        "weightkg": 4,
+        "weight": 4,
         "color": "Brown",
         "evos": [
             "grapploct"
@@ -23814,7 +23814,7 @@
             "H": "Technician"
         },
         "heightm": 1.6,
-        "weightkg": 39,
+        "weight": 39,
         "color": "Blue",
         "prevo": "clobbopus",
         "evoType": "levelMove",
@@ -23843,7 +23843,7 @@
             "H": "Cursed Body"
         },
         "heightm": 0.1,
-        "weightkg": 0.2,
+        "weight": 0.2,
         "color": "Purple",
         "evos": [
             "polteageist"
@@ -23876,7 +23876,7 @@
             "H": "Cursed Body"
         },
         "heightm": 0.2,
-        "weightkg": 0.4,
+        "weight": 0.4,
         "color": "Purple",
         "prevo": "sinistea",
         "evoType": "useItem",
@@ -23910,7 +23910,7 @@
             "H": "Magic Bounce"
         },
         "heightm": 0.4,
-        "weightkg": 3.4,
+        "weight": 3.4,
         "color": "Pink",
         "evos": [
             "hattrem"
@@ -23940,7 +23940,7 @@
             "H": "Magic Bounce"
         },
         "heightm": 0.6,
-        "weightkg": 4.8,
+        "weight": 4.8,
         "color": "Pink",
         "prevo": "hatenna",
         "evoLevel": 32,
@@ -23973,7 +23973,7 @@
             "H": "Magic Bounce"
         },
         "heightm": 2.1,
-        "weightkg": 5.1,
+        "weight": 5.1,
         "color": "Pink",
         "prevo": "hattrem",
         "evoLevel": 42,
@@ -24008,7 +24008,7 @@
             "1": "Anticipation",
             "H": "Magic Bounce"
         },
-        "weightkg": 0,
+        "weight": 0,
         "color": "Pink",
         "eggGroups": [
             "Fairy"
@@ -24036,7 +24036,7 @@
             "H": "Pickpocket"
         },
         "heightm": 0.4,
-        "weightkg": 5.5,
+        "weight": 5.5,
         "color": "Pink",
         "evos": [
             "morgrem"
@@ -24068,7 +24068,7 @@
             "H": "Pickpocket"
         },
         "heightm": 0.8,
-        "weightkg": 12.5,
+        "weight": 12.5,
         "color": "Pink",
         "prevo": "impidimp",
         "evoLevel": 32,
@@ -24102,7 +24102,7 @@
             "H": "Pickpocket"
         },
         "heightm": 1.5,
-        "weightkg": 61,
+        "weight": 61,
         "color": "Purple",
         "prevo": "morgrem",
         "evoLevel": 42,
@@ -24138,7 +24138,7 @@
             "1": "Frisk",
             "H": "Pickpocket"
         },
-        "weightkg": 0,
+        "weight": 0,
         "color": "Purple",
         "eggGroups": [
             "Fairy",
@@ -24166,7 +24166,7 @@
             "H": "Defiant"
         },
         "heightm": 1.6,
-        "weightkg": 46,
+        "weight": 46,
         "color": "Gray",
         "prevo": "linoonegalar",
         "evoLevel": 35,
@@ -24195,7 +24195,7 @@
             "H": "Steely Spirit"
         },
         "heightm": 0.8,
-        "weightkg": 28,
+        "weight": 28,
         "color": "Brown",
         "prevo": "meowthgalar",
         "evoLevel": 28,
@@ -24226,7 +24226,7 @@
             "H": "Perish Body"
         },
         "heightm": 1,
-        "weightkg": 0.4,
+        "weight": 0.4,
         "color": "White",
         "prevo": "corsolagalar",
         "evoLevel": 38,
@@ -24254,7 +24254,7 @@
             "H": "Scrappy"
         },
         "heightm": 0.8,
-        "weightkg": 117,
+        "weight": 117,
         "color": "White",
         "prevo": "farfetchdgalar",
         "evoType": "other",
@@ -24285,7 +24285,7 @@
             "H": "Ice Body"
         },
         "heightm": 1.5,
-        "weightkg": 58.2,
+        "weight": 58.2,
         "color": "Purple",
         "prevo": "mrmimegalar",
         "evoLevel": 42,
@@ -24312,7 +24312,7 @@
             "0": "Wandering Spirit"
         },
         "heightm": 1.6,
-        "weightkg": 66.6,
+        "weight": 66.6,
         "color": "Gray",
         "prevo": "yamaskgalar",
         "evoType": "other",
@@ -24342,7 +24342,7 @@
             "H": "Aroma Veil"
         },
         "heightm": 0.2,
-        "weightkg": 0.3,
+        "weight": 0.3,
         "color": "White",
         "evos": [
             "alcremie"
@@ -24372,7 +24372,7 @@
             "H": "Aroma Veil"
         },
         "heightm": 0.3,
-        "weightkg": 0.5,
+        "weight": 0.5,
         "color": "White",
         "prevo": "milcery",
         "evoType": "levelHold",
@@ -24417,7 +24417,7 @@
             "H": "Aroma Veil"
         },
         "heightm": 30,
-        "weightkg": 0,
+        "weight": 0,
         "color": "White",
         "eggGroups": [
             "Fairy",
@@ -24444,7 +24444,7 @@
             "H": "Defiant"
         },
         "heightm": 3,
-        "weightkg": 62,
+        "weight": 62,
         "color": "Yellow",
         "eggGroups": [
             "Fairy",
@@ -24470,7 +24470,7 @@
             "H": "Electric Surge"
         },
         "heightm": 0.3,
-        "weightkg": 1,
+        "weight": 1,
         "color": "Purple",
         "eggGroups": [
             "Water 1",
@@ -24497,7 +24497,7 @@
             "H": "Ice Scales"
         },
         "heightm": 0.3,
-        "weightkg": 3.8,
+        "weight": 3.8,
         "color": "White",
         "evos": [
             "frosmoth"
@@ -24526,7 +24526,7 @@
             "H": "Ice Scales"
         },
         "heightm": 1.3,
-        "weightkg": 42,
+        "weight": 42,
         "color": "White",
         "prevo": "snom",
         "evoType": "levelFriendship",
@@ -24553,7 +24553,7 @@
             "0": "Power Spot"
         },
         "heightm": 2.5,
-        "weightkg": 520,
+        "weight": 520,
         "color": "Gray",
         "eggGroups": [
             "Mineral"
@@ -24577,7 +24577,7 @@
             "0": "Ice Face"
         },
         "heightm": 1.4,
-        "weightkg": 89,
+        "weight": 89,
         "color": "Blue",
         "eggGroups": [
             "Water 1",
@@ -24608,7 +24608,7 @@
             "0": "Ice Face"
         },
         "heightm": 1.4,
-        "weightkg": 89,
+        "weight": 89,
         "color": "Blue",
         "eggGroups": [
             "Water 1",
@@ -24638,7 +24638,7 @@
             "H": "Psychic Surge"
         },
         "heightm": 0.9,
-        "weightkg": 28,
+        "weight": 28,
         "color": "Purple",
         "eggGroups": [
             "Fairy"
@@ -24672,7 +24672,7 @@
             "H": "Psychic Surge"
         },
         "heightm": 0.9,
-        "weightkg": 28,
+        "weight": 28,
         "color": "Purple",
         "eggGroups": [
             "Fairy"
@@ -24697,7 +24697,7 @@
             "0": "Hunger Switch"
         },
         "heightm": 0.3,
-        "weightkg": 3,
+        "weight": 3,
         "color": "Yellow",
         "eggGroups": [
             "Field",
@@ -24729,7 +24729,7 @@
             "0": "Hunger Switch"
         },
         "heightm": 0.3,
-        "weightkg": 3,
+        "weight": 3,
         "color": "Yellow",
         "eggGroups": [
             "Field",
@@ -24755,7 +24755,7 @@
             "H": "Heavy Metal"
         },
         "heightm": 1.2,
-        "weightkg": 100,
+        "weight": 100,
         "color": "Yellow",
         "evos": [
             "copperajah"
@@ -24784,7 +24784,7 @@
             "H": "Heavy Metal"
         },
         "heightm": 3,
-        "weightkg": 650,
+        "weight": 650,
         "color": "Green",
         "prevo": "cufant",
         "evoLevel": 34,
@@ -24817,7 +24817,7 @@
             "0": "Sheer Force",
             "H": "Heavy Metal"
         },
-        "weightkg": 0,
+        "weight": 0,
         "color": "Green",
         "eggGroups": [
             "Field",
@@ -24846,7 +24846,7 @@
             "H": "Sand Rush"
         },
         "heightm": 1.8,
-        "weightkg": 190,
+        "weight": 190,
         "color": "Green",
         "eggGroups": [
             "Undiscovered"
@@ -24874,7 +24874,7 @@
             "H": "Slush Rush"
         },
         "heightm": 2.3,
-        "weightkg": 150,
+        "weight": 150,
         "color": "Blue",
         "eggGroups": [
             "Undiscovered"
@@ -24902,7 +24902,7 @@
             "H": "Sand Rush"
         },
         "heightm": 2.3,
-        "weightkg": 215,
+        "weight": 215,
         "color": "Green",
         "eggGroups": [
             "Undiscovered"
@@ -24930,7 +24930,7 @@
             "H": "Slush Rush"
         },
         "heightm": 2,
-        "weightkg": 175,
+        "weight": 175,
         "color": "Blue",
         "eggGroups": [
             "Undiscovered"
@@ -24957,7 +24957,7 @@
             "H": "Stalwart"
         },
         "heightm": 1.8,
-        "weightkg": 40,
+        "weight": 40,
         "color": "White",
         "eggGroups": [
             "Mineral",
@@ -24990,7 +24990,7 @@
             "1": "Heavy Metal",
             "H": "Stalwart"
         },
-        "weightkg": 0,
+        "weight": 0,
         "color": "White",
         "eggGroups": [
             "Mineral",
@@ -25018,7 +25018,7 @@
             "H": "Cursed Body"
         },
         "heightm": 0.5,
-        "weightkg": 2,
+        "weight": 2,
         "color": "Green",
         "evos": [
             "drakloak"
@@ -25049,7 +25049,7 @@
             "H": "Cursed Body"
         },
         "heightm": 1.4,
-        "weightkg": 11,
+        "weight": 11,
         "color": "Green",
         "prevo": "dreepy",
         "evoLevel": 50,
@@ -25082,7 +25082,7 @@
             "H": "Cursed Body"
         },
         "heightm": 3,
-        "weightkg": 50,
+        "weight": 50,
         "color": "Green",
         "prevo": "drakloak",
         "evoLevel": 60,
@@ -25110,7 +25110,7 @@
             "0": "Intrepid Sword"
         },
         "heightm": 2.8,
-        "weightkg": 110,
+        "weight": 110,
         "color": "Blue",
         "eggGroups": [
             "Undiscovered"
@@ -25142,7 +25142,7 @@
             "0": "Intrepid Sword"
         },
         "heightm": 2.8,
-        "weightkg": 355,
+        "weight": 355,
         "color": "Blue",
         "eggGroups": [
             "Undiscovered"
@@ -25167,7 +25167,7 @@
             "0": "Dauntless Shield"
         },
         "heightm": 2.9,
-        "weightkg": 210,
+        "weight": 210,
         "color": "Red",
         "eggGroups": [
             "Undiscovered"
@@ -25199,7 +25199,7 @@
             "0": "Dauntless Shield"
         },
         "heightm": 2.9,
-        "weightkg": 785,
+        "weight": 785,
         "color": "Red",
         "eggGroups": [
             "Undiscovered"
@@ -25225,7 +25225,7 @@
             "0": "Pressure"
         },
         "heightm": 20,
-        "weightkg": 950,
+        "weight": 950,
         "color": "Purple",
         "eggGroups": [
             "Undiscovered"
