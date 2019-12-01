@@ -1924,6 +1924,66 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_courtchange_swaps_rocks(self):
+        bot_move = "courtchange"
+        opponent_move = "splash"
+        self.state.self.side_conditions[constants.STEALTH_ROCK] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.STEALTH_ROCK, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_courtchange_does_not_swap_zero_value_side_condition(self):
+        bot_move = "courtchange"
+        opponent_move = "splash"
+        self.state.self.side_conditions[constants.STEALTH_ROCK] = 1
+        self.state.self.side_conditions[constants.SPIKES] = 0
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.STEALTH_ROCK, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_courtchange_swaps_rocks_and_spikes(self):
+        bot_move = "courtchange"
+        opponent_move = "splash"
+        self.state.self.side_conditions[constants.STEALTH_ROCK] = 1
+        self.state.opponent.side_conditions[constants.SPIKES] = 2
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.SPIKES, 2),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.SPIKES, 2),
+                ],
+                False
+            )
+        ]
+
+        self.mutator.apply(expected_instructions[0].instructions)
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_regular_damaging_move_with_speed_boost(self):
         bot_move = "tackle"
         opponent_move = "splash"

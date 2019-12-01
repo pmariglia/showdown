@@ -218,8 +218,20 @@ IRREVERSIBLE_WEATHER = {DESOLATE_LAND, HEAVY_RAIN}
 STEALTH_ROCK = 'stealthrock'
 SPIKES = 'spikes'
 TOXIC_SPIKES = 'toxicspikes'
+COURT_CHANGE = 'courtchange'
 
-HAZARD_CLEARING_MOVES = ['rapidspin', 'defog']
+COURT_CHANGE_SWAPS = {
+    'spikes',
+    'toxicspikes',
+    'stealthrock',
+    'stickyweb',
+    'lightscreen',
+    'reflect',
+    'auroraveil',
+    'tailwind'
+}
+
+HAZARD_CLEARING_MOVES = ['rapidspin', 'defog', 'courtchange']
 
 RAPID_SPIN_CLEARS = [
     STEALTH_ROCK,

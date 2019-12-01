@@ -464,6 +464,7 @@ def get_instructions_from_side_conditions(mutator, attacker_string, side_string,
     instruction_additions = []
     side = get_side_from_state(mutator.state, side_string)
     mutator.apply(instruction.instructions)
+
     if condition == constants.SPIKES:
         max_layers = 3
     elif condition == constants.TOXIC_SPIKES:
@@ -480,6 +481,7 @@ def get_instructions_from_side_conditions(mutator, attacker_string, side_string,
                 1
             )
         )
+
     mutator.reverse(instruction.instructions)
     for i in instruction_additions:
         instruction.add_instruction(i)
@@ -537,6 +539,31 @@ def get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, 
                         amount
                     )
                 )
+    elif move[constants.ID] == constants.COURT_CHANGE:
+        sides = [
+            (constants.SELF, mutator.state.self),
+            (constants.OPPONENT, mutator.state.opponent)
+        ]
+        for side_name, side_object in sides:
+            for side_condition in side_object.side_conditions:
+                if side_object.side_conditions[side_condition] and side_condition in constants.COURT_CHANGE_SWAPS:
+                    instruction_additions.append(
+                        (
+                            constants.MUTATOR_SIDE_END,
+                            side_name,
+                            side_condition,
+                            side_object.side_conditions[side_condition]
+                        )
+                    )
+                    instruction_additions.append(
+                        (
+                            constants.MUTATOR_SIDE_START,
+                            possible_affected_strings[side_name],
+                            side_condition,
+                            side_object.side_conditions[side_condition]
+                        )
+                    )
+
     else:
         raise ValueError("{} is not a hazard clearing move".format(move[constants.ID]))
 
