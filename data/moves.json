@@ -13709,6 +13709,7 @@
       "secondary": null,
       "target": "self",
       "type": "dark",
+      "volatileStatus": "protect",
       "pp": 10
     },
     "octolock": {
