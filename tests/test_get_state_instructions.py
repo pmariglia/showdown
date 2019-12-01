@@ -3043,6 +3043,44 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_defog_removes_terrain(self):
+        bot_move = "splash"
+        opponent_move = "defog"
+        self.state.field = constants.ELECTRIC_TERRAIN
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_FIELD_END, constants.ELECTRIC_TERRAIN)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_defog_removes_terrain_and_spikes(self):
+        bot_move = "splash"
+        opponent_move = "defog"
+        self.state.field = constants.ELECTRIC_TERRAIN
+        self.state.self.side_conditions[constants.SPIKES] = 2
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_FIELD_END, constants.ELECTRIC_TERRAIN),
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.SPIKES, 2)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_stamina_increases_defence_when_hit_with_damaging_move(self):
         bot_move = "tackle"
         opponent_move = "splash"

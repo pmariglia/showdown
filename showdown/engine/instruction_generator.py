@@ -516,6 +516,13 @@ def get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, 
     defender_side = get_side_from_state(mutator.state, defender_string)
 
     if move[constants.ID] == 'defog':
+        if mutator.state.field is not None:
+            instruction_additions.append(
+                (
+                    constants.MUTATOR_FIELD_END,
+                    mutator.state.field
+                )
+            )
         for side_condition, amount in attacker_side.side_conditions.items():
             if amount > 0 and side_condition in constants.DEFOG_CLEARS:
                 instruction_additions.append(
