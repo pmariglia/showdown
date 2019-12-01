@@ -285,7 +285,15 @@ def bodypress(attacking_move, defending_move, attacking_pokemon, defending_pokem
     return attacking_move
 
 
+def lifedew(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.HEAL] = [1, 4]
+    attacking_move[constants.HEAL_TARGET] = constants.SELF
+    return attacking_move
+
+
 move_lookup = {
+    'lifedew': lifedew,
     'bodypress': bodypress,
     'clangoroussoul': clangoroussoul,
     'fishiousrend': boltbeak,

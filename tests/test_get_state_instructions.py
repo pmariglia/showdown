@@ -7472,6 +7472,23 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_lifedew_healing(self):
+        bot_move = "recover"
+        opponent_move = "splash"
+        self.state.self.active.hp -= 25
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_HEAL, constants.SELF, 25),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_attack_into_healing_with_multiple_attack_damage_rolls(self):
         config.damage_calc_type = "min_max_average"
         bot_move = "tackle"
