@@ -438,6 +438,15 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
             )
             move_missed_instruction.add_instruction(crash_instruction)
 
+        if attacker_side.active.item == 'blunderpolicy':
+            blunder_policy_increase_speed_instruction = (
+                constants.MUTATOR_BOOST,
+                attacker,
+                constants.SPEED,
+                2
+            )
+            move_missed_instruction.add_instruction(blunder_policy_increase_speed_instruction)
+
         instructions.append(move_missed_instruction)
 
     mutator.reverse(instruction.instructions)
@@ -615,6 +624,14 @@ def get_states_from_status_effects(mutator, defender, status, accuracy, instruct
     if percent_hit < 1:
         move_missed_instruction.frozen = True
         move_missed_instruction.update_percentage(1 - percent_hit)
+        if attacking_side.active.item == 'blunderpolicy':
+            blunder_policy_increase_speed_instruction = (
+                constants.MUTATOR_BOOST,
+                opposite_side[defender],
+                constants.SPEED,
+                2
+            )
+            move_missed_instruction.add_instruction(blunder_policy_increase_speed_instruction)
         instructions.append(move_missed_instruction)
 
     mutator.reverse(instruction.instructions)

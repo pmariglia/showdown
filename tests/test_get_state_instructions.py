@@ -1667,6 +1667,55 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_crosschop_missing_activates_blunder_policy(self):
+        bot_move = "crosschop"
+        opponent_move = "splash"
+        self.state.self.active.item = 'blunderpolicy'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.8,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 31),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.19999999999999996,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 2),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_willowisp_missing_activates_blunder_policy(self):
+        bot_move = "willowisp"
+        opponent_move = "splash"
+        self.state.self.active.item = 'blunderpolicy'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.85,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.BURN),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.15000000000000002,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 2),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_highjumpkick_causes_crash(self):
         self.state.self.active.speed = 100
         self.state.opponent.active.speed = 99
