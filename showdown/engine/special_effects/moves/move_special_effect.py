@@ -292,6 +292,8 @@ move_lookup = {
     'boltbeak': boltbeak,
     'dragondarts': dragondarts,
     'dynamaxcannon': dynamaxcannon,
+    'behemothblade': dynamaxcannon,
+    'behemothbash': dynamaxcannon,
     'aurawheel': aurawheel,
     'pursuit': pursuit,
     'painsplit': painsplit,
