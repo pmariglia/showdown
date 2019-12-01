@@ -259,6 +259,7 @@ ROOST = "roost"
 PROTECT = "protect"
 BANEFUL_BUNKER = "banefulbunker"
 SPIKY_SHIELD = "spikyshield"
+DYNAMAX = "dynamax"
 
 PROTECT_VOLATILE_STATUSES = [PROTECT, BANEFUL_BUNKER, SPIKY_SHIELD]
 
