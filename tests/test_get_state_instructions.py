@@ -2155,6 +2155,23 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_steelyspirit_boosts_steel_move(self):
+        bot_move = "bulletpunch"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'steelyspirit'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 75),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_pursuit_into_switch_causes_pursuit_to_happen_first_with_double_damage(self):
         bot_move = "pursuit"
         opponent_move = "switch yveltal"

@@ -325,7 +325,15 @@ def punkrock(attacking_move, attacking_pokemon, defending_pokemon, first_move, w
     return attacking_move
 
 
+def steelyspirit(attacking_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_move[constants.TYPE] == 'steel':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.5
+    return attacking_move
+
+
 ability_lookup = {
+    'steelyspirit': steelyspirit,
     'punkrock': punkrock,
     'gorillatactics': gorillatactics,
     'prankster': prankster,
