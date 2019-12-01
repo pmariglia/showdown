@@ -14027,5 +14027,19 @@
       "target": "normal",
       "type": "electric",
       "pp": 15
+    },
+    "maxguard": {
+      "accuracy": true,
+      "basePower": 0,
+      "category": "status",
+      "flags": {},
+      "id": "maxguard",
+      "name": "Max Guard",
+      "priority": 4,
+      "secondary": false,
+      "target": "self",
+      "volatileStatus": "maxguard",
+      "type": "normal",
+      "pp": 10
     }
 }
