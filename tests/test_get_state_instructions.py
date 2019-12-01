@@ -2209,6 +2209,31 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switching_into_pkmn_with_screen_cleaner_removes_screens_for_both_sides(self):
+        bot_move = "switch starmie"
+        opponent_move = "splash"
+        self.state.self.reserve['starmie'].ability = 'screencleaner'
+        self.state.self.side_conditions[constants.REFLECT] = 1
+        self.state.self.side_conditions[constants.LIGHT_SCREEN] = 1
+        self.state.opponent.side_conditions[constants.REFLECT] = 1
+        self.state.opponent.side_conditions[constants.AURORA_VEIL] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.REFLECT, 1),
+                    (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.REFLECT, 1),
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.LIGHT_SCREEN, 1),
+                    (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.AURORA_VEIL, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_pursuit_into_switch_causes_pursuit_to_happen_first_with_double_damage(self):
         bot_move = "pursuit"
         opponent_move = "switch yveltal"

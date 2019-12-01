@@ -129,7 +129,22 @@ def intrepidsword(state, attacking_side, attacking_pokemon, defending_side, defe
     )]
 
 
+def screencleaner(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    instructions = list()
+    for side_condition in [constants.REFLECT, constants.LIGHT_SCREEN, constants.AURORA_VEIL]:
+        if state.self.side_conditions[side_condition]:
+            instructions.append(
+                (constants.MUTATOR_SIDE_END, constants.SELF, side_condition, state.self.side_conditions[side_condition]),
+            )
+        if state.opponent.side_conditions[side_condition]:
+            instructions.append(
+                (constants.MUTATOR_SIDE_END, constants.OPPONENT, side_condition, state.opponent.side_conditions[side_condition]),
+            )
+    return instructions or None
+
+
 ability_lookup = {
+    "screencleaner": screencleaner,
     "intrepidsword": intrepidsword,
     "dauntlessshield": dauntlessshield,
     "mistysurge": mistysurge,
