@@ -159,71 +159,73 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
 
     switch_pkmn = attacking_side.reserve[switch_pokemon_name]
     attacking_pokemon = attacking_side.active
-    # account for stealth rock damage
-    if attacking_side.side_conditions[constants.STEALTH_ROCK] == 1:
-        multiplier = 1
-        rock_type_index = pokemon_type_indicies['rock']
-        for pkmn_type in switch_pkmn.types:
-            multiplier *= damage_multipication_array[rock_type_index][pokemon_type_indicies[pkmn_type]]
+    if switch_pkmn.item != 'heavydutyboots':
 
-        instruction_additions.append(
-            (
-                constants.MUTATOR_DAMAGE,
-                attacker,
-                min(1 / 8 * multiplier * switch_pkmn.maxhp, switch_pkmn.hp)
-            )
-        )
+        # account for stealth rock damage
+        if attacking_side.side_conditions[constants.STEALTH_ROCK] == 1:
+            multiplier = 1
+            rock_type_index = pokemon_type_indicies['rock']
+            for pkmn_type in switch_pkmn.types:
+                multiplier *= damage_multipication_array[rock_type_index][pokemon_type_indicies[pkmn_type]]
 
-    # account for spikes damage
-    if attacking_side.side_conditions[constants.SPIKES] > 0 and switch_pkmn.is_grounded():
-        spike_count = attacking_side.side_conditions[constants.SPIKES]
-        instruction_additions.append(
-            (
-                constants.MUTATOR_DAMAGE,
-                attacker,
-                min(1 / 8 * spike_count * switch_pkmn.maxhp, switch_pkmn.hp)
-            )
-        )
-
-    # account for stickyweb speed drop
-    if attacking_side.side_conditions[constants.STICKY_WEB] == 1 and switch_pkmn.is_grounded():
-        instruction_additions.append(
-            (
-                constants.MUTATOR_UNBOOST,
-                attacker,
-                constants.SPEED,
-                1
-            )
-        )
-
-    # account for toxic spikes effect
-    if attacking_side.side_conditions[constants.TOXIC_SPIKES] >= 1 and switch_pkmn.is_grounded():
-        if not immune_to_status(mutator.state, switch_pkmn, attacking_pokemon, constants.POISON):
-            if attacking_side.side_conditions[constants.TOXIC_SPIKES] == 1:
-                instruction_additions.append(
-                    (
-                        constants.MUTATOR_APPLY_STATUS,
-                        attacker,
-                        constants.POISON
-                    )
-                )
-            elif attacking_side.side_conditions[constants.TOXIC_SPIKES] == 2:
-                instruction_additions.append(
-                    (
-                        constants.MUTATOR_APPLY_STATUS,
-                        attacker,
-                        constants.TOXIC
-                    )
-                )
-        elif 'poison' in switch_pkmn.types:
             instruction_additions.append(
                 (
-                    constants.MUTATOR_SIDE_END,
+                    constants.MUTATOR_DAMAGE,
                     attacker,
-                    constants.TOXIC_SPIKES,
-                    attacking_side.side_conditions[constants.TOXIC_SPIKES]
+                    min(1 / 8 * multiplier * switch_pkmn.maxhp, switch_pkmn.hp)
                 )
             )
+
+        # account for spikes damage
+        if attacking_side.side_conditions[constants.SPIKES] > 0 and switch_pkmn.is_grounded():
+            spike_count = attacking_side.side_conditions[constants.SPIKES]
+            instruction_additions.append(
+                (
+                    constants.MUTATOR_DAMAGE,
+                    attacker,
+                    min(1 / 8 * spike_count * switch_pkmn.maxhp, switch_pkmn.hp)
+                )
+            )
+
+        # account for stickyweb speed drop
+        if attacking_side.side_conditions[constants.STICKY_WEB] == 1 and switch_pkmn.is_grounded():
+            instruction_additions.append(
+                (
+                    constants.MUTATOR_UNBOOST,
+                    attacker,
+                    constants.SPEED,
+                    1
+                )
+            )
+
+        # account for toxic spikes effect
+        if attacking_side.side_conditions[constants.TOXIC_SPIKES] >= 1 and switch_pkmn.is_grounded():
+            if not immune_to_status(mutator.state, switch_pkmn, attacking_pokemon, constants.POISON):
+                if attacking_side.side_conditions[constants.TOXIC_SPIKES] == 1:
+                    instruction_additions.append(
+                        (
+                            constants.MUTATOR_APPLY_STATUS,
+                            attacker,
+                            constants.POISON
+                        )
+                    )
+                elif attacking_side.side_conditions[constants.TOXIC_SPIKES] == 2:
+                    instruction_additions.append(
+                        (
+                            constants.MUTATOR_APPLY_STATUS,
+                            attacker,
+                            constants.TOXIC
+                        )
+                    )
+            elif 'poison' in switch_pkmn.types:
+                instruction_additions.append(
+                    (
+                        constants.MUTATOR_SIDE_END,
+                        attacker,
+                        constants.TOXIC_SPIKES,
+                        attacking_side.side_conditions[constants.TOXIC_SPIKES]
+                    )
+                )
 
     # account for switch-in abilities
     ability_switch_in_instructions = ability_on_switch_in(

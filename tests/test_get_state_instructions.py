@@ -7672,6 +7672,44 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switch_into_rock_does_no_damage_with_heavy_duty_boots(self):
+        self.state.opponent.side_conditions[constants.STEALTH_ROCK] = 1
+
+        bot_move = "splash"
+        opponent_move = "switch toxapex"
+        self.state.opponent.reserve['toxapex'].item = 'heavydutyboots'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex'),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_spike_does_no_damage_with_heavy_duty_boots(self):
+        self.state.opponent.side_conditions[constants.SPIKES] = 2
+
+        bot_move = "splash"
+        opponent_move = "switch toxapex"
+        self.state.opponent.reserve['toxapex'].item = 'heavydutyboots'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex'),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_stealthrock_into_magicbounce_properly_reflects(self):
         self.state.self.active.ability = 'magicbounce'
         bot_move = "splash"
