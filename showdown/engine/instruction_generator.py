@@ -11,7 +11,7 @@ from .special_effects.items.end_of_turn import item_end_of_turn
 from .special_effects.abilities.end_of_turn import ability_end_of_turn
 
 
-possible_affected_strings = {
+opposite_side = {
     constants.SELF: constants.OPPONENT,
     constants.OPPONENT: constants.SELF
 }
@@ -79,7 +79,7 @@ def get_state_from_volatile_status(mutator, volatile_status, attacker, affected_
     if affected_side in same_side_strings:
         affected_side = attacker
     elif affected_side in opposing_side_strings:
-        affected_side = possible_affected_strings[attacker]
+        affected_side = opposite_side[attacker]
     else:
         logger.critical("Invalid affected_side: {}".format(affected_side))
         return [instruction]
@@ -113,11 +113,11 @@ def get_state_from_volatile_status(mutator, volatile_status, attacker, affected_
 
 
 def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instructions):
-    if attacker not in possible_affected_strings:
-        raise ValueError("attacker parameter must be one of: {}".format(', '.join(possible_affected_strings)))
+    if attacker not in opposite_side:
+        raise ValueError("attacker parameter must be one of: {}".format(', '.join(opposite_side)))
 
     attacking_side = get_side_from_state(mutator.state, attacker)
-    defending_side = get_side_from_state(mutator.state, possible_affected_strings[attacker])
+    defending_side = get_side_from_state(mutator.state, opposite_side[attacker])
     mutator.apply(instructions.instructions)
     instruction_additions = remove_volatile_status_and_boosts_instructions(attacking_side, attacker)
 
@@ -231,7 +231,7 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
         mutator.state,
         attacker,
         attacking_side.active,
-        possible_affected_strings[attacker],
+        opposite_side[attacker],
         defending_side.active
     )
     if ability_switch_in_instructions is not None:
@@ -249,8 +249,8 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
 
 def get_instructions_from_flinched(mutator, attacker, instruction):
     """If the attacker has been flinched, freeze the state so that nothing happens"""
-    if attacker not in possible_affected_strings:
-        raise ValueError("attacker parameter must be one of: {}".format(', '.join(possible_affected_strings)))
+    if attacker not in opposite_side:
+        raise ValueError("attacker parameter must be one of: {}".format(', '.join(opposite_side)))
 
     mutator.apply(instruction.instructions)
 
@@ -329,7 +329,7 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
        To make this deal with multiple potential damage rolls, change `damage` to a list and iterate over it
        """
 
-    attacker = possible_affected_strings[defender]
+    attacker = opposite_side[defender]
     attacker_side = get_side_from_state(mutator.state, attacker)
     damage_side = get_side_from_state(mutator.state, defender)
 
@@ -369,8 +369,8 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
         instruction.frozen = True
         return [instruction]
 
-    if defender not in possible_affected_strings:
-        raise ValueError("attacker parameter must be one of: {}".format(', '.join(possible_affected_strings)))
+    if defender not in opposite_side:
+        raise ValueError("attacker parameter must be one of: {}".format(', '.join(opposite_side)))
 
     instructions = []
     instruction_additions = []
@@ -451,13 +451,13 @@ def get_instructions_from_side_conditions(mutator, attacker_string, side_string,
     if instruction.frozen:
         return [instruction]
 
-    if attacker_string not in possible_affected_strings:
-        raise ValueError("attacker parameter must be one of: {}".format(', '.join(possible_affected_strings)))
+    if attacker_string not in opposite_side:
+        raise ValueError("attacker parameter must be one of: {}".format(', '.join(opposite_side)))
 
     if side_string in same_side_strings:
         side_string = attacker_string
     elif side_string in opposing_side_strings:
-        side_string = possible_affected_strings[attacker_string]
+        side_string = opposite_side[attacker_string]
     else:
         raise ValueError("Invalid Side String: {}".format(side_string))
 
@@ -493,10 +493,10 @@ def get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, 
     if instruction.frozen:
         return [instruction]
 
-    if attacker_string not in possible_affected_strings:
-        raise ValueError("attacker parameter must be one of: {}".format(', '.join(possible_affected_strings)))
+    if attacker_string not in opposite_side:
+        raise ValueError("attacker parameter must be one of: {}".format(', '.join(opposite_side)))
 
-    defender_string = possible_affected_strings[attacker_string]
+    defender_string = opposite_side[attacker_string]
 
     instruction_additions = []
     mutator.apply(instruction.instructions)
@@ -558,7 +558,7 @@ def get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, 
                     instruction_additions.append(
                         (
                             constants.MUTATOR_SIDE_START,
-                            possible_affected_strings[side_name],
+                            opposite_side[side_name],
                             side_condition,
                             side_object.side_conditions[side_condition]
                         )
@@ -579,8 +579,8 @@ def get_states_from_status_effects(mutator, defender, status, accuracy, instruct
     if instruction.frozen or status is None:
         return [instruction]
 
-    if defender not in possible_affected_strings:
-        raise ValueError("attacker parameter must be one of: {}".format(', '.join(possible_affected_strings)))
+    if defender not in opposite_side:
+        raise ValueError("attacker parameter must be one of: {}".format(', '.join(opposite_side)))
 
     instructions = []
     if accuracy is True:
@@ -590,7 +590,7 @@ def get_states_from_status_effects(mutator, defender, status, accuracy, instruct
     mutator.apply(instruction.instructions)
     instruction_additions = []
     defending_side = get_side_from_state(mutator.state, defender)
-    attacking_side = get_side_from_state(mutator.state, possible_affected_strings[defender])
+    attacking_side = get_side_from_state(mutator.state, opposite_side[defender])
 
     if sleep_clause_activated(defending_side, status):
         mutator.reverse(instruction.instructions)
@@ -628,9 +628,9 @@ def get_states_from_boosts(mutator, side_string, boosts, accuracy, instruction):
     if instruction.frozen or not boosts:
         return [instruction]
 
-    if side_string not in possible_affected_strings:
+    if side_string not in opposite_side:
         raise ValueError("attacker parameter must be one of: {}. Value: {}".format(
-            ', '.join(possible_affected_strings),
+            ', '.join(opposite_side),
             side_string
         )
         )
@@ -688,8 +688,8 @@ def get_states_from_flinching_moves(defender, accuracy, first_move, instruction)
     if instruction.frozen or not first_move:
         return [instruction]
 
-    if defender not in possible_affected_strings:
-        raise ValueError("attacker parameter must be one of: {}".format(', '.join(possible_affected_strings)))
+    if defender not in opposite_side:
+        raise ValueError("attacker parameter must be one of: {}".format(', '.join(opposite_side)))
 
     instructions = []
     if accuracy is True:
@@ -722,7 +722,7 @@ def get_state_from_attacker_recovery(mutator, attacker_string, move, instruction
 
     target = move[constants.HEAL_TARGET]
     if target in opposing_side_strings:
-        side_string = possible_affected_strings[attacker_string]
+        side_string = opposite_side[attacker_string]
     else:
         side_string = attacker_string
 
@@ -793,7 +793,7 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
 
     # item and ability - they can add one instruction each
     for attacker in sides:
-        defender = possible_affected_strings[attacker]
+        defender = opposite_side[attacker]
         side = get_side_from_state(mutator.state, attacker)
         defending_side = get_side_from_state(mutator.state, defender)
         pkmn = side.active
@@ -859,7 +859,7 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
 
     # leechseed sap damage
     for attacker in sides:
-        defender = possible_affected_strings[attacker]
+        defender = opposite_side[attacker]
         side = get_side_from_state(mutator.state, attacker)
         defending_side = get_side_from_state(mutator.state, defender)
         pkmn = side.active
@@ -983,8 +983,8 @@ def get_state_from_drag(mutator, attacking_move, attacking_side_string, move_tar
         affected_side = get_side_from_state(mutator.state, attacking_side_string)
         affected_side_string = attacking_side_string
     elif move_target in opposing_side_strings:
-        affected_side = get_side_from_state(mutator.state, possible_affected_strings[attacking_side_string])
-        affected_side_string = possible_affected_strings[attacking_side_string]
+        affected_side = get_side_from_state(mutator.state, opposite_side[attacking_side_string])
+        affected_side_string = opposite_side[attacking_side_string]
     else:
         raise ValueError("Invalid value for move_target: {}".format(move_target))
 
