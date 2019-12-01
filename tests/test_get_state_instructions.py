@@ -1728,6 +1728,41 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_dynamax_cannon_does_double_damage_versus_dynamaxed(self):
+        self.state.opponent.active.types = ['normal']
+        bot_move = "dynamaxcannon"
+        opponent_move = "splash"
+        self.state.opponent.active.volatile_status.add(constants.DYNAMAX)
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 105),  # normal damage is 53
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_dynamax_cannon_does_normal_damage_versus_non_dynamaxed(self):
+        self.state.opponent.active.types = ['normal']
+        bot_move = "dynamaxcannon"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 53),  # normal damage is 53
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_tackle_into_roughskin_causes_recoil(self):
         bot_move = "splash"
         opponent_move = "tackle"

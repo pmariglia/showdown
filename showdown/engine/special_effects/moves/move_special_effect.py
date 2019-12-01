@@ -244,14 +244,14 @@ def aurawheel(attacking_move, defending_move, attacking_pokemon, defending_pokem
 
 
 def dynamaxcannon(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
-    if attacking_pokemon.id == "morpekohangry":
+    if constants.DYNAMAX in defending_pokemon.volatile_status:
         attacking_move = attacking_move.copy()
-        attacking_move[constants.TYPE] = 'dark'
+        attacking_move[constants.BASE_POWER] *= 2
     return attacking_move
 
 
 move_lookup = {
-    # 'dynamaxcannon': dynamaxcannon,
+    'dynamaxcannon': dynamaxcannon,
     'aurawheel': aurawheel,
     'pursuit': pursuit,
     'painsplit': painsplit,
