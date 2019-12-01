@@ -115,6 +115,28 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(instructions_without_spdef_boost, instructions_when_spdef_is_maxed)
 
+    def test_bodypress_damage_is_the_same_regardless_of_attack(self):
+        bot_move = "bodypress"
+        opponent_move = "splash"
+        self.state.self.active.attack_boost = 0
+        instructions_with_0_attack_boost = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+
+        self.state.self.active.attack_boost = 6
+        instructions_with_6_attack_boost = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+
+        self.assertEqual(instructions_with_0_attack_boost, instructions_with_6_attack_boost)
+
+    def test_bodypress_damage_is_different_with_different_defense_stats(self):
+        bot_move = "bodypress"
+        opponent_move = "splash"
+        self.state.self.active.defense_boost = 0
+        instructions_with_0_attack_boost = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+
+        self.state.self.active.defense_boost = 6
+        instructions_with_6_attack_boost = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+
+        self.assertNotEqual(instructions_with_0_attack_boost, instructions_with_6_attack_boost)
+
     def test_powder_into_powder_gives_correct_states(self):
         bot_move = "sleeppowder"
         opponent_move = "sleeppowder"

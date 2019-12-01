@@ -278,7 +278,15 @@ def clangoroussoul(attacking_move, defending_move, attacking_pokemon, defending_
     return attacking_move
 
 
+def bodypress(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    boosted_stats = attacking_pokemon.calculate_boosted_stats()
+    attacking_move[constants.BASE_POWER] *= (boosted_stats[constants.DEFENSE] / boosted_stats[constants.ATTACK])
+    return attacking_move
+
+
 move_lookup = {
+    'bodypress': bodypress,
     'clangoroussoul': clangoroussoul,
     'fishiousrend': boltbeak,
     'boltbeak': boltbeak,
