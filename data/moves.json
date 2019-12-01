@@ -13957,6 +13957,9 @@
     "tarshot": {
       "accuracy": 100,
       "basePower": 0,
+      "boosts": {
+        "speed": -1
+      },
       "category": "status",
       "flags": {
         "protect": 1,
@@ -13968,6 +13971,7 @@
       "priority": 0,
       "secondary": null,
       "target": "normal",
+      "volatileStatus": "tarshot",
       "type": "rock",
       "pp": 20
     },

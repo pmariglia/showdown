@@ -284,4 +284,6 @@ def volatile_status_modifier(attacking_move, attacker, defender):
         modifier *= 0
     if 'flashfire' in attacker.volatile_status and attacking_move[constants.TYPE] == 'fire':
         modifier *= 1.5
+    if 'tarshot' in defender.volatile_status and attacking_move[constants.TYPE] == 'fire':
+        modifier *= 2
     return modifier
