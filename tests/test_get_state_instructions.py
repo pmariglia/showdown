@@ -2172,6 +2172,43 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_steam_engine_boosts_speed_when_hit_by_water_move(self):
+        bot_move = "surf"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'steamengine'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 6),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_steamengine_does_not_overboost(self):
+        bot_move = "surf"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'steamengine'
+        self.state.opponent.active.speed_boost = 4
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 2),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_pursuit_into_switch_causes_pursuit_to_happen_first_with_double_damage(self):
         bot_move = "pursuit"
         opponent_move = "switch yveltal"

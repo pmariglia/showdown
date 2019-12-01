@@ -393,7 +393,25 @@ def punkrock(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def steamengine(attacking_move, attacking_pokemon, defending_pokemon):
+    # duplicated from 'weakarmor'
+    if attacking_move[constants.TYPE] in ['fire', 'water']:
+        attacking_move = attacking_move.copy()
+        if constants.BOOSTS in attacking_move:
+            attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
+        else:
+            attacking_move[constants.BOOSTS] = dict()
+
+        if constants.SPEED in attacking_move[constants.BOOSTS]:
+            attacking_move[constants.BOOSTS][constants.SPEED] += 6
+        else:
+            attacking_move[constants.BOOSTS][constants.SPEED] = 6
+
+    return attacking_move
+
+
 ability_lookup = {
+    'steamengine': steamengine,
     'punkrock': punkrock,
     'icescales': icescales,
     'fairyaura': fairyaura,
