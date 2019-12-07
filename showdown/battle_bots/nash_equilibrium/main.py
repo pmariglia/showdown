@@ -13,8 +13,8 @@ from showdown.engine.objects import StateMutator
 from showdown.engine.select_best_move import pick_safest
 from showdown.engine.select_best_move import get_payoff_matrix
 
-from ..safest.helpers import pick_safest_move_from_battles
-from ..safest.helpers import format_decision
+from ..safest.main import pick_safest_move_from_battles
+from ..helpers import format_decision
 
 from config import logger
 

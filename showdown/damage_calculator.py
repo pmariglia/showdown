@@ -63,14 +63,14 @@ SPECIAL_LOGIC_MOVES = {
 TERRAIN_DAMAGE_BOOST = 1.3
 
 
-def calculate_damage(attacker, defender, attacking_move, conditions=None, calc_type='average'):
+def calculate_damage(attacker, defender, move, conditions=None, calc_type='average'):
     acceptable_calc_types = ['average', 'max', 'min_max', 'min_max_average', 'all']
     if calc_type not in acceptable_calc_types:
         raise ValueError("{} is not one of {}".format(calc_type, acceptable_calc_types))
 
-    attacking_move = get_move(attacking_move)
+    attacking_move = get_move(move)
     if attacking_move is None:
-        raise TypeError("Invalid move")
+        raise TypeError("Invalid move: {}".format(move))
 
     attacking_type = normalize_name(attacking_move.get(constants.CATEGORY))
     if attacking_type == constants.PHYSICAL:
