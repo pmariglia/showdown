@@ -116,9 +116,9 @@ Set the `BATTLE_BOT` environment variable to the name of your package and your f
 ## Specifying Teams
 The user can specify teams to be used for non-random battles. Examples can be found in `teams/teams/`.
 
-The name of the file must used as `TEAM_NAME` in your environment variable file.
+The path to the file relative to `teams/teams/` must used as `TEAM_NAME` in your environment variable file.
 
-Example:
+For example:
 ```
-TEAM_NAME=ttar_band
+TEAM_NAME=gen8/ou_ttar_band
 ```
