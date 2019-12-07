@@ -11,7 +11,7 @@ from copy import deepcopy
 import constants
 from showdown.helpers import normalize_name
 
-fp = "sets.txt"
+fp = "../../sets.txt"
 pokedex_path = "../pokedex.json"
 
 
@@ -121,6 +121,9 @@ for k, v in new_json.items():
             100.0
         )
     ]
+
+# dont use ditto sets
+final_json.pop("ditto", None)
 
 
 with open("out.json", 'w') as f:
