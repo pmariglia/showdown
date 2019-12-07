@@ -96,9 +96,10 @@ async def initialize_battle_with_tag(ps_websocket_client: PSWebsocketClient):
             return battle, opponent_id, user_json
 
 
-async def start_random_battle(ps_websocket_client: PSWebsocketClient):
+async def start_random_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
     battle, opponent_id, user_json = await initialize_battle_with_tag(ps_websocket_client)
     battle.battle_type = constants.RANDOM_BATTLE
+    battle.generation = pokemon_battle_type[:4]
 
     # keep reading messages until the opponent's first pokemon is seen
     while True:
@@ -122,6 +123,7 @@ async def start_random_battle(ps_websocket_client: PSWebsocketClient):
 async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
     battle, opponent_id, user_json = await initialize_battle_with_tag(ps_websocket_client)
     battle.battle_type = constants.STANDARD_BATTLE
+    battle.generation = pokemon_battle_type[:4]
 
     msg = ''
     while constants.START_TEAM_PREVIEW not in msg:
@@ -147,7 +149,7 @@ async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_
 async def start_battle(ps_websocket_client, pokemon_battle_type):
     if "random" in pokemon_battle_type:
         Scoring.POKEMON_ALIVE_STATIC = 30  # random battle benefits from a lower static score for an alive pkmn
-        battle = await start_random_battle(ps_websocket_client)
+        battle = await start_random_battle(ps_websocket_client, pokemon_battle_type)
     else:
         battle = await start_standard_battle(ps_websocket_client, pokemon_battle_type)
 

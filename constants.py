@@ -112,6 +112,10 @@ CHAT_STRING = "|c|"
 TIME_LEFT = "Time left:"
 DETAILS = "details"
 
+MEGA_EVOLVE_GENERATIONS = [
+    "gen6",
+    "gen7"
+]
 CAN_MEGA_EVO = "canMegaEvo"
 CAN_ULTRA_BURST = "canUltraBurst"
 CAN_Z_MOVE = "canZMove"
