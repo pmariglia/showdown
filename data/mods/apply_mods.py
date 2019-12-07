@@ -4,6 +4,7 @@ import constants
 import data
 from data import all_move_json
 from data import pokedex
+from showdown import damage_calculator
 
 
 CURRENT_GEN = 8
@@ -73,3 +74,4 @@ def apply_mods(game_mode):
     # use random battle sets from gen7 if we are not in gen8
     if str(CURRENT_GEN) not in game_mode[:4]:
         set_random_battle_sets(7)
+        damage_calculator.TERRAIN_DAMAGE_BOOST = 1.5

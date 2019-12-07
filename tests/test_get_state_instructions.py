@@ -6834,23 +6834,6 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    def test_terrain_makes_psychic_move_stronger(self):
-        bot_move = "psyshock"
-        opponent_move = "splash"
-        self.state.field = constants.PSYCHIC_TERRAIN
-        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 74)  # normally this is 50
-                ],
-                False
-            )
-        ]
-
-        self.assertEqual(expected_instructions, instructions)
-
     def test_misty_terrain_blocks_status(self):
         bot_move = "splash"
         opponent_move = "spore"
