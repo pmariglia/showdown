@@ -1,6 +1,7 @@
 import os
 import json
 import constants
+import data
 from data import all_move_json
 from data import pokedex
 
@@ -23,6 +24,11 @@ def apply_pokedex_mods(gen_number):
             pokedex_mods = json.load(f)
         for pokemon, modifications in pokedex_mods.items():
             pokedex[pokemon].update(modifications)
+
+
+def set_random_battle_sets(gen_number):
+    with open("{}/random_battle_sets_gen{}.json".format(PWD, gen_number), 'r') as f:
+        data.random_battle_sets = json.load(f)
 
 
 def apply_gen_4_mods():
@@ -63,3 +69,7 @@ def apply_mods(game_mode):
         apply_gen_6_mods()
     elif "gen7" in game_mode:
         apply_gen_7_mods()
+
+    # use random battle sets from gen7 if we are not in gen8
+    if str(CURRENT_GEN) not in game_mode[:4]:
+        set_random_battle_sets(7)
