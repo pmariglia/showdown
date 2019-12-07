@@ -1,6 +1,8 @@
 import constants
+from data import all_move_json
 from showdown.battle import Battle
 from showdown.damage_calculator import calculate_damage
+from showdown.engine.find_state_instructions import update_damage_calc_from_abilities_and_items
 from ..helpers import format_decision
 
 
@@ -34,7 +36,16 @@ class BattleBot(Battle):
         most_damage = -1
         choice = None
         for move in moves:
-            damage_amounts = calculate_damage(state.self.active, state.opponent.active, move, conditions=conditions)
+            move_dict = all_move_json[move]
+            attacking_move = update_damage_calc_from_abilities_and_items(
+                state.self.active,
+                state.opponent.active,
+                move_dict,
+                {},
+                False,
+                state.weather
+            )
+            damage_amounts = calculate_damage(state.self.active, state.opponent.active, attacking_move, conditions=conditions)
             damage = damage_amounts[0] if damage_amounts else 0
 
             if damage > most_damage:
