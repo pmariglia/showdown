@@ -114,11 +114,19 @@ Create a package in `showdown/battle_bots` with a module named `main.py`. In thi
 Set the `BATTLE_BOT` environment variable to the name of your package and your function will be called each time PokemonShowdown prompts the bot for a move
 
 ## Specifying Teams
-The user can specify teams to be used for non-random battles. Examples can be found in `teams/teams/`.
+You can specify teams by setting the `TEAM_NAME` environment variable.
+Examples can be found in `teams/teams/`.
 
-The path to the file relative to `teams/teams/` must used as `TEAM_NAME` in your environment variable file.
+Passing in a directory will cause a random team to be selected from that directory
 
-For example:
+The path is used relative to `teams/teams/`.
+
+Specify a file:
 ```
-TEAM_NAME=gen8/ou_ttar_band
+TEAM_NAME=gen8/ou/ttar_band
+```
+
+Specify a directory:
+```
+TEAM_NAME=gen8/ou
 ```
