@@ -2,7 +2,7 @@ import constants
 from data import all_move_json
 from showdown.battle import Battle
 from showdown.damage_calculator import calculate_damage
-from showdown.engine.find_state_instructions import update_damage_calc_from_abilities_and_items
+from showdown.engine.find_state_instructions import update_attacking_move
 from ..helpers import format_decision
 
 
@@ -37,7 +37,7 @@ class BattleBot(Battle):
         choice = None
         for move in moves:
             move_dict = all_move_json[move]
-            attacking_move = update_damage_calc_from_abilities_and_items(
+            attacking_move = update_attacking_move(
                 state.self.active,
                 state.opponent.active,
                 move_dict,
