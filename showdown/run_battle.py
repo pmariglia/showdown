@@ -19,35 +19,13 @@ def battle_is_finished(msg):
     return constants.WIN_STRING in msg and constants.CHAT_STRING not in msg
 
 
-def format_decision(battle, decision):
-    if decision.startswith(constants.SWITCH_STRING + " "):
-        switch_pokemon = decision.split("switch ")[-1]
-        for pkmn in battle.user.reserve:
-            if pkmn.name == switch_pokemon:
-                message = "/switch {}".format(pkmn.index)
-                break
-        else:
-            raise ValueError("Tried to switch to: {}".format(switch_pokemon))
-    else:
-        message = "/choose move {}".format(decision)
-        if battle.user.active.can_mega_evo:
-            message = "{} {}".format(message, constants.MEGA)
-        elif battle.user.active.can_ultra_burst:
-            message = "{} {}".format(message, constants.ULTRA_BURST)
-
-        if battle.user.active.get_move(decision).can_z:
-            message = "{} {}".format(message, constants.ZMOVE)
-
-    return [message, str(battle.rqid)]
-
-
 async def async_pick_move(battle):
     loop = asyncio.get_event_loop()
     with concurrent.futures.ThreadPoolExecutor() as pool:
         best_move = await loop.run_in_executor(
             pool, battle.find_best_move
         )
-    return format_decision(battle, best_move)
+    return best_move
 
 
 async def handle_team_preview(battle, ps_websocket_client):

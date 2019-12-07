@@ -14,6 +14,7 @@ from showdown.engine.select_best_move import pick_safest
 from showdown.engine.select_best_move import get_payoff_matrix
 
 from ..safest.helpers import pick_safest_move_from_battles
+from ..safest.helpers import format_decision
 
 from config import logger
 
@@ -178,7 +179,7 @@ class BattleBot(Battle):
         if len(battles) > 7:
             logger.debug("Not enough is known about the opponent's active pokemon - falling back to safest decision making")
             battles = self.prepare_battles(join_moves_together=True)
-            return pick_safest_move_from_battles(battles)
+            decision = pick_safest_move_from_battles(battles)
         else:
             list_of_payoffs = list()
             for b in battles:
@@ -189,4 +190,6 @@ class BattleBot(Battle):
                 scores = get_payoff_matrix(mutator, user_options, opponent_options, prune=False)
                 list_of_payoffs.append(scores)
 
-            return pick_move_in_equilibrium_from_multiple_score_lookups(list_of_payoffs)
+            decision = pick_move_in_equilibrium_from_multiple_score_lookups(list_of_payoffs)
+
+        return format_decision(self, decision)

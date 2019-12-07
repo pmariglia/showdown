@@ -1,6 +1,7 @@
 from showdown.battle import Battle
 
 from .helpers import pick_safest_move_from_battles
+from .helpers import format_decision
 
 
 class BattleBot(Battle):
@@ -9,4 +10,5 @@ class BattleBot(Battle):
 
     def find_best_move(self):
         battles = self.prepare_battles(join_moves_together=True)
-        return pick_safest_move_from_battles(battles)
+        safest_move = pick_safest_move_from_battles(battles)
+        return format_decision(self, safest_move)

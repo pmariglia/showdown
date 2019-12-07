@@ -1,8 +1,32 @@
+import constants
+
 from showdown.engine.objects import StateMutator
 from showdown.engine.select_best_move import pick_safest
 from showdown.engine.select_best_move import get_payoff_matrix
 
 from config import logger
+
+
+def format_decision(battle, decision):
+    if decision.startswith(constants.SWITCH_STRING + " "):
+        switch_pokemon = decision.split("switch ")[-1]
+        for pkmn in battle.user.reserve:
+            if pkmn.name == switch_pokemon:
+                message = "/switch {}".format(pkmn.index)
+                break
+        else:
+            raise ValueError("Tried to switch to: {}".format(switch_pokemon))
+    else:
+        message = "/choose move {}".format(decision)
+        if battle.user.active.can_mega_evo:
+            message = "{} {}".format(message, constants.MEGA)
+        elif battle.user.active.can_ultra_burst:
+            message = "{} {}".format(message, constants.ULTRA_BURST)
+
+        if battle.user.active.get_move(decision).can_z:
+            message = "{} {}".format(message, constants.ZMOVE)
+
+    return [message, str(battle.rqid)]
 
 
 def prefix_opponent_move(score_lookup, prefix):
