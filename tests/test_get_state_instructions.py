@@ -3081,6 +3081,32 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_doubleironbash_does_double_damage(self):
+        bot_move = "doubleironbash"
+        opponent_move = "splash"
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 149),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, constants.FLINCH),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.FLINCH),
+                ],
+                True
+            ),
+            TransposeInstruction(
+                0.7,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 149)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_stamina_increases_defence_when_hit_with_damaging_move(self):
         bot_move = "tackle"
         opponent_move = "splash"

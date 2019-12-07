@@ -299,7 +299,14 @@ def steelbeam(attacking_move, defending_move, attacking_pokemon, defending_pokem
     return attacking_move
 
 
+def doubleironbash(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.BASE_POWER] *= 2  # double-hit move
+    return attacking_move
+
+
 move_lookup = {
+    'doubleironbash': doubleironbash,
     'steelbeam': steelbeam,
     'lifedew': lifedew,
     'bodypress': bodypress,
