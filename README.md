@@ -28,13 +28,13 @@ TEAM_NAME: (string, required if POKEMON_MODE is one where a team is required) Th
 RUN_COUNT: (integer, required) The amount of games this bot will play before quitting
 ```
 
-Here is a minimal `.env` file. This configuration will log in and search for a gen7randombattle:
+Here is a minimal `.env` file. This configuration will log in and search for a gen8randombattle:
 ```
 WEBSOCKET_URI=sim.smogon.com:8000
 PS_USERNAME=MyCoolUsername
 PS_PASSWORD=MySuperSecretPassword
 BOT_MODE=SEARCH_LADDER
-POKEMON_MODE=gen7randombattle
+POKEMON_MODE=gen8randombattle
 RUN_COUNT=1
 ```
 
@@ -113,5 +113,5 @@ The name of the file must used as `TEAM_NAME` in your environment variable file.
 
 Example:
 ```
-TEAM_NAME=ou_sample
+TEAM_NAME=ttar_band
 ```
