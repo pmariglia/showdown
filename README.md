@@ -73,7 +73,7 @@ After deploying, go to the Resources tab and turn on the worker.
 ## Battle Bots
 
 ### Safest
-use BATTLE_BOT=safest (default unless otherwise specified)
+use `BATTLE_BOT=safest` (default unless otherwise specified)
 
 The bot searches through the game-tree for two turns and selects the move that minimizes the possible loss for a turn.
 This is equivalent to the [Maximin](https://en.wikipedia.org/wiki/Minimax#Maximin) strategy
@@ -85,7 +85,7 @@ draco meteor is (0.9 * 1000) + (0.1 * 900) = 990.
 This decision type is deterministic - the bot will always make the same move given the same situation again.
 
 ### Nash-Equilibrium (experimental)
-use BATTLE_BOT=nash_equilibrium
+use `BATTLE_BOT=nash_equilibrium`
 
 Using the information it has, plus some assumptions about the opponent, the bot will attempt to calculate the [Nash-Equilibrium](https://en.wikipedia.org/wiki/Nash_equilibrium) with the highest payoff
 and select a move from that distribution.
@@ -94,6 +94,13 @@ The Nash Equilibrium is calculated using command-line tools provided by the [Gam
 This decision method should only be used when running with Docker and will fail otherwise.
 
 This decision method is **not** deterministic. The bot **may** make a different move if presented with the same situation again.
+
+### Most Damage
+use `BATTLE_BOT=most_damage`
+
+Selects the move that will do the most damage to the opponent
+
+Does not switch
 
 ## Performance
 
