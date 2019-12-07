@@ -24,7 +24,7 @@ PS_PASSWORD: (string) Pokemon Showdown password
 BOT_MODE: (string, required) The mode the the bot will operate in. Options are "CHALLENGE_USER", "SEARCH_LADDER", or "ACCEPT_CHALLENGE"
 USER_TO_CHALLENGE: (string, required if BOT_MODE is "CHALLENGE_USER") The user to challenge
 POKEMON_MODE: (string, required) The type of game this bot will play games in
-TEAM_NAME: (string, required if POKEMON_MODE is one where a team is required) The name of the JSON file that contains the team you want to use. More on this below in the Specifying Teams section.
+TEAM_NAME: (string, required if POKEMON_MODE is one where a team is required) The name of the file that contains the team you want to use. More on this below in the Specifying Teams section.
 RUN_COUNT: (integer, required) The amount of games this bot will play before quitting
 ```
 
@@ -107,10 +107,11 @@ Create a package in `showdown/battle_bots` with a module named `main.py`. In thi
 Set the `BATTLE_BOT` environment variable to the name of your package and your function will be called each time PokemonShowdown prompts the bot for a move
 
 ## Specifying Teams
-The user can specify teams in JSON format to be used for non-random battles. Examples can be found in `teams/team_jsons/`.
+The user can specify teams to be used for non-random battles. Examples can be found in `teams/teams/`.
 
-The name of the `.json` file must used as `TEAM_NAME` in the configuration file.
+The name of the file must used as `TEAM_NAME` in your environment variable file.
 
-For example, this repository contains two sample teams: `ou_sample.json`, and `pu_sample.json`.
-
-Those teams can be used with the configuration `TEAM_NAME=ou_sample` or `TEAM_NAME=pu_sample` respectively.
+Example:
+```
+TEAM_NAME=ou_sample
+```

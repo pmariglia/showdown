@@ -1,8 +1,11 @@
+from showdown.helpers import normalize_name
+
+
 def json_to_packed(json_team):
     def from_json(j):
         return "{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{}|{},{},{}".format(
             j['name'],
-            j['species'],
+            j.get('species', ""),
             j['item'],
             j['ability'],
             ",".join(j['moves']),
@@ -65,3 +68,46 @@ def packed_to_json(packed_team):
     for pkmn in packed_team.split(']'):
         json_team.append(from_string(pkmn))
     return json_team
+
+
+def export_to_packed(export_string):
+    team_dict = list()
+    team_members = export_string.split('\n\n')
+    for pkmn in team_members:
+        pkmn_dict = {
+            "name": "",
+            "item": "",
+            "ability": "",
+            "moves": [],
+            "nature": "",
+            "evs": {
+                "hp": "",
+                "atk": "",
+                "def": "",
+                "spa": "",
+                "spd": "",
+                "spe": "",
+            },
+
+        }
+        pkmn_info = pkmn.split('\n')
+        pkmn_dict["name"] = normalize_name(pkmn_info[0].split('@')[0])
+        if '@' in pkmn_info[0]:
+            pkmn_dict["item"] = normalize_name(pkmn_info[0].split('@')[1])
+        for line in pkmn_info[1:]:
+            if line.startswith('Ability: '):
+                pkmn_dict["ability"] = normalize_name(line.split('Ability: ')[-1])
+            elif line.startswith('EVs: '):
+                evs = line.split('EVs: ')[-1]
+                for ev in evs.split('/'):
+                    ev = ev.strip()
+                    amount = normalize_name(ev.split(' ')[0])
+                    stat = normalize_name(ev.split(' ')[1])
+                    pkmn_dict['evs'][stat] = amount
+            elif line.endswith('Nature'):
+                pkmn_dict["nature"] = normalize_name(line.split('Nature')[0])
+            elif line.startswith('-'):
+                pkmn_dict["moves"].append(normalize_name(line[1:]))
+        team_dict.append(pkmn_dict)
+
+    return json_to_packed(team_dict)
