@@ -74,12 +74,11 @@ async def showdown():
     ps_websocket_client = await PSWebsocketClient.create(config.username, config.password, config.websocket_uri)
     await ps_websocket_client.login()
 
-    team = load_team(config.team_name)
-
     battles_run = 0
     wins = 0
     losses = 0
     while True:
+        team = load_team(config.team_name)
         if config.bot_mode == constants.CHALLENGE_USER:
             await ps_websocket_client.challenge_user(config.user_to_challenge, config.pokemon_mode, team)
         elif config.bot_mode == constants.ACCEPT_CHALLENGE:
