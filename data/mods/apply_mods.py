@@ -71,7 +71,6 @@ def apply_mods(game_mode):
     elif "gen7" in game_mode:
         apply_gen_7_mods()
 
-    # use random battle sets from gen7 if we are not in gen8
     if str(CURRENT_GEN) not in game_mode[:4]:
-        set_random_battle_sets(7)
-        damage_calculator.TERRAIN_DAMAGE_BOOST = 1.5
+        set_random_battle_sets(7)  # use random battle sets from gen7 if we are not in gen8
+        damage_calculator.TERRAIN_DAMAGE_BOOST = 1.5  # terrain gave a 1.5x damage boost prior to gen8
