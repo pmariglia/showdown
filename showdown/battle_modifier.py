@@ -210,6 +210,9 @@ def status(battle, split_msg):
         logger.debug("Opponent got status {}".format(status_name))
         battle.opponent.active.status = status_name
 
+        if len(split_msg) > 4 and 'item: ' in split_msg[4]:
+            battle.opponent.active.item = normalize_name(split_msg[4].split('item:')[-1])
+
 
 def start_volatile_status(battle, split_msg):
     if is_opponent(battle, split_msg):

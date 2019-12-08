@@ -724,6 +724,12 @@ class TestStatus(unittest.TestCase):
 
         self.assertEqual(self.battle.opponent.active.status, constants.BURN)
 
+    def test_status_from_item_properly_sets_that_item(self):
+        split_msg = ['', '-status', 'p2a: Caterpie', 'brn', '[from] item: Flame Orb']
+        status(self.battle, split_msg)
+
+        self.assertEqual(self.battle.opponent.active.item, 'flameorb')
+
 
 class TestCureStatus(unittest.TestCase):
     def setUp(self):
