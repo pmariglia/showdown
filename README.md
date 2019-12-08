@@ -119,7 +119,9 @@ Examples can be found in `teams/teams/`.
 
 Passing in a directory will cause a random team to be selected from that directory
 
-The path is used relative to `teams/teams/`.
+The path specified should be relative to `teams/teams/`.
+
+####Examples
 
 Specify a file:
 ```
