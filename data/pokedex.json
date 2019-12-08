@@ -24145,6 +24145,37 @@
             "Human-Like"
         ]
     },
+    "zigzagoongalar": {
+        "num": 263,
+        "species": "Zigzagoon-Galar",
+        "forme": "Galar",
+        "types": [
+            "dark",
+            "normal"
+        ],
+        "baseStats": {
+            "hp": 38,
+            "attack": 30,
+            "defense": 41,
+            "special-attack": 30,
+            "special-defense": 41,
+            "speed": 60
+        },
+        "abilities": {
+            "0": "Pickup",
+            "1": "Gluttony",
+            "H": "Quick Feet"
+        },
+        "heightm": 0.4,
+        "weight": 17.5,
+        "color": "White",
+        "evos": [
+            "linoonegalar"
+        ],
+        "eggGroups": [
+            "Field"
+        ]
+    },
     "obstagoon": {
         "num": 862,
         "species": "Obstagoon",
@@ -25229,6 +25260,385 @@
         "color": "Purple",
         "eggGroups": [
             "Undiscovered"
+        ]
+    },
+    "meowthgalar": {
+        "num": 52,
+        "species": "Meowth-Galar",
+        "baseSpecies": "Meowth",
+        "forme": "Galar",
+        "types": [
+            "steel"
+        ],
+        "baseStats": {
+            "hp": 50,
+            "attack": 65,
+            "defense": 55,
+            "special-attack": 40,
+            "special-defense": 40,
+            "speed": 40
+        },
+        "abilities": {
+            "0": "Pickup",
+            "1": "Tough Claws",
+            "H": "Unnerve"
+        },
+        "heightm": 0.4,
+        "weight": 7.5,
+        "color": "Brown",
+        "evos": [
+            "perrserker"
+        ],
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "ponytagalar": {
+        "num": 77,
+        "species": "Ponyta-Galar",
+        "baseSpecies": "Ponyta",
+        "forme": "Galar",
+        "types": [
+            "psychic"
+        ],
+        "baseStats": {
+            "hp": 50,
+            "attack": 85,
+            "defense": 22,
+            "special-attack": 65,
+            "special-defense": 65,
+            "speed": 90
+        },
+        "abilities": {
+            "0": "Run Away",
+            "1": "Pastel Veil",
+            "H": "Anticipation"
+        },
+        "heightm": 0.8,
+        "weight": 24,
+        "color": "White",
+        "evos": [
+            "rapidashgalar"
+        ],
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "rapidashgalar": {
+        "num": 78,
+        "species": "Rapidash-Galar",
+        "baseSpecies": "Rapidash",
+        "forme": "Galar",
+        "types": [
+            "psychic",
+            "fairy"
+        ],
+        "baseStats": {
+            "hp": 65,
+            "attack": 100,
+            "defense": 70,
+            "special-attack": 80,
+            "special-defense": 80,
+            "speed": 105
+        },
+        "abilities": {
+            "0": "Run Away",
+            "1": "Pastel Veil",
+            "H": "Anticipation"
+        },
+        "heightm": 1.7,
+        "weight": 80,
+        "color": "White",
+        "prevo": "ponytagalar",
+        "evoLevel": 40,
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "farfetchdgalar": {
+        "num": 83,
+        "species": "Farfetch'd-Galar",
+        "baseSpecies": "Farfetch'd",
+        "forme": "Galar",
+        "types": [
+            "fighting"
+        ],
+        "baseStats": {
+            "hp": 52,
+            "attack": 95,
+            "defense": 55,
+            "special-attack": 58,
+            "special-defense": 62,
+            "speed": 55
+        },
+        "abilities": {
+            "0": "Steadfast",
+            "H": "Scrappy"
+        },
+        "heightm": 0.8,
+        "weight": 15,
+        "color": "Brown",
+        "evos": [
+            "sirfetchd"
+        ],
+        "eggGroups": [
+            "Flying",
+            "Field"
+        ]
+    },
+    "weezinggalar": {
+        "num": 110,
+        "species": "Weezing-Galar",
+        "baseSpecies": "Weezing",
+        "forme": "Galar",
+        "types": [
+            "poison",
+            "fairy"
+        ],
+        "baseStats": {
+            "hp": 65,
+            "attack": 90,
+            "defense": 120,
+            "special-attack": 85,
+            "special-defense": 70,
+            "speed": 60
+        },
+        "abilities": {
+            "0": "Levitate",
+            "1": "Neutralizing Gas",
+            "H": "Misty Surge"
+        },
+        "heightm": 3,
+        "weight": 16,
+        "color": "Gray",
+        "prevo": "koffing",
+        "evoLevel": 35,
+        "eggGroups": [
+            "Amorphous"
+        ]
+    },
+    "mrmimegalar": {
+        "num": 122,
+        "species": "Mr. Mime-Galar",
+        "baseSpecies": "Mr. Mime",
+        "forme": "Galar",
+        "types": [
+            "ice",
+            "psychic"
+        ],
+        "baseStats": {
+            "hp": 50,
+            "attack": 65,
+            "defense": 65,
+            "special-attack": 90,
+            "special-defense": 90,
+            "speed": 100
+        },
+        "abilities": {
+            "0": "Vital Spirit",
+            "1": "Screen Cleaner",
+            "H": "Ice Body"
+        },
+        "heightm": 1.4,
+        "weight": 56.8,
+        "color": "White",
+        "prevo": "mimejr",
+        "evoType": "levelMove",
+        "evoMove": "Mimic",
+        "evos": [
+            "mrrime"
+        ],
+        "eggGroups": [
+            "Human-Like"
+        ],
+        "canHatch": true
+    },
+    "corsolagalar": {
+        "num": 222,
+        "species": "Corsola-Galar",
+        "baseSpecies": "Corsola",
+        "forme": "Galar",
+        "types": [
+            "ghost"
+        ],
+        "genderRatio": {
+            "M": 0.25,
+            "F": 0.75
+        },
+        "baseStats": {
+            "hp": 60,
+            "attack": 55,
+            "defense": 100,
+            "special-attack": 65,
+            "special-defense": 100,
+            "speed": 30
+        },
+        "abilities": {
+            "0": "Weak Armor",
+            "H": "Cursed Body"
+        },
+        "heightm": 0.6,
+        "weight": 0.5,
+        "color": "White",
+        "evos": [
+            "cursola"
+        ],
+        "eggGroups": [
+            "Water 1",
+            "Water 3"
+        ]
+    },
+    "linoonegalar": {
+        "num": 264,
+        "species": "Linoone-Galar",
+        "baseSpecies": "Linoone",
+        "forme": "Galar",
+        "types": [
+            "dark",
+            "normal"
+        ],
+        "baseStats": {
+            "hp": 78,
+            "attack": 70,
+            "defense": 61,
+            "special-attack": 50,
+            "special-defense": 61,
+            "speed": 100
+        },
+        "abilities": {
+            "0": "Pickup",
+            "1": "Gluttony",
+            "H": "Quick Feet"
+        },
+        "heightm": 0.5,
+        "weight": 32.5,
+        "color": "White",
+        "prevo": "zigzagoongalar",
+        "evoLevel": 20,
+        "evos": [
+            "obstagoon"
+        ],
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "darumakagalar": {
+        "num": 554,
+        "species": "Darumaka-Galar",
+        "baseSpecies": "Darumaka",
+        "forme": "Galar",
+        "types": [
+            "ice"
+        ],
+        "baseStats": {
+            "hp": 70,
+            "attack": 90,
+            "defense": 45,
+            "special-attack": 15,
+            "special-defense": 45,
+            "speed": 50
+        },
+        "abilities": {
+            "0": "Hustle",
+            "H": "Inner Focus"
+        },
+        "heightm": 0.7,
+        "weight": 40,
+        "color": "White",
+        "evos": [
+            "darmanitangalar"
+        ],
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "darmanitangalar": {
+        "num": 555,
+        "species": "Darmanitan-Galar",
+        "baseSpecies": "Darmanitan",
+        "forme": "Galar",
+        "types": [
+            "ice"
+        ],
+        "baseStats": {
+            "hp": 105,
+            "attack": 140,
+            "defense": 55,
+            "special-attack": 30,
+            "special-defense": 55,
+            "speed": 95
+        },
+        "abilities": {
+            "0": "Gorilla Tactics",
+            "H": "Zen Mode"
+        },
+        "heightm": 1.7,
+        "weight": 120,
+        "color": "White",
+        "prevo": "darumakagalar",
+        "evoType": "useItem",
+        "evoItem": "Ice Stone",
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "yamaskgalar": {
+        "num": 562,
+        "species": "Yamask-Galar",
+        "baseSpecies": "Yamask",
+        "forme": "Galar",
+        "types": [
+            "ground",
+            "ghost"
+        ],
+        "baseStats": {
+            "hp": 38,
+            "attack": 55,
+            "defense": 85,
+            "special-attack": 30,
+            "special-defense": 65,
+            "speed": 30
+        },
+        "abilities": {
+            "0": "Wandering Spirit"
+        },
+        "heightm": 0.5,
+        "weight": 1.5,
+        "color": "Black",
+        "evos": [
+            "runerigus"
+        ],
+        "eggGroups": [
+            "Mineral",
+            "Amorphous"
+        ]
+    },
+    "stunfiskgalar": {
+        "num": 618,
+        "species": "Stunfisk-Galar",
+        "baseSpecies": "Stunfisk",
+        "forme": "Galar",
+        "types": [
+            "ground",
+            "steel"
+        ],
+        "baseStats": {
+            "hp": 109,
+            "attack": 81,
+            "defense": 99,
+            "special-attack": 66,
+            "special-defense": 84,
+            "speed": 32
+        },
+        "abilities": {
+            "0": "Mimicry"
+        },
+        "heightm": 0.7,
+        "weight": 20.5,
+        "color": "Green",
+        "eggGroups": [
+            "Water 1",
+            "Amorphous"
         ]
     }
 }
