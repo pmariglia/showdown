@@ -58,6 +58,7 @@ class Battle(ABC):
         self.wait = False
 
         self.battle_type = None
+        self.generation = None
 
         self.time_remaining = 240
 
@@ -101,7 +102,7 @@ class Battle(ABC):
             # this only happens on the turn the pkmn mega-evolves - the next turn will be fine
             battle_copy.user.active.forme_change(get_mega_pkmn_name(battle_copy.user.active.name))
 
-        if not battle_copy.opponent.mega_revealed():
+        if not battle_copy.opponent.mega_revealed() and any(g in self.generation for g in constants.MEGA_EVOLVE_GENERATIONS):
             check_in_sets = battle_copy.battle_type == constants.STANDARD_BATTLE
             battle_copy.opponent.active.try_convert_to_mega(check_in_sets=check_in_sets)
 

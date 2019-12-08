@@ -115,6 +115,28 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(instructions_without_spdef_boost, instructions_when_spdef_is_maxed)
 
+    def test_bodypress_damage_is_the_same_regardless_of_attack(self):
+        bot_move = "bodypress"
+        opponent_move = "splash"
+        self.state.self.active.attack_boost = 0
+        instructions_with_0_attack_boost = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+
+        self.state.self.active.attack_boost = 6
+        instructions_with_6_attack_boost = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+
+        self.assertEqual(instructions_with_0_attack_boost, instructions_with_6_attack_boost)
+
+    def test_bodypress_damage_is_different_with_different_defense_stats(self):
+        bot_move = "bodypress"
+        opponent_move = "splash"
+        self.state.self.active.defense_boost = 0
+        instructions_with_0_attack_boost = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+
+        self.state.self.active.defense_boost = 6
+        instructions_with_6_attack_boost = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+
+        self.assertNotEqual(instructions_with_0_attack_boost, instructions_with_6_attack_boost)
+
     def test_powder_into_powder_gives_correct_states(self):
         bot_move = "sleeppowder"
         opponent_move = "sleeppowder"
@@ -264,6 +286,40 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_ground_immune_to_aurawheel(self):
+        bot_move = "aurawheel"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ["ground"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_ground_not_immune_to_aurawheel_when_morpeko_hangry_is_active(self):
+        bot_move = "aurawheel"
+        opponent_move = "splash"
+        self.state.self.active.id = "morpekohangry"
+        self.state.opponent.active.types = ["ground"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 68),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 1),
+                ],
                 False
             )
         ]
@@ -782,6 +838,69 @@ class TestGetStateInstructions(unittest.TestCase):
                     # this move does 20 damage without knockoff boost
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 30)
                 ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_obstruct_protects(self):
+        bot_move = "obstruct"
+        opponent_move = "tackle"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.PROTECT),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_steel_beam_reduces_hp_by_half(self):
+        bot_move = "steelbeam"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.95,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 149),
+                    (constants.MUTATOR_HEAL, constants.SELF, -104),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.050000000000000044,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_steel_beam_only_does_as_much_damage_as_the_user_has_hitpoints(self):
+        bot_move = "steelbeam"
+        opponent_move = "splash"
+        self.state.self.active.hp = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.95,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 149),
+                    (constants.MUTATOR_HEAL, constants.SELF, -1),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.050000000000000044,
+                [],
                 False
             )
         ]
@@ -1509,7 +1628,7 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    def test_substitute_into_string_attack_removes_volatile_status(self):
+    def test_substitute_into_strong_attack_removes_volatile_status(self):
         self.state.self.active.speed = 100
         self.state.opponent.active.speed = 99
         bot_move = "substitute"
@@ -1541,6 +1660,55 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.SELF, 41.6),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_crosschop_missing_activates_blunder_policy(self):
+        bot_move = "crosschop"
+        opponent_move = "splash"
+        self.state.self.active.item = 'blunderpolicy'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.8,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 31),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.19999999999999996,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 2),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_willowisp_missing_activates_blunder_policy(self):
+        bot_move = "willowisp"
+        opponent_move = "splash"
+        self.state.self.active.item = 'blunderpolicy'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.85,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.BURN),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.15000000000000002,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 2),
                 ],
                 False
             )
@@ -1676,6 +1844,202 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_tackle_into_ironbarbs_causes_no_recoil_when_attacker_has_neutralizing_gas(self):
+        bot_move = "splash"
+        opponent_move = "tackle"
+        self.state.self.active.ability = 'ironbarbs'
+        self.state.opponent.active.ability = 'neutralizinggas'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_dynamax_cannon_does_double_damage_versus_dynamaxed(self):
+        self.state.opponent.active.types = ['normal']
+        bot_move = "dynamaxcannon"
+        opponent_move = "splash"
+        self.state.opponent.active.volatile_status.add(constants.DYNAMAX)
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 105),  # normal damage is 53
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_dynamax_cannon_does_normal_damage_versus_non_dynamaxed(self):
+        self.state.opponent.active.types = ['normal']
+        bot_move = "dynamaxcannon"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 53),  # normal damage is 53
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_noretreat_boosts_own_stats(self):
+        bot_move = "noretreat"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_tarshot_lowers_speed_and_sets_volatile_status(self):
+        bot_move = "tarshot"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, 'tarshot'),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, -1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_tarshot_increases_fire_damage(self):
+        bot_move = "eruption"
+        opponent_move = "splash"
+        self.state.opponent.active.volatile_status.add('tarshot')
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 159)  # normal damage is 79
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_dragondarts_does_double_damage(self):
+        self.state.opponent.active.types = ['normal']
+        bot_move = "dragondarts"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62)  # one hit would do 32
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_boltbeak_does_normal_damage_when_moving_second(self):
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        bot_move = "boltbeak"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 80)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_boltbeak_does_double_damage_when_moving_first(self):
+        self.state.self.active.speed = 2
+        self.state.opponent.active.speed = 1
+        bot_move = "boltbeak"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 158)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_fishious_rend_does_normal_damage_when_moving_second(self):
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        bot_move = "fishiousrend"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 53)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_fishious_rend_does_double_damage_when_moving_first(self):
+        self.state.self.active.speed = 2
+        self.state.opponent.active.speed = 1
+        bot_move = "fishiousrend"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 105)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_tackle_into_roughskin_causes_recoil(self):
         bot_move = "splash"
         opponent_move = "tackle"
@@ -1694,6 +2058,66 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_courtchange_swaps_rocks(self):
+        bot_move = "courtchange"
+        opponent_move = "splash"
+        self.state.self.side_conditions[constants.STEALTH_ROCK] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.STEALTH_ROCK, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_courtchange_does_not_swap_zero_value_side_condition(self):
+        bot_move = "courtchange"
+        opponent_move = "splash"
+        self.state.self.side_conditions[constants.STEALTH_ROCK] = 1
+        self.state.self.side_conditions[constants.SPIKES] = 0
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.STEALTH_ROCK, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_courtchange_swaps_rocks_and_spikes(self):
+        bot_move = "courtchange"
+        opponent_move = "splash"
+        self.state.self.side_conditions[constants.STEALTH_ROCK] = 1
+        self.state.opponent.side_conditions[constants.SPIKES] = 2
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.SPIKES, 2),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.SPIKES, 2),
+                ],
+                False
+            )
+        ]
+
+        self.mutator.apply(expected_instructions[0].instructions)
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_regular_damaging_move_with_speed_boost(self):
         bot_move = "tackle"
         opponent_move = "splash"
@@ -1706,6 +2130,42 @@ class TestGetStateInstructions(unittest.TestCase):
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
                     (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 1)
                 ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_clangoroussoul(self):
+        bot_move = "clangoroussoul"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 1),
+                    (constants.MUTATOR_HEAL, constants.SELF, -69.33333333333333)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_clanorous_soul_fails_when_at_less_than_one_third_hp(self):
+        bot_move = "clangoroussoul"
+        opponent_move = "splash"
+        self.state.self.active.hp = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
                 False
             )
         ]
@@ -2031,6 +2491,168 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 17),  # normally 12
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_icescales_halves_special_damage(self):
+        bot_move = "swift"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'icescales'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 16),  # normally 32
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_icescales_does_not_halve_physical_damage(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'icescales'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_pastelveil_prevents_poison(self):
+        bot_move = "toxic"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'pastelveil'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_punkrock_increases_sound_damage(self):
+        bot_move = "boomburst"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'punkrock'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 96),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_punkrock_decreases_sound_damage(self):
+        bot_move = "boomburst"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'punkrock'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_steelyspirit_boosts_steel_move(self):
+        bot_move = "bulletpunch"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'steelyspirit'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 75),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_steam_engine_boosts_speed_when_hit_by_water_move(self):
+        bot_move = "surf"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'steamengine'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 6),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_steamengine_does_not_overboost(self):
+        bot_move = "surf"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'steamengine'
+        self.state.opponent.active.speed_boost = 4
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 2),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switching_into_pkmn_with_screen_cleaner_removes_screens_for_both_sides(self):
+        bot_move = "switch starmie"
+        opponent_move = "splash"
+        self.state.self.reserve['starmie'].ability = 'screencleaner'
+        self.state.self.side_conditions[constants.REFLECT] = 1
+        self.state.self.side_conditions[constants.LIGHT_SCREEN] = 1
+        self.state.opponent.side_conditions[constants.REFLECT] = 1
+        self.state.opponent.side_conditions[constants.AURORA_VEIL] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.REFLECT, 1),
+                    (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.REFLECT, 1),
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.LIGHT_SCREEN, 1),
+                    (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.AURORA_VEIL, 1),
                 ],
                 False
             )
@@ -2372,8 +2994,9 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.SPIKES, 1),
-                    (constants.MUTATOR_DAMAGE, constants.SELF, 18),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 43),
                     (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.SPIKES, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 1)
                 ],
                 False
             )
@@ -2413,6 +3036,70 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.SPIKES, 1),
                     (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.SPIKES, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_defog_removes_terrain(self):
+        bot_move = "splash"
+        opponent_move = "defog"
+        self.state.field = constants.ELECTRIC_TERRAIN
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_FIELD_END, constants.ELECTRIC_TERRAIN)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_defog_removes_terrain_and_spikes(self):
+        bot_move = "splash"
+        opponent_move = "defog"
+        self.state.field = constants.ELECTRIC_TERRAIN
+        self.state.self.side_conditions[constants.SPIKES] = 2
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_FIELD_END, constants.ELECTRIC_TERRAIN),
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.SPIKES, 2)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_doubleironbash_does_double_damage(self):
+        bot_move = "doubleironbash"
+        opponent_move = "splash"
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 149),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, constants.FLINCH),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.FLINCH),
+                ],
+                True
+            ),
+            TransposeInstruction(
+                0.7,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 149)
                 ],
                 False
             )
@@ -4189,6 +4876,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_gorillatactics_boost_damage(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'gorillatactics'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),  # normal damage is 25
+
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_hugepower(self):
         bot_move = "tackle"
         opponent_move = "splash"
@@ -4529,6 +5234,60 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_gorilla_tactics_locks_other_moves_even_without_choice_item(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        self.state.self.active.item = None
+        self.state.self.active.ability = 'gorillatactics'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'thunderwave'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'coil'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'sandattack'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_gorilla_tactics_with_choice_item_locks_moves(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        self.state.self.active.item = 'choicescarf'
+        self.state.self.active.ability = 'gorillatactics'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'thunderwave'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'coil'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.SELF, 'sandattack'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_opponent_using_move_with_choice_item_locks_other_moves(self):
         bot_move = "splash"
         opponent_move = "tackle"
@@ -4699,6 +5458,44 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_cottondown_drops_speed(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.ability = 'cottondown'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, -1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_cottondown_drops_speed_for_non_contact_move(self):
+        bot_move = "surf"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.ability = 'cottondown'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, -1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_vcreate_into_tanglinghair_drops_stats_correctly(self):
         bot_move = "vcreate"
         opponent_move = "splash"
@@ -4799,6 +5596,42 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switch_in_with_dauntless_shield_causes_defense_to_raise(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.self.reserve['xatu'].ability = 'dauntlessshield'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'xatu'),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.DEFENSE, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_in_with_intrepid_sword_causes_attack_to_raise(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.self.reserve['xatu'].ability = 'intrepidsword'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'xatu'),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_switch_into_intimidate_causes_opponent_attack_to_lower(self):
         bot_move = "switch xatu"
         opponent_move = "splash"
@@ -4810,6 +5643,24 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'xatu'),
                     (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_innerfocus_immune_to_intimidate(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.self.reserve['xatu'].ability = 'intimidate'
+        self.state.opponent.active.ability = 'innerfocus'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, 'self', self.state.self.active.id, 'xatu'),
                 ],
                 False
             )
@@ -4941,7 +5792,7 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 112)
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 149)
                 ],
                 False
             )
@@ -4959,7 +5810,7 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 28)
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37)
                 ],
                 False
             )
@@ -5983,23 +6834,6 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    def test_terrain_makes_psychic_move_stronger(self):
-        bot_move = "psyshock"
-        opponent_move = "splash"
-        self.state.field = constants.PSYCHIC_TERRAIN
-        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 74)  # normally this is 50
-                ],
-                False
-            )
-        ]
-
-        self.assertEqual(expected_instructions, instructions)
-
     def test_misty_terrain_blocks_status(self):
         bot_move = "splash"
         opponent_move = "spore"
@@ -6797,6 +7631,23 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_lifedew_healing(self):
+        bot_move = "recover"
+        opponent_move = "splash"
+        self.state.self.active.hp -= 25
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_HEAL, constants.SELF, 25),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_attack_into_healing_with_multiple_attack_damage_rolls(self):
         config.damage_calc_type = "min_max_average"
         bot_move = "tackle"
@@ -6861,6 +7712,44 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     ('switch', 'opponent', 'aromatisse', 'toxapex'),
                     ('damage', 'opponent', 24.125),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_rock_does_no_damage_with_heavy_duty_boots(self):
+        self.state.opponent.side_conditions[constants.STEALTH_ROCK] = 1
+
+        bot_move = "splash"
+        opponent_move = "switch toxapex"
+        self.state.opponent.reserve['toxapex'].item = 'heavydutyboots'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex'),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_spike_does_no_damage_with_heavy_duty_boots(self):
+        self.state.opponent.side_conditions[constants.SPIKES] = 2
+
+        bot_move = "splash"
+        opponent_move = "switch toxapex"
+        self.state.opponent.reserve['toxapex'].item = 'heavydutyboots'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex'),
                 ],
                 False
             ),

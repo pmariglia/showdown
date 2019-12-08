@@ -71,6 +71,11 @@ def switch_or_drag(battle, split_msg):
             # reset the boost of the pokemon being replaced
             battle.opponent.active.boosts.clear()
 
+            if constants.DYNAMAX in battle.opponent.active.volatile_statuses:
+                battle.opponent.active.hp /= 2
+                battle.opponent.active.max_hp /= 2
+                logger.debug("Opponent ended dynamax - halving their HP to {}/{}".format(battle.opponent.active.hp, battle.opponent.active.max_hp))
+
             # reset the volatile statuses of the pokemon being replaced
             battle.opponent.active.volatile_statuses.clear()
 
@@ -217,6 +222,11 @@ def start_volatile_status(battle, split_msg):
         logger.debug("Starting the volatile status {} on {}".format(volatile_status, pkmn.name))
         pkmn.volatile_statuses.append(volatile_status)
 
+    if is_opponent(battle, split_msg) and volatile_status == constants.DYNAMAX:
+        pkmn.hp *= 2
+        pkmn.max_hp *= 2
+        logger.debug("Opponent started dynamax - doubling their HP to {}/{}".format(pkmn.hp, pkmn.max_hp))
+
     if is_opponent(battle, split_msg) and constants.ABILITY in split_msg[3]:
         pkmn.ability = volatile_status
 
@@ -233,6 +243,10 @@ def end_volatile_status(battle, split_msg):
     else:
         logger.debug("Removing the volatile status {} from {}".format(volatile_status, pkmn.name))
         pkmn.volatile_statuses.remove(volatile_status)
+        if is_opponent(battle, split_msg) and volatile_status == constants.DYNAMAX:
+            pkmn.hp /= 2
+            pkmn.max_hp /= 2
+            logger.debug("Opponent ended dynamax - halving their HP to {}/{}".format(pkmn.hp, pkmn.max_hp))
 
 
 def curestatus(battle, split_msg):

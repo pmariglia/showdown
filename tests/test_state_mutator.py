@@ -563,6 +563,34 @@ class TestStatemutator(unittest.TestCase):
 
         self.assertEqual(constants.GRASSY_TERRAIN, self.state.field)
 
+    def test_end_active_field(self):
+        self.state.field = constants.GRASSY_TERRAIN
+        instruction = (
+            constants.MUTATOR_FIELD_END,
+            constants.GRASSY_TERRAIN
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+        if self.state.field is not None:
+            self.fail("Terrain was not removed")
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(constants.GRASSY_TERRAIN, self.state.field)
+
+    def test_reversing_end_active_field(self):
+        self.state.field = None
+        instruction = (
+            constants.MUTATOR_FIELD_END,
+            constants.GRASSY_TERRAIN
+        )
+        list_of_instructions = [instruction]
+        self.mutator.reverse(list_of_instructions)
+        if self.state.field != constants.GRASSY_TERRAIN:
+            self.fail("Terrain was not reset")
+        self.mutator.apply(list_of_instructions)
+
+        self.assertEqual(None, self.state.field)
+
     def test_toggle_trickroom_sets_trickroom(self):
         self.state.trick_room = False
         instruction = (

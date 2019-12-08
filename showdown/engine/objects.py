@@ -456,6 +456,7 @@ class StateMutator:
             constants.MUTATOR_ENABLE_MOVE: self.enable_move,
             constants.MUTATOR_WEATHER_START: self.start_weather,
             constants.MUTATOR_FIELD_START: self.start_field,
+            constants.MUTATOR_FIELD_END: self.end_field,
             constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom
         }
         self.reverse_instructions = {
@@ -474,6 +475,7 @@ class StateMutator:
             constants.MUTATOR_ENABLE_MOVE: self.disable_move,
             constants.MUTATOR_WEATHER_START: self.reverse_start_weather,
             constants.MUTATOR_FIELD_START: self.reverse_start_field,
+            constants.MUTATOR_FIELD_END: self.reverse_end_field,
             constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom
         }
 
@@ -601,6 +603,14 @@ class StateMutator:
         self.state.field = field
 
     def reverse_start_field(self, _, old_field):
+        self.state.field = old_field
+
+    def end_field(self, _):
+        # the second parameter is the current field
+        # the value is here for reversing purposes
+        self.state.field = None
+
+    def reverse_end_field(self, old_field):
         self.state.field = old_field
 
     def toggle_trickroom(self):

@@ -390,6 +390,30 @@ class TestSwitchOrDrag(unittest.TestCase):
 
         self.assertEqual(expected_last_move, self.battle.opponent.last_used_move)
 
+    def test_opponent_switching_with_dynamax_volatile_status_halves_their_hp(self):
+        self.battle.opponent.active.volatile_statuses = ['dynamax']
+        split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
+
+        pkmn = self.battle.opponent.active
+        hp, maxhp = pkmn.hp, pkmn.max_hp
+
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(hp/2, pkmn.hp)
+        self.assertEqual(maxhp/2, pkmn.max_hp)
+
+    def test_opponent_switching_without_dynamax_volatile_status_does_not_halve_their_hp(self):
+        self.battle.opponent.active.volatile_statuses = []
+        split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
+
+        pkmn = self.battle.opponent.active
+        hp, maxhp = pkmn.hp, pkmn.max_hp
+
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(hp, pkmn.hp)
+        self.assertEqual(maxhp, pkmn.max_hp)
+
 
 class TestHealOrDamage(unittest.TestCase):
     def setUp(self):
@@ -779,6 +803,22 @@ class TestStartVolatileStatus(unittest.TestCase):
 
         self.assertEqual(expected_volatile_statuese, self.battle.opponent.active.volatile_statuses)
 
+    def test_doubles_hp_when_dynamax_starts_for_opponent(self):
+        split_msg = ['', '-start', 'p2a: Caterpie', 'Dynamax']
+        hp, maxhp = self.battle.opponent.active.hp, self.battle.opponent.active.max_hp
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(hp * 2, self.battle.opponent.active.hp)
+        self.assertEqual(maxhp * 2, self.battle.opponent.active.max_hp)
+
+    def test_does_not_touch_bots_hp_and_maxhp(self):
+        split_msg = ['', '-start', 'p1a: Caterpie', 'Dynamax']
+        hp, maxhp = self.battle.opponent.active.hp, self.battle.opponent.active.max_hp
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(hp, self.battle.opponent.active.hp)
+        self.assertEqual(maxhp, self.battle.opponent.active.max_hp)
+
 
 class TestEndVolatileStatus(unittest.TestCase):
     def setUp(self):
@@ -794,7 +834,7 @@ class TestEndVolatileStatus(unittest.TestCase):
 
     def test_removes_volatile_status_from_opponent(self):
         self.battle.opponent.active.volatile_statuses = ['encore']
-        split_msg = ['', '-start', 'p2a: Caterpie', 'Encore']
+        split_msg = ['', '-end', 'p2a: Caterpie', 'Encore']
         end_volatile_status(self.battle, split_msg)
 
         expected_volatile_statuses = []
@@ -803,12 +843,30 @@ class TestEndVolatileStatus(unittest.TestCase):
 
     def test_removes_volatile_status_from_user(self):
         self.battle.user.active.volatile_statuses = ['encore']
-        split_msg = ['', '-start', 'p1a: Weedle', 'Encore']
+        split_msg = ['', '-end', 'p1a: Weedle', 'Encore']
         end_volatile_status(self.battle, split_msg)
 
         expected_volatile_statuses = []
 
         self.assertEqual(expected_volatile_statuses, self.battle.user.active.volatile_statuses)
+
+    def test_halves_opponent_hp_when_dynamax_ends(self):
+        self.battle.opponent.active.volatile_statuses = ['dynamax']
+        hp, maxhp = self.battle.opponent.active.hp, self.battle.opponent.active.max_hp
+        split_msg = ['', '-end', 'p2a: Weedle', 'Dynamax']
+        end_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(hp/2, self.battle.opponent.active.hp)
+        self.assertEqual(maxhp/2, self.battle.opponent.active.max_hp)
+
+    def test_does_not_halve_bots_hp_when_dynamax_ends(self):
+        self.battle.user.active.volatile_statuses = ['dynamax']
+        hp, maxhp = self.battle.opponent.active.hp, self.battle.opponent.active.max_hp
+        split_msg = ['', '-end', 'p1a: Weedle', 'Dynamax']
+        end_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(hp, self.battle.opponent.active.hp)
+        self.assertEqual(maxhp, self.battle.opponent.active.max_hp)
 
 
 class TestUpdateAbility(unittest.TestCase):

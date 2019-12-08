@@ -108,7 +108,12 @@ def user_moves_first(state, user_move, opponent_move):
         return False
 
 
-def update_damage_calc_from_abilities_and_items(attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move, weather):
+def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move, weather):
+    # update the attacking move based on certain special-effects:
+    #   - abilities
+    #   - items
+    #   - protect
+
     attacking_move = modify_attack_being_used(
         attacking_move,
         defending_move,
@@ -218,7 +223,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         all_instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
         return all_instructions
 
-    attacking_move = update_damage_calc_from_abilities_and_items(
+    attacking_move = update_attacking_move(
         attacking_pokemon,
         defending_pokemon,
         attacking_move,

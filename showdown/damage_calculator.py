@@ -60,14 +60,17 @@ SPECIAL_LOGIC_MOVES = {
 }
 
 
-def calculate_damage(attacker, defender, attacking_move, conditions=None, calc_type='average'):
+TERRAIN_DAMAGE_BOOST = 1.3
+
+
+def calculate_damage(attacker, defender, move, conditions=None, calc_type='average'):
     acceptable_calc_types = ['average', 'max', 'min_max', 'min_max_average', 'all']
     if calc_type not in acceptable_calc_types:
         raise ValueError("{} is not one of {}".format(calc_type, acceptable_calc_types))
 
-    attacking_move = get_move(attacking_move)
+    attacking_move = get_move(move)
     if attacking_move is None:
-        raise TypeError("Invalid move")
+        raise TypeError("Invalid move: {}".format(move))
 
     attacking_type = normalize_name(attacking_move.get(constants.CATEGORY))
     if attacking_type == constants.PHYSICAL:
@@ -264,15 +267,15 @@ def aurora_veil_modifier(aurora_veil):
 
 def terrain_modifier(attacker, defender, attacking_move, terrain):
     if terrain == constants.ELECTRIC_TERRAIN and attacking_move[constants.TYPE] == 'electric' and attacker.is_grounded():
-        return 1.5
+        return TERRAIN_DAMAGE_BOOST
     elif terrain == constants.GRASSY_TERRAIN and attacking_move[constants.TYPE] == 'grass' and attacker.is_grounded():
-        return 1.5
+        return TERRAIN_DAMAGE_BOOST
     elif terrain == constants.GRASSY_TERRAIN and attacking_move[constants.ID] == 'earthquake':
         return 0.5
     elif terrain == constants.MISTY_TERRAIN and attacking_move[constants.TYPE] == 'dragon' and defender.is_grounded():
         return 0.5
     elif terrain == constants.PSYCHIC_TERRAIN and attacking_move[constants.TYPE] == 'psychic' and attacker.is_grounded():
-        return 1.5
+        return TERRAIN_DAMAGE_BOOST
     elif terrain == constants.PSYCHIC_TERRAIN and attacking_move[constants.PRIORITY] > 0:
         return 0
     return 1
@@ -284,4 +287,6 @@ def volatile_status_modifier(attacking_move, attacker, defender):
         modifier *= 0
     if 'flashfire' in attacker.volatile_status and attacking_move[constants.TYPE] == 'fire':
         modifier *= 1.5
+    if 'tarshot' in defender.volatile_status and attacking_move[constants.TYPE] == 'fire':
+        modifier *= 2
     return modifier

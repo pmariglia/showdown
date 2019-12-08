@@ -236,7 +236,88 @@ def pursuit(attacking_move, defending_move, attacking_pokemon, defending_pokemon
     return attacking_move
 
 
+def aurawheel(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_pokemon.id == "morpekohangry":
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = 'dark'
+    return attacking_move
+
+
+def dynamaxcannon(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if constants.DYNAMAX in defending_pokemon.volatile_status:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 2
+    return attacking_move
+
+
+def dragondarts(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.BASE_POWER] *= 2
+    return attacking_move
+
+
+def boltbeak(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if first_move:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 2
+    return attacking_move
+
+
+def clangoroussoul(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_pokemon.hp > int(attacking_pokemon.maxhp / 3):
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.HEAL_TARGET] = constants.SELF
+        attacking_move[constants.HEAL] = [-1, 3]
+        attacking_move[constants.BOOSTS] = {
+            constants.ATTACK: 1,
+            constants.DEFENSE: 1,
+            constants.SPECIAL_ATTACK: 1,
+            constants.SPECIAL_DEFENSE: 1,
+            constants.SPEED: 1
+          }
+    return attacking_move
+
+
+def bodypress(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    boosted_stats = attacking_pokemon.calculate_boosted_stats()
+    attacking_move[constants.BASE_POWER] *= (boosted_stats[constants.DEFENSE] / boosted_stats[constants.ATTACK])
+    return attacking_move
+
+
+def lifedew(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.HEAL] = [1, 4]
+    attacking_move[constants.HEAL_TARGET] = constants.SELF
+    return attacking_move
+
+
+def steelbeam(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.HEAL] = [-1, 2]
+    attacking_move[constants.HEAL_TARGET] = constants.SELF
+    return attacking_move
+
+
+def doubleironbash(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.BASE_POWER] *= 2  # double-hit move
+    return attacking_move
+
+
 move_lookup = {
+    'doubleironbash': doubleironbash,
+    'steelbeam': steelbeam,
+    'lifedew': lifedew,
+    'bodypress': bodypress,
+    'clangoroussoul': clangoroussoul,
+    'fishiousrend': boltbeak,
+    'boltbeak': boltbeak,
+    'dragondarts': dragondarts,
+    'dynamaxcannon': dynamaxcannon,
+    'behemothblade': dynamaxcannon,
+    'behemothbash': dynamaxcannon,
+    'aurawheel': aurawheel,
     'pursuit': pursuit,
     'painsplit': painsplit,
     'lowkick': lowkick,

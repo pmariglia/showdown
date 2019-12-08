@@ -27,7 +27,7 @@ UNKNOWN_ITEM = "unknown_item"
 
 UNKOWN_POKEMON_FORMES = ['silvally', 'arceus']
 
-SMOGON_HAS_STATS_PAGE_SUFFIXES = ["ubers", "ou", "uu", "ru", "nu", "pu", "lc", "oublitz"]
+SMOGON_HAS_STATS_PAGE_SUFFIXES = ["ubers", "ou", "uu", "ru", "nu", "pu", "lc", "oublitz", "nationaldexbeta"]
 
 # a lookup for the opponent's name given the bot's name
 # this has to do with the Pokemon-Showdown PROTOCOL
@@ -112,6 +112,10 @@ CHAT_STRING = "|c|"
 TIME_LEFT = "Time left:"
 DETAILS = "details"
 
+MEGA_EVOLVE_GENERATIONS = [
+    "gen6",
+    "gen7"
+]
 CAN_MEGA_EVO = "canMegaEvo"
 CAN_ULTRA_BURST = "canUltraBurst"
 CAN_Z_MOVE = "canZMove"
@@ -218,8 +222,20 @@ IRREVERSIBLE_WEATHER = {DESOLATE_LAND, HEAVY_RAIN}
 STEALTH_ROCK = 'stealthrock'
 SPIKES = 'spikes'
 TOXIC_SPIKES = 'toxicspikes'
+COURT_CHANGE = 'courtchange'
 
-HAZARD_CLEARING_MOVES = ['rapidspin', 'defog']
+COURT_CHANGE_SWAPS = {
+    'spikes',
+    'toxicspikes',
+    'stealthrock',
+    'stickyweb',
+    'lightscreen',
+    'reflect',
+    'auroraveil',
+    'tailwind'
+}
+
+HAZARD_CLEARING_MOVES = ['rapidspin', 'defog', 'courtchange']
 
 RAPID_SPIN_CLEARS = [
     STEALTH_ROCK,
@@ -259,6 +275,7 @@ ROOST = "roost"
 PROTECT = "protect"
 BANEFUL_BUNKER = "banefulbunker"
 SPIKY_SHIELD = "spikyshield"
+DYNAMAX = "dynamax"
 
 PROTECT_VOLATILE_STATUSES = [PROTECT, BANEFUL_BUNKER, SPIKY_SHIELD]
 
@@ -283,7 +300,7 @@ THAW_IF_HIT_BY = {'scald', 'steameruption'}
 IMMUNE_TO_SLEEP_ABILITIES = {'insomnia', 'sweetveil', 'vitalspirit'}
 IMMUNE_TO_BURN_ABILITIES = {'waterveil', 'waterbubble'}
 IMMUNE_TO_FROZEN_ABILITIES = {'magmaarmor'}
-IMMUNE_TO_POISON_ABILITIES = {'immunity'}
+IMMUNE_TO_POISON_ABILITIES = {'immunity', 'pastelveil'}
 IMMUNE_TO_PARALYSIS_ABILITIES = {'limber'}
 
 CHOICE_ITEMS = {'choicescarf', 'choiceband', 'choicespecs'}

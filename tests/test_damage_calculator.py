@@ -1,8 +1,13 @@
 import unittest
 import constants
+from showdown import damage_calculator
 from showdown.damage_calculator import calculate_damage
 from showdown.engine.objects import Pokemon
 from showdown.battle import Pokemon as StatePokemon
+
+
+# tests assume 1.5 boost from terrain (gen7)
+damage_calculator.TERRAIN_DAMAGE_BOOST = 1.5
 
 
 class TestCalculateDamage(unittest.TestCase):
