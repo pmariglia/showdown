@@ -17,26 +17,26 @@ class TestCalculateDamage(unittest.TestCase):
         self.venusaur = Pokemon.from_state_pokemon_dict(StatePokemon("venusaur", 100).to_dict())
 
     def test_fire_blast_from_charizard_to_venusaur_without_modifiers(self):
-        move = 'fire Blast'
+        move = 'fireblast'
 
         dmg = calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
         self.assertEqual([300], dmg)
 
     def test_flashfire_increases_fire_move_damage(self):
-        move = 'fire Blast'
+        move = 'fireblast'
         self.charizard.volatile_status.add('flashfire')
 
         dmg = calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
         self.assertEqual([450], dmg)
 
     def test_stab_without_weakness_calculates_properly(self):
-        move = 'sludge bomb'
+        move = 'sludgebomb'
 
         dmg = calculate_damage(self.venusaur, self.charizard, move, calc_type='max')
         self.assertEqual([130], dmg)
 
     def test_4x_weakness_calculates_properly(self):
-        move = 'rock slide'
+        move = 'rockslide'
 
         dmg = calculate_damage(self.venusaur, self.charizard, move, calc_type='max')
         self.assertEqual([268], dmg)
@@ -54,7 +54,7 @@ class TestCalculateDamage(unittest.TestCase):
         self.assertEqual([0], dmg)
 
     def test_burn_modifier_properly_halves_physical_damage(self):
-        move = 'rock slide'
+        move = 'rockslide'
 
         self.venusaur.status = constants.BURN
 
@@ -62,7 +62,7 @@ class TestCalculateDamage(unittest.TestCase):
         self.assertEqual([134], dmg)
 
     def test_burn_does_not_modify_special_move(self):
-        move = 'fire Blast'
+        move = 'fireblast'
 
         self.venusaur.status  = constants.BURN
 
