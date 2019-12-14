@@ -3,10 +3,10 @@ from copy import copy
 import config
 import constants
 from data import all_move_json
-from showdown.engine.damage_calculator import calculate_damage
 from showdown.helpers import boost_multiplier_lookup
 
 from . import instruction_generator
+from .damage_calculator import calculate_damage
 from .objects import TransposeInstruction
 from .special_effects.abilities.modify_attack_against import ability_modify_attack_against
 from .special_effects.abilities.modify_attack_being_used import ability_modify_attack_being_used
