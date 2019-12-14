@@ -21,23 +21,6 @@ boost_multiplier_lookup = {
 }
 
 
-accuracy_multiplier_lookup = {
-    -6: 3/9,
-    -5: 3/8,
-    -4: 3/7,
-    -3: 3/6,
-    -2: 3/5,
-    -1: 3/4,
-    0: 3/3,
-    1: 4/3,
-    2: 5/3,
-    3: 6/3,
-    4: 7/3,
-    5: 8/3,
-    6: 9/3
-}
-
-
 natures = {
     'lonely': {
         'plus': constants.ATTACK,

@@ -2,8 +2,6 @@ import constants
 from copy import copy
 from config import logger
 
-from showdown.helpers import accuracy_multiplier_lookup
-
 from .damage_calculator import type_effectiveness_modifier
 from .special_effects.abilities.on_switch_in import ability_on_switch_in
 from .special_effects.items.end_of_turn import item_end_of_turn
@@ -45,6 +43,23 @@ SPECIAL_LOGIC_MOVES = {
     constants.SAND,
     constants.HAIL,
     constants.TRICK_ROOM,
+}
+
+
+accuracy_multiplier_lookup = {
+    -6: 3/9,
+    -5: 3/8,
+    -4: 3/7,
+    -3: 3/6,
+    -2: 3/5,
+    -1: 3/4,
+    0: 3/3,
+    1: 4/3,
+    2: 5/3,
+    3: 6/3,
+    4: 7/3,
+    5: 8/3,
+    6: 9/3
 }
 
 
