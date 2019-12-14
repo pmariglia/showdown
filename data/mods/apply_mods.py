@@ -4,8 +4,7 @@ import constants
 import data
 from data import all_move_json
 from data import pokedex
-from showdown import damage_calculator
-
+from showdown.engine import damage_calculator
 
 CURRENT_GEN = 8
 PWD = os.path.dirname(os.path.abspath(__file__))

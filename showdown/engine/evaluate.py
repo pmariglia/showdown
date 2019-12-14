@@ -1,5 +1,5 @@
 import constants
-from showdown.damage_calculator import is_super_effective
+from showdown.engine.damage_calculator import is_super_effective
 
 
 class Scoring:

@@ -2,8 +2,8 @@ import constants
 from copy import copy
 from config import logger
 
-from showdown.damage_calculator import damage_multipication_array
-from showdown.damage_calculator import pokemon_type_indicies
+from showdown.engine.damage_calculator import damage_multipication_array
+from showdown.engine.damage_calculator import pokemon_type_indicies
 from showdown.helpers import accuracy_multiplier_lookup
 
 from .special_effects.abilities.on_switch_in import ability_on_switch_in

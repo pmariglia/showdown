@@ -1,6 +1,6 @@
 import constants
-from showdown.damage_calculator import is_super_effective
-from showdown.damage_calculator import is_not_very_effective
+from showdown.engine.damage_calculator import is_super_effective
+from showdown.engine.damage_calculator import is_not_very_effective
 
 
 def analytic(attacking_move, attacking_pokemon, defending_pokemon, first_move, weather):

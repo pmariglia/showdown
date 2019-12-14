@@ -1,7 +1,7 @@
 import unittest
 import constants
-from showdown import damage_calculator
-from showdown.damage_calculator import calculate_damage
+from showdown.engine import damage_calculator
+from showdown.engine.damage_calculator import calculate_damage
 from showdown.engine.objects import Pokemon
 from showdown.battle import Pokemon as StatePokemon
 

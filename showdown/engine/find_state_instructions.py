@@ -3,7 +3,7 @@ from copy import copy
 import config
 import constants
 from data import all_move_json
-from showdown.damage_calculator import calculate_damage
+from showdown.engine.damage_calculator import calculate_damage
 from showdown.helpers import boost_multiplier_lookup
 
 from . import instruction_generator
