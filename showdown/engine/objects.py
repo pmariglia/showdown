@@ -69,6 +69,14 @@ class State(object):
 
         return user_options, opponent_options
 
+    def battle_is_finished(self):
+        if self.self.active.hp <= 0 and not any(pkmn.hp for pkmn in self.self.reserve.values()):
+            return -1
+        elif self.opponent.active.hp <= 0 and not any(pkmn.hp for pkmn in self.opponent.reserve.values()) and len(self.opponent.reserve) == 5:
+            return 1
+
+        return False
+
     @classmethod
     def from_dict(cls, state_dict):
         return State(

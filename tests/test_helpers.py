@@ -1,7 +1,6 @@
 import unittest
 
 from showdown.battle import Move
-from showdown.helpers import battle_is_over
 from showdown.helpers import get_pokemon_info_from_condition
 from showdown.helpers import normalize_name
 from showdown.helpers import set_makes_sense
@@ -20,38 +19,38 @@ class TestBattleIsOver(unittest.TestCase):
         for pkmn in self.state.self.reserve.values():
             pkmn.hp = 0
 
-        self.assertTrue(battle_is_over(self.state))
+        self.assertTrue(self.state.battle_is_finished())
 
     def test_returns_true_when_all_pokemon_for_opponent_are_dead(self):
         self.state.opponent.active.hp = 0
         for pkmn in self.state.opponent.reserve.values():
             pkmn.hp = 0
 
-        self.assertTrue(battle_is_over(self.state))
+        self.assertTrue(self.state.battle_is_finished())
 
     def test_returns_false_when_all_pokemon_are_alive(self):
-        self.assertFalse(battle_is_over(self.state))
+        self.assertFalse(self.state.battle_is_finished())
 
     def test_returns_false_when_only_active_is_dead(self):
         self.state.opponent.active.hp = 0
-        self.assertFalse(battle_is_over(self.state))
+        self.assertFalse(self.state.battle_is_finished())
 
     def test_returns_false_when_only_reserve_are_dead(self):
         for pkmn in self.state.self.reserve.values():
             pkmn.hp = 0
-        self.assertFalse(battle_is_over(self.state))
+        self.assertFalse(self.state.battle_is_finished())
 
     def test_returns_false_when_all_pokemon_are_alive_for_opponent(self):
-        self.assertFalse(battle_is_over(self.state))
+        self.assertFalse(self.state.battle_is_finished())
 
     def test_returns_false_when_only_active_is_dead_for_opponent(self):
         self.state.opponent.active.hp = 0
-        self.assertFalse(battle_is_over(self.state))
+        self.assertFalse(self.state.battle_is_finished())
 
     def test_returns_false_when_only_reserve_are_dead_for_opponent(self):
         for pkmn in self.state.opponent.reserve.values():
             pkmn.hp = 0
-        self.assertFalse(battle_is_over(self.state))
+        self.assertFalse(self.state.battle_is_finished())
 
 
 class TestSpreadsAreAlike(unittest.TestCase):

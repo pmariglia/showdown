@@ -122,15 +122,6 @@ natures = {
 }
 
 
-def battle_is_over(state):
-    if state.self.active.hp <= 0 and not any(pkmn.hp for pkmn in state.self.reserve.values()):
-        return -1
-    elif state.opponent.active.hp <= 0 and not any(pkmn.hp for pkmn in state.opponent.reserve.values()) and len(state.opponent.reserve) == 5:
-        return 1
-
-    return False
-
-
 def get_pokemon_info_from_condition(condition_string: str):
     if constants.FNT in condition_string:
         return 0, 0, None
