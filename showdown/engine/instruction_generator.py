@@ -324,13 +324,6 @@ def get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defe
 
 
 def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, instruction):
-    """Given state, generate multiple states based on all of the possible damage combinations
-       This versions assumes that all damage deals a constant amount
-       The different states are based on whether or not the attack misses
-
-       To make this deal with multiple potential damage rolls, change `damage` to a list and iterate over it
-       """
-
     attacker = opposite_side[defender]
     attacker_side = get_side_from_state(mutator.state, attacker)
     damage_side = get_side_from_state(mutator.state, defender)
