@@ -1,5 +1,4 @@
 import constants
-from showdown.helpers import normalize_name
 from showdown.damage_calculator import is_super_effective
 
 
@@ -98,7 +97,7 @@ def evaluate_pokemon(pkmn):
 
     for vol_stat in pkmn.volatile_status:
         try:
-            score += Scoring.POKEMON_VOLATILE_STATUSES[normalize_name(vol_stat)]
+            score += Scoring.POKEMON_VOLATILE_STATUSES[vol_stat]
         except KeyError:
             pass
 
