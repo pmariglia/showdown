@@ -1,5 +1,6 @@
-import constants
 from copy import copy
+
+import constants
 from config import logger
 
 from .damage_calculator import type_effectiveness_modifier

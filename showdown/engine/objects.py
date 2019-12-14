@@ -1,8 +1,8 @@
 from collections import defaultdict
 from copy import copy
 
-from data import all_move_json
 import constants
+from data import all_move_json
 
 
 boost_multiplier_lookup = {

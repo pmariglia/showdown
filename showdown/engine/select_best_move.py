@@ -2,8 +2,8 @@ import math
 from collections import defaultdict
 
 import constants
-from showdown.engine.evaluate import evaluate
 
+from .evaluate import evaluate
 from .find_state_instructions import get_all_state_instructions
 
 
