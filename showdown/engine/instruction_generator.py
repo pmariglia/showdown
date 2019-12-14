@@ -2,8 +2,7 @@ import constants
 from copy import copy
 from config import logger
 
-from showdown.engine.damage_calculator import damage_multipication_array
-from showdown.engine.damage_calculator import pokemon_type_indicies
+from showdown.engine.damage_calculator import type_effectiveness_modifier
 from showdown.helpers import accuracy_multiplier_lookup
 
 from .special_effects.abilities.on_switch_in import ability_on_switch_in
@@ -163,10 +162,7 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
 
         # account for stealth rock damage
         if attacking_side.side_conditions[constants.STEALTH_ROCK] == 1:
-            multiplier = 1
-            rock_type_index = pokemon_type_indicies['rock']
-            for pkmn_type in switch_pkmn.types:
-                multiplier *= damage_multipication_array[rock_type_index][pokemon_type_indicies[pkmn_type]]
+            multiplier = type_effectiveness_modifier('rock', switch_pkmn.types)
 
             instruction_additions.append(
                 (
