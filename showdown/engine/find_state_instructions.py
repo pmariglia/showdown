@@ -3,7 +3,6 @@ from copy import copy
 import config
 import constants
 from data import all_move_json
-from showdown.helpers import boost_multiplier_lookup
 
 from . import instruction_generator
 from .damage_calculator import calculate_damage
@@ -29,7 +28,7 @@ def lookup_move(move_name):
 
 
 def get_effective_speed(state, side):
-    boosted_speed = side.active.speed * boost_multiplier_lookup[side.active.speed_boost]
+    boosted_speed = side.active.calculate_boosted_stats()[constants.SPEED]
 
     if state.weather == constants.SUN and side.active.ability == 'chlorophyll':
         boosted_speed *= 2

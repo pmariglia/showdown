@@ -3,7 +3,23 @@ from copy import copy
 
 from data import all_move_json
 import constants
-from showdown.helpers import boost_multiplier_lookup
+
+
+boost_multiplier_lookup = {
+    -6: 2/8,
+    -5: 2/7,
+    -4: 2/6,
+    -3: 2/5,
+    -2: 2/4,
+    -1: 2/3,
+    0: 2/2,
+    1: 3/2,
+    2: 4/2,
+    3: 5/2,
+    4: 6/2,
+    5: 7/2,
+    6: 8/2
+}
 
 
 class State(object):
