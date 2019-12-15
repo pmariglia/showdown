@@ -972,6 +972,16 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
             mutator.apply_one(remove_roost_instruction)
             instruction.add_instruction(remove_roost_instruction)
 
+        if constants.PARTIALLY_TRAPPED in pkmn.volatile_status:
+            damage_taken = max(0, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
+            partially_trapped_damage_instruction = (
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                damage_taken
+            )
+            mutator.apply_one(partially_trapped_damage_instruction)
+            instruction.add_instruction(partially_trapped_damage_instruction)
+
     # disable not used moves if choice-item is held
     for attacker in sides:
         side = get_side_from_state(mutator.state, attacker)
