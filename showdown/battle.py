@@ -173,10 +173,10 @@ class Battle(ABC):
         for mon in self.opponent.reserve:
             opponent_reserve[mon.name] = TransposePokemon.from_state_pokemon_dict(mon.to_dict())
 
-        user = Side(user_active, user_reserve, copy(self.user.side_conditions), self.user.trapped)
-        opponent = Side(opponent_active, opponent_reserve, copy(self.opponent.side_conditions), self.opponent.trapped)
+        user = Side(user_active, user_reserve, copy(self.user.side_conditions))
+        opponent = Side(opponent_active, opponent_reserve, copy(self.opponent.side_conditions))
 
-        state = State(user, opponent, self.weather, self.field, self.trick_room, self.force_switch, self.wait)
+        state = State(user, opponent, self.weather, self.field, self.trick_room)
         return state
 
     def get_all_options(self):

@@ -382,8 +382,7 @@ class TestPokemonInit(unittest.TestCase):
               'reflect': 0,
               'lightscreen': 0,
               'auroraveil': 0
-            },
-            'trapped': False
+            }
           },
           'opponent': {
             'active': {
@@ -763,14 +762,11 @@ class TestPokemonInit(unittest.TestCase):
               'spikes': 0,
               'stickyweb': 0,
               'toxicspikes': 0
-            },
-            'trapped': False
+            }
           },
           'weather': 1,
           'field': 2,
-          'trickroom': 3,
-          'forceSwitch': 4,
-          'wait': 5
+          'trickroom': 3
         }
 
         state = State.from_dict(state_json)

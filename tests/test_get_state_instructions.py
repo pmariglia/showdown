@@ -28,8 +28,7 @@ class TestGetStateInstructions(unittest.TestCase):
                                 "dragonite": Pokemon.from_state_pokemon_dict(StatePokemon("dragonite", 81).to_dict()),
                                 "hitmonlee": Pokemon.from_state_pokemon_dict(StatePokemon("hitmonlee", 81).to_dict()),
                             },
-                            defaultdict(lambda: 0),
-                            False
+                            defaultdict(lambda: 0)
                         ),
                         Side(
                             Pokemon.from_state_pokemon_dict(StatePokemon("aromatisse", 81).to_dict()),
@@ -40,14 +39,11 @@ class TestGetStateInstructions(unittest.TestCase):
                                 "toxapex": Pokemon.from_state_pokemon_dict(StatePokemon("toxapex", 73).to_dict()),
                                 "bronzong": Pokemon.from_state_pokemon_dict(StatePokemon("bronzong", 73).to_dict()),
                             },
-                            defaultdict(lambda: 0),
-                            False
+                            defaultdict(lambda: 0)
                         ),
                         None,
-                        None,
-                        False,
-                        False,
-                        False
+            None,
+            False
                     )
 
         self.mutator = StateMutator(self.state)
@@ -10525,8 +10521,7 @@ class TestUserMovesFirst(unittest.TestCase):
                                 "dragonite": Pokemon.from_state_pokemon_dict(StatePokemon("dragonite", 81).to_dict()),
                                 "hitmonlee": Pokemon.from_state_pokemon_dict(StatePokemon("hitmonlee", 81).to_dict()),
                             },
-                            defaultdict(lambda: 0),
-                            False
+                            defaultdict(lambda: 0)
                         ),
                         Side(
                             Pokemon.from_state_pokemon_dict(StatePokemon("aromatisse", 81).to_dict()),
@@ -10537,13 +10532,10 @@ class TestUserMovesFirst(unittest.TestCase):
                                 "toxapex": Pokemon.from_state_pokemon_dict(StatePokemon("toxapex", 73).to_dict()),
                                 "bronzong": Pokemon.from_state_pokemon_dict(StatePokemon("bronzong", 73).to_dict()),
                             },
-                            defaultdict(lambda: 0),
-                            False
+                            defaultdict(lambda: 0)
                         ),
                         None,
                         None,
-                        False,
-                        False,
                         False
                     )
 

@@ -23,16 +23,14 @@ boost_multiplier_lookup = {
 
 
 class State(object):
-    __slots__ = ('self', 'opponent', 'weather', 'force_switch', 'field', 'trick_room', 'wait')
+    __slots__ = ('self', 'opponent', 'weather', 'field', 'trick_room')
 
-    def __init__(self, user, opponent, weather, field, trick_room, force_switch, wait):
+    def __init__(self, user, opponent, weather, field, trick_room):
         self.self = user
         self.opponent = opponent
         self.weather = weather
         self.field = field
         self.trick_room = trick_room
-        self.force_switch = force_switch
-        self.wait = wait
 
     def get_self_options(self, force_switch):
         if force_switch:
@@ -40,7 +38,7 @@ class State(object):
         else:
             possible_moves = [m[constants.ID] for m in self.self.active.moves if not m[constants.DISABLED]]
 
-        if self.self.trapped:
+        if self.self.trapped(self.opponent.active):
             possible_switches = []
         else:
             possible_switches = self.self.get_switches()
@@ -100,9 +98,7 @@ class State(object):
             Side.from_dict(state_dict[constants.OPPONENT]),
             state_dict[constants.WEATHER],
             state_dict[constants.FIELD],
-            state_dict[constants.TRICK_ROOM],
-            state_dict[constants.FORCE_SWITCH],
-            state_dict[constants.WAIT],
+            state_dict[constants.TRICK_ROOM]
         )
 
     def __repr__(self):
@@ -112,9 +108,7 @@ class State(object):
                 constants.OPPONENT: self.opponent,
                 constants.WEATHER: self.weather,
                 constants.FIELD: self.field,
-                constants.TRICK_ROOM: self.trick_room,
-                constants.FORCE_SWITCH: self.force_switch,
-                constants.WAIT: self.wait
+                constants.TRICK_ROOM: self.trick_room
             }
         )
 
@@ -124,9 +118,7 @@ class State(object):
             hash(self.opponent),
             self.weather,
             self.field,
-            self.trick_room,
-            self.force_switch,
-            self.wait
+            self.trick_room
         )
 
     def __hash__(self):
@@ -137,13 +129,12 @@ class State(object):
 
 
 class Side(object):
-    __slots__ = ('active', 'reserve', 'side_conditions', 'trapped')
+    __slots__ = ('active', 'reserve', 'side_conditions')
 
-    def __init__(self, active, reserve, side_conditions, trapped):
+    def __init__(self, active, reserve, side_conditions):
         self.active = active
         self.reserve = reserve
         self.side_conditions = side_conditions
-        self.trapped = trapped
 
     def get_switches(self):
         switches = []
@@ -152,29 +143,29 @@ class Side(object):
                 switches.append("{} {}".format(constants.SWITCH_STRING, pkmn_name))
         return switches
 
+    def trapped(self, opponent_active):
+        return False
+
     @classmethod
     def from_dict(cls, side_dict):
         return Side(
             Pokemon.from_dict(side_dict[constants.ACTIVE]),
             {p[constants.ID]: Pokemon.from_dict(p) for p in side_dict[constants.RESERVE].values()},
-            defaultdict(int, side_dict[constants.SIDE_CONDITIONS]),
-            side_dict[constants.TRAPPED]
+            defaultdict(int, side_dict[constants.SIDE_CONDITIONS])
         )
 
     def __repr__(self):
         return str({
                 constants.ACTIVE: self.active,
                 constants.RESERVE: self.reserve,
-                constants.SIDE_CONDITIONS: dict(self.side_conditions),
-                constants.TRAPPED: self.trapped
+                constants.SIDE_CONDITIONS: dict(self.side_conditions)
             })
 
     def __key(self):
         return (
             hash(self.active),
             sum(hash(p.reserve_hash()) for p in self.reserve.values()),
-            hash(frozenset(self.side_conditions.items())),
-            self.trapped
+            hash(frozenset(self.side_conditions.items()))
         )
 
     def __eq__(self, other):

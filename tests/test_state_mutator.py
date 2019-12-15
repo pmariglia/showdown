@@ -22,8 +22,7 @@ class TestStatemutator(unittest.TestCase):
                     "bulbasaur": Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     "pidgey": Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -34,13 +33,10 @@ class TestStatemutator(unittest.TestCase):
                     "bulbasaur": Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     "pidgey": Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.mutator = StateMutator(self.state)

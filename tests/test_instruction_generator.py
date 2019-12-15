@@ -22,8 +22,7 @@ class TestGetInstructionsFromFlinched(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -34,13 +33,10 @@ class TestGetInstructionsFromFlinched(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.previous_instructions = TransposeInstruction(1, [], False)
@@ -90,8 +86,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -102,13 +97,10 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.move = {constants.FLAGS: dict(), constants.ID: constants.DO_NOTHING_MOVE, constants.TYPE: 'normal'}
@@ -237,8 +229,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -249,13 +240,10 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
@@ -546,8 +534,7 @@ class TestGetInstructionsFromSideConditions(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -558,13 +545,10 @@ class TestGetInstructionsFromSideConditions(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
@@ -674,8 +658,7 @@ class TestGetInstructionsFromHazardClearingMoves(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -686,13 +669,10 @@ class TestGetInstructionsFromHazardClearingMoves(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
@@ -843,8 +823,7 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
                     "bulbasaur": Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     "pidgey": Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -855,13 +834,10 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
@@ -1048,8 +1024,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -1060,13 +1035,10 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
@@ -1361,8 +1333,7 @@ class TestGetInstructionsFromSpecialLogicMoves(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -1373,13 +1344,10 @@ class TestGetInstructionsFromSpecialLogicMoves(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
@@ -1424,8 +1392,7 @@ class TestGetInstructionsFromFlinchingMoves(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -1436,13 +1403,10 @@ class TestGetInstructionsFromFlinchingMoves(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
@@ -1530,8 +1494,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
                     "bulbasaur": Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     "pidgey": Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -1542,13 +1505,10 @@ class TestGetStateFromSwitch(unittest.TestCase):
                     "bulbasaur": Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     "pidgey": Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
@@ -2305,8 +2265,7 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
                     'bulbasaur': Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     'pidgey': Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -2317,13 +2276,10 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
                     'bulbasaur': Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     'pidgey': Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
@@ -2484,8 +2440,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -2496,13 +2451,10 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
@@ -2605,8 +2557,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -2617,13 +2568,10 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
-                defaultdict(lambda: 0),
-                False
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
