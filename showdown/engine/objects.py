@@ -51,7 +51,10 @@ class State(object):
         else:
             possible_moves = [m[constants.ID] for m in self.opponent.active.moves if not m[constants.DISABLED]]
 
-        possible_switches = self.opponent.get_switches()
+        if self.opponent.trapped(self.self.active):
+            possible_switches = []
+        else:
+            possible_switches = self.opponent.get_switches()
 
         return possible_moves + possible_switches
 
@@ -144,7 +147,18 @@ class Side(object):
         return switches
 
     def trapped(self, opponent_active):
-        return False
+        if self.active.item == 'shedshell' or 'ghost' in self.active.types:
+            return False
+        elif constants.PARTIALLY_TRAPPED in self.active.volatile_status:
+            return True
+        elif opponent_active.ability == 'shadowtag':
+            return True
+        elif opponent_active.ability == 'magnetpull' and 'steel' in self.active.types:
+            return True
+        elif opponent_active.ability == 'arenatrap' and self.active.is_grounded():
+            return True
+        else:
+            return False
 
     @classmethod
     def from_dict(cls, side_dict):
