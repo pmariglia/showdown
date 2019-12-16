@@ -55,6 +55,7 @@ MUTATOR_WEATHER_END = "weather_end"
 MUTATOR_FIELD_START = "field_start"
 MUTATOR_FIELD_END = "field_end"
 MUTATOR_TOGGLE_TRICKROOM = "toggle_trickroom"
+MUTATOR_CHANGE_TYPE = "change_type"
 
 
 DAMAGE = 'damage'
@@ -223,6 +224,11 @@ STEALTH_ROCK = 'stealthrock'
 SPIKES = 'spikes'
 TOXIC_SPIKES = 'toxicspikes'
 COURT_CHANGE = 'courtchange'
+
+TYPE_CHANGE_ABILITIES = {
+    'protean',
+    'libero'
+}
 
 COURT_CHANGE_SWAPS = {
     'spikes',

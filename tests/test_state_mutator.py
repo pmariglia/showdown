@@ -639,3 +639,45 @@ class TestStatemutator(unittest.TestCase):
         self.mutator.reverse(list_of_instructions)
 
         self.assertFalse(self.state.trick_room)
+
+    def test_change_types_properly_changes_types(self):
+        self.state.self.active.types = ['normal']
+        instruction = (
+            constants.MUTATOR_CHANGE_TYPE,
+            constants.SELF,
+            ['water'],
+            self.state.self.active.types
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        self.assertEqual(['water'], self.state.self.active.types)
+
+    def test_reverse_change_types(self):
+        self.state.self.active.types = ['water']
+        instruction = (
+            constants.MUTATOR_CHANGE_TYPE,
+            constants.SELF,
+            ['water'],
+            ['normal']
+        )
+        list_of_instructions = [instruction]
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(['normal'], self.state.self.active.types)
+
+    def test_apply_and_reverse_change_types(self):
+        self.state.self.active.types = ['normal']
+        instruction = (
+            constants.MUTATOR_CHANGE_TYPE,
+            constants.SELF,
+            ['water', 'grass'],
+            self.state.self.active.types
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+        if self.state.self.active.types != ['water', 'grass']:
+            self.fail('types were not changed')
+
+        self.mutator.reverse(list_of_instructions)
+        self.assertEqual(['normal'], self.state.self.active.types)

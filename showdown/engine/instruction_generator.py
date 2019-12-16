@@ -355,6 +355,16 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
 
     mutator.apply(instruction.instructions)
 
+    if attacker_side.active.ability in constants.TYPE_CHANGE_ABILITIES and [attacking_move[constants.TYPE]] != attacker_side.active.types:
+        type_change_instruction = (
+            constants.MUTATOR_CHANGE_TYPE,
+            attacker,
+            [attacking_move[constants.TYPE]],
+            attacker_side.active.types
+        )
+        mutator.apply_one(type_change_instruction)
+        instruction.add_instruction(type_change_instruction)
+
     if accuracy is True:
         accuracy = 100
     else:

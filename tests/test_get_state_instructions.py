@@ -4759,6 +4759,62 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_protean_changes_types_before_doing_damage(self):
+        bot_move = "surf"
+        opponent_move = "splash"
+        self.state.self.active.types = ['water', 'grass']
+        self.state.self.active.ability = 'protean'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_CHANGE_TYPE, constants.SELF, ['water'], ['water', 'grass']),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 72),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_no_type_change_instruction_if_there_are_no_types_to_change(self):
+        bot_move = "surf"
+        opponent_move = "splash"
+        self.state.self.active.types = ['water']
+        self.state.self.active.ability = 'protean'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 72),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_ground_move_with_libero_makes_pokemon_immune_to_electric_move(self):
+        bot_move = "earthquake"
+        opponent_move = "thunderwave"
+        self.state.self.active.types = ['water', 'grass']
+        self.state.self.active.ability = 'protean'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_CHANGE_TYPE, constants.SELF, ['ground'], ['water', 'grass']),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62),
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_infestation_starts_volatile_status(self):
         bot_move = "infestation"
         opponent_move = "splash"

@@ -486,7 +486,8 @@ class StateMutator:
             constants.MUTATOR_WEATHER_START: self.start_weather,
             constants.MUTATOR_FIELD_START: self.start_field,
             constants.MUTATOR_FIELD_END: self.end_field,
-            constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom
+            constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom,
+            constants.MUTATOR_CHANGE_TYPE: self.change_types
         }
         self.reverse_instructions = {
             constants.MUTATOR_SWITCH: self.reverse_switch,
@@ -505,7 +506,8 @@ class StateMutator:
             constants.MUTATOR_WEATHER_START: self.reverse_start_weather,
             constants.MUTATOR_FIELD_START: self.reverse_start_field,
             constants.MUTATOR_FIELD_END: self.reverse_end_field,
-            constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom
+            constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom,
+            constants.MUTATOR_CHANGE_TYPE: self.reverse_change_types
         }
 
     def apply_one(self, instruction):
@@ -644,6 +646,18 @@ class StateMutator:
 
     def toggle_trickroom(self):
         self.state.trick_room ^= True
+
+    def change_types(self, side, new_types, _):
+        # the third parameter are the current types of the active pokemon
+        # they must be here for reversing purposes
+        side = self.get_side(side)
+        side.active.types = new_types
+
+    def reverse_change_types(self, side, _, old_types):
+        # the third parameter are the current types of the active pokemon
+        # they must be here for reversing purposes
+        side = self.get_side(side)
+        side.active.types = old_types
 
     def __key(self):
         return self.state
