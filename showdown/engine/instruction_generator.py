@@ -396,7 +396,7 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
     instruction_additions = []
     move_missed_instruction = copy(instruction)
     if percent_hit > 0:
-        if constants.SUBSTITUTE in damage_side.active.volatile_status and constants.SOUND not in move_flags:
+        if constants.SUBSTITUTE in damage_side.active.volatile_status and constants.SOUND not in move_flags and attacker_side.active.ability != 'infiltrator':
             if damage >= damage_side.active.maxhp * 0.25:
                 actual_damage = damage_side.active.maxhp * 0.25
                 instruction_additions.append(

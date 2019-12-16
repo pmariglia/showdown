@@ -559,6 +559,44 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_infiltrator_move_goes_through_sub(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'infiltrator'
+        self.state.opponent.active.hp = 1
+        self.state.opponent.active.volatile_status.add(constants.SUBSTITUTE)
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_substitute_breaks_when_pkmn_behind_it_has_1_health(self):
+        bot_move = "surf"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['ground', 'rock']
+        self.state.opponent.active.hp = 1
+        self.state.opponent.active.volatile_status.add(constants.SUBSTITUTE)
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.SUBSTITUTE)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_revelationdance_changes_type(self):
         bot_move = "revelationdance"
         opponent_move = "splash"
