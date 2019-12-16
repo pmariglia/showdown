@@ -161,7 +161,8 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         move = {
             constants.FLAGS: {
                 constants.POWDER: 1
-            }
+            },
+            constants.TYPE: ''
         }
 
         mutator = StateMutator(self.state)
@@ -182,7 +183,8 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         move = {
             constants.FLAGS: {
                 constants.POWDER: 1
-            }
+            },
+            constants.TYPE: ''
         }
 
         mutator = StateMutator(self.state)
@@ -203,7 +205,8 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
         move = {
             constants.FLAGS: {
                 constants.POWDER: 1
-            }
+            },
+            constants.TYPE: ''
         }
 
         mutator = StateMutator(self.state)

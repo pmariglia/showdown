@@ -4718,6 +4718,47 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_thunderwave_into_ground_type(self):
+        bot_move = "thunderwave"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['ground']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_bodyslam_into_ground_type(self):
+        bot_move = "bodyslam"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['ground']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 53),
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.PARALYZED)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.7,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 53),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_infestation_starts_volatile_status(self):
         bot_move = "infestation"
         opponent_move = "splash"

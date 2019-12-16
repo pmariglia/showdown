@@ -330,6 +330,9 @@ def get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defe
     if constants.POWDER in move[constants.FLAGS] and ('grass' in defender_side.active.types or defender_side.active.ability == 'overcoat'):
         instruction.frozen = True
 
+    if move[constants.TYPE] == 'electric' and 'ground' in defender_side.active.types:
+        instruction.frozen = True
+
     mutator.reverse(instruction.instructions)
 
     return instructions
@@ -1177,9 +1180,7 @@ def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
 
 
 def is_immune_to_paralysis(defending_pkmn):
-    # not entirely correct as ground pokemon can be paralyzed by non-electric attacks
     return (
-            'ground' in defending_pkmn.types
-            or 'electric' in defending_pkmn.types
-            or defending_pkmn.ability in constants.IMMUNE_TO_PARALYSIS_ABILITIES
+        'electric' in defending_pkmn.types
+        or defending_pkmn.ability in constants.IMMUNE_TO_PARALYSIS_ABILITIES
     )
