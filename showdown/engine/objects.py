@@ -87,6 +87,11 @@ class State(object):
         return user_options, opponent_options
 
     def battle_is_finished(self):
+        # Returns:
+        #    1 if the bot (self) has won
+        #   -1 if the opponent has won
+        #    False if the battle is not over
+
         if self.self.active.hp <= 0 and not any(pkmn.hp for pkmn in self.self.reserve.values()):
             return -1
         elif self.opponent.active.hp <= 0 and not any(pkmn.hp for pkmn in self.opponent.reserve.values()) and len(self.opponent.reserve) == 5:
@@ -648,14 +653,12 @@ class StateMutator:
         self.state.trick_room ^= True
 
     def change_types(self, side, new_types, _):
-        # the third parameter are the current types of the active pokemon
+        # the third parameter is the current types of the active pokemon
         # they must be here for reversing purposes
         side = self.get_side(side)
         side.active.types = new_types
 
     def reverse_change_types(self, side, _, old_types):
-        # the third parameter are the current types of the active pokemon
-        # they must be here for reversing purposes
         side = self.get_side(side)
         side.active.types = old_types
 
