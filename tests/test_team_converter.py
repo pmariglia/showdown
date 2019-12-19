@@ -8,6 +8,7 @@ class TestSinglePokemonExportToDict(unittest.TestCase):
         self.expected_pkmn_dict = {
             "name": "",
             "species": "",
+            "level": "",
             "gender": "",
             "item": "",
             "ability": "",
@@ -31,6 +32,18 @@ class TestSinglePokemonExportToDict(unittest.TestCase):
         pkmn_dict = single_pokemon_export_to_dict(export_string)
         self.expected_pkmn_dict['name'] = 'tyranitar'
         self.expected_pkmn_dict['item'] = 'leftovers'
+
+        self.assertEqual(self.expected_pkmn_dict, pkmn_dict)
+
+    def test_pokemon_with_level(self):
+        export_string = (
+            "Tyranitar\n"
+            "Level: 5  "
+        )
+
+        pkmn_dict = single_pokemon_export_to_dict(export_string)
+        self.expected_pkmn_dict['name'] = 'tyranitar'
+        self.expected_pkmn_dict['level'] = '5'
 
         self.assertEqual(self.expected_pkmn_dict, pkmn_dict)
 
