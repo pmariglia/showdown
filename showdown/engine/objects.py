@@ -120,21 +120,6 @@ class State(object):
             }
         )
 
-    def __key(self):
-        return (
-            hash(self.self),
-            hash(self.opponent),
-            self.weather,
-            self.field,
-            self.trick_room
-        )
-
-    def __hash__(self):
-        return hash(self.__key())
-
-    def __eq__(self, other):
-        return self.__key() == other.__key()
-
 
 class Side(object):
     __slots__ = ('active', 'reserve', 'side_conditions')
@@ -175,23 +160,10 @@ class Side(object):
 
     def __repr__(self):
         return str({
-                constants.ACTIVE: self.active,
-                constants.RESERVE: self.reserve,
-                constants.SIDE_CONDITIONS: dict(self.side_conditions)
-            })
-
-    def __key(self):
-        return (
-            hash(self.active),
-            sum(hash(p.reserve_hash()) for p in self.reserve.values()),
-            hash(frozenset(self.side_conditions.items()))
-        )
-
-    def __eq__(self, other):
-        return self.__key() == other.__key()
-
-    def __hash__(self):
-        return hash(self.__key())
+            constants.ACTIVE: self.active,
+            constants.RESERVE: self.reserve,
+            constants.SIDE_CONDITIONS: dict(self.side_conditions)
+        })
 
 
 class Pokemon(object):
@@ -220,8 +192,7 @@ class Pokemon(object):
         'moves',
         'types',
         'can_mega_evo',
-        'burn_multiplier',
-        'scoring_multiplier'
+        'burn_multiplier'
     )
 
     def __init__(self,
@@ -248,8 +219,7 @@ class Pokemon(object):
                  volatile_status,
                  moves,
                  types,
-                 can_mega_evo,
-                 scoring_multiplier=1):
+                 can_mega_evo):
         self.id = identifier
         self.level = level
         self.hp = hp
@@ -274,7 +244,6 @@ class Pokemon(object):
         self.moves = moves
         self.types = types
         self.can_mega_evo = can_mega_evo
-        self.scoring_multiplier = scoring_multiplier
 
         # evaluation relies on a multiplier for the burn status
         # it is calculated here to save time during evaluation
@@ -319,8 +288,7 @@ class Pokemon(object):
             d[constants.VOLATILE_STATUS],
             d[constants.MOVES],
             d[constants.TYPES],
-            d[constants.CAN_MEGA_EVO],
-            d.get(constants.SCORING_MULTIPLIER, 1)
+            d[constants.CAN_MEGA_EVO]
         )
 
     @classmethod
@@ -349,8 +317,7 @@ class Pokemon(object):
             set(d[constants.VOLATILE_STATUS]),
             d[constants.MOVES],
             d[constants.TYPES],
-            d[constants.CAN_MEGA_EVO],
-            d.get(constants.SCORING_MULTIPLIER, 1)
+            d[constants.CAN_MEGA_EVO]
         )
 
     def calculate_boosted_stats(self):
@@ -392,53 +359,8 @@ class Pokemon(object):
                 constants.VOLATILE_STATUS: list(self.volatile_status),
                 constants.MOVES: self.moves,
                 constants.TYPES: self.types,
-                constants.CAN_MEGA_EVO: self.can_mega_evo,
-                constants.SCORING_MULTIPLIER: self.scoring_multiplier
+                constants.CAN_MEGA_EVO: self.can_mega_evo
             })
-
-    def active_hash(self):
-        """Unique identifier for a pokemon"""
-        return (
-            self.id,  # id is used instead of types
-            self.hp,
-            self.maxhp,
-            self.ability,
-            self.item,
-            self.status,
-            frozenset(self.volatile_status),
-            self.attack,
-            self.defense,
-            self.special_attack,
-            self.special_defense,
-            self.speed,
-            self.attack_boost,
-            self.defense_boost,
-            self.special_attack_boost,
-            self.special_defense_boost,
-            self.speed_boost,
-        )
-
-    def reserve_hash(self):
-        """Unique identifier for a pokemon in the reserves
-           This exists because it is a lighter calculation than active_hash"""
-        return (
-            self.hp,
-            self.maxhp,
-            self.ability,
-            self.item,
-            self.status,
-            self.attack,
-            self.defense,
-            self.special_attack,
-            self.special_defense,
-            self.speed,
-        )
-
-    def __eq__(self, other):
-        return self.active_hash() == other.active_hash()
-
-    def __hash__(self):
-        return hash(self.active_hash())
 
 
 class TransposeInstruction:

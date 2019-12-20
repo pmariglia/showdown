@@ -10,8 +10,6 @@ RANDOM_BATTLE = "random_battle"
 PICK_SAFEST = "safest"
 PICK_NASH_EQUILIBRIUM = "nash"
 
-SCORING_MULTIPLIER = "scoring_multiplier"
-
 START_STRING = "|start"
 RQID = 'rqid'
 TEAM_PREVIEW_POKE = "poke"
