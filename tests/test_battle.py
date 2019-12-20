@@ -445,6 +445,43 @@ class TestGetPossibleItems(unittest.TestCase):
 
         self.assertEqual(expected_items, possible_items)
 
+    def test_guesses_life_orb(self):
+        p = Pokemon('pikachu', 100)
+        p.item = constants.UNKNOWN_ITEM
+        p.can_have_life_orb = True
+
+        items = [
+            ('lifeorb', 50),
+            ('lightball', 50),  # should be guessed because flag is set to True
+        ]
+
+        possible_items = p.get_possible_items(items)
+
+        expected_items = [
+            'lifeorb',
+            'lightball'
+        ]
+
+        self.assertEqual(expected_items, possible_items)
+
+    def test_does_not_guess_lifeorb_when_can_have_lifeorb_is_false(self):
+        p = Pokemon('pikachu', 100)
+        p.item = constants.UNKNOWN_ITEM
+        p.can_have_life_orb = False
+
+        items = [
+            ('lifeorb', 50),
+            ('lightball', 50),  # should be guessed because flag is set to True
+        ]
+
+        possible_items = p.get_possible_items(items)
+
+        expected_items = [
+            'lightball'
+        ]
+
+        self.assertEqual(expected_items, possible_items)
+
 
 class TestConvertToMega(unittest.TestCase):
     def setUp(self):

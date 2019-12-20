@@ -5,6 +5,7 @@ from copy import deepcopy
 import constants
 from config import logger
 from data import all_move_json
+from data import pokedex
 from showdown.battle import Pokemon
 from showdown.battle import LastUsedMove
 from showdown.helpers import normalize_name
@@ -170,6 +171,17 @@ def move(battle, split_msg):
         ):
             logger.debug("Opponent's {} used two different moves - it cannot have a choice item".format(battle.opponent.active.name))
             battle.opponent.active.can_have_choice_item = False
+
+        try:
+            category = all_move_json[move_name][constants.CATEGORY]
+        except KeyError:
+            category = None
+
+        # if this pokemon used a damaging move, eliminate the possibility of it having a lifeorb
+        # the lifeorb will reveal itself if they have it
+        if category in constants.DAMAGING_CATEGORIES and not any([normalize_name(a) in ['sheerforce', 'magicguard'] for a in pokedex[pkmn.name][constants.ABILITIES].values()]):
+            logger.debug("Opponent's {} used a damaging move - not guessing lifeorb anymore".format(battle.opponent.active.name))
+            pkmn.can_have_life_orb = False
 
         battle.opponent.last_used_move = LastUsedMove(
             pokemon_name=battle.opponent.active.name,

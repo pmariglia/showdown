@@ -366,6 +366,7 @@ class Pokemon:
         self.can_ultra_burst = False
         self.is_mega = False
         self.can_have_choice_item = True
+        self.can_have_life_orb = True
 
     def forme_change(self, new_pkmn_name):
         hp_percent = float(self.hp) / self.max_hp
@@ -480,6 +481,8 @@ class Pokemon:
                 if i[1] < 10 or cumulative_percentage >= 80:
                     return possible_items if possible_items else [constants.UNKNOWN_ITEM]
                 elif i[0] in constants.CHOICE_ITEMS and not self.can_have_choice_item:
+                    pass
+                elif i[0] == 'lifeorb' and not self.can_have_life_orb:
                     pass
                 elif i[0] not in PASS_ITEMS:
                     possible_items.append(i[0])
