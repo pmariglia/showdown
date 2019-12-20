@@ -305,7 +305,32 @@ def doubleironbash(attacking_move, defending_move, attacking_pokemon, defending_
     return attacking_move
 
 
+def morningsun(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if weather in [constants.SAND, constants.RAIN, constants.HAIL]:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.HEAL] = [1, 4]
+    elif weather == constants.SUN:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.HEAL] = [2, 3]
+    return attacking_move
+
+
+def shoreup(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.HEAL_TARGET] = constants.SELF
+    if weather in [constants.SAND, constants.RAIN, constants.HAIL]:
+        attacking_move[constants.HEAL] = [2, 3]
+    else:
+        attacking_move[constants.HEAL] = [1, 2]
+
+    return attacking_move
+
+
 move_lookup = {
+    'shoreup': shoreup,
+    'synthesis': morningsun,
+    'moonlight': morningsun,
+    'morningsun': morningsun,
     'doubleironbash': doubleironbash,
     'steelbeam': steelbeam,
     'lifedew': lifedew,

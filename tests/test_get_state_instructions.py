@@ -7781,7 +7781,7 @@ class TestGetStateInstructions(unittest.TestCase):
         self.assertEqual(expected_instructions, instructions)
 
     def test_lifedew_healing(self):
-        bot_move = "recover"
+        bot_move = "lifedew"
         opponent_move = "splash"
         self.state.self.active.hp -= 25
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
@@ -7790,6 +7790,67 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_HEAL, constants.SELF, 25),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_morningsun_in_sunlight(self):
+        bot_move = "morningsun"
+        opponent_move = "splash"
+        self.state.self.active.hp = 1
+        self.state.self.active.maxhp = 100
+        self.state.weather = constants.SUN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_HEAL, constants.SELF, (2/3) * 100),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_morningsun_in_sand(self):
+        bot_move = "morningsun"
+        opponent_move = "splash"
+        self.state.self.active.hp = 1
+        self.state.self.active.maxhp = 100
+        self.state.weather = constants.SAND
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_HEAL, constants.SELF, (1/4) * 100),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 6),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_shoreup_in_sand(self):
+        bot_move = "shoreup"
+        opponent_move = "splash"
+        self.state.self.active.hp = 1
+        self.state.self.active.maxhp = 100
+        self.state.weather = constants.SAND
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_HEAL, constants.SELF, (2/3) * 100),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 6),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18),
                 ],
                 False
             ),
