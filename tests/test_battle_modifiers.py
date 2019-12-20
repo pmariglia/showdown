@@ -1244,6 +1244,19 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
         self.assertEqual('choicescarf', self.battle.opponent.active.item)
 
+    def test_does_not_guess_choicescarf_when_opponent_could_have_prankster(self):
+        self.battle.opponent.active.name = 'grimmsnarl'  # grimmsnarl could have prankster - it's non-damaging moves get +1 priority
+        self.battle.user.active.stats[constants.SPEED] = 245  # opponent's speed should not be greater than 240 (max speed grimmsnarl)
+
+        messages = [
+            '|move|p2a: Grimmsnarl|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
     def test_does_not_guess_choicescarf_when_opponent_is_speed_boosted(self):
         self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
         self.battle.opponent.active.boosts[constants.SPEED] = 1

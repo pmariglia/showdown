@@ -462,11 +462,15 @@ def check_choicescarf(battle, msg_lines):
             logger.debug("Unknown move {} - using standard 0 priority move".format(normalize_name(m.split('|')[3])))
             return m.split('|')[2], {constants.PRIORITY: 0}
 
-    if battle.opponent.active is None or battle.opponent.active.item != constants.UNKNOWN_ITEM:
+    if (
+        battle.opponent.active is None or
+        battle.opponent.active.item != constants.UNKNOWN_ITEM or
+        'prankster' in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+    ):
         return
 
     moves = [get_move_information(m) for m in msg_lines if m.startswith('|move|')]
-    if len(moves) != 2 or moves[0][0].startswith(battle.user.name) or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:
+    if len(moves) != 2 or moves[0][0].startswith(battle.user.name)or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:
         return
 
     battle_copy = deepcopy(battle)
