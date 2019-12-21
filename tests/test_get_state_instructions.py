@@ -8018,6 +8018,82 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_earthquake_hits_into_levitate_when_user_has_moldbreaker(self):
+        self.state.self.active.ability = 'moldbreaker'
+        self.state.opponent.active.ability = 'levitate'
+
+        bot_move = "earthquake"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62)
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_earthquake_hits_into_levitate_when_user_has_turboblaze(self):
+        self.state.self.active.ability = 'turboblaze'
+        self.state.opponent.active.ability = 'levitate'
+
+        bot_move = "earthquake"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62)
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_fire_move_hits_flashfire_pokemon_when_user_has_moldbreaker(self):
+        self.state.self.active.ability = 'moldbreaker'
+        self.state.opponent.active.ability = 'flashfire'
+
+        bot_move = "eruption"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 79)
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_rocks_can_be_used_versus_magic_bounce_when_user_has_moldbreaker(self):
+        self.state.self.active.ability = 'moldbreaker'
+        self.state.opponent.active.ability = 'magicbounce'
+
+        bot_move = "stealthrock"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.STEALTH_ROCK, 1)
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_paralyzed_pokemon_produces_two_states_when_trying_to_attack(self):
         self.state.self.active.status = constants.PARALYZED
         bot_move = "tackle"

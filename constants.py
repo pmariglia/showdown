@@ -308,4 +308,84 @@ IMMUNE_TO_FROZEN_ABILITIES = {'magmaarmor'}
 IMMUNE_TO_POISON_ABILITIES = {'immunity', 'pastelveil'}
 IMMUNE_TO_PARALYSIS_ABILITIES = {'limber'}
 
+ABILITIES_THAT_IGNORE_OTHER_ABILITIES = {
+    'moldbreaker',
+    'turboblaze',
+    'teravolt'
+}
+
+BYPASSABLE_ABILITIES = {
+    # gen8 (probably)
+    'pastelveil',
+    'iceface',
+    'punkrock',
+
+    # https://pokemondb.net/ability/mold-breaker
+    # https://pokemondb.net/ability/turboblaze
+    # https://pokemondb.net/ability/teravolt/
+    'aromaveil',
+    'battlearmor',
+    'bigpecks',
+    'bulletproof',
+    'clearbody',
+    'contrary',
+    'damp',
+    'dazzling',
+    'disguise',
+    'dryskin',
+    'filter',
+    'flashfire',
+    'flowergift',
+    'flowerveil',
+    'fluffy',
+    'friendguard',
+    'furcoat',
+    'heatproof',
+    'heavymetal',
+    'hypercutter',
+    'immunity',
+    'innerfocus',
+    'insomnia',
+    'keeneye',
+    'leafguard',
+    'levitate',
+    'lightmetal',
+    'lightningrod',
+    'limber',
+    'magicbounce',
+    'magmaarmor',
+    'marvelscale',
+    'motordrive',
+    'multiscale',
+    'oblivious',
+    'overcoat',
+    'owntempo',
+    'queenlymajesty',
+    'sandveil',
+    'sapsipper',
+    'shellarmor',
+    'shielddust',
+    'simple',
+    'snowcloak',
+    'solidrock',
+    'soundproof',
+    'stickyhold',
+    'stormdrain',
+    'sturdy',
+    'suctioncups',
+    'sweetveil',
+    'tangledfeet',
+    'telepathy',
+    'thickfat',
+    'unaware',
+    'vitalspirit',
+    'voltabsorb',
+    'waterabsorb',
+    'waterbubble',
+    'waterveil',
+    'whitesmoke',
+    'wonderguard',
+    'wonderskin'
+}
+
 CHOICE_ITEMS = {'choicescarf', 'choiceband', 'choicespecs'}
