@@ -38,12 +38,19 @@ weather_instructions = {
     constants.HAIL,
 }
 
+SWITCH_ITEM_MOVES = {
+    'trick',
+    'switcheroo'
+}
+
 SPECIAL_LOGIC_MOVES = {
     constants.SUN,
     constants.RAIN,
     constants.SAND,
     constants.HAIL,
     constants.TRICK_ROOM,
+    'trick',
+    'switcheroo'
 }
 
 
@@ -77,6 +84,14 @@ def get_instructions_from_special_logic_move(mutator, move_name, instructions):
     elif move_name == constants.TRICK_ROOM:
         new_instructions.append(
             (constants.MUTATOR_TOGGLE_TRICKROOM,)
+        )
+
+    elif move_name in SWITCH_ITEM_MOVES:
+        new_instructions.append(
+            (constants.MUTATOR_CHANGE_ITEM, constants.SELF, mutator.state.opponent.active.item, mutator.state.self.active.item)
+        )
+        new_instructions.append(
+            (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, mutator.state.self.active.item, mutator.state.opponent.active.item)
         )
 
     mutator.reverse(instructions.instructions)

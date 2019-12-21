@@ -6092,6 +6092,127 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_using_trick_swaps_items_with_opponent(self):
+        self.state.self.active.item = 'leftovers'
+        self.state.opponent.active.item = 'lifeorb'
+        bot_move = "trick"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_CHANGE_ITEM, constants.SELF, 'lifeorb', 'leftovers'),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, 'leftovers', 'lifeorb'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_trick_switches_no_item(self):
+        self.state.self.active.item = None
+        self.state.opponent.active.item = 'lifeorb'
+        bot_move = "trick"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_CHANGE_ITEM, constants.SELF, 'lifeorb', None),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, None, 'lifeorb'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_opponent_move_locks_when_choicescarf_is_tricked(self):
+        self.state.self.active.item = 'choicescarf'
+        self.state.opponent.active.item = 'lifeorb'
+        bot_move = "trick"
+        opponent_move = "tackle"
+        self.state.opponent.active.moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_CHANGE_ITEM, constants.SELF, 'lifeorb', 'choicescarf'),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, 'choicescarf', 'lifeorb'),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.OPPONENT, 'thunderwave'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.OPPONENT, 'coil'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.OPPONENT, 'sandattack'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switcheroo_behaves_the_same_as_trick(self):
+        self.state.self.active.item = 'choicescarf'
+        self.state.opponent.active.item = 'lifeorb'
+        bot_move = "switcheroo"
+        opponent_move = "tackle"
+        self.state.opponent.active.moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_CHANGE_ITEM, constants.SELF, 'lifeorb', 'choicescarf'),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, 'choicescarf', 'lifeorb'),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 35),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.OPPONENT, 'thunderwave'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.OPPONENT, 'coil'),
+                    (constants.MUTATOR_DISABLE_MOVE, constants.OPPONENT, 'sandattack'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_bot_moves_are_not_locked_when_a_choice_item_is_tricked(self):
+        self.state.self.active.item = 'choicescarf'
+        self.state.opponent.active.item = 'lifeorb'
+        bot_move = "trick"
+        opponent_move = "splash"
+        self.state.self.active.moves = [
+            {constants.ID: 'trick', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_CHANGE_ITEM, constants.SELF, 'lifeorb', 'choicescarf'),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, 'choicescarf', 'lifeorb'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_using_sunnyday_changes_the_weather_from_rain(self):
         bot_move = "sunnyday"
         opponent_move = "splash"
