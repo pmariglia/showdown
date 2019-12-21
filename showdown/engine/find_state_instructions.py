@@ -132,6 +132,7 @@ def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, 
     attacking_move = ability_modify_attack_being_used(
         attacking_pokemon.ability,
         attacking_move,
+        defending_move,
         attacking_pokemon,
         defending_pokemon,
         first_move,

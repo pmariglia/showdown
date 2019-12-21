@@ -2532,6 +2532,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_stakeout_does_double_damage_versus_switch(self):
+        bot_move = "tackle"
+        opponent_move = "switch yveltal"
+        self.state.self.active.ability = 'stakeout'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 45),  # 26 damage normally
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_icescales_halves_special_damage(self):
         bot_move = "swift"
         opponent_move = "splash"
