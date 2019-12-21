@@ -414,7 +414,8 @@ class StateMutator:
             constants.MUTATOR_FIELD_START: self.start_field,
             constants.MUTATOR_FIELD_END: self.end_field,
             constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom,
-            constants.MUTATOR_CHANGE_TYPE: self.change_types
+            constants.MUTATOR_CHANGE_TYPE: self.change_types,
+            constants.MUTATOR_CHANGE_ITEM: self.change_item
         }
         self.reverse_instructions = {
             constants.MUTATOR_SWITCH: self.reverse_switch,
@@ -434,7 +435,8 @@ class StateMutator:
             constants.MUTATOR_FIELD_START: self.reverse_start_field,
             constants.MUTATOR_FIELD_END: self.reverse_end_field,
             constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom,
-            constants.MUTATOR_CHANGE_TYPE: self.reverse_change_types
+            constants.MUTATOR_CHANGE_TYPE: self.reverse_change_types,
+            constants.MUTATOR_CHANGE_ITEM: self.reverse_change_item
         }
 
     def apply_one(self, instruction):
@@ -584,11 +586,12 @@ class StateMutator:
         side = self.get_side(side)
         side.active.types = old_types
 
-    def __key(self):
-        return self.state
+    def change_item(self, side, new_item, _):
+        # the third parameter is the current item
+        # it must be here for reversing purposes
+        side = self.get_side(side)
+        side.active.item = new_item
 
-    def __eq__(self, other):
-        return self.__key() == other.__key()
-
-    def __hash__(self):
-        return hash(self.__key())
+    def reverse_change_item(self, side, _, old_item):
+        side = self.get_side(side)
+        side.active.item = old_item

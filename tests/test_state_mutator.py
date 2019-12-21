@@ -681,3 +681,44 @@ class TestStatemutator(unittest.TestCase):
 
         self.mutator.reverse(list_of_instructions)
         self.assertEqual(['normal'], self.state.self.active.types)
+
+    def test_changing_item(self):
+        self.state.self.active.item = 'some_item'
+        instruction = (
+            constants.MUTATOR_CHANGE_ITEM,
+            constants.SELF,
+            'some_new_item',
+            self.state.self.active.item
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+        self.assertEqual('some_new_item', self.state.self.active.item)
+
+    def test_reversing_changE_item(self):
+        self.state.self.active.item = 'some_new_item'
+        instruction = (
+            constants.MUTATOR_CHANGE_ITEM,
+            constants.SELF,
+            'some_new_item',
+            'some_item'
+        )
+        list_of_instructions = [instruction]
+        self.mutator.reverse(list_of_instructions)
+        self.assertEqual('some_item', self.state.self.active.item)
+
+    def test_changing_item_and_reversing_item(self):
+        self.state.self.active.item = 'some_item'
+        instruction = (
+            constants.MUTATOR_CHANGE_ITEM,
+            constants.SELF,
+            'some_new_item',
+            self.state.self.active.item
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        if self.state.self.active.item != 'some_new_item':
+            self.fail('item was not changed')
+
+        self.mutator.reverse(list_of_instructions)
+        self.assertEqual('some_item', self.state.self.active.item)

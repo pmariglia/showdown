@@ -54,6 +54,7 @@ MUTATOR_FIELD_START = "field_start"
 MUTATOR_FIELD_END = "field_end"
 MUTATOR_TOGGLE_TRICKROOM = "toggle_trickroom"
 MUTATOR_CHANGE_TYPE = "change_type"
+MUTATOR_CHANGE_ITEM = "change_item"
 
 
 DAMAGE = 'damage'
