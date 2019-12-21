@@ -6111,6 +6111,76 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_trick_fails_against_z_crystal(self):
+        self.state.self.active.item = 'leftovers'
+        self.state.opponent.active.item = 'iciumz'
+        bot_move = "trick"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_trick_fails_against_silvally_with_memory(self):
+        self.state.self.active.item = 'leftovers'
+        self.state.opponent.active.item = 'steelmemory'
+        self.state.opponent.active.id = 'silvallysteel'
+        bot_move = "trick"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_trick_fails_on_opponent_with_substitute(self):
+        self.state.self.active.item = 'leftovers'
+        self.state.opponent.active.item = 'lifeorb'
+        self.state.opponent.active.volatile_status.add(constants.SUBSTITUTE)
+        bot_move = "trick"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_trick_succeeds_when_user_is_behind_substitute(self):
+        self.state.self.active.item = 'leftovers'
+        self.state.opponent.active.item = 'lifeorb'
+        self.state.self.active.volatile_status.add(constants.SUBSTITUTE)
+        bot_move = "trick"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_CHANGE_ITEM, constants.SELF, 'lifeorb', 'leftovers'),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, 'leftovers', 'lifeorb'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_trick_switches_no_item(self):
         self.state.self.active.item = None
         self.state.opponent.active.item = 'lifeorb'
@@ -6124,6 +6194,22 @@ class TestGetStateInstructions(unittest.TestCase):
                     (constants.MUTATOR_CHANGE_ITEM, constants.SELF, 'lifeorb', None),
                     (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, None, 'lifeorb'),
                 ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_double_no_item_produces_no_instructions(self):
+        self.state.self.active.item = None
+        self.state.opponent.active.item = None
+        bot_move = "trick"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
                 False
             )
         ]
