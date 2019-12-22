@@ -174,7 +174,6 @@ class Pokemon(object):
         'maxhp',
         'ability',
         'item',
-        'base_stats',
         'attack',
         'defense',
         'special_attack',
@@ -202,7 +201,6 @@ class Pokemon(object):
                  maxhp,
                  ability,
                  item,
-                 base_stats,
                  attack,
                  defense,
                  special_attack,
@@ -226,7 +224,6 @@ class Pokemon(object):
         self.maxhp = maxhp
         self.ability = ability
         self.item = item
-        self.base_stats = base_stats
         self.attack = attack
         self.defense = defense
         self.special_attack = special_attack
@@ -271,7 +268,6 @@ class Pokemon(object):
             d[constants.MAXHP],
             d[constants.ABILITY],
             d[constants.ITEM],
-            d[constants.BASESTATS],
             d[constants.STATS][constants.ATTACK],
             d[constants.STATS][constants.DEFENSE],
             d[constants.STATS][constants.SPECIAL_ATTACK],
@@ -300,7 +296,6 @@ class Pokemon(object):
             d[constants.MAXHP],
             d[constants.ABILITY],
             d[constants.ITEM],
-            d[constants.BASESTATS],
             d[constants.ATTACK],
             d[constants.DEFENSE],
             d[constants.SPECIAL_ATTACK],
@@ -342,7 +337,6 @@ class Pokemon(object):
                 constants.MAXHP: self.maxhp,
                 constants.ABILITY: self.ability,
                 constants.ITEM: self.item,
-                constants.BASESTATS: self.base_stats,
                 constants.ATTACK: self.attack,
                 constants.DEFENSE: self.defense,
                 constants.SPECIAL_ATTACK: self.special_attack,
