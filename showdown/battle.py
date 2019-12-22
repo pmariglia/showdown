@@ -537,6 +537,7 @@ class Pokemon:
             constants.FAINTED: self.fainted,
             constants.ID: self.name,
             constants.LEVEL: self.level,
+            constants.TYPES: self.types,
             constants.HITPOINTS: self.hp,
             constants.MAXHP: self.max_hp,
             constants.ABILITY: self.ability,
@@ -546,9 +547,7 @@ class Pokemon:
             constants.BOOSTS: self.boosts,
             constants.STATUS: self.status,
             constants.VOLATILE_STATUS: set(self.volatile_statuses),
-            constants.MOVES: [m.to_dict() for m in self.moves],
-            constants.TYPES: self.types,
-            constants.CAN_MEGA_EVO: self.can_mega_evo
+            constants.MOVES: [m.to_dict() for m in self.moves]
         }
 
     @classmethod

@@ -58,8 +58,7 @@ class TestPokemonInit(unittest.TestCase):
               ],
               'types': [
                 'flying'
-              ],
-              'canMegaEvo': False
+              ]
             },
             'reserve': {
               'greninja': {
@@ -110,8 +109,7 @@ class TestPokemonInit(unittest.TestCase):
                 'types': [
                   'water',
                   'dark'
-                ],
-                'canMegaEvo': False
+                ]
               },
               'mawile': {
                 'id': 'mawile',
@@ -161,8 +159,7 @@ class TestPokemonInit(unittest.TestCase):
                 'types': [
                   'steel',
                   'fairy'
-                ],
-                'canMegaEvo': False
+                ]
               },
               'ferrothorn': {
                 'id': 'ferrothorn',
@@ -212,8 +209,7 @@ class TestPokemonInit(unittest.TestCase):
                 'types': [
                   'grass',
                   'steel'
-                ],
-                'canMegaEvo': False
+                ]
               },
               'heatran': {
                 'id': 'heatran',
@@ -263,8 +259,7 @@ class TestPokemonInit(unittest.TestCase):
                 'types': [
                   'fire',
                   'steel'
-                ],
-                'canMegaEvo': False
+                ]
               },
               'garchomp': {
                 'id': 'garchomp',
@@ -314,8 +309,7 @@ class TestPokemonInit(unittest.TestCase):
                 'types': [
                   'dragon',
                   'ground'
-                ],
-                'canMegaEvo': False
+                ]
               }
             },
             'side_conditions': {
@@ -384,8 +378,7 @@ class TestPokemonInit(unittest.TestCase):
               'types': [
                 'ground',
                 'flying'
-              ],
-              'canMegaEvo': False
+              ]
             },
             'reserve': {
               'ferrothorn': {
@@ -436,8 +429,7 @@ class TestPokemonInit(unittest.TestCase):
                 'types': [
                   'grass',
                   'steel'
-                ],
-                'canMegaEvo': False
+                ]
               },
               'rotomwash': {
                 'id': 'rotomwash',
@@ -487,8 +479,7 @@ class TestPokemonInit(unittest.TestCase):
                 'types': [
                   'electric',
                   'water'
-                ],
-                'canMegaEvo': False
+                ]
               },
               'mawile': {
                 'id': 'mawile',
@@ -538,8 +529,7 @@ class TestPokemonInit(unittest.TestCase):
                 'types': [
                   'steel',
                   'fairy'
-                ],
-                'canMegaEvo': False
+                ]
               },
               'greninja': {
                 'id': 'greninja',
@@ -589,8 +579,7 @@ class TestPokemonInit(unittest.TestCase):
                 'types': [
                   'water',
                   'dark'
-                ],
-                'canMegaEvo': False
+                ]
               },
               'scolipede': {
                 'id': 'scolipede',
@@ -640,8 +629,7 @@ class TestPokemonInit(unittest.TestCase):
                 'types': [
                   'bug',
                   'poison'
-                ],
-                'canMegaEvo': False
+                ]
               }
             },
             'side_conditions': {

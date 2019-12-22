@@ -170,6 +170,7 @@ class Pokemon(object):
     __slots__ = (
         'id',
         'level',
+        'types',
         'hp',
         'maxhp',
         'ability',
@@ -189,14 +190,13 @@ class Pokemon(object):
         'status',
         'volatile_status',
         'moves',
-        'types',
-        'can_mega_evo',
         'burn_multiplier'
     )
 
     def __init__(self,
                  identifier,
                  level,
+                 types,
                  hp,
                  maxhp,
                  ability,
@@ -206,20 +206,19 @@ class Pokemon(object):
                  special_attack,
                  special_defense,
                  speed,
-                 attack_boost,
-                 defense_boost,
-                 special_attack_boost,
-                 special_defense_boost,
-                 speed_boost,
-                 accuracy_boost,
-                 evasion_boost,
-                 status,
-                 volatile_status,
-                 moves,
-                 types,
-                 can_mega_evo):
+                 attack_boost=0,
+                 defense_boost=0,
+                 special_attack_boost=0,
+                 special_defense_boost=0,
+                 speed_boost=0,
+                 accuracy_boost=0,
+                 evasion_boost=0,
+                 status=None,
+                 volatile_status=None,
+                 moves=None):
         self.id = identifier
         self.level = level
+        self.types = types
         self.hp = hp
         self.maxhp = maxhp
         self.ability = ability
@@ -237,10 +236,8 @@ class Pokemon(object):
         self.accuracy_boost = accuracy_boost
         self.evasion_boost = evasion_boost
         self.status = status
-        self.volatile_status = volatile_status
-        self.moves = moves
-        self.types = types
-        self.can_mega_evo = can_mega_evo
+        self.volatile_status = volatile_status or set()
+        self.moves = moves or list()
 
         # evaluation relies on a multiplier for the burn status
         # it is calculated here to save time during evaluation
@@ -264,6 +261,7 @@ class Pokemon(object):
         return Pokemon(
             d[constants.ID],
             d[constants.LEVEL],
+            d[constants.TYPES],
             d[constants.HITPOINTS],
             d[constants.MAXHP],
             d[constants.ABILITY],
@@ -282,9 +280,7 @@ class Pokemon(object):
             d[constants.BOOSTS][constants.EVASION],
             d[constants.STATUS],
             d[constants.VOLATILE_STATUS],
-            d[constants.MOVES],
-            d[constants.TYPES],
-            d[constants.CAN_MEGA_EVO]
+            d[constants.MOVES]
         )
 
     @classmethod
@@ -292,6 +288,7 @@ class Pokemon(object):
         return Pokemon(
             d[constants.ID],
             d[constants.LEVEL],
+            d[constants.TYPES],
             d[constants.HITPOINTS],
             d[constants.MAXHP],
             d[constants.ABILITY],
@@ -310,9 +307,7 @@ class Pokemon(object):
             d.get(constants.EVASION_BOOST, 0),
             d[constants.STATUS],
             set(d[constants.VOLATILE_STATUS]),
-            d[constants.MOVES],
-            d[constants.TYPES],
-            d[constants.CAN_MEGA_EVO]
+            d[constants.MOVES]
         )
 
     def calculate_boosted_stats(self):
@@ -333,6 +328,7 @@ class Pokemon(object):
         return str({
                 constants.ID: self.id,
                 constants.LEVEL: self.level,
+                constants.TYPES: self.types,
                 constants.HITPOINTS: self.hp,
                 constants.MAXHP: self.maxhp,
                 constants.ABILITY: self.ability,
@@ -351,16 +347,14 @@ class Pokemon(object):
                 constants.EVASION_BOOST: self.evasion_boost,
                 constants.STATUS: self.status,
                 constants.VOLATILE_STATUS: list(self.volatile_status),
-                constants.MOVES: self.moves,
-                constants.TYPES: self.types,
-                constants.CAN_MEGA_EVO: self.can_mega_evo
+                constants.MOVES: self.moves
             })
 
 
 class TransposeInstruction:
     __slots__ = ('percentage', 'instructions', 'frozen')
 
-    def __init__(self, percentage, instructions, frozen):
+    def __init__(self, percentage, instructions, frozen=False):
         self.percentage = percentage
         self.instructions = instructions
         self.frozen = frozen
