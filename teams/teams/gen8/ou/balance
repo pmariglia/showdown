@@ -1,55 +1,56 @@
-Toxapex @ Black Sludge
-Ability: Regenerator
-EVs: 252 HP / 252 Def / 4 SpD
-Bold Nature
+Rotom-Heat @ Heavy-Duty Boots
+Ability: Levitate
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
 IVs: 0 Atk
-- Scald
-- Recover
-- Haze
-- Toxic
+- Volt Switch
+- Overheat
+- Thunderbolt
+- Nasty Plot
 
-Ferrothorn @ Leftovers
-Ability: Iron Barbs
-EVs: 252 HP / 4 Def / 252 SpD
-Sassy Nature
-- Spikes
-- Leech Seed
-- Protect
-- Power Whip
-
-Corsola-Galar @ Eviolite
-Ability: Cursed Body
-EVs: 252 HP / 252 Def / 4 SpD
-Bold Nature
+Toxtricity @ Choice Specs
+Ability: Punk Rock
+EVs: 252 SpA / 4 SpD / 252 Spe
+Modest Nature
 IVs: 0 Atk
-- Will-O-Wisp
-- Stealth Rock
-- Strength Sap
-- Night Shade
+- Overdrive
+- Boomburst
+- Volt Switch
+- Sludge Wave
 
 Corviknight @ Leftovers
 Ability: Pressure
-EVs: 252 HP / 32 Def / 136 SpD / 88 Spe
-Careful Nature
-- Brave Bird
-- Substitute
-- Bulk Up
+EVs: 252 HP / 76 Def / 180 SpD
+Impish Nature
 - Roost
+- U-turn
+- Defog
+- Brave Bird
 
-Dracovish @ Choice Band
-Ability: Strong Jaw
-EVs: 252 Atk / 252 Spe
-Adamant Nature
-- Fishious Rend
-- Crunch
-- Psychic Fangs
-- Low Kick
-
-Dragapult @ Choice Specs
-Ability: Infiltrator
-EVs: 252 SpA / 4 SpD / 252 Spe
-Timid Nature
-- Draco Meteor
-- Shadow Ball
-- Fire Blast
+Clefable @ Life Orb
+Ability: Magic Guard
+EVs: 196 HP / 252 SpA / 60 Spe
+Modest Nature
+IVs: 0 Atk
+- Moonblast
+- Flamethrower
 - Thunderbolt
+- Moonlight
+
+Seismitoad @ Leftovers
+Ability: Water Absorb
+EVs: 252 HP / 4 Atk / 252 Def
+Relaxed Nature
+- Earthquake
+- Stealth Rock
+- Toxic
+- Scald
+
+Darmanitan-Galar @ Choice Scarf
+Ability: Gorilla Tactics
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Icicle Crash
+- Earthquake
+- Flare Blitz
+- U-turn
