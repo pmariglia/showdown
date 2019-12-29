@@ -236,6 +236,6 @@ Looking at 'tackle' vs 'tackle' again:
 
 >> transpose_instructions = get_all_state_instructions(mutator, my_move, your_move)
 
->> len(transpose_instructions[0])
+>> len(transpose_instructions)
 >> 80  # in this contrived example there are 8 possible damage rolls for one tackle, and 10 for the other
 ```
