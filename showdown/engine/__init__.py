@@ -7,6 +7,7 @@ from .objects import (
 )
 
 from .find_state_instructions import get_all_state_instructions
+from .damage_calculator import calculate_damage
 
 __all__ = [
     'State',
@@ -14,5 +15,6 @@ __all__ = [
     'Pokemon',
     'StateMutator',
     'TransposeInstruction',
-    'get_all_state_instructions'
+    'get_all_state_instructions',
+    'calculate_damage'
 ]

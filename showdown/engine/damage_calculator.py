@@ -61,7 +61,10 @@ SPECIAL_LOGIC_MOVES = {
 TERRAIN_DAMAGE_BOOST = 1.3
 
 
-def calculate_damage(attacker, defender, move, conditions=None, calc_type='average'):
+def _calculate_damage(attacker, defender, move, conditions=None, calc_type='average'):
+    # This function assumes the `move` dictionary has already been updated to account for move/item/ability special-effects
+    # You may want to use `calculate_damage`
+
     acceptable_calc_types = ['average', 'max', 'min_max', 'min_max_average', 'all']
     if calc_type not in acceptable_calc_types:
         raise ValueError("{} is not one of {}".format(calc_type, acceptable_calc_types))
@@ -287,3 +290,43 @@ def volatile_status_modifier(attacking_move, attacker, defender):
     if 'tarshot' in defender.volatile_status and attacking_move[constants.TYPE] == 'fire':
         modifier *= 2
     return modifier
+
+
+def calculate_damage(state, attacking_side_string, attacking_move, defending_move, calc_type='average'):
+    # a wrapper for `_calculate_damage` that takes into account move/item/ability special-effects
+
+    from showdown.engine.find_state_instructions import update_attacking_move
+    from showdown.engine.find_state_instructions import user_moves_first
+
+    attacking_move_dict = all_move_json[attacking_move]
+    defending_move_dict = all_move_json[defending_move]
+
+    if attacking_side_string == constants.SELF:
+        attacking_side = state.self
+        defending_side = state.opponent
+    elif attacking_side_string == constants.OPPONENT:
+        attacking_side = state.opponent
+        defending_side = state.self
+    else:
+        raise ValueError("attacking_side_string must be one of: ['self', 'opponent']")
+
+    conditions = {
+        constants.REFLECT: state.opponent.side_conditions[constants.REFLECT],
+        constants.LIGHT_SCREEN: state.opponent.side_conditions[constants.LIGHT_SCREEN],
+        constants.AURORA_VEIL: state.opponent.side_conditions[constants.AURORA_VEIL],
+        constants.WEATHER: state.weather,
+        constants.TERRAIN: state.field
+    }
+
+    attacker_moves_first = user_moves_first(state, attacking_move_dict, defending_move_dict)
+
+    attacking_move_dict = update_attacking_move(
+        attacking_side.active,
+        defending_side.active,
+        attacking_move_dict,
+        defending_move_dict,
+        attacker_moves_first,
+        state.weather
+    )
+
+    return _calculate_damage(attacking_side.active, defending_side.active, attacking_move_dict, conditions=conditions, calc_type=calc_type)

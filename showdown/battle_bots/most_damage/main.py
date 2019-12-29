@@ -25,27 +25,11 @@ class BattleBot(Battle):
         if self.force_switch or not moves:
             return format_decision(self, switches[0])
 
-        conditions = {
-            constants.REFLECT: state.opponent.side_conditions[constants.REFLECT],
-            constants.LIGHT_SCREEN: state.opponent.side_conditions[constants.LIGHT_SCREEN],
-            constants.AURORA_VEIL: state.opponent.side_conditions[constants.AURORA_VEIL],
-            constants.WEATHER: state.weather,
-            constants.TERRAIN: state.field
-        }
-
         most_damage = -1
         choice = None
         for move in moves:
-            move_dict = all_move_json[move]
-            attacking_move = update_attacking_move(
-                state.self.active,
-                state.opponent.active,
-                move_dict,
-                {},
-                False,
-                state.weather
-            )
-            damage_amounts = calculate_damage(state.self.active, state.opponent.active, attacking_move, conditions=conditions)
+            damage_amounts = calculate_damage(state, constants.SELF, move, constants.DO_NOTHING_MOVE)
+
             damage = damage_amounts[0] if damage_amounts else 0
 
             if damage > most_damage:
