@@ -115,6 +115,11 @@ Create a package in `showdown/battle_bots` with a module named `main.py`. In thi
 
 Set the `BATTLE_BOT` environment variable to the name of your package and your function will be called each time PokemonShowdown prompts the bot for a move
 
+## The Battle Engine
+The bots in the project all use a Pokemon battle engine to determine all possible transpositions that may occur from a pair of moves.
+
+For more information, see [ENGINE.md](https://github.com/pmariglia/showdown/blob/master/ENGINE.md) 
+
 ## Specifying Teams
 You can specify teams by setting the `TEAM_NAME` environment variable.
 Examples can be found in `teams/teams/`.
