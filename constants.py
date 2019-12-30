@@ -229,6 +229,18 @@ TYPE_CHANGE_ABILITIES = {
     'libero'
 }
 
+WEIGHT_BASED_MOVES = {
+    'heavyslam',
+    'heatcrash',
+    'lowkick',
+    'grassknot',
+}
+
+SPEED_BASED_MOVES = {
+    'gyroball',
+    'electroball'
+}
+
 COURT_CHANGE_SWAPS = {
     'spikes',
     'toxicspikes',

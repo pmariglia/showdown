@@ -132,7 +132,7 @@ The path specified should be relative to `teams/teams/`.
 
 Specify a file:
 ```
-TEAM_NAME=gen8/ou/ttar_band
+TEAM_NAME=gen8/ou/clef_sand
 ```
 
 Specify a directory:

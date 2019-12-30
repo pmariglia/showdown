@@ -39,6 +39,7 @@ from showdown.helpers import calculate_stats
 
 
 LastUsedMove = namedtuple('LastUsedMove', ['pokemon_name', 'move'])
+DamageDealt = namedtuple('DamageDealt', ['attacker', 'defender', 'move', 'percent_damage', 'crit'])
 
 
 class Battle(ABC):
@@ -60,7 +61,7 @@ class Battle(ABC):
         self.battle_type = None
         self.generation = None
 
-        self.time_remaining = 240
+        self.request_json = None
 
     def initialize_team_preview(self, user_json, opponent_pokemon, battle_mode):
         self.user.from_json(user_json, first_turn=True)
@@ -89,7 +90,7 @@ class Battle(ABC):
         self.started = True
         self.rqid = user_json[constants.RQID]
 
-    def prepare_battles(self, join_moves_together=False):
+    def prepare_battles(self, guess_mega_evo_opponent=True, join_moves_together=False):
         """Returns a list of battles based on this one
         The battles have the opponent's reserve pokemon's unknowns filled in
         The opponent's active pokemon in each of the battles has a different set"""
@@ -102,7 +103,7 @@ class Battle(ABC):
             # this only happens on the turn the pkmn mega-evolves - the next turn will be fine
             battle_copy.user.active.forme_change(get_mega_pkmn_name(battle_copy.user.active.name))
 
-        if not battle_copy.opponent.mega_revealed() and any(g in self.generation for g in constants.MEGA_EVOLVE_GENERATIONS):
+        if guess_mega_evo_opponent and not battle_copy.opponent.mega_revealed() and any(g in self.generation for g in constants.MEGA_EVOLVE_GENERATIONS):
             check_in_sets = battle_copy.battle_type == constants.STANDARD_BATTLE
             battle_copy.opponent.active.try_convert_to_mega(check_in_sets=check_in_sets)
 

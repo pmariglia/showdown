@@ -1,4 +1,5 @@
 from copy import copy
+from copy import deepcopy
 
 import constants
 from data import all_move_json
@@ -168,7 +169,7 @@ def get_move(move):
     if isinstance(move, dict):
         return move
     if isinstance(move, str):
-        return all_move_json.get(move, None)
+        return deepcopy(all_move_json.get(move, None))
     else:
         return None
 
@@ -294,12 +295,14 @@ def volatile_status_modifier(attacking_move, attacker, defender):
 
 def calculate_damage(state, attacking_side_string, attacking_move, defending_move, calc_type='average'):
     # a wrapper for `_calculate_damage` that takes into account move/item/ability special-effects
-
     from showdown.engine.find_state_instructions import update_attacking_move
     from showdown.engine.find_state_instructions import user_moves_first
 
-    attacking_move_dict = all_move_json[attacking_move]
-    defending_move_dict = all_move_json[defending_move]
+    attacking_move_dict = get_move(attacking_move)
+    if defending_move.startswith(constants.SWITCH_STRING + " "):
+        defending_move_dict = {constants.SWITCH_STRING: defending_move.split(constants.SWITCH_STRING)[-1]}
+    else:
+        defending_move_dict = get_move(defending_move)
 
     if attacking_side_string == constants.SELF:
         attacking_side = state.self
@@ -319,6 +322,9 @@ def calculate_damage(state, attacking_side_string, attacking_move, defending_mov
     }
 
     attacker_moves_first = user_moves_first(state, attacking_move_dict, defending_move_dict)
+
+    # a charge move doesn't need to charge when only calculating damage
+    attacking_move_dict[constants.FLAGS].pop(constants.CHARGE, None)
 
     attacking_move_dict = update_attacking_move(
         attacking_side.active,

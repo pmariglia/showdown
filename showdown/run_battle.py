@@ -10,7 +10,8 @@ from config import logger
 from config import reset_logger
 from showdown.engine.evaluate import Scoring
 from showdown.battle import Pokemon
-from showdown.battle_modifier import update_battle
+from showdown.battle import LastUsedMove
+from showdown.battle_modifier import async_update_battle
 
 from showdown.websocket_client import PSWebsocketClient
 
@@ -20,11 +21,20 @@ def battle_is_finished(msg):
 
 
 async def async_pick_move(battle):
+    battle_copy = deepcopy(battle)
+    if battle_copy.request_json:
+        battle_copy.user.from_json(battle_copy.request_json)
+
     loop = asyncio.get_event_loop()
     with concurrent.futures.ThreadPoolExecutor() as pool:
         best_move = await loop.run_in_executor(
-            pool, battle.find_best_move
+            pool, battle_copy.find_best_move
         )
+    choice = best_move[0]
+    if constants.SWITCH_STRING in choice:
+        battle.user.last_used_move = LastUsedMove(battle.user.active.name, "switch {}".format(choice.split()[-1]))
+    else:
+        battle.user.last_used_move = LastUsedMove(battle.user.active.name, choice.split()[-1])
     return best_move
 
 
@@ -57,7 +67,7 @@ async def get_battle_tag_and_opponent(ps_websocket_client: PSWebsocketClient):
             return battle_tag, opponent_name
 
 
-async def initialize_battle_with_tag(ps_websocket_client: PSWebsocketClient):
+async def initialize_battle_with_tag(ps_websocket_client: PSWebsocketClient, set_request_json=True):
     battle_module = importlib.import_module('showdown.battle_bots.{}.main'.format(config.battle_bot_module))
 
     battle_tag, opponent_name = await get_battle_tag_and_opponent(ps_websocket_client)
@@ -71,6 +81,10 @@ async def initialize_battle_with_tag(ps_websocket_client: PSWebsocketClient):
             battle = battle_module.BattleBot(battle_tag)
             battle.opponent.name = opponent_id
             battle.opponent.account_name = opponent_name
+
+            if set_request_json:
+                battle.request_json = user_json
+
             return battle, opponent_id, user_json
 
 
@@ -89,7 +103,7 @@ async def start_random_battle(ps_websocket_client: PSWebsocketClient, pokemon_ba
                     battle.start_random_battle(user_json, line)
 
                 elif battle.started:
-                    await update_battle(battle, line)
+                    await async_update_battle(battle, line)
 
             # first move needs to be picked here
             best_move = await async_pick_move(battle)
@@ -99,7 +113,7 @@ async def start_random_battle(ps_websocket_client: PSWebsocketClient, pokemon_ba
 
 
 async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
-    battle, opponent_id, user_json = await initialize_battle_with_tag(ps_websocket_client)
+    battle, opponent_id, user_json = await initialize_battle_with_tag(ps_websocket_client, set_request_json=False)
     battle.battle_type = constants.STANDARD_BATTLE
     battle.generation = pokemon_battle_type[:4]
 
@@ -150,7 +164,7 @@ async def pokemon_battle(ps_websocket_client, pokemon_battle_type):
             await ps_websocket_client.leave_battle(battle.battle_tag, save_replay=config.save_replay)
             return winner
         else:
-            action_required = await update_battle(battle, msg)
+            action_required = await async_update_battle(battle, msg)
             if action_required and not battle.wait:
                 best_move = await async_pick_move(battle)
                 await ps_websocket_client.send_message(battle.battle_tag, best_move)

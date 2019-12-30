@@ -4840,7 +4840,7 @@
     },
     "heatcrash": {
         "accuracy": 100,
-        "basePower": 0,
+        "basePower": 120,
         "category": "physical",
         "flags": {
             "contact": 1,

@@ -283,3 +283,23 @@ class TestCalculateDamage(unittest.TestCase):
         )
 
         self.assertNotEqual(0, damage_amounts[0])
+
+    def test_solarbeam_move_produces_damage_amount(self):
+        damage_amounts = calculate_damage(
+            self.state,
+            constants.OPPONENT,
+            'solarbeam',
+            'splash'
+        )
+
+        self.assertNotEqual(0, damage_amounts[0])
+
+    def test_phantomforce_move_produces_damage_amount(self):
+        damage_amounts = calculate_damage(
+            self.state,
+            constants.OPPONENT,
+            'phantomforce',
+            'splash'
+        )
+
+        self.assertNotEqual(0, damage_amounts[0])

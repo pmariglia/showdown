@@ -98,7 +98,7 @@ def acrobatics(attacking_move, defending_move, attacking_pokemon, defending_poke
     # acrobatics is 110 by default. If the pokemon has an item, it will go to 55
     # technically this should be the other way around, but the evaluation logic should
     # assume that the opponent's pokemon has a 110 BP move (worst case unless known)
-    if attacking_pokemon.item not in [None, constants.UNKNOWN_ITEM]:
+    if attacking_pokemon.item not in [None, "None", constants.UNKNOWN_ITEM]:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 0.5
     return attacking_move
