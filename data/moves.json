@@ -4298,7 +4298,7 @@
     },
     "grassknot": {
         "accuracy": 100,
-        "basePower": 60,
+        "basePower": 0,
         "category": "special",
         "flags": {
             "contact": 1,
@@ -4840,7 +4840,7 @@
     },
     "heatcrash": {
         "accuracy": 100,
-        "basePower": 120,
+        "basePower": 0,
         "category": "physical",
         "flags": {
             "contact": 1,
@@ -4877,7 +4877,7 @@
     },
     "heavyslam": {
         "accuracy": 100,
-        "basePower": 120,
+        "basePower": 0,
         "category": "physical",
         "flags": {
             "contact": 1,

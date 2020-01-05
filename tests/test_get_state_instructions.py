@@ -1,4 +1,6 @@
 import unittest
+from unittest import mock
+
 import config
 import constants
 from collections import defaultdict
@@ -626,6 +628,41 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 27)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_grassknot_does_damage_on_light_pokemon(self):
+        bot_move = "grassknot"
+        opponent_move = "splash"
+        self.state.opponent.active.id = 'castform'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 12)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_grassknot_does_damage_on_heavy_pokemon(self):
+        bot_move = "grassknot"
+        opponent_move = "splash"
+        self.state.opponent.active.id = 'golem'
+        self.state.opponent.active.types = ['normal']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 63)
                 ],
                 False
             )
@@ -1316,6 +1353,58 @@ class TestGetStateInstructions(unittest.TestCase):
                 1.0,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 186),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_gryo_ball_does_damage_when_speed_is_equal(self):
+        bot_move = "gyroball"
+        opponent_move = "splash"
+        self.state.self.active.speed = self.state.opponent.active.speed
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 35),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_electro_ball_does_damage_when_speed_is_equal(self):
+        bot_move = "electroball"
+        opponent_move = "splash"
+        self.state.self.active.speed = self.state.opponent.active.speed
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 33),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_electro_ball_does_damage_when_speed_is_much_greater(self):
+        bot_move = "electroball"
+        opponent_move = "splash"
+        self.state.opponent.active.speed = 1
+        self.state.self.active.speed = 100
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 119),
                 ],
                 False
             )
@@ -3647,8 +3736,173 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 111)
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37)
                 ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    @mock.patch('showdown.engine.special_effects.moves.move_special_effect.pokedex')
+    def test_heavyslam_damage_for_10_times_the_weight(self, pokedex_mock):
+        # 10x the weight should result in 120 base-power
+        fake_pokedex = {
+            'pikachu': {
+                'weight': 100
+            },
+            'pidgey': {
+                'weight': 10
+            }
+        }
+        pokedex_mock.__getitem__.side_effect = fake_pokedex.__getitem__
+
+        bot_move = "heavyslam"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.opponent.active.types = ['normal']
+        self.state.self.active.id = 'pikachu'
+        self.state.opponent.active.id = 'pidgey'
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 74)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    @mock.patch('showdown.engine.special_effects.moves.move_special_effect.pokedex')
+    def test_heavyslam_damage_for_4_times_the_weight(self, pokedex_mock):
+        # 4x the weight should result in 100 base-power
+        fake_pokedex = {
+            'pikachu': {
+                'weight': 100
+            },
+            'pidgey': {
+                'weight': 25
+            }
+        }
+        pokedex_mock.__getitem__.side_effect = fake_pokedex.__getitem__
+
+        bot_move = "heavyslam"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.opponent.active.types = ['normal']
+        self.state.self.active.id = 'pikachu'
+        self.state.opponent.active.id = 'pidgey'
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    @mock.patch('showdown.engine.special_effects.moves.move_special_effect.pokedex')
+    def test_heavyslam_damage_for_the_same_weight(self, pokedex_mock):
+        # equal weight should result in 40 base-power
+        fake_pokedex = {
+            'pikachu': {
+                'weight': 100
+            },
+            'pidgey': {
+                'weight': 100
+            }
+        }
+        pokedex_mock.__getitem__.side_effect = fake_pokedex.__getitem__
+
+        bot_move = "heavyslam"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.opponent.active.types = ['normal']
+        self.state.self.active.id = 'pikachu'
+        self.state.opponent.active.id = 'pidgey'
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    @mock.patch('showdown.engine.special_effects.moves.move_special_effect.pokedex')
+    def test_heatcrash_damage_for_the_same_weight(self, pokedex_mock):
+        # 10x equal weight should result in 120 base-power
+        fake_pokedex = {
+            'pikachu': {
+                'weight': 100
+            },
+            'pidgey': {
+                'weight': 10
+            }
+        }
+        pokedex_mock.__getitem__.side_effect = fake_pokedex.__getitem__
+
+        bot_move = "heatcrash"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.opponent.active.types = ['normal']
+        self.state.self.active.id = 'pikachu'
+        self.state.opponent.active.id = 'pidgey'
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 74)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    @mock.patch('showdown.engine.special_effects.moves.move_special_effect.pokedex')
+    def test_heatcrash_into_flashfire(self, pokedex_mock):
+        # the defender has flashfire so no damage should be done, even with 10x the weight
+        fake_pokedex = {
+            'pikachu': {
+                'weight': 100
+            },
+            'pidgey': {
+                'weight': 10
+            }
+        }
+        pokedex_mock.__getitem__.side_effect = fake_pokedex.__getitem__
+
+        bot_move = "heatcrash"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.opponent.active.types = ['normal']
+        self.state.self.active.id = 'pikachu'
+        self.state.opponent.active.id = 'pidgey'
+
+        self.state.opponent.active.ability = 'flashfire'
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
                 False
             )
         ]
@@ -4356,7 +4610,7 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 97),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 33),
                     (constants.MUTATOR_DAMAGE, constants.SELF, 13),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18)
                 ],

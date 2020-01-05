@@ -78,11 +78,29 @@ def avalanche(attacking_move, defending_move, attacking_pokemon, defending_pokem
 
 
 def gyroball(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
-    # power = 25 × TargetSpeed ÷ UserSpeed
+    # power = (25 × TargetSpeed ÷ UserSpeed) + 1
     attacking_move = attacking_move.copy()
     attacker_speed = attacking_pokemon.calculate_boosted_stats()[constants.SPEED]
     defender_speed = defending_pokemon.calculate_boosted_stats()[constants.SPEED]
-    attacking_move[constants.BASE_POWER] = min(150, 25 * defender_speed / attacker_speed)
+    attacking_move[constants.BASE_POWER] = min(150, (25 * defender_speed / attacker_speed) + 1)
+    return attacking_move
+
+
+def electroball(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    speed_ratio = defending_pokemon.calculate_boosted_stats()[constants.SPEED] / attacking_pokemon.calculate_boosted_stats()[constants.SPEED]
+
+    attacking_move = attacking_move.copy()
+    if speed_ratio < 0.25:
+        attacking_move[constants.BASE_POWER] = 150
+    elif speed_ratio < 0.33:
+        attacking_move[constants.BASE_POWER] = 120
+    elif speed_ratio < 0.50:
+        attacking_move[constants.BASE_POWER] = 80
+    elif speed_ratio < 1:
+        attacking_move[constants.BASE_POWER] = 60
+    else:
+        attacking_move[constants.BASE_POWER] = 40
+
     return attacking_move
 
 
@@ -161,7 +179,7 @@ def solarbeam(attacking_move, defending_move, attacking_pokemon, defending_pokem
     if weather == constants.SUN:
         attacking_move = attacking_move.copy()
         attacking_move[constants.FLAGS] = attacking_move[constants.FLAGS].copy()
-        attacking_move[constants.FLAGS].pop(constants.CHARGE)
+        attacking_move[constants.FLAGS].pop(constants.CHARGE, None)
     return attacking_move
 
 
@@ -326,7 +344,26 @@ def shoreup(attacking_move, defending_move, attacking_pokemon, defending_pokemon
     return attacking_move
 
 
+def heavyslam(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    weight_ratio = pokedex[defending_pokemon.id][constants.WEIGHT] / pokedex[attacking_pokemon.id][constants.WEIGHT]
+    attacking_move = attacking_move.copy()
+    if weight_ratio > 0.5:
+        attacking_move[constants.BASE_POWER] = 40
+    elif weight_ratio > 0.33:
+        attacking_move[constants.BASE_POWER] = 60
+    elif weight_ratio > 0.25:
+        attacking_move[constants.BASE_POWER] = 80
+    elif weight_ratio > 0.2:
+        attacking_move[constants.BASE_POWER] = 100
+    else:
+        attacking_move[constants.BASE_POWER] = 120
+
+    return attacking_move
+
+
 move_lookup = {
+    'heatcrash': heavyslam,
+    'heavyslam': heavyslam,
     'shoreup': shoreup,
     'synthesis': morningsun,
     'moonlight': morningsun,
@@ -345,6 +382,7 @@ move_lookup = {
     'aurawheel': aurawheel,
     'pursuit': pursuit,
     'painsplit': painsplit,
+    'grassknot': lowkick,
     'lowkick': lowkick,
     'revelationdance': revelationdance,
     'strengthsap': strengthsap,
@@ -374,6 +412,7 @@ move_lookup = {
     'avalanche': avalanche,
     'facade': facade,
     'gyroball': gyroball,
+    'electroball': electroball,
     'focuspunch': focuspunch,
     'acrobatics': acrobatics,
     'technoblast': technoblast,
