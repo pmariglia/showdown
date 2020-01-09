@@ -345,7 +345,11 @@ def shoreup(attacking_move, defending_move, attacking_pokemon, defending_pokemon
 
 
 def heavyslam(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
-    weight_ratio = pokedex[defending_pokemon.id][constants.WEIGHT] / pokedex[attacking_pokemon.id][constants.WEIGHT]
+    try:
+        weight_ratio = pokedex[defending_pokemon.id][constants.WEIGHT] / pokedex[attacking_pokemon.id][constants.WEIGHT]
+    except ZeroDivisionError:
+        return attacking_move
+
     attacking_move = attacking_move.copy()
     if weight_ratio > 0.5:
         attacking_move[constants.BASE_POWER] = 40
