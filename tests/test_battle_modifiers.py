@@ -1547,6 +1547,25 @@ class TestGetDamageDealt(unittest.TestCase):
         expected_damage_amount_dealt = DamageDealt(attacker='pikachu', defender='caterpie', move='tackle', percent_damage=0.20, crit=False)
         self.assertEqual(expected_damage_amount_dealt, damage_dealt)
 
+    def test_assigns_damage_when_bots_pokemon_has_no_last_used_move(self):
+        self.battle.user.active.max_hp = 250
+        self.battle.user.active.hp = 250
+
+        messages = [
+            '|move|p2a: Pikachu|Tackle|p1a: Caterpie',
+            '|-damage|p1a: Caterpie|200/250',  # 50 / 250 = 0.20 of total health
+            '|',
+            '|move|p1a: Caterpie|Tackle|p2a: Pikachu',
+            '|-damage|p2a: Pikachu|90/100',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        expected_damage_amount_dealt = DamageDealt(attacker='pikachu', defender='caterpie', move='tackle', percent_damage=0.20, crit=False)
+        self.assertEqual(expected_damage_amount_dealt, damage_dealt)
+
     def test_supereffective_damage_is_captured(self):
         self.battle.user.active.max_hp = 250
         self.battle.user.active.hp = 250
@@ -1700,10 +1719,10 @@ class TestGetDamageDealt(unittest.TestCase):
 
         damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
 
-        expected_damage_amount_dealt = DamageDealt(attacker='caterpie', defender='pikachu', move='tackle', percent_damage=1, crit=False)
+        expected_damage_amount_dealt = DamageDealt(attacker='caterpie', defender='pikachu', move='tackle', percent_damage=0.01, crit=False)
         self.assertEqual(expected_damage_amount_dealt, damage_dealt)
 
-    def test_assigns_damage_to_opponent_on_faint(self):
+    def test_assigns_damage_to_opponent_on_faint_from_1_hp(self):
         self.battle.opponent.active.max_hp = 250
         self.battle.opponent.active.hp = 250
 

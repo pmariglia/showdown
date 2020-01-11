@@ -34,7 +34,7 @@ async def async_pick_move(battle):
     if constants.SWITCH_STRING in choice:
         battle.user.last_used_move = LastUsedMove(battle.user.active.name, "switch {}".format(choice.split()[-1]))
     else:
-        battle.user.last_used_move = LastUsedMove(battle.user.active.name, choice.split()[-1])
+        battle.user.last_used_move = LastUsedMove(battle.user.active.name, choice.split()[2])
     return best_move
 
 
