@@ -184,20 +184,23 @@ def move(battle, split_msg):
 
     try:
         category = all_move_json[move_name][constants.CATEGORY]
+        logger.debug("Setting {}'s last used move: {}".format(pkmn.name, move_name))
+        side.last_used_move = LastUsedMove(
+            pokemon_name=pkmn.name,
+            move=move_name
+        )
     except KeyError:
         category = None
+        side.last_used_move = LastUsedMove(
+            pokemon_name=pkmn.name,
+            move=constants.DO_NOTHING_MOVE
+        )
 
     # if this pokemon used a damaging move, eliminate the possibility of it having a lifeorb
     # the lifeorb will reveal itself if it has it
     if category in constants.DAMAGING_CATEGORIES and not any([normalize_name(a) in ['sheerforce', 'magicguard'] for a in pokedex[pkmn.name][constants.ABILITIES].values()]):
         logger.debug("{} used a damaging move - not guessing lifeorb anymore".format(pkmn.name))
         pkmn.can_have_life_orb = False
-
-    logger.debug("Setting {}'s last used move: {}".format(pkmn.name, move_name))
-    side.last_used_move = LastUsedMove(
-        pokemon_name=pkmn.name,
-        move=move_name
-    )
 
 
 def boost(battle, split_msg):
