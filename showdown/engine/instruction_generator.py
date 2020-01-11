@@ -308,8 +308,6 @@ def get_instructions_from_flinched(mutator, attacker, instruction):
     if attacker not in opposite_side:
         raise ValueError("attacker parameter must be one of: {}".format(', '.join(opposite_side)))
 
-    mutator.apply(instruction.instructions)
-
     side = get_side_from_state(mutator.state, attacker)
     if constants.FLINCH in side.active.volatile_status:
         remove_flinch_instruction = (
@@ -317,13 +315,12 @@ def get_instructions_from_flinched(mutator, attacker, instruction):
             attacker,
             constants.FLINCH
         )
-        mutator.reverse(instruction.instructions)
+        mutator.apply_one(remove_flinch_instruction)
         instruction.add_instruction(remove_flinch_instruction)
         instruction.frozen = True
-        return [instruction]
+        return instruction
     else:
-        mutator.reverse(instruction.instructions)
-        return [instruction]
+        return instruction
 
 
 def get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, move, opponent_move, instruction):
@@ -396,16 +393,6 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
     move_flags = attacking_move.get(constants.FLAGS, {})
 
     mutator.apply(instruction.instructions)
-
-    if attacker_side.active.ability in constants.TYPE_CHANGE_ABILITIES and [attacking_move[constants.TYPE]] != attacker_side.active.types:
-        type_change_instruction = (
-            constants.MUTATOR_CHANGE_TYPE,
-            attacker,
-            [attacking_move[constants.TYPE]],
-            attacker_side.active.types
-        )
-        mutator.apply_one(type_change_instruction)
-        instruction.add_instruction(type_change_instruction)
 
     if accuracy is True:
         accuracy = 100

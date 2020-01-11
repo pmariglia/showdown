@@ -54,11 +54,9 @@ class TestGetInstructionsFromFlinched(unittest.TestCase):
             constants.FLINCH
         )
 
-        expected_instructions = [
-            TransposeInstruction(1.0, [flinch_instruction], True)
-        ]
+        expected_instruction = TransposeInstruction(1.0, [flinch_instruction], True)
 
-        self.assertEqual(expected_instructions, instructions)
+        self.assertEqual(expected_instruction, instructions)
 
     def test_flinch_being_false_does_not_freeze_the_state(self):
         defender = constants.SELF
@@ -66,11 +64,9 @@ class TestGetInstructionsFromFlinched(unittest.TestCase):
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_flinched(mutator, defender, self.previous_instructions)
 
-        expected_instructions = [
-            TransposeInstruction(1.0, [], False)
-        ]
+        expected_instruction = TransposeInstruction(1.0, [], False)
 
-        self.assertEqual(expected_instructions, instructions)
+        self.assertEqual(expected_instruction, instructions)
 
 
 class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):

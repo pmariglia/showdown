@@ -5088,6 +5088,25 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_protean_causes_attack_to_have_stab(self):
+        bot_move = "surf"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.self.active.ability = 'protean'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_CHANGE_TYPE, constants.SELF, ['water'], ['normal']),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 72),  # non-STAB surf does 48 damage
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_no_type_change_instruction_if_there_are_no_types_to_change(self):
         bot_move = "surf"
         opponent_move = "splash"
@@ -5106,6 +5125,82 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_no_type_change_instruction_if_user_gets_flinched(self):
+        bot_move = "surf"
+        opponent_move = "ironhead"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        self.state.self.active.types = ['normal']
+        self.state.self.active.ability = 'protean'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 68),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.FLINCH),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.FLINCH),
+                ],
+                True
+            ),
+            TransposeInstruction(
+                0.7,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 68),
+                    (constants.MUTATOR_CHANGE_TYPE, constants.SELF, ['water'], ['normal']),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 72),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_there_is_a_type_change_instruction_if_a_protean_user_misses_due_to_accuracy(self):
+        bot_move = "hydropump"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.self.active.ability = 'protean'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.8,
+                [
+                    (constants.MUTATOR_CHANGE_TYPE, constants.SELF, ['water'], ['normal']),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 88),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.19999999999999996,
+                [
+                    (constants.MUTATOR_CHANGE_TYPE, constants.SELF, ['water'], ['normal']),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_non_damaging_move_causes_type_change_instruction(self):
+        bot_move = "spikes"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.self.active.ability = 'protean'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_CHANGE_TYPE, constants.SELF, ['ground'], ['normal']),
+                    (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.SPIKES, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_using_ground_move_with_libero_makes_pokemon_immune_to_electric_move(self):
         bot_move = "earthquake"
         opponent_move = "thunderwave"
@@ -5117,7 +5212,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_CHANGE_TYPE, constants.SELF, ['ground'], ['water', 'grass']),
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 94),
                 ],
                 True
             )

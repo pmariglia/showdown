@@ -219,9 +219,9 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     if attacking_pokemon.hp == 0:
         # if the attacker is dead, remove the 'flinched' volatile-status if it has it and exit early
         # this triggers if the pokemon moves second but the first attack knocked it out
+        instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
         mutator.reverse(instructions.instructions)
-        all_instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
-        return all_instructions
+        return [instructions]
 
     attacking_move = update_attacking_move(
         attacking_pokemon,
@@ -231,6 +231,18 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         first_move,
         mutator.state.weather
     )
+
+    instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
+
+    if attacking_pokemon.ability in constants.TYPE_CHANGE_ABILITIES and [attacking_move[constants.TYPE]] != attacking_pokemon.types and not instructions.frozen:
+        type_change_instruction = (
+            constants.MUTATOR_CHANGE_TYPE,
+            attacker,
+            [attacking_move[constants.TYPE]],
+            attacking_pokemon.types
+        )
+        mutator.apply_one(type_change_instruction)
+        instructions.add_instruction(type_change_instruction)
 
     damage_amounts = None
     move_status_effect = None
@@ -309,12 +321,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     mutator.reverse(instructions.instructions)
 
-    all_instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
-
-    temp_instructions = []
-    for instruction_set in all_instructions:
-        temp_instructions += instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, attacking_move, defending_move, instruction_set)
-    all_instructions = temp_instructions
+    all_instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, attacking_move, defending_move, instructions)
 
     if attacking_move[constants.ID] in instruction_generator.SPECIAL_LOGIC_MOVES:
         temp_instructions = []
