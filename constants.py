@@ -118,6 +118,7 @@ MEGA_EVOLVE_GENERATIONS = [
 ]
 CAN_MEGA_EVO = "canMegaEvo"
 CAN_ULTRA_BURST = "canUltraBurst"
+CAN_DYNAMAX = "canDynamax"
 CAN_Z_MOVE = "canZMove"
 ZMOVE = "zmove"
 ULTRA_BURST = "ultra"

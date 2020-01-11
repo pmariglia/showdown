@@ -288,6 +288,11 @@ class Battler:
         except KeyError:
             self.active.can_ultra_burst = False
 
+        try:
+            self.active.can_dynamax = user_json[constants.ACTIVE][0][constants.CAN_DYNAMAX]
+        except KeyError:
+            self.active.can_dynamax = False
+
         # clear the active moves so they can be reset by the options available
         self.active.moves.clear()
 
@@ -365,6 +370,7 @@ class Pokemon:
         self.boosts = defaultdict(lambda: 0)
         self.can_mega_evo = False
         self.can_ultra_burst = False
+        self.can_dynamax = False
         self.is_mega = False
         self.can_have_choice_item = True
         self.can_have_life_orb = True
