@@ -295,6 +295,7 @@ BANEFUL_BUNKER = "banefulbunker"
 SPIKY_SHIELD = "spikyshield"
 DYNAMAX = "dynamax"
 PARTIALLY_TRAPPED = "partiallytrapped"
+TRANSFORM = 'transform'
 
 PROTECT_VOLATILE_STATUSES = [PROTECT, BANEFUL_BUNKER, SPIKY_SHIELD]
 

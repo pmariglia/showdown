@@ -149,6 +149,8 @@ class Battle(ABC):
 
             if join_moves_together or set_makes_sense(c[0][0], c[0][1], c[1], c[2], all_moves):
                 new_battle.opponent.active.set_spread(c[0][0], c[0][1])
+                if new_battle.opponent.active.name == 'ditto':
+                    new_battle.opponent.active.stats = battle_copy.opponent.active.stats
                 new_battle.opponent.active.item = c[1]
                 new_battle.opponent.active.ability = c[2]
                 for m in expected_moves:

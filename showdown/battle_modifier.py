@@ -10,6 +10,7 @@ from showdown.battle import LastUsedMove
 from showdown.battle import DamageDealt
 from showdown.helpers import normalize_name
 from showdown.helpers import get_pokemon_info_from_condition
+from showdown.helpers import calculate_stats
 from showdown.engine.find_state_instructions import get_effective_speed
 from showdown.engine.damage_calculator import calculate_damage
 
@@ -55,6 +56,14 @@ def switch_or_drag(battle, split_msg):
         side.side_conditions[constants.TOXIC_COUNT] = 0
 
     if side.active is not None:
+        # if the target was transformed, reset its transformed attributes
+        if constants.TRANSFORM in side.active.volatile_statuses:
+            logger.debug("{} was transformed. Resetting its transformed attributes")
+            side.active.stats = calculate_stats(side.active.base_stats, side.active.level)
+            side.active.ability = None
+            side.active.moves = []
+            side.active.types = pokedex[side.active.name][constants.TYPES]
+
         # reset the boost of the pokemon being replaced
         side.active.boosts.clear()
 
@@ -509,6 +518,22 @@ def mega(battle, split_msg):
     logger.debug("Mega-Pokemon: {}".format(side.active.name))
 
 
+def transform(battle, split_msg):
+    if is_opponent(battle, split_msg):
+        battle_copy = deepcopy(battle)
+        battle_copy.user.from_json(battle_copy.request_json)
+
+        logger.debug("Opponent {} transformed into {}".format(battle.opponent.active.name, battle.user.active.name))
+        battle.opponent.active.stats = battle_copy.user.active.stats
+        battle.opponent.active.ability = battle_copy.user.active.ability
+        battle.opponent.active.moves = battle_copy.user.active.moves
+        battle.opponent.active.types = battle_copy.user.active.types
+        battle.opponent.active.boosts = battle_copy.user.active.boosts
+
+        if constants.TRANSFORM not in battle.opponent.active.volatile_statuses:
+            battle.opponent.active.volatile_statuses.append(constants.TRANSFORM)
+
+
 def check_choicescarf(battle, msg_lines):
     def get_move_information(m):
         try:
@@ -681,6 +706,7 @@ def update_battle(battle, msg):
             'detailschange': form_change,
             'replace': form_change,
             '-formechange': form_change,
+            '-transform': transform,
             '-mega': mega,
             '-zpower': zpower,
             '-clearnegativeboost': clearnegativeboost,
