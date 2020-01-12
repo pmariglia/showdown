@@ -1,3 +1,4 @@
+import constants
 from showdown.battle import Battle
 
 from ..helpers import format_decision
@@ -26,7 +27,13 @@ def pick_safest_move_from_battles(battles):
         mutator = StateMutator(state)
         user_options, opponent_options = b.get_all_options()
         logger.debug("Attempting to find best move from: {}".format(mutator.state))
-        scores = get_payoff_matrix(mutator, user_options, opponent_options, prune=True)
+
+        # if the opponent is waiting for us to make a switch there should be time to look 3 turns ahead
+        if opponent_options == [constants.DO_NOTHING_MOVE]:
+            scores = get_payoff_matrix(mutator, user_options, opponent_options, depth=3, prune=True)
+        else:
+            scores = get_payoff_matrix(mutator, user_options, opponent_options, depth=2, prune=True)
+
         prefixed_scores = prefix_opponent_move(scores, str(i))
         all_scores = {**all_scores, **prefixed_scores}
 
