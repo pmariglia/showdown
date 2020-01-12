@@ -129,22 +129,23 @@ def heal_or_damage(battle, split_msg):
         logger.debug("Setting {}'s item to: {}".format(other_side.active.name, item))
         other_side.active.item = item
 
-    if len(split_msg) == 6 and split_msg[4].startswith('[from] ability:') and other_side.name in split_msg[5]:
+    # set the ability for the other side (the side not taking damage, '-damage' only)
+    if len(split_msg) == 6 and split_msg[4].startswith('[from] ability:') and other_side.name in split_msg[5] and split_msg[1] == '-damage':
         ability = normalize_name(split_msg[4].split('ability:')[-1])
         logger.debug("Setting {}'s ability to: {}".format(other_side.active.name, ability))
         other_side.active.ability = ability
+
+    # set the ability of the side (the side being healed, '-heal' only)
+    if len(split_msg) == 6 and constants.ABILITY in split_msg[4] and other_side.name in split_msg[5] and split_msg[1] == '-heal':
+        ability = normalize_name(split_msg[4].split(constants.ABILITY)[-1].strip(": "))
+        logger.debug("Setting {}'s ability to: {}".format(pkmn.name, ability))
+        pkmn.ability = ability
 
     # give that pokemon an item if this string specifies one
     if len(split_msg) == 5 and constants.ITEM in split_msg[4] and pkmn.item is not None:
         item = normalize_name(split_msg[4].split(constants.ITEM)[-1].strip(": "))
         logger.debug("Setting {}'s item to: {}".format(pkmn.name, item))
         pkmn.item = item
-
-    # set the ability if the information is shown
-    if len(split_msg) >= 5 and constants.ABILITY in split_msg[4]:
-        ability = normalize_name(split_msg[4].split(constants.ABILITY)[-1].strip(": "))
-        logger.debug("Setting {}'s ability to: {}".format(pkmn.name, ability))
-        pkmn.ability = ability
 
 
 def faint(battle, split_msg):

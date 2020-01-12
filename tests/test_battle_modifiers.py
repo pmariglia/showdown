@@ -501,7 +501,7 @@ class TestHealOrDamage(unittest.TestCase):
         self.battle.user.active = self.user_active
 
     def test_sets_ability_when_the_information_is_present(self):
-        split_msg = ['', '-heal', 'p2a: Quagsire', '68/100', '[from] ability: Water Absorb', '[of] p2a: Genesect']
+        split_msg = ['', '-heal', 'p2a: Quagsire', '68/100', '[from] ability: Water Absorb', '[of] p1a: Genesect']
         heal_or_damage(self.battle, split_msg)
         self.assertEqual('waterabsorb', self.battle.opponent.active.ability)
 
@@ -582,6 +582,17 @@ class TestHealOrDamage(unittest.TestCase):
         split_msg = ['', '-damage', 'p2a: Caterpie', '50/100 tox', '[from] item: Life Orb']
         heal_or_damage(self.battle, split_msg)
         self.assertEqual(0, self.battle.opponent.side_conditions[constants.TOXIC_COUNT])
+
+    def test_healing_from_ability_sets_ability_to_opponent(self):
+        split_msg = ['', '-heal', 'p2a: Caterpie', '50/100', '[from] ability: Volt Absorb', '[of] p1a: Caterpie']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual('voltabsorb', self.battle.opponent.active.ability)
+
+    def test_healing_from_ability_does_not_set_bots_ability(self):
+        self.battle.user.active.ability = None
+        split_msg = ['', '-heal', 'p2a: Caterpie', '50/100', '[from] ability: Volt Absorb', '[of] p1a: Caterpie']
+        heal_or_damage(self.battle, split_msg)
+        self.assertIsNone(self.battle.user.active.ability)
 
 
 class TestMove(unittest.TestCase):
