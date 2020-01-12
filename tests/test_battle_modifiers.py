@@ -449,28 +449,6 @@ class TestSwitchOrDrag(unittest.TestCase):
 
         self.assertEqual(expected_stats, ditto.stats)
 
-    def test_ditto_switching_resets_basestats(self):
-        ditto = Pokemon('ditto', 100)
-        ditto.base_stats = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 2,
-            constants.SPECIAL_ATTACK: 3,
-            constants.SPECIAL_DEFENSE: 4,
-            constants.SPEED: 5,
-        }
-        ditto.volatile_statuses.append(constants.TRANSFORM)
-        self.battle.opponent.active = ditto
-
-        split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
-        switch_or_drag(self.battle, split_msg)
-
-        if self.battle.opponent.reserve[0] != ditto:
-            self.fail("Ditto was not moved to reserves")
-
-        expected_stats = calculate_stats(ditto.base_stats, ditto.level)
-
-        self.assertEqual(expected_stats, ditto.stats)
-
     def test_ditto_switching_resets_boosts(self):
         ditto = Pokemon('ditto', 100)
         ditto.boosts = {
