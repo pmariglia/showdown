@@ -1429,6 +1429,29 @@ class TestTransform(unittest.TestCase):
                 "item": "choicescarf",
                 "pokeball": "pokeball",
                 "ability": self.user_active_ability
+              },
+              {
+                "ident": "p1: Charmander",
+                "details": "Charmander",
+                "condition": "299/299",
+                "active": False,
+                "stats": {
+                  "atk": 1,
+                  "def": 2,
+                  "spa": 3,
+                  "spd": 4,
+                  "spe": 5
+                },
+                "moves": [
+                    "flamethrower",
+                    "firespin",
+                    "scratch",
+                    "growl"
+                ],
+                "baseAbility": "blaze",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "blaze"
               }
             ]
           }
@@ -1436,8 +1459,55 @@ class TestTransform(unittest.TestCase):
 
         self.battle.request_json = self.request_json
 
+    def test_transform_into_switching_pokemon_properly_copies_the_pokemon_that_was_in_before_the_switch(self):
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Charmander', '[from] ability: Imposter']
+
+        expected_stats = {
+            constants.ATTACK: 1,
+            constants.DEFENSE: 2,
+            constants.SPECIAL_ATTACK: 3,
+            constants.SPECIAL_DEFENSE: 4,
+            constants.SPEED: 5
+        }
+
+        expected_boosts = {
+            constants.ATTACK: 1,
+            constants.DEFENSE: 2,
+            constants.SPECIAL_ATTACK: 3,
+            constants.SPECIAL_DEFENSE: 4,
+            constants.SPEED: 5,
+        }
+
+        expected_ability = 'blaze'
+        expected_moves = [
+            Move('flamethrower'),
+            Move('firespin'),
+            Move('scratch'),
+            Move('growl')
+        ]
+        expected_types = [
+            'fire'
+        ]
+
+        # the charmander is active when the switch occurs
+        # the charmander pokemon from the request json should be used for stats
+        self.battle.user.active = Pokemon('Charmander', 100)
+        self.battle.user.active.moves = expected_moves
+        self.battle.user.active.boosts = expected_boosts
+        self.battle.user.reserve = [
+            Pokemon('Weedle', 100)
+        ]
+
+        transform(self.battle, split_msg)
+
+        self.assertEqual(expected_stats, self.battle.opponent.active.stats)
+        self.assertEqual(expected_ability, self.battle.opponent.active.ability)
+        self.assertEqual(expected_moves, self.battle.opponent.active.moves)
+        self.assertEqual(expected_types, self.battle.opponent.active.types)
+        self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
+
     def test_transform_sets_stats_to_opposing_pokemons_stats(self):
-        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Celesteela', '[from] ability: Imposter']
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
 
         if self.battle.user.active.stats == self.battle.opponent.active.stats:
             self.fail("Stats were equal before transform")
@@ -1457,7 +1527,7 @@ class TestTransform(unittest.TestCase):
     def test_transform_sets_ability_to_opposing_pokemons_ability(self):
         self.battle.user.active.ability = self.user_active_ability
         self.battle.opponent.active.ability = None
-        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Celesteela', '[from] ability: Imposter']
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
 
         if self.battle.user.active.ability == self.battle.opponent.active.ability:
             self.fail("Abilities were equal before transform")
@@ -1473,7 +1543,7 @@ class TestTransform(unittest.TestCase):
             Move('flashcannon'),
             Move('fireblast'),
         ]
-        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Celesteela', '[from] ability: Imposter']
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
 
         if self.battle.user.active.moves == self.battle.opponent.active.moves:
             self.fail("Moves were equal before transform")
@@ -1485,7 +1555,7 @@ class TestTransform(unittest.TestCase):
     def test_transform_sets_types_to_opposing_pokemons_types(self):
         self.battle.user.active.moves = ['flying', 'dragon']
         self.battle.opponent.active.moves = ['normal']
-        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Celesteela', '[from] ability: Imposter']
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
 
         transform(self.battle, split_msg)
 
@@ -1501,7 +1571,7 @@ class TestTransform(unittest.TestCase):
         })
         self.battle.opponent.active.boosts = {}
 
-        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Celesteela', '[from] ability: Imposter']
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
 
         transform(self.battle, split_msg)
 
@@ -1509,7 +1579,7 @@ class TestTransform(unittest.TestCase):
 
     def test_transform_sets_transform_volatile_status(self):
         self.battle.user.active.volatile_statuses = []
-        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Celesteela', '[from] ability: Imposter']
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
 
         transform(self.battle, split_msg)
 

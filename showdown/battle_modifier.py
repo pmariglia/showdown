@@ -521,15 +521,23 @@ def mega(battle, split_msg):
 
 def transform(battle, split_msg):
     if is_opponent(battle, split_msg):
+        transformed_into_name = normalize_name(split_msg[3].split(':')[1])
+
         battle_copy = deepcopy(battle)
+        battle.opponent.active.boosts = deepcopy(battle.user.active.boosts)
+
         battle_copy.user.from_json(battle_copy.request_json)
 
+        if battle_copy.user.active.name == transformed_into_name or battle_copy.user.active.name.startswith(transformed_into_name):
+            transformed_into = battle_copy.user.active
+        else:
+            transformed_into = find_pokemon_in_reserves(transformed_into_name, battle_copy.user.reserve)
+
         logger.debug("Opponent {} transformed into {}".format(battle.opponent.active.name, battle.user.active.name))
-        battle.opponent.active.stats = battle_copy.user.active.stats
-        battle.opponent.active.ability = battle_copy.user.active.ability
-        battle.opponent.active.moves = battle_copy.user.active.moves
-        battle.opponent.active.types = battle_copy.user.active.types
-        battle.opponent.active.boosts = battle_copy.user.active.boosts
+        battle.opponent.active.stats = deepcopy(transformed_into.stats)
+        battle.opponent.active.ability = deepcopy(transformed_into.ability)
+        battle.opponent.active.moves = deepcopy(transformed_into.moves)
+        battle.opponent.active.types = deepcopy(transformed_into.types)
 
         if constants.TRANSFORM not in battle.opponent.active.volatile_statuses:
             battle.opponent.active.volatile_statuses.append(constants.TRANSFORM)
