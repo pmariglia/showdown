@@ -58,7 +58,7 @@ def switch_or_drag(battle, split_msg):
     if side.active is not None:
         # if the target was transformed, reset its transformed attributes
         if constants.TRANSFORM in side.active.volatile_statuses:
-            logger.debug("{} was transformed. Resetting its transformed attributes")
+            logger.debug("{} was transformed. Resetting its transformed attributes".format(side.active.name))
             side.active.stats = calculate_stats(side.active.base_stats, side.active.level)
             side.active.ability = None
             side.active.moves = []
