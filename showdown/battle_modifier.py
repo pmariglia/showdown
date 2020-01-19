@@ -17,7 +17,7 @@ from showdown.engine.damage_calculator import calculate_damage
 
 def find_pokemon_in_reserves(pkmn_name, reserves):
     for reserve_pkmn in reserves:
-        if pkmn_name.startswith(reserve_pkmn.name) or reserve_pkmn.base_name == pkmn_name:
+        if pkmn_name.startswith(reserve_pkmn.name) or reserve_pkmn.name.startswith(pkmn_name) or reserve_pkmn.base_name == pkmn_name:
             return reserve_pkmn
     return None
 
