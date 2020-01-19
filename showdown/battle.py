@@ -7,6 +7,7 @@ from abc import ABC
 from abc import abstractmethod
 
 import constants
+import config
 from config import logger
 
 import data
@@ -90,6 +91,9 @@ class Battle(ABC):
         self.started = True
         self.rqid = user_json[constants.RQID]
 
+    def mega_evolve_possible(self):
+        return any(g in self.generation for g in constants.MEGA_EVOLVE_GENERATIONS) or 'nationaldex' in config.pokemon_mode
+
     def prepare_battles(self, guess_mega_evo_opponent=True, join_moves_together=False):
         """Returns a list of battles based on this one
         The battles have the opponent's reserve pokemon's unknowns filled in
@@ -103,7 +107,7 @@ class Battle(ABC):
             # this only happens on the turn the pkmn mega-evolves - the next turn will be fine
             battle_copy.user.active.forme_change(get_mega_pkmn_name(battle_copy.user.active.name))
 
-        if guess_mega_evo_opponent and not battle_copy.opponent.mega_revealed() and any(g in self.generation for g in constants.MEGA_EVOLVE_GENERATIONS):
+        if guess_mega_evo_opponent and not battle_copy.opponent.mega_revealed() and self.mega_evolve_possible():
             check_in_sets = battle_copy.battle_type == constants.STANDARD_BATTLE
             battle_copy.opponent.active.try_convert_to_mega(check_in_sets=check_in_sets)
 
