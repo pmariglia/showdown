@@ -523,22 +523,34 @@ def get_instructions_from_side_conditions(mutator, attacker_string, side_string,
     side = get_side_from_state(mutator.state, side_string)
     mutator.apply(instruction.instructions)
 
-    if condition == constants.SPIKES:
-        max_layers = 3
-    elif condition == constants.TOXIC_SPIKES:
-        max_layers = 2
-    else:
-        max_layers = 1
-
-    if side.side_conditions[condition] < max_layers:
-        instruction_additions.append(
-            (
-                constants.MUTATOR_SIDE_START,
-                side_string,
-                condition,
-                1
+    if condition == constants.WISH:
+        if side.wish[0] == 0:
+            instruction_additions.append(
+                (
+                    constants.MUTATOR_WISH_START,
+                    side_string,
+                    side.active.maxhp / 2,
+                    side.wish[1]
+                )
             )
-        )
+
+    else:
+        if condition == constants.SPIKES:
+            max_layers = 3
+        elif condition == constants.TOXIC_SPIKES:
+            max_layers = 2
+        else:
+            max_layers = 1
+
+        if side.side_conditions[condition] < max_layers:
+            instruction_additions.append(
+                (
+                    constants.MUTATOR_SIDE_START,
+                    side_string,
+                    condition,
+                    1
+                )
+            )
 
     mutator.reverse(instruction.instructions)
     for i in instruction_additions:
@@ -863,6 +875,25 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
             )
             mutator.apply_one(ice_damage_instruction)
             instruction.add_instruction(ice_damage_instruction)
+
+    # wish
+    for attacker in sides:
+        side = get_side_from_state(mutator.state, attacker)
+        if side.wish[0] == 1 and 0 < side.active.hp < side.active.maxhp:
+            wish_heal_instruction = (
+                constants.MUTATOR_HEAL,
+                attacker,
+                min(side.wish[1], side.active.maxhp - side.active.hp)
+            )
+            mutator.apply_one(wish_heal_instruction)
+            instruction.add_instruction(wish_heal_instruction)
+        if side.wish[0] > 0:
+            wish_decrement_instruction = (
+                constants.MUTATOR_WISH_DECREMENT,
+                attacker
+            )
+            mutator.apply_one(wish_decrement_instruction)
+            instruction.add_instruction(wish_decrement_instruction)
 
     # item and ability - they can add one instruction each
     for attacker in sides:

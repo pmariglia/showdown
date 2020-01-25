@@ -252,8 +252,8 @@ class TestCalculateDamage(unittest.TestCase):
         self.venusaur = Pokemon.from_state_pokemon_dict(StatePokemon("venusaur", 100).to_dict())
 
         self.state = State(
-            Side(self.blastoise, dict(), defaultdict(lambda: 0)),
-            Side(self.venusaur, dict(), defaultdict(lambda: 0)),
+            Side(self.blastoise, dict(), (0, 0), defaultdict(lambda: 0)),
+            Side(self.venusaur, dict(), (0, 0), defaultdict(lambda: 0)),
             None,
             None,
             None

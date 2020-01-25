@@ -20,6 +20,7 @@ class TestGetAllOptions(unittest.TestCase):
                                 "dragonite": Pokemon.from_state_pokemon_dict(StatePokemon("dragonite", 81).to_dict()),
                                 "hitmonlee": Pokemon.from_state_pokemon_dict(StatePokemon("hitmonlee", 81).to_dict()),
                             },
+                            (0, 0),
                             defaultdict(lambda: 0)
                         ),
                         Side(
@@ -31,6 +32,7 @@ class TestGetAllOptions(unittest.TestCase):
                                 "toxapex": Pokemon.from_state_pokemon_dict(StatePokemon("toxapex", 73).to_dict()),
                                 "bronzong": Pokemon.from_state_pokemon_dict(StatePokemon("bronzong", 73).to_dict()),
                             },
+                            (0, 0),
                             defaultdict(lambda: 0)
                         ),
                         None,

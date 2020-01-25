@@ -32,6 +32,7 @@ from showdown.battle_modifier import get_damage_dealt
 from showdown.battle_modifier import singleturn
 from showdown.battle_modifier import transform
 from showdown.battle_modifier import update_battle
+from showdown.battle_modifier import upkeep
 
 
 # so we can instantiate a Battle object for testing
@@ -604,6 +605,8 @@ class TestMove(unittest.TestCase):
         self.opponent_active = Pokemon('caterpie', 100)
         self.battle.opponent.active = self.opponent_active
 
+        self.battle.user.active = Pokemon('clefable', 100)
+
     def test_adds_move_to_opponent(self):
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
 
@@ -731,6 +734,25 @@ class TestMove(unittest.TestCase):
         move(self.battle, split_msg)
 
         self.assertTrue(self.battle.opponent.active.can_have_life_orb)
+
+    def test_wish_sets_battler_wish(self):
+        split_msg = ['', 'move', 'p1a: Clefable', 'Wish', 'p1a: Clefable']
+
+        move(self.battle, split_msg)
+
+        expected_wish = (2, self.battle.user.active.max_hp/2)
+
+        self.assertEqual(expected_wish, self.battle.user.wish)
+
+    def test_failed_wish_does_not_set_wish(self):
+        self.battle.user.wish = (1, 100)
+        split_msg = ['', 'move', 'p1a: Clefable', 'Wish', '[still]']
+
+        move(self.battle, split_msg)
+
+        expected_wish = (1, 100)
+
+        self.assertEqual(expected_wish, self.battle.user.wish)
 
 
 class TestWeather(unittest.TestCase):
@@ -1584,6 +1606,54 @@ class TestTransform(unittest.TestCase):
         transform(self.battle, split_msg)
 
         self.assertIn(constants.TRANSFORM, self.battle.opponent.active.volatile_statuses)
+
+
+class TestUpkeep(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+
+        self.user_active = Pokemon('weedle', 100)
+        self.battle.user.active = self.user_active
+
+    def test_reduces_protect_for_bot(self):
+        self.battle.user.side_conditions[constants.PROTECT] = 1
+
+        upkeep(self.battle, '')
+
+        self.assertEqual(self.battle.user.side_conditions[constants.PROTECT], 0)
+
+    def test_does_not_reduce_protect_when_it_is_0(self):
+        self.battle.user.side_conditions[constants.PROTECT] = 0
+
+        upkeep(self.battle, '')
+
+        self.assertEqual(self.battle.user.side_conditions[constants.PROTECT], 0)
+
+    def test_reduces_wish_if_it_is_larger_than_0_for_the_opponent(self):
+        self.battle.opponent.wish = (2, 100)
+
+        upkeep(self.battle, '')
+
+        self.assertEqual(self.battle.opponent.wish, (1, 100))
+
+    def test_reduces_wish_if_it_is_larger_than_0_for_the_bot(self):
+        self.battle.user.wish = (2, 100)
+
+        upkeep(self.battle, '')
+
+        self.assertEqual(self.battle.user.wish, (1, 100))
+
+    def test_does_not_reduce_wish_if_it_is_0(self):
+        self.battle.user.wish = (0, 100)
+
+        upkeep(self.battle, '')
+
+        self.assertEqual(self.battle.user.wish, (0, 100))
 
 
 class TestGuessChoiceScarf(unittest.TestCase):

@@ -212,6 +212,11 @@ def move(battle, split_msg):
         logger.debug("{} used a damaging move - not guessing lifeorb anymore".format(pkmn.name))
         pkmn.can_have_life_orb = False
 
+    # there is nothing special in the protocol for "wish" - it must be extracted here
+    if move_name == constants.WISH and 'still' not in split_msg[4]:
+        logger.debug("{} used wish - expecting {} health of recovery next turn".format(side.active.name, side.active.max_hp/2))
+        side.wish = (2, side.active.max_hp/2)
+
 
 def boost(battle, split_msg):
     if is_opponent(battle, split_msg):
@@ -507,6 +512,14 @@ def upkeep(battle, _):
     if battle.opponent.side_conditions[constants.PROTECT] > 0:
         battle.opponent.side_conditions[constants.PROTECT] -= 1
         logger.debug("Setting protect to {} for the opponent".format(battle.opponent.side_conditions[constants.PROTECT]))
+
+    if battle.user.wish[0] > 0:
+        battle.user.wish = (battle.user.wish[0] - 1, battle.user.wish[1])
+        logger.debug("Decrementing wish to {} for the bot".format(battle.user.wish[0]))
+
+    if battle.opponent.wish[0] > 0:
+        battle.opponent.wish = (battle.opponent.wish[0] - 1, battle.opponent.wish[1])
+        logger.debug("Decrementing wish to {} for the opponent".format(battle.opponent.wish[0]))
 
 
 def mega(battle, split_msg):

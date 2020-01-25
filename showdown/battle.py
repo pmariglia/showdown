@@ -180,8 +180,8 @@ class Battle(ABC):
         for mon in self.opponent.reserve:
             opponent_reserve[mon.name] = TransposePokemon.from_state_pokemon_dict(mon.to_dict())
 
-        user = Side(user_active, user_reserve, copy(self.user.side_conditions))
-        opponent = Side(opponent_active, opponent_reserve, copy(self.opponent.side_conditions))
+        user = Side(user_active, user_reserve, copy(self.user.wish), copy(self.user.side_conditions))
+        opponent = Side(opponent_active, opponent_reserve, copy(self.opponent.wish), copy(self.opponent.side_conditions))
 
         state = State(user, opponent, self.weather, self.field, self.trick_room)
         return state
@@ -225,6 +225,7 @@ class Battler:
 
         self.name = None
         self.trapped = False
+        self.wish = (0, 0)
 
         self.account_name = None
 
@@ -338,6 +339,7 @@ class Battler:
             constants.TRAPPED: self.trapped,
             constants.ACTIVE: self.active.to_dict(),
             constants.RESERVE: [p.to_dict() for p in self.reserve],
+            constants.WISH: copy(self.wish),
             constants.SIDE_CONDITIONS: copy(self.side_conditions)
         }
 

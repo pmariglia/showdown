@@ -312,6 +312,7 @@ class TestPokemonInit(unittest.TestCase):
                 ]
               }
             },
+            'wish': (0, 0),
             'side_conditions': {
               'toxic_count': 0,
               'tailwind': 0,
@@ -632,6 +633,7 @@ class TestPokemonInit(unittest.TestCase):
                 ]
               }
             },
+            'wish': (0, 0),
             'side_conditions': {
               'toxic_count': 0,
               'tailwind': 0,

@@ -22,6 +22,7 @@ class TestStatemutator(unittest.TestCase):
                     "bulbasaur": Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     "pidgey": Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
+                (0, 0),
                 defaultdict(lambda: 0)
             ),
             Side(
@@ -33,6 +34,7 @@ class TestStatemutator(unittest.TestCase):
                     "bulbasaur": Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     "pidgey": Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
+                (0, 0),
                 defaultdict(lambda: 0)
             ),
             None,
@@ -722,3 +724,79 @@ class TestStatemutator(unittest.TestCase):
 
         self.mutator.reverse(list_of_instructions)
         self.assertEqual('some_item', self.state.self.active.item)
+
+    def test_wish_starting(self):
+        self.state.self.wish = (0, 0)
+        instruction = (
+            constants.MUTATOR_WISH_START,
+            constants.SELF,
+            100,
+            0
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        self.assertEqual((2, 100), self.state.self.wish)
+
+    def test_wish_starting_and_reversing(self):
+        self.state.self.wish = (0, 0)
+        instruction = (
+            constants.MUTATOR_WISH_START,
+            constants.SELF,
+            100,
+            0
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        if self.state.self.wish != (2, 100):
+            self.fail("wish was not started")
+
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual((0, 0), self.state.self.wish)
+
+    def test_previous_wish_reverses_to_exactly_the_same(self):
+        self.state.self.wish = (0, 200)
+        instruction = (
+            constants.MUTATOR_WISH_START,
+            constants.SELF,
+            100,
+            200
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        if self.state.self.wish != (2, 100):
+            self.fail("wish was not started")
+
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual((0, 200), self.state.self.wish)
+
+    def test_decrement_wish(self):
+        self.state.self.wish = (2, 100)
+        instruction = (
+            constants.MUTATOR_WISH_DECREMENT,
+            constants.SELF,
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        self.assertEqual((1, 100), self.state.self.wish)
+
+    def test_decrement_wish_and_reverse_decrement_wish(self):
+        self.state.self.wish = (2, 100)
+        instruction = (
+            constants.MUTATOR_WISH_DECREMENT,
+            constants.SELF,
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        if self.state.self.wish != (1, 100):
+            self.fail("wish was not decremented")
+
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual((2, 100), self.state.self.wish)
