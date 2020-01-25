@@ -1072,7 +1072,7 @@ class TestGetStateInstructions(unittest.TestCase):
                     (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, constants.TAUNT),
                     (constants.MUTATOR_DAMAGE, constants.SELF, 60),
                     (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.TAUNT),
-                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal')
                 ],
                 False
             )
@@ -1091,7 +1091,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 1.0,
                 [
                         (constants.MUTATOR_DAMAGE, constants.SELF, 60),
-                        (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
+                        (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal')
                 ],
                 False
             )
@@ -1155,7 +1155,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                         (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
                         (constants.MUTATOR_DAMAGE, constants.SELF, 60),
-                        (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
+                        (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal')
                 ],
                 False
             )
@@ -1176,7 +1176,7 @@ class TestGetStateInstructions(unittest.TestCase):
                     ('damage', 'opponent', 72),
                     ('apply_status', 'opponent', 'par'),
                     ('damage', 'self', 60),
-                    ('switch', 'opponent', 'aromatisse', 'slurpuff')
+                    ('switch', 'opponent', 'aromatisse', 'yveltal')
                 ],
                 False
             ),
@@ -1193,7 +1193,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     ('damage', 'opponent', 72),
                     ('damage', 'self', 60),
-                    ('switch', 'opponent', 'aromatisse', 'slurpuff')
+                    ('switch', 'opponent', 'aromatisse', 'yveltal')
                 ],
                 False
             ),
@@ -1297,8 +1297,8 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, -1),
                     (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, -1),
-                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 15)
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong'),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 6)
                 ],
                 False
             )
@@ -4520,7 +4520,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, -1),
                     (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, -1),
-                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal')
                 ],
                 False
             )
@@ -4936,7 +4936,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 3),
                     (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, -1),
-                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'hitmonlee')
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'xatu')
                 ],
                 False
             )
