@@ -8,16 +8,6 @@ IVs: 0 Atk
 - Thunderbolt
 - Nasty Plot
 
-Toxtricity @ Choice Specs
-Ability: Punk Rock
-EVs: 252 SpA / 4 SpD / 252 Spe
-Modest Nature
-IVs: 0 Atk
-- Overdrive
-- Boomburst
-- Volt Switch
-- Sludge Wave
-
 Corviknight @ Leftovers
 Ability: Pressure
 EVs: 252 HP / 76 Def / 180 SpD
@@ -27,15 +17,14 @@ Impish Nature
 - Defog
 - Brave Bird
 
-Clefable @ Life Orb
+Clefable @ Leftovers
 Ability: Magic Guard
-EVs: 196 HP / 252 SpA / 60 Spe
-Modest Nature
-IVs: 0 Atk
+EVs: 252 HP / 160 Def / 96 SpD
+Calm Nature
+- Thunder Wave
 - Moonblast
-- Flamethrower
-- Thunderbolt
-- Moonlight
+- Wish
+- Protect
 
 Seismitoad @ Leftovers
 Ability: Water Absorb
@@ -54,3 +43,13 @@ Timid Nature
 - Dark Pulse
 - Flash Cannon
 - Fire Blast
+
+Gyarados @ Leftovers
+Ability: Moxie
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Dragon Dance
+- Earthquake
+- Waterfall
+- Power Whip
+
