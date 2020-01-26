@@ -85,7 +85,8 @@ def switch_or_drag(battle, split_msg):
 
     side.last_used_move = LastUsedMove(
         pokemon_name=None,
-        move='switch {}'.format(pkmn.name)
+        move='switch {}'.format(pkmn.name),
+        turn=battle.turn
     )
 
     # pkmn != active is a special edge-case for Zoroark
@@ -197,13 +198,15 @@ def move(battle, split_msg):
         logger.debug("Setting {}'s last used move: {}".format(pkmn.name, move_name))
         side.last_used_move = LastUsedMove(
             pokemon_name=pkmn.name,
-            move=move_name
+            move=move_name,
+            turn=battle.turn
         )
     except KeyError:
         category = None
         side.last_used_move = LastUsedMove(
             pokemon_name=pkmn.name,
-            move=constants.DO_NOTHING_MOVE
+            move=constants.DO_NOTHING_MOVE,
+            turn=battle.turn
         )
 
     # if this pokemon used a damaging move, eliminate the possibility of it having a lifeorb
@@ -556,6 +559,10 @@ def transform(battle, split_msg):
             battle.opponent.active.volatile_statuses.append(constants.TRANSFORM)
 
 
+def turn(battle, split_msg):
+    battle.turn = int(split_msg[2])
+
+
 def check_choicescarf(battle, msg_lines):
     def get_move_information(m):
         try:
@@ -733,7 +740,8 @@ def update_battle(battle, msg):
             '-zpower': zpower,
             '-clearnegativeboost': clearnegativeboost,
             '-singleturn': singleturn,
-            'upkeep': upkeep
+            'upkeep': upkeep,
+            'turn': turn
         }
 
         function_to_call = battle_modifiers_lookup.get(action)
@@ -746,10 +754,10 @@ def update_battle(battle, msg):
             if damage_dealt:
                 check_choice_band_or_specs(battle, damage_dealt)
 
-        if action in ['turn', 'upkeep']:
+        if action == 'turn':
             return True
 
-    if action == 'inactive':
+    if action in ['inactive', 'updatesearch']:
         return False
 
     if action != "request":

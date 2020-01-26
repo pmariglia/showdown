@@ -397,7 +397,7 @@ class TestSwitchOrDrag(unittest.TestCase):
         split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
         switch_or_drag(self.battle, split_msg)
 
-        expected_last_move = LastUsedMove(None, 'switch weedle')
+        expected_last_move = LastUsedMove(None, 'switch weedle', 0)
 
         self.assertEqual(expected_last_move, self.battle.opponent.last_used_move)
 
@@ -651,14 +651,14 @@ class TestMove(unittest.TestCase):
 
         move(self.battle, split_msg)
 
-        expected_last_used_move = LastUsedMove(pokemon_name='caterpie', move='stringshot')
+        expected_last_used_move = LastUsedMove(pokemon_name='caterpie', move='stringshot', turn=0)
 
         self.assertEqual(expected_last_used_move, self.battle.opponent.last_used_move)
 
     def test_sets_can_have_choice_item_to_false_if_two_different_moves_are_used_when_the_pkmn_has_an_unknown_item(self):
         self.battle.opponent.active.can_have_choice_item = True
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
-        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle')
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
 
         move(self.battle, split_msg)
 
@@ -668,7 +668,7 @@ class TestMove(unittest.TestCase):
         self.battle.opponent.active.can_have_choice_item = True
         self.battle.opponent.active.item = 'choiceband'
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
-        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle')
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
 
         move(self.battle, split_msg)
 
@@ -678,7 +678,7 @@ class TestMove(unittest.TestCase):
         self.battle.opponent.active.can_have_choice_item = True
         self.battle.opponent.active.item = 'leftovers'
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
-        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle')
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
 
         move(self.battle, split_msg)
 
@@ -687,7 +687,7 @@ class TestMove(unittest.TestCase):
     def test_does_not_set_can_have_choice_item_to_false_if_the_same_move_is_used_when_the_pkmn_has_an_unknown_item(self):
         self.battle.opponent.active.can_have_choice_item = True
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
-        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'stringshot')
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'stringshot', 0)
 
         move(self.battle, split_msg)
 
@@ -698,7 +698,7 @@ class TestMove(unittest.TestCase):
         self.battle.opponent.active.can_have_choice_item = True
         self.battle.opponent.active.item = 'leftovers'
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
-        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle')
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
 
         move(self.battle, split_msg)
 
@@ -2260,7 +2260,7 @@ class TestCheckChoiceItem(unittest.TestCase):
 
         self.battle.username = self.username
 
-        self.battle.user.last_used_move = LastUsedMove('Caterpie', 'tackle')
+        self.battle.user.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
 
         self.battle.request_json = {
             constants.ACTIVE: [{constants.MOVES: []}],
@@ -2421,7 +2421,7 @@ class TestCheckChoiceItem(unittest.TestCase):
            '|move|p2a: Caterpie|Tackle|\n'
            '|-damage|p1a: Caterpie|186/252\n'
            '|upkeep\n'
-           '|turn|'
+           '|turn|4'
         )
         update_battle(self.battle, msg)
 
@@ -2442,7 +2442,7 @@ class TestCheckChoiceItem(unittest.TestCase):
            '|move|p2a: Caterpie|Tackle|\n'
            '|-damage|p1a: Caterpie|186/252\n'
            '|upkeep\n'
-           '|turn|'
+           '|turn|4'
         )
         update_battle(self.battle, msg)
 
@@ -2470,7 +2470,7 @@ class TestCheckChoiceItem(unittest.TestCase):
            '|-damage|p1a: Metagross|183/301\n'
            '|\n'
            '|upkeep\n'
-           '|turn|'
+           '|turn|4'
         )
 
         update_battle(self.battle, msg)
@@ -2494,7 +2494,7 @@ class TestCheckChoiceItem(unittest.TestCase):
            '|-damage|p1a: Machamp|234/321\n'  # max damage (321 - 87 = 234)
            '|\n'
            '|upkeep\n'
-           '|turn|'
+           '|turn|4'
         )
 
         update_battle(self.battle, msg)
@@ -2503,7 +2503,7 @@ class TestCheckChoiceItem(unittest.TestCase):
 
     def test_does_not_guess_choiceband_when_pursuit_does_double_damage(self):
         # knockoff is expected to do double damage because of the bot switching
-        self.battle.user.last_used_move = LastUsedMove('machamp', 'switch caterpie')
+        self.battle.user.last_used_move = LastUsedMove('machamp', 'switch caterpie', 0)
 
         self.battle.user.active = Pokemon('Machamp', 100)
         self.battle.user.active.set_spread('adamant', '0,252,0,0,4,252')
@@ -2518,7 +2518,7 @@ class TestCheckChoiceItem(unittest.TestCase):
            '|-damage|p1a: Machamp|221/321\n'  # max damage on switch-out (321 - 100 = 221)
            '|\n'
            '|upkeep\n'
-           '|turn|'
+           '|turn|4'
         )
 
         update_battle(self.battle, msg)
@@ -2536,7 +2536,7 @@ class TestCheckChoiceItem(unittest.TestCase):
             '|turn|21'
         )
 
-        self.battle.user.last_used_move = LastUsedMove('reuniclus', 'recover')
+        self.battle.user.last_used_move = LastUsedMove('reuniclus', 'recover', 0)
 
         self.battle.user.active = Pokemon('Reuniclus', 83)
         self.battle.user.active.set_spread('adamant', '0,252,0,0,4,252')
@@ -2560,7 +2560,7 @@ class TestCheckChoiceItem(unittest.TestCase):
             '|turn|21'
         )
 
-        self.battle.user.last_used_move = LastUsedMove('reuniclus', 'recover')
+        self.battle.user.last_used_move = LastUsedMove('reuniclus', 'recover', 0)
 
         self.battle.user.active = Pokemon('Reuniclus', 83)
 
@@ -2581,7 +2581,7 @@ class TestCheckChoiceItem(unittest.TestCase):
 |move|p1a: Ferrothorn|Spikes|p2a: Archeops
 |-sidestart|p2: la-stabbystabs2205|Spikes"""
 
-        self.battle.user.last_used_move = LastUsedMove('ferrothorn', 'spikes')
+        self.battle.user.last_used_move = LastUsedMove('ferrothorn', 'spikes', 0)
 
         self.battle.user.active = Pokemon('Ferrothorn', 80)
 

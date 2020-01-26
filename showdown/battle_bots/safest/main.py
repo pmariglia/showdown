@@ -26,6 +26,8 @@ def pick_safest_move_from_battles(battles):
         mutator = StateMutator(state)
         user_options, opponent_options = b.get_all_options()
         logger.debug("Attempting to find best move from: {}".format(mutator.state))
+        logger.debug("Bot options: {}".format(user_options))
+        logger.debug("Opponent options: {}".format(opponent_options))
         scores = get_payoff_matrix(mutator, user_options, opponent_options, depth=2, prune=True)
 
         prefixed_scores = prefix_opponent_move(scores, str(i))

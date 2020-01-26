@@ -39,7 +39,7 @@ from showdown.helpers import normalize_name
 from showdown.helpers import calculate_stats
 
 
-LastUsedMove = namedtuple('LastUsedMove', ['pokemon_name', 'move'])
+LastUsedMove = namedtuple('LastUsedMove', ['pokemon_name', 'move', 'turn'])
 DamageDealt = namedtuple('DamageDealt', ['attacker', 'defender', 'move', 'percent_damage', 'crit'])
 
 
@@ -52,6 +52,8 @@ class Battle(ABC):
         self.weather = None
         self.field = None
         self.trick_room = False
+
+        self.turn = False
 
         self.started = False
         self.rqid = None
@@ -193,12 +195,32 @@ class Battle(ABC):
         # double faint or team preview
         if force_switch and wait:
             user_options = self.user.get_switches() or [constants.DO_NOTHING_MOVE]
-            opponent_options = self.opponent.get_switches() or [constants.DO_NOTHING_MOVE]
+
+            # edge-case for uturn or voltswitch killing
+            if (
+                    self.user.last_used_move.move in constants.SWITCH_OUT_MOVES and
+                    self.opponent.active.hp <= 0 and
+                    self.user.last_used_move.turn == self.turn
+
+            ):
+                opponent_options = [constants.DO_NOTHING_MOVE]
+            else:
+                opponent_options = self.opponent.get_switches() or [constants.DO_NOTHING_MOVE]
+
             return user_options, opponent_options
 
         if force_switch:
-            opponent_options = [constants.DO_NOTHING_MOVE]
             user_options = self.user.get_switches()
+
+            # uturn or voltswitch
+            if (
+                    self.user.last_used_move.move in constants.SWITCH_OUT_MOVES and
+                    self.opponent.last_used_move.turn != self.turn and
+                    self.user.last_used_move.turn == self.turn
+            ):
+                opponent_options = [m.name for m in self.opponent.active.moves if not m.disabled] or [constants.DO_NOTHING_MOVE]
+            else:
+                opponent_options = [constants.DO_NOTHING_MOVE]
         elif wait:
             opponent_options = self.opponent.get_switches()
             user_options = [constants.DO_NOTHING_MOVE]
@@ -229,7 +251,7 @@ class Battler:
 
         self.account_name = None
 
-        self.last_used_move = LastUsedMove('', '')
+        self.last_used_move = LastUsedMove('', '', 0)
 
     def mega_revealed(self):
         return self.active.is_mega or any(p.is_mega for p in self.reserve)

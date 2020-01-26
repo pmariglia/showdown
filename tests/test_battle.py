@@ -603,7 +603,8 @@ class TestBattlerActiveLockedIntoMove(unittest.TestCase):
         self.battler.active.item = 'choicescarf'
         self.battler.last_used_move = LastUsedMove(
             pokemon_name='pikachu',
-            move='volttackle'
+            move='volttackle',
+            turn=0
         )
 
         self.battler.lock_moves()
@@ -618,7 +619,8 @@ class TestBattlerActiveLockedIntoMove(unittest.TestCase):
         self.battler.active.item = 'choicescarf'
         self.battler.last_used_move = LastUsedMove(
             pokemon_name='caterpie',
-            move='switch'
+            move='switch',
+            turn=0
         )
         self.battler.lock_moves()
 
@@ -631,7 +633,8 @@ class TestBattlerActiveLockedIntoMove(unittest.TestCase):
         self.battler.active.item = ''
         self.battler.last_used_move = LastUsedMove(
             pokemon_name='pikachu',
-            move='tackle'
+            move='tackle',
+            turn=0
         )
         self.battler.lock_moves()
 
@@ -913,6 +916,278 @@ class TestBattle(unittest.TestCase):
             [
                 'splash',
                 'switch caterpie',
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_opponent_has_moves_when_uturn_moves_first(self):
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+            Move('uturn'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100)]
+
+        # using uturn on the previous turn would cause force_switch to be True
+        self.battle.force_switch = True
+
+        self.battle.turn = 5
+
+        self.battle.user.last_used_move = LastUsedMove(
+            move='uturn',
+            pokemon_name='pikachu',
+            turn=5,
+        )
+
+        # the opponent's last move would have been from the turn before (turn 4), meaning it hasn't moved yet
+        self.battle.opponent.last_used_move = LastUsedMove(
+            move='tackle',
+            pokemon_name='pikachu',
+            turn=4
+        )
+
+        expected_options = (
+            [
+                'switch caterpie',
+                'switch spinarak'
+            ],
+            [
+                'tackle',
+                'charm',
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_opponent_has_no_moves_when_uturn_moves_second(self):
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+            Move('uturn'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100)]
+
+        # using uturn on the previous turn would cause force_switch to be True
+        self.battle.force_switch = True
+
+        self.battle.turn = 5
+
+        self.battle.user.last_used_move = LastUsedMove(
+            move='uturn',
+            pokemon_name='pikachu',
+            turn=5,
+        )
+
+        self.battle.opponent.last_used_move = LastUsedMove(
+            move='tackle',
+            pokemon_name='pikachu',
+            turn=5
+        )
+
+        expected_options = (
+            [
+                'switch caterpie',
+                'switch spinarak'
+            ],
+            [
+                'splash'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_opponent_has_no_moves_when_uturn_happens_after_switch(self):
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+            Move('uturn'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100)]
+
+        # using uturn on the previous turn would cause force_switch to be True
+        self.battle.force_switch = True
+
+        self.battle.turn = 5
+
+        self.battle.user.last_used_move = LastUsedMove(
+            move='uturn',
+            pokemon_name='pikachu',
+            turn=5,
+        )
+
+        self.battle.opponent.last_used_move = LastUsedMove(
+            move='switch pikachu',
+            pokemon_name=None,
+            turn=5
+        )
+
+        expected_options = (
+            [
+                'switch caterpie',
+                'switch spinarak'
+            ],
+            [
+                'splash'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_opponent_has_no_moves_when_uturn_kills_and_opponent_has_not_moved_yet(self):
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+            Move('uturn'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100)]
+
+        # using uturn on the previous turn would cause force_switch to be True
+        self.battle.force_switch = True
+
+        # opponent has died from uturn
+        self.battle.opponent.active.hp = 0
+
+        self.battle.turn = 5
+
+        self.battle.user.last_used_move = LastUsedMove(
+            move='uturn',
+            pokemon_name='pikachu',
+            turn=5,
+        )
+
+        # the opponent's last move would have been from the turn before (turn 4), meaning it hasn't moved yet
+        self.battle.opponent.last_used_move = LastUsedMove(
+            move='tackle',
+            pokemon_name='pikachu',
+            turn=4
+        )
+
+        expected_options = (
+            [
+                'switch caterpie',
+                'switch spinarak'
+            ],
+            [
+                'splash'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_opponent_has_no_moves_when_uturn_kills_and_opponent_has_already_moved(self):
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+            Move('uturn'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100)]
+
+        # using uturn on the previous turn would cause force_switch to be True
+        self.battle.force_switch = True
+
+        # opponent has died from uturn
+        self.battle.opponent.active.hp = 0
+
+        self.battle.turn = 5
+
+        self.battle.user.last_used_move = LastUsedMove(
+            move='uturn',
+            pokemon_name='pikachu',
+            turn=5,
+        )
+
+        # the opponent's last move would have been from the turn before (turn 4), meaning it hasn't moved yet
+        self.battle.opponent.last_used_move = LastUsedMove(
+            move='tackle',
+            pokemon_name='pikachu',
+            turn=5
+        )
+
+        expected_options = (
+            [
+                'switch caterpie',
+                'switch spinarak'
+            ],
+            [
+                'splash'
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_opponent_has_no_moves_when_uturn_kills_and_opponent_has_already_switched_in(self):
+        self.battle.user.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+            Move('uturn'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('tackle'),
+            Move('charm'),
+        ]
+
+        self.battle.user.reserve = [Pokemon('caterpie', 100), Pokemon('spinarak', 100)]
+        self.battle.opponent.reserve = [Pokemon('caterpie', 100)]
+
+        # using uturn on the previous turn would cause force_switch to be True
+        self.battle.force_switch = True
+
+        # opponent has died from uturn
+        self.battle.opponent.active.hp = 0
+
+        self.battle.turn = 5
+
+        self.battle.user.last_used_move = LastUsedMove(
+            move='uturn',
+            pokemon_name='pikachu',
+            turn=5,
+        )
+
+        # the opponent's last move would have been from the turn before (turn 4), meaning it hasn't moved yet
+        self.battle.opponent.last_used_move = LastUsedMove(
+            move='switch pikachu',
+            pokemon_name=None,
+            turn=5
+        )
+
+        expected_options = (
+            [
+                'switch caterpie',
+                'switch spinarak'
+            ],
+            [
+                'splash'
             ]
         )
 
