@@ -2153,7 +2153,7 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    def test_noretreat_boosts_own_stats(self):
+    def test_noretreat_boosts_own_stats_and_starts_volatile_status(self):
         bot_move = "noretreat"
         opponent_move = "splash"
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
@@ -2161,12 +2161,28 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, 'noretreat'),
                     (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, 1),
                     (constants.MUTATOR_BOOST, constants.SELF, constants.DEFENSE, 1),
                     (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, 1),
                     (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_DEFENSE, 1),
                     (constants.MUTATOR_BOOST, constants.SELF, constants.SPEED, 1),
                 ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_noretreat_fails_when_user_has_volatile_status(self):
+        bot_move = "noretreat"
+        opponent_move = "splash"
+        self.state.self.active.volatile_status.add("noretreat")
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
                 False
             )
         ]

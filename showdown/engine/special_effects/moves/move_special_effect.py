@@ -365,7 +365,15 @@ def heavyslam(attacking_move, defending_move, attacking_pokemon, defending_pokem
     return attacking_move
 
 
+def noretreat(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if 'noretreat' in attacking_pokemon.volatile_status:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BOOSTS] = dict()
+    return attacking_move
+
+
 move_lookup = {
+    'noretreat': noretreat,
     'heatcrash': heavyslam,
     'heavyslam': heavyslam,
     'shoreup': shoreup,
