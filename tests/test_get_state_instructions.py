@@ -1326,7 +1326,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     ('damage', 'opponent', 72),
                     ('damage', 'self', 60),
-                    ('switch', 'opponent', 'aromatisse', 'yveltal')
+                    ('switch', 'opponent', 'aromatisse', 'slurpuff')
                 ],
                 False
             ),
@@ -3268,6 +3268,47 @@ class TestGetStateInstructions(unittest.TestCase):
                     (constants.MUTATOR_SIDE_START, constants.SELF, constants.STEALTH_ROCK, 1),
                     (constants.MUTATOR_DAMAGE, constants.SELF, 14),  # poison damage
                     (constants.MUTATOR_SIDE_START, constants.SELF, constants.TOXIC_COUNT, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_side_with_rocks_and_spikes(self):
+        bot_move = "switch starmie"
+        opponent_move = "splash"
+        self.state.self.side_conditions[constants.STEALTH_ROCK] = 1
+        self.state.self.side_conditions[constants.SPIKES] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.SELF, "raichu", "starmie"),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 28.75),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 28.75),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switch_into_side_with_rocks_and_spikes_when_one_kills(self):
+        bot_move = "switch starmie"
+        opponent_move = "splash"
+        self.state.self.side_conditions[constants.STEALTH_ROCK] = 1
+        self.state.self.side_conditions[constants.SPIKES] = 1
+        self.state.self.reserve['starmie'].hp = 15
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.SELF, "raichu", "starmie"),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 15),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 0),
                 ],
                 False
             )
