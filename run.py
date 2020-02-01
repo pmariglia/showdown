@@ -1,5 +1,6 @@
 import asyncio
 import json
+import time
 from copy import deepcopy
 
 from environs import Env
@@ -28,14 +29,16 @@ def parse_configs():
     config.gambit_exe_path = env("GAMBIT_PATH", config.gambit_exe_path)
     config.search_depth = int(env("MAX_SEARCH_DEPTH", config.search_depth))
     config.greeting_message = env("GREETING_MESSAGE", config.greeting_message)
-    config.battle_ending_message = env("BATTLE_OVER_MESSAGE", config.battle_ending_message)
+    config.battle_ending_message_win = env("BATTLE_OVER_MESSAGE", config.battle_ending_message_win)
+    config.battle_ending_message_lose = env("BATTLE_OVER_MESSAGE", config.battle_ending_message_lose)
     config.websocket_uri = env("WEBSOCKET_URI", "sim.smogon.com:8000")
     config.username = env("PS_USERNAME")
     config.password = env("PS_PASSWORD", "")
     config.bot_mode = env("BOT_MODE")
     config.team_name = env("TEAM_NAME", None)
     config.pokemon_mode = env("POKEMON_MODE", constants.DEFAULT_MODE)
-    config.run_count = int(env("RUN_COUNT", 1))
+    config.run_count = 'inf' if env("RUN_COUNT", 1) == 'inf' else int(env("RUN_COUNT", 1))
+    # config.run_count = int(env("RUN_COUNT", 1)) if env("RUN_COUNT", 1) != 'inf' else 'inf'
 
     if config.bot_mode == constants.CHALLENGE_USER:
         config.user_to_challenge = env("USER_TO_CHALLENGE")
@@ -101,9 +104,11 @@ async def showdown():
         check_dictionaries_are_unmodified(original_pokedex, original_move_json)
 
         battles_run += 1
-        if battles_run >= config.run_count:
+        if config.run_count != 'inf' and battles_run >= config.run_count:
             break
 
+        # wait 5 seconds before loading up new match
+        time.sleep(5)
 
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(showdown())

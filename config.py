@@ -14,8 +14,9 @@ pokemon_mode = None
 run_count = None
 user_to_challenge = None
 gambit_exe_path = ""
-greeting_message = 'hf'
-battle_ending_message = 'gg'
+greeting_message = 'you\'re playing a bot'
+battle_ending_message_win = 'lol you just lost to a bot'
+battle_ending_message_lose = 'gg wp, I\'m a bot by the way'
 
 use_relative_weights = False
 damage_calc_type = 'average'

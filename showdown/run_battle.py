@@ -166,7 +166,10 @@ async def pokemon_battle(ps_websocket_client, pokemon_battle_type):
         if battle_is_finished(msg):
             winner = msg.split(constants.WIN_STRING)[-1].split('\n')[0].strip()
             logger.debug("Winner: {}".format(winner))
-            await ps_websocket_client.send_message(battle.battle_tag, [config.battle_ending_message])
+            if winner == config.username:
+                await ps_websocket_client.send_message(battle.battle_tag, [config.battle_ending_message_win])
+            else:
+                await ps_websocket_client.send_message(battle.battle_tag, [config.battle_ending_message_lose])
             await ps_websocket_client.leave_battle(battle.battle_tag, save_replay=config.save_replay)
             return winner
         else:
