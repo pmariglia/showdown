@@ -4,7 +4,8 @@ import requests
 import json
 import time
 
-from config import logger
+import logging
+logger = logging.getLogger(__name__)
 
 
 class LoginError(Exception):
@@ -37,14 +38,12 @@ class PSWebsocketClient:
 
     async def receive_message(self):
         message = await self.websocket.recv()
-        logger.debug("Received from websocket: {}".format(message))
         return message
 
     async def send_message(self, room, message_list):
         message = room + "|" + "|".join(message_list)
         await self.websocket.send(message)
         self.last_message = message
-        logger.debug("Sent to websocket: {}".format(message))
 
     async def get_id_and_challstr(self):
         while True:
@@ -54,6 +53,7 @@ class PSWebsocketClient:
                 return split_message[2], split_message[3]
 
     async def login(self):
+        logger.debug("Logging in...")
         client_id, challstr = await self.get_id_and_challstr()
         if self.password:
             response = requests.post(
@@ -84,6 +84,7 @@ class PSWebsocketClient:
                 assertion = response.text
 
             message = ["/trn " + self.username + ",0," + assertion]
+            logger.debug("Successfully logged in")
             await self.send_message('', message)
         else:
             logger.error("Could not log-in\nDetails:\n{}".format(response.content))
@@ -94,6 +95,7 @@ class PSWebsocketClient:
         await self.send_message('', message)
 
     async def challenge_user(self, user_to_challenge, battle_format, team):
+        logger.debug("Challenging {}...".format(user_to_challenge))
         if time.time() - self.last_challenge_time < 10:
             logger.info("Sleeping for 10 seconds because last challenge was less than 10 seconds ago")
             await asyncio.sleep(10)
@@ -103,6 +105,7 @@ class PSWebsocketClient:
         self.last_challenge_time = time.time()
 
     async def accept_challenge(self, battle_format, team):
+        logger.debug("Waiting for a {} challenge".format(battle_format))
         await self.update_team(team)
         username = None
         while username is None:
@@ -124,6 +127,7 @@ class PSWebsocketClient:
         await self.send_message('', message)
 
     async def search_for_match(self, battle_format, team):
+        logger.debug("Searching for ranked {} match".format(battle_format))
         await self.update_team(team)
         message = ["/search {}".format(battle_format)]
         await self.send_message("", message)

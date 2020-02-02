@@ -1,6 +1,3 @@
 import logging
 
-from config import logger
-
-
-logger.setLevel(logging.CRITICAL)
+logging.disable(logging.CRITICAL)

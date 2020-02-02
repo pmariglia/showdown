@@ -6,7 +6,8 @@ from environs import Env
 
 import constants
 import config
-from config import logger
+from config import init_logging
+import logging
 
 from teams import load_team
 from showdown.run_battle import pokemon_battle
@@ -17,12 +18,14 @@ from data import pokedex
 from data.mods.apply_mods import apply_mods
 
 
+logger = logging.getLogger(__name__)
+
+
 def parse_configs():
     env = Env()
     env.read_env()
 
     config.battle_bot_module = env("BATTLE_BOT", 'safest')
-    config.log_to_file = env.bool("LOG_TO_FILE", config.log_to_file)
     config.save_replay = env.bool("SAVE_REPLAY", config.save_replay)
     config.use_relative_weights = env.bool("USE_RELATIVE_WEIGHTS", config.use_relative_weights)
     config.gambit_exe_path = env("GAMBIT_PATH", config.gambit_exe_path)
@@ -39,8 +42,7 @@ def parse_configs():
 
     if config.bot_mode == constants.CHALLENGE_USER:
         config.user_to_challenge = env("USER_TO_CHALLENGE")
-
-    logger.setLevel(env("LOG_LEVEL", "DEBUG"))
+    init_logging(env("LOG_LEVEL", "DEBUG"))
 
 
 def check_dictionaries_are_unmodified(original_pokedex, original_move_json):
@@ -95,7 +97,7 @@ async def showdown():
         else:
             losses += 1
 
-        logger.info("\nW: {}\nL: {}\n".format(wins, losses))
+        logger.info("W: {}\tL: {}".format(wins, losses))
 
         check_dictionaries_are_unmodified(original_pokedex, original_move_json)
 

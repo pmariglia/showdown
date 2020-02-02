@@ -1,5 +1,6 @@
 import random
 import subprocess
+import logging
 from collections import defaultdict
 
 import numpy as np
@@ -16,7 +17,8 @@ from showdown.engine.select_best_move import get_payoff_matrix
 from ..safest.main import pick_safest_move_from_battles
 from ..helpers import format_decision
 
-from config import logger
+
+logger = logging.getLogger(__name__)
 
 
 NFG_FORMAT_BASE = """NFG 1 R ""
@@ -129,10 +131,6 @@ def log_nash_equilibria(bot_choices, opponent_choices, bot_percentages, opponent
         if percentage:
             opponent_options.append((opponent_choices[i], percentage))
 
-    logger.debug("Bot options: {}".format(bot_options))
-    logger.debug("Opponent options: {}".format(opponent_options))
-    logger.debug("Payoff: {}".format(payoff))
-
 
 def get_weighted_choices_from_multiple_score_lookups(score_lookups):
     bot_choice_percentages = defaultdict(lambda: 0)
@@ -164,7 +162,7 @@ def pick_move_in_equilibrium_from_multiple_score_lookups(score_lookups):
 
     choice = random.choices(bot_choices, weights=bot_percentages)[0]
 
-    logger.debug("Final Weights: {}".format([w for w in weighted_choices if w[1]]))
+    logger.debug("Choices: {}".format([w for w in weighted_choices if w[1]]))
     logger.debug("Choice: {}".format(choice))
 
     return choice

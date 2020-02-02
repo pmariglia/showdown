@@ -1,8 +1,8 @@
 import json
 from copy import deepcopy
+import logging
 
 import constants
-from config import logger
 from data import all_move_json
 from data import pokedex
 from showdown.battle import Pokemon
@@ -13,6 +13,9 @@ from showdown.helpers import get_pokemon_info_from_condition
 from showdown.helpers import calculate_stats
 from showdown.engine.find_state_instructions import get_effective_speed
 from showdown.engine.damage_calculator import calculate_damage
+
+
+logger = logging.getLogger(__name__)
 
 
 def find_pokemon_in_reserves(pkmn_name, reserves):
