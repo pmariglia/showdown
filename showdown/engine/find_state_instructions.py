@@ -3,10 +3,9 @@ from copy import copy
 import config
 import constants
 from data import all_move_json
-from showdown.damage_calculator import calculate_damage
-from showdown.helpers import boost_multiplier_lookup
 
 from . import instruction_generator
+from .damage_calculator import _calculate_damage
 from .objects import TransposeInstruction
 from .special_effects.abilities.modify_attack_against import ability_modify_attack_against
 from .special_effects.abilities.modify_attack_being_used import ability_modify_attack_being_used
@@ -29,7 +28,7 @@ def lookup_move(move_name):
 
 
 def get_effective_speed(state, side):
-    boosted_speed = side.active.speed * boost_multiplier_lookup[side.active.speed_boost]
+    boosted_speed = side.active.calculate_boosted_stats()[constants.SPEED]
 
     if state.weather == constants.SUN and side.active.ability == 'chlorophyll':
         boosted_speed *= 2
@@ -108,7 +107,12 @@ def user_moves_first(state, user_move, opponent_move):
         return False
 
 
-def update_damage_calc_from_abilities_and_items(attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move, weather):
+def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move, weather):
+    # update the attacking move based on certain special-effects:
+    #   - abilities
+    #   - items
+    #   - protect
+
     attacking_move = modify_attack_being_used(
         attacking_move,
         defending_move,
@@ -128,6 +132,7 @@ def update_damage_calc_from_abilities_and_items(attacking_pokemon, defending_pok
     attacking_move = ability_modify_attack_being_used(
         attacking_pokemon.ability,
         attacking_move,
+        defending_move,
         attacking_pokemon,
         defending_pokemon,
         first_move,
@@ -214,11 +219,11 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     if attacking_pokemon.hp == 0:
         # if the attacker is dead, remove the 'flinched' volatile-status if it has it and exit early
         # this triggers if the pokemon moves second but the first attack knocked it out
+        instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
         mutator.reverse(instructions.instructions)
-        all_instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
-        return all_instructions
+        return [instructions]
 
-    attacking_move = update_damage_calc_from_abilities_and_items(
+    attacking_move = update_attacking_move(
         attacking_pokemon,
         defending_pokemon,
         attacking_move,
@@ -226,6 +231,18 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         first_move,
         mutator.state.weather
     )
+
+    instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
+
+    if attacking_pokemon.ability in constants.TYPE_CHANGE_ABILITIES and [attacking_move[constants.TYPE]] != attacking_pokemon.types and not instructions.frozen:
+        type_change_instruction = (
+            constants.MUTATOR_CHANGE_TYPE,
+            attacker,
+            [attacking_move[constants.TYPE]],
+            attacking_pokemon.types
+        )
+        mutator.apply_one(type_change_instruction)
+        instructions.add_instruction(type_change_instruction)
 
     damage_amounts = None
     move_status_effect = None
@@ -251,7 +268,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     # move is a damaging move
     if attacking_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
-        damage_amounts = calculate_damage(attacking_pokemon, defending_pokemon, attacking_move, conditions=conditions, calc_type=config.damage_calc_type)
+        damage_amounts = _calculate_damage(attacking_pokemon, defending_pokemon, attacking_move, conditions=conditions, calc_type=config.damage_calc_type)
 
         attacking_move_secondary = attacking_move[constants.SECONDARY]
         attacking_move_self = attacking_move.get(constants.SELF)
@@ -304,17 +321,12 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     mutator.reverse(instructions.instructions)
 
-    all_instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
-
-    temp_instructions = []
-    for instruction_set in all_instructions:
-        temp_instructions += instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, attacking_move, defending_move, instruction_set)
-    all_instructions = temp_instructions
+    all_instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, attacking_move, defending_move, instructions)
 
     if attacking_move[constants.ID] in instruction_generator.SPECIAL_LOGIC_MOVES:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += instruction_generator.get_instructions_from_special_logic_move(mutator, attacking_move[constants.ID], instruction_set)
+            temp_instructions += instruction_generator.get_instructions_from_special_logic_move(mutator, attacking_pokemon, defending_pokemon, attacking_move[constants.ID], instruction_set)
         return temp_instructions
 
     if damage_amounts is not None:

@@ -1,6 +1,6 @@
 import constants
 
-from showdown.damage_calculator import is_super_effective
+from ...damage_calculator import is_super_effective
 
 
 def choiceband(attacking_move, attacking_pokemon, defending_pokemon):

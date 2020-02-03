@@ -2,9 +2,8 @@ import math
 from collections import defaultdict
 
 import constants
-from showdown.engine.evaluate import evaluate
-from showdown.helpers import battle_is_over
 
+from .evaluate import evaluate
 from .find_state_instructions import get_all_state_instructions
 
 
@@ -73,7 +72,7 @@ def get_payoff_matrix(mutator, user_options, opponent_options, depth=2, prune=Tr
     :return: a dictionary representing the potential move combinations and their associated scores
     """
 
-    winner = battle_is_over(mutator.state)
+    winner = mutator.state.battle_is_finished()
     if winner:
         return {(constants.DO_NOTHING_MOVE, constants.DO_NOTHING_MOVE): evaluate(mutator.state) + WON_BATTLE*depth*winner}
 

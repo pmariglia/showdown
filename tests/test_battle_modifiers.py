@@ -1,11 +1,15 @@
 import unittest
 import json
+from collections import defaultdict
 
 import constants
+from showdown.helpers import calculate_stats
+
 from showdown.battle import Battle
 from showdown.battle import Pokemon
 from showdown.battle import Move
 from showdown.battle import LastUsedMove
+from showdown.battle import DamageDealt
 
 from showdown.battle_modifier import request
 from showdown.battle_modifier import switch_or_drag
@@ -18,14 +22,17 @@ from showdown.battle_modifier import weather
 from showdown.battle_modifier import curestatus
 from showdown.battle_modifier import start_volatile_status
 from showdown.battle_modifier import end_volatile_status
-from showdown.battle_modifier import set_opponent_ability
+from showdown.battle_modifier import set_ability
 from showdown.battle_modifier import set_opponent_ability_from_ability_tag
 from showdown.battle_modifier import form_change
-from showdown.battle_modifier import inactive
 from showdown.battle_modifier import zpower
 from showdown.battle_modifier import clearnegativeboost
 from showdown.battle_modifier import check_choicescarf
+from showdown.battle_modifier import get_damage_dealt
 from showdown.battle_modifier import singleturn
+from showdown.battle_modifier import transform
+from showdown.battle_modifier import update_battle
+from showdown.battle_modifier import upkeep
 
 
 # so we can instantiate a Battle object for testing
@@ -222,21 +229,6 @@ class TestRequestMessage(unittest.TestCase):
             "rqid": 2
         }
 
-    def test_request_json_initializes_user_name(self):
-        split_request_message = ['', 'request', json.dumps(self.request_json)]
-        request(self.battle, split_request_message)
-        self.assertEqual("p1", self.battle.user.name)
-
-    def test_request_json_initializes_user_active_pkmn(self):
-        split_request_message = ['', 'request', json.dumps(self.request_json)]
-        request(self.battle, split_request_message)
-        self.assertEqual("throh", self.battle.user.active.name)
-
-    def test_request_json_initializes_5_reserve_pokemon(self):
-        split_request_message = ['', 'request', json.dumps(self.request_json)]
-        request(self.battle, split_request_message)
-        self.assertEqual(5, len(self.battle.user.reserve))
-
     def test_request_sets_force_switch_to_false(self):
         split_request_message = ['', 'request', json.dumps(self.request_json)]
         request(self.battle, split_request_message)
@@ -248,13 +240,6 @@ class TestRequestMessage(unittest.TestCase):
         split_request_message = ['', 'request', json.dumps(self.request_json)]
         request(self.battle, split_request_message)
         self.assertEqual(True, self.battle.force_switch)
-
-    def test_force_switch_initializes_5_reserve_pokemon(self):
-        self.request_json.pop('active')
-        self.request_json[constants.FORCE_SWITCH] = [True]
-        split_request_message = ['', 'request', json.dumps(self.request_json)]
-        request(self.battle, split_request_message)
-        self.assertEqual(5, len(self.battle.user.reserve))
 
     def test_wait_properly_sets_wait_flag(self):
         self.request_json.pop('active')
@@ -330,6 +315,32 @@ class TestSwitchOrDrag(unittest.TestCase):
 
         self.assertEqual(1, len(self.battle.opponent.reserve))
 
+    def test_user_switching_causes_pokemon_to_switch(self):
+        already_seen_pokemon = Pokemon('weedle', 100)
+        self.battle.user.reserve.append(already_seen_pokemon)
+        split_msg = ['', 'switch', 'p1a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(Pokemon("weedle", 100), self.battle.user.active)
+
+    def test_user_switching_causes_active_pokemon_to_be_placed_in_reserve(self):
+        already_seen_pokemon = Pokemon('weedle', 100)
+        self.battle.user.reserve.append(already_seen_pokemon)
+        split_msg = ['', 'switch', 'p1a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(Pokemon("pikachu", 100), self.battle.user.reserve[0])
+
+    def test_user_switching_removes_volatile_statuses(self):
+        user_active = self.battle.user.active
+        already_seen_pokemon = Pokemon('weedle', 100)
+        self.battle.user.reserve.append(already_seen_pokemon)
+        user_active.volatile_statuses = ['flashfire']
+        split_msg = ['', 'switch', 'p1a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual([], user_active.volatile_statuses)
+
     def test_already_seen_pokemon_is_the_same_object_as_the_one_in_the_reserve(self):
         already_seen_pokemon = Pokemon('weedle', 100)
         self.battle.opponent.reserve.append(already_seen_pokemon)
@@ -386,9 +397,92 @@ class TestSwitchOrDrag(unittest.TestCase):
         split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
         switch_or_drag(self.battle, split_msg)
 
-        expected_last_move = LastUsedMove(None, 'switch')
+        expected_last_move = LastUsedMove(None, 'switch weedle', 0)
 
         self.assertEqual(expected_last_move, self.battle.opponent.last_used_move)
+
+    def test_ditto_switching_sets_ability_to_none(self):
+        ditto = Pokemon('ditto', 100)
+        ditto.ability = "some_ability"
+        ditto.volatile_statuses.append(constants.TRANSFORM)
+        self.battle.opponent.active = ditto
+        split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        if self.battle.opponent.reserve[0] != ditto:
+            self.fail("Ditto was not moved to reserves")
+
+        self.assertIsNone(ditto.ability)
+
+    def test_ditto_switching_sets_moves_to_empty_list(self):
+        ditto = Pokemon('ditto', 100)
+        ditto.moves = [Move('tackle'), Move('stringshot')]
+        ditto.volatile_statuses.append(constants.TRANSFORM)
+        self.battle.opponent.active = ditto
+
+        split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        if self.battle.opponent.reserve[0] != ditto:
+            self.fail("Ditto was not moved to reserves")
+
+        self.assertEqual([], ditto.moves)
+
+    def test_ditto_switching_resets_stats(self):
+        ditto = Pokemon('ditto', 100)
+        ditto.stats = {
+            constants.ATTACK: 1,
+            constants.DEFENSE: 2,
+            constants.SPECIAL_ATTACK: 3,
+            constants.SPECIAL_DEFENSE: 4,
+            constants.SPEED: 5,
+        }
+        ditto.volatile_statuses.append(constants.TRANSFORM)
+        self.battle.opponent.active = ditto
+
+        split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        if self.battle.opponent.reserve[0] != ditto:
+            self.fail("Ditto was not moved to reserves")
+
+        expected_stats = calculate_stats(ditto.base_stats, ditto.level)
+
+        self.assertEqual(expected_stats, ditto.stats)
+
+    def test_ditto_switching_resets_boosts(self):
+        ditto = Pokemon('ditto', 100)
+        ditto.boosts = {
+            constants.ATTACK: 1,
+            constants.DEFENSE: 2,
+            constants.SPECIAL_ATTACK: 3,
+            constants.SPECIAL_DEFENSE: 4,
+            constants.SPEED: 5,
+        }
+        ditto.volatile_statuses.append(constants.TRANSFORM)
+        self.battle.opponent.active = ditto
+
+        split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        if self.battle.opponent.reserve[0] != ditto:
+            self.fail("Ditto was not moved to reserves")
+
+        self.assertEqual({}, ditto.boosts)
+
+    def test_ditto_switching_resets_types(self):
+        ditto = Pokemon('ditto', 100)
+        ditto.types = ['fairy', 'flying']
+        ditto.volatile_statuses.append(constants.TRANSFORM)
+        self.battle.opponent.active = ditto
+
+        split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        if self.battle.opponent.reserve[0] != ditto:
+            self.fail("Ditto was not moved to reserves")
+
+        self.assertEqual(['normal'], ditto.types)
 
 
 class TestHealOrDamage(unittest.TestCase):
@@ -408,7 +502,7 @@ class TestHealOrDamage(unittest.TestCase):
         self.battle.user.active = self.user_active
 
     def test_sets_ability_when_the_information_is_present(self):
-        split_msg = ['', '-heal', 'p2a: Quagsire', '68/100', '[from] ability: Water Absorb', '[of] p2a: Genesect']
+        split_msg = ['', '-heal', 'p2a: Quagsire', '68/100', '[from] ability: Water Absorb', '[of] p1a: Genesect']
         heal_or_damage(self.battle, split_msg)
         self.assertEqual('waterabsorb', self.battle.opponent.active.ability)
 
@@ -417,10 +511,20 @@ class TestHealOrDamage(unittest.TestCase):
         heal_or_damage(self.battle, split_msg)
         self.assertEqual('ironbarbs', self.battle.opponent.active.ability)
 
+    def test_sets_ability_when_the_opponent_is_damaged_from_bots_ability(self):
+        split_msg = ['', '-damage', 'p2a: Lamdorus', '167/319', '[from] ability: Iron Barbs', '[of] p1a: Ferrothorn']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual('ironbarbs', self.battle.user.active.ability)
+
     def test_sets_item_when_it_causes_the_bot_damage(self):
         split_msg = ['', '-damage', 'p1a: Kartana', '167/319', '[from] item: Rocky Helmet', '[of] p2a: Ferrothorn']
         heal_or_damage(self.battle, split_msg)
         self.assertEqual('rockyhelmet', self.battle.opponent.active.item)
+
+    def test_sets_item_when_it_causes_the_opponent_damage(self):
+        split_msg = ['', '-damage', 'p2a: Kartana', '167/319', '[from] item: Rocky Helmet', '[of] p1a: Ferrothorn']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual('rockyhelmet', self.battle.user.active.item)
 
     def test_does_not_set_item_when_item_is_none(self):
         # |-heal|p2a: Drifblim|37/100|[from] item: Sitrus Berry
@@ -433,6 +537,21 @@ class TestHealOrDamage(unittest.TestCase):
         split_msg = ['', '-damage', 'p2a: Caterpie', '80/100']
         heal_or_damage(self.battle, split_msg)
         self.assertEqual(160, self.battle.opponent.active.hp)
+
+    def test_damage_sets_bots_active_pokemon_to_correct_hp(self):
+        split_msg = ['', '-damage', 'p1a: Caterpie', '150/250']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual(150, self.battle.user.active.hp)
+
+    def test_damage_sets_bots_active_pokemon_to_correct_maxhp(self):
+        split_msg = ['', '-damage', 'p1a: Caterpie', '150/250']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual(250, self.battle.user.active.max_hp)
+
+    def test_damage_sets_bots_active_pokemon_to_zero_hp(self):
+        split_msg = ['', '-damage', 'p1a: Caterpie', '0 fnt']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual(0, self.battle.user.active.hp)
 
     def test_fainted_message_properly_faints_opponents_pokemon(self):
         split_msg = ['', '-damage', 'p2a: Caterpie', '0 fnt']
@@ -465,6 +584,17 @@ class TestHealOrDamage(unittest.TestCase):
         heal_or_damage(self.battle, split_msg)
         self.assertEqual(0, self.battle.opponent.side_conditions[constants.TOXIC_COUNT])
 
+    def test_healing_from_ability_sets_ability_to_opponent(self):
+        split_msg = ['', '-heal', 'p2a: Caterpie', '50/100', '[from] ability: Volt Absorb', '[of] p1a: Caterpie']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual('voltabsorb', self.battle.opponent.active.ability)
+
+    def test_healing_from_ability_does_not_set_bots_ability(self):
+        self.battle.user.active.ability = None
+        split_msg = ['', '-heal', 'p2a: Caterpie', '50/100', '[from] ability: Volt Absorb', '[of] p1a: Caterpie']
+        heal_or_damage(self.battle, split_msg)
+        self.assertIsNone(self.battle.user.active.ability)
+
 
 class TestMove(unittest.TestCase):
     def setUp(self):
@@ -474,6 +604,8 @@ class TestMove(unittest.TestCase):
 
         self.opponent_active = Pokemon('caterpie', 100)
         self.battle.opponent.active = self.opponent_active
+
+        self.battle.user.active = Pokemon('clefable', 100)
 
     def test_adds_move_to_opponent(self):
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
@@ -519,23 +651,43 @@ class TestMove(unittest.TestCase):
 
         move(self.battle, split_msg)
 
-        expected_last_used_move = LastUsedMove(pokemon_name='caterpie', move='stringshot')
+        expected_last_used_move = LastUsedMove(pokemon_name='caterpie', move='stringshot', turn=0)
 
         self.assertEqual(expected_last_used_move, self.battle.opponent.last_used_move)
 
     def test_sets_can_have_choice_item_to_false_if_two_different_moves_are_used_when_the_pkmn_has_an_unknown_item(self):
         self.battle.opponent.active.can_have_choice_item = True
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
-        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle')
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
 
         move(self.battle, split_msg)
 
         self.assertFalse(self.battle.opponent.active.can_have_choice_item)
 
+    def test_sets_item_to_unknown_if_the_pokemon_has_choice_item_but_two_different_moves_are_used(self):
+        self.battle.opponent.active.can_have_choice_item = True
+        self.battle.opponent.active.item = 'choiceband'
+        split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
+
+        move(self.battle, split_msg)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_set_item_to_unknown_if_the_known_item_is_not_a_choice_item_and_two_different_moves_are_used(self):
+        self.battle.opponent.active.can_have_choice_item = True
+        self.battle.opponent.active.item = 'leftovers'
+        split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
+
+        move(self.battle, split_msg)
+
+        self.assertEqual('leftovers', self.battle.opponent.active.item)
+
     def test_does_not_set_can_have_choice_item_to_false_if_the_same_move_is_used_when_the_pkmn_has_an_unknown_item(self):
         self.battle.opponent.active.can_have_choice_item = True
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
-        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'stringshot')
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'stringshot', 0)
 
         move(self.battle, split_msg)
 
@@ -546,11 +698,61 @@ class TestMove(unittest.TestCase):
         self.battle.opponent.active.can_have_choice_item = True
         self.battle.opponent.active.item = 'leftovers'
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
-        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle')
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
 
         move(self.battle, split_msg)
 
         self.assertFalse(self.battle.opponent.active.can_have_choice_item)
+
+    def test_sets_can_have_life_orb_to_false_if_damaging_move_is_used(self):
+        # if a damaging move is used, we no longer want to guess lifeorb as an item
+        self.battle.opponent.active.can_have_life_orb = True
+        split_msg = ['', 'move', 'p2a: Caterpie', 'Tackle']
+
+        move(self.battle, split_msg)
+
+        self.assertFalse(self.battle.opponent.active.can_have_life_orb)
+
+    def test_does_not_set_can_have_life_orb_to_false_if_pokemon_could_have_sheerforce(self):
+        # mawile could have sheerforce
+        # we shouldn't set the lifeorb flag to False because sheerforce doesn't reveal lifeorb when a damaging move is used
+        self.battle.opponent.active.name = 'mawile'
+        self.battle.opponent.active.can_have_life_orb = True
+        split_msg = ['', 'move', 'p2a: Mawile', 'Tackle']
+
+        move(self.battle, split_msg)
+
+        self.assertTrue(self.battle.opponent.active.can_have_life_orb)
+
+    def test_does_not_set_can_have_life_orb_to_false_if_pokemon_could_have_magic_guard(self):
+        # clefable could have magic guard
+        # we shouldn't set the lifeorb flag to False because magic guard doesn't reveal lifeorb when a damaging move is used
+        self.battle.opponent.active.name = 'clefable'
+        self.battle.opponent.active.can_have_life_orb = True
+        split_msg = ['', 'move', 'p2a: Clefable', 'Tackle']
+
+        move(self.battle, split_msg)
+
+        self.assertTrue(self.battle.opponent.active.can_have_life_orb)
+
+    def test_wish_sets_battler_wish(self):
+        split_msg = ['', 'move', 'p1a: Clefable', 'Wish', 'p1a: Clefable']
+
+        move(self.battle, split_msg)
+
+        expected_wish = (2, self.battle.user.active.max_hp/2)
+
+        self.assertEqual(expected_wish, self.battle.user.wish)
+
+    def test_failed_wish_does_not_set_wish(self):
+        self.battle.user.wish = (1, 100)
+        split_msg = ['', 'move', 'p1a: Clefable', 'Wish', '[still]']
+
+        move(self.battle, split_msg)
+
+        expected_wish = (1, 100)
+
+        self.assertEqual(expected_wish, self.battle.user.wish)
 
 
 class TestWeather(unittest.TestCase):
@@ -691,14 +893,26 @@ class TestStatus(unittest.TestCase):
         self.battle.user.name = 'p1'
         self.battle.opponent.name = 'p2'
 
-        self.opponent_active = Pokemon('caterpie', 100)
-        self.battle.opponent.active = self.opponent_active
+        self.battle.opponent.active = Pokemon('caterpie', 100)
+        self.battle.user.active = Pokemon('caterpie', 100)
 
     def test_opponents_active_pokemon_has_status_properly_set(self):
         split_msg = ['', '-status', 'p2a: Caterpie', 'brn']
         status(self.battle, split_msg)
 
         self.assertEqual(self.battle.opponent.active.status, constants.BURN)
+
+    def test_bots_active_pokemon_has_status_properly_set(self):
+        split_msg = ['', '-status', 'p1a: Caterpie', 'brn']
+        status(self.battle, split_msg)
+
+        self.assertEqual(self.battle.user.active.status, constants.BURN)
+
+    def test_status_from_item_properly_sets_that_item(self):
+        split_msg = ['', '-status', 'p2a: Caterpie', 'brn', '[from] item: Flame Orb']
+        status(self.battle, split_msg)
+
+        self.assertEqual(self.battle.opponent.active.item, 'flameorb')
 
 
 class TestCureStatus(unittest.TestCase):
@@ -713,12 +927,21 @@ class TestCureStatus(unittest.TestCase):
         self.opponent_reserve = Pokemon('pikachu', 100)
         self.battle.opponent.reserve = [self.opponent_active, self.opponent_reserve]
 
+        self.battle.user.active = Pokemon('weedle', 100)
+
     def test_curestatus_works_on_active_pokemon(self):
         self.opponent_active.status = constants.BURN
         split_msg = ['', '-curestatus', 'p2: Caterpie', 'brn', '[msg]']
         curestatus(self.battle, split_msg)
 
         self.assertEqual(None, self.opponent_active.status)
+
+    def test_curestatus_works_on_active_pokemon_for_bot(self):
+        self.battle.user.active.status = constants.BURN
+        split_msg = ['', '-curestatus', 'p1: Weedle', 'brn', '[msg]']
+        curestatus(self.battle, split_msg)
+
+        self.assertEqual(None, self.battle.user.active.status)
 
     def test_curestatus_works_on_reserve_pokemon(self):
         self.opponent_reserve.status = constants.BURN
@@ -748,11 +971,17 @@ class TestStartVolatileStatus(unittest.TestCase):
 
         self.assertEqual(expected_volatile_statuese, self.battle.opponent.active.volatile_statuses)
 
-    def test_flashfire_sets_ability(self):
+    def test_flashfire_sets_ability_on_opponent(self):
         split_msg = ['', '-start', 'p2a: Caterpie', 'ability: Flash Fire']
         start_volatile_status(self.battle, split_msg)
 
         self.assertEqual('flashfire', self.battle.opponent.active.ability)
+
+    def test_flashfire_sets_ability_on_bot(self):
+        split_msg = ['', '-start', 'p1a: Caterpie', 'ability: Flash Fire']
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual('flashfire', self.battle.user.active.ability)
 
     def test_volatile_status_is_set_on_user_pokemon(self):
         split_msg = ['', '-start', 'p1a: Weedle', 'Encore']
@@ -779,6 +1008,22 @@ class TestStartVolatileStatus(unittest.TestCase):
 
         self.assertEqual(expected_volatile_statuese, self.battle.opponent.active.volatile_statuses)
 
+    def test_doubles_hp_when_dynamax_starts_for_opponent(self):
+        split_msg = ['', '-start', 'p2a: Caterpie', 'Dynamax']
+        hp, maxhp = self.battle.opponent.active.hp, self.battle.opponent.active.max_hp
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(hp * 2, self.battle.opponent.active.hp)
+        self.assertEqual(maxhp * 2, self.battle.opponent.active.max_hp)
+
+    def test_doubles_hp_when_dynamax_starts_for_bot(self):
+        split_msg = ['', '-start', 'p1a: Caterpie', 'Dynamax']
+        hp, maxhp = self.battle.user.active.hp, self.battle.user.active.max_hp
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(hp * 2, self.battle.user.active.hp)
+        self.assertEqual(maxhp * 2, self.battle.user.active.max_hp)
+
 
 class TestEndVolatileStatus(unittest.TestCase):
     def setUp(self):
@@ -794,7 +1039,7 @@ class TestEndVolatileStatus(unittest.TestCase):
 
     def test_removes_volatile_status_from_opponent(self):
         self.battle.opponent.active.volatile_statuses = ['encore']
-        split_msg = ['', '-start', 'p2a: Caterpie', 'Encore']
+        split_msg = ['', '-end', 'p2a: Caterpie', 'Encore']
         end_volatile_status(self.battle, split_msg)
 
         expected_volatile_statuses = []
@@ -803,12 +1048,30 @@ class TestEndVolatileStatus(unittest.TestCase):
 
     def test_removes_volatile_status_from_user(self):
         self.battle.user.active.volatile_statuses = ['encore']
-        split_msg = ['', '-start', 'p1a: Weedle', 'Encore']
+        split_msg = ['', '-end', 'p1a: Weedle', 'Encore']
         end_volatile_status(self.battle, split_msg)
 
         expected_volatile_statuses = []
 
         self.assertEqual(expected_volatile_statuses, self.battle.user.active.volatile_statuses)
+
+    def test_halves_opponent_hp_when_dynamax_ends(self):
+        self.battle.opponent.active.volatile_statuses = ['dynamax']
+        hp, maxhp = self.battle.opponent.active.hp, self.battle.opponent.active.max_hp
+        split_msg = ['', '-end', 'p2a: Weedle', 'Dynamax']
+        end_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(hp/2, self.battle.opponent.active.hp)
+        self.assertEqual(maxhp/2, self.battle.opponent.active.max_hp)
+
+    def test_halves_bots_hp_when_dynamax_ends(self):
+        self.battle.user.active.volatile_statuses = ['dynamax']
+        hp, maxhp = self.battle.user.active.hp, self.battle.user.active.max_hp
+        split_msg = ['', '-end', 'p1a: Weedle', 'Dynamax']
+        end_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(hp/2, self.battle.user.active.hp)
+        self.assertEqual(maxhp/2, self.battle.user.active.max_hp)
 
 
 class TestUpdateAbility(unittest.TestCase):
@@ -824,23 +1087,37 @@ class TestUpdateAbility(unittest.TestCase):
         self.user_active = Pokemon('weedle', 100)
         self.battle.user.active = self.user_active
 
-    def test_removes_volatile_status_from_opponent(self):
-        self.battle.opponent.active.volatile_statuses = ['encore']
+    def test_sets_ability_for_opponent(self):
         split_msg = ['', '-immune', 'p2a: Caterpie', '[from] ability: Volt Absorb']
-        set_opponent_ability(self.battle, split_msg)
+        set_ability(self.battle, split_msg)
 
         expected_ability = 'voltabsorb'
 
         self.assertEqual(expected_ability, self.battle.opponent.active.ability)
 
+    def test_sets_ability_for_bot(self):
+        split_msg = ['', '-immune', 'p1a: Caterpie', '[from] ability: Volt Absorb']
+        set_ability(self.battle, split_msg)
+
+        expected_ability = 'voltabsorb'
+
+        self.assertEqual(expected_ability, self.battle.user.active.ability)
+
     def test_update_ability_from_ability_string_properly_updates_ability(self):
-        # |-ability|p1a: Seaking|Lightning Rod|boost
         split_msg = ['', '-ability', 'p2a: Caterpie', 'Lightning Rod', 'boost']
         set_opponent_ability_from_ability_tag(self.battle, split_msg)
 
         expected_ability = 'lightningrod'
 
         self.assertEqual(expected_ability, self.battle.opponent.active.ability)
+
+    def test_update_ability_from_ability_string_properly_updates_ability_for_bot(self):
+        split_msg = ['', '-ability', 'p1a: Caterpie', 'Lightning Rod', 'boost']
+        set_opponent_ability_from_ability_tag(self.battle, split_msg)
+
+        expected_ability = 'lightningrod'
+
+        self.assertEqual(expected_ability, self.battle.user.active.ability)
 
 
 class TestFormChange(unittest.TestCase):
@@ -930,57 +1207,6 @@ class TestFormChange(unittest.TestCase):
 
         pkmn = Pokemon("wishiwashischool", 100)
         self.assertNotIn(pkmn, self.battle.opponent.reserve)
-
-
-class TestInactive(unittest.TestCase):
-    def setUp(self):
-        self.battle = Battle(None)
-        self.battle.user.name = 'p1'
-        self.battle.opponent.name = 'p2'
-
-        self.opponent_active = Pokemon('caterpie', 100)
-        self.battle.opponent.active = self.opponent_active
-        self.battle.opponent.active.ability = None
-
-        self.user_active = Pokemon('weedle', 100)
-        self.battle.user.active = self.user_active
-
-        self.username = "CoolUsername"
-
-        self.battle.username = self.username
-
-    def test_sets_time_to_15_seconds(self):
-        split_msg = ['', 'inactive', 'Time left: 135 sec this turn', '135 sec total']
-        inactive(self.battle, split_msg)
-
-        self.assertEqual(135, self.battle.time_remaining)
-
-    def test_sets_to_60_seconds(self):
-        split_msg = ['', 'inactive', 'Time left: 60 sec this turn', '60 sec total']
-        inactive(self.battle, split_msg)
-
-        self.assertEqual(60, self.battle.time_remaining)
-
-    def test_capture_group_failing(self):
-        self.battle.time_remaining = 1
-        split_msg = ['', 'inactive', 'some random message']
-        inactive(self.battle, split_msg)
-
-        self.assertEqual(1, self.battle.time_remaining)
-
-    def test_capture_group_failing_but_message_starts_with_username(self):
-        self.battle.time_remaining = 1
-        split_msg = ['', 'inactive', 'Time left: some random message']
-        inactive(self.battle, split_msg)
-
-        self.assertEqual(1, self.battle.time_remaining)
-
-    def test_different_inactive_message_does_not_change_time(self):
-        self.battle.time_remaining = 1
-        split_msg = ['', 'inactive', 'Some Other Person has 10 seconds left']
-        inactive(self.battle, split_msg)
-
-        self.assertEqual(1, self.battle.time_remaining)
 
 
 class TestClearNegativeBoost(unittest.TestCase):
@@ -1120,6 +1346,316 @@ class TestSingleTurn(unittest.TestCase):
         self.assertEqual(2, self.battle.opponent.side_conditions[constants.PROTECT])
 
 
+class TestTransform(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('Ditto', 100)
+        self.battle.opponent.active = self.opponent_active
+
+        self.user_active = Pokemon('weedle', 100)
+        self.battle.user.active = self.user_active
+
+        self.username = "CoolUsername"
+
+        self.battle.username = self.username
+
+        self.user_active_stats = {
+          "atk": 103,
+          "def": 214,
+          "spa": 118,
+          "spd": 132,
+          "spe": 132
+        }
+        self.user_active_ability = "levitate"
+        self.user_active_moves = [
+          "dracometeor",
+          "darkpulse",
+          "flashcannon",
+          "fireblast"
+        ]
+        self.request_json = {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Draco Meteor",
+                  "id": "dracometeor",
+                  "pp": 5,
+                  "maxpp": 5,
+                  "target": "normal",
+                  "disabled": False
+                },
+                {
+                  "move": "Dark Pulse",
+                  "id": "darkpulse",
+                  "pp": 5,
+                  "maxpp": 5,
+                  "target": "any",
+                  "disabled": False
+                },
+                {
+                  "move": "Flash Cannon",
+                  "id": "flashcannon",
+                  "pp": 5,
+                  "maxpp": 5,
+                  "target": "normal",
+                  "disabled": False
+                },
+                {
+                  "move": "Fire Blast",
+                  "id": "fireblast",
+                  "pp": 5,
+                  "maxpp": 5,
+                  "target": "normal",
+                  "disabled": False
+                }
+              ],
+              "canDynamax": True,
+              "maxMoves": {
+                "maxMoves": [
+                  {
+                    "move": "maxwyrmwind",
+                    "target": "adjacentFoe"
+                  },
+                  {
+                    "move": "maxdarkness",
+                    "target": "adjacentFoe"
+                  },
+                  {
+                    "move": "maxsteelspike",
+                    "target": "adjacentFoe"
+                  },
+                  {
+                    "move": "maxflare",
+                    "target": "adjacentFoe"
+                  }
+                ]
+              }
+            }
+          ],
+          "side": {
+            "name": "BigBluePikachu",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p1: Weedle",
+                "details": "Weedle",
+                "condition": "299/299",
+                "active": True,
+                "stats": self.user_active_stats,
+                "moves": self.user_active_moves,
+                "baseAbility": self.user_active_ability,
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": self.user_active_ability
+              },
+              {
+                "ident": "p1: Charmander",
+                "details": "Charmander",
+                "condition": "299/299",
+                "active": False,
+                "stats": {
+                  "atk": 1,
+                  "def": 2,
+                  "spa": 3,
+                  "spd": 4,
+                  "spe": 5
+                },
+                "moves": [
+                    "flamethrower",
+                    "firespin",
+                    "scratch",
+                    "growl"
+                ],
+                "baseAbility": "blaze",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "blaze"
+              }
+            ]
+          }
+        }
+
+        self.battle.request_json = self.request_json
+
+    def test_transform_into_switching_pokemon_properly_copies_the_pokemon_that_was_in_before_the_switch(self):
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Charmander', '[from] ability: Imposter']
+
+        expected_stats = {
+            constants.ATTACK: 1,
+            constants.DEFENSE: 2,
+            constants.SPECIAL_ATTACK: 3,
+            constants.SPECIAL_DEFENSE: 4,
+            constants.SPEED: 5
+        }
+
+        expected_boosts = {
+            constants.ATTACK: 1,
+            constants.DEFENSE: 2,
+            constants.SPECIAL_ATTACK: 3,
+            constants.SPECIAL_DEFENSE: 4,
+            constants.SPEED: 5,
+        }
+
+        expected_ability = 'blaze'
+        expected_moves = [
+            Move('flamethrower'),
+            Move('firespin'),
+            Move('scratch'),
+            Move('growl')
+        ]
+        expected_types = [
+            'fire'
+        ]
+
+        # the charmander is active when the switch occurs
+        # the charmander pokemon from the request json should be used for stats
+        self.battle.user.active = Pokemon('Charmander', 100)
+        self.battle.user.active.moves = expected_moves
+        self.battle.user.active.boosts = expected_boosts
+        self.battle.user.reserve = [
+            Pokemon('Weedle', 100)
+        ]
+
+        transform(self.battle, split_msg)
+
+        self.assertEqual(expected_stats, self.battle.opponent.active.stats)
+        self.assertEqual(expected_ability, self.battle.opponent.active.ability)
+        self.assertEqual(expected_moves, self.battle.opponent.active.moves)
+        self.assertEqual(expected_types, self.battle.opponent.active.types)
+        self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
+
+    def test_transform_sets_stats_to_opposing_pokemons_stats(self):
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
+
+        if self.battle.user.active.stats == self.battle.opponent.active.stats:
+            self.fail("Stats were equal before transform")
+
+        expected_stats = {
+            constants.ATTACK: 103,
+            constants.DEFENSE: 214,
+            constants.SPECIAL_ATTACK: 118,
+            constants.SPECIAL_DEFENSE: 132,
+            constants.SPEED: 132
+        }
+
+        transform(self.battle, split_msg)
+
+        self.assertEqual(expected_stats, self.battle.opponent.active.stats)
+
+    def test_transform_sets_ability_to_opposing_pokemons_ability(self):
+        self.battle.user.active.ability = self.user_active_ability
+        self.battle.opponent.active.ability = None
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
+
+        if self.battle.user.active.ability == self.battle.opponent.active.ability:
+            self.fail("Abilities were equal before transform")
+
+        transform(self.battle, split_msg)
+
+        self.assertEqual(self.user_active_ability, self.battle.opponent.active.ability)
+
+    def test_transform_sets_moves_to_opposing_pokemons_moves(self):
+        self.battle.user.active.moves = [
+            Move('dracometeor'),
+            Move('darkpulse'),
+            Move('flashcannon'),
+            Move('fireblast'),
+        ]
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
+
+        if self.battle.user.active.moves == self.battle.opponent.active.moves:
+            self.fail("Moves were equal before transform")
+
+        transform(self.battle, split_msg)
+
+        self.assertEqual(self.battle.user.active.moves, self.battle.opponent.active.moves)
+
+    def test_transform_sets_types_to_opposing_pokemons_types(self):
+        self.battle.user.active.moves = ['flying', 'dragon']
+        self.battle.opponent.active.moves = ['normal']
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
+
+        transform(self.battle, split_msg)
+
+        self.assertEqual(self.battle.user.active.types, self.battle.opponent.active.types)
+
+    def test_transform_sets_boosts_to_opposing_pokemons_boosts(self):
+        self.battle.user.active.boosts = defaultdict(lambda: 0, {
+            constants.ATTACK: 1,
+            constants.DEFENSE: 2,
+            constants.SPECIAL_ATTACK: 3,
+            constants.SPECIAL_DEFENSE: 4,
+            constants.SPEED: 5,
+        })
+        self.battle.opponent.active.boosts = {}
+
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
+
+        transform(self.battle, split_msg)
+
+        self.assertEqual(self.battle.user.active.boosts, self.battle.opponent.active.boosts)
+
+    def test_transform_sets_transform_volatile_status(self):
+        self.battle.user.active.volatile_statuses = []
+        split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
+
+        transform(self.battle, split_msg)
+
+        self.assertIn(constants.TRANSFORM, self.battle.opponent.active.volatile_statuses)
+
+
+class TestUpkeep(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+
+        self.user_active = Pokemon('weedle', 100)
+        self.battle.user.active = self.user_active
+
+    def test_reduces_protect_for_bot(self):
+        self.battle.user.side_conditions[constants.PROTECT] = 1
+
+        upkeep(self.battle, '')
+
+        self.assertEqual(self.battle.user.side_conditions[constants.PROTECT], 0)
+
+    def test_does_not_reduce_protect_when_it_is_0(self):
+        self.battle.user.side_conditions[constants.PROTECT] = 0
+
+        upkeep(self.battle, '')
+
+        self.assertEqual(self.battle.user.side_conditions[constants.PROTECT], 0)
+
+    def test_reduces_wish_if_it_is_larger_than_0_for_the_opponent(self):
+        self.battle.opponent.wish = (2, 100)
+
+        upkeep(self.battle, '')
+
+        self.assertEqual(self.battle.opponent.wish, (1, 100))
+
+    def test_reduces_wish_if_it_is_larger_than_0_for_the_bot(self):
+        self.battle.user.wish = (2, 100)
+
+        upkeep(self.battle, '')
+
+        self.assertEqual(self.battle.user.wish, (1, 100))
+
+    def test_does_not_reduce_wish_if_it_is_0(self):
+        self.battle.user.wish = (0, 100)
+
+        upkeep(self.battle, '')
+
+        self.assertEqual(self.battle.user.wish, (0, 100))
+
+
 class TestGuessChoiceScarf(unittest.TestCase):
     def setUp(self):
         self.battle = Battle(None)
@@ -1137,6 +1673,18 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
         self.battle.username = self.username
 
+        self.battle.request_json = {
+            constants.ACTIVE: [{constants.MOVES: []}],
+            constants.SIDE: {
+                constants.ID: None,
+                constants.NAME: None,
+                constants.POKEMON: [
+
+                ],
+                constants.RQID: None
+            }
+        }
+
     def test_guesses_choicescarf_when_opponent_should_always_be_slower(self):
         self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
 
@@ -1148,6 +1696,61 @@ class TestGuessChoiceScarf(unittest.TestCase):
         check_choicescarf(self.battle, messages)
 
         self.assertEqual('choicescarf', self.battle.opponent.active.item)
+
+    def test_guesses_choicescarf_from_update_battle(self):
+        # the spread from the battle object mean that this speed is not the actual bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 147
+
+        self.battle.request_json = {
+            constants.SIDE: {
+                "name": "PlayerOne",
+                "id": "p2",
+                "pokemon": [
+                    {
+                        "ident": "p1: Caterpie",
+                        "details": "Caterpie, M",
+                        "condition": "177/252",
+                        "active": True,
+                        "stats": {
+                            "atk": 117,
+                            "def": 127,
+                            "spa": 97,
+                            "spd": 97,
+                            "spe": 210  # the bot's actual speed is faster than the opponent's max speed w/o scarf (207)
+                        },
+                        "moves": [
+                            "tackle"
+                        ],
+                        "baseAbility": "shielddust",
+                        "item": None,
+                        "pokeball": "pokeball",
+                        "ability": "shielddust"
+                    }
+                ]
+            }
+        }
+
+        message = (
+            '|move|p2a: Caterpie|Stealth Rock|\n'
+            '|move|p1a: Caterpie|Stealth Rock|'
+        )
+
+        update_battle(self.battle, message)
+
+        self.assertEqual('choicescarf', self.battle.opponent.active.item)
+
+    def test_does_not_guess_choicescarf_when_opponent_could_have_prankster(self):
+        self.battle.opponent.active.name = 'grimmsnarl'  # grimmsnarl could have prankster - it's non-damaging moves get +1 priority
+        self.battle.user.active.stats[constants.SPEED] = 245  # opponent's speed should not be greater than 240 (max speed grimmsnarl)
+
+        messages = [
+            '|move|p2a: Grimmsnarl|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
     def test_does_not_guess_choicescarf_when_opponent_is_speed_boosted(self):
         self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
@@ -1343,3 +1946,647 @@ class TestGuessChoiceScarf(unittest.TestCase):
         check_choicescarf(self.battle, messages)
 
         self.assertEqual('choicescarf', self.battle.opponent.active.item)
+
+
+class TestGetDamageDealt(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+
+        self.battle.user.name = 'p1'
+        self.battle.user.active = Pokemon('Caterpie', 100)
+
+        self.battle.opponent.name = 'p2'
+        self.battle.opponent.active = Pokemon('Pikachu', 100)
+
+    def test_assigns_damage_dealt_from_opponent_to_bot(self):
+        self.battle.user.active.max_hp = 250
+        self.battle.user.active.hp = 250
+
+        messages = [
+            '|move|p2a: Pikachu|Tackle|p1a: Caterpie',
+            '|-damage|p1a: Caterpie|200/250',  # 50 / 250 = 0.20 of total health
+            '|',
+            '|move|p1a: Caterpie|Tackle|p2a: Pikachu',
+            '|-damage|p2a: Pikachu|90/100',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        expected_damage_amount_dealt = DamageDealt(attacker='pikachu', defender='caterpie', move='tackle', percent_damage=0.20, crit=False)
+        self.assertEqual(expected_damage_amount_dealt, damage_dealt)
+
+    def test_assigns_damage_when_bots_pokemon_has_no_last_used_move(self):
+        self.battle.user.active.max_hp = 250
+        self.battle.user.active.hp = 250
+
+        messages = [
+            '|move|p2a: Pikachu|Tackle|p1a: Caterpie',
+            '|-damage|p1a: Caterpie|200/250',  # 50 / 250 = 0.20 of total health
+            '|',
+            '|move|p1a: Caterpie|Tackle|p2a: Pikachu',
+            '|-damage|p2a: Pikachu|90/100',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        expected_damage_amount_dealt = DamageDealt(attacker='pikachu', defender='caterpie', move='tackle', percent_damage=0.20, crit=False)
+        self.assertEqual(expected_damage_amount_dealt, damage_dealt)
+
+    def test_supereffective_damage_is_captured(self):
+        self.battle.user.active.max_hp = 250
+        self.battle.user.active.hp = 250
+
+        messages = [
+            '|move|p2a: Pikachu|Tackle|p1a: Caterpie',
+            '|supereffective|p1a: Caterpie',
+            '|-damage|p1a: Caterpie|100/250',  # 150 / 250 = 0.60 of total health
+            '|',
+            '|move|p1a: Caterpie|Tackle|p2a: Pikachu',
+            '|-damage|p2a: Pikachu|90/100',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        expected_damage_amount_dealt = DamageDealt(attacker='pikachu', defender='caterpie', move='tackle', percent_damage=0.60, crit=False)
+        self.assertEqual(expected_damage_amount_dealt, damage_dealt)
+
+    def test_crit_sets_crit_flag(self):
+        self.battle.user.active.max_hp = 250
+        self.battle.user.active.hp = 250
+
+        messages = [
+            '|move|p2a: Pikachu|Tackle|p1a: Caterpie',
+            '|-crit|p1a: Caterpie',  # should set crit to True
+            '|-damage|p1a: Caterpie|100/250',  # 150 / 250 = 0.60 of total health
+            '|',
+            '|move|p1a: Caterpie|Tackle|p2a: Pikachu',
+            '|-damage|p2a: Pikachu|90/100',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        expected_damage_amount_dealt = DamageDealt(attacker='pikachu', defender='caterpie', move='tackle', percent_damage=0.60, crit=True)
+        self.assertEqual(expected_damage_amount_dealt, damage_dealt)
+
+    def test_stop_after_the_end_of_this_move(self):
+        self.battle.user.active.max_hp = 250
+        self.battle.user.active.hp = 250
+
+        messages = [
+            '|move|p2a: Pikachu|Tackle|p1a: Caterpie',
+            '|-damage|p1a: Caterpie|200/250',  # 50 / 250 = 0.20 of total health
+            '|',
+            '|move|p1a: Caterpie|Tackle|p2a: Pikachu',
+            '|-damage|p2a: Pikachu|90/100',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        expected_damage_amount_dealt = DamageDealt(attacker='pikachu', defender='caterpie', move='tackle', percent_damage=0.20, crit=False)
+        self.assertEqual(expected_damage_amount_dealt, damage_dealt)
+
+    def test_does_not_assign_anything_when_move_does_no_damage(self):
+        self.battle.user.active.max_hp = 250
+        self.battle.user.active.hp = 250
+
+        messages = [
+            '|move|p2a: Pikachu|Recover|p2a: Pikachu',
+            '|-heal|p2a: Pikachu|200/250'
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+        self.assertIsNone(damage_dealt)
+
+    def test_does_not_catch_second_moves_damage_after_a_heal(self):
+        self.battle.user.active.max_hp = 250
+        self.battle.user.active.hp = 250
+
+        messages = [
+            '|move|p2a: Pikachu|Recover|p2a: Pikachu',
+            '|-heal|p2a: Pikachu|200/250',
+            '|move|p1a: Caterpie|Tackle|p2a: Pikachu',
+            '|-damage|p2a: Pikachu|90/100',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+        self.assertIsNone(damage_dealt)
+
+    def test_does_not_set_damage_when_status_move_occurs(self):
+        self.battle.user.active.max_hp = 250
+        self.battle.user.active.hp = 250
+
+        messages = [
+            '|move|p2a: Pikachu|Thunder Wave|p1a: Caterpie',
+            '|-status|p1a: Caterpie|par',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+        self.assertIsNone(damage_dealt)
+
+    def test_assigns_damage_from_move_that_causes_status_as_secondary(self):
+        self.battle.user.active.max_hp = 250
+        self.battle.user.active.hp = 250
+
+        messages = [
+            '|move|p2a: Pikachu|Thunderbolt|p1a: Caterpie',
+            '|-damage|p1a: Caterpie|200/250',  # 50 / 250 = 0.20 of total health
+            '|-status|p1a: Caterpie|par',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        expected_damage_amount_dealt = DamageDealt(attacker='pikachu', defender='caterpie', move='thunderbolt', percent_damage=0.20, crit=False)
+        self.assertEqual(expected_damage_amount_dealt, damage_dealt)
+
+    def test_assigns_damage_to_bot_on_faint(self):
+        self.battle.user.active.max_hp = 250
+        self.battle.user.active.hp = 250
+
+        self.battle.user.active.hp = 1
+
+        messages = [
+            '|move|p2a: Pikachu|Tackle|p1a: Caterpie',
+            '|-damage|p1a: Caterpie|0 fnt',  # 1 / 250 of health was done
+            '|faint|p1a: Caterpie',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        expected_damage_amount_dealt = DamageDealt(attacker='pikachu', defender='caterpie', move='tackle', percent_damage=1/250, crit=False)
+        self.assertEqual(expected_damage_amount_dealt, damage_dealt)
+
+    def test_assigns_damage_to_opponent_on_faint(self):
+        self.battle.opponent.active.max_hp = 250
+        self.battle.opponent.active.hp = 2.5
+
+        messages = [
+            '|move|p1a: Caterpie|Tackle|p2a: Pikachu',
+            '|-damage|p2a: Pikachu|0 fnt',
+            '|faint|p2a: Pikachu',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        expected_damage_amount_dealt = DamageDealt(attacker='caterpie', defender='pikachu', move='tackle', percent_damage=0.01, crit=False)
+        self.assertEqual(expected_damage_amount_dealt, damage_dealt)
+
+    def test_assigns_damage_to_opponent_on_faint_from_1_hp(self):
+        self.battle.opponent.active.max_hp = 250
+        self.battle.opponent.active.hp = 250
+
+        self.battle.opponent.active.hp = 1
+
+        messages = [
+            '|move|p1a: Caterpie|Tackle|p2a: Pikachu',
+            '|-damage|p2a: Pikachu|0 fnt',  # 1 / 250 of health was done
+            '|faint|p1a: Pikachu',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        expected_damage_amount_dealt = DamageDealt(attacker='caterpie', defender='pikachu', move='tackle', percent_damage=1/250, crit=False)
+        self.assertEqual(expected_damage_amount_dealt, damage_dealt)
+
+    def test_assigns_nothing_on_substitute(self):
+        self.battle.user.active.max_hp = 100
+        self.battle.user.active.hp = 100
+
+        self.battle.opponent.active.hp = 100
+        self.battle.user.active.hp = 100
+
+        messages = [
+            '|move|p2a: Pikachu|Substitute|p2a: Pikachu',
+            '|-start|p2a: Pikachu|Substitute',
+            '|-damage|p2a: Pikachu|75/100',  # damage from sub should not be caught
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+        self.assertIsNone(damage_dealt)
+
+    def test_lifeorb_does_not_assign_damage(self):
+        self.battle.user.active.max_hp = 250
+        self.battle.user.active.hp = 250
+
+        messages = [
+            '|move|p2a: Pikachu|Tackle|p1a: Caterpie',
+            '|-damage|p1a: Caterpie|200/250',  # 0.2 of total health
+            '|-damage|p2a: Pikachu|90/100|[from] item: Life Orb',
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        expected_damage_dealt = DamageDealt(attacker='pikachu', defender='caterpie', move='tackle', percent_damage=0.20, crit=False)
+        self.assertEqual(damage_dealt, expected_damage_dealt)
+
+    def test_doing_damage_to_opponent_gets_correct_percentage(self):
+        # start at 100% health
+        self.battle.opponent.active.max_hp = 250
+        self.battle.opponent.active.hp = 250
+
+        messages = [
+            '|move|p1a: Caterpie|Tackle|p2a: Pikachu',
+            '|-damage|p2a: Pikachu|85/100',  # 0.15 of total health
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        expected_damage_dealt = DamageDealt(attacker='caterpie', defender='pikachu', move='tackle', percent_damage=0.15, crit=False)
+        self.assertEqual(expected_damage_dealt, damage_dealt)
+
+    def test_entire_message_finishing(self):
+        # start at 100% health
+        self.battle.opponent.active.max_hp = 250
+        self.battle.opponent.active.hp = 250
+
+        messages = [
+            '|move|p1a: Caterpie|Parting Shot|p2a: Pikachu',
+            '|-unboost|p2a: Pikachu|atk|1',
+            '|-unboost|p2a: Pikachu|spa|1',
+            ''
+        ]
+
+        split_msg = messages[0].split('|')
+
+        damage_dealt = get_damage_dealt(self.battle, split_msg, messages[1:])
+
+        self.assertIsNone(damage_dealt)
+
+
+class TestCheckChoiceItem(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+        self.battle.opponent.active.ability = None
+
+        self.user_active = Pokemon('caterpie', 100)
+        self.battle.user.active = self.user_active
+        self.battle.user.active.previous_hp = self.battle.user.active.hp
+
+        self.username = "CoolUsername"
+
+        self.battle.username = self.username
+
+        self.battle.user.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
+
+        self.battle.request_json = {
+            constants.ACTIVE: [{constants.MOVES: []}],
+            constants.SIDE: {
+                constants.ID: None,
+                constants.NAME: None,
+                constants.POKEMON: [
+
+                ],
+                constants.RQID: None
+            }
+        }
+
+    def test_guesses_choiceband_for_basic_use_case(self):
+        msg = (
+            '|move|p2a: Caterpie|Tackle|\n'
+            '|-damage|p1a: Caterpie|186/252\n'
+            '|move|p1a: Caterpie|Tackle|\n'
+            '|-damage|p2a: Caterpie|85/100\n'
+            '|upkeep\n'
+            '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual('choiceband', self.battle.opponent.active.item)
+
+    def test_min_roll_choiceband_guesses_correctly(self):
+        msg = (
+            '|move|p2a: Caterpie|Tackle|\n'
+            '|-damage|p1a: Caterpie|192/252\n'  # 252 - 192 = 60 is min-roll with choiceband
+            '|move|p1a: Caterpie|Tackle|\n'
+            '|-damage|p2a: Caterpie|85/100\n'
+            '|upkeep\n'
+            '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual('choiceband', self.battle.opponent.active.item)
+
+    def test_guesses_choiceband_when_bot_moves_first(self):
+        msg = (
+            '|move|p1a: Caterpie|Tackle|\n'
+            '|-damage|p2a: Caterpie|85/100\n'
+            '|move|p2a: Caterpie|Tackle|\n'
+            '|-damage|p1a: Caterpie|186/252\n'
+            '|upkeep\n'
+            '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual('choiceband', self.battle.opponent.active.item)
+
+    def test_does_not_guess_choiceband_when_knockoff_is_used(self):
+        self.battle.battle_type = constants.RANDOM_BATTLE
+
+        # this request_json represents the "next-turn"
+        # in the next-turn, the bot's item is None
+        # this should NOT affect the damage calculation - the calc should still see the item from the previous turn: "unknown_item"
+        self.battle.request_json = {
+            constants.SIDE: {
+                "name": "PlayerTwo",
+                "id": "p2",
+                "pokemon": [
+                  {
+                    "ident": "p1: Caterpie",
+                    "details": "Caterpie, M",
+                    "condition": "177/252",
+                    "active": True,
+                    "stats": {
+                      "atk": 117,
+                      "def": 127,
+                      "spa": 97,
+                      "spd": 97,
+                      "spe": 147
+                    },
+                    "moves": [
+                      "tackle"
+                    ],
+                    "baseAbility": "shielddust",
+                    "item": None,
+                    "pokeball": "pokeball",
+                    "ability": "shielddust"
+                  }
+                ]
+            }
+        }
+        msg = (
+            '|move|p2a: Caterpie|Knock Off|\n'
+            '|-damage|p1a: Caterpie|177/252\n'  # 75 damage. This is normal damage when KnockOff gets it's boost from knocking-off an item
+                                                # this should NOT produce a choice-band guess
+            '|-enditem|p1a: Caterpie|Leftovers|[from] move: Knock Off|[of] p2a: Caterpie\n'
+            '|upkeep\n'
+            '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_choiceband_when_can_have_choice_item_is_false(self):
+        msg = (
+            '|move|p1a: Caterpie|Tackle|\n'
+            '|-damage|p2a: Caterpie|85/100\n'
+            '|move|p2a: Caterpie|Tackle|\n'
+            '|-damage|p1a: Caterpie|186/252\n'
+            '|upkeep\n'
+            '|turn|4'
+        )
+
+        self.battle.opponent.active.can_have_choice_item = False
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_choiceband_when_damage_is_typical(self):
+        msg = (
+            '|move|p1a: Caterpie|Tackle|\n'
+            '|-damage|p2a: Caterpie|85/100\n'
+            '|move|p2a: Caterpie|Tackle|\n'
+            '|-damage|p1a: Caterpie|204/252\n'
+            '|upkeep\n'
+            '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_choiceband_when_opponent_crits(self):
+        msg = (
+            '|move|p1a: Caterpie|Tackle|\n'
+            '|-damage|p2a: Caterpie|85/100\n'
+            '|move|p2a: Caterpie|Tackle|\n'
+            '|-crit|p2a: Caterpie\n'
+            '|-damage|p1a: Caterpie|186/252\n'
+            '|upkeep\n'
+            '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_choiceband_when_bot_uses_shellsmash_just_before(self):
+        # the bot using shellsmash makes this attack appear to do enough to guess a choiceband
+        # however the reason it does this much is the negative boosts that happen due to shellsmash
+        msg = (
+           '|move|p1a: Caterpie|Shell Smash|\n'
+           '|-boost|p1a: Caterpie|atk|2\n'
+           '|-boost|p1a: Caterpie|spa|2\n'
+           '|-boost|p1a: Caterpie|spe|2\n'
+           '|-unboost|p1a: Caterpie|def|1\n'
+           '|-unboost|p1a: Caterpie|spd|1\n'
+           '|move|p2a: Caterpie|Tackle|\n'
+           '|-damage|p1a: Caterpie|186/252\n'
+           '|upkeep\n'
+           '|turn|4'
+        )
+        update_battle(self.battle, msg)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_guess_choiceband_when_bot_shellsmashes_but_white_herb_clears_negative_boosts(self):
+        # the bot uses shellsmash, gets a negative boost, and that negative boost is cleared with a whiteherb
+        # a choice item SHOULD be guessed based on the damage dealt
+        msg = (
+           '|move|p1a: Caterpie|Shell Smash|\n'
+           '|-boost|p1a: Caterpie|atk|2\n'
+           '|-boost|p1a: Caterpie|spa|2\n'
+           '|-boost|p1a: Caterpie|spe|2\n'
+           '|-unboost|p1a: Caterpie|def|1\n'
+           '|-unboost|p1a: Caterpie|spd|1\n'
+           '|-enditem|p1a: Caterpie|White Herb\n'
+           '|-clearnegativeboost|p1a: Caterpie|[silent]\n'
+           '|move|p2a: Caterpie|Tackle|\n'
+           '|-damage|p1a: Caterpie|186/252\n'
+           '|upkeep\n'
+           '|turn|4'
+        )
+        update_battle(self.battle, msg)
+
+        self.assertEqual('choiceband', self.battle.opponent.active.item)
+
+    def test_does_not_guess_choiceband_when_guts_flameorb_facade_is_used(self):
+        # this is a case where the opponent has a few things changing its damage
+        # this is the most likely place for this function to get it wrong
+        # the damage done by facade here should be 118 MAX - no choiceband guess
+
+        self.battle.user.active = Pokemon('Metagross', 100)
+        self.battle.user.active.set_spread('adamant', '0,252,4,0,0,252')
+
+        # ability = guts is not set here, it should be guessed by the statistics
+        self.battle.opponent.active = Pokemon('Machamp', 100)
+        self.battle.opponent.active.set_spread('adamant', '0,252,4,0,0,252')
+        self.battle.opponent.active.item = constants.UNKNOWN_ITEM
+        self.battle.opponent.active.status = constants.BURN
+        self.battle.opponent.active.ability = 'guts'
+
+        msg = (
+           '|move|p1a: Metagross|Bullet Punch|\n'
+           '|-damage|p2a: Machamp|183/321\n'
+           '|move|p2a: Machamp|Facade|\n'
+           '|-damage|p1a: Metagross|183/301\n'
+           '|\n'
+           '|upkeep\n'
+           '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_choiceband_when_suckerpunch_is_used(self):
+        # suckperpunch completed successfully because the bot used an attacking move
+        # make sure a choice item is not guessed
+
+        self.battle.user.active = Pokemon('Machamp', 100)
+        self.battle.user.active.set_spread('adamant', '0,252,0,0,4,252')
+        self.battle.user.active.previous_hp = self.battle.user.active.hp
+
+        self.battle.opponent.active = Pokemon('Bisharp', 100)
+        self.battle.opponent.active.set_spread('adamant', '0,252,4,0,0,252')
+        self.battle.opponent.active.item = constants.UNKNOWN_ITEM
+
+        msg = (
+           '|move|p2a: Bisharp|Sucker Punch|\n'
+           '|-damage|p1a: Machamp|234/321\n'  # max damage (321 - 87 = 234)
+           '|\n'
+           '|upkeep\n'
+           '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_choiceband_when_pursuit_does_double_damage(self):
+        # knockoff is expected to do double damage because of the bot switching
+        self.battle.user.last_used_move = LastUsedMove('machamp', 'switch caterpie', 0)
+
+        self.battle.user.active = Pokemon('Machamp', 100)
+        self.battle.user.active.set_spread('adamant', '0,252,0,0,4,252')
+        self.battle.user.active.previous_hp = self.battle.user.active.hp
+
+        self.battle.opponent.active = Pokemon('Bisharp', 100)
+        self.battle.opponent.active.set_spread('adamant', '0,252,4,0,0,252')
+        self.battle.opponent.active.item = constants.UNKNOWN_ITEM
+
+        msg = (
+           '|move|p2a: Bisharp|Pursuit|\n'
+           '|-damage|p1a: Machamp|221/321\n'  # max damage on switch-out (321 - 100 = 221)
+           '|\n'
+           '|upkeep\n'
+           '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_choiceband_for_special_move(self):
+        msg = (
+            '|move|p2a: Manectric|Thunderbolt|p1a: Reuniclus\n'
+            '|-damage|p1a: Reuniclus|18/100\n'
+            '|move|p1a: Reuniclus|Recover|p1a: Reuniclus\n'
+            '|-heal|p1a: Reuniclus|68/100\n'
+            '|\n'
+            '|upkeep\n'
+            '|turn|21'
+        )
+
+        self.battle.user.last_used_move = LastUsedMove('reuniclus', 'recover', 0)
+
+        self.battle.user.active = Pokemon('Reuniclus', 83)
+        self.battle.user.active.set_spread('adamant', '0,252,0,0,4,252')
+
+        self.battle.opponent.active = Pokemon('Manectric', 82)
+        self.battle.opponent.active.set_spread('adamant', '0,252,4,0,0,252')
+
+        update_battle(self.battle, msg)
+
+        self.assertNotEqual('choiceband', self.battle.opponent.active.item)
+
+    def test_guesses_choicespecs_for_basic_case_in_randombattle(self):
+        # setting randombattle uses randombattle spreads
+        self.battle.battle_type = constants.RANDOM_BATTLE
+
+        msg = (
+            '|move|p2a: Manectric|Thunderbolt|p1a: Reuniclus\n'
+            '|-damage|p1a: Reuniclus|182/318\n'  # 382 - 182 = 136: min damage for specs
+            '|\n'
+            '|upkeep\n'
+            '|turn|21'
+        )
+
+        self.battle.user.last_used_move = LastUsedMove('reuniclus', 'recover', 0)
+
+        self.battle.user.active = Pokemon('Reuniclus', 83)
+
+        self.battle.opponent.active = Pokemon('Manectric', 82)
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual('choicespecs', self.battle.opponent.active.item)
+
+    def test_does_not_guess_choiceband_when_acrobatics_is_used(self):
+        # setting randombattle uses randombattle spreads
+        self.battle.battle_type = constants.RANDOM_BATTLE
+
+        msg = """|move|p2a: Archeops|Acrobatics|p1a: Ferrothorn
+|-damage|p1a: Ferrothorn|127/250
+|-damage|p2a: Archeops|88/100|[from] ability: Iron Barbs|[of] p1a: Ferrothorn
+|-damage|p2a: Archeops|72/100|[from] item: Rocky Helmet|[of] p1a: Ferrothorn
+|move|p1a: Ferrothorn|Spikes|p2a: Archeops
+|-sidestart|p2: la-stabbystabs2205|Spikes"""
+
+        self.battle.user.last_used_move = LastUsedMove('ferrothorn', 'spikes', 0)
+
+        self.battle.user.active = Pokemon('Ferrothorn', 80)
+
+        self.battle.opponent.active = Pokemon('Archeops', 87)
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)

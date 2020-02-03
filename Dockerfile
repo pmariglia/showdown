@@ -1,8 +1,6 @@
 FROM pmariglia/gambit-ubuntu-docker
 
-RUN apt-get clean
-RUN apt-get update
-RUN apt-get install -y python3.6 python3-pip
+RUN apt-get update && apt-get install -y python3.6 python3-pip
 
 WORKDIR /showdown
 

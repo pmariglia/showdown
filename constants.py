@@ -10,8 +10,6 @@ RANDOM_BATTLE = "random_battle"
 PICK_SAFEST = "safest"
 PICK_NASH_EQUILIBRIUM = "nash"
 
-SCORING_MULTIPLIER = "scoring_multiplier"
-
 START_STRING = "|start"
 RQID = 'rqid'
 TEAM_PREVIEW_POKE = "poke"
@@ -27,7 +25,7 @@ UNKNOWN_ITEM = "unknown_item"
 
 UNKOWN_POKEMON_FORMES = ['silvally', 'arceus']
 
-SMOGON_HAS_STATS_PAGE_SUFFIXES = ["ubers", "ou", "uu", "ru", "nu", "pu", "lc", "oublitz"]
+SMOGON_HAS_STATS_PAGE_SUFFIXES = ["ubers", "ou", "uu", "ru", "nu", "pu", "lc", "oublitz", "nationaldexbeta", "nationaldex"]
 
 # a lookup for the opponent's name given the bot's name
 # this has to do with the Pokemon-Showdown PROTOCOL
@@ -48,6 +46,8 @@ MUTATOR_APPLY_STATUS = "apply_status"
 MUTATOR_REMOVE_STATUS = "remove_status"
 MUTATOR_SIDE_START = "side_start"
 MUTATOR_SIDE_END = "side_end"
+MUTATOR_WISH_START = "wish_start"
+MUTATOR_WISH_DECREMENT = "wish_decrement"
 MUTATOR_DISABLE_MOVE = "disable_move"
 MUTATOR_ENABLE_MOVE = "enable_move"
 MUTATOR_WEATHER_START = "weather_start"
@@ -55,6 +55,8 @@ MUTATOR_WEATHER_END = "weather_end"
 MUTATOR_FIELD_START = "field_start"
 MUTATOR_FIELD_END = "field_end"
 MUTATOR_TOGGLE_TRICKROOM = "toggle_trickroom"
+MUTATOR_CHANGE_TYPE = "change_type"
+MUTATOR_CHANGE_ITEM = "change_item"
 
 
 DAMAGE = 'damage'
@@ -112,8 +114,13 @@ CHAT_STRING = "|c|"
 TIME_LEFT = "Time left:"
 DETAILS = "details"
 
+MEGA_EVOLVE_GENERATIONS = [
+    "gen6",
+    "gen7"
+]
 CAN_MEGA_EVO = "canMegaEvo"
 CAN_ULTRA_BURST = "canUltraBurst"
+CAN_DYNAMAX = "canDynamax"
 CAN_Z_MOVE = "canZMove"
 ZMOVE = "zmove"
 ULTRA_BURST = "ultra"
@@ -218,8 +225,37 @@ IRREVERSIBLE_WEATHER = {DESOLATE_LAND, HEAVY_RAIN}
 STEALTH_ROCK = 'stealthrock'
 SPIKES = 'spikes'
 TOXIC_SPIKES = 'toxicspikes'
+COURT_CHANGE = 'courtchange'
 
-HAZARD_CLEARING_MOVES = ['rapidspin', 'defog']
+TYPE_CHANGE_ABILITIES = {
+    'protean',
+    'libero'
+}
+
+WEIGHT_BASED_MOVES = {
+    'heavyslam',
+    'heatcrash',
+    'lowkick',
+    'grassknot',
+}
+
+SPEED_BASED_MOVES = {
+    'gyroball',
+    'electroball'
+}
+
+COURT_CHANGE_SWAPS = {
+    'spikes',
+    'toxicspikes',
+    'stealthrock',
+    'stickyweb',
+    'lightscreen',
+    'reflect',
+    'auroraveil',
+    'tailwind'
+}
+
+HAZARD_CLEARING_MOVES = ['rapidspin', 'defog', 'courtchange']
 
 RAPID_SPIN_CLEARS = [
     STEALTH_ROCK,
@@ -259,6 +295,9 @@ ROOST = "roost"
 PROTECT = "protect"
 BANEFUL_BUNKER = "banefulbunker"
 SPIKY_SHIELD = "spikyshield"
+DYNAMAX = "dynamax"
+PARTIALLY_TRAPPED = "partiallytrapped"
+TRANSFORM = 'transform'
 
 PROTECT_VOLATILE_STATUSES = [PROTECT, BANEFUL_BUNKER, SPIKY_SHIELD]
 
@@ -283,7 +322,87 @@ THAW_IF_HIT_BY = {'scald', 'steameruption'}
 IMMUNE_TO_SLEEP_ABILITIES = {'insomnia', 'sweetveil', 'vitalspirit'}
 IMMUNE_TO_BURN_ABILITIES = {'waterveil', 'waterbubble'}
 IMMUNE_TO_FROZEN_ABILITIES = {'magmaarmor'}
-IMMUNE_TO_POISON_ABILITIES = {'immunity'}
+IMMUNE_TO_POISON_ABILITIES = {'immunity', 'pastelveil'}
 IMMUNE_TO_PARALYSIS_ABILITIES = {'limber'}
+
+ABILITIES_THAT_IGNORE_OTHER_ABILITIES = {
+    'moldbreaker',
+    'turboblaze',
+    'teravolt'
+}
+
+BYPASSABLE_ABILITIES = {
+    # gen8 (probably)
+    'pastelveil',
+    'iceface',
+    'punkrock',
+
+    # https://pokemondb.net/ability/mold-breaker
+    # https://pokemondb.net/ability/turboblaze
+    # https://pokemondb.net/ability/teravolt/
+    'aromaveil',
+    'battlearmor',
+    'bigpecks',
+    'bulletproof',
+    'clearbody',
+    'contrary',
+    'damp',
+    'dazzling',
+    'disguise',
+    'dryskin',
+    'filter',
+    'flashfire',
+    'flowergift',
+    'flowerveil',
+    'fluffy',
+    'friendguard',
+    'furcoat',
+    'heatproof',
+    'heavymetal',
+    'hypercutter',
+    'immunity',
+    'innerfocus',
+    'insomnia',
+    'keeneye',
+    'leafguard',
+    'levitate',
+    'lightmetal',
+    'lightningrod',
+    'limber',
+    'magicbounce',
+    'magmaarmor',
+    'marvelscale',
+    'motordrive',
+    'multiscale',
+    'oblivious',
+    'overcoat',
+    'owntempo',
+    'queenlymajesty',
+    'sandveil',
+    'sapsipper',
+    'shellarmor',
+    'shielddust',
+    'simple',
+    'snowcloak',
+    'solidrock',
+    'soundproof',
+    'stickyhold',
+    'stormdrain',
+    'sturdy',
+    'suctioncups',
+    'sweetveil',
+    'tangledfeet',
+    'telepathy',
+    'thickfat',
+    'unaware',
+    'vitalspirit',
+    'voltabsorb',
+    'waterabsorb',
+    'waterbubble',
+    'waterveil',
+    'whitesmoke',
+    'wonderguard',
+    'wonderskin'
+}
 
 CHOICE_ITEMS = {'choicescarf', 'choiceband', 'choicespecs'}

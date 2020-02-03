@@ -1,9 +1,8 @@
 from copy import copy
+from copy import deepcopy
 
 import constants
 from data import all_move_json
-
-from .helpers import normalize_name
 
 
 pokemon_type_indicies = {
@@ -60,16 +59,22 @@ SPECIAL_LOGIC_MOVES = {
 }
 
 
-def calculate_damage(attacker, defender, attacking_move, conditions=None, calc_type='average'):
+TERRAIN_DAMAGE_BOOST = 1.3
+
+
+def _calculate_damage(attacker, defender, move, conditions=None, calc_type='average'):
+    # This function assumes the `move` dictionary has already been updated to account for move/item/ability special-effects
+    # You may want to use `calculate_damage`
+
     acceptable_calc_types = ['average', 'max', 'min_max', 'min_max_average', 'all']
     if calc_type not in acceptable_calc_types:
         raise ValueError("{} is not one of {}".format(calc_type, acceptable_calc_types))
 
-    attacking_move = get_move(attacking_move)
+    attacking_move = get_move(move)
     if attacking_move is None:
-        raise TypeError("Invalid move")
+        raise TypeError("Invalid move: {}".format(move))
 
-    attacking_type = normalize_name(attacking_move.get(constants.CATEGORY))
+    attacking_type = attacking_move.get(constants.CATEGORY)
     if attacking_type == constants.PHYSICAL:
         attack = constants.ATTACK
         defense = constants.DEFENSE
@@ -164,8 +169,7 @@ def get_move(move):
     if isinstance(move, dict):
         return move
     if isinstance(move, str):
-        move = normalize_name(move)
-        return all_move_json.get(move, None)
+        return deepcopy(all_move_json.get(move, None))
     else:
         return None
 
@@ -210,9 +214,9 @@ def get_damage_rolls(damage, calc_type):
 
 def type_effectiveness_modifier(attacking_move_type, defending_types):
     modifier = 1
-    attacking_type_index = pokemon_type_indicies[normalize_name(attacking_move_type)]
+    attacking_type_index = pokemon_type_indicies[attacking_move_type]
     for pkmn_type in defending_types:
-        defending_type_index = pokemon_type_indicies[normalize_name(pkmn_type)]
+        defending_type_index = pokemon_type_indicies[pkmn_type]
         modifier *= damage_multipication_array[attacking_type_index][defending_type_index]
 
     return modifier
@@ -232,26 +236,26 @@ def weather_modifier(attacking_move, weather):
 
 
 def stab_modifier(attacking_pokemon, attacking_move):
-    if normalize_name(attacking_move[constants.TYPE]) in [normalize_name(t) for t in attacking_pokemon.types]:
+    if attacking_move[constants.TYPE] in [t for t in attacking_pokemon.types]:
         return 1.5
 
     return 1
 
 
 def burn_modifier(attacking_pokemon, attacking_move):
-    if constants.BURN == attacking_pokemon.status and normalize_name(attacking_move[constants.CATEGORY]) == constants.PHYSICAL:
+    if constants.BURN == attacking_pokemon.status and attacking_move[constants.CATEGORY] == constants.PHYSICAL:
         return 0.5
     return 1
 
 
 def light_screen_modifier(attacking_move, light_screen):
-    if light_screen and normalize_name(attacking_move[constants.CATEGORY]) == constants.SPECIAL:
+    if light_screen and attacking_move[constants.CATEGORY] == constants.SPECIAL:
         return 0.5
     return 1
 
 
 def reflect_modifier(attacking_move, reflect):
-    if reflect and normalize_name(attacking_move[constants.CATEGORY]) == constants.PHYSICAL:
+    if reflect and attacking_move[constants.CATEGORY] == constants.PHYSICAL:
         return 0.5
     return 1
 
@@ -264,15 +268,15 @@ def aurora_veil_modifier(aurora_veil):
 
 def terrain_modifier(attacker, defender, attacking_move, terrain):
     if terrain == constants.ELECTRIC_TERRAIN and attacking_move[constants.TYPE] == 'electric' and attacker.is_grounded():
-        return 1.5
+        return TERRAIN_DAMAGE_BOOST
     elif terrain == constants.GRASSY_TERRAIN and attacking_move[constants.TYPE] == 'grass' and attacker.is_grounded():
-        return 1.5
+        return TERRAIN_DAMAGE_BOOST
     elif terrain == constants.GRASSY_TERRAIN and attacking_move[constants.ID] == 'earthquake':
         return 0.5
     elif terrain == constants.MISTY_TERRAIN and attacking_move[constants.TYPE] == 'dragon' and defender.is_grounded():
         return 0.5
     elif terrain == constants.PSYCHIC_TERRAIN and attacking_move[constants.TYPE] == 'psychic' and attacker.is_grounded():
-        return 1.5
+        return TERRAIN_DAMAGE_BOOST
     elif terrain == constants.PSYCHIC_TERRAIN and attacking_move[constants.PRIORITY] > 0:
         return 0
     return 1
@@ -284,4 +288,51 @@ def volatile_status_modifier(attacking_move, attacker, defender):
         modifier *= 0
     if 'flashfire' in attacker.volatile_status and attacking_move[constants.TYPE] == 'fire':
         modifier *= 1.5
+    if 'tarshot' in defender.volatile_status and attacking_move[constants.TYPE] == 'fire':
+        modifier *= 2
     return modifier
+
+
+def calculate_damage(state, attacking_side_string, attacking_move, defending_move, calc_type='average'):
+    # a wrapper for `_calculate_damage` that takes into account move/item/ability special-effects
+    from showdown.engine.find_state_instructions import update_attacking_move
+    from showdown.engine.find_state_instructions import user_moves_first
+
+    attacking_move_dict = get_move(attacking_move)
+    if defending_move.startswith(constants.SWITCH_STRING + " "):
+        defending_move_dict = {constants.SWITCH_STRING: defending_move.split(constants.SWITCH_STRING)[-1]}
+    else:
+        defending_move_dict = get_move(defending_move)
+
+    if attacking_side_string == constants.SELF:
+        attacking_side = state.self
+        defending_side = state.opponent
+    elif attacking_side_string == constants.OPPONENT:
+        attacking_side = state.opponent
+        defending_side = state.self
+    else:
+        raise ValueError("attacking_side_string must be one of: ['self', 'opponent']")
+
+    conditions = {
+        constants.REFLECT: state.opponent.side_conditions[constants.REFLECT],
+        constants.LIGHT_SCREEN: state.opponent.side_conditions[constants.LIGHT_SCREEN],
+        constants.AURORA_VEIL: state.opponent.side_conditions[constants.AURORA_VEIL],
+        constants.WEATHER: state.weather,
+        constants.TERRAIN: state.field
+    }
+
+    attacker_moves_first = user_moves_first(state, attacking_move_dict, defending_move_dict)
+
+    # a charge move doesn't need to charge when only calculating damage
+    attacking_move_dict[constants.FLAGS].pop(constants.CHARGE, None)
+
+    attacking_move_dict = update_attacking_move(
+        attacking_side.active,
+        defending_side.active,
+        attacking_move_dict,
+        defending_move_dict,
+        attacker_moves_first,
+        state.weather
+    )
+
+    return _calculate_damage(attacking_side.active, defending_side.active, attacking_move_dict, conditions=conditions, calc_type=calc_type)

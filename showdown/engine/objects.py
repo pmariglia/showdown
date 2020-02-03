@@ -1,22 +1,36 @@
 from collections import defaultdict
 from copy import copy
 
-from data import all_move_json
 import constants
-from showdown.helpers import boost_multiplier_lookup
+from data import all_move_json
+
+
+boost_multiplier_lookup = {
+    -6: 2/8,
+    -5: 2/7,
+    -4: 2/6,
+    -3: 2/5,
+    -2: 2/4,
+    -1: 2/3,
+    0: 2/2,
+    1: 3/2,
+    2: 4/2,
+    3: 5/2,
+    4: 6/2,
+    5: 7/2,
+    6: 8/2
+}
 
 
 class State(object):
-    __slots__ = ('self', 'opponent', 'weather', 'force_switch', 'field', 'trick_room', 'wait')
+    __slots__ = ('self', 'opponent', 'weather', 'field', 'trick_room')
 
-    def __init__(self, user, opponent, weather, field, trick_room, force_switch, wait):
+    def __init__(self, user, opponent, weather, field, trick_room):
         self.self = user
         self.opponent = opponent
         self.weather = weather
         self.field = field
         self.trick_room = trick_room
-        self.force_switch = force_switch
-        self.wait = wait
 
     def get_self_options(self, force_switch):
         if force_switch:
@@ -24,7 +38,7 @@ class State(object):
         else:
             possible_moves = [m[constants.ID] for m in self.self.active.moves if not m[constants.DISABLED]]
 
-        if self.self.trapped:
+        if self.self.trapped(self.opponent.active):
             possible_switches = []
         else:
             possible_switches = self.self.get_switches()
@@ -37,7 +51,10 @@ class State(object):
         else:
             possible_moves = [m[constants.ID] for m in self.opponent.active.moves if not m[constants.DISABLED]]
 
-        possible_switches = self.opponent.get_switches()
+        if self.opponent.trapped(self.self.active):
+            possible_switches = []
+        else:
+            possible_switches = self.opponent.get_switches()
 
         return possible_moves + possible_switches
 
@@ -69,6 +86,19 @@ class State(object):
 
         return user_options, opponent_options
 
+    def battle_is_finished(self):
+        # Returns:
+        #    1 if the bot (self) has won
+        #   -1 if the opponent has won
+        #    False if the battle is not over
+
+        if self.self.active.hp <= 0 and not any(pkmn.hp for pkmn in self.self.reserve.values()):
+            return -1
+        elif self.opponent.active.hp <= 0 and not any(pkmn.hp for pkmn in self.opponent.reserve.values()) and len(self.opponent.reserve) == 5:
+            return 1
+
+        return False
+
     @classmethod
     def from_dict(cls, state_dict):
         return State(
@@ -76,9 +106,7 @@ class State(object):
             Side.from_dict(state_dict[constants.OPPONENT]),
             state_dict[constants.WEATHER],
             state_dict[constants.FIELD],
-            state_dict[constants.TRICK_ROOM],
-            state_dict[constants.FORCE_SWITCH],
-            state_dict[constants.WAIT],
+            state_dict[constants.TRICK_ROOM]
         )
 
     def __repr__(self):
@@ -88,38 +116,19 @@ class State(object):
                 constants.OPPONENT: self.opponent,
                 constants.WEATHER: self.weather,
                 constants.FIELD: self.field,
-                constants.TRICK_ROOM: self.trick_room,
-                constants.FORCE_SWITCH: self.force_switch,
-                constants.WAIT: self.wait
+                constants.TRICK_ROOM: self.trick_room
             }
         )
 
-    def __key(self):
-        return (
-            hash(self.self),
-            hash(self.opponent),
-            self.weather,
-            self.field,
-            self.trick_room,
-            self.force_switch,
-            self.wait
-        )
-
-    def __hash__(self):
-        return hash(self.__key())
-
-    def __eq__(self, other):
-        return self.__key() == other.__key()
-
 
 class Side(object):
-    __slots__ = ('active', 'reserve', 'side_conditions', 'trapped')
+    __slots__ = ('active', 'reserve', 'wish', 'side_conditions')
 
-    def __init__(self, active, reserve, side_conditions, trapped):
+    def __init__(self, active, reserve, wish, side_conditions):
         self.active = active
         self.reserve = reserve
+        self.wish = wish
         self.side_conditions = side_conditions
-        self.trapped = trapped
 
     def get_switches(self):
         switches = []
@@ -128,47 +137,47 @@ class Side(object):
                 switches.append("{} {}".format(constants.SWITCH_STRING, pkmn_name))
         return switches
 
+    def trapped(self, opponent_active):
+        if self.active.item == 'shedshell' or 'ghost' in self.active.types:
+            return False
+        elif constants.PARTIALLY_TRAPPED in self.active.volatile_status:
+            return True
+        elif opponent_active.ability == 'shadowtag':
+            return True
+        elif opponent_active.ability == 'magnetpull' and 'steel' in self.active.types:
+            return True
+        elif opponent_active.ability == 'arenatrap' and self.active.is_grounded():
+            return True
+        else:
+            return False
+
     @classmethod
     def from_dict(cls, side_dict):
         return Side(
             Pokemon.from_dict(side_dict[constants.ACTIVE]),
             {p[constants.ID]: Pokemon.from_dict(p) for p in side_dict[constants.RESERVE].values()},
-            defaultdict(int, side_dict[constants.SIDE_CONDITIONS]),
-            side_dict[constants.TRAPPED]
+            side_dict[constants.WISH],
+            defaultdict(int, side_dict[constants.SIDE_CONDITIONS])
         )
 
     def __repr__(self):
         return str({
-                constants.ACTIVE: self.active,
-                constants.RESERVE: self.reserve,
-                constants.SIDE_CONDITIONS: dict(self.side_conditions),
-                constants.TRAPPED: self.trapped
-            })
-
-    def __key(self):
-        return (
-            hash(self.active),
-            sum(hash(p.reserve_hash()) for p in self.reserve.values()),
-            hash(frozenset(self.side_conditions.items())),
-            self.trapped
-        )
-
-    def __eq__(self, other):
-        return self.__key() == other.__key()
-
-    def __hash__(self):
-        return hash(self.__key())
+            constants.ACTIVE: self.active,
+            constants.RESERVE: self.reserve,
+            constants.WISH: self.wish,
+            constants.SIDE_CONDITIONS: dict(self.side_conditions)
+        })
 
 
 class Pokemon(object):
     __slots__ = (
         'id',
         'level',
+        'types',
         'hp',
         'maxhp',
         'ability',
         'item',
-        'base_stats',
         'attack',
         'defense',
         'special_attack',
@@ -184,45 +193,39 @@ class Pokemon(object):
         'status',
         'volatile_status',
         'moves',
-        'types',
-        'can_mega_evo',
-        'burn_multiplier',
-        'scoring_multiplier'
+        'burn_multiplier'
     )
 
     def __init__(self,
                  identifier,
                  level,
+                 types,
                  hp,
                  maxhp,
                  ability,
                  item,
-                 base_stats,
                  attack,
                  defense,
                  special_attack,
                  special_defense,
                  speed,
-                 attack_boost,
-                 defense_boost,
-                 special_attack_boost,
-                 special_defense_boost,
-                 speed_boost,
-                 accuracy_boost,
-                 evasion_boost,
-                 status,
-                 volatile_status,
-                 moves,
-                 types,
-                 can_mega_evo,
-                 scoring_multiplier=1):
+                 attack_boost=0,
+                 defense_boost=0,
+                 special_attack_boost=0,
+                 special_defense_boost=0,
+                 speed_boost=0,
+                 accuracy_boost=0,
+                 evasion_boost=0,
+                 status=None,
+                 volatile_status=None,
+                 moves=None):
         self.id = identifier
         self.level = level
+        self.types = types
         self.hp = hp
         self.maxhp = maxhp
         self.ability = ability
         self.item = item
-        self.base_stats = base_stats
         self.attack = attack
         self.defense = defense
         self.special_attack = special_attack
@@ -236,11 +239,8 @@ class Pokemon(object):
         self.accuracy_boost = accuracy_boost
         self.evasion_boost = evasion_boost
         self.status = status
-        self.volatile_status = volatile_status
-        self.moves = moves
-        self.types = types
-        self.can_mega_evo = can_mega_evo
-        self.scoring_multiplier = scoring_multiplier
+        self.volatile_status = volatile_status or set()
+        self.moves = moves or list()
 
         # evaluation relies on a multiplier for the burn status
         # it is calculated here to save time during evaluation
@@ -264,11 +264,11 @@ class Pokemon(object):
         return Pokemon(
             d[constants.ID],
             d[constants.LEVEL],
+            d[constants.TYPES],
             d[constants.HITPOINTS],
             d[constants.MAXHP],
             d[constants.ABILITY],
             d[constants.ITEM],
-            d[constants.BASESTATS],
             d[constants.STATS][constants.ATTACK],
             d[constants.STATS][constants.DEFENSE],
             d[constants.STATS][constants.SPECIAL_ATTACK],
@@ -283,10 +283,7 @@ class Pokemon(object):
             d[constants.BOOSTS][constants.EVASION],
             d[constants.STATUS],
             d[constants.VOLATILE_STATUS],
-            d[constants.MOVES],
-            d[constants.TYPES],
-            d[constants.CAN_MEGA_EVO],
-            d.get(constants.SCORING_MULTIPLIER, 1)
+            d[constants.MOVES]
         )
 
     @classmethod
@@ -294,11 +291,11 @@ class Pokemon(object):
         return Pokemon(
             d[constants.ID],
             d[constants.LEVEL],
+            d[constants.TYPES],
             d[constants.HITPOINTS],
             d[constants.MAXHP],
             d[constants.ABILITY],
             d[constants.ITEM],
-            d[constants.BASESTATS],
             d[constants.ATTACK],
             d[constants.DEFENSE],
             d[constants.SPECIAL_ATTACK],
@@ -313,10 +310,7 @@ class Pokemon(object):
             d.get(constants.EVASION_BOOST, 0),
             d[constants.STATUS],
             set(d[constants.VOLATILE_STATUS]),
-            d[constants.MOVES],
-            d[constants.TYPES],
-            d[constants.CAN_MEGA_EVO],
-            d.get(constants.SCORING_MULTIPLIER, 1)
+            d[constants.MOVES]
         )
 
     def calculate_boosted_stats(self):
@@ -337,11 +331,11 @@ class Pokemon(object):
         return str({
                 constants.ID: self.id,
                 constants.LEVEL: self.level,
+                constants.TYPES: self.types,
                 constants.HITPOINTS: self.hp,
                 constants.MAXHP: self.maxhp,
                 constants.ABILITY: self.ability,
                 constants.ITEM: self.item,
-                constants.BASESTATS: self.base_stats,
                 constants.ATTACK: self.attack,
                 constants.DEFENSE: self.defense,
                 constants.SPECIAL_ATTACK: self.special_attack,
@@ -356,61 +350,14 @@ class Pokemon(object):
                 constants.EVASION_BOOST: self.evasion_boost,
                 constants.STATUS: self.status,
                 constants.VOLATILE_STATUS: list(self.volatile_status),
-                constants.MOVES: self.moves,
-                constants.TYPES: self.types,
-                constants.CAN_MEGA_EVO: self.can_mega_evo,
-                constants.SCORING_MULTIPLIER: self.scoring_multiplier
+                constants.MOVES: self.moves
             })
-
-    def active_hash(self):
-        """Unique identifier for a pokemon"""
-        return (
-            self.id,  # id is used instead of types
-            self.hp,
-            self.maxhp,
-            self.ability,
-            self.item,
-            self.status,
-            frozenset(self.volatile_status),
-            self.attack,
-            self.defense,
-            self.special_attack,
-            self.special_defense,
-            self.speed,
-            self.attack_boost,
-            self.defense_boost,
-            self.special_attack_boost,
-            self.special_defense_boost,
-            self.speed_boost,
-        )
-
-    def reserve_hash(self):
-        """Unique identifier for a pokemon in the reserves
-           This exists because it is a lighter calculation than active_hash"""
-        return (
-            self.hp,
-            self.maxhp,
-            self.ability,
-            self.item,
-            self.status,
-            self.attack,
-            self.defense,
-            self.special_attack,
-            self.special_defense,
-            self.speed,
-        )
-
-    def __eq__(self, other):
-        return self.active_hash() == other.active_hash()
-
-    def __hash__(self):
-        return hash(self.active_hash())
 
 
 class TransposeInstruction:
     __slots__ = ('percentage', 'instructions', 'frozen')
 
-    def __init__(self, percentage, instructions, frozen):
+    def __init__(self, percentage, instructions, frozen=False):
         self.percentage = percentage
         self.instructions = instructions
         self.frozen = frozen
@@ -452,11 +399,16 @@ class StateMutator:
             constants.MUTATOR_REMOVE_STATUS: self.remove_status,
             constants.MUTATOR_SIDE_START: self.side_start,
             constants.MUTATOR_SIDE_END: self.side_end,
+            constants.MUTATOR_WISH_START: self.start_wish,
+            constants.MUTATOR_WISH_DECREMENT: self.decrement_wish,
             constants.MUTATOR_DISABLE_MOVE: self.disable_move,
             constants.MUTATOR_ENABLE_MOVE: self.enable_move,
             constants.MUTATOR_WEATHER_START: self.start_weather,
             constants.MUTATOR_FIELD_START: self.start_field,
-            constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom
+            constants.MUTATOR_FIELD_END: self.end_field,
+            constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom,
+            constants.MUTATOR_CHANGE_TYPE: self.change_types,
+            constants.MUTATOR_CHANGE_ITEM: self.change_item
         }
         self.reverse_instructions = {
             constants.MUTATOR_SWITCH: self.reverse_switch,
@@ -470,11 +422,16 @@ class StateMutator:
             constants.MUTATOR_REMOVE_STATUS: self.apply_status,
             constants.MUTATOR_SIDE_START: self.reverse_side_start,
             constants.MUTATOR_SIDE_END: self.reverse_side_end,
+            constants.MUTATOR_WISH_START: self.reserve_start_wish,
+            constants.MUTATOR_WISH_DECREMENT: self.reverse_decrement_wish,
             constants.MUTATOR_DISABLE_MOVE: self.enable_move,
             constants.MUTATOR_ENABLE_MOVE: self.disable_move,
             constants.MUTATOR_WEATHER_START: self.reverse_start_weather,
             constants.MUTATOR_FIELD_START: self.reverse_start_field,
-            constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom
+            constants.MUTATOR_FIELD_END: self.reverse_end_field,
+            constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom,
+            constants.MUTATOR_CHANGE_TYPE: self.reverse_change_types,
+            constants.MUTATOR_CHANGE_ITEM: self.reverse_change_item
         }
 
     def apply_one(self, instruction):
@@ -587,6 +544,24 @@ class StateMutator:
     def reverse_side_end(self, side, effect, amount):
         self.side_start(side, effect, amount)
 
+    def start_wish(self, side, health, _):
+        # the third parameter is the current wish amount
+        # it is here for reversing purposes
+        side = self.get_side(side)
+        side.wish = (2, health)
+
+    def reserve_start_wish(self, side, _, previous_wish_amount):
+        side = self.get_side(side)
+        side.wish = (0, previous_wish_amount)
+
+    def decrement_wish(self, side):
+        side = self.get_side(side)
+        side.wish = (side.wish[0] - 1, side.wish[1])
+
+    def reverse_decrement_wish(self, side):
+        side = self.get_side(side)
+        side.wish = (side.wish[0] + 1, side.wish[1])
+
     def start_weather(self, weather, _):
         # the second parameter is the current weather
         # the value is here for reversing purposes
@@ -603,14 +578,33 @@ class StateMutator:
     def reverse_start_field(self, _, old_field):
         self.state.field = old_field
 
+    def end_field(self, _):
+        # the second parameter is the current field
+        # the value is here for reversing purposes
+        self.state.field = None
+
+    def reverse_end_field(self, old_field):
+        self.state.field = old_field
+
     def toggle_trickroom(self):
         self.state.trick_room ^= True
 
-    def __key(self):
-        return self.state
+    def change_types(self, side, new_types, _):
+        # the third parameter is the current types of the active pokemon
+        # they must be here for reversing purposes
+        side = self.get_side(side)
+        side.active.types = new_types
 
-    def __eq__(self, other):
-        return self.__key() == other.__key()
+    def reverse_change_types(self, side, _, old_types):
+        side = self.get_side(side)
+        side.active.types = old_types
 
-    def __hash__(self):
-        return hash(self.__key())
+    def change_item(self, side, new_item, _):
+        # the third parameter is the current item
+        # it must be here for reversing purposes
+        side = self.get_side(side)
+        side.active.item = new_item
+
+    def reverse_change_item(self, side, _, old_item):
+        side = self.get_side(side)
+        side.active.item = old_item

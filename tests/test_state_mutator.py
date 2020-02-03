@@ -22,8 +22,8 @@ class TestStatemutator(unittest.TestCase):
                     "bulbasaur": Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     "pidgey": Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
-                defaultdict(lambda: 0),
-                False
+                (0, 0),
+                defaultdict(lambda: 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -34,13 +34,11 @@ class TestStatemutator(unittest.TestCase):
                     "bulbasaur": Pokemon.from_state_pokemon_dict(StatePokemon("bulbasaur", 100).to_dict()),
                     "pidgey": Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
-                defaultdict(lambda: 0),
-                False
+                (0, 0),
+                defaultdict(lambda: 0)
             ),
             None,
             None,
-            False,
-            False,
             False
         )
         self.mutator = StateMutator(self.state)
@@ -563,6 +561,34 @@ class TestStatemutator(unittest.TestCase):
 
         self.assertEqual(constants.GRASSY_TERRAIN, self.state.field)
 
+    def test_end_active_field(self):
+        self.state.field = constants.GRASSY_TERRAIN
+        instruction = (
+            constants.MUTATOR_FIELD_END,
+            constants.GRASSY_TERRAIN
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+        if self.state.field is not None:
+            self.fail("Terrain was not removed")
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(constants.GRASSY_TERRAIN, self.state.field)
+
+    def test_reversing_end_active_field(self):
+        self.state.field = None
+        instruction = (
+            constants.MUTATOR_FIELD_END,
+            constants.GRASSY_TERRAIN
+        )
+        list_of_instructions = [instruction]
+        self.mutator.reverse(list_of_instructions)
+        if self.state.field != constants.GRASSY_TERRAIN:
+            self.fail("Terrain was not reset")
+        self.mutator.apply(list_of_instructions)
+
+        self.assertEqual(None, self.state.field)
+
     def test_toggle_trickroom_sets_trickroom(self):
         self.state.trick_room = False
         instruction = (
@@ -615,3 +641,162 @@ class TestStatemutator(unittest.TestCase):
         self.mutator.reverse(list_of_instructions)
 
         self.assertFalse(self.state.trick_room)
+
+    def test_change_types_properly_changes_types(self):
+        self.state.self.active.types = ['normal']
+        instruction = (
+            constants.MUTATOR_CHANGE_TYPE,
+            constants.SELF,
+            ['water'],
+            self.state.self.active.types
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        self.assertEqual(['water'], self.state.self.active.types)
+
+    def test_reverse_change_types(self):
+        self.state.self.active.types = ['water']
+        instruction = (
+            constants.MUTATOR_CHANGE_TYPE,
+            constants.SELF,
+            ['water'],
+            ['normal']
+        )
+        list_of_instructions = [instruction]
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(['normal'], self.state.self.active.types)
+
+    def test_apply_and_reverse_change_types(self):
+        self.state.self.active.types = ['normal']
+        instruction = (
+            constants.MUTATOR_CHANGE_TYPE,
+            constants.SELF,
+            ['water', 'grass'],
+            self.state.self.active.types
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+        if self.state.self.active.types != ['water', 'grass']:
+            self.fail('types were not changed')
+
+        self.mutator.reverse(list_of_instructions)
+        self.assertEqual(['normal'], self.state.self.active.types)
+
+    def test_changing_item(self):
+        self.state.self.active.item = 'some_item'
+        instruction = (
+            constants.MUTATOR_CHANGE_ITEM,
+            constants.SELF,
+            'some_new_item',
+            self.state.self.active.item
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+        self.assertEqual('some_new_item', self.state.self.active.item)
+
+    def test_reversing_changE_item(self):
+        self.state.self.active.item = 'some_new_item'
+        instruction = (
+            constants.MUTATOR_CHANGE_ITEM,
+            constants.SELF,
+            'some_new_item',
+            'some_item'
+        )
+        list_of_instructions = [instruction]
+        self.mutator.reverse(list_of_instructions)
+        self.assertEqual('some_item', self.state.self.active.item)
+
+    def test_changing_item_and_reversing_item(self):
+        self.state.self.active.item = 'some_item'
+        instruction = (
+            constants.MUTATOR_CHANGE_ITEM,
+            constants.SELF,
+            'some_new_item',
+            self.state.self.active.item
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        if self.state.self.active.item != 'some_new_item':
+            self.fail('item was not changed')
+
+        self.mutator.reverse(list_of_instructions)
+        self.assertEqual('some_item', self.state.self.active.item)
+
+    def test_wish_starting(self):
+        self.state.self.wish = (0, 0)
+        instruction = (
+            constants.MUTATOR_WISH_START,
+            constants.SELF,
+            100,
+            0
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        self.assertEqual((2, 100), self.state.self.wish)
+
+    def test_wish_starting_and_reversing(self):
+        self.state.self.wish = (0, 0)
+        instruction = (
+            constants.MUTATOR_WISH_START,
+            constants.SELF,
+            100,
+            0
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        if self.state.self.wish != (2, 100):
+            self.fail("wish was not started")
+
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual((0, 0), self.state.self.wish)
+
+    def test_previous_wish_reverses_to_exactly_the_same(self):
+        self.state.self.wish = (0, 200)
+        instruction = (
+            constants.MUTATOR_WISH_START,
+            constants.SELF,
+            100,
+            200
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        if self.state.self.wish != (2, 100):
+            self.fail("wish was not started")
+
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual((0, 200), self.state.self.wish)
+
+    def test_decrement_wish(self):
+        self.state.self.wish = (2, 100)
+        instruction = (
+            constants.MUTATOR_WISH_DECREMENT,
+            constants.SELF,
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        self.assertEqual((1, 100), self.state.self.wish)
+
+    def test_decrement_wish_and_reverse_decrement_wish(self):
+        self.state.self.wish = (2, 100)
+        instruction = (
+            constants.MUTATOR_WISH_DECREMENT,
+            constants.SELF,
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        if self.state.self.wish != (1, 100):
+            self.fail("wish was not decremented")
+
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual((2, 100), self.state.self.wish)

@@ -11,7 +11,7 @@ from copy import deepcopy
 import constants
 from showdown.helpers import normalize_name
 
-fp = "sets.txt"
+fp = "../../sets.txt"
 pokedex_path = "../pokedex.json"
 
 
@@ -121,6 +121,15 @@ for k, v in new_json.items():
             100.0
         )
     ]
+
+# dont use ditto sets
+final_json.pop("ditto", None)
+
+
+# dont include pkmn not in pokedex (sometimes the raw file has errors)
+for k, v in deepcopy(final_json).items():
+    if k not in pokedex:
+        final_json.pop(k)
 
 
 with open("out.json", 'w') as f:
