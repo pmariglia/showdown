@@ -275,7 +275,7 @@ def dragondarts(attacking_move, defending_move, attacking_pokemon, defending_pok
 
 
 def boltbeak(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
-    if first_move:
+    if first_move or defending_move.get(constants.SWITCH_STRING):
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 2
     return attacking_move

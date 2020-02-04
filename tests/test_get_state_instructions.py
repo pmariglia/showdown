@@ -2258,6 +2258,25 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_boltbeak_does_double_damage_when_opponent_switches(self):
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        bot_move = "boltbeak"
+        opponent_move = "switch yveltal"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 285)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_boltbeak_does_double_damage_when_moving_first(self):
         self.state.self.active.speed = 2
         self.state.opponent.active.speed = 1
