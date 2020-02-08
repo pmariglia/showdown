@@ -60,15 +60,10 @@ class Scoring:
     }
 
     POKEMON_COUNT_SCORED_SIDE_CONDITIONS = {
-        constants.STEALTH_ROCK: -15,
+        constants.STEALTH_ROCK: -10,
         constants.SPIKES: -7,
         constants.TOXIC_SPIKES: -7,
     }
-
-    WEAK_TO_OPPONENT_TYPE = 5
-    FASTER_POKEMON_IN_MATCHUP = 10
-    SUPER_EFFECTIVE_DAMAGING_MOVE = 5
-    FASTER_POKEMON_WITH_SUPER_EFFECTIVE_DAMAGING_MOVE = 3
 
 
 def evaluate_pokemon(pkmn):
