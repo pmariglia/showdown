@@ -8,7 +8,7 @@ from abc import abstractmethod
 
 import constants
 import config
-from config import logger
+import logging
 
 import data
 from data import all_move_json
@@ -37,6 +37,9 @@ from showdown.helpers import get_pokemon_info_from_condition
 from showdown.helpers import set_makes_sense
 from showdown.helpers import normalize_name
 from showdown.helpers import calculate_stats
+
+
+logger = logging.getLogger(__name__)
 
 
 LastUsedMove = namedtuple('LastUsedMove', ['pokemon_name', 'move', 'turn'])
@@ -141,8 +144,6 @@ class Battle(ABC):
 
         combinations = list(itertools.product(spreads, items, abilities, chance_move_combinations))
 
-        logger.debug("Guessing these moves for the opponent's {}: {}".format(battle_copy.opponent.active.name, expected_moves))
-
         # create battle clones for each of the combinations
         battles = list()
         for c in combinations:
@@ -164,7 +165,7 @@ class Battle(ABC):
                 for m in c[3]:
                     new_battle.opponent.active.add_move(m)
 
-                logger.debug("Possible set for opponent's {}: {}".format(battle_copy.opponent.active.name, c))
+                logger.debug("Possible set for opponent's {}:\t{} {} {} {} {}".format(battle_copy.opponent.active.name, c[0][0], c[0][1], c[1], c[2], all_moves))
                 battles.append(new_battle)
 
             new_battle.opponent.lock_moves()
@@ -464,32 +465,25 @@ class Pokemon:
 
     def set_likely_moves_unless_revealed(self):
         if len(self.moves) == 4:
-            logger.debug("{} revealed 4 moves: {}".format(self.name, self.moves))
             return
         additional_moves = get_all_likely_moves(self.name, [m.name for m in self.moves])
-        logger.debug("Guessing additional moves for {}: {}".format(self.name, additional_moves))
         for m in additional_moves:
             self.moves.append(Move(m))
 
     def set_most_likely_ability_unless_revealed(self):
         if self.ability is not None:
-            logger.debug("{} has revealed it's ability as {}, not guessing".format(self.name, self.ability))
             return
         ability = get_most_likely_ability(self.name)
-        logger.debug("Guessing ability={} for {}".format(ability, self.name))
         self.ability = ability
 
     def set_most_likely_item_unless_revealed(self):
         if self.item != constants.UNKNOWN_ITEM:
-            logger.debug("{} has revealed it's item as {}, not guessing".format(self.name, self.item))
             return
         item = get_most_likely_item(self.name)
-        logger.debug("Guessing item={} for {}".format(item, self.name))
         self.item = item
 
     def set_most_likely_spread(self):
         nature, evs, _ = get_most_likely_spread(self.name)
-        logger.debug("Spread assumption for {}: {}, {}".format(self.name, nature, evs))
         self.set_spread(nature, evs)
 
     def guess_most_likely_attributes(self):

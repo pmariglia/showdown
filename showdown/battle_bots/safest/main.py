@@ -6,7 +6,8 @@ from showdown.engine.objects import StateMutator
 from showdown.engine.select_best_move import pick_safest
 from showdown.engine.select_best_move import get_payoff_matrix
 
-from config import logger
+import logging
+logger = logging.getLogger(__name__)
 
 
 def prefix_opponent_move(score_lookup, prefix):
@@ -25,9 +26,7 @@ def pick_safest_move_from_battles(battles):
         state = b.create_state()
         mutator = StateMutator(state)
         user_options, opponent_options = b.get_all_options()
-        logger.debug("Attempting to find best move from: {}".format(mutator.state))
-        logger.debug("Bot options: {}".format(user_options))
-        logger.debug("Opponent options: {}".format(opponent_options))
+        logger.debug("Searching through the state: {}".format(mutator.state))
         scores = get_payoff_matrix(mutator, user_options, opponent_options, depth=2, prune=True)
 
         prefixed_scores = prefix_opponent_move(scores, str(i))

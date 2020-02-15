@@ -10,7 +10,8 @@ from data.parse_smogon_stats import SPREADS_STRING
 from data.parse_smogon_stats import ABILITY_STRING
 from data.parse_smogon_stats import ITEM_STRING
 
-from config import logger
+import logging
+logger = logging.getLogger(__name__)
 
 
 # these items will either reveal themselves automatically, or do not have a meaningful impact to the bot

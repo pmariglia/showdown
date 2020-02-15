@@ -13696,6 +13696,7 @@
       "secondary": false,
       "target": "self",
       "type": "fighting",
+      "volatileStatus": "noretreat",
       "pp": 5
     },
     "obstruct": {

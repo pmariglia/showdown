@@ -1,12 +1,14 @@
 from copy import copy
 
 import constants
-from config import logger
+import logging
 
 from .damage_calculator import type_effectiveness_modifier
 from .special_effects.abilities.on_switch_in import ability_on_switch_in
 from .special_effects.items.end_of_turn import item_end_of_turn
 from .special_effects.abilities.end_of_turn import ability_end_of_turn
+
+logger = logging.getLogger(__name__)
 
 
 opposite_side = {
@@ -177,109 +179,106 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
     defending_side = get_side_from_state(mutator.state, opposite_side[attacker])
     mutator.apply(instructions.instructions)
     instruction_additions = remove_volatile_status_and_boosts_instructions(attacking_side, attacker)
+    mutator.apply(instruction_additions)
 
     for move in filter(lambda x: x[constants.DISABLED] is True and x[constants.CURRENT_PP], attacking_side.active.moves):
-        instruction_additions.append(
-            (
-                constants.MUTATOR_ENABLE_MOVE,
-                attacker,
-                move[constants.ID]
-            )
+        remove_disabled_instruction = (
+            constants.MUTATOR_ENABLE_MOVE,
+            attacker,
+            move[constants.ID]
         )
+        mutator.apply_one(remove_disabled_instruction)
+        instruction_additions.append(remove_disabled_instruction)
 
     if attacking_side.active.ability == 'regenerator' and attacking_side.active.hp:
         hp_missing = attacking_side.active.maxhp - attacking_side.active.hp
-        instruction_additions.append(
-            (
-                constants.MUTATOR_HEAL,
-                attacker,
-                int(min(1 / 3 * attacking_side.active.maxhp, hp_missing))
-            )
-        )
-    elif attacking_side.active.ability == 'naturalcure' and attacking_side.active.status is not None:
-        instruction_additions.append(
-            (
-                constants.MUTATOR_REMOVE_STATUS,
-                attacker,
-                attacking_side.active.status
-            )
-        )
-
-    instruction_additions.append(
-        (
-            constants.MUTATOR_SWITCH,
+        regenerator_instruction = (
+            constants.MUTATOR_HEAL,
             attacker,
-            attacking_side.active.id,
-            switch_pokemon_name
+            int(min(1 / 3 * attacking_side.active.maxhp, hp_missing))
         )
-    )
+        mutator.apply_one(regenerator_instruction)
+        instruction_additions.append(regenerator_instruction)
+    elif attacking_side.active.ability == 'naturalcure' and attacking_side.active.status is not None:
+        naturalcure_instruction = (
+            constants.MUTATOR_REMOVE_STATUS,
+            attacker,
+            attacking_side.active.status
+        )
+        mutator.apply_one(naturalcure_instruction)
+        instruction_additions.append(naturalcure_instruction)
 
-    switch_pkmn = attacking_side.reserve[switch_pokemon_name]
-    attacking_pokemon = attacking_side.active
+    switch_instruction = (
+        constants.MUTATOR_SWITCH,
+        attacker,
+        attacking_side.active.id,
+        switch_pokemon_name
+    )
+    mutator.apply_one(switch_instruction)
+    instruction_additions.append(switch_instruction)
+
+    switch_pkmn = attacking_side.active
     if switch_pkmn.item != 'heavydutyboots':
 
         # account for stealth rock damage
         if attacking_side.side_conditions[constants.STEALTH_ROCK] == 1:
             multiplier = type_effectiveness_modifier('rock', switch_pkmn.types)
-
-            instruction_additions.append(
-                (
-                    constants.MUTATOR_DAMAGE,
-                    attacker,
-                    min(1 / 8 * multiplier * switch_pkmn.maxhp, switch_pkmn.hp)
-                )
+            stealth_rock_instruction = (
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                min(1 / 8 * multiplier * switch_pkmn.maxhp, switch_pkmn.hp)
             )
+            mutator.apply_one(stealth_rock_instruction)
+            instruction_additions.append(stealth_rock_instruction)
 
         # account for spikes damage
         if attacking_side.side_conditions[constants.SPIKES] > 0 and switch_pkmn.is_grounded():
             spike_count = attacking_side.side_conditions[constants.SPIKES]
-            instruction_additions.append(
-                (
-                    constants.MUTATOR_DAMAGE,
-                    attacker,
-                    min(1 / 8 * spike_count * switch_pkmn.maxhp, switch_pkmn.hp)
-                )
+            spikes_instruction = (
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                min(1 / 8 * spike_count * switch_pkmn.maxhp, switch_pkmn.hp)
             )
+            mutator.apply_one(spikes_instruction)
+            instruction_additions.append(spikes_instruction)
 
         # account for stickyweb speed drop
         if attacking_side.side_conditions[constants.STICKY_WEB] == 1 and switch_pkmn.is_grounded():
-            instruction_additions.append(
-                (
-                    constants.MUTATOR_UNBOOST,
-                    attacker,
-                    constants.SPEED,
-                    1
-                )
+            sticky_web_instruction = (
+                constants.MUTATOR_UNBOOST,
+                attacker,
+                constants.SPEED,
+                1
             )
+            mutator.apply_one(sticky_web_instruction)
+            instruction_additions.append(sticky_web_instruction)
 
         # account for toxic spikes effect
         if attacking_side.side_conditions[constants.TOXIC_SPIKES] >= 1 and switch_pkmn.is_grounded():
-            if not immune_to_status(mutator.state, switch_pkmn, attacking_pokemon, constants.POISON):
+            toxic_spike_instruction = None
+            if not immune_to_status(mutator.state, switch_pkmn, switch_pkmn, constants.POISON):
                 if attacking_side.side_conditions[constants.TOXIC_SPIKES] == 1:
-                    instruction_additions.append(
-                        (
-                            constants.MUTATOR_APPLY_STATUS,
-                            attacker,
-                            constants.POISON
-                        )
+                    toxic_spike_instruction = (
+                        constants.MUTATOR_APPLY_STATUS,
+                        attacker,
+                        constants.POISON
                     )
                 elif attacking_side.side_conditions[constants.TOXIC_SPIKES] == 2:
-                    instruction_additions.append(
-                        (
-                            constants.MUTATOR_APPLY_STATUS,
-                            attacker,
-                            constants.TOXIC
-                        )
+                    toxic_spike_instruction = (
+                        constants.MUTATOR_APPLY_STATUS,
+                        attacker,
+                        constants.TOXIC
                     )
             elif 'poison' in switch_pkmn.types:
-                instruction_additions.append(
-                    (
-                        constants.MUTATOR_SIDE_END,
-                        attacker,
-                        constants.TOXIC_SPIKES,
-                        attacking_side.side_conditions[constants.TOXIC_SPIKES]
-                    )
+                toxic_spike_instruction = (
+                    constants.MUTATOR_SIDE_END,
+                    attacker,
+                    constants.TOXIC_SPIKES,
+                    attacking_side.side_conditions[constants.TOXIC_SPIKES]
                 )
+            if toxic_spike_instruction is not None:
+                mutator.apply_one(toxic_spike_instruction)
+                instruction_additions.append(toxic_spike_instruction)
 
     # account for switch-in abilities
     ability_switch_in_instructions = ability_on_switch_in(
@@ -292,10 +291,10 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
     )
     if ability_switch_in_instructions is not None:
         for i in ability_switch_in_instructions:
-            instruction_additions.append(
-                i
-            )
+            mutator.apply_one(i)
+            instruction_additions.append(i)
 
+    mutator.reverse(instruction_additions)
     mutator.reverse(instructions.instructions)
     for i in instruction_additions:
         instructions.add_instruction(i)

@@ -1,8 +1,8 @@
 import json
 from copy import deepcopy
+import logging
 
 import constants
-from config import logger
 from data import all_move_json
 from data import pokedex
 from showdown.battle import Pokemon
@@ -13,6 +13,9 @@ from showdown.helpers import get_pokemon_info_from_condition
 from showdown.helpers import calculate_stats
 from showdown.engine.find_state_instructions import get_effective_speed
 from showdown.engine.damage_calculator import calculate_damage
+
+
+logger = logging.getLogger(__name__)
 
 
 def find_pokemon_in_reserves(pkmn_name, reserves):
@@ -31,6 +34,7 @@ def request(battle, split_msg):
        Also updates some battle meta-data such as rqid, force_switch, and wait"""
     if len(split_msg) >= 2:
         battle_json = json.loads(split_msg[2].strip('\''))
+        logger.debug("Received battle JSON from server: {}".format(battle_json))
         battle.rqid = battle_json[constants.RQID]
 
         if battle_json.get(constants.FORCE_SWITCH):

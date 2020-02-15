@@ -84,6 +84,7 @@ side = Side(
         'pidgey': Pokemon(...),
         ...
     },
+    wish=(0, 0),
     side_conditions={
         'stealth_rock': 1,
         'spikes': 3,
