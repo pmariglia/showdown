@@ -34,6 +34,13 @@ def galvanize(attacking_move, defending_move, attacking_pokemon, defending_pokem
     return attacking_move
 
 
+def liquidvoice(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if constants.SOUND in attacking_move[constants.FLAGS]:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = 'water'
+    return attacking_move
+
+
 def compoundeyes(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
     if attacking_move[constants.ACCURACY] is not True:
         attacking_move = attacking_move.copy()
@@ -341,6 +348,7 @@ def stakeout(attacking_move, defending_move, attacking_pokemon, defending_pokemo
 
 
 ability_lookup = {
+    'liquidvoice': liquidvoice,
     'stakeout': stakeout,
     'steelyspirit': steelyspirit,
     'punkrock': punkrock,

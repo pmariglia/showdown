@@ -7761,6 +7761,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_liquidvoice_boosts_sound_move_into_water_and_hits_ghost_type(self):
+        bot_move = "hypervoice"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'liquidvoice'
+        self.state.opponent.active.types = ['ghost']  # make sure it hits a ghost type
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_galvanize_boosts_normal_move_without_stab(self):
         bot_move = "tackle"
         opponent_move = "splash"
