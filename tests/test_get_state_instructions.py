@@ -7779,6 +7779,22 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_liquidvoice_versus_waterabsorb(self):
+        bot_move = "hypervoice"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'liquidvoice'
+        self.state.opponent.active.ability = 'waterabsorb'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_galvanize_boosts_normal_move_without_stab(self):
         bot_move = "tackle"
         opponent_move = "splash"

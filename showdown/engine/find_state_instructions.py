@@ -122,13 +122,6 @@ def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, 
         weather
     )
 
-    attacking_move = ability_modify_attack_against(
-        defending_pokemon.ability,
-        attacking_move,
-        attacking_pokemon,
-        defending_pokemon
-    )
-
     attacking_move = ability_modify_attack_being_used(
         attacking_pokemon.ability,
         attacking_move,
@@ -141,6 +134,13 @@ def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, 
 
     attacking_move = item_modify_attack_being_used(
         attacking_pokemon.item,
+        attacking_move,
+        attacking_pokemon,
+        defending_pokemon
+    )
+
+    attacking_move = ability_modify_attack_against(
+        defending_pokemon.ability,
         attacking_move,
         attacking_pokemon,
         defending_pokemon
