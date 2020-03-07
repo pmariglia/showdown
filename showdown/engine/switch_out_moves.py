@@ -3,7 +3,7 @@ import constants
 
 def switch_out_move_triggered(move, damage_amounts):
     if move[constants.ID] in constants.SWITCH_OUT_MOVES:
-        if move[constants.ID] == 'partingshot' and move[constants.ACCURACY]:
+        if move[constants.ID] in ['partingshot', 'teleport'] and move[constants.ACCURACY]:
             return True
         else:
             return damage_amounts is not None and all(damage_amounts)

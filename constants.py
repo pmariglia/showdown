@@ -283,7 +283,7 @@ MISTY_TERRAIN = "mistyterrain"
 PSYCHIC_TERRAIN = "psychicterrain"
 
 # switch-out moves
-SWITCH_OUT_MOVES = {"uturn", "voltswitch", "partingshot"}
+SWITCH_OUT_MOVES = {"uturn", "voltswitch", "partingshot", "teleport"}
 
 # volatile statuses
 FLINCH = "flinch"

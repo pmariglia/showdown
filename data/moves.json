@@ -11845,7 +11845,7 @@
         "flags": {},
         "id": "teleport",
         "name": "Teleport",
-        "priority": 0,
+        "priority": -6,
         "secondary": false,
         "target": "self",
         "type": "psychic",

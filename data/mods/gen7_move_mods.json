@@ -5,5 +5,8 @@
   "rapidspin": {
     "basePower": 20,
     "secondary": false
+  },
+  "teleport": {
+    "priority": 0
   }
 }
