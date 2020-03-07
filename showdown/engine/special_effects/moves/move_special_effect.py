@@ -372,7 +372,18 @@ def noretreat(attacking_move, defending_move, attacking_pokemon, defending_pokem
     return attacking_move
 
 
+def growth(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if weather == constants.SUN:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BOOSTS] = {
+            constants.ATTACK: 2,
+            constants.SPECIAL_ATTACK: 2,
+        }
+    return attacking_move
+
+
 move_lookup = {
+    'growth': growth,
     'noretreat': noretreat,
     'heatcrash': heavyslam,
     'heavyslam': heavyslam,

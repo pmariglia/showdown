@@ -3163,6 +3163,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_growth_boosts_by_two_in_the_sun(self):
+        bot_move = "growth"
+        opponent_move = "splash"
+        self.state.weather = constants.SUN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, 2),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_infiltrator_toxic_bypasses_sub(self):
         bot_move = "toxic"
         opponent_move = "splash"
