@@ -332,7 +332,7 @@ def cureteam(battle, split_msg):
 
     side.active.status = None
     for pkmn in filter(lambda p: isinstance(p, Pokemon), side.reserve):
-            pkmn.status = None
+        pkmn.status = None
 
 
 def weather(battle, split_msg):
@@ -458,19 +458,19 @@ def form_change(battle, split_msg):
 
     base_name = side.active.base_name
     hp_percent = float(side.active.hp) / side.active.max_hp
-    moves = side.active.moves
-    boosts = side.active.boosts
-    status = side.active.status
+    previous_moves = side.active.moves
+    previous_boosts = side.active.boosts
+    previous_status = side.active.status
 
     new_pokemon = Pokemon.from_switch_string(split_msg[3])
-    new_pokemon.moves = moves
+    new_pokemon.moves = previous_moves
     if new_pokemon in side.reserve:
         side.reserve.remove(new_pokemon)
 
     side.active = new_pokemon
     side.active.hp = hp_percent * side.active.max_hp
-    side.active.boosts = boosts
-    side.active.status = status
+    side.active.boosts = previous_boosts
+    side.active.status = previous_status
 
     if side.active.name != "zoroark":
         side.active.base_name = base_name
@@ -583,7 +583,7 @@ def check_choicescarf(battle, msg_lines):
         return
 
     moves = [get_move_information(m) for m in msg_lines if m.startswith('|move|')]
-    if len(moves) != 2 or moves[0][0].startswith(battle.user.name)or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:
+    if len(moves) != 2 or moves[0][0].startswith(battle.user.name) or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:
         return
 
     battle_copy = deepcopy(battle)
@@ -622,8 +622,8 @@ def get_damage_dealt(battle, split_msg, next_messages):
         attacking_side = battle.user
         defending_side = battle.opponent
 
-    for l in next_messages:
-        next_line_split = l.split('|')
+    for line in next_messages:
+        next_line_split = line.split('|')
         # if one of these strings appears in index 1 then
         # exit out since we are done with this pokemon's move
         if len(next_line_split) < 2 or next_line_split[1] in move_end_strings:
