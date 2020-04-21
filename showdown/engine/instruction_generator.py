@@ -1238,7 +1238,7 @@ def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
     return (
         status == constants.FROZEN and is_immune_to_freeze(state, defending_pkmn) or
         status == constants.BURN and is_immune_to_burn(defending_pkmn) or
-        status == constants.SLEEP and is_immune_to_sleep(defending_pkmn) or
+        status == constants.SLEEP and is_immune_to_sleep(state, defending_pkmn) or
         status == constants.PARALYZED and is_immune_to_paralysis(defending_pkmn) or
         status in [constants.POISON, constants.TOXIC] and is_immune_to_poison(defending_pkmn)
     )
@@ -1259,10 +1259,10 @@ def is_immune_to_burn(pkmn):
     )
 
 
-def is_immune_to_sleep(pkmn):
+def is_immune_to_sleep(state, pkmn):
     return (
         pkmn.ability in constants.IMMUNE_TO_SLEEP_ABILITIES or
-        constants.ELECTRIC_TERRAIN and pkmn.is_grounded()
+        state.field == constants.ELECTRIC_TERRAIN and pkmn.is_grounded()
     )
 
 
