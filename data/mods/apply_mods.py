@@ -14,7 +14,7 @@ PWD = os.path.dirname(os.path.abspath(__file__))
 
 
 def apply_move_mods(gen_number):
-    logger.debug("Applying move mode for gen {}".format(gen_number))
+    logger.debug("Applying move mod for gen {}".format(gen_number))
     for gen_number in reversed(range(gen_number, CURRENT_GEN)):
         with open("{}/gen{}_move_mods.json".format(PWD, gen_number), 'r') as f:
             move_mods = json.load(f)
@@ -23,7 +23,7 @@ def apply_move_mods(gen_number):
 
 
 def apply_pokedex_mods(gen_number):
-    logger.debug("Applying dex mode for gen {}".format(gen_number))
+    logger.debug("Applying dex mod for gen {}".format(gen_number))
     for gen_number in reversed(range(gen_number, CURRENT_GEN)):
         with open("{}/gen{}_pokedex_mods.json".format(PWD, gen_number), 'r') as f:
             pokedex_mods = json.load(f)
