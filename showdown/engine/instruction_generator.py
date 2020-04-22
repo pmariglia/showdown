@@ -1218,12 +1218,11 @@ def can_be_volatile_statused(side, volatile_status, first_move):
 
 
 def sleep_clause_activated(side, status):
-    if status == constants.SLEEP and constants.SLEEP in [p.status for p in side.reserve.values()]:
-        return True
-    return False
+    return status == constants.SLEEP and constants.SLEEP in [p.status for p in side.reserve.values()]
 
 
 def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
+    # General status immunity
     if defending_pkmn.status is not None or defending_pkmn.hp <= 0:
         return True
     if constants.SUBSTITUTE in defending_pkmn.volatile_status and attacking_pkmn.ability != 'infiltrator':
@@ -1235,23 +1234,47 @@ def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
     if state.field == constants.MISTY_TERRAIN and defending_pkmn.is_grounded():
         return True
 
-    if status == constants.FROZEN and (defending_pkmn.ability in constants.IMMUNE_TO_FROZEN_ABILITIES or 'ice' in defending_pkmn.types or state.weather == constants.DESOLATE_LAND):
-        return True
-    elif status == constants.BURN and ('fire' in defending_pkmn.types or defending_pkmn.ability in constants.IMMUNE_TO_BURN_ABILITIES):
-        return True
-    elif status == constants.SLEEP and (defending_pkmn.ability in constants.IMMUNE_TO_SLEEP_ABILITIES or state.field == constants.ELECTRIC_TERRAIN):
-        return True
-    elif status in [constants.POISON, constants.TOXIC] and (
-            any(t in ['poison', 'steel'] for t in defending_pkmn.types) or defending_pkmn.ability in constants.IMMUNE_TO_POISON_ABILITIES):
-        return True
-    elif status == constants.PARALYZED and is_immune_to_paralysis(defending_pkmn):
-        return True
-
-    return False
-
-
-def is_immune_to_paralysis(defending_pkmn):
+    # Specific status immunity
     return (
-        'electric' in defending_pkmn.types
-        or defending_pkmn.ability in constants.IMMUNE_TO_PARALYSIS_ABILITIES
+        status == constants.FROZEN and is_immune_to_freeze(state, defending_pkmn) or
+        status == constants.BURN and is_immune_to_burn(defending_pkmn) or
+        status == constants.SLEEP and is_immune_to_sleep(state, defending_pkmn) or
+        status == constants.PARALYZED and is_immune_to_paralysis(defending_pkmn) or
+        status in [constants.POISON, constants.TOXIC] and is_immune_to_poison(defending_pkmn)
+    )
+
+
+def is_immune_to_freeze(state, pkmn):
+    return (
+        'ice' in pkmn.types or 
+        pkmn.ability in constants.IMMUNE_TO_FROZEN_ABILITIES or 
+        state.weather == constants.DESOLATE_LAND
+    )
+
+
+def is_immune_to_burn(pkmn):
+    return (
+        'fire' in pkmn.types or
+        pkmn.ability in constants.IMMUNE_TO_BURN_ABILITIES
+    )
+
+
+def is_immune_to_sleep(state, pkmn):
+    return (
+        pkmn.ability in constants.IMMUNE_TO_SLEEP_ABILITIES or
+        state.field == constants.ELECTRIC_TERRAIN and pkmn.is_grounded()
+    )
+
+
+def is_immune_to_poison(pkmn):
+    return (
+        any(t in ['poison', 'steel'] for t in pkmn.types) or
+        pkmn.ability in constants.IMMUNE_TO_POISON_ABILITIES
+    )
+
+
+def is_immune_to_paralysis(pkmn):
+    return (
+        'electric' in pkmn.types or 
+        pkmn.ability in constants.IMMUNE_TO_PARALYSIS_ABILITIES
     )

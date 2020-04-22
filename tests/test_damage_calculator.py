@@ -85,6 +85,17 @@ class TestCalculateDamageAmount(unittest.TestCase):
         dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
         self.assertEqual([450], dmg)
 
+    def test_sun_weakens_water_moves(self):
+
+        conditions = {
+            'weather': constants.SUN
+        }
+
+        move = 'surf'
+
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type='max')
+        self.assertEqual([87], dmg)
+
     def test_sand_increases_rock_spdef(self):
 
         self.venusaur.types = ['rock']
@@ -193,6 +204,17 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         self.assertEqual([0], dmg)
 
+    def test_psychic_terrain_does_not_affect_priority_on_non_grounded(self):
+        conditions = {
+            constants.TERRAIN: constants.PSYCHIC_TERRAIN
+        }
+
+        move = 'machpunch'
+
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type='max')
+
+        self.assertNotEqual([0], dmg)
+
     def test_rain_properly_amplifies_water_damage(self):
 
         conditions = {
@@ -203,6 +225,17 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type='max')
         self.assertEqual([261], dmg)
+
+    def test_rain_properly_reduces_fire_damage(self):
+
+        conditions = {
+            'weather': constants.RAIN
+        }
+
+        move = 'fireblast'
+
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type='max')
+        self.assertEqual([26], dmg)
 
     def test_reflect_properly_halves_damage(self):
 

@@ -8238,6 +8238,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_electric_terrain_does_not_block_sleep_for_non_grounded(self):
+        bot_move = "splash"
+        opponent_move = "spore"
+        self.state.self.active.types = ['flying']
+        self.state.field = constants.ELECTRIC_TERRAIN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.SLEEP)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_skill_link_increases_tailslap_damage(self):
         bot_move = "tailslap"
         opponent_move = "splash"

@@ -228,8 +228,12 @@ def weather_modifier(attacking_move, weather):
 
     if weather == constants.SUN and attacking_move[constants.TYPE] == 'fire':
         return 1.5
+    elif weather == constants.SUN and attacking_move[constants.TYPE] == 'water':
+        return 0.5
     elif weather == constants.RAIN and attacking_move[constants.TYPE] == 'water':
         return 1.5
+    elif weather == constants.RAIN and attacking_move[constants.TYPE] == 'fire':
+        return 0.5
     elif weather == constants.DESOLATE_LAND and attacking_move[constants.TYPE] == 'water':
         return 0
     return 1
@@ -277,14 +281,14 @@ def terrain_modifier(attacker, defender, attacking_move, terrain):
         return 0.5
     elif terrain == constants.PSYCHIC_TERRAIN and attacking_move[constants.TYPE] == 'psychic' and attacker.is_grounded():
         return TERRAIN_DAMAGE_BOOST
-    elif terrain == constants.PSYCHIC_TERRAIN and attacking_move[constants.PRIORITY] > 0:
+    elif terrain == constants.PSYCHIC_TERRAIN and attacking_move[constants.PRIORITY] > 0 and defender.is_grounded():
         return 0
     return 1
 
 
 def volatile_status_modifier(attacking_move, attacker, defender):
     modifier = 1
-    if 'magnetrise' in defender.volatile_status and attacking_move[constants.TYPE] == 'ground':
+    if 'magnetrise' in defender.volatile_status and attacking_move[constants.TYPE] == 'ground' and attacking_move[constants.ID] != 'thousandarrows':
         modifier *= 0
     if 'flashfire' in attacker.volatile_status and attacking_move[constants.TYPE] == 'fire':
         modifier *= 1.5
