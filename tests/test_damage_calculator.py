@@ -94,7 +94,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
         move = 'surf'
 
         dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type='max')
-        self.assertEqual([88], dmg)
+        self.assertEqual([87], dmg)
 
     def test_sand_increases_rock_spdef(self):
 
