@@ -2860,6 +2860,31 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_corrosion_poisons_steel_types(self):
+        bot_move = "toxic"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'corrosion'
+        self.state.opponent.active.types = ['steel']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.9,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.TOXIC),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18),
+                    (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.TOXIC_COUNT, 1),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.09999999999999998,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_pastelveil_prevents_poison(self):
         bot_move = "toxic"
         opponent_move = "splash"
@@ -6744,6 +6769,23 @@ class TestGetStateInstructions(unittest.TestCase):
     def test_trick_fails_against_z_crystal(self):
         self.state.self.active.item = 'leftovers'
         self.state.opponent.active.item = 'iciumz'
+        bot_move = "trick"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_trick_fails_against_sticky_hold(self):
+        self.state.self.active.item = 'choicescarf'
+        self.state.opponent.active.item = 'leftovers'
+        self.state.opponent.active.ability = 'stickyhold'
         bot_move = "trick"
         opponent_move = "splash"
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
