@@ -90,25 +90,51 @@ def mistysurge(state, attacking_side, attacking_pokemon, defending_side, defendi
 
 
 def intimidate(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    if (
-            defending_pokemon.ability not in ['fullmetalbody', 'clearbody', 'hypercutter', 'whitesmoke', 'defiant', 'innerfocus', 'oblivious', 'owntempo', 'scrappy'] and
-            defending_pokemon.attack_boost > -6
-    ):
+    if defending_pokemon.ability in ['fullmetalbody', 'clearbody', 'hypercutter', 'whitesmoke', 'innerfocus', 'oblivious', 'owntempo', 'scrappy']:
+        return None
+
+    # I shouldn't be doing this here but w/e sue me
+    if defending_pokemon.ability == 'defiant':
+        return [(
+            constants.MUTATOR_BOOST,
+            defending_side,
+            constants.ATTACK,
+            min(6-defending_pokemon.attack_boost, 1) #stop boosting when it reaches 6
+        )]
+
+    # same as above, shouldn't be done here
+    if defending_pokemon.ability == 'rattled':
         return [(
             constants.MUTATOR_UNBOOST,
             defending_side,
             constants.ATTACK,
             1
-        )]
-    # I shouldn't be doing this here but w/e sue me
-    elif defending_pokemon.ability == 'defiant' and defending_pokemon.attack_boost < 6:
-        return [(
+        ), (
             constants.MUTATOR_BOOST,
+            defending_side,
+            constants.SPEED,
+            min(6-defending_pokemon.speed_boost, 1) #stop boosting when it reaches 6
+        )]
+
+    if defending_pokemon.ability == 'competitive':
+        return [(
+            constants.MUTATOR_UNBOOST,
             defending_side,
             constants.ATTACK,
             1
+        ), (
+            constants.MUTATOR_BOOST,
+            defending_side,
+            constants.SPECIAL_ATTACK,
+            min(6-defending_pokemon.special_attack_boost, 2) #stop boosting when it reaches 6
         )]
-    return None
+
+    return [(
+        constants.MUTATOR_UNBOOST,
+        defending_side,
+        constants.ATTACK,
+        min(1, 6+defending_pokemon.attack_boost)
+    )]
 
 
 def dauntlessshield(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):

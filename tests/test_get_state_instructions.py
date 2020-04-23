@@ -5230,6 +5230,26 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_partingshot_into_competitive_boosts_special_attack_by_4(self):
+        bot_move = "partingshot"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.ability = 'competitive'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'xatu')
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_partingshot_into_defiant_boosts_attack_by_4(self):
         bot_move = "partingshot"
         opponent_move = "splash"
@@ -5243,6 +5263,26 @@ class TestGetStateInstructions(unittest.TestCase):
                     (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 3),
                     (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, -1),
                     (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'xatu')
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_memento_into_competitive(self):
+        bot_move = "memento"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.ability = 'competitive'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 2),
+                    (constants.MUTATOR_HEAL, constants.SELF, -208)
                 ],
                 False
             )
@@ -5270,6 +5310,32 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_moonblast_secondary_into_competitive(self):
+        bot_move = "moonblast"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.ability = 'competitive'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 50),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 1),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.7,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 50),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_moonblast_secondary_into_defiant(self):
         bot_move = "moonblast"
         opponent_move = "splash"
@@ -5290,6 +5356,48 @@ class TestGetStateInstructions(unittest.TestCase):
                 0.7,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 50),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switching_into_intimidate_into_competitive(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.self.reserve['xatu'].ability = 'intimidate'
+        self.state.opponent.active.ability = 'competitive'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'xatu'),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 2),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switching_into_intimidate_into_rattled(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.self.reserve['xatu'].ability = 'intimidate'
+        self.state.opponent.active.ability = 'rattled'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'xatu'),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 1),
                 ],
                 False
             )
