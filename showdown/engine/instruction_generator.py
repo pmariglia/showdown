@@ -77,27 +77,18 @@ def can_trick_items(attacker, defender):
     attacker_item = attacker.item or ''
     defender_item = defender.item or ''
 
-    if not attacker_item and not defender_item:
-        return False
-
-    elif constants.SUBSTITUTE in defender.volatile_status:
-        return False
-
-    # z-crystals always end in 'iumz'
-    # https://bulbapedia.bulbagarden.net/wiki/Z-Crystal
-    elif attacker_item.endswith('iumz') or defender_item.endswith('iumz'):
-        return False
-
-    elif ('silvally' in attacker.id or 'silvally' in defender.id) and (attacker_item.endswith('memory') or defender_item.endswith('memory')):
-        return False
-
-    elif ('arceus' in attacker.id or 'arceus' in defender.id) and (attacker_item.endswith('plate') or defender_item.endswith('plate')):
-        return False
-
-    elif ('genesect' in attacker.id or 'genesect' in defender.id) and (attacker_item.endswith('drive') or defender_item.endswith('drive')):
-        return False
-
-    return True
+    # item is trickable if none of the following wonditions is matched
+    return not (
+        not attacker_item and not defender_item or
+        constants.SUBSTITUTE in defender.volatile_status or
+        # z-crystals always end in 'iumz'
+        # https://bulbapedia.bulbagarden.net/wiki/Z-Crystal
+        attacker_item.endswith('iumz') or defender_item.endswith('iumz') or
+        ('silvally' in attacker.id or 'silvally' in defender.id) and (attacker_item.endswith('memory') or defender_item.endswith('memory')) or
+        ('arceus' in attacker.id or 'arceus' in defender.id) and (attacker_item.endswith('plate') or defender_item.endswith('plate')) or
+        ('genesect' in attacker.id or 'genesect' in defender.id) and (attacker_item.endswith('drive') or defender_item.endswith('drive')) or
+        defender.ability == 'stickyhold'
+    )    
 
 
 def get_instructions_from_special_logic_move(mutator, attacking_pokemon, defending_pokemon, move_name, instructions):
@@ -1240,7 +1231,7 @@ def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
         status == constants.BURN and is_immune_to_burn(defending_pkmn) or
         status == constants.SLEEP and is_immune_to_sleep(state, defending_pkmn) or
         status == constants.PARALYZED and is_immune_to_paralysis(defending_pkmn) or
-        status in [constants.POISON, constants.TOXIC] and is_immune_to_poison(defending_pkmn)
+        status in [constants.POISON, constants.TOXIC] and is_immune_to_poison(attacking_pkmn, defending_pkmn)
     )
 
 
@@ -1266,10 +1257,10 @@ def is_immune_to_sleep(state, pkmn):
     )
 
 
-def is_immune_to_poison(pkmn):
+def is_immune_to_poison(attacking, defending):
     return (
-        any(t in ['poison', 'steel'] for t in pkmn.types) or
-        pkmn.ability in constants.IMMUNE_TO_POISON_ABILITIES
+        any(t in ['poison', 'steel'] for t in defending.types) and not attacking.ability == 'corrosion'  or
+        defending.ability in constants.IMMUNE_TO_POISON_ABILITIES
     )
 
 

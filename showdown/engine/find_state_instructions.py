@@ -186,10 +186,7 @@ def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, 
 
 
 def cannot_use_move(attacking_pokemon, attacking_move):
-    if constants.TAUNT in attacking_pokemon.volatile_status and attacking_move[constants.CATEGORY] not in constants.DAMAGING_CATEGORIES:
-        return True
-
-    return False
+    return constants.TAUNT in attacking_pokemon.volatile_status and attacking_move[constants.CATEGORY] not in constants.DAMAGING_CATEGORIES
 
 
 def get_state_instructions_from_move(mutator, attacking_move, defending_move, attacker, defender, first_move, instructions):
