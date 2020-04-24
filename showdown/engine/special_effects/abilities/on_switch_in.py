@@ -129,6 +129,9 @@ def intimidate(state, attacking_side, attacking_pokemon, defending_side, defendi
             min(6-defending_pokemon.special_attack_boost, 2) #stop boosting when it reaches 6
         )]
 
+    if defending_pokemon.attack_boost == -6:
+        return None
+
     return [(
         constants.MUTATOR_UNBOOST,
         defending_side,
