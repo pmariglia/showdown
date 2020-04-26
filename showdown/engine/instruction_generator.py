@@ -1081,9 +1081,11 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
     return [instruction]
 
 
-def get_state_from_drag(mutator, attacking_move, attacking_side_string, move_target, instruction):
-    if constants.DRAG not in attacking_move[constants.FLAGS] or instruction.frozen:
+def get_state_from_drag(mutator, attacking_side_string, move_target, instruction):
+    if instruction.frozen:
         return [instruction]
+
+    new_instructions = []
 
     if move_target in same_side_strings:
         affected_side = get_side_from_state(mutator.state, attacking_side_string)
@@ -1095,11 +1097,38 @@ def get_state_from_drag(mutator, attacking_move, attacking_side_string, move_tar
         raise ValueError("Invalid value for move_target: {}".format(move_target))
 
     mutator.apply(instruction.instructions)
-    new_instructions = remove_volatile_status_and_boosts_instructions(affected_side, affected_side_string)
+    alive_reserves = [s.id for s in affected_side.reserve.values() if s.hp > 0]
+    num_reserve_alive = len(alive_reserves)
+    mutator.reverse(instruction.instructions)
+    if num_reserve_alive == 0:
+        return [instruction]
+
+    for pkmn_name in alive_reserves:
+        new_instruction = get_instructions_from_switch(mutator, affected_side_string, pkmn_name, copy(instruction))[0]
+        new_instruction.update_percentage(1 / num_reserve_alive)
+        new_instructions.append(new_instruction)
+
+    return new_instructions
+
+
+def get_instructions_from_boost_reset_moves(mutator, attacking_move, attacking_side_string, instruction):
+    if instruction.frozen:
+        return [instruction]
+
+    attacking_side = get_side_from_state(mutator.state, attacking_side_string)
+    defending_side_string = opposite_side[attacking_side_string]
+    defending_side = get_side_from_state(mutator.state, defending_side_string)
+
+    mutator.apply(instruction.instructions)
+    new_instructions = []
+    if attacking_move[constants.TARGET] in constants.MOVE_TARGET_SELF:
+        new_instructions += remove_volatile_status_and_boosts_instructions(attacking_side, attacking_side_string)
+    if attacking_move[constants.TARGET] in constants.MOVE_TARGET_OPPONENT:
+        new_instructions += remove_volatile_status_and_boosts_instructions(defending_side, defending_side_string)
     mutator.reverse(instruction.instructions)
 
-    for i in new_instructions:
-        instruction.add_instruction(i)
+    for new_instruction in new_instructions:
+        instruction.add_instruction(new_instruction)
 
     return [instruction]
 

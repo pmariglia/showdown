@@ -204,12 +204,45 @@ class TestGetStateInstructions(unittest.TestCase):
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
-                1.0,
+                0.2,
                 [
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3)
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
                 ],
                 False
-            )
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff'),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini'),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex'),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong'),
+                ],
+                False
+            ),
         ]
 
         self.assertEqual(expected_instructions, instructions)
@@ -224,6 +257,47 @@ class TestGetStateInstructions(unittest.TestCase):
                 1.0,
                 [
                     (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_haze_removes_status_boosts_for_both_sides(self):
+        bot_move = "haze"
+        opponent_move = "splash"
+        self.state.self.active.attack_boost = 3
+        self.state.opponent.active.attack_boost = 3
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_UNBOOST, constants.SELF, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_boosting_move_into_haze(self):
+        bot_move = "haze"
+        opponent_move = "swordsdance"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        self.state.self.active.attack_boost = 3
+        self.state.opponent.active.attack_boost = 3
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.SELF, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5)
                 ],
                 False
             )
@@ -1571,23 +1645,105 @@ class TestGetStateInstructions(unittest.TestCase):
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
-                0.1,
+                0.020000000000000004,
                 [
                     (constants.MUTATOR_DAMAGE, constants.SELF, 74),
                     (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.BURN),
                     (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
                     (constants.MUTATOR_DAMAGE, constants.SELF, 13),  # burn damage
                 ],
                 False
             ),
             TransposeInstruction(
-                0.9,
+                0.020000000000000004,
                 [
                     (constants.MUTATOR_DAMAGE, constants.SELF, 74),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3)
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.BURN),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff'),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),  # burn damage
                 ],
                 False
-            )
+            ),
+            TransposeInstruction(
+                0.020000000000000004,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 74),
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.BURN),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini'),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),  # burn damage
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.020000000000000004,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 74),
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.BURN),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex'),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),  # burn damage
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.020000000000000004,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 74),
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.BURN),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong'),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),  # burn damage
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.18000000000000002,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 74),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.18000000000000002,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 74),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff'),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.18000000000000002,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 74),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini'),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.18000000000000002,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 74),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex'),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.18000000000000002,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 74),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong'),
+                ],
+                False
+            ),
         ]
 
         self.assertEqual(expected_instructions, instructions)
@@ -1598,13 +1754,50 @@ class TestGetStateInstructions(unittest.TestCase):
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
-                1.0,
+                0.2,
                 [
                     (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 2)
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal')
                 ],
                 False
-            )
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong')
+                ],
+                False
+            ),
         ]
 
         self.assertEqual(expected_instructions, instructions)
@@ -1791,13 +1984,50 @@ class TestGetStateInstructions(unittest.TestCase):
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
-                1.0,
+                0.2,
                 [
                     (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SUBSTITUTE),
-                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie')
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'starmie', 'xatu')
                 ],
                 False
-            )
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SUBSTITUTE),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'starmie', 'gyarados')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SUBSTITUTE),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'starmie', 'dragonite')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SUBSTITUTE),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'starmie', 'hitmonlee')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SUBSTITUTE),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'starmie', 'raichu')
+                ],
+                False
+            ),
         ]
 
         self.assertEqual(expected_instructions, instructions)
@@ -1811,14 +2041,55 @@ class TestGetStateInstructions(unittest.TestCase):
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
-                1.0,
+                0.2,
                 [
                     (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SUBSTITUTE),
                     (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5)
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal')
                 ],
                 False
-            )
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SUBSTITUTE),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SUBSTITUTE),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SUBSTITUTE),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.SUBSTITUTE),
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong')
+                ],
+                False
+            ),
         ]
 
         self.assertEqual(expected_instructions, instructions)
@@ -1831,11 +2102,52 @@ class TestGetStateInstructions(unittest.TestCase):
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
-                0.9,
+                0.18000000000000002,
                 [
                     (constants.MUTATOR_DAMAGE, constants.SELF, 127),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3)
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.18000000000000002,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 127),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.18000000000000002,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 127),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.18000000000000002,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 127),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.18000000000000002,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 127),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong')
                 ],
                 False
             ),
@@ -1857,10 +2169,202 @@ class TestGetStateInstructions(unittest.TestCase):
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
-                1.0,
+                0.2,
                 [
-                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.CONFUSION)
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.CONFUSION),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
                 ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.CONFUSION),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff'),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.CONFUSION),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini'),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.CONFUSION),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex'),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.CONFUSION),
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong'),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_whirlwind_creates_one_transposition_for_each_reserve_pokemon(self):
+        bot_move = "whirlwind"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'yveltal')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'slurpuff')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'victini')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'toxapex')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'bronzong')
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_whirlwind_into_whirlwind_properly_does_nothing_for_second_whirlwind(self):
+        # generally, any move with the same priority should not work because the pokemon trying to use it was phased out
+        # other examples are: dragontail, teleport, circlethrow
+        bot_move = "whirlwind"
+        opponent_move = "whirlwind"
+        self.state.self.active.speed = 2  # bot's whirlwind only should activate as it is faster
+        self.state.opponent.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'yveltal')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'slurpuff')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'victini')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'toxapex')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'bronzong')
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_whirlwind_into_teleport_properly_does_nothing_for_the_teleport(self):
+        # generally, any move with the same priority should not work because the pokemon trying to use it was phased out
+        # other examples are: dragontail, teleport, circlethrow
+        bot_move = "whirlwind"
+        opponent_move = "teleport"
+        self.state.self.active.speed = 2  # bot's whirlwind only activate as it is faster
+        self.state.opponent.active.speed = 1  # opponent shoudl get phased and not teleport
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'yveltal')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'slurpuff')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'victini')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'toxapex')
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_SWITCH, constants.OPPONENT, self.state.opponent.active.id, 'bronzong')
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_whirlwind_does_nothing_when_no_reserves_are_alive(self):
+        bot_move = "whirlwind"
+        opponent_move = "splash"
+
+        # reserves are all fainted
+        for pkmn in self.mutator.state.opponent.reserve.values():
+            pkmn.hp = 0
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
                 False
             )
         ]
