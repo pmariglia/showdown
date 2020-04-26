@@ -2,7 +2,7 @@ import constants
 
 
 def sandstream(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    if state.weather not in constants.IRREVERSIBLE_WEATHER:
+    if state.weather not in constants.IRREVERSIBLE_WEATHER and state.weather != constants.SAND:
         return [(
             constants.MUTATOR_WEATHER_START,
             constants.SAND,
@@ -12,7 +12,7 @@ def sandstream(state, attacking_side, attacking_pokemon, defending_side, defendi
 
 
 def snowwarning(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    if state.weather not in constants.IRREVERSIBLE_WEATHER:
+    if state.weather not in constants.IRREVERSIBLE_WEATHER and state.weather != constants.HAIL:
         return [(
             constants.MUTATOR_WEATHER_START,
             constants.HAIL,
@@ -22,7 +22,7 @@ def snowwarning(state, attacking_side, attacking_pokemon, defending_side, defend
 
 
 def drought(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    if state.weather not in constants.IRREVERSIBLE_WEATHER:
+    if state.weather not in constants.IRREVERSIBLE_WEATHER and state.weather != constants.SUN:
         return [(
             constants.MUTATOR_WEATHER_START,
             constants.SUN,
@@ -32,7 +32,7 @@ def drought(state, attacking_side, attacking_pokemon, defending_side, defending_
 
 
 def drizzle(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    if state.weather not in constants.IRREVERSIBLE_WEATHER:
+    if state.weather not in constants.IRREVERSIBLE_WEATHER and state.weather != constants.RAIN:
         return [(
             constants.MUTATOR_WEATHER_START,
             constants.RAIN,
@@ -58,35 +58,39 @@ def primordialsea(state, attacking_side, attacking_pokemon, defending_side, defe
 
 
 def electricsurge(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    return [(
-        constants.MUTATOR_FIELD_START,
-        constants.ELECTRIC_TERRAIN,
-        state.field
-    )]
+    if state.field != constants.ELECTRIC_TERRAIN:
+        return [(
+            constants.MUTATOR_FIELD_START,
+            constants.ELECTRIC_TERRAIN,
+            state.field
+        )]
 
 
 def psychicsurge(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    return [(
-        constants.MUTATOR_FIELD_START,
-        constants.PSYCHIC_TERRAIN,
-        state.field
-    )]
+    if state.field != constants.PSYCHIC_TERRAIN:
+        return [(
+            constants.MUTATOR_FIELD_START,
+            constants.PSYCHIC_TERRAIN,
+            state.field
+        )]
 
 
 def grassysurge(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    return [(
-        constants.MUTATOR_FIELD_START,
-        constants.GRASSY_TERRAIN,
-        state.field
-    )]
+    if state.field != constants.GRASSY_TERRAIN:
+        return [(
+            constants.MUTATOR_FIELD_START,
+            constants.GRASSY_TERRAIN,
+            state.field
+        )]
 
 
 def mistysurge(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    return [(
-        constants.MUTATOR_FIELD_START,
-        constants.MISTY_TERRAIN,
-        state.field
-    )]
+    if state.field != constants.MISTY_TERRAIN:
+        return [(
+            constants.MUTATOR_FIELD_START,
+            constants.MISTY_TERRAIN,
+            state.field
+        )]
 
 
 def intimidate(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):

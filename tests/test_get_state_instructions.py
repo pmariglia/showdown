@@ -6668,6 +6668,55 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switching_into_pkmn_with_choice_item_does_not_lock_other_moves(self):
+        bot_move = "switch xatu"
+        opponent_move = "celebrate"
+        self.state.self.reserve['xatu'].moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        self.state.self.reserve['xatu'].item = 'choicescarf'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.SELF, self.state.self.active.id, 'xatu')
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_being_dragged_into_pkmn_with_choice_item_does_not_lock_other_moves(self):
+        bot_move = "celebrate"
+        opponent_move = "whirlwind"
+        self.state.self.reserve = {
+            'xatu': self.state.self.reserve['xatu']
+        }
+        self.state.self.reserve['xatu'].moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        self.state.self.reserve['xatu'].item = 'choicescarf'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.SELF, self.state.self.active.id, 'xatu')
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_gorilla_tactics_locks_other_moves_even_without_choice_item(self):
         bot_move = "tackle"
         opponent_move = "splash"

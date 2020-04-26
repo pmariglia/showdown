@@ -1054,8 +1054,10 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
 
         if attacker == constants.SELF:
             move = bot_move
+            other_move = opponent_move
         else:
             move = opponent_move
+            other_move = bot_move
 
         try:
             locking_move = move[constants.SELF][constants.VOLATILE_STATUS] == constants.LOCKED_MOVE
@@ -1064,6 +1066,7 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
 
         if (
             constants.SWITCH_STRING not in move and
+            constants.DRAG not in other_move.get(constants.FLAGS, {}) and
             (pkmn.item in constants.CHOICE_ITEMS or locking_move or pkmn.ability == 'gorillatactics')
         ):
             move_used = move[constants.ID]
