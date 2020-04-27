@@ -1158,6 +1158,14 @@ class TestFormChange(unittest.TestCase):
 
         self.assertEqual(constants.BURN, self.battle.opponent.active.status)
 
+    def test_preserves_item(self):
+        self.battle.opponent.active = Pokemon('aegislash', 100)
+        self.battle.opponent.active.item = 'airballoon'
+        split_msg = ['', '-formechange', 'p2a: Aegislash', 'Aegislash-Blade', '[from] ability: Stance Change']
+        form_change(self.battle, split_msg)
+
+        self.assertEqual('airballoon', self.battle.opponent.active.item)
+
     def test_preserves_base_name_when_form_changes(self):
         self.battle.opponent.active = Pokemon('meloetta', 100)
         split_msg = ['', '-formechange', 'p2a: Meloetta', 'Meloetta - Pirouette', '[msg]']

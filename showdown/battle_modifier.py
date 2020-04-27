@@ -461,6 +461,7 @@ def form_change(battle, split_msg):
     previous_moves = side.active.moves
     previous_boosts = side.active.boosts
     previous_status = side.active.status
+    previous_item = side.active.item
 
     new_pokemon = Pokemon.from_switch_string(split_msg[3])
     new_pokemon.moves = previous_moves
@@ -471,6 +472,7 @@ def form_change(battle, split_msg):
     side.active.hp = hp_percent * side.active.max_hp
     side.active.boosts = previous_boosts
     side.active.status = previous_status
+    side.active.item = previous_item
 
     if side.active.name != "zoroark":
         side.active.base_name = base_name
