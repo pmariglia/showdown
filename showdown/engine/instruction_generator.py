@@ -77,27 +77,18 @@ def can_trick_items(attacker, defender):
     attacker_item = attacker.item or ''
     defender_item = defender.item or ''
 
-    if not attacker_item and not defender_item:
-        return False
-
-    elif constants.SUBSTITUTE in defender.volatile_status:
-        return False
-
-    # z-crystals always end in 'iumz'
-    # https://bulbapedia.bulbagarden.net/wiki/Z-Crystal
-    elif attacker_item.endswith('iumz') or defender_item.endswith('iumz'):
-        return False
-
-    elif ('silvally' in attacker.id or 'silvally' in defender.id) and (attacker_item.endswith('memory') or defender_item.endswith('memory')):
-        return False
-
-    elif ('arceus' in attacker.id or 'arceus' in defender.id) and (attacker_item.endswith('plate') or defender_item.endswith('plate')):
-        return False
-
-    elif ('genesect' in attacker.id or 'genesect' in defender.id) and (attacker_item.endswith('drive') or defender_item.endswith('drive')):
-        return False
-
-    return True
+    # item is trickable if none of the following wonditions is matched
+    return not (
+        not attacker_item and not defender_item or
+        constants.SUBSTITUTE in defender.volatile_status or
+        # z-crystals always end in 'iumz'
+        # https://bulbapedia.bulbagarden.net/wiki/Z-Crystal
+        attacker_item.endswith('iumz') or defender_item.endswith('iumz') or
+        ('silvally' in attacker.id or 'silvally' in defender.id) and (attacker_item.endswith('memory') or defender_item.endswith('memory')) or
+        ('arceus' in attacker.id or 'arceus' in defender.id) and (attacker_item.endswith('plate') or defender_item.endswith('plate')) or
+        ('genesect' in attacker.id or 'genesect' in defender.id) and (attacker_item.endswith('drive') or defender_item.endswith('drive')) or
+        defender.ability == 'stickyhold'
+    )    
 
 
 def get_instructions_from_special_logic_move(mutator, attacking_pokemon, defending_pokemon, move_name, instructions):
@@ -1066,8 +1057,10 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
 
         if attacker == constants.SELF:
             move = bot_move
+            other_move = opponent_move
         else:
             move = opponent_move
+            other_move = bot_move
 
         try:
             locking_move = move[constants.SELF][constants.VOLATILE_STATUS] == constants.LOCKED_MOVE
@@ -1076,6 +1069,7 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
 
         if (
             constants.SWITCH_STRING not in move and
+            constants.DRAG not in other_move.get(constants.FLAGS, {}) and
             (pkmn.item in constants.CHOICE_ITEMS or locking_move or pkmn.ability == 'gorillatactics')
         ):
             move_used = move[constants.ID]
@@ -1093,9 +1087,11 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
     return [instruction]
 
 
-def get_state_from_drag(mutator, attacking_move, attacking_side_string, move_target, instruction):
-    if constants.DRAG not in attacking_move[constants.FLAGS] or instruction.frozen:
+def get_state_from_drag(mutator, attacking_side_string, move_target, instruction):
+    if instruction.frozen:
         return [instruction]
+
+    new_instructions = []
 
     if move_target in same_side_strings:
         affected_side = get_side_from_state(mutator.state, attacking_side_string)
@@ -1107,11 +1103,38 @@ def get_state_from_drag(mutator, attacking_move, attacking_side_string, move_tar
         raise ValueError("Invalid value for move_target: {}".format(move_target))
 
     mutator.apply(instruction.instructions)
-    new_instructions = remove_volatile_status_and_boosts_instructions(affected_side, affected_side_string)
+    alive_reserves = [s.id for s in affected_side.reserve.values() if s.hp > 0]
+    num_reserve_alive = len(alive_reserves)
+    mutator.reverse(instruction.instructions)
+    if num_reserve_alive == 0:
+        return [instruction]
+
+    for pkmn_name in alive_reserves:
+        new_instruction = get_instructions_from_switch(mutator, affected_side_string, pkmn_name, copy(instruction))[0]
+        new_instruction.update_percentage(1 / num_reserve_alive)
+        new_instructions.append(new_instruction)
+
+    return new_instructions
+
+
+def get_instructions_from_boost_reset_moves(mutator, attacking_move, attacking_side_string, instruction):
+    if instruction.frozen:
+        return [instruction]
+
+    attacking_side = get_side_from_state(mutator.state, attacking_side_string)
+    defending_side_string = opposite_side[attacking_side_string]
+    defending_side = get_side_from_state(mutator.state, defending_side_string)
+
+    mutator.apply(instruction.instructions)
+    new_instructions = []
+    if attacking_move[constants.TARGET] in constants.MOVE_TARGET_SELF:
+        new_instructions += remove_volatile_status_and_boosts_instructions(attacking_side, attacking_side_string)
+    if attacking_move[constants.TARGET] in constants.MOVE_TARGET_OPPONENT:
+        new_instructions += remove_volatile_status_and_boosts_instructions(defending_side, defending_side_string)
     mutator.reverse(instruction.instructions)
 
-    for i in new_instructions:
-        instruction.add_instruction(i)
+    for new_instruction in new_instructions:
+        instruction.add_instruction(new_instruction)
 
     return [instruction]
 
@@ -1243,7 +1266,7 @@ def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
         status == constants.BURN and is_immune_to_burn(defending_pkmn) or
         status == constants.SLEEP and is_immune_to_sleep(state, defending_pkmn) or
         status == constants.PARALYZED and is_immune_to_paralysis(defending_pkmn) or
-        status in [constants.POISON, constants.TOXIC] and is_immune_to_poison(defending_pkmn)
+        status in [constants.POISON, constants.TOXIC] and is_immune_to_poison(attacking_pkmn, defending_pkmn)
     )
 
 
@@ -1269,10 +1292,10 @@ def is_immune_to_sleep(state, pkmn):
     )
 
 
-def is_immune_to_poison(pkmn):
+def is_immune_to_poison(attacking, defending):
     return (
-        any(t in ['poison', 'steel'] for t in pkmn.types) or
-        pkmn.ability in constants.IMMUNE_TO_POISON_ABILITIES
+        any(t in ['poison', 'steel'] for t in defending.types) and not attacking.ability == 'corrosion'  or
+        defending.ability in constants.IMMUNE_TO_POISON_ABILITIES
     )
 
 

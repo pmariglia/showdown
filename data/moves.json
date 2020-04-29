@@ -1493,6 +1493,7 @@
         "flags": {
             "contact": 1,
             "protect": 1,
+            "drag": 1,
             "mirror": 1
         },
         "id": "circlethrow",
@@ -1550,7 +1551,6 @@
         "category": "special",
         "flags": {
             "protect": 1,
-            "drag": 1,
             "mirror": 1
         },
         "id": "clearsmog",
@@ -4628,8 +4628,7 @@
         "basePower": 0,
         "category": "status",
         "flags": {
-            "authentic": 1,
-            "drag": 1
+            "authentic": 1
         },
         "id": "haze",
         "name": "Haze",

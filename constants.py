@@ -234,6 +234,11 @@ TYPE_CHANGE_ABILITIES = {
     'libero'
 }
 
+BOOST_RESET_MOVES = {
+    'haze',
+    'clearsmog'
+}
+
 WEIGHT_BASED_MOVES = {
     'heavyslam',
     'heatcrash',

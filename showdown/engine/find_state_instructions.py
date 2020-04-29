@@ -189,10 +189,7 @@ def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, 
 
 
 def cannot_use_move(attacking_pokemon, attacking_move):
-    if constants.TAUNT in attacking_pokemon.volatile_status and attacking_move[constants.CATEGORY] not in constants.DAMAGING_CATEGORIES:
-        return True
-
-    return False
+    return constants.TAUNT in attacking_pokemon.volatile_status and attacking_move[constants.CATEGORY] not in constants.DAMAGING_CATEGORIES
 
 
 def get_state_instructions_from_move(mutator, attacking_move, defending_move, attacker, defender, first_move, instructions):
@@ -200,6 +197,11 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     if constants.SWITCH_STRING in attacking_move:
         return instruction_generator.get_instructions_from_switch(mutator, attacker, attacking_move[constants.SWITCH_STRING], instructions)
+
+    # if you are moving second, but you got phased on the first turn, your move will do nothing
+    # this can happen if a move with equal priority to a phasing move (generally -6) is used by a slower pokemon and the faster pokemon uses a phasing move
+    if not first_move and constants.DRAG in defending_move.get(constants.FLAGS, {}):
+        return [instructions]
 
     mutator.apply(instructions.instructions)
     attacking_side = instruction_generator.get_side_from_state(mutator.state, attacker)
@@ -372,6 +374,12 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
             temp_instructions += instruction_generator.get_states_from_boosts(mutator, boosts_target, boosts, boosts_chance, instruction_set)
         all_instructions = temp_instructions
 
+    if attacking_move[constants.ID] in constants.BOOST_RESET_MOVES:
+        temp_instructions = []
+        for instruction_set in all_instructions:
+            temp_instructions += instruction_generator.get_instructions_from_boost_reset_moves(mutator, attacking_move, attacker, instruction_set)
+        all_instructions = temp_instructions
+
     if attacking_move.get(constants.HEAL) is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
@@ -384,10 +392,11 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
             temp_instructions += instruction_generator.get_states_from_flinching_moves(defender, flinch_accuracy, first_move, instruction_set)
         all_instructions = temp_instructions
 
-    temp_instructions = []
-    for instruction_set in all_instructions:
-        temp_instructions += instruction_generator.get_state_from_drag(mutator, attacking_move, attacker, move_target, instruction_set)
-    all_instructions = temp_instructions
+    if constants.DRAG in attacking_move[constants.FLAGS]:
+        temp_instructions = []
+        for instruction_set in all_instructions:
+            temp_instructions += instruction_generator.get_state_from_drag(mutator, attacker, move_target, instruction_set)
+        all_instructions = temp_instructions
 
     if switch_out_move_triggered(attacking_move, damage_amounts):
         temp_instructions = []

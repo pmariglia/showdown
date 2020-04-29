@@ -290,6 +290,28 @@ def shielddust(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def competitive(attacking_move, attacking_pokemon, defending_pokemon):
+    attacking_move = attacking_move.copy()
+    if constants.BOOSTS in attacking_move:
+        attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
+        for _ in attacking_move[constants.BOOSTS].copy():
+            if constants.SPECIAL_ATTACK not in attacking_move[constants.BOOSTS]:
+                attacking_move[constants.BOOSTS][constants.SPECIAL_ATTACK] = 0
+            else:
+                attacking_move[constants.BOOSTS][constants.SPECIAL_ATTACK] += 2
+
+    elif attacking_move[constants.SECONDARY] and constants.BOOSTS in attacking_move[constants.SECONDARY]:
+        attacking_move[constants.SECONDARY] = attacking_move[constants.SECONDARY].copy()
+        attacking_move[constants.SECONDARY][constants.BOOSTS] = attacking_move[constants.SECONDARY][constants.BOOSTS].copy()
+        for _ in attacking_move[constants.SECONDARY][constants.BOOSTS].copy():
+            if constants.SPECIAL_ATTACK not in attacking_move[constants.SECONDARY][constants.BOOSTS]:
+                attacking_move[constants.SECONDARY][constants.BOOSTS][constants.SPECIAL_ATTACK] = 2
+            else:
+                attacking_move[constants.SECONDARY][constants.BOOSTS][constants.SPECIAL_ATTACK] += 2
+
+    return attacking_move
+
+
 def defiant(attacking_move, attacking_pokemon, defending_pokemon):
     attacking_move = attacking_move.copy()
     if constants.BOOSTS in attacking_move:
@@ -421,6 +443,7 @@ ability_lookup = {
     'liquidooze': liquidooze,
     'weakarmor': weakarmor,
     'defiant': defiant,
+    'competitive': competitive,
     'shielddust': shielddust,
     'justified': justified,
     'marvelscale': marvelscale,
