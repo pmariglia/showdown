@@ -108,11 +108,11 @@ def get_instructions_from_special_logic_move(mutator, attacking_pokemon, defendi
     mutator.apply(instructions.instructions)
     if move_name in weather_instructions and mutator.state.weather != move_name and mutator.state.weather not in constants.IRREVERSIBLE_WEATHER:
         new_instructions.append(
-            (constants.MUTATOR_WEATHER_START, move_name, mutator.state.weather)
+            (constants.MUTATOR_WEATHER_START, move_name, 4, mutator.state.weather, mutator.state.remaining_weather_turns)
         )
     elif move_name == constants.TRICK_ROOM:
         new_instructions.append(
-            (constants.MUTATOR_TOGGLE_TRICKROOM,)
+            (constants.MUTATOR_START_TRICKROOM, -1)
         )
 
     elif move_name in SWITCH_ITEM_MOVES and can_trick_items(attacking_pokemon, defending_pokemon):
@@ -580,7 +580,8 @@ def get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, 
             instruction_additions.append(
                 (
                     constants.MUTATOR_FIELD_END,
-                    mutator.state.field
+                    mutator.state.field,
+                    mutator.state.remaining_field_turns
                 )
             )
         for side_condition, amount in attacker_side.side_conditions.items():
@@ -850,6 +851,8 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
         sides = [constants.OPPONENT, constants.SELF]
 
     mutator.apply(instruction.instructions)
+
+    # TODO update weather turns
 
     # weather damage - sand and hail
     for attacker in sides:
@@ -1248,7 +1251,7 @@ def is_immune_to_freeze(state, pkmn):
     return (
         'ice' in pkmn.types or 
         pkmn.ability in constants.IMMUNE_TO_FROZEN_ABILITIES or 
-        state.weather == constants.DESOLATE_LAND
+        state.weather == constants.HARSH_SUNLIGHT
     )
 
 

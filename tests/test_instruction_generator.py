@@ -36,10 +36,7 @@ class TestGetInstructionsFromFlinched(unittest.TestCase):
                 ],
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.previous_instructions = TransposeInstruction(1, [], False)
 
@@ -98,10 +95,7 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
                 ],
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.move = {constants.FLAGS: dict(), constants.ID: constants.DO_NOTHING_MOVE, constants.TYPE: 'normal'}
 
@@ -246,10 +240,7 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
                 ],
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
@@ -553,10 +544,7 @@ class TestGetInstructionsFromSideConditions(unittest.TestCase):
                 ],
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
@@ -679,10 +667,7 @@ class TestGetInstructionsFromHazardClearingMoves(unittest.TestCase):
                 ],
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
@@ -846,10 +831,7 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
                 ],
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
@@ -1049,10 +1031,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
                 ],
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
@@ -1360,10 +1339,7 @@ class TestGetInstructionsFromSpecialLogicMoves(unittest.TestCase):
                 ],
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
@@ -1371,7 +1347,7 @@ class TestGetInstructionsFromSpecialLogicMoves(unittest.TestCase):
         self.previous_instruction = TransposeInstruction(
             1,
             [
-                (constants.MUTATOR_WEATHER_START, constants.SUN, None)
+                (constants.MUTATOR_WEATHER_START, constants.SUN, 4, None, -1)
             ],
             False
         )
@@ -1384,8 +1360,8 @@ class TestGetInstructionsFromSpecialLogicMoves(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_WEATHER_START, constants.SUN, None),
-                    (constants.MUTATOR_WEATHER_START, constants.RAIN, constants.SUN),
+                    (constants.MUTATOR_WEATHER_START, constants.SUN, 4, None, -1),
+                    (constants.MUTATOR_WEATHER_START, constants.RAIN, 4, constants.SUN, 4),
                 ],
                 False
             )
@@ -1421,10 +1397,7 @@ class TestGetInstructionsFromFlinchingMoves(unittest.TestCase):
                 ],
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
@@ -1525,10 +1498,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
                 },
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
@@ -2077,7 +2047,9 @@ class TestGetStateFromSwitch(unittest.TestCase):
                     (
                         constants.MUTATOR_WEATHER_START,
                         constants.SUN,
-                        None
+                        4,
+                        None,
+                        -1
                     ),
                 ]
                 ,
@@ -2108,7 +2080,9 @@ class TestGetStateFromSwitch(unittest.TestCase):
                     (
                         constants.MUTATOR_WEATHER_START,
                         constants.RAIN,
-                        None
+                        4,
+                        None,
+                        -1
                     ),
                 ]
                 ,
@@ -2152,7 +2126,8 @@ class TestGetStateFromSwitch(unittest.TestCase):
         attacker = constants.SELF
         switch_pokemon_name = "pidgey"
         self.state.weather = constants.HEAVY_RAIN
-        self.state.self.reserve[switch_pokemon_name].ability = constants.DESOLATE_LAND
+        self.state.remaining_weather_turns = -1
+        self.state.self.reserve[switch_pokemon_name].ability = constants.HARSH_SUNLIGHT
 
         expected_instructions = [
             TransposeInstruction(
@@ -2166,8 +2141,10 @@ class TestGetStateFromSwitch(unittest.TestCase):
                     ),
                     (
                         constants.MUTATOR_WEATHER_START,
-                        constants.DESOLATE_LAND,
-                        constants.HEAVY_RAIN
+                        constants.HARSH_SUNLIGHT,
+                        -1,
+                        constants.HEAVY_RAIN,
+                        -1
                     ),
                 ]
                 ,
@@ -2183,7 +2160,8 @@ class TestGetStateFromSwitch(unittest.TestCase):
     def test_switch_into_pokemon_with_primordialsea_sets_weather_when_desolateland_is_active(self):
         attacker = constants.SELF
         switch_pokemon_name = "pidgey"
-        self.state.weather = constants.DESOLATE_LAND
+        self.state.weather = constants.HARSH_SUNLIGHT
+        self.state.remaining_weather_turns = -1
         self.state.self.reserve[switch_pokemon_name].ability = constants.HEAVY_RAIN
 
         expected_instructions = [
@@ -2199,7 +2177,9 @@ class TestGetStateFromSwitch(unittest.TestCase):
                     (
                         constants.MUTATOR_WEATHER_START,
                         constants.HEAVY_RAIN,
-                        constants.DESOLATE_LAND
+                        -1,
+                        constants.HARSH_SUNLIGHT,
+                        -1
                     ),
                 ]
                 ,
@@ -2298,10 +2278,7 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
                 },
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
@@ -2475,10 +2452,7 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
                 ],
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
 
@@ -2594,10 +2568,7 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
                 ],
                 (0, 0),
                 defaultdict(lambda: 0)
-            ),
-            None,
-            None,
-            False
+            )
         )
         self.previous_instruction = TransposeInstruction(1.0, [], False)
         self.dummy_move = {

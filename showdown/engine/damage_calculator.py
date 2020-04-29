@@ -234,7 +234,9 @@ def weather_modifier(attacking_move, weather):
         return 1.5
     elif weather == constants.RAIN and attacking_move[constants.TYPE] == 'fire':
         return 0.5
-    elif weather == constants.DESOLATE_LAND and attacking_move[constants.TYPE] == 'water':
+    elif weather == constants.HARSH_SUNLIGHT and attacking_move[constants.TYPE] == 'water':
+        return 0
+    elif weather == constants.HEAVY_RAIN and attacking_move[constants.TYPE] == 'fire':
         return 0
     return 1
 

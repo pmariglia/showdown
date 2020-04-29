@@ -6,7 +6,9 @@ def sandstream(state, attacking_side, attacking_pokemon, defending_side, defendi
         return [(
             constants.MUTATOR_WEATHER_START,
             constants.SAND,
-            state.weather
+            4,
+            state.weather,
+            state.remaining_weather_turns
         )]
     return None
 
@@ -16,7 +18,9 @@ def snowwarning(state, attacking_side, attacking_pokemon, defending_side, defend
         return [(
             constants.MUTATOR_WEATHER_START,
             constants.HAIL,
-            state.weather
+            4,
+            state.weather,
+            state.remaining_weather_turns
         )]
     return None
 
@@ -26,7 +30,9 @@ def drought(state, attacking_side, attacking_pokemon, defending_side, defending_
         return [(
             constants.MUTATOR_WEATHER_START,
             constants.SUN,
-            state.weather
+            4,
+            state.weather,
+            state.remaining_weather_turns
         )]
     return None
 
@@ -36,7 +42,9 @@ def drizzle(state, attacking_side, attacking_pokemon, defending_side, defending_
         return [(
             constants.MUTATOR_WEATHER_START,
             constants.RAIN,
-            state.weather
+            4,
+            state.weather,
+            state.remaining_weather_turns
         )]
     return None
 
@@ -44,8 +52,10 @@ def drizzle(state, attacking_side, attacking_pokemon, defending_side, defending_
 def desolateland(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
     return [(
         constants.MUTATOR_WEATHER_START,
-        constants.DESOLATE_LAND,
-        state.weather
+        constants.HARSH_SUNLIGHT,
+        -1,
+        state.weather,
+        state.remaining_weather_turns
     )]
 
 
@@ -53,7 +63,9 @@ def primordialsea(state, attacking_side, attacking_pokemon, defending_side, defe
     return [(
         constants.MUTATOR_WEATHER_START,
         constants.HEAVY_RAIN,
-        state.weather
+        -1,
+        state.weather,
+        state.remaining_weather_turns
     )]
 
 
@@ -61,7 +73,9 @@ def electricsurge(state, attacking_side, attacking_pokemon, defending_side, defe
     return [(
         constants.MUTATOR_FIELD_START,
         constants.ELECTRIC_TERRAIN,
-        state.field
+        4,
+        state.field,
+        state.remaining_field_turns
     )]
 
 
@@ -69,7 +83,9 @@ def psychicsurge(state, attacking_side, attacking_pokemon, defending_side, defen
     return [(
         constants.MUTATOR_FIELD_START,
         constants.PSYCHIC_TERRAIN,
-        state.field
+        4,
+        state.field,
+        state.remaining_field_turns
     )]
 
 
@@ -77,7 +93,9 @@ def grassysurge(state, attacking_side, attacking_pokemon, defending_side, defend
     return [(
         constants.MUTATOR_FIELD_START,
         constants.GRASSY_TERRAIN,
-        state.field
+        4,
+        state.field,
+        state.remaining_field_turns
     )]
 
 
@@ -85,7 +103,9 @@ def mistysurge(state, attacking_side, attacking_pokemon, defending_side, defendi
     return [(
         constants.MUTATOR_FIELD_START,
         constants.MISTY_TERRAIN,
-        state.field
+        4,
+        state.field,
+        state.remaining_field_turns
     )]
 
 

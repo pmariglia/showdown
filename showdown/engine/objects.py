@@ -23,14 +23,16 @@ boost_multiplier_lookup = {
 
 
 class State(object):
-    __slots__ = ('self', 'opponent', 'weather', 'field', 'trick_room')
+    __slots__ = ('self', 'opponent', 'weather', 'remaining_weather_turns', 'field', 'remaining_field_turns', 'remaining_trick_room_turns')
 
-    def __init__(self, user, opponent, weather, field, trick_room):
+    def __init__(self, user, opponent, weather=None, remaining_weather_turns=-1, field=None, remaining_field_turns=-1, remaining_trick_room_turns=-1):
         self.self = user
         self.opponent = opponent
         self.weather = weather
+        self.remaining_weather_turns = remaining_weather_turns
         self.field = field
-        self.trick_room = trick_room
+        self.remaining_field_turns = remaining_field_turns
+        self.remaining_trick_room_turns = remaining_trick_room_turns
 
     def get_self_options(self, force_switch):
         if force_switch:
@@ -105,8 +107,10 @@ class State(object):
             Side.from_dict(state_dict[constants.SELF]),
             Side.from_dict(state_dict[constants.OPPONENT]),
             state_dict[constants.WEATHER],
+            state_dict[constants.REMAINING_WEATHER_TURNS],
             state_dict[constants.FIELD],
-            state_dict[constants.TRICK_ROOM]
+            state_dict[constants.REMAINING_FIELD_TURNS],
+            state_dict[constants.REMAINING_TRICK_ROOM_TURNS]
         )
 
     def __repr__(self):
@@ -115,8 +119,10 @@ class State(object):
                 constants.SELF: self.self,
                 constants.OPPONENT: self.opponent,
                 constants.WEATHER: self.weather,
+                constants.REMAINING_WEATHER_TURNS: self.remaining_weather_turns,
                 constants.FIELD: self.field,
-                constants.TRICK_ROOM: self.trick_room
+                constants.REMAINING_FIELD_TURNS: self.remaining_field_turns,
+                constants.REMAINING_TRICK_ROOM_TURNS: self.remaining_trick_room_turns
             }
         )
 
@@ -406,7 +412,7 @@ class StateMutator:
             constants.MUTATOR_WEATHER_START: self.start_weather,
             constants.MUTATOR_FIELD_START: self.start_field,
             constants.MUTATOR_FIELD_END: self.end_field,
-            constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom,
+            constants.MUTATOR_START_TRICKROOM: self.start_trickroom,
             constants.MUTATOR_CHANGE_TYPE: self.change_types,
             constants.MUTATOR_CHANGE_ITEM: self.change_item
         }
@@ -429,7 +435,7 @@ class StateMutator:
             constants.MUTATOR_WEATHER_START: self.reverse_start_weather,
             constants.MUTATOR_FIELD_START: self.reverse_start_field,
             constants.MUTATOR_FIELD_END: self.reverse_end_field,
-            constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom,
+            constants.MUTATOR_START_TRICKROOM: self.reverse_start_trickroom,
             constants.MUTATOR_CHANGE_TYPE: self.reverse_change_types,
             constants.MUTATOR_CHANGE_ITEM: self.reverse_change_item
         }
@@ -562,32 +568,42 @@ class StateMutator:
         side = self.get_side(side)
         side.wish = (side.wish[0] + 1, side.wish[1])
 
-    def start_weather(self, weather, _):
-        # the second parameter is the current weather
-        # the value is here for reversing purposes
+    def start_weather(self, weather, weather_duration, _a, _b):
+        # the blanked parameters are for reversing purposes
         self.state.weather = weather
+        self.state.remaining_weather_turns = weather_duration
 
-    def reverse_start_weather(self, _, old_weather):
+    def reverse_start_weather(self, _a, _b, old_weather, old_remaining_turns):
         self.state.weather = old_weather
+        self.state.remaining_weather_turns = old_remaining_turns
 
-    def start_field(self, field, _):
-        # the second parameter is the current field
-        # the value is here for reversing purposes
+    def start_field(self, field, field_duration, _a, _b):
+        # the blanked parameters are for reversing purposes
         self.state.field = field
+        self.state.remaining_field_turns = field_duration
 
-    def reverse_start_field(self, _, old_field):
+    def reverse_start_field(self, _a, _b, old_field, old_remaining_turns):
         self.state.field = old_field
+        self.state.remaining_field_turns = old_remaining_turns
 
-    def end_field(self, _):
-        # the second parameter is the current field
-        # the value is here for reversing purposes
+    def end_field(self, _a, _b):
+        # the blanked parameters are for reversing purposes
         self.state.field = None
+        self.state.remaining_field_turns = -1
 
-    def reverse_end_field(self, old_field):
+    def reverse_end_field(self, old_field, old_remaining_turns):
+        # the blanked parameters are for reversing purposes
         self.state.field = old_field
+        self.state.remaining_field_turns = old_remaining_turns
 
-    def toggle_trickroom(self):
-        self.state.trick_room ^= True
+    def start_trickroom(self, _):
+        if self.state.remaining_trick_room_turns == -1:
+            self.state.remaining_trick_room_turns = 3
+        else:
+            self.state.remaining_trick_room_turns = -1
+
+    def reverse_start_trickroom(self, old_remaining_turns):
+        self.state.remaining_trick_room_turns = old_remaining_turns
 
     def change_types(self, side, new_types, _):
         # the third parameter is the current types of the active pokemon

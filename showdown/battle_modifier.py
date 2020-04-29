@@ -336,14 +336,21 @@ def cureteam(battle, split_msg):
 
 
 def weather(battle, split_msg):
+    weather_name = normalize_name(split_msg[2].split(':')[-1].strip())
+    logger.debug("Weather {} started".format(weather_name))
+
+    if weather_name == "none":
+        battle.weather = PersistentCondition()
+        return
+
     if is_opponent(battle, split_msg):
         side = battle.opponent
     else:
         side = battle.user
 
-    weather_name = normalize_name(split_msg[2].split(':')[-1].strip())
-    logger.debug("Weather {} started".format(weather_name))
-    battle.weather = weather_name
+    battle.weather.name = weather_name
+    battle.weather.setter = side.active
+    battle.weather.elapsed_turns = 0
 
     if len(split_msg) >= 5 and side.name in split_msg[4]:
         ability = normalize_name(split_msg[3].split(':')[-1].strip())
@@ -352,16 +359,25 @@ def weather(battle, split_msg):
 
 
 def fieldstart(battle, split_msg):
+    if is_opponent(battle, split_msg):
+        side = battle.opponent
+    else:
+        side = battle.user
+
     """Set the battle's field condition"""
     field_name = normalize_name(split_msg[2].split(':')[-1].strip())
 
     # trick room shows up as a `-fieldstart` item but is separate from the other fields
     if field_name == constants.TRICK_ROOM:
         logger.debug("Setting trickroom")
-        battle.trick_room = True
+        battle.trick_room.name = constants.TRICK_ROOM
+        battle.trick_room.setter = side.active
+        battle.trick_room.elapsed_turns = 0
     else:
         logger.debug("Setting the field to {}".format(field_name))
-        battle.field = field_name
+        battle.field.name = field_name
+        battle.field.setter = side.active
+        battle.trick_room.elapsed_turns = 0
 
 
 def fieldend(battle, split_msg):
@@ -371,10 +387,10 @@ def fieldend(battle, split_msg):
     # trick room shows up as a `-fieldend` item but is separate from the other fields
     if field_name == constants.TRICK_ROOM:
         logger.debug("Removing trick room")
-        battle.trick_room = False
+        battle.trick_room = PersistentCondition()
     else:
         logger.debug("Setting the field to None")
-        battle.field = None
+        battle.field = PersistentCondition()
 
 
 def sidestart(battle, split_msg):

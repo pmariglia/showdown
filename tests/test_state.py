@@ -647,8 +647,10 @@ class TestPokemonInit(unittest.TestCase):
             }
           },
           'weather': 1,
-          'field': 2,
-          'trickroom': 3
+          'remaining_weather_turns': 2,
+          'field': 3,
+          'remaining_field_turns': 4,
+          'remaining_trick_room_turns': 5
         }
 
         state = State.from_dict(state_json)

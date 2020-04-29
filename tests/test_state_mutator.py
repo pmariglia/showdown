@@ -429,114 +429,151 @@ class TestStatemutator(unittest.TestCase):
 
     def test_setting_weather(self):
         self.state.weather = None
+        self.state.remaining_weather_turns = -1
         instruction = (
             constants.MUTATOR_WEATHER_START,
             constants.SUN,
-            None
+            4,
+            None,
+            -1
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
         self.assertEqual(constants.SUN, self.state.weather)
+        self.assertEqual(4, self.state.remaining_weather_turns)
 
     def test_setting_weather_when_previous_weather_exists(self):
         self.state.weather = constants.RAIN
+        self.state.remaining_weather_turns = 2
         instruction = (
             constants.MUTATOR_WEATHER_START,
             constants.SUN,
-            constants.RAIN
+            4,
+            constants.RAIN,
+            2
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
         self.assertEqual(constants.SUN, self.state.weather)
+        self.assertEqual(4, self.state.remaining_weather_turns)
 
     def test_reversing_weather_when_previous_weather_exists(self):
         self.state.weather = constants.SUN
+        self.state.remaining_weather_turns = 2
         instruction = (
             constants.MUTATOR_WEATHER_START,
             constants.SUN,
-            constants.RAIN
+            4,
+            constants.RAIN,
+            2
         )
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
         self.assertEqual(constants.RAIN, self.state.weather)
+        self.assertEqual(2, self.state.remaining_weather_turns)
 
     def test_reverse_setting_weather(self):
         self.state.weather = constants.SUN
+        self.state.remaining_weather_turns = 4
         instruction = (
             constants.MUTATOR_WEATHER_START,
             constants.SUN,
-            None
+            4,
+            None,
+            -1
         )
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
         self.assertEqual(None, self.state.weather)
+        self.assertEqual(-1, self.state.remaining_weather_turns)
 
     def test_apply_and_reverse_setting_weather_works(self):
         self.state.weather = None
+        self.state.remaining_weather_turns = -1
         instruction = (
             constants.MUTATOR_WEATHER_START,
             constants.SUN,
-            None
+            4,
+            None,
+            -1
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
         if not self.state.weather == constants.SUN:
             self.fail("Sun was not set")
+        if not self.state.remaining_weather_turns == 4:
+            self.fail("Sun turns was not set")
 
         self.mutator.reverse(list_of_instructions)
 
         self.assertEqual(None, self.state.weather)
+        self.assertEqual(-1, self.state.remaining_weather_turns)
 
     def test_apply_and_reverse_setting_weather_works_with_weather_previously_existing(self):
         self.state.weather = constants.RAIN
+        self.state.remaining_weather_turns = 4
         instruction = (
             constants.MUTATOR_WEATHER_START,
             constants.SUN,
-            constants.RAIN
+            4,
+            constants.RAIN,
+            4
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
         if not self.state.weather == constants.SUN:
             self.fail("Sun was not set")
+        if not self.state.remaining_weather_turns == 4:
+            self.fail("Sun turns was not set")
 
         self.mutator.reverse(list_of_instructions)
 
         self.assertEqual(constants.RAIN, self.state.weather)
+        self.assertEqual(4, self.state.remaining_weather_turns)
 
     def test_setting_field(self):
         self.state.field = None
         instruction = (
             constants.MUTATOR_FIELD_START,
             constants.PSYCHIC_TERRAIN,
-            None
+            4,
+            None,
+            -1
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
         self.assertEqual(constants.PSYCHIC_TERRAIN, self.state.field)
+        self.assertEqual(4, self.state.remaining_field_turns)
 
     def test_reverse_setting_field(self):
         self.state.field = constants.PSYCHIC_TERRAIN
+        self.state.field = 4
         instruction = (
             constants.MUTATOR_FIELD_START,
             constants.PSYCHIC_TERRAIN,
-            None
+            4,
+            None,
+            -1
         )
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
         self.assertEqual(None, self.state.field)
+        self.assertEqual(-1, self.state.remaining_field_turns)
 
     def test_apply_and_reverse_field(self):
         self.state.field = None
         instruction = (
             constants.MUTATOR_FIELD_START,
             constants.PSYCHIC_TERRAIN,
-            None
+            4,
+            None,
+            -1
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
@@ -545,102 +582,124 @@ class TestStatemutator(unittest.TestCase):
         self.mutator.reverse(list_of_instructions)
 
         self.assertEqual(None, self.state.field)
+        self.assertEqual(-1, self.state.remaining_field_turns)
 
     def test_apply_and_reverse_field_when_previous_field_exists(self):
         self.state.field = constants.GRASSY_TERRAIN
+        self.state.remaining_field_turns = 2
         instruction = (
             constants.MUTATOR_FIELD_START,
             constants.PSYCHIC_TERRAIN,
-            constants.GRASSY_TERRAIN
+            4,
+            constants.GRASSY_TERRAIN,
+            2
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
         if self.state.field != constants.PSYCHIC_TERRAIN:
             self.fail("Terrain was not set")
+        if self.state.remaining_field_turns != 4:
+            self.fail("Terrain duration was not set")
         self.mutator.reverse(list_of_instructions)
 
         self.assertEqual(constants.GRASSY_TERRAIN, self.state.field)
+        self.assertEqual(2, self.state.remaining_field_turns)
 
     def test_end_active_field(self):
         self.state.field = constants.GRASSY_TERRAIN
+        self.state.remaining_field_turns = 0
         instruction = (
             constants.MUTATOR_FIELD_END,
-            constants.GRASSY_TERRAIN
+            constants.GRASSY_TERRAIN,
+            0
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
         if self.state.field is not None:
             self.fail("Terrain was not removed")
+        if self.state.remaining_field_turns != -1:
+            self.fail("Terrain turns was not removed")
         self.mutator.reverse(list_of_instructions)
 
         self.assertEqual(constants.GRASSY_TERRAIN, self.state.field)
+        self.assertEqual(0, self.state.remaining_field_turns)
 
     def test_reversing_end_active_field(self):
         self.state.field = None
+        self.state.remaining_field_turns = -1
         instruction = (
             constants.MUTATOR_FIELD_END,
-            constants.GRASSY_TERRAIN
+            constants.GRASSY_TERRAIN,
+            4
         )
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
         if self.state.field != constants.GRASSY_TERRAIN:
             self.fail("Terrain was not reset")
+        if self.state.remaining_field_turns != 4:
+            self.fail("Terrain turns was not reset")
         self.mutator.apply(list_of_instructions)
 
         self.assertEqual(None, self.state.field)
+        self.assertEqual(-1, self.state.remaining_field_turns)
 
     def test_toggle_trickroom_sets_trickroom(self):
-        self.state.trick_room = False
+        self.state.remaining_trick_room_turns = -1
         instruction = (
-            constants.MUTATOR_TOGGLE_TRICKROOM,
+            constants.MUTATOR_START_TRICKROOM,
+            3
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertTrue(self.state.trick_room)
+        self.assertEqual(3, self.state.remaining_trick_room_turns)
 
     def test_reverse_instruction_unsets_trickroom(self):
-        self.state.trick_room = True
+        self.state.remaining_trick_room_turns = 3
         instruction = (
-            constants.MUTATOR_TOGGLE_TRICKROOM,
+            constants.MUTATOR_START_TRICKROOM,
+            -1
         )
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        self.assertFalse(self.state.trick_room)
+        self.assertEqual(-1, self.state.remaining_trick_room_turns)
 
     def test_reverse_instruction_sets_trickroom(self):
-        self.state.trick_room = False
+        self.state.remaining_trick_room_turns
         instruction = (
-            constants.MUTATOR_TOGGLE_TRICKROOM,
+            constants.MUTATOR_START_TRICKROOM,
+            2
         )
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        self.assertTrue(self.state.trick_room)
+        self.assertEqual(2, self.state.remaining_trick_room_turns)
 
     def test_toggle_trickroom_unsets_trickroom(self):
-        self.state.trick_room = True
+        self.state.remaining_trick_room_turns = 2
         instruction = (
-            constants.MUTATOR_TOGGLE_TRICKROOM,
+            constants.MUTATOR_START_TRICKROOM,
+            3
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertFalse(self.state.trick_room)
+        self.assertEqual(-1, self.state.remaining_trick_room_turns)
 
     def test_apply_and_reverse_trickroom(self):
-        self.state.trick_room = False
+        self.state.remaining_trick_room_turns = -1
         instruction = (
-            constants.MUTATOR_TOGGLE_TRICKROOM,
+            constants.MUTATOR_START_TRICKROOM,
+            -1
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
-        if not self.state.trick_room:
+        if self.state.remaining_trick_room_turns != 3:
             self.fail("Trickroom was not set")
         self.mutator.reverse(list_of_instructions)
 
-        self.assertFalse(self.state.trick_room)
+        self.assertEqual(-1, self.state.remaining_trick_room_turns)
 
     def test_change_types_properly_changes_types(self):
         self.state.self.active.types = ['normal']

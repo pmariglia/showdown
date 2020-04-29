@@ -765,11 +765,13 @@ class TestWeather(unittest.TestCase):
         self.battle.opponent.active = self.opponent_active
 
     def test_starts_weather_properly(self):
-        split_msg = ['', '-weather', 'RainDance', '[from] ability: Drizzle', '[of] p2a: Pelipper']
+        split_msg = ['', '-weather', 'RainDance', '[from] ability: Drizzle', '[of] p2a: Caterpie']
 
         weather(self.battle, split_msg)
 
-        self.assertEqual('raindance', self.battle.weather)
+        self.assertEqual('raindance', self.battle.weather.name)
+        self.assertEqual(0, self.battle.weather.elapsed_turns)
+        self.assertEqual('caterpie', self.battle.weather.setter.name)
 
     def test_sets_weather_ability_when_it_is_present(self):
         split_msg = ['', '-weather', 'RainDance', '[from] ability: Drizzle', '[of] p2a: Pelipper']
@@ -1879,7 +1881,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
     def test_swiftswim_causing_opponent_to_be_faster_results_in_not_guessing_choicescarf(self):
         self.battle.opponent.active.ability = 'swiftswim'
-        self.battle.weather = constants.RAIN
+        self.battle.weather.name = constants.RAIN
         self.battle.user.active.stats[constants.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim)
 
         messages = [

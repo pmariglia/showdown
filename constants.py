@@ -54,7 +54,7 @@ MUTATOR_WEATHER_START = "weather_start"
 MUTATOR_WEATHER_END = "weather_end"
 MUTATOR_FIELD_START = "field_start"
 MUTATOR_FIELD_END = "field_end"
-MUTATOR_TOGGLE_TRICKROOM = "toggle_trickroom"
+MUTATOR_START_TRICKROOM = "start_trickroom"
 MUTATOR_CHANGE_TYPE = "change_type"
 MUTATOR_CHANGE_ITEM = "change_item"
 
@@ -131,7 +131,9 @@ RESERVE = "reserve"
 SIDE_CONDITIONS = "side_conditions"
 LAST_USED_MOVE = "last_used_move"
 WEATHER = "weather"
+REMAINING_WEATHER_TURNS = "remaining_weather_turns"
 FIELD = "field"
+REMAINING_FIELD_TURNS = "remaining_field_turns"
 
 PRIORITY = "priority"
 STATS = "stats"
@@ -216,10 +218,10 @@ RAIN = "raindance"
 SUN = "sunnyday"
 SAND = "sandstorm"
 HAIL = "hail"
-DESOLATE_LAND = "desolateland"
+HARSH_SUNLIGHT = "desolateland"
 HEAVY_RAIN = "primordialsea"
 
-IRREVERSIBLE_WEATHER = {DESOLATE_LAND, HEAVY_RAIN}
+IRREVERSIBLE_WEATHER = {HARSH_SUNLIGHT, HEAVY_RAIN}
 
 # Hazards
 STEALTH_ROCK = 'stealthrock'
@@ -275,12 +277,14 @@ DEFOG_CLEARS = [
 ]
 
 TRICK_ROOM = "trickroom"
+REMAINING_TRICK_ROOM_TURNS = "remaining_trick_room_turns"
 
 TERRAIN = "terrain"
 ELECTRIC_TERRAIN = "electricterrain"
 GRASSY_TERRAIN = "grassyterrain"
 MISTY_TERRAIN = "mistyterrain"
 PSYCHIC_TERRAIN = "psychicterrain"
+TERRAINS = [ELECTRIC_TERRAIN, GRASSY_TERRAIN, MISTY_TERRAIN, PSYCHIC_TERRAIN]
 
 # switch-out moves
 SWITCH_OUT_MOVES = {"uturn", "voltswitch", "partingshot", "teleport"}

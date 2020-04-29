@@ -30,13 +30,7 @@ def lookup_move(move_name):
 def get_effective_speed(state, side):
     boosted_speed = side.active.calculate_boosted_stats()[constants.SPEED]
 
-    if state.weather == constants.SUN and side.active.ability == 'chlorophyll':
-        boosted_speed *= 2
-    elif state.weather == constants.RAIN and side.active.ability == 'swiftswim':
-        boosted_speed *= 2
-    elif state.weather == constants.SAND and side.active.ability == 'sandrush':
-        boosted_speed *= 2
-    elif state.weather == constants.HAIL and side.active.ability == 'slushrush':
+    if is_weather_boosted(side.active, state.weather):
         boosted_speed *= 2
 
     if state.field == constants.ELECTRIC_TERRAIN and side.active.ability == 'surgesurfer':
@@ -57,6 +51,15 @@ def get_effective_speed(state, side):
         boosted_speed *= 0.5
 
     return int(boosted_speed)
+
+
+def is_weather_boosted(pkmn, weather):
+    return (
+        (weather == constants.SUN or weather == constants.HARSH_SUNLIGHT) and pkmn.ability == 'chlorophyll' or
+        (weather == constants.RAIN or weather == constants.HEAVY_RAIN)  and pkmn.ability == 'swiftswim' or
+        weather == constants.SAND and pkmn.ability == 'sandrush' or
+        weather == constants.HAIL and pkmn.ability == 'slushrush'
+    )
 
 
 def get_effective_priority(side, move):
@@ -96,7 +99,7 @@ def user_moves_first(state, user_move, opponent_move):
 
     if user_priority == opponent_priority:
         user_is_faster = user_effective_speed > opponent_effective_speed
-        if state.trick_room:
+        if state.remaining_trick_room_turns >= 0:
             return not user_is_faster
         else:
             return user_is_faster

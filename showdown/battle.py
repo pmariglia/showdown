@@ -52,9 +52,10 @@ class Battle(ABC):
         self.battle_tag = battle_tag
         self.user = Battler()
         self.opponent = Battler()
-        self.weather = None
-        self.field = None
-        self.trick_room = False
+
+        self.weather = PersistentCondition()
+        self.field = PersistentCondition()
+        self.trick_room = PersistentCondition()
 
         self.turn = False
 
@@ -186,7 +187,7 @@ class Battle(ABC):
         user = Side(user_active, user_reserve, copy(self.user.wish), copy(self.user.side_conditions))
         opponent = Side(opponent_active, opponent_reserve, copy(self.opponent.wish), copy(self.opponent.side_conditions))
 
-        state = State(user, opponent, self.weather, self.field, self.trick_room)
+        state = State(user, opponent, self.weather.name, self.weather.get_remaining_turns(), self.field.name, self.field.get_remaining_turns(), self.trick_room.get_remaining_turns())
         return state
 
     def get_all_options(self):
@@ -622,3 +623,35 @@ class Move:
 
     def __repr__(self):
         return "{}".format(self.name)
+
+
+class PersistentCondition(object):
+    __slots__ = ('name', 'setter', 'elapsed_turns')
+
+    def __init_(self):
+        self.name = ""
+        self.setter = None
+        self.elapsed_turns = -1
+
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "setter": self.setter.to_dict(),
+            "elapsed_turns": self.elapsed_turns,
+        }
+
+    def get_remaining_turns(self):
+        total_turns = 5
+        if self.name == constants.TRICK_ROOM:
+            total_turns = 4
+        if (
+                self.name == constants.RAIN and self.setter.item == "damprock" or
+                self.name == constants.SUN and self.setter.item == "heatrock" or
+                self.name == constants.HAIL and self.setter.item == "icyrock" or
+                self.name == constants.SAND and self.setter.item == "smoothrock" or
+                self.name in constants.TERRAINS and self.setter.item == "terrainextender"
+        ):
+            total_turns+=3
+
+
+        return total_turns-self.elapsed_turns-1
