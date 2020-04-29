@@ -607,7 +607,7 @@ def check_choicescarf(battle, msg_lines):
     if battle.battle_type == constants.RANDOM_BATTLE:
         battle_copy.opponent.active.set_spread('serious', '85,85,85,85,85,85')  # random battles have known spreads
     else:
-        if battle.trick_room:
+        if battle.trick_room.name == "trickroom":
             battle_copy.opponent.active.set_spread('quiet', '0,0,0,0,0,0')  # assume as slow as possible in trickroom
         else:
             battle_copy.opponent.active.set_spread('jolly', '0,0,0,0,0,252')  # assume as fast as possible
@@ -615,7 +615,7 @@ def check_choicescarf(battle, msg_lines):
     opponent_effective_speed = get_effective_speed(state, state.opponent)
     bot_effective_speed = get_effective_speed(state, state.self)
 
-    if battle.trick_room:
+    if battle.trick_room.name == "trickroom":
         has_scarf = opponent_effective_speed > bot_effective_speed
     else:
         has_scarf = bot_effective_speed > opponent_effective_speed

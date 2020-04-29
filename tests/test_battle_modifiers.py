@@ -1781,7 +1781,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
     def test_does_not_guess_scarf_in_trickroom(self):
-        self.battle.trick_room = True
+        self.battle.trick_room.name = "trickroom"
         self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
 
         messages = [
@@ -1794,7 +1794,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
     def test_does_not_guess_scarf_under_trickroom_when_opponent_could_be_slower(self):
-        self.battle.trick_room = True
+        self.battle.trick_room.name = "trickroom"
         self.battle.user.active.stats[constants.SPEED] = 205  # opponent caterpie speed is 113 - 207
 
         messages = [
@@ -1807,7 +1807,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
     def test_guesses_scarf_in_trickroom_when_opponent_cannot_be_slower(self):
-        self.battle.trick_room = True
+        self.battle.trick_room.name = "trickroom"
         self.battle.user.active.stats[constants.SPEED] = 110  # opponent caterpie speed is 113 - 207
 
         messages = [

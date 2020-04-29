@@ -625,10 +625,9 @@ class Move:
         return "{}".format(self.name)
 
 
-class PersistentCondition(object):
-    __slots__ = ('name', 'setter', 'elapsed_turns')
+class PersistentCondition:
 
-    def __init_(self):
+    def __init__(self):
         self.name = ""
         self.setter = None
         self.elapsed_turns = -1
@@ -641,9 +640,12 @@ class PersistentCondition(object):
         }
 
     def get_remaining_turns(self):
-        total_turns = 5
         if self.name == constants.TRICK_ROOM:
-            total_turns = 4
+            return 4-self.elapsed_turns-1
+        if self.setter == None:
+            return 5-self.elapsed_turns-1
+
+        total_turns = 5
         if (
                 self.name == constants.RAIN and self.setter.item == "damprock" or
                 self.name == constants.SUN and self.setter.item == "heatrock" or
@@ -652,6 +654,5 @@ class PersistentCondition(object):
                 self.name in constants.TERRAINS and self.setter.item == "terrainextender"
         ):
             total_turns+=3
-
 
         return total_turns-self.elapsed_turns-1
