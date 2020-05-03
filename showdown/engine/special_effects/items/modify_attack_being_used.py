@@ -33,6 +33,13 @@ def expertbelt(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def blackglasses(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'dark':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.2
+    return attacking_move
+
+
 def thickclub(attacking_move, attacking_pokemon, defending_pokemon):
     if attacking_pokemon.id in ['cubone', 'marowak', 'marowakalola'] and attacking_move[constants.CATEGORY] == constants.PHYSICAL:
         attacking_move = attacking_move.copy()
@@ -51,6 +58,7 @@ def whiteherb(attacking_move, attacking_pokemon, defending_pokemon):
 
 
 item_lookup = {
+    'blackglasses': blackglasses,
     'whiteherb': whiteherb,
     'thickclub': thickclub,
     'choiceband': choiceband,

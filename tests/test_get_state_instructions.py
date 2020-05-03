@@ -4341,6 +4341,23 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_blackglasses_boosts_dark_moves(self):
+        bot_move = "darkestlariat"
+        opponent_move = "splash"
+        self.state.self.active.item = 'blackglasses'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 31)  # normal damage is 26
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_choice_band_boosts_damage(self):
         bot_move = "tackle"
         opponent_move = "tackle"
