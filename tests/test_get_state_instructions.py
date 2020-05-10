@@ -3987,6 +3987,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.SPIKES, 1),
                     (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.SPIKES, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.EVASION, -1)
                 ],
                 False
             )
@@ -4004,7 +4005,8 @@ class TestGetStateInstructions(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_FIELD_END, constants.ELECTRIC_TERRAIN)
+                    (constants.MUTATOR_FIELD_END, constants.ELECTRIC_TERRAIN),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.EVASION, -1)
                 ],
                 False
             )
@@ -4024,7 +4026,8 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_FIELD_END, constants.ELECTRIC_TERRAIN),
-                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.SPIKES, 2)
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.SPIKES, 2),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.EVASION, -1)
                 ],
                 False
             )
@@ -5764,6 +5767,44 @@ class TestGetStateInstructions(unittest.TestCase):
                     (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -1),
                     (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'xatu')
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_defog_into_competitive_boosts_special_attack_by_2(self):
+        bot_move = "defog"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.ability = 'competitive'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.EVASION, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 2),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_defog_into_defiant_boosts_attack_by_2(self):
+        bot_move = "defog"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.ability = 'defiant'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.EVASION, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
                 ],
                 False
             )

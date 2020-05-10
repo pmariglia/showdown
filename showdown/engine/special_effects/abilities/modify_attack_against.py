@@ -296,7 +296,7 @@ def competitive(attacking_move, attacking_pokemon, defending_pokemon):
         attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
         for _ in attacking_move[constants.BOOSTS].copy():
             if constants.SPECIAL_ATTACK not in attacking_move[constants.BOOSTS]:
-                attacking_move[constants.BOOSTS][constants.SPECIAL_ATTACK] = 0
+                attacking_move[constants.BOOSTS][constants.SPECIAL_ATTACK] = 2
             else:
                 attacking_move[constants.BOOSTS][constants.SPECIAL_ATTACK] += 2
 
@@ -318,7 +318,7 @@ def defiant(attacking_move, attacking_pokemon, defending_pokemon):
         attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
         for _ in attacking_move[constants.BOOSTS].copy():
             if constants.ATTACK not in attacking_move[constants.BOOSTS]:
-                attacking_move[constants.BOOSTS][constants.ATTACK] = 0
+                attacking_move[constants.BOOSTS][constants.ATTACK] = 2
             else:
                 attacking_move[constants.BOOSTS][constants.ATTACK] += 2
 

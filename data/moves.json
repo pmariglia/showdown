@@ -2134,6 +2134,9 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
+        "boosts": {
+            "evasion": -1
+        },
         "flags": {
             "protect": 1,
             "reflectable": 1,
