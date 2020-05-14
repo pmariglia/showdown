@@ -11,8 +11,8 @@ class Scoring:
         constants.SPECIAL_ATTACK: 15,
         constants.SPECIAL_DEFENSE: 15,
         constants.SPEED: 25,
-        constants.ACCURACY: 30,
-        constants.EVASION: 30
+        constants.ACCURACY: 3,
+        constants.EVASION: 3
     }
 
     POKEMON_BOOST_DIMINISHING_RETURNS = {
