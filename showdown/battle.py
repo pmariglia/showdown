@@ -285,7 +285,7 @@ class Battler:
         for index, pkmn_dict in enumerate(user_json[constants.SIDE][constants.POKEMON]):
 
             pkmn = Pokemon.from_switch_string(pkmn_dict[constants.DETAILS])
-            pkmn.ability = pkmn_dict[constants.REQUEST_DICT_ABILITY]
+            pkmn.ability = pkmn_dict.get(constants.REQUEST_DICT_ABILITY, None)
             pkmn.index = index + 1
             pkmn.hp, pkmn.max_hp, pkmn.status = get_pokemon_info_from_condition(pkmn_dict[constants.CONDITION])
             for stat, number in pkmn_dict[constants.STATS].items():
