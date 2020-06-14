@@ -60,6 +60,12 @@ def switch_or_drag(battle, split_msg):
         side.side_conditions[constants.TOXIC_COUNT] = 0
 
     if side.active is not None:
+        # set the pkmn's types back to their original value if the types were changed
+        if constants.TYPECHANGE in side.active.volatile_statuses:
+            original_types = pokedex[side.active.name][constants.TYPES]
+            logger.debug("{} had it's type changed - changing its types back to {}".format(side.active.name, original_types))
+            side.active.types = original_types
+
         # if the target was transformed, reset its transformed attributes
         if constants.TRANSFORM in side.active.volatile_statuses:
             logger.debug("{} was transformed. Resetting its transformed attributes".format(side.active.name))
@@ -281,6 +287,14 @@ def start_volatile_status(battle, split_msg):
 
     if constants.ABILITY in split_msg[3]:
         pkmn.ability = volatile_status
+
+    if len(split_msg) == 6 and constants.ABILITY in normalize_name(split_msg[5]):
+        pkmn.ability = normalize_name(split_msg[5].split('ability:')[-1])
+
+    if volatile_status == constants.TYPECHANGE:
+        new_type = normalize_name(split_msg[4])
+        logger.debug("Setting {}'s type to {}".format(pkmn.name, new_type))
+        pkmn.types = [new_type]
 
 
 def end_volatile_status(battle, split_msg):

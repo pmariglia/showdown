@@ -268,6 +268,15 @@ class TestSwitchOrDrag(unittest.TestCase):
         self.battle.opponent.reserve = [
         ]
 
+    def test_switch_properly_resets_types_when_pkmn_was_typechanged(self):
+        self.battle.opponent.active.volatile_statuses.append(constants.TYPECHANGE)
+        self.battle.opponent.active.types = ['fire']
+        active = self.battle.opponent.active
+        split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(['bug'], active.types)
+
     def test_switch_opponents_pokemon_successfully_creates_new_pokemon_for_active(self):
         new_pkmn = Pokemon('weedle', 100)
         split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
@@ -1023,6 +1032,27 @@ class TestStartVolatileStatus(unittest.TestCase):
 
         self.assertEqual(hp * 2, self.battle.user.active.hp)
         self.assertEqual(maxhp * 2, self.battle.user.active.max_hp)
+
+    def test_sets_ability(self):
+        # |-start|p1a: Cinderace|typechange|Fighting|[from] ability: Libero
+        split_msg = ['', '-start', 'p2a: Cinderace', 'typechange', 'Fighting', '[from] ability: Libero']
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual('libero', self.battle.opponent.active.ability)
+
+    def test_typechange_starts_volatilestatus(self):
+        # |-start|p1a: Cinderace|typechange|Fighting|[from] ability: Libero
+        split_msg = ['', '-start', 'p2a: Cinderace', 'typechange', 'Fighting', '[from] ability: Libero']
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertIn(constants.TYPECHANGE, self.battle.opponent.active.volatile_statuses)
+
+    def test_typechange_changes_the_type_of_the_user(self):
+        # |-start|p1a: Cinderace|typechange|Fighting|[from] ability: Libero
+        split_msg = ['', '-start', 'p2a: Cinderace', 'typechange', 'Fighting', '[from] ability: Libero']
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(['fighting'], self.battle.opponent.active.types)
 
 
 class TestEndVolatileStatus(unittest.TestCase):

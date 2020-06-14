@@ -227,6 +227,7 @@ SPIKES = 'spikes'
 TOXIC_SPIKES = 'toxicspikes'
 COURT_CHANGE = 'courtchange'
 
+TYPECHANGE = 'typechange'
 TYPE_CHANGE_ABILITIES = {
     'protean',
     'libero'
