@@ -26,6 +26,10 @@ def get_smogon_stats_file_name(game_mode, month_delta=1):
     Uses the previous-month's statistics
     """
 
+    # blitz comes and goes - use the non-blitz version
+    if game_mode.endswith('blitz'):
+        game_mode = game_mode[:-5]
+
     # always use the `-0` file - the higher ladder is for noobs
     smogon_url = "https://www.smogon.com/stats/{}-{}/moveset/{}-0.txt"
 
