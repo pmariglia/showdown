@@ -336,7 +336,8 @@ def calculate_damage(state, attacking_side_string, attacking_move, defending_mov
         attacking_move_dict,
         defending_move_dict,
         attacker_moves_first,
-        state.weather
+        state.weather,
+        state.field
     )
 
     return _calculate_damage(attacking_side.active, defending_side.active, attacking_move_dict, conditions=conditions, calc_type=calc_type)

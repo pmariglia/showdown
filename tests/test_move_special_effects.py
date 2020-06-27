@@ -14,7 +14,7 @@ class TestSuckerPunch(unittest.TestCase):
     def test_suckerpunch_misses_when_opponent_selects_non_damaging_move(self):
         opponent_move = all_move_json['substitute']
         expected_accuracy = 0
-        new_move = modify_attack_being_used(self.move, opponent_move, self.attacking_pokemon, self.defending_pokemon, True, None)
+        new_move = modify_attack_being_used(self.move, opponent_move, self.attacking_pokemon, self.defending_pokemon, True, None, None)
         self.assertEqual(expected_accuracy, new_move[constants.ACCURACY])
 
     def test_suckerpunch_misses_verus_a_switch(self):
@@ -22,17 +22,17 @@ class TestSuckerPunch(unittest.TestCase):
             constants.SWITCH_STRING: "pokemon"
         }
         expected_accuracy = 0
-        new_move = modify_attack_being_used(self.move, opponent_move, self.attacking_pokemon, self.defending_pokemon, False, None)
+        new_move = modify_attack_being_used(self.move, opponent_move, self.attacking_pokemon, self.defending_pokemon, False, None, None)
         self.assertEqual(expected_accuracy, new_move[constants.ACCURACY])
 
     def test_suckerpunch_misses_when_it_is_the_second_move(self):
         opponent_move = all_move_json['extremespeed']
         expected_accuracy = 0
-        new_move = modify_attack_being_used(self.move, opponent_move, self.attacking_pokemon, self.defending_pokemon, False, None)
+        new_move = modify_attack_being_used(self.move, opponent_move, self.attacking_pokemon, self.defending_pokemon, False, None, None)
         self.assertEqual(expected_accuracy, new_move[constants.ACCURACY])
 
     def test_suckerpunch_hits_when_opponent_tries_to_attack(self):
         opponent_move = all_move_json['tackle']
         expected_accuracy = 100
-        new_move = modify_attack_being_used(self.move, opponent_move, self.attacking_pokemon, self.defending_pokemon, True, None)
+        new_move = modify_attack_being_used(self.move, opponent_move, self.attacking_pokemon, self.defending_pokemon, True, None, None)
         self.assertEqual(expected_accuracy, new_move[constants.ACCURACY])

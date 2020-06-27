@@ -25640,5 +25640,306 @@
             "Water 1",
             "Amorphous"
         ]
+    },
+    "urshifu": {
+        "num": 892,
+        "name": "Urshifu",
+        "baseForme": "Single-Strike",
+        "types": [
+            "fighting",
+            "dark"
+        ],
+        "genderRatio": {
+            "M": 0.875,
+            "F": 0.125
+        },
+        "baseStats": {
+            "hp": 100,
+            "attack": 130,
+            "defense": 100,
+            "special-attack": 63,
+            "special-defense": 60,
+            "speed": 97
+        },
+        "abilities": {
+            "0": "Unseen Fist"
+        },
+        "heightm": 1.9,
+        "weight": 105,
+        "color": "Gray",
+        "prevo": "Kubfu",
+        "evoType": "other",
+        "evoCondition": "Defeat the Single Strike Tower",
+        "eggGroups": [
+            "Undiscovered"
+        ],
+        "otherFormes": [
+            "Urshifu-Rapid-Strike",
+            "Urshifu-Gmax",
+            "Urshifu-Rapid-Strike-Gmax"
+        ],
+        "formeOrder": [
+            "Urshifu",
+            "Urshifu-Gmax",
+            "Urshifu-Rapid-Strike",
+            "Urshifu-Rapid-Strike-Gmax"
+        ]
+    },
+    "urshifurapidstrike": {
+        "num": 892,
+        "name": "Urshifu-Rapid-Strike",
+        "baseSpecies": "Urshifu",
+        "forme": "Rapid-Strike",
+        "types": [
+            "fighting",
+            "water"
+        ],
+        "genderRatio": {
+            "M": 0.875,
+            "F": 0.125
+        },
+        "baseStats": {
+            "hp": 100,
+            "attack": 130,
+            "defense": 100,
+            "special-attack": 63,
+            "special-defense": 60,
+            "speed": 97
+        },
+        "abilities": {
+            "0": "Unseen Fist"
+        },
+        "heightm": 1.9,
+        "weight": 105,
+        "color": "Gray",
+        "prevo": "Kubfu",
+        "evoType": "other",
+        "evoCondition": "Defeat the Rapid Strike Tower",
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "urshifugmax": {
+        "num": 892,
+        "name": "Urshifu-Gmax",
+        "baseSpecies": "Urshifu",
+        "forme": "Gmax",
+        "types": [
+            "fighting",
+            "dark"
+        ],
+        "genderRatio": {
+            "M": 0.875,
+            "F": 0.125
+        },
+        "baseStats": {
+            "hp": 100,
+            "attack": 130,
+            "defense": 100,
+            "special-attack": 63,
+            "special-defense": 60,
+            "speed": 97
+        },
+        "abilities": {
+            "0": "Unseen Fist"
+        },
+        "heightm": 3,
+        "weight": 0,
+        "color": "Gray",
+        "eggGroups": [
+            "Undiscovered"
+        ],
+        "isGigantamax": "G-Max One Blow"
+    },
+    "urshifurapidstrikegmax": {
+        "num": 892,
+        "name": "Urshifu-Rapid-Strike-Gmax",
+        "baseSpecies": "Urshifu",
+        "forme": "Rapid-Strike-Gmax",
+        "types": [
+            "fighting",
+            "water"
+        ],
+        "genderRatio": {
+            "M": 0.875,
+            "F": 0.125
+        },
+        "baseStats": {
+            "hp": 100,
+            "attack": 130,
+            "defense": 100,
+            "special-attack": 63,
+            "special-defense": 60,
+            "speed": 97
+        },
+        "abilities": {
+            "0": "Unseen Fist"
+        },
+        "heightm": 1.9,
+        "weight": 105,
+        "color": "Gray",
+        "eggGroups": [
+            "Undiscovered"
+        ],
+        "isGigantamax": "G-Max Rapid Flow",
+        "battleOnly": "Urshifu-Rapid-Strike"
+    },
+    "zarude": {
+        "num": 893,
+        "name": "Zarude",
+        "types": [
+            "dark",
+            "grass"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 105,
+            "attack": 120,
+            "defense": 105,
+            "special-attack": 70,
+            "special-defense": 95,
+            "speed": 105
+        },
+        "abilities": {
+            "0": "Leaf Guard"
+        },
+        "heightm": 1.8,
+        "weight": 70,
+        "color": "Green",
+        "eggGroups": [
+            "Undiscovered"
+        ],
+        "otherFormes": [
+            "Zarude-Dada"
+        ],
+        "formeOrder": [
+            "Zarude",
+            "Zarude-Dada"
+        ]
+    },
+    "zarudedada": {
+        "num": 893,
+        "name": "Zarude-Dada",
+        "baseSpecies": "Zarude",
+        "forme": "Dada",
+        "types": [
+            "dark",
+            "grass"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 105,
+            "attack": 120,
+            "defense": 105,
+            "special-attack": 70,
+            "special-defense": 95,
+            "speed": 105
+        },
+        "abilities": {
+            "0": "Leaf Guard"
+        },
+        "heightm": 1.8,
+        "weight": 70,
+        "color": "Green",
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "slowpokegalar": {
+        "num": 79,
+        "name": "Slowpoke-Galar",
+        "baseSpecies": "Slowpoke",
+        "forme": "Galar",
+        "types": [
+            "psychic"
+        ],
+        "baseStats": {
+            "hp": 90,
+            "attack": 65,
+            "defense": 65,
+            "special-attack": 40,
+            "special-defense": 40,
+            "speed": 15
+        },
+        "abilities": {
+            "0": "Gluttony",
+            "1": "Own Tempo",
+            "H": "Regenerator"
+        },
+        "heightm": 1.2,
+        "weight": 36,
+        "color": "Pink",
+        "evos": [
+            "Slowbro-Galar"
+        ],
+        "eggGroups": [
+            "Monster",
+            "Water 1"
+        ]
+    },
+    "slowbrogalar": {
+        "num": 80,
+        "name": "Slowbro-Galar",
+        "baseSpecies": "Slowbro",
+        "forme": "Galar",
+        "types": [
+            "psychic",
+            "poison"
+        ],
+        "baseStats": {
+            "hp": 95,
+            "attack": 100,
+            "defense": 95,
+            "special-attack": 100,
+            "special-defense": 70,
+            "speed": 30
+        },
+        "abilities": {
+            "0": "Quick Draw",
+            "1": "Own Tempo",
+            "H": "Regenerator"
+        },
+        "heightm": 1.6,
+        "weight": 70.5,
+        "color": "Pink",
+        "prevo": "Slowpoke-Galar",
+        "evoType": "useItem",
+        "evoItem": "Galarica Cuff",
+        "eggGroups": [
+            "Monster",
+            "Water 1"
+        ]
+    },
+    "kubfu": {
+        "num": 891,
+        "name": "Kubfu",
+        "types": [
+            "fighting"
+        ],
+        "genderRatio": {
+            "M": 0.875,
+            "F": 0.125
+        },
+        "baseStats": {
+            "hp": 60,
+            "attack": 90,
+            "defense": 60,
+            "special-attack": 53,
+            "special-defense": 50,
+            "speed": 72
+        },
+        "abilities": {
+            "0": "Inner Focus"
+        },
+        "heightm": 0.6,
+        "weight": 12,
+        "color": "Gray",
+        "evos": [
+            "Urshifu",
+            "Urshifu-Rapid-Strike"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
     }
 }

@@ -123,7 +123,8 @@ class Battle(ABC):
         try:
             pokemon_sets = get_pokemon_sets(battle_copy.opponent.active.name)
         except KeyError:
-            logger.warning("No set for {}".format(battle_copy.opponent.active.name))
+            logger.warning("No sets for {}, trying to find most likely attributes".format(battle_copy.opponent.active.name))
+            battle_copy.opponent.active.guess_most_likely_attributes()
             return [battle_copy]
 
         possible_spreads = sorted(pokemon_sets[SPREADS_STRING], key=lambda x: x[2], reverse=True)

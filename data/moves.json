@@ -1987,9 +1987,9 @@
         "basePower": 0,
         "category": "status",
         "boosts": {
-          "attack": 1,
-          "defense": 1,
-          "speed": -1
+            "attack": 1,
+            "defense": 1,
+            "speed": -1
         },
         "flags": {
             "authentic": 1
@@ -3343,8 +3343,8 @@
             "protect": 1
         },
         "heal": [
-          -1,
-          1
+            -1,
+            1
         ],
         "id": "finalgambit",
         "name": "Final Gambit",
@@ -7174,7 +7174,7 @@
             -1,
             2
         ],
-        "id": "mindreader",
+        "id": "mindblown",
         "name": "Mind Reader",
         "priority": 0,
         "secondary": false,
@@ -8942,12 +8942,12 @@
         "name": "Rapid Spin",
         "priority": 0,
         "secondary": {
-          "chance": 100,
-          "self": {
-            "boosts": {
-              "speed": 1
+            "chance": 100,
+            "self": {
+                "boosts": {
+                    "speed": 1
+                }
             }
-          }
         },
         "self": {},
         "target": "normal",
@@ -9141,8 +9141,8 @@
             "heal": 1
         },
         "heal": [
-          1,
-          1
+            1,
+            1
         ],
         "status": "slp",
         "id": "rest",
@@ -9197,7 +9197,7 @@
             "protect": 1,
             "mirror": 1
         },
-        "id": "return",
+        "id": "return102",
         "name": "Return",
         "priority": 0,
         "secondary": false,
@@ -10775,7 +10775,7 @@
         "flags": {
             "contact": 1
         },
-        "id": "soulstealing7starstrike",
+        "id": "soulstealing7stars",
         "name": "Soul-Stealing 7-Star Strike",
         "priority": 0,
         "secondary": false,
@@ -10942,7 +10942,7 @@
         "flags": {
             "gravity": 1
         },
-        "id": "splash",
+        "id": "nothing",
         "name": "Splash",
         "priority": 0,
         "secondary": false,
@@ -13165,896 +13165,1323 @@
         "pp": 5
     },
     "appleacid": {
-    "accuracy": 100,
-    "basePower": 80,
-    "category": "special",
-    "flags": {
-      "protect": 1,
-      "mirror": 1
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "special",
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "appleacid",
+        "name": "Apple Acid",
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "boosts": {
+                "special-defense": -1
+            }
+        },
+        "target": "normal",
+        "type": "grass",
+        "pp": 10
     },
-    "id": "appleacid",
-    "name": "Apple Acid",
-    "priority": 0,
-    "secondary": {
-      "chance": 100,
-      "boosts": {
-        "special-defense": -1
-      }
-    },
-    "target": "normal",
-    "type": "grass",
-    "pp": 10
-  },
     "aurawheel": {
-      "accuracy": 100,
-      "basePower": 110,
-      "category": "physical",
-      "flags": {
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "aurawheel",
-      "name": "Aura Wheel",
-      "priority": 0,
-      "secondary": {
-        "chance": 100,
-        "self": {
-          "boosts": {
-            "speed": 1
-          }
-        }
-      },
-      "target": "normal",
-      "type": "electric",
-      "pp": 10
+        "accuracy": 100,
+        "basePower": 110,
+        "category": "physical",
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "aurawheel",
+        "name": "Aura Wheel",
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "self": {
+                "boosts": {
+                    "speed": 1
+                }
+            }
+        },
+        "target": "normal",
+        "type": "electric",
+        "pp": 10
     },
     "baddybad": {
-      "accuracy": 100,
-      "basePower": 90,
-      "category": "special",
-      "flags": {
-        "protect": 1
-      },
-      "id": "baddybad",
-      "name": "Baddy Bad",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "dark",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "special",
+        "flags": {
+            "protect": 1
+        },
+        "id": "baddybad",
+        "name": "Baddy Bad",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "dark",
+        "pp": 15
     },
     "behemothbash": {
-      "accuracy": 100,
-      "basePower": 100,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "behemothbash",
-      "name": "Behemoth Bash",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "steel",
-      "pp": 5
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "behemothbash",
+        "name": "Behemoth Bash",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "steel",
+        "pp": 5
     },
     "behemothblade": {
-      "accuracy": 100,
-      "basePower": 100,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "behemothblade",
-      "name": "Behemoth Blade",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "steel",
-      "pp": 5
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "behemothblade",
+        "name": "Behemoth Blade",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "steel",
+        "pp": 5
     },
     "bodypress": {
-      "accuracy": 100,
-      "basePower": 80,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "bodypress",
-      "name": "Body Press",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "fighting",
-      "pp": 10
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "bodypress",
+        "name": "Body Press",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "fighting",
+        "pp": 10
     },
     "boltbeak": {
-      "accuracy": 100,
-      "basePower": 85,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "boltbeak",
-      "name": "Bolt Beak",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "electric",
-      "pp": 10
+        "accuracy": 100,
+        "basePower": 85,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "boltbeak",
+        "name": "Bolt Beak",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "electric",
+        "pp": 10
     },
     "bouncybubble": {
-      "accuracy": 100,
-      "basePower": 90,
-      "category": "special",
-      "flags": {
-        "protect": 1,
-        "heal": 1
-      },
-      "id": "bouncybubble",
-      "name": "Bouncy Bubble",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "water",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "special",
+        "flags": {
+            "protect": 1,
+            "heal": 1
+        },
+        "id": "bouncybubble",
+        "name": "Bouncy Bubble",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "water",
+        "pp": 15
     },
     "branchpoke": {
-      "accuracy": 100,
-      "basePower": 40,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "branchpoke",
-      "name": "Branch Poke",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "grass",
-      "pp": 40
+        "accuracy": 100,
+        "basePower": 40,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "branchpoke",
+        "name": "Branch Poke",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "grass",
+        "pp": 40
     },
     "breakingswipe": {
-      "accuracy": 100,
-      "basePower": 60,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "breakingswipe",
-      "name": "Breaking Swipe",
-      "priority": 0,
-      "secondary": {
-        "chance": 100,
-        "boosts": {
-          "attack": -1
-        }
-      },
-      "target": "alladjacentfoes",
-      "type": "dragon",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 60,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "breakingswipe",
+        "name": "Breaking Swipe",
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "boosts": {
+                "attack": -1
+            }
+        },
+        "target": "alladjacentfoes",
+        "type": "dragon",
+        "pp": 15
     },
     "buzzybuzz": {
-      "accuracy": 100,
-      "basePower": 90,
-      "category": "special",
-      "flags": {
-        "protect": 1
-      },
-      "id": "buzzybuzz",
-      "name": "Buzzy Buzz",
-      "priority": 0,
-      "secondary": {
-        "chance": 100,
-        "status": "par"
-      },
-      "target": "normal",
-      "type": "electric",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "special",
+        "flags": {
+            "protect": 1
+        },
+        "id": "buzzybuzz",
+        "name": "Buzzy Buzz",
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "status": "par"
+        },
+        "target": "normal",
+        "type": "electric",
+        "pp": 15
     },
     "clangoroussoul": {
-      "accuracy": true,
-      "basePower": 0,
-      "category": "status",
-      "flags": {
-        "snatch": 1,
-        "sound": 1,
-        "dance": 1
-      },
-      "id": "clangoroussoul",
-      "name": "Clangorous Soul",
-      "priority": 0,
-      "secondary": null,
-      "target": "self",
-      "type": "dragon",
-      "pp": 5
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "snatch": 1,
+            "sound": 1,
+            "dance": 1
+        },
+        "id": "clangoroussoul",
+        "name": "Clangorous Soul",
+        "priority": 0,
+        "secondary": null,
+        "target": "self",
+        "type": "dragon",
+        "pp": 5
     },
     "courtchange": {
-      "accuracy": 100,
-      "basePower": 0,
-      "category": "status",
-      "flags": {
-        "mirror": 1
-      },
-      "id": "courtchange",
-      "name": "Court Change",
-      "priority": 0,
-      "secondary": null,
-      "target": "all",
-      "type": "normal",
-      "pp": 10
+        "accuracy": 100,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "mirror": 1
+        },
+        "id": "courtchange",
+        "name": "Court Change",
+        "priority": 0,
+        "secondary": null,
+        "target": "all",
+        "type": "normal",
+        "pp": 10
     },
     "decorate": {
-      "accuracy": true,
-      "basePower": 0,
-      "category": "status",
-      "flags": {
-        "mystery": 1
-      },
-      "id": "decorate",
-      "name": "Decorate",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "fairy",
-      "pp": 15
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "mystery": 1
+        },
+        "id": "decorate",
+        "name": "Decorate",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "fairy",
+        "pp": 15
     },
     "doubleironbash": {
-      "accuracy": 100,
-      "basePower": 60,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1,
-        "mirror": 1,
-        "punch": 1
-      },
-      "id": "doubleironbash",
-      "name": "Double Iron Bash",
-      "priority": 0,
-      "secondary": {
-        "chance": 30,
-        "volatileStatus": "flinch"
-      },
-      "target": "normal",
-      "type": "steel",
-      "pp": 5
+        "accuracy": 100,
+        "basePower": 60,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1,
+            "punch": 1
+        },
+        "id": "doubleironbash",
+        "name": "Double Iron Bash",
+        "priority": 0,
+        "secondary": {
+            "chance": 30,
+            "volatileStatus": "flinch"
+        },
+        "target": "normal",
+        "type": "steel",
+        "pp": 5
     },
     "dragondarts": {
-      "accuracy": 100,
-      "basePower": 50,
-      "category": "physical",
-      "flags": {
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "dragondarts",
-      "name": "Dragon Darts",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "dragon",
-      "pp": 10
+        "accuracy": 100,
+        "basePower": 50,
+        "category": "physical",
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "dragondarts",
+        "name": "Dragon Darts",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "dragon",
+        "pp": 10
     },
     "drumbeating": {
-      "accuracy": 100,
-      "basePower": 80,
-      "category": "physical",
-      "flags": {
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "drumbeating",
-      "name": "Drum Beating",
-      "priority": 0,
-      "secondary": {
-        "chance": 100,
-        "boosts": {
-          "speed": -1
-        }
-      },
-      "target": "normal",
-      "type": "grass",
-      "pp": 10
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "physical",
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "drumbeating",
+        "name": "Drum Beating",
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "boosts": {
+                "speed": -1
+            }
+        },
+        "target": "normal",
+        "type": "grass",
+        "pp": 10
     },
     "dynamaxcannon": {
-      "accuracy": 100,
-      "basePower": 100,
-      "category": "special",
-      "flags": {
-        "protect": 1
-      },
-      "id": "dynamaxcannon",
-      "name": "Dynamax Cannon",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "dragon",
-      "pp": 5
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "special",
+        "flags": {
+            "protect": 1
+        },
+        "id": "dynamaxcannon",
+        "name": "Dynamax Cannon",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "dragon",
+        "pp": 5
     },
     "eternabeam": {
-      "accuracy": 90,
-      "basePower": 160,
-      "category": "special",
-      "flags": {
-        "recharge": 1,
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "eternabeam",
-      "name": "Eternabeam",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "dragon",
-      "pp": 10
+        "accuracy": 90,
+        "basePower": 160,
+        "category": "special",
+        "flags": {
+            "recharge": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "eternabeam",
+        "name": "Eternabeam",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "dragon",
+        "pp": 10
     },
     "falsesurrender": {
-      "accuracy": true,
-      "basePower": 80,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "falsesurrender",
-      "name": "False Surrender",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "dark",
-      "pp": 10
+        "accuracy": true,
+        "basePower": 80,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "falsesurrender",
+        "name": "False Surrender",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "dark",
+        "pp": 10
     },
     "fishiousrend": {
-      "accuracy": 100,
-      "basePower": 85,
-      "category": "physical",
-      "flags": {
-        "bite": 1,
-        "contact": 1,
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "fishiousrend",
-      "name": "Fishious Rend",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "water",
-      "pp": 10
+        "accuracy": 100,
+        "basePower": 85,
+        "category": "physical",
+        "flags": {
+            "bite": 1,
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "fishiousrend",
+        "name": "Fishious Rend",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "water",
+        "pp": 10
     },
     "floatyfall": {
-      "accuracy": 95,
-      "basePower": 90,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1,
-        "gravity": 1
-      },
-      "id": "floatyfall",
-      "name": "Floaty Fall",
-      "priority": 0,
-      "secondary": {
-        "chance": 30,
-        "volatileStatus": "flinch"
-      },
-      "target": "normal",
-      "type": "flying",
-      "pp": 15
+        "accuracy": 95,
+        "basePower": 90,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "gravity": 1
+        },
+        "id": "floatyfall",
+        "name": "Floaty Fall",
+        "priority": 0,
+        "secondary": {
+            "chance": 30,
+            "volatileStatus": "flinch"
+        },
+        "target": "normal",
+        "type": "flying",
+        "pp": 15
     },
     "freezyfrost": {
-      "accuracy": 100,
-      "basePower": 90,
-      "category": "special",
-      "flags": {
-        "protect": 1
-      },
-      "id": "freezyfrost",
-      "name": "Freezy Frost",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "ice",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "special",
+        "flags": {
+            "protect": 1
+        },
+        "id": "freezyfrost",
+        "name": "Freezy Frost",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "ice",
+        "pp": 15
     },
     "glitzyglow": {
-      "accuracy": 100,
-      "basePower": 90,
-      "category": "special",
-      "flags": {
-        "protect": 1
-      },
-      "id": "glitzyglow",
-      "name": "Glitzy Glow",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "psychic",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "special",
+        "flags": {
+            "protect": 1
+        },
+        "id": "glitzyglow",
+        "name": "Glitzy Glow",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "psychic",
+        "pp": 15
     },
     "gravapple": {
-      "accuracy": 100,
-      "basePower": 80,
-      "category": "physical",
-      "flags": {
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "gravapple",
-      "name": "Grav Apple",
-      "priority": 0,
-      "secondary": {
-        "chance": 100,
-        "boosts": {
-          "defense": -1
-        }
-      },
-      "target": "normal",
-      "type": "grass",
-      "pp": 10
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "physical",
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "gravapple",
+        "name": "Grav Apple",
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "boosts": {
+                "defense": -1
+            }
+        },
+        "target": "normal",
+        "type": "grass",
+        "pp": 10
     },
     "jawlock": {
-      "accuracy": 100,
-      "basePower": 80,
-      "category": "physical",
-      "flags": {
-        "bite": 1,
-        "contact": 1,
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "jawlock",
-      "name": "Jaw Lock",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "dark",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "physical",
+        "flags": {
+            "bite": 1,
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "jawlock",
+        "name": "Jaw Lock",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "dark",
+        "pp": 15
     },
     "lifedew": {
-      "accuracy": true,
-      "basePower": 0,
-      "category": "status",
-      "flags": {
-        "snatch": 1,
-        "heal": 1,
-        "authentic": 1
-      },
-      "id": "lifedew",
-      "name": "Life Dew",
-      "priority": 0,
-      "secondary": null,
-      "target": "allyteam",
-      "type": "water",
-      "pp": 10
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "snatch": 1,
+            "heal": 1,
+            "authentic": 1
+        },
+        "id": "lifedew",
+        "name": "Life Dew",
+        "priority": 0,
+        "secondary": null,
+        "target": "allyteam",
+        "type": "water",
+        "pp": 10
     },
     "magicpowder": {
-      "accuracy": 100,
-      "basePower": 0,
-      "category": "status",
-      "flags": {
-        "powder": 1,
-        "protect": 1,
-        "reflectable": 1,
-        "mirror": 1,
-        "mystery": 1
-      },
-      "id": "magicpowder",
-      "name": "Magic Powder",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "psychic",
-      "pp": 20
+        "accuracy": 100,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "powder": 1,
+            "protect": 1,
+            "reflectable": 1,
+            "mirror": 1,
+            "mystery": 1
+        },
+        "id": "magicpowder",
+        "name": "Magic Powder",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "psychic",
+        "pp": 20
     },
     "meteorassault": {
-      "accuracy": 100,
-      "basePower": 150,
-      "category": "physical",
-      "flags": {
-        "protect": 1,
-        "recharge": 1,
-        "mirror": 1
-      },
-      "id": "meteorassault",
-      "name": "Meteor Assault",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "fighting",
-      "pp": 5
+        "accuracy": 100,
+        "basePower": 150,
+        "category": "physical",
+        "flags": {
+            "protect": 1,
+            "recharge": 1,
+            "mirror": 1
+        },
+        "id": "meteorassault",
+        "name": "Meteor Assault",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "fighting",
+        "pp": 5
     },
     "noretreat": {
-      "accuracy": true,
-      "basePower": 0,
-      "category": "status",
-      "boosts": {
-        "attack": 1,
-        "defense": 1,
-        "special-attack": 1,
-        "special-defense": 1,
-        "speed": 1
-      },
-      "flags": {
-        "snatch": 1
-      },
-      "id": "noretreat",
-      "name": "No Retreat",
-      "priority": 0,
-      "secondary": false,
-      "target": "self",
-      "type": "fighting",
-      "volatileStatus": "noretreat",
-      "pp": 5
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "boosts": {
+            "attack": 1,
+            "defense": 1,
+            "special-attack": 1,
+            "special-defense": 1,
+            "speed": 1
+        },
+        "flags": {
+            "snatch": 1
+        },
+        "id": "noretreat",
+        "name": "No Retreat",
+        "priority": 0,
+        "secondary": false,
+        "target": "self",
+        "type": "fighting",
+        "volatileStatus": "noretreat",
+        "pp": 5
     },
     "obstruct": {
-      "accuracy": true,
-      "basePower": 0,
-      "category": "status",
-      "flags": {},
-      "id": "obstruct",
-      "name": "Obstruct",
-      "priority": 4,
-      "secondary": null,
-      "target": "self",
-      "type": "dark",
-      "volatileStatus": "protect",
-      "pp": 10
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {},
+        "id": "obstruct",
+        "name": "Obstruct",
+        "priority": 4,
+        "secondary": null,
+        "target": "self",
+        "type": "dark",
+        "volatileStatus": "protect",
+        "pp": 10
     },
     "octolock": {
-      "accuracy": 100,
-      "basePower": 0,
-      "category": "status",
-      "flags": {
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "octolock",
-      "name": "Octolock",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "fighting",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "octolock",
+        "name": "Octolock",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "fighting",
+        "pp": 15
     },
     "overdrive": {
-      "accuracy": 100,
-      "basePower": 80,
-      "category": "special",
-      "flags": {
-        "protect": 1,
-        "mirror": 1,
-        "sound": 1,
-        "authentic": 1
-      },
-      "id": "overdrive",
-      "name": "Overdrive",
-      "priority": 0,
-      "secondary": null,
-      "target": "alladjacentfoes",
-      "type": "electric",
-      "pp": 10
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "special",
+        "flags": {
+            "protect": 1,
+            "mirror": 1,
+            "sound": 1,
+            "authentic": 1
+        },
+        "id": "overdrive",
+        "name": "Overdrive",
+        "priority": 0,
+        "secondary": null,
+        "target": "alladjacentfoes",
+        "type": "electric",
+        "pp": 10
     },
     "pikapapow": {
-      "accuracy": true,
-      "basePower": 0,
-      "category": "special",
-      "flags": {
-        "protect": 1
-      },
-      "id": "pikapapow",
-      "name": "Pika Papow",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "electric",
-      "pp": 20
+        "accuracy": true,
+        "basePower": 0,
+        "category": "special",
+        "flags": {
+            "protect": 1
+        },
+        "id": "pikapapow",
+        "name": "Pika Papow",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "electric",
+        "pp": 20
     },
     "pyroball": {
-      "accuracy": 90,
-      "basePower": 120,
-      "category": "physical",
-      "flags": {
-        "protect": 1,
-        "mirror": 1,
-        "defrost": 1,
-        "bullet": 1
-      },
-      "id": "pyroball",
-      "name": "Pyro Ball",
-      "priority": 0,
-      "secondary": {
-        "chance": 10,
-        "status": "brn"
-      },
-      "target": "normal",
-      "type": "fire",
-      "pp": 5
+        "accuracy": 90,
+        "basePower": 120,
+        "category": "physical",
+        "flags": {
+            "protect": 1,
+            "mirror": 1,
+            "defrost": 1,
+            "bullet": 1
+        },
+        "id": "pyroball",
+        "name": "Pyro Ball",
+        "priority": 0,
+        "secondary": {
+            "chance": 10,
+            "status": "brn"
+        },
+        "target": "normal",
+        "type": "fire",
+        "pp": 5
     },
     "sappyseed": {
-      "accuracy": 100,
-      "basePower": 90,
-      "category": "physical",
-      "flags": {
-        "protect": 1,
-        "reflectable": 1
-      },
-      "id": "sappyseed",
-      "name": "Sappy Seed",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "grass",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "physical",
+        "flags": {
+            "protect": 1,
+            "reflectable": 1
+        },
+        "id": "sappyseed",
+        "name": "Sappy Seed",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "grass",
+        "pp": 15
     },
     "sizzlyslide": {
-      "accuracy": 100,
-      "basePower": 90,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1,
-        "defrost": 1
-      },
-      "id": "sizzlyslide",
-      "name": "Sizzly Slide",
-      "priority": 0,
-      "secondary": {
-        "chance": 100,
-        "status": "brn"
-      },
-      "target": "normal",
-      "type": "fire",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "defrost": 1
+        },
+        "id": "sizzlyslide",
+        "name": "Sizzly Slide",
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "status": "brn"
+        },
+        "target": "normal",
+        "type": "fire",
+        "pp": 15
     },
     "snaptrap": {
-      "accuracy": 100,
-      "basePower": 35,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "snaptrap",
-      "name": "Snap Trap",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "grass",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 35,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "snaptrap",
+        "name": "Snap Trap",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "grass",
+        "pp": 15
     },
     "snipeshot": {
-      "accuracy": 100,
-      "basePower": 80,
-      "category": "special",
-      "flags": {
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "snipeshot",
-      "name": "Snipe Shot",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "water",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "special",
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "snipeshot",
+        "name": "Snipe Shot",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "water",
+        "pp": 15
     },
     "sparklyswirl": {
-      "accuracy": 100,
-      "basePower": 90,
-      "category": "special",
-      "flags": {
-        "protect": 1
-      },
-      "id": "sparklyswirl",
-      "name": "Sparkly Swirl",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "fairy",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "special",
+        "flags": {
+            "protect": 1
+        },
+        "id": "sparklyswirl",
+        "name": "Sparkly Swirl",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "fairy",
+        "pp": 15
     },
     "spiritbreak": {
-      "accuracy": 100,
-      "basePower": 75,
-      "category": "physical",
-      "flags": {
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "spiritbreak",
-      "name": "Spirit Break",
-      "priority": 0,
-      "secondary": {
-        "chance": 100,
-        "boosts": {
-          "special-attack": -1
-        }
-      },
-      "target": "normal",
-      "type": "fairy",
-      "pp": 10
+        "accuracy": 100,
+        "basePower": 75,
+        "category": "physical",
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "spiritbreak",
+        "name": "Spirit Break",
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "boosts": {
+                "special-attack": -1
+            }
+        },
+        "target": "normal",
+        "type": "fairy",
+        "pp": 10
     },
     "splishysplash": {
-      "accuracy": 100,
-      "basePower": 90,
-      "category": "special",
-      "flags": {
-        "protect": 1
-      },
-      "id": "splishysplash",
-      "name": "Splishy Splash",
-      "priority": 0,
-      "secondary": {
-        "chance": 30,
-        "status": "par"
-      },
-      "target": "alladjacentfoes",
-      "type": "water",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "special",
+        "flags": {
+            "protect": 1
+        },
+        "id": "splishysplash",
+        "name": "Splishy Splash",
+        "priority": 0,
+        "secondary": {
+            "chance": 30,
+            "status": "par"
+        },
+        "target": "alladjacentfoes",
+        "type": "water",
+        "pp": 15
     },
     "steelbeam": {
-      "accuracy": 95,
-      "basePower": 140,
-      "category": "special",
-      "flags": {
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "steelbeam",
-      "name": "Steel Beam",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "steel",
-      "pp": 5
+        "accuracy": 95,
+        "basePower": 140,
+        "category": "special",
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "steelbeam",
+        "name": "Steel Beam",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "steel",
+        "pp": 5
     },
     "strangesteam": {
-      "accuracy": 95,
-      "basePower": 90,
-      "category": "special",
-      "flags": {
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "strangesteam",
-      "name": "Strange Steam",
-      "priority": 0,
-      "secondary": {
-        "chance": 20,
-        "volatileStatus": "confusion"
-      },
-      "target": "normal",
-      "type": "fairy",
-      "pp": 10
+        "accuracy": 95,
+        "basePower": 90,
+        "category": "special",
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "strangesteam",
+        "name": "Strange Steam",
+        "priority": 0,
+        "secondary": {
+            "chance": 20,
+            "volatileStatus": "confusion"
+        },
+        "target": "normal",
+        "type": "fairy",
+        "pp": 10
     },
     "stuffcheeks": {
-      "accuracy": true,
-      "basePower": 0,
-      "category": "status",
-      "flags": {
-        "snatch": 1
-      },
-      "id": "stuffcheeks",
-      "name": "Stuff Cheeks",
-      "priority": 0,
-      "secondary": null,
-      "target": "self",
-      "type": "normal",
-      "pp": 10
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "snatch": 1
+        },
+        "id": "stuffcheeks",
+        "name": "Stuff Cheeks",
+        "priority": 0,
+        "secondary": null,
+        "target": "self",
+        "type": "normal",
+        "pp": 10
     },
     "tarshot": {
-      "accuracy": 100,
-      "basePower": 0,
-      "boosts": {
-        "speed": -1
-      },
-      "category": "status",
-      "flags": {
-        "protect": 1,
-        "reflectable": 1,
-        "mirror": 1
-      },
-      "id": "tarshot",
-      "name": "Tar Shot",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "volatileStatus": "tarshot",
-      "type": "rock",
-      "pp": 20
+        "accuracy": 100,
+        "basePower": 0,
+        "boosts": {
+            "speed": -1
+        },
+        "category": "status",
+        "flags": {
+            "protect": 1,
+            "reflectable": 1,
+            "mirror": 1
+        },
+        "id": "tarshot",
+        "name": "Tar Shot",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "volatileStatus": "tarshot",
+        "type": "rock",
+        "pp": 20
     },
     "teatime": {
-      "accuracy": true,
-      "basePower": 0,
-      "category": "status",
-      "flags": {
-        "authentic": 1
-      },
-      "id": "teatime",
-      "name": "Teatime",
-      "priority": 0,
-      "secondary": null,
-      "target": "any",
-      "type": "normal",
-      "pp": 10
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "authentic": 1
+        },
+        "id": "teatime",
+        "name": "Teatime",
+        "priority": 0,
+        "secondary": null,
+        "target": "any",
+        "type": "normal",
+        "pp": 10
     },
     "veeveevolley": {
-      "accuracy": true,
-      "basePower": 0,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1
-      },
-      "id": "veeveevolley",
-      "name": "Veevee Volley",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "normal",
-      "pp": 20
+        "accuracy": true,
+        "basePower": 0,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1
+        },
+        "id": "veeveevolley",
+        "name": "Veevee Volley",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "normal",
+        "pp": 20
     },
     "visegrip": {
-      "accuracy": 100,
-      "basePower": 55,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1,
-        "mirror": 1
-      },
-      "id": "visegrip",
-      "name": "Vise Grip",
-      "priority": 0,
-      "secondary": null,
-      "target": "normal",
-      "type": "normal",
-      "pp": 30
+        "accuracy": 100,
+        "basePower": 55,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "id": "visegrip",
+        "name": "Vise Grip",
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "normal",
+        "pp": 30
     },
     "zippyzap": {
-      "accuracy": 100,
-      "basePower": 50,
-      "category": "physical",
-      "flags": {
-        "contact": 1,
-        "protect": 1
-      },
-      "id": "zippyzap",
-      "name": "Zippy Zap",
-      "priority": 2,
-      "secondary": null,
-      "target": "normal",
-      "type": "electric",
-      "pp": 15
+        "accuracy": 100,
+        "basePower": 50,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "protect": 1
+        },
+        "id": "zippyzap",
+        "name": "Zippy Zap",
+        "priority": 2,
+        "secondary": null,
+        "target": "normal",
+        "type": "electric",
+        "pp": 15
     },
     "maxguard": {
-      "accuracy": true,
-      "basePower": 0,
-      "category": "status",
-      "flags": {},
-      "id": "maxguard",
-      "name": "Max Guard",
-      "priority": 4,
-      "secondary": false,
-      "target": "self",
-      "volatileStatus": "maxguard",
-      "type": "normal",
-      "pp": 10
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {},
+        "id": "maxguard",
+        "name": "Max Guard",
+        "priority": 4,
+        "secondary": false,
+        "target": "self",
+        "volatileStatus": "maxguard",
+        "type": "normal",
+        "pp": 10
+    },
+    "expandingforce": {
+        "num": 797,
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "special",
+        "name": "Expanding Force",
+        "pp": 10,
+        "priority": 0,
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "secondary": null,
+        "target": "normal",
+        "type": "psychic",
+        "id": "expandingforce"
+    },
+    "steelroller": {
+        "num": 798,
+        "accuracy": 100,
+        "basePower": 130,
+        "category": "physical",
+        "name": "Steel Roller",
+        "pp": 5,
+        "priority": 0,
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "secondary": null,
+        "target": "normal",
+        "type": "steel",
+        "id": "steelroller"
+    },
+    "scaleshot": {
+        "num": 799,
+        "accuracy": 90,
+        "basePower": 25,
+        "category": "physical",
+        "name": "Scale Shot",
+        "pp": 20,
+        "priority": 0,
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "multihit": [
+            2,
+            5
+        ],
+        "secondary": {
+            "chance": 100,
+            "self": {
+                "boosts": {
+                    "defense": -1,
+                    "speed": 1
+                }
+            }
+        },
+        "target": "normal",
+        "type": "dragon",
+        "id": "scaleshot"
+    },
+    "meteorbeam": {
+        "num": 800,
+        "accuracy": 90,
+        "basePower": 120,
+        "category": "special",
+        "name": "Meteor Beam",
+        "pp": 10,
+        "priority": 0,
+        "flags": {
+            "charge": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "secondary": null,
+        "target": "normal",
+        "type": "rock",
+        "id": "meteorbeam"
+    },
+    "shellsidearm": {
+        "num": 801,
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "special",
+        "name": "Shell Side Arm",
+        "pp": 10,
+        "priority": 0,
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "secondary": {
+            "chance": 20,
+            "status": "psn"
+        },
+        "target": "normal",
+        "type": "poison",
+        "id": "shellsidearm"
+    },
+    "mistyexplosion": {
+        "num": 802,
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "special",
+        "name": "Misty Explosion",
+        "pp": 5,
+        "priority": 0,
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "heal": [
+            -1,
+            1
+        ],
+        "heal_target": "self",
+        "secondary": null,
+        "target": "allAdjacent",
+        "type": "fairy",
+        "id": "mistyexplosion"
+    },
+    "grassyglide": {
+        "num": 803,
+        "accuracy": 100,
+        "basePower": 70,
+        "category": "physical",
+        "name": "Grassy Glide",
+        "pp": 20,
+        "priority": 0,
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mystery": 1
+        },
+        "secondary": null,
+        "target": "normal",
+        "type": "grass",
+        "contestType": "Cool",
+        "id": "grassyglide"
+    },
+    "risingvoltage": {
+        "num": 804,
+        "accuracy": 100,
+        "basePower": 70,
+        "category": "special",
+        "name": "Rising Voltage",
+        "pp": 20,
+        "priority": 0,
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "secondary": null,
+        "target": "normal",
+        "type": "electric",
+        "id": "risingvoltage"
+    },
+    "terrainpulse": {
+        "num": 805,
+        "accuracy": 100,
+        "basePower": 50,
+        "category": "special",
+        "name": "Terrain Pulse",
+        "pp": 10,
+        "priority": 0,
+        "flags": {
+            "protect": 1,
+            "mirror": 1,
+            "pulse": 1
+        },
+        "secondary": null,
+        "target": "normal",
+        "type": "normal",
+        "id": "terrainpulse"
+    },
+    "skittersmack": {
+        "num": 806,
+        "accuracy": 90,
+        "basePower": 70,
+        "category": "physical",
+        "name": "Skitter Smack",
+        "pp": 10,
+        "priority": 0,
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "secondary": {
+            "chance": 100,
+            "boosts": {
+                "special-attack": -1
+            }
+        },
+        "target": "normal",
+        "type": "bug",
+        "id": "skittersmack"
+    },
+    "burningjealousy": {
+        "num": 807,
+        "accuracy": 100,
+        "basePower": 70,
+        "category": "special",
+        "name": "Burning Jealousy",
+        "pp": 5,
+        "priority": 0,
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "secondary": null,
+        "target": "allAdjacentFoes",
+        "type": "fire",
+        "id": "burningjealousy"
+    },
+    "lashout": {
+        "num": 808,
+        "accuracy": 100,
+        "basePower": 75,
+        "category": "physical",
+        "name": "Lash Out",
+        "pp": 5,
+        "priority": 0,
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "secondary": null,
+        "target": "normal",
+        "type": "dark",
+        "id": "lashout"
+    },
+    "poltergeist": {
+        "num": 809,
+        "accuracy": 90,
+        "basePower": 110,
+        "category": "physical",
+        "shortDesc": "Fails if the target has no held item.",
+        "name": "Poltergeist",
+        "pp": 5,
+        "priority": 0,
+        "flags": {
+            "protect": 1,
+            "mirror": 1
+        },
+        "secondary": null,
+        "target": "normal",
+        "type": "ghost",
+        "id": "poltergeist"
+    },
+    "corrosivegas": {
+        "num": 810,
+        "accuracy": 100,
+        "basePower": 0,
+        "category": "status",
+        "name": "Corrosive Gas",
+        "pp": 40,
+        "priority": 0,
+        "flags": {
+            "protect": 1,
+            "reflectable": 1,
+            "mirror": 1,
+            "mystery": 1
+        },
+        "secondary": null,
+        "target": "allAdjacent",
+        "type": "poison",
+        "id": "corrosivegas"
+    },
+    "coaching": {
+        "num": 811,
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "name": "Coaching",
+        "pp": 10,
+        "priority": 0,
+        "flags": {
+            "authentic": 1
+        },
+        "secondary": null,
+        "boosts": {
+            "attack": 1,
+            "defense": 1
+        },
+        "target": "adjacentAlly",
+        "type": "fighting",
+        "id": "coaching"
+    },
+    "flipturn": {
+        "num": 812,
+        "accuracy": 100,
+        "basePower": 60,
+        "category": "physical",
+        "name": "Flip Turn",
+        "pp": 20,
+        "priority": 0,
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "secondary": null,
+        "target": "normal",
+        "type": "water",
+        "id": "flipturn"
+    },
+    "tripleaxel": {
+        "num": 813,
+        "accuracy": 90,
+        "basePower": 20,
+        "category": "physical",
+        "name": "Triple Axel",
+        "pp": 10,
+        "priority": 0,
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "secondary": null,
+        "target": "normal",
+        "type": "ice",
+        "id": "tripleaxel"
+    },
+    "dualwingbeat": {
+        "num": 814,
+        "accuracy": 90,
+        "basePower": 40,
+        "category": "physical",
+        "name": "Dual Wingbeat",
+        "pp": 10,
+        "priority": 0,
+        "flags": {
+            "contact": 1,
+            "protect": 1,
+            "mirror": 1
+        },
+        "secondary": null,
+        "target": "normal",
+        "type": "flying",
+        "id": "dualwingbeat"
+    },
+    "scorchingsands": {
+        "num": 815,
+        "accuracy": 100,
+        "basePower": 70,
+        "category": "special",
+        "name": "Scorching Sands",
+        "pp": 10,
+        "priority": 0,
+        "flags": {
+            "protect": 1,
+            "mirror": 1,
+            "defrost": 1
+        },
+        "secondary": {
+            "chance": 30,
+            "status": "brn"
+        },
+        "target": "normal",
+        "type": "ground",
+        "id": "scorchingsands"
+    },
+    "junglehealing": {
+        "num": 816,
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "name": "Jungle Healing",
+        "pp": 10,
+        "priority": 0,
+        "flags": {
+            "distance": 1,
+            "heal": 1,
+            "authentic": 1,
+            "mystery": 1
+        },
+        "heal": [
+            1,
+            4
+        ],
+        "heal_target": "self",
+        "secondary": null,
+        "target": "allies",
+        "type": "grass",
+        "id": "junglehealing"
+    },
+    "wickedblow": {
+        "num": 817,
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "physical",
+        "name": "Wicked Blow",
+        "pp": 5,
+        "priority": 0,
+        "flags": {
+            "contact": 1,
+            "protect": 1
+        },
+        "secondary": null,
+        "target": "normal",
+        "type": "dark",
+        "id": "wickedblow"
+    },
+    "surgingstrikes": {
+        "num": 818,
+        "accuracy": 100,
+        "basePower": 25,
+        "category": "physical",
+        "name": "Surging Strikes",
+        "pp": 5,
+        "priority": 0,
+        "flags": {
+            "contact": 1,
+            "protect": 1
+        },
+        "multihit": 3,
+        "secondary": null,
+        "target": "normal",
+        "type": "water",
+        "id": "surgingstrikes"
     }
 }

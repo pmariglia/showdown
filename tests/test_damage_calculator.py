@@ -2,7 +2,6 @@ import unittest
 from collections import defaultdict
 
 import constants
-from showdown.engine import damage_calculator
 from showdown.engine.damage_calculator import _calculate_damage
 from showdown.engine.damage_calculator import calculate_damage
 from showdown.engine.objects import State
@@ -10,10 +9,6 @@ from showdown.engine.objects import Side
 from showdown.engine.objects import Pokemon
 
 from showdown.battle import Pokemon as StatePokemon
-
-
-# tests assume 1.5 boost from terrain (gen7)
-damage_calculator.TERRAIN_DAMAGE_BOOST = 1.5
 
 
 class TestCalculateDamageAmount(unittest.TestCase):
@@ -134,7 +129,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
         dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
 
         # normally this is 41
-        self.assertEqual([61], dmg)
+        self.assertEqual([53], dmg)
 
     def test_psychic_terrain_increases_psychic_damage(self):
         self.charizard.types = ['fire']
@@ -148,7 +143,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
         dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
 
         # normally this is 164
-        self.assertEqual([246], dmg)
+        self.assertEqual([213], dmg)
 
     def test_damage_is_not_increased_if_attacker_is_not_grounded(self):
         self.charizard.types = ['fire', 'flying']
@@ -175,7 +170,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
         dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
 
         # normally this is 17
-        self.assertEqual([25], dmg)
+        self.assertEqual([22], dmg)
 
     def test_misty_terrain_halves_dragon_moves(self):
         self.charizard.types = ['fire']

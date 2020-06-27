@@ -59,7 +59,7 @@ def get_effective_speed(state, side):
     return int(boosted_speed)
 
 
-def get_effective_priority(side, move):
+def get_effective_priority(side, move, field):
     priority = move[constants.PRIORITY]
     if side.active.ability == 'prankster' and move[constants.CATEGORY] == constants.STATUS:
         priority += 1
@@ -67,6 +67,8 @@ def get_effective_priority(side, move):
         priority += 1
     elif side.active.ability == 'triage' and constants.HEAL in move[constants.FLAGS]:
         priority += 3
+    elif field == constants.GRASSY_TERRAIN and move[constants.ID] == 'grassyglide':
+        priority += 1
 
     return priority
 
@@ -91,8 +93,8 @@ def user_moves_first(state, user_move, opponent_move):
             return True
         return False
 
-    user_priority = get_effective_priority(state.self, user_move)
-    opponent_priority = get_effective_priority(state.opponent, opponent_move)
+    user_priority = get_effective_priority(state.self, user_move, state.field)
+    opponent_priority = get_effective_priority(state.opponent, opponent_move, state.field)
 
     if user_priority == opponent_priority:
         user_is_faster = user_effective_speed > opponent_effective_speed
@@ -107,7 +109,7 @@ def user_moves_first(state, user_move, opponent_move):
         return False
 
 
-def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move, weather):
+def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move, weather, terrain):
     # update the attacking move based on certain special-effects:
     #   - abilities
     #   - items
@@ -119,7 +121,8 @@ def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, 
         attacking_pokemon,
         defending_pokemon,
         first_move,
-        weather
+        weather,
+        terrain
     )
 
     attacking_move = ability_modify_attack_being_used(
@@ -160,7 +163,11 @@ def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, 
         attacking_move[constants.TARGET] = constants.SELF
         attacking_move[constants.CATEGORY] = constants.STATUS
 
-    if constants.PROTECT in attacking_move[constants.FLAGS] and any(vs in constants.PROTECT_VOLATILE_STATUSES for vs in defending_pokemon.volatile_status):
+    if (
+            constants.PROTECT in attacking_move[constants.FLAGS] and
+            any(vs in constants.PROTECT_VOLATILE_STATUSES for vs in defending_pokemon.volatile_status) and
+            not (attacking_pokemon.ability == 'unseenfist' and constants.CONTACT in attacking_move[constants.FLAGS])
+    ):
         attacking_move = attacking_move.copy()
         attacking_move[constants.ACCURACY] = False
         if constants.BANEFUL_BUNKER in defending_pokemon.volatile_status and constants.CONTACT in attacking_move[constants.FLAGS]:
@@ -231,7 +238,8 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         attacking_move,
         defending_move,
         first_move,
-        mutator.state.weather
+        mutator.state.weather,
+        mutator.state.field
     )
 
     instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)

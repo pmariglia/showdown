@@ -2624,7 +2624,8 @@ class TestCheckChoiceItem(unittest.TestCase):
         self.battle.user.active = Pokemon('Ferrothorn', 80)
 
         self.battle.opponent.active = Pokemon('Archeops', 87)
+        self.battle.opponent.active.item = None
 
         update_battle(self.battle, msg)
 
-        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+        self.assertEqual(None, self.battle.opponent.active.item)
