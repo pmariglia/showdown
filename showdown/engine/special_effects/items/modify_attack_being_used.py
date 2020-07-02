@@ -57,7 +57,15 @@ def whiteherb(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def wiseglasses(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.CATEGORY] == constants.SPECIAL:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.1
+    return attacking_move
+
+
 item_lookup = {
+    'wiseglasses': wiseglasses,
     'blackglasses': blackglasses,
     'whiteherb': whiteherb,
     'thickclub': thickclub,
