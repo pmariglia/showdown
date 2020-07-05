@@ -1067,6 +1067,7 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
         if (
             constants.SWITCH_STRING not in move and
             constants.DRAG not in other_move.get(constants.FLAGS, {}) and
+            move[constants.ID] not in constants.SWITCH_OUT_MOVES and
             (pkmn.item in constants.CHOICE_ITEMS or locking_move or pkmn.ability == 'gorillatactics')
         ):
             move_used = move[constants.ID]

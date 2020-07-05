@@ -1328,6 +1328,32 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_fast_uturn_switch_into_choice_pkmn_does_not_lock_moves(self):
+        bot_move = "uturn"
+        opponent_move = "splash"
+        self.state.self.reserve['xatu'].item = 'choiceband'
+        self.state.self.reserve['xatu'].moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'thunderwave', constants.DISABLED: False},
+            {constants.ID: 'coil', constants.DISABLED: False},
+            {constants.ID: 'sandattack', constants.DISABLED: False}
+        ]
+        self.state.self.active.speed = 2
+        self.state.opponent.active.speed = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                        (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
+                        (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'xatu'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_slow_uturn_results_in_switching_out_for_bot(self):
         bot_move = "uturn"
         opponent_move = "tackle"
