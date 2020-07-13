@@ -526,6 +526,20 @@ def clearnegativeboost(battle, split_msg):
             pkmn.boosts[stat] = 0
 
 
+def clearallboost(battle, _):
+    pkmn = battle.user.active
+    for stat, value in pkmn.boosts.items():
+        if value != 0:
+            logger.debug("Setting {}'s {} stat to 0".format(pkmn.name, stat))
+            pkmn.boosts[stat] = 0
+
+    pkmn = battle.opponent.active
+    for stat, value in pkmn.boosts.items():
+        if value != 0:
+            logger.debug("Setting {}'s {} stat to 0".format(pkmn.name, stat))
+            pkmn.boosts[stat] = 0
+
+
 def singleturn(battle, split_msg):
     if is_opponent(battle, split_msg):
         side = battle.opponent
@@ -772,6 +786,7 @@ def update_battle(battle, msg):
             '-mega': mega,
             '-zpower': zpower,
             '-clearnegativeboost': clearnegativeboost,
+            '-clearallboost': clearallboost,
             '-singleturn': singleturn,
             'upkeep': upkeep,
             'turn': turn
