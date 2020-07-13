@@ -12,6 +12,7 @@ from showdown.battle import LastUsedMove
 from showdown.battle import DamageDealt
 
 from showdown.battle_modifier import request
+from showdown.battle_modifier import activate
 from showdown.battle_modifier import switch_or_drag
 from showdown.battle_modifier import heal_or_damage
 from showdown.battle_modifier import move
@@ -603,6 +604,33 @@ class TestHealOrDamage(unittest.TestCase):
         split_msg = ['', '-heal', 'p2a: Caterpie', '50/100', '[from] ability: Volt Absorb', '[of] p1a: Caterpie']
         heal_or_damage(self.battle, split_msg)
         self.assertIsNone(self.battle.user.active.ability)
+
+
+class TestActivate(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.user_active = Pokemon('caterpie', 100)
+        self.opponent_active = Pokemon('caterpie', 100)
+
+        # manually set hp to 200 for testing purposes
+        self.opponent_active.max_hp = 200
+        self.opponent_active.hp = 200
+
+        self.battle.opponent.active = self.opponent_active
+        self.battle.user.active = self.user_active
+
+    def test_sets_item_when_poltergeist_activates(self):
+        split_msg = ['', '-activate', 'p2a: Mandibuzz', 'Move: Poltergeist', 'Leftovers']
+        activate(self.battle, split_msg)
+        self.assertEqual('leftovers', self.battle.opponent.active.item)
+
+    def test_sets_item_when_poltergeist_activates_and_move_is_lowercase(self):
+        split_msg = ['', '-activate', 'p2a: Mandibuzz', 'move: Poltergeist', 'Leftovers']
+        activate(self.battle, split_msg)
+        self.assertEqual('leftovers', self.battle.opponent.active.item)
 
 
 class TestMove(unittest.TestCase):

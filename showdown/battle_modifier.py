@@ -269,6 +269,18 @@ def status(battle, split_msg):
     pkmn.status = status_name
 
 
+def activate(battle, split_msg):
+    if is_opponent(battle, split_msg):
+        pkmn = battle.opponent.active
+    else:
+        pkmn = battle.user.active
+
+    if split_msg[3].lower() == 'move: poltergeist':
+        item = normalize_name(split_msg[4])
+        logger.debug("{} has the item {}".format(pkmn.name, item))
+        pkmn.item = item
+
+
 def start_volatile_status(battle, split_msg):
     if is_opponent(battle, split_msg):
         pkmn = battle.opponent.active
@@ -739,6 +751,7 @@ def update_battle(battle, msg):
             '-boost': boost,
             '-unboost': unboost,
             '-status': status,
+            '-activate': activate,
             '-start': start_volatile_status,
             '-end': end_volatile_status,
             '-curestatus': curestatus,
