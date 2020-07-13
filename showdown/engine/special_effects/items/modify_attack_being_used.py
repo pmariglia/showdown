@@ -40,6 +40,13 @@ def blackglasses(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def magnet(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'electric':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.2
+    return attacking_move
+
+
 def thickclub(attacking_move, attacking_pokemon, defending_pokemon):
     if attacking_pokemon.id in ['cubone', 'marowak', 'marowakalola'] and attacking_move[constants.CATEGORY] == constants.PHYSICAL:
         attacking_move = attacking_move.copy()
@@ -65,6 +72,7 @@ def wiseglasses(attacking_move, attacking_pokemon, defending_pokemon):
 
 
 item_lookup = {
+    'magnet': magnet,
     'wiseglasses': wiseglasses,
     'blackglasses': blackglasses,
     'whiteherb': whiteherb,
