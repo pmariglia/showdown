@@ -203,6 +203,15 @@ def move(battle, split_msg):
             logger.warning("{} has a choice item, but used two different moves - setting it's item to UNKNOWN".format(pkmn.name))
             pkmn.item = constants.UNKNOWN_ITEM
 
+    # if the opponent uses a boosting status move, they cannot have a choice item
+    # this COULD be set for any status move, but some pkmn uncommonly run things like specs + wisp
+    try:
+        if constants.BOOSTS in all_move_json[move_name] and all_move_json[move_name][constants.CATEGORY] == constants.STATUS:
+            logger.debug("{} used a boosting status-move. Setting can_have_choice_item to False")
+            pkmn.can_have_choice_item = False
+    except KeyError:
+        pass
+
     try:
         category = all_move_json[move_name][constants.CATEGORY]
         logger.debug("Setting {}'s last used move: {}".format(pkmn.name, move_name))

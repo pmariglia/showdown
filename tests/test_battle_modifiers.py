@@ -755,6 +755,30 @@ class TestMove(unittest.TestCase):
 
         self.assertFalse(self.battle.opponent.active.can_have_choice_item)
 
+    def test_using_a_boosting_status_move_sets_can_have_choice_item_to_false(self):
+        self.battle.opponent.active.can_have_choice_item = True
+        split_msg = ['', 'move', 'p2a: Caterpie', 'Dragon Dance']
+
+        move(self.battle, split_msg)
+
+        self.assertFalse(self.battle.opponent.active.can_have_choice_item)
+
+    def test_using_a_boosting_physical_move_does_not_set_can_have_choice_item_to_false(self):
+        self.battle.opponent.active.can_have_choice_item = True
+        split_msg = ['', 'move', 'p2a: Caterpie', 'Scale Shot']
+
+        move(self.battle, split_msg)
+
+        self.assertTrue(self.battle.opponent.active.can_have_choice_item)
+
+    def test_using_a_boosting_special_move_does_not_set_can_have_choice_item_to_false(self):
+        self.battle.opponent.active.can_have_choice_item = True
+        split_msg = ['', 'move', 'p2a: Caterpie', 'Scale Shot']
+
+        move(self.battle, split_msg)
+
+        self.assertTrue(self.battle.opponent.active.can_have_choice_item)
+
     def test_sets_item_to_unknown_if_the_pokemon_has_choice_item_but_two_different_moves_are_used(self):
         self.battle.opponent.active.can_have_choice_item = True
         self.battle.opponent.active.item = 'choiceband'
@@ -777,8 +801,8 @@ class TestMove(unittest.TestCase):
 
     def test_does_not_set_can_have_choice_item_to_false_if_the_same_move_is_used_when_the_pkmn_has_an_unknown_item(self):
         self.battle.opponent.active.can_have_choice_item = True
-        split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
-        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'stringshot', 0)
+        split_msg = ['', 'move', 'p2a: Caterpie', 'Tackle']
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
 
         move(self.battle, split_msg)
 
