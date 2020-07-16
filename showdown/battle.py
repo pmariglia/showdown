@@ -554,7 +554,7 @@ class Pokemon:
         chance_moves = list()
 
         for m in moves:
-            if moves_remaining == 0 or (len(expected_moves) + len(chance_moves) + len(self.moves)) >= 6:
+            if moves_remaining == 0:
                 break
             elif m[1] > 60 and self.get_move(m[0]) is None:
                 expected_moves.append(m[0])
