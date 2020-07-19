@@ -706,6 +706,14 @@ class TestMove(unittest.TestCase):
 
         self.assertIn(m, self.battle.opponent.active.moves)
 
+    def test_does_not_set_move_for_magicbounch(self):
+        split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot', '[from]Magic Bounce']
+
+        move(self.battle, split_msg)
+        m = Move("String Shot")
+
+        self.assertNotIn(m, self.battle.opponent.active.moves)
+
     def test_new_move_has_one_pp_less_than_max(self):
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
 

@@ -169,6 +169,9 @@ def faint(battle, split_msg):
 
 
 def move(battle, split_msg):
+    if '[from]' in split_msg[-1]:
+        return
+
     move_name = normalize_name(split_msg[3].strip().lower())
 
     if is_opponent(battle, split_msg):
