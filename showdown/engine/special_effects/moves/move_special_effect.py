@@ -474,7 +474,29 @@ def surgingstrikes(attacking_move, defending_move, attacking_pokemon, defending_
     return attacking_move
 
 
+def weatherball(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    if weather == constants.SUN:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = 'fire'
+        attacking_move[constants.BASE_POWER] *= 2
+    elif weather == constants.RAIN:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = 'water'
+        attacking_move[constants.BASE_POWER] *= 2
+    elif weather == constants.HAIL:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = 'ice'
+        attacking_move[constants.BASE_POWER] *= 2
+    elif weather == constants.SAND:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = 'rock'
+        attacking_move[constants.BASE_POWER] *= 2
+
+    return attacking_move
+
+
 move_lookup = {
+    'weatherball': weatherball,
     'surgingstrikes': surgingstrikes,
     'wickedblow': wickedblow,
     'dualwingbeat': dualwingbeat,
