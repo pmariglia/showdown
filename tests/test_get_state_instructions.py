@@ -4978,6 +4978,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_solarpower_self_damage_at_the_end_of_the_turn(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.weather = constants.SUN
+        self.state.self.active.ability = 'solarpower'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 26)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_leftovers_healing_with_speedboost(self):
         bot_move = "splash"
         opponent_move = "splash"

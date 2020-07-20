@@ -30,7 +30,17 @@ def hydration(state, attacking_side, attacking_pokemon, defending_side, defendin
         )
 
 
+def solarpower(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    if state.weather in [constants.SUN, constants.DESOLATE_LAND]:
+        return (
+                constants.MUTATOR_DAMAGE,
+                attacking_side,
+                min(attacking_pokemon.hp, round(0.125 * attacking_pokemon.maxhp))
+            )
+
+
 ability_lookup = {
+    "solarpower": solarpower,
     "hydration": hydration,
     "speedboost": speedboost,
     "poisonheal": poisonheal,
