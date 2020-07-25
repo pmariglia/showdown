@@ -79,12 +79,8 @@ async def showdown():
     battles_run = 0
     wins = 0
     losses = 0
-    stats = dict()
     while True:
-        team, team_name = load_team(config.team_name)
-        if team_name not in stats:
-            stats[team_name] = {"wins": 0, "games_played": 0}
-
+        team = load_team(config.team_name)
         if config.bot_mode == constants.CHALLENGE_USER:
             await ps_websocket_client.challenge_user(config.user_to_challenge, config.pokemon_mode, team)
         elif config.bot_mode == constants.ACCEPT_CHALLENGE:
@@ -96,15 +92,12 @@ async def showdown():
 
         winner = await pokemon_battle(ps_websocket_client, config.pokemon_mode)
 
-        stats[team_name]["games_played"] += 1
         if winner == config.username:
             wins += 1
-            stats[team_name]["wins"] += 1
         else:
             losses += 1
 
         logger.info("W: {}\tL: {}".format(wins, losses))
-        logger.info("Stats: {}".format(stats))
 
         check_dictionaries_are_unmodified(original_pokedex, original_move_json)
 

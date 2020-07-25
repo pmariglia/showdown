@@ -26,4 +26,4 @@ def load_team(name):
     with open(file_path, 'r') as f:
         team_json = f.read()
 
-    return export_to_packed(team_json), os.path.basename(file_path)
+    return export_to_packed(team_json)
