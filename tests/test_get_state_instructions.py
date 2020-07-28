@@ -989,7 +989,8 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     # this move does 20 damage without knockoff boost
-                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 30)
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 30),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, None, constants.UNKNOWN_ITEM),
                 ],
                 False
             )
@@ -1185,7 +1186,7 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    def test_knockoff_does_not_amplify_damage_for_mega(self):
+    def test_knockoff_does_not_amplify_damage_or_remove_item_for_mega(self):
         bot_move = "knockoff"
         opponent_move = "splash"
         self.state.opponent.active.maxhp = 100
@@ -1200,6 +1201,25 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     # this move does 20 damage without knockoff boost
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 20)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_knockoff_removes_item(self):
+        bot_move = "knockoff"
+        opponent_move = "splash"
+        self.state.opponent.active.item = 'leftovers'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    # this move does 20 damage without knockoff boost
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 30),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, None, 'leftovers'),
                 ],
                 False
             )
@@ -5396,6 +5416,7 @@ class TestGetStateInstructions(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.SELF, 82),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.SELF, None, constants.UNKNOWN_ITEM),
                     (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, 1),
                 ],
                 False

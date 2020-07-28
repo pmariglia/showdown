@@ -7,6 +7,7 @@ from .damage_calculator import type_effectiveness_modifier
 from .special_effects.abilities.on_switch_in import ability_on_switch_in
 from .special_effects.items.end_of_turn import item_end_of_turn
 from .special_effects.abilities.end_of_turn import ability_end_of_turn
+from .special_effects.moves.after_move import after_move
 
 logger = logging.getLogger(__name__)
 
@@ -414,8 +415,10 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
     instructions = []
     instruction_additions = []
     move_missed_instruction = copy(instruction)
+    hit_sub = False
     if percent_hit > 0:
         if constants.SUBSTITUTE in damage_side.active.volatile_status and constants.SOUND not in move_flags and attacker_side.active.ability != 'infiltrator':
+            hit_sub = True
             if damage >= damage_side.active.maxhp * 0.25:
                 actual_damage = damage_side.active.maxhp * 0.25
                 instruction_additions.append(
@@ -463,6 +466,18 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
             )
             instruction_additions.append(recoil_instruction)
 
+        after_move_instructions = after_move(
+            attacking_move[constants.ID],
+            mutator.state,
+            attacker,
+            defender,
+            attacker_side,
+            damage_side,
+            True,
+            hit_sub
+        )
+        instruction_additions += after_move_instructions
+
         instructions.append(instruction)
 
     if percent_hit < 1:
@@ -485,6 +500,19 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
                 2
             )
             move_missed_instruction.add_instruction(blunder_policy_increase_speed_instruction)
+
+        after_move_instructions = after_move(
+            attacking_move[constants.ID],
+            mutator.state,
+            attacker,
+            defender,
+            attacker_side,
+            damage_side,
+            False,
+            False
+        )
+        for i in after_move_instructions:
+            move_missed_instruction.add_instruction(i)
 
         instructions.append(move_missed_instruction)
 
