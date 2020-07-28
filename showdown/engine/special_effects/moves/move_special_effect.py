@@ -143,7 +143,7 @@ def technoblast(attacking_move, defending_move, attacking_pokemon, defending_pok
 
 
 def multiattack(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
-    if attacking_pokemon.item.endswith('memory'):
+    if attacking_pokemon.item is not None and attacking_pokemon.item.endswith('memory'):
         attacking_move = attacking_move.copy()
         attacking_move[constants.TYPE] = attacking_pokemon.item.replace('memory', '')
 

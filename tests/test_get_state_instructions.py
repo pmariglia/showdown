@@ -7428,6 +7428,24 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_multiattack_with_no_item_is_normal(self):
+        bot_move = "multiattack"
+        opponent_move = "splash"
+        self.state.self.active.item = None
+        self.state.opponent.active.types = ['grass']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 74)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_memories_change_multiattack_type_to_not_very_effective(self):
         bot_move = "multiattack"
         opponent_move = "splash"
