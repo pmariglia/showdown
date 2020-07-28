@@ -259,6 +259,20 @@ class Pokemon(object):
 
         return burn_multiplier
 
+    def item_can_be_removed(self):
+        if (
+            self.item is None or
+            self.ability == 'stickyhold' or
+            'substitute' in self.volatile_status or
+            self.id in constants.POKEMON_CANNOT_HAVE_ITEMS_REMOVED or
+            self.id.endswith('mega') and self.id != 'yanmega' or  # yeah this is hacky but who are you to judge?
+            any(self.id.startswith(i) and self.id != i for i in constants.UNKOWN_POKEMON_FORMES) or
+            self.item.endswith('iumz')
+        ):
+            return False
+
+        return True
+
     @classmethod
     def from_state_pokemon_dict(cls, d):
         return Pokemon(

@@ -7677,7 +7677,7 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    def test_trick_switches_no_item(self):
+    def test_trick_switches_when_user_has_no_item(self):
         self.state.self.active.item = None
         self.state.opponent.active.item = 'lifeorb'
         bot_move = "trick"
@@ -7689,6 +7689,25 @@ class TestGetStateInstructions(unittest.TestCase):
                 [
                     (constants.MUTATOR_CHANGE_ITEM, constants.SELF, 'lifeorb', None),
                     (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, None, 'lifeorb'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_trick_switches_when_opponent_has_no_item(self):
+        self.state.self.active.item = 'lifeorb'
+        self.state.opponent.active.item = None
+        bot_move = "trick"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_CHANGE_ITEM, constants.SELF, None, 'lifeorb'),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, 'lifeorb', None),
                 ],
                 False
             )

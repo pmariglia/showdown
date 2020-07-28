@@ -151,8 +151,7 @@ def multiattack(attacking_move, defending_move, attacking_pokemon, defending_pok
 
 
 def knockoff(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
-    # .endswith("mega|primal") is a hack but w/e sue me
-    if defending_pokemon.item is not None and not defending_pokemon.id.endswith("mega") and not defending_pokemon.id.endswith("primal"):
+    if defending_pokemon.item_can_be_removed():
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.5
     return attacking_move

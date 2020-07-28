@@ -74,24 +74,6 @@ accuracy_multiplier_lookup = {
 }
 
 
-def can_trick_items(attacker, defender):
-    attacker_item = attacker.item or ''
-    defender_item = defender.item or ''
-
-    # item is trickable if none of the following wonditions is matched
-    return not (
-        not attacker_item and not defender_item or
-        constants.SUBSTITUTE in defender.volatile_status or
-        # z-crystals always end in 'iumz'
-        # https://bulbapedia.bulbagarden.net/wiki/Z-Crystal
-        attacker_item.endswith('iumz') or defender_item.endswith('iumz') or
-        ('silvally' in attacker.id or 'silvally' in defender.id) and (attacker_item.endswith('memory') or defender_item.endswith('memory')) or
-        ('arceus' in attacker.id or 'arceus' in defender.id) and (attacker_item.endswith('plate') or defender_item.endswith('plate')) or
-        ('genesect' in attacker.id or 'genesect' in defender.id) and (attacker_item.endswith('drive') or defender_item.endswith('drive')) or
-        defender.ability == 'stickyhold'
-    )    
-
-
 def get_instructions_from_special_logic_move(mutator, attacking_pokemon, defending_pokemon, move_name, instructions):
     if instructions.frozen:
         return [instructions]
@@ -107,7 +89,11 @@ def get_instructions_from_special_logic_move(mutator, attacking_pokemon, defendi
             (constants.MUTATOR_TOGGLE_TRICKROOM,)
         )
 
-    elif move_name in SWITCH_ITEM_MOVES and can_trick_items(attacking_pokemon, defending_pokemon):
+    elif (
+        move_name in SWITCH_ITEM_MOVES and
+        (defending_pokemon.item_can_be_removed() or defending_pokemon.item is None) and
+        not (defending_pokemon.item is None and attacking_pokemon.item is None)
+    ):
         new_instructions.append(
             (constants.MUTATOR_CHANGE_ITEM, constants.SELF, mutator.state.opponent.active.item, mutator.state.self.active.item)
         )

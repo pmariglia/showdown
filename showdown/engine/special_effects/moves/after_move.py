@@ -2,8 +2,7 @@ import constants
 
 
 def knockoff(state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub):
-    # .endswith("mega|primal") is a hack but w/e sue me
-    if defending_side.active.item is not None and move_hit and not hit_sub and not defending_side.active.id.endswith("mega") and not defending_side.active.id.endswith("primal"):
+    if defending_side.active.item_can_be_removed():
         return [
             (constants.MUTATOR_CHANGE_ITEM, defender, None, defending_side.active.item)
         ]

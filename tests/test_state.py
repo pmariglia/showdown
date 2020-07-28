@@ -672,3 +672,40 @@ class TestPokemonInit(unittest.TestCase):
         pkmn = Pokemon.from_state_pokemon_dict(state_pkmn_dict)
 
         self.assertEqual(2, pkmn.burn_multiplier)
+
+
+class TestPokemon(unittest.TestCase):
+    def setUp(self):
+        self.pokemon = Pokemon.from_state_pokemon_dict(
+          StatePokemon('pikachu', 100).to_dict()
+        )
+
+    def test_pokemon_item_can_be_removed_returns_true_in_basic_case(self):
+        self.pokemon.item = constants.UNKNOWN_ITEM
+        self.assertTrue(self.pokemon.item_can_be_removed())
+
+    def test_item_can_be_removed_returns_false_if_item_is_none(self):
+        self.pokemon.item = None
+        self.assertFalse(self.pokemon.item_can_be_removed())
+
+    def test_item_can_be_removed_returns_false_if_pokemon_is_silvallybug(self):
+        self.pokemon.id = 'silvallybug'
+        self.pokemon.item = 'bugmemory'
+        self.assertFalse(self.pokemon.item_can_be_removed())
+
+    def test_item_can_be_removed_returns_true_if_pokemon_is_silvallynormal(self):
+        self.pokemon.id = 'silvally'
+        self.pokemon.item = 'choicescarf'
+        self.assertTrue(self.pokemon.item_can_be_removed())
+
+    def test_item_can_be_removed_returns_false_if_pokemon_has_substitute(self):
+        self.pokemon.volatile_status.add('substitute')
+        self.assertFalse(self.pokemon.item_can_be_removed())
+
+    def test_item_can_be_removed_returns_false_if_pokemon_is_holding_zcrystal(self):
+        self.pokemon.item = 'fightiniumz'
+        self.assertFalse(self.pokemon.item_can_be_removed())
+
+    def test_item_can_be_removed_returns_false_if_target_is_kyogreprimal(self):
+        self.pokemon.id = 'kyogreprimal'
+        self.assertFalse(self.pokemon.item_can_be_removed())

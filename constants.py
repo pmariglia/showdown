@@ -23,7 +23,7 @@ SETS = "sets"
 
 UNKNOWN_ITEM = "unknown_item"
 
-UNKOWN_POKEMON_FORMES = ['silvally', 'arceus']
+UNKOWN_POKEMON_FORMES = ['silvally', 'arceus', 'genesect']
 
 SMOGON_HAS_STATS_PAGE_SUFFIXES = ["ubers", "ou", "uu", "ru", "nu", "pu", "lc", "oublitz", "nationaldexbeta", "nationaldex", "monotype"]
 
@@ -220,6 +220,12 @@ DESOLATE_LAND = "desolateland"
 HEAVY_RAIN = "primordialsea"
 
 IRREVERSIBLE_WEATHER = {DESOLATE_LAND, HEAVY_RAIN}
+
+POKEMON_CANNOT_HAVE_ITEMS_REMOVED = {
+    'kyogreprimal',
+    'groudonprimal',
+    'giratinaorigin',
+}
 
 # Hazards
 STEALTH_ROCK = 'stealthrock'
