@@ -22,15 +22,27 @@ def blacksludge(state, attacking_side, attacking_pokemon, defending_side, defend
         )
 
 
-item_lookup = {
-    "leftovers": leftovers,
-    "blacksludge": blacksludge,
-}
+def flameorb(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    if attacking_pokemon.status is None and 'fire' not in attacking_pokemon.types:
+        return (
+            constants.MUTATOR_APPLY_STATUS,
+            attacking_side,
+            constants.BURN
+        )
+
+
+def toxicorb(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    if attacking_pokemon.status is None and 'poison' not in attacking_pokemon.types:
+        return (
+            constants.MUTATOR_APPLY_STATUS,
+            attacking_side,
+            constants.TOXIC
+        )
 
 
 def item_end_of_turn(item_name, state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    item_func = item_lookup.get(item_name)
-    if item_func is not None and attacking_pokemon.hp:
-        return item_func(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon)
-    else:
-        return None
+    if attacking_pokemon.hp:
+        try:
+            return globals()[item_name](state, attacking_side, attacking_pokemon, defending_side, defending_pokemon)
+        except KeyError:
+            pass

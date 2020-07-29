@@ -4998,6 +4998,91 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_flameorb_burns_at_end_of_turn(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.active.item = 'flameorb'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.BURN),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_fire_type_cannot_be_burned_by_flameorb(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.active.item = 'flameorb'
+        self.state.self.active.types = ['fire']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_toxicorb_toxics_the_user(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.active.item = 'toxicorb'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.TOXIC),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.TOXIC_COUNT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_poison_type_cannot_be_toxiced_by_toxicorb(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.active.item = 'toxicorb'
+        self.state.self.active.types = ['poison']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_flameorb_cannot_burn_paralyzed_pokemon(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.active.item = 'flameorb'
+        self.state.self.active.status = constants.PARALYZED
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_solarpower_self_damage_at_the_end_of_the_turn(self):
         bot_move = "splash"
         opponent_move = "splash"

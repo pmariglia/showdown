@@ -247,6 +247,10 @@ class Pokemon(object):
         self.burn_multiplier = self.calculate_burn_multiplier()
 
     def calculate_burn_multiplier(self):
+        # this will result in a positive evaluation for a burned pokemon
+        if self.ability in ['guts', 'marvelscale', 'quickfeet']:
+            return -2
+
         # +1 to the multiplier for each physical move
         burn_multiplier = len([m for m in self.moves if all_move_json[m[constants.ID]][constants.CATEGORY] == constants.PHYSICAL])
 
