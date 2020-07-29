@@ -5101,6 +5101,168 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_raindish_heals_when_weather_is_rain(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.weather = constants.RAIN
+        self.state.self.active.ability = 'raindish'
+        self.state.self.active.hp = 1
+        self.state.self.active.maxhp = 100
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_HEAL, constants.SELF, 6)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_dryskin_heals_when_weather_is_rain(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.weather = constants.RAIN
+        self.state.self.active.ability = 'dryskin'
+        self.state.self.active.hp = 1
+        self.state.self.active.maxhp = 100
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_HEAL, constants.SELF, 12)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_dryskin_damages_when_weather_is_sun(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.weather = constants.SUN
+        self.state.self.active.ability = 'dryskin'
+        self.state.self.active.hp = 100
+        self.state.self.active.maxhp = 100
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 12)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_dryskin_does_not_overkill(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.weather = constants.SUN
+        self.state.self.active.ability = 'dryskin'
+        self.state.self.active.hp = 1
+        self.state.self.active.maxhp = 100
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_raindish_does_not_overheal(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.weather = constants.RAIN
+        self.state.self.active.ability = 'raindish'
+        self.state.self.active.hp = 99
+        self.state.self.active.maxhp = 100
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_HEAL, constants.SELF, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_dryskin_does_not_overheal(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.weather = constants.RAIN
+        self.state.self.active.ability = 'dryskin'
+        self.state.self.active.hp = 99
+        self.state.self.active.maxhp = 100
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_HEAL, constants.SELF, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_icebody_does_not_overheal(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.weather = constants.HAIL
+        self.state.self.active.ability = 'icebody'
+        self.state.self.active.hp = 99
+        self.state.self.active.maxhp = 100
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18),  # opponent's hail damage
+                    (constants.MUTATOR_HEAL, constants.SELF, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_icebody_healing(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.weather = constants.HAIL
+        self.state.self.active.ability = 'icebody'
+        self.state.self.active.hp = 1
+        self.state.self.active.maxhp = 100
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 18),  # opponent's hail damage
+                    (constants.MUTATOR_HEAL, constants.SELF, 6)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_leftovers_healing_with_speedboost(self):
         bot_move = "splash"
         opponent_move = "splash"

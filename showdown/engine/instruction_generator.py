@@ -873,7 +873,7 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
             mutator.apply_one(sand_damage_instruction)
             instruction.add_instruction(sand_damage_instruction)
 
-        elif mutator.state.weather == constants.HAIL and 'ice' not in pkmn.types:
+        elif mutator.state.weather == constants.HAIL and 'ice' not in pkmn.types and pkmn.ability != 'icebody':
             ice_damage_instruction = (
                 constants.MUTATOR_DAMAGE,
                 attacker,

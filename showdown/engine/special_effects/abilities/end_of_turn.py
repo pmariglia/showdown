@@ -39,19 +39,43 @@ def solarpower(state, attacking_side, attacking_pokemon, defending_side, defendi
             )
 
 
-ability_lookup = {
-    "solarpower": solarpower,
-    "hydration": hydration,
-    "speedboost": speedboost,
-    "poisonheal": poisonheal,
-}
+def raindish(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    if state.weather == constants.RAIN or state.weather == constants.HEAVY_RAIN:
+        return (
+            constants.MUTATOR_HEAL,
+            attacking_side,
+            min(attacking_pokemon.maxhp - attacking_pokemon.hp, round(0.0625 * attacking_pokemon.maxhp))
+        )
+
+
+def dryskin(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    if state.weather == constants.RAIN or state.weather == constants.HEAVY_RAIN:
+        return (
+            constants.MUTATOR_HEAL,
+            attacking_side,
+            min(attacking_pokemon.maxhp - attacking_pokemon.hp, round(0.125 * attacking_pokemon.maxhp))
+        )
+    elif state.weather == constants.SUN or state.weather == constants.DESOLATE_LAND:
+        return (
+            constants.MUTATOR_DAMAGE,
+            attacking_side,
+            min(attacking_pokemon.hp, round(0.125 * attacking_pokemon.maxhp))
+        )
+
+
+def icebody(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
+    if state.weather == constants.HAIL:
+        return (
+            constants.MUTATOR_HEAL,
+            attacking_side,
+            min(attacking_pokemon.maxhp - attacking_pokemon.hp, round(0.0625 * attacking_pokemon.maxhp))
+        )
 
 
 def ability_end_of_turn(ability_name, state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    if attacking_pokemon.ability == 'neutralizinggas' or defending_pokemon.ability == 'neutralizinggas':
+    if attacking_pokemon.ability == 'neutralizinggas' or defending_pokemon.ability == 'neutralizinggas' or not attacking_pokemon.hp:
         return None
-    ability_func = ability_lookup.get(ability_name)
-    if ability_func is not None and attacking_pokemon.hp:
-        return ability_func(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon)
-    else:
-        return None
+    try:
+        return globals()[ability_name](state, attacking_side, attacking_pokemon, defending_side, defending_pokemon)
+    except KeyError:
+        pass
