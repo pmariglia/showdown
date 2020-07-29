@@ -7921,6 +7921,40 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_mysticwater_boosts_water_move(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.self.active.item = 'mysticwater'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 26)  # typical damage is 22
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_charcoal_boosts_fire_move(self):
+        bot_move = "eruption"
+        opponent_move = "splash"
+        self.state.self.active.item = 'charcoal'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 95)  # typical damage is 79
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_trick_fails_against_silvally_with_memory(self):
         self.state.self.active.item = 'leftovers'
         self.state.opponent.active.item = 'steelmemory'
