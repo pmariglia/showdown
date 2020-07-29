@@ -221,7 +221,7 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
             instruction_additions.append(spikes_instruction)
 
         # account for stickyweb speed drop
-        if attacking_side.side_conditions[constants.STICKY_WEB] == 1 and switch_pkmn.is_grounded():
+        if attacking_side.side_conditions[constants.STICKY_WEB] == 1 and switch_pkmn.is_grounded() and switch_pkmn.ability not in constants.IMMUNE_TO_STAT_LOWERING_ABILITIES:
             sticky_web_instruction = (
                 constants.MUTATOR_UNBOOST,
                 attacker,
@@ -732,10 +732,13 @@ def get_states_from_boosts(mutator, side_string, boosts, accuracy, instruction):
     percent_hit = accuracy / 100
 
     mutator.apply(instruction.instructions)
-    instruction_additions = []
-
-    move_missed_instruction = copy(instruction)
     side = get_side_from_state(mutator.state, side_string)
+    if side.active.ability in constants.IMMUNE_TO_STAT_LOWERING_ABILITIES:
+        mutator.reverse(instruction.instructions)
+        return [instruction]
+
+    instruction_additions = []
+    move_missed_instruction = copy(instruction)
     if percent_hit > 0:
         for k, v in boosts.items():
             pkmn_boost = get_boost_from_boost_string(side, k)

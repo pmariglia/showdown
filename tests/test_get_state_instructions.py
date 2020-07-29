@@ -7870,6 +7870,57 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switching_into_stickyweb_lowers_speed(self):
+        bot_move = "switch starmie"
+        opponent_move = "splash"
+        self.state.self.side_conditions[constants.STICKY_WEB] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie'),
+                    (constants.MUTATOR_UNBOOST, constants.SELF, constants.SPEED, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switching_into_stickyweb_with_whitesmoke_does_not_lower_speed(self):
+        bot_move = "switch starmie"
+        opponent_move = "splash"
+        self.state.self.reserve['starmie'].ability = 'whitesmoke'
+        self.state.self.side_conditions[constants.STICKY_WEB] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'starmie')
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_charm_against_pokemon_with_clearbody(self):
+        bot_move = "splash"
+        opponent_move = "charm"
+        self.state.self.active.ability = 'clearbody'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_trick_fails_against_silvally_with_memory(self):
         self.state.self.active.item = 'leftovers'
         self.state.opponent.active.item = 'steelmemory'
