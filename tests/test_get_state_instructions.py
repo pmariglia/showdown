@@ -625,6 +625,50 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_prankster_glare_works_on_non_dark_type(self):
+        bot_move = "glare"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'prankster'
+        self.state.opponent.active.types = ['normal']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.PARALYZED)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_prankster_spore_works_on_non_dark_type(self):
+        bot_move = "spore"
+        opponent_move = "splash"
+        self.state.self.active.ability = 'prankster'
+        self.state.opponent.active.types = ['normal']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.33,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.SLEEP),
+                    (constants.MUTATOR_REMOVE_STATUS, constants.OPPONENT, constants.SLEEP)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.6699999999999999,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.SLEEP)
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_sound_move_goes_through_substitute(self):
         bot_move = "boomburst"
         opponent_move = "splash"
