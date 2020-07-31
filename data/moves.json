@@ -3203,7 +3203,7 @@
     },
     "fakeout": {
         "accuracy": 100,
-        "basePower": 0,
+        "basePower": 40,
         "category": "physical",
         "flags": {
             "contact": 1,
@@ -3471,7 +3471,7 @@
     },
     "firstimpression": {
         "accuracy": 100,
-        "basePower": 0,
+        "basePower": 90,
         "category": "physical",
         "flags": {
             "contact": 1,

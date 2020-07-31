@@ -239,6 +239,11 @@ TYPE_CHANGE_ABILITIES = {
     'libero'
 }
 
+FIRST_TURN_MOVES = {
+    'fakeout',
+    'firstimpression'
+}
+
 BOOST_RESET_MOVES = {
     'haze',
     'clearsmog'

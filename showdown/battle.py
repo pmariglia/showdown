@@ -105,6 +105,7 @@ class Battle(ABC):
         The opponent's active pokemon in each of the battles has a different set"""
         battle_copy = deepcopy(self)
         battle_copy.opponent.lock_moves()
+        battle_copy.user.lock_first_turn_moves()
 
         if battle_copy.user.active.can_mega_evo:
             # mega-evolving here gives the pkmn the random-battle spread (Serious + 85s)
@@ -258,12 +259,21 @@ class Battler:
     def mega_revealed(self):
         return self.active.is_mega or any(p.is_mega for p in self.reserve)
 
+    def lock_first_turn_moves(self):
+        # disable firstimpression and fakeout if the last_used_move was not a switch
+        if self.last_used_move.pokemon_name == self.active.name:
+            for m in self.active.moves:
+                if m.name in constants.FIRST_TURN_MOVES:
+                    m.disabled = True
+
     def lock_moves(self):
         # if the active pokemon has a choice item and their last used move was by this pokemon -> lock their other moves
         if self.active.item in constants.CHOICE_ITEMS and self.last_used_move.pokemon_name == self.active.name:
             for m in self.active.moves:
                 if m.name != self.last_used_move.move:
                     m.disabled = True
+
+        self.lock_first_turn_moves()
 
     def from_json(self, user_json, first_turn=False):
 

@@ -615,6 +615,54 @@ class TestBattlerActiveLockedIntoMove(unittest.TestCase):
         self.assertTrue(self.battler.active.get_move('agility').disabled)
         self.assertTrue(self.battler.active.get_move('doubleteam').disabled)
 
+    def test_firstimpression_gets_locked_when_last_used_move_was_by_the_active_pokemon(self):
+        self.battler.active.moves.append(Move('firstimpression'))
+        self.battler.last_used_move = LastUsedMove(
+            pokemon_name='pikachu',  # the current active pokemon
+            move='volttackle',
+            turn=0
+        )
+
+        self.battler.lock_moves()
+
+        self.assertTrue(self.battler.active.get_move('firstimpression').disabled)
+
+    def test_fakeout_gets_locked_when_last_used_move_was_by_the_active_pokemon(self):
+        self.battler.active.moves.append(Move('fakeout'))
+        self.battler.last_used_move = LastUsedMove(
+            pokemon_name='pikachu',  # the current active pokemon
+            move='volttackle',
+            turn=0
+        )
+
+        self.battler.lock_moves()
+
+        self.assertTrue(self.battler.active.get_move('fakeout').disabled)
+
+    def test_firstimpression_is_not_disabled_when_the_last_used_move_was_a_switch(self):
+        self.battler.active.moves.append(Move('firstimpression'))
+        self.battler.last_used_move = LastUsedMove(
+            pokemon_name='caterpie',
+            move='switch',
+            turn=0
+        )
+
+        self.battler.lock_moves()
+
+        self.assertFalse(self.battler.active.get_move('firstimpression').disabled)
+
+    def test_fakeout_is_not_disabled_when_the_last_used_move_was_a_switch(self):
+        self.battler.active.moves.append(Move('fakeout'))
+        self.battler.last_used_move = LastUsedMove(
+            pokemon_name='caterpie',
+            move='switch',
+            turn=0
+        )
+
+        self.battler.lock_moves()
+
+        self.assertFalse(self.battler.active.get_move('fakeout').disabled)
+
     def test_choice_item_with_previous_move_being_a_switch_returns_false(self):
         self.battler.active.item = 'choicescarf'
         self.battler.last_used_move = LastUsedMove(
