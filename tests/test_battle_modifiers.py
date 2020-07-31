@@ -30,6 +30,7 @@ from showdown.battle_modifier import form_change
 from showdown.battle_modifier import zpower
 from showdown.battle_modifier import clearnegativeboost
 from showdown.battle_modifier import check_choicescarf
+from showdown.battle_modifier import check_heavydutyboots
 from showdown.battle_modifier import get_damage_dealt
 from showdown.battle_modifier import singleturn
 from showdown.battle_modifier import transform
@@ -2098,6 +2099,323 @@ class TestGuessChoiceScarf(unittest.TestCase):
         check_choicescarf(self.battle, messages)
 
         self.assertEqual('choicescarf', self.battle.opponent.active.item)
+
+
+class TestCheckHeavyDutyBoots(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+        self.battle.opponent.active.ability = None
+        self.opponent_reserve_pkmn = Pokemon('weedle', 100)
+        self.battle.opponent.reserve.append(self.opponent_reserve_pkmn)
+        self.battle.opponent.active.item = constants.UNKNOWN_ITEM
+
+        self.user_active = Pokemon('caterpie', 100)
+        self.battle.user.active = self.user_active
+
+        self.user_reserve_pkmn = Pokemon('weedle', 100)
+        self.battle.user.reserve.append(self.user_reserve_pkmn)
+        self.battle.user.active.item = constants.UNKNOWN_ITEM
+
+        self.username = "CoolUsername"
+
+        self.battle.username = self.username
+
+        self.battle.request_json = {
+            constants.ACTIVE: [{constants.MOVES: []}],
+            constants.SIDE: {
+                constants.ID: None,
+                constants.NAME: None,
+                constants.POKEMON: [
+
+                ],
+                constants.RQID: None
+            }
+        }
+
+    def test_basic_case_of_switching_in_and_not_taking_damage_sets_heavydutyboots(self):
+        self.battle.opponent.side_conditions[constants.STEALTH_ROCK] = 1
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Weedle|90/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual('heavydutyboots', self.battle.opponent.active.item)
+
+    def test_parser_deals_with_empty_line(self):
+        self.battle.opponent.side_conditions[constants.STEALTH_ROCK] = 1
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Weedle|90/100',
+            ''
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual('heavydutyboots', self.battle.opponent.active.item)
+
+    def test_parser_deals_with_empty_line_with_toxicspikes(self):
+        self.battle.opponent.side_conditions[constants.TOXIC_SPIKES] = 1
+        messages = [
+            '|switch|p2a: Pikachu|Pikachu, M|100,100',
+            '',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Pikachu|90/100',
+            ''
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual('heavydutyboots', self.battle.opponent.active.item)
+
+    def test_having_an_item_bypasses_this_check(self):
+        self.battle.opponent.side_conditions[constants.STEALTH_ROCK] = 1
+        self.battle.opponent.active.item = None
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Weedle|90/100'
+        ]
+
+        check_heavydutyboots(self.battle, messages)
+
+        self.assertEqual(None, self.battle.opponent.active.item)
+
+    def test_double_switch_where_other_side_takes_damage_does_not_set_hdb_for_the_first_side(self):
+        self.battle.opponent.side_conditions[constants.STEALTH_ROCK] = 1
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|switch|p1a: Weedle|Weedle, M|100,100',
+            '|-damage|p1a: Weedle|88/100|[from] Stealth Rock'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual('heavydutyboots', self.battle.opponent.active.item)
+
+    def test_basic_case_of_switching_in_and_taking_damage_does_not_set_heavydutyboots(self):
+        self.battle.opponent.side_conditions[constants.STEALTH_ROCK] = 1
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|-damage|p2a: Weedle|88/100|[from] Stealth Rock'
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Weedle|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_basic_case_of_switching_in_and_taking_damage_sets_can_have_heavydutyboots_to_false(self):
+        self.battle.opponent.side_conditions[constants.STEALTH_ROCK] = 1
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|-damage|p2a: Weedle|88/100|[from] Stealth Rock'
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Weedle|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertFalse(self.battle.opponent.active.can_have_heavydutyboots)
+
+    def test_not_taking_damage_from_spikes_sets_heavydutyboots(self):
+        self.battle.opponent.side_conditions[constants.SPIKES] = 1
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Weedle|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual('heavydutyboots', self.battle.opponent.active.item)
+
+    def test_taking_damage_from_spikes_does_not_set_heavydutyboots(self):
+        self.battle.opponent.side_conditions[constants.SPIKES] = 1
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|-damage|p2a: Weedle|88/100|[from] Spikes'
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Weedle|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_taking_damage_from_spikes_sets_can_have_heavydutyboots_to_false(self):
+        self.battle.opponent.side_conditions[constants.SPIKES] = 1
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|-damage|p2a: Weedle|88/100|[from] Spikes'
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Weedle|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertFalse(self.battle.opponent.active.can_have_heavydutyboots)
+
+    def test_not_getting_poisoned_by_toxicspikes_sets_heavydutyboots(self):
+        self.battle.opponent.side_conditions[constants.TOXIC_SPIKES] = 1
+        self.battle.opponent.active = Pokemon('pikachu', 100)
+        messages = [
+            '|switch|p2a: Pikachu|Pikachu, M|100,100',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Pikachu|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual('heavydutyboots', self.battle.opponent.active.item)
+
+    def test_getting_poisoned_by_two_layers_of_toxicspikes_does_not_set_heavydutyboots(self):
+        self.battle.opponent.side_conditions[constants.TOXIC_SPIKES] = 1
+        self.battle.opponent.active = Pokemon('pikachu', 100)
+        messages = [
+            '|switch|p2a: Pikachu|Pikachu, M|100,100',
+            '|-status|p2a: Pikachu|tox',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Pikachu|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_getting_toxiced_by_toxic_afterwards_still_sets_heavydutyboots(self):
+        self.battle.opponent.side_conditions[constants.TOXIC_SPIKES] = 1
+        self.battle.opponent.active = Pokemon('pikachu', 100)
+        messages = [
+            '|switch|p2a: Pikachu|Pikachu, M|100,100',
+            '|move|p1a: Caterpie|Toxic',
+            '|-status|p2a: Pikachu|tox'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual('heavydutyboots', self.battle.opponent.active.item)
+
+    def test_toxicorb_poisoning_at_the_end_of_the_turn_does_not_infer_heavydutyboots(self):
+        self.battle.opponent.side_conditions[constants.TOXIC_SPIKES] = 1
+        messages = [
+            '|switch|p1a: Pikachu|Pikachu, M|100,100',
+            '|switch|p2a: Pikachu|Pikachu, M|100,100',
+            '|',
+            '|-status|p2a: Pikachu|tox|[from] item: Toxic Orb'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual('toxicorb', self.battle.opponent.active.item)
+
+    def test_having_airballoon_does_notcause_a_heavydutyboost_inferral(self):
+        self.battle.opponent.side_conditions[constants.TOXIC_SPIKES] = 1
+
+        messages = [
+            '|switch|p2a: Pikachu|Pikachu, M|100,100',
+            '|-item|p2a: Pikachu|Air Balloon'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual('airballoon', self.battle.opponent.active.item)
+
+    def test_flying_type_does_not_trigger_heavydutyboots_check_on_toxicspikes(self):
+        self.battle.opponent.side_conditions[constants.TOXIC_SPIKES] = 1
+
+        messages = [
+            '|switch|p2a: Pidgey|Pidgey, M|100,100',
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_getting_poisoned_by_toxicspikes_does_not_set_heavydutyboots(self):
+        self.battle.opponent.side_conditions[constants.TOXIC_SPIKES] = 1
+        self.battle.opponent.active = Pokemon('pikachu', 100)
+        messages = [
+            '|switch|p2a: Pikachu|Pikachu, M|100,100',
+            '|-status|p2a: Pikachu|psn',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Pikachu|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_nothing_is_set_when_there_are_no_hazards_on_the_field(self):
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Weedle|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_pokemon_that_could_have_magicguard_does_not_set_heavydutyboots_when_no_damage_is_taken(self):
+        # clefable could have magicguard so HDB should not be set even though no damage was taken on switch
+        self.battle.opponent.active = Pokemon('Clefable', 100)
+        messages = [
+            '|switch|p2a: Clefable|Clefable, M|100,100',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Clefable|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_being_caught_in_stickyweb_does_not_set_set_heavydutyboots(self):
+        self.battle.opponent.side_conditions[constants.STICKY_WEB] = 1
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|-activate|p2a: Weedle|move: Sticky Web',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Weedle|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_being_caught_in_stickyweb_sets_can_have_heavydutyboots_to_false(self):
+        self.battle.opponent.side_conditions[constants.STICKY_WEB] = 1
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|-activate|p2a: Weedle|move: Sticky Web',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Weedle|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertFalse(self.battle.opponent.active.can_have_heavydutyboots)
+
+    def test_not_being_caught_in_stickyweb_sets_item_to_heavydutyboots(self):
+        self.battle.opponent.side_conditions[constants.STICKY_WEB] = 1
+        messages = [
+            '|switch|p2a: Weedle|Weedle, M|100,100',
+            '|move|p1a: Caterpie|Tackle',
+            '|-damage|p2a: Weedle|78/100'
+        ]
+
+        update_battle(self.battle, "\n".join(messages))
+
+        self.assertEqual('heavydutyboots', self.battle.opponent.active.item)
 
 
 class TestGetDamageDealt(unittest.TestCase):

@@ -18,6 +18,9 @@ from showdown.engine.damage_calculator import calculate_damage
 logger = logging.getLogger(__name__)
 
 
+MOVE_END_STRINGS = {'move', 'switch', 'upkeep', ''}
+
+
 def find_pokemon_in_reserves(pkmn_name, reserves):
     for reserve_pkmn in reserves:
         if pkmn_name.startswith(reserve_pkmn.name) or reserve_pkmn.name.startswith(pkmn_name) or reserve_pkmn.base_name == pkmn_name:
@@ -664,8 +667,6 @@ def check_choicescarf(battle, msg_lines):
 
 
 def get_damage_dealt(battle, split_msg, next_messages):
-    move_end_strings = {'move', 'switch', 'upkeep', ''}
-
     move_name = normalize_name(split_msg[3])
     critical_hit = False
 
@@ -680,7 +681,7 @@ def get_damage_dealt(battle, split_msg, next_messages):
         next_line_split = line.split('|')
         # if one of these strings appears in index 1 then
         # exit out since we are done with this pokemon's move
-        if len(next_line_split) < 2 or next_line_split[1] in move_end_strings:
+        if len(next_line_split) < 2 or next_line_split[1] in MOVE_END_STRINGS:
             break
 
         elif next_line_split[1] == '-crit':
@@ -755,6 +756,118 @@ def check_choice_band_or_specs(battle, damage_dealt):
         battle.opponent.active.item = choice_item
 
 
+def check_heavydutyboots(battle, msg_lines):
+    side_to_check = battle.opponent
+
+    if (
+        side_to_check.active.item != constants.UNKNOWN_ITEM or
+        'magicguard' in [normalize_name(a) for a in pokedex[side_to_check.active.name][constants.ABILITIES].values()]
+    ):
+        return
+
+    if side_to_check.side_conditions[constants.STEALTH_ROCK] > 0:
+        pkmn_took_stealthrock_damage = False
+        for line in msg_lines:
+            split_line = line.split('|')
+
+            # |-damage|p2a: Weedle|88/100|[from] Stealth Rock
+            if (
+                len(split_line) > 4 and
+                split_line[1] == '-damage' and
+                split_line[2].startswith(side_to_check.name) and
+                split_line[4] == '[from] Stealth Rock'
+            ):
+                pkmn_took_stealthrock_damage = True
+
+        if not pkmn_took_stealthrock_damage:
+            logger.debug("{} has heavydutyboots".format(side_to_check.active.name))
+            side_to_check.active.item = 'heavydutyboots'
+        else:
+            logger.debug("{} was affected by stealthrock, it cannot have heavydutyboots".format(side_to_check.active.name))
+            side_to_check.active.can_have_heavydutyboots = False
+
+    elif (
+        side_to_check.side_conditions[constants.SPIKES] > 0 and
+        'flying' not in side_to_check.active.types and
+        side_to_check.active.ability != 'levitate'
+    ):
+        pkmn_took_spikes_damage = False
+        for line in msg_lines:
+            split_line = line.split('|')
+
+            # |-damage|p2a: Weedle|88/100|[from] Spikes
+            if (
+                    len(split_line) > 4 and
+                    split_line[1] == '-damage' and
+                    split_line[2].startswith(side_to_check.name) and
+                    split_line[4] == '[from] Spikes'
+            ):
+                pkmn_took_spikes_damage = True
+
+        if not pkmn_took_spikes_damage:
+            logger.debug("{} has heavydutyboots".format(side_to_check.active.name))
+            side_to_check.active.item = 'heavydutyboots'
+        else:
+            logger.debug("{} was affected by spikes, it cannot have heavydutyboots".format(side_to_check.active.name))
+            side_to_check.active.can_have_heavydutyboots = False
+    elif (
+        side_to_check.side_conditions[constants.TOXIC_SPIKES] > 0 and
+        'flying' not in side_to_check.active.types and
+        'poison' not in side_to_check.active.types and
+        'steel' not in side_to_check.active.types and
+        side_to_check.active.ability != 'levitate' and
+        side_to_check.active.ability not in constants.IMMUNE_TO_POISON_ABILITIES
+    ):
+        pkmn_took_toxicspikes_poison = False
+        for line in msg_lines:
+            split_line = line.split('|')
+
+            # a pokemon can be toxic-ed from sources other than toxicspikes
+            # stopping at one of these strings ensures those other sources aren't considered
+            if len(split_line) < 2 or split_line[1] in MOVE_END_STRINGS:
+                break
+
+            # |-status|p2a: Pikachu|psn
+            if (
+                    split_line[1] == '-status' and
+                    (split_line[3] == constants.POISON or split_line[3] == constants.TOXIC) and
+                    split_line[2].startswith(side_to_check.name)
+            ):
+                pkmn_took_toxicspikes_poison = True
+
+        if not pkmn_took_toxicspikes_poison:
+            logger.debug("{} has heavydutyboots".format(side_to_check.active.name))
+            side_to_check.active.item = 'heavydutyboots'
+        else:
+            logger.debug("{} was affected by toxicspikes, it cannot have heavydutyboots".format(side_to_check.active.name))
+            side_to_check.active.can_have_heavydutyboots = False
+
+    elif (
+            side_to_check.side_conditions[constants.STICKY_WEB] > 0 and
+            'flying' not in side_to_check.active.types and
+            side_to_check.active.ability != 'levitate'
+    ):
+        pkmn_was_affected_by_stickyweb = False
+        for line in msg_lines:
+            split_line = line.split('|')
+
+            # |-activate|p2a: Gengar|move: Sticky Web
+            if (
+                    len(split_line) == 4 and
+                    split_line[1] == '-activate' and
+                    split_line[2].startswith(side_to_check.name) and
+                    split_line[3] == 'move: Sticky Web'
+            ):
+                pkmn_was_affected_by_stickyweb = True
+
+        if not pkmn_was_affected_by_stickyweb:
+            logger.debug("{} has heavydutyboots".format(side_to_check.active.name))
+            side_to_check.active.item = 'heavydutyboots'
+        else:
+            logger.debug("{} was affected by sticky web, it cannot have heavydutyboots".format(side_to_check.active.name))
+            side_to_check.active.can_have_heavydutyboots = False
+
+
 def update_battle(battle, msg):
     msg_lines = msg.split('\n')
 
@@ -813,6 +926,9 @@ def update_battle(battle, msg):
             damage_dealt = get_damage_dealt(battle, split_msg, msg_lines[i + 1:])
             if damage_dealt:
                 check_choice_band_or_specs(battle, damage_dealt)
+
+        elif action == 'switch' and is_opponent(battle, split_msg):
+            check_heavydutyboots(battle, msg_lines[i+1:])
 
         if action == 'turn':
             return True
