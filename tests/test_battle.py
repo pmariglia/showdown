@@ -627,6 +627,22 @@ class TestBattlerActiveLockedIntoMove(unittest.TestCase):
 
         self.assertTrue(self.battler.active.get_move('firstimpression').disabled)
 
+    def test_calmmind_gets_locked_when_user_has_assaultvest(self):
+        self.battler.active.moves.append(Move('calmmind'))
+        self.battler.active.item = 'assaultvest'
+
+        self.battler.lock_moves()
+
+        self.assertTrue(self.battler.active.get_move('calmmind').disabled)
+
+    def test_tackle_is_not_disabled_when_user_has_assaultvest(self):
+        self.battler.active.moves.append(Move('tackle'))
+        self.battler.active.item = 'assaultvest'
+
+        self.battler.lock_moves()
+
+        self.assertFalse(self.battler.active.get_move('tackle').disabled)
+
     def test_fakeout_gets_locked_when_last_used_move_was_by_the_active_pokemon(self):
         self.battler.active.moves.append(Move('fakeout'))
         self.battler.last_used_move = LastUsedMove(
