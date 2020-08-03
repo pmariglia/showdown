@@ -25,7 +25,7 @@ class CustomFormatter(logging.Formatter):
     def format(self, record):
         record.module = "[{}]".format(record.module)
         record.levelname = "[{}]".format(record.levelname)
-        return "{}{} {}".format(record.module.ljust(25), record.levelname.ljust(10), record.msg)
+        return "{} {}".format(record.levelname.ljust(10), record.msg)
 
 
 def init_logging(level):
