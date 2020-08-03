@@ -79,6 +79,10 @@ class PSWebsocketClient:
         if response.status_code == 200:
             if self.password:
                 response_json = json.loads(response.text[1:])
+                if not response_json['actionsuccess']:
+                    logger.error("Login Unsuccessful")
+                    raise LoginError("Could not log-in")
+
                 assertion = response_json.get('assertion')
             else:
                 assertion = response.text
