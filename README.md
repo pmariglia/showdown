@@ -4,6 +4,7 @@ Showdown is a Pokémon battle-bot that can play battles on [Pokemon Showdown](ht
 The bot can play single battles in generations 4 through 8 however some of the battle mechanics assume it is gen8.
 
 ![badge](https://action-badges.now.sh/pmariglia/showdown)
+[![discord](https://img.shields.io/discord/701564449571471371?style=plastic)](https://discord.gg/RCeAJPJ)
 
 ## Python version
 Developed and tested using Python 3.6.3.
@@ -138,3 +139,6 @@ Specify a directory:
 ```
 TEAM_NAME=gen8/ou
 ```
+
+## Chat on Discord
+If you're interested in talking about this or other Pokemon battle bots [come chat with me](https://discord.gg/RCeAJPJ)
