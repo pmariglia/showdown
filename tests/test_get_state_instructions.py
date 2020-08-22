@@ -6584,7 +6584,7 @@ class TestGetStateInstructions(unittest.TestCase):
         bot_move = "earthquake"
         opponent_move = "thunderwave"
         self.state.self.active.types = ['water', 'grass']
-        self.state.self.active.ability = 'protean'
+        self.state.self.active.ability = 'libero'
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(
@@ -6594,6 +6594,37 @@ class TestGetStateInstructions(unittest.TestCase):
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 94),
                 ],
                 True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_being_flinched_does_not_result_in_type_change(self):
+        bot_move = "earthquake"
+        opponent_move = "ironhead"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        self.state.self.active.types = ['water', 'grass']
+        self.state.self.active.ability = 'libero'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 34),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.FLINCH),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, constants.FLINCH)
+                ],
+                True
+            ),
+            TransposeInstruction(
+                0.7,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 34),
+                    (constants.MUTATOR_CHANGE_TYPE, constants.SELF, ['ground'], ['water', 'grass']),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 94),
+                ],
+                False
             )
         ]
 

@@ -426,7 +426,8 @@ class StateMutator:
             constants.MUTATOR_FIELD_END: self.end_field,
             constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom,
             constants.MUTATOR_CHANGE_TYPE: self.change_types,
-            constants.MUTATOR_CHANGE_ITEM: self.change_item
+            constants.MUTATOR_CHANGE_ITEM: self.change_item,
+            constants.MUTATOR_CHANGE_STATS: self.change_stats
         }
         self.reverse_instructions = {
             constants.MUTATOR_SWITCH: self.reverse_switch,
@@ -449,7 +450,8 @@ class StateMutator:
             constants.MUTATOR_FIELD_END: self.reverse_end_field,
             constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom,
             constants.MUTATOR_CHANGE_TYPE: self.reverse_change_types,
-            constants.MUTATOR_CHANGE_ITEM: self.reverse_change_item
+            constants.MUTATOR_CHANGE_ITEM: self.reverse_change_item,
+            constants.MUTATOR_CHANGE_STATS: self.reverse_change_stats
         }
 
     def apply_one(self, instruction):
@@ -626,3 +628,24 @@ class StateMutator:
     def reverse_change_item(self, side, _, old_item):
         side = self.get_side(side)
         side.active.item = old_item
+
+    def change_stats(self, side, new_stats, _):
+        # the third parameter is the old stats
+        # is must be here for reversing purposes
+        side = self.get_side(side)
+        side.active.maxhp = new_stats[0]
+        side.active.attack = new_stats[1]
+        side.active.defense = new_stats[2]
+        side.active.special_attack = new_stats[3]
+        side.active.special_defense = new_stats[4]
+        side.active.speed = new_stats[5]
+
+    def reverse_change_stats(self, side, _, old_stats):
+        # the second parameter are the new stats
+        side = self.get_side(side)
+        side.active.maxhp = old_stats[0]
+        side.active.attack = old_stats[1]
+        side.active.defense = old_stats[2]
+        side.active.special_attack = old_stats[3]
+        side.active.special_defense = old_stats[4]
+        side.active.speed = old_stats[5]

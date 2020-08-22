@@ -800,3 +800,63 @@ class TestStatemutator(unittest.TestCase):
         self.mutator.reverse(list_of_instructions)
 
         self.assertEqual((2, 100), self.state.self.wish)
+
+    def test_change_stats_basic_case(self):
+        self.state.self.active.attack = 1
+        self.state.self.active.defense = 2
+        self.state.self.active.special_attack = 3
+        self.state.self.active.special_defense = 4
+        self.state.self.active.speed = 5
+        instruction = (
+            constants.MUTATOR_CHANGE_STATS,
+            constants.SELF,
+            (9, 10, 11, 12, 13, 14),
+            (
+                self.state.self.active.maxhp,
+                self.state.self.active.attack,
+                self.state.self.active.defense,
+                self.state.self.active.special_attack,
+                self.state.self.active.special_defense,
+                self.state.self.active.speed,
+            ),
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+
+        self.assertEqual(9, self.state.self.active.maxhp)
+        self.assertEqual(10, self.state.self.active.attack)
+        self.assertEqual(11, self.state.self.active.defense)
+        self.assertEqual(12, self.state.self.active.special_attack)
+        self.assertEqual(13, self.state.self.active.special_defense)
+        self.assertEqual(14, self.state.self.active.speed)
+
+    def test_reverse_change_stats_basic_case(self):
+        self.state.self.active.maxhp = 10
+        self.state.self.active.attack = 1
+        self.state.self.active.defense = 2
+        self.state.self.active.special_attack = 3
+        self.state.self.active.special_defense = 4
+        self.state.self.active.speed = 5
+        instruction = (
+            constants.MUTATOR_CHANGE_STATS,
+            constants.SELF,
+            (9, 10, 11, 12, 13, 14),
+            (
+                self.state.self.active.maxhp,
+                self.state.self.active.attack,
+                self.state.self.active.defense,
+                self.state.self.active.special_attack,
+                self.state.self.active.special_defense,
+                self.state.self.active.speed,
+            ),
+        )
+        list_of_instructions = [instruction]
+        self.mutator.apply(list_of_instructions)
+        self.mutator.reverse(list_of_instructions)
+
+        self.assertEqual(10, self.state.self.active.maxhp)
+        self.assertEqual(1, self.state.self.active.attack)
+        self.assertEqual(2, self.state.self.active.defense)
+        self.assertEqual(3, self.state.self.active.special_attack)
+        self.assertEqual(4, self.state.self.active.special_defense)
+        self.assertEqual(5, self.state.self.active.speed)

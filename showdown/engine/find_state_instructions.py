@@ -12,6 +12,7 @@ from .special_effects.abilities.modify_attack_being_used import ability_modify_a
 from .special_effects.items.modify_attack_against import item_modify_attack_against
 from .special_effects.items.modify_attack_being_used import item_modify_attack_being_used
 from .special_effects.moves.move_special_effect import modify_attack_being_used
+from .special_effects.abilities.before_move import ability_before_move
 from .switch_out_moves import switch_out_move_triggered
 from .switch_out_moves import get_best_switch_pokemon
 
@@ -244,15 +245,17 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     instructions = instruction_generator.get_instructions_from_flinched(mutator, attacker, instructions)
 
-    if attacking_pokemon.ability in constants.TYPE_CHANGE_ABILITIES and [attacking_move[constants.TYPE]] != attacking_pokemon.types and not instructions.frozen:
-        type_change_instruction = (
-            constants.MUTATOR_CHANGE_TYPE,
-            attacker,
-            [attacking_move[constants.TYPE]],
-            attacking_pokemon.types
-        )
-        mutator.apply_one(type_change_instruction)
-        instructions.add_instruction(type_change_instruction)
+    ability_before_move_instructions = ability_before_move(
+        attacking_pokemon.ability,
+        mutator.state,
+        attacker,
+        attacking_move,
+        attacking_pokemon,
+        defending_pokemon
+    )
+    if ability_before_move_instructions is not None and not instructions.frozen:
+        mutator.apply(ability_before_move_instructions)
+        instructions.instructions += ability_before_move_instructions
 
     damage_amounts = None
     move_status_effect = None
