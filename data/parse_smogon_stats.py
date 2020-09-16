@@ -89,7 +89,7 @@ def get_pokemon_information(smogon_stats_url):
                         percentage = float(re.search(PERCENTAGES_REGEX, segment).group()[:-1])
                         if move != OTHER_STRING:
                             if constants.HIDDEN_POWER in move:
-                                move = "{}60".format(move)
+                                move = "{}{}".format(move, constants.HIDDEN_POWER_ACTIVE_MOVE_BASE_DAMAGE_STRING)
                             pokemon_information[pokemon_name][MOVES_STRING].append((move, percentage))
 
             elif normalize_name(segment) == ABILITY_STRING:
