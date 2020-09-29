@@ -598,17 +598,17 @@ def mega(battle, split_msg):
 
 def transform(battle, split_msg):
     if is_opponent(battle, split_msg):
-        transformed_into_name = normalize_name(split_msg[3].split(':')[1])
+        #transformed_into_name = normalize_name(split_msg[3].split(':')[1]) # Not that useful for nicked pokemon because both name and base_name are the species name
 
         battle_copy = deepcopy(battle)
         battle.opponent.active.boosts = deepcopy(battle.user.active.boosts)
 
         battle_copy.user.from_json(battle_copy.request_json)
 
-        if battle_copy.user.active.name == transformed_into_name or battle_copy.user.active.name.startswith(transformed_into_name):
-            transformed_into = battle_copy.user.active
-        else:
-            transformed_into = find_pokemon_in_reserves(transformed_into_name, battle_copy.user.reserve)
+        #if battle_copy.user.active.name == transformed_into_name or battle_copy.user.active.name.startswith(transformed_into_name): # Again, will fail with nicked pokemon
+        transformed_into = battle_copy.user.active
+        #else: # And when it fails:
+        #    transformed_into = find_pokemon_in_reserves(transformed_into_name, battle_copy.user.reserve) # This function will return None crashing the bot
 
         logger.debug("Opponent {} transformed into {}".format(battle.opponent.active.name, battle.user.active.name))
         battle.opponent.active.stats = deepcopy(transformed_into.stats)
