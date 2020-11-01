@@ -598,7 +598,7 @@ def mega(battle, split_msg):
 
 def transform(battle, split_msg):
     if is_opponent(battle, split_msg):
-        transformed_into_name = normalize_name(split_msg[3].split(':')[1])
+        transformed_into_name = battle.user.active.name
 
         battle_copy = deepcopy(battle)
         battle.opponent.active.boosts = deepcopy(battle.user.active.boosts)
