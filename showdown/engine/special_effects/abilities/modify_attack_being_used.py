@@ -354,7 +354,23 @@ def solarpower(attacking_move, defending_move, attacking_pokemon, defending_poke
     return attacking_move
 
 
+def transistor(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_move[constants.TYPE] == 'electric':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.5
+    return attacking_move
+
+
+def dragonsmaw(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_move[constants.TYPE] == 'dragon':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.5
+    return attacking_move
+
+
 ability_lookup = {
+    'transistor': transistor,
+    'dragonsmaw': dragonsmaw,
     'solarpower': solarpower,
     'liquidvoice': liquidvoice,
     'stakeout': stakeout,

@@ -3971,6 +3971,27 @@
         "weight": 55.4,
         "most_likely_ability": "Pressure"
     },
+    "articunogalar": {
+        "abilities": {
+            "0": "Competitive"
+        },
+        "baseStats": {
+            "hp": 90,
+            "attack": 85,
+            "defense": 85,
+            "special-attack": 125,
+            "special-defense": 100,
+            "speed": 95
+        },
+        "height": 1.7,
+        "species": "Articuno",
+        "types": [
+            "psychic",
+            "flying"
+        ],
+        "weight": 50.9,
+        "most_likely_ability": "Competitive"
+    },
     "zapdos": {
         "abilities": {
             "0": "Pressure",
@@ -3993,6 +4014,27 @@
         "weight": 52.6,
         "most_likely_ability": "Pressure"
     },
+    "zapdosgalar": {
+        "abilities": {
+            "0": "Defiant"
+        },
+        "baseStats": {
+            "hp": 90,
+            "attack": 125,
+            "defense": 90,
+            "special-attack": 85,
+            "special-defense": 90,
+            "speed": 100
+        },
+        "height": 1.6,
+        "species": "Zapdos",
+        "types": [
+            "fighting",
+            "flying"
+        ],
+        "weight": 58.2,
+        "most_likely_ability": "Defiant"
+    },
     "moltres": {
         "abilities": {
             "0": "Pressure",
@@ -4014,6 +4056,27 @@
         ],
         "weight": 60,
         "most_likely_ability": "Pressure"
+    },
+    "moltresgalar": {
+        "abilities": {
+            "0": "Berserk"
+        },
+        "baseStats": {
+            "hp": 90,
+            "attack": 85,
+            "defense": 90,
+            "special-attack": 100,
+            "special-defense": 125,
+            "speed": 90
+        },
+        "height": 2,
+        "species": "Moltres",
+        "types": [
+            "dark",
+            "flying"
+        ],
+        "weight": 66,
+        "most_likely_ability": "Berserk"
     },
     "dratini": {
         "abilities": {
@@ -5264,6 +5327,29 @@
         "weight": 79.5,
         "most_likely_ability": "Regenerator"
     },
+    "slowkinggalar": {
+		"num": 199,
+		"name": "Slowking-Galar",
+		"baseSpecies": "slowking",
+		"types": ["poison", "psychic"],
+		"baseStats": {
+            "hp": 95,
+            "atk": 65,
+            "def": 80,
+            "spa": 110,
+            "spd": 110,
+            "spe": 30
+        },
+		"abilities": {
+            "0": "Curious Medicine",
+            "1": "Own Tempo",
+            "H": "Regenerator"
+        },
+		"height": 1.8,
+		"weight": 79.5,
+		"color": "Pink",
+        "most_likely_ability": "Regenerator"
+	},
     "misdreavus": {
         "abilities": {
             "0": "Levitate"
@@ -25941,5 +26027,155 @@
         "eggGroups": [
             "Undiscovered"
         ]
+    },
+    "regieleki": {
+        "num": 891,
+        "name": "Regieleki",
+        "types": [
+            "electric"
+        ],
+        "baseStats": {
+            "hp": 80,
+            "attack": 100,
+            "defense": 50,
+            "special-attack": 100,
+            "special-defense": 50,
+            "speed": 200
+        },
+        "abilities": {
+            "0": "Transistor"
+        },
+        "heightm": 1.2,
+        "weight": 145,
+        "color": "Yellow"
+    },
+    "regidrago": {
+        "num": 891,
+        "name": "Regidrago",
+        "types": [
+            "dragon"
+        ],
+        "baseStats": {
+            "hp": 200,
+            "attack": 100,
+            "defense": 50,
+            "special-attack": 100,
+            "special-defense": 50,
+            "speed": 80
+        },
+        "abilities": {
+            "0": "Dragon's Maw"
+        },
+        "heightm": 2.1,
+        "weight": 200,
+        "color": "White"
+    },
+    "glastrier": {
+        "num": 891,
+        "name": "Glastrier",
+        "types": [
+            "ice"
+        ],
+        "baseStats": {
+            "hp": 100,
+            "attack": 145,
+            "defense": 130,
+            "special-attack": 65,
+            "special-defense": 110,
+            "speed": 30
+        },
+        "abilities": {
+            "0": "Chilling Neigh"
+        },
+        "heightm": 2.2,
+        "weight": 800,
+        "color": "White"
+    },
+    "spectrier": {
+        "num": 891,
+        "name": "Spectrier",
+        "types": [
+            "ghost"
+        ],
+        "baseStats": {
+            "hp": 100,
+            "attack": 65,
+            "defense": 60,
+            "special-attack": 145,
+            "special-defense": 80,
+            "speed": 130
+        },
+        "abilities": {
+            "0": "Grim Neigh"
+        },
+        "heightm": 2,
+        "weight": 44.5,
+        "color": "Black"
+    },
+    "calyrex": {
+        "num": 891,
+        "name": "Calyrex",
+        "types": [
+            "psychic",
+            "grass"
+        ],
+        "baseStats": {
+            "hp": 100,
+            "attack": 80,
+            "defense": 80,
+            "special-attack": 80,
+            "special-defense": 80,
+            "speed": 80
+        },
+        "abilities": {
+            "0": "Unnerve"
+        },
+        "heightm": 1.1,
+        "weight": 7.7,
+        "color": "White"
+    },
+    "calyrexice": {
+        "num": 891,
+        "name": "Calyrex Ice",
+        "types": [
+            "psychic",
+            "ice"
+        ],
+        "baseStats": {
+            "hp": 100,
+            "attack": 165,
+            "defense": 150,
+            "special-attack": 85,
+            "special-defense": 130,
+            "speed": 50
+        },
+        "abilities": {
+            "0": "As One (Glastrier)"
+        },
+        "heightm": 2.4,
+        "weight": 809.1,
+        "color": "White"
+    },
+    "calyrexshadow": {
+        "num": 891,
+        "name": "Kubfu",
+        "types": [
+            "psychic",
+            "ghost"
+        ],
+        "baseStats": {
+            "hp": 100,
+            "attack": 85,
+            "defense": 80,
+            "special-attack": 165,
+            "special-defense": 100,
+            "speed": 150
+        },
+        "abilities": {
+            "0": "As One (Spectrier)"
+        },
+        "heightm": 2.4,
+        "weight": 56.3,
+        "color": "Black"
     }
 }

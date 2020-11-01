@@ -541,6 +541,7 @@ move_lookup = {
     'suckerpunch': suckerpunch,
     'eruption': eruption,
     'waterspout': eruption,
+    'dragonenergy': eruption,
     'hex': hex,
     'freezedry': freezedry,
     'scaleshot': tailslap,
