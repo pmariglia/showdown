@@ -1240,6 +1240,7 @@ def get_boost_from_boost_string(side, boost_string):
         return side.active.accuracy_boost
     elif boost_string == constants.EVASION:
         return side.active.evasion_boost
+    raise ValueError("{} is not a valid boost".format(boost_string))
 
 
 def can_be_volatile_statused(side, volatile_status, first_move):

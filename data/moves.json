@@ -14574,7 +14574,7 @@
 		"secondary": {
 			"chance": 100,
 			"boosts": {
-				"def": -1
+				"defense": -1
 			}
 		},
 		"target": "normal",
