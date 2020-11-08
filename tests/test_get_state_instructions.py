@@ -6687,6 +6687,21 @@ class TestGetStateInstructions(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_damp_blocks_explosion_moves(self):
+        bot_move = "splash"
+        opponent_move = "explosion"
+        self.state.self.active.ability = 'damp'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],  # nothing happens
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_noguard(self):
         bot_move = "stoneedge"
         opponent_move = "splash"

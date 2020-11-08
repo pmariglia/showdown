@@ -432,7 +432,17 @@ def steamengine(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def damp(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.ID] in ["explosion", "selfdestruct", "mistyexplosion", "mindblown"]:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.HEAL] = [0, 1]
+        attacking_move[constants.BASE_POWER] = 0
+
+    return attacking_move
+
+
 ability_lookup = {
+    'damp': damp,
     'steamengine': steamengine,
     'punkrock': punkrock,
     'icescales': icescales,
