@@ -6,6 +6,8 @@ from showdown.engine.objects import StateMutator
 from showdown.engine.select_best_move import pick_safest
 from showdown.engine.select_best_move import get_payoff_matrix
 
+import config
+
 import logging
 logger = logging.getLogger(__name__)
 
@@ -27,7 +29,7 @@ def pick_safest_move_from_battles(battles):
         mutator = StateMutator(state)
         user_options, opponent_options = b.get_all_options()
         logger.debug("Searching through the state: {}".format(mutator.state))
-        scores = get_payoff_matrix(mutator, user_options, opponent_options, depth=2, prune=True)
+        scores = get_payoff_matrix(mutator, user_options, opponent_options, depth = config.search_depth, prune=True)
 
         prefixed_scores = prefix_opponent_move(scores, str(i))
         all_scores = {**all_scores, **prefixed_scores}
