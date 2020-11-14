@@ -9,7 +9,7 @@ This was made for the purposes of random battles
 import json
 from copy import deepcopy
 import constants
-from showdown.helpers import normalize_name
+from showdown.engine.helpers import normalize_name
 
 fp = "../../sets.txt"
 pokedex_path = "../pokedex.json"

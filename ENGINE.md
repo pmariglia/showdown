@@ -16,7 +16,7 @@ Note that any string values used within the engine (pokemon names, move names, a
 
 To convert values you can use the `normalize_name` function
 ```python
->>> from showdown.helpers import normalize_name
+>>> from showdown.engine.helpers import normalize_name
 >>> normalize_name('Pikachu')
 'pikachu'
 >>> normalize_name('Choice Scarf')

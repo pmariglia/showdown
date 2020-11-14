@@ -1,11 +1,11 @@
 import unittest
 
 from showdown.battle import Move
-from showdown.helpers import get_pokemon_info_from_condition
-from showdown.helpers import normalize_name
-from showdown.helpers import set_makes_sense
-from showdown.helpers import spreads_are_alike
-from showdown.helpers import remove_duplicate_spreads
+from showdown.engine.helpers import get_pokemon_info_from_condition
+from showdown.engine.helpers import normalize_name
+from showdown.engine.helpers import set_makes_sense
+from showdown.engine.helpers import spreads_are_alike
+from showdown.engine.helpers import remove_duplicate_spreads
 from showdown.engine.objects import State
 
 

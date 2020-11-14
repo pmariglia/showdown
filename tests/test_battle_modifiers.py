@@ -3,7 +3,7 @@ import json
 from collections import defaultdict
 
 import constants
-from showdown.helpers import calculate_stats
+from showdown.engine.helpers import calculate_stats
 
 from showdown.battle import Battle
 from showdown.battle import Pokemon

@@ -8,9 +8,9 @@ from data import pokedex
 from showdown.battle import Pokemon
 from showdown.battle import LastUsedMove
 from showdown.battle import DamageDealt
-from showdown.helpers import normalize_name
-from showdown.helpers import get_pokemon_info_from_condition
-from showdown.helpers import calculate_stats
+from showdown.engine.helpers import normalize_name
+from showdown.engine.helpers import get_pokemon_info_from_condition
+from showdown.engine.helpers import calculate_stats
 from showdown.engine.find_state_instructions import get_effective_speed
 from showdown.engine.damage_calculator import calculate_damage
 

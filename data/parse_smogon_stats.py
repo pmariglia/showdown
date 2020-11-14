@@ -6,7 +6,7 @@ from dateutil import relativedelta
 import requests
 
 import constants
-from showdown.helpers import normalize_name
+from showdown.engine.helpers import normalize_name
 
 NEW_PKMN_INDICATOR = """ +----------------------------------------+ \\n +----------------------------------------+"""
 

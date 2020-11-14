@@ -1,4 +1,4 @@
-from showdown.helpers import normalize_name
+from showdown.engine.helpers import normalize_name
 
 
 def json_to_packed(json_team):
