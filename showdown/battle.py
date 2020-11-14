@@ -471,7 +471,7 @@ class Pokemon:
         self.nature = nature
         self.evs = evs
         self.max_hp = self.stats.pop(constants.HITPOINTS)
-        self.hp = self.max_hp * hp_percent
+        self.hp = round(self.max_hp * hp_percent)
 
     def add_move(self, move_name: str):
         try:
