@@ -17616,9 +17616,9 @@
         },
         "baseStats": {
             "hp": 60,
-            "attack": 140,
+            "attack": 50,
             "defense": 140,
-            "special-attack": 140,
+            "special-attack": 50,
             "special-defense": 140,
             "speed": 60
         },

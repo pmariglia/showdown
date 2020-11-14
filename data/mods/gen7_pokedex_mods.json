@@ -2,9 +2,9 @@
   "aegislash": {
     "baseStats": {
       "hp": 60,
-      "attack": 150,
+      "attack": 50,
       "defense": 150,
-      "special-attack": 150,
+      "special-attack": 50,
       "special-defense": 150,
       "speed": 60
     }
