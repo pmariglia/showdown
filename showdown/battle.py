@@ -389,10 +389,12 @@ class Battler:
 
 class Pokemon:
 
-    def __init__(self, name: str, level: int):
+    def __init__(self, name: str, level: int, nature="serious", evs=(85,) * 6):
         self.name = normalize_name(name)
         self.base_name = self.name
         self.level = level
+        self.nature = nature
+        self.evs = evs
 
         try:
             self.base_stats = pokedex[self.name][constants.BASESTATS]
@@ -402,7 +404,7 @@ class Pokemon:
             logger.info("Using {} instead".format(self.name))
             self.base_stats = pokedex[self.name][constants.BASESTATS]
 
-        self.stats = calculate_stats(self.base_stats, self.level)
+        self.stats = calculate_stats(self.base_stats, self.level, nature=nature, evs=evs)
 
         self.max_hp = self.stats.pop(constants.HITPOINTS)
         self.hp = self.max_hp
@@ -466,6 +468,8 @@ class Pokemon:
         evs = [int(e) for e in evs.split(',')]
         hp_percent = self.hp / self.max_hp
         self.stats = calculate_stats(self.base_stats, self.level, evs=evs, nature=nature)
+        self.nature = nature
+        self.evs = evs
         self.max_hp = self.stats.pop(constants.HITPOINTS)
         self.hp = self.max_hp * hp_percent
 
@@ -598,6 +602,8 @@ class Pokemon:
             constants.ITEM: self.item,
             constants.BASESTATS: self.base_stats,
             constants.STATS: self.stats,
+            constants.NATURE: self.nature,
+            constants.EVS: self.evs,
             constants.BOOSTS: self.boosts,
             constants.STATUS: self.status,
             constants.VOLATILE_STATUS: set(self.volatile_statuses),

@@ -48,6 +48,10 @@ pokemon = Pokemon(
     
     # the remaining attributes are optional and have default values if not specified
     
+    # nature is a string, evs are a tuple
+    nature="serious",
+    evs=(85,) * 6,
+
     # boosts: integer value between -6 and 6
     attack_boost=0,
     defense_boost=0,

@@ -183,6 +183,8 @@ class Pokemon(object):
         'special_attack',
         'special_defense',
         'speed',
+        'nature',
+        'evs',
         'attack_boost',
         'defense_boost',
         'special_attack_boost',
@@ -209,6 +211,8 @@ class Pokemon(object):
                  special_attack,
                  special_defense,
                  speed,
+                 nature="serious",
+                 evs=(85,) * 6,
                  attack_boost=0,
                  defense_boost=0,
                  special_attack_boost=0,
@@ -231,6 +235,8 @@ class Pokemon(object):
         self.special_attack = special_attack
         self.special_defense = special_defense
         self.speed = speed
+        self.nature = nature
+        self.evs = evs
         self.attack_boost = attack_boost
         self.defense_boost = defense_boost
         self.special_attack_boost = special_attack_boost
@@ -292,6 +298,8 @@ class Pokemon(object):
             d[constants.STATS][constants.SPECIAL_ATTACK],
             d[constants.STATS][constants.SPECIAL_DEFENSE],
             d[constants.STATS][constants.SPEED],
+            d[constants.NATURE],
+            d[constants.EVS],
             d[constants.BOOSTS][constants.ATTACK],
             d[constants.BOOSTS][constants.DEFENSE],
             d[constants.BOOSTS][constants.SPECIAL_ATTACK],
@@ -319,6 +327,8 @@ class Pokemon(object):
             d[constants.SPECIAL_ATTACK],
             d[constants.SPECIAL_DEFENSE],
             d[constants.SPEED],
+            d[constants.NATURE],
+            d[constants.EVS],
             d[constants.ATTACK_BOOST],
             d[constants.DEFENSE_BOOST],
             d[constants.SPECIAL_ATTACK_BOOST],
@@ -359,6 +369,8 @@ class Pokemon(object):
                 constants.SPECIAL_ATTACK: self.special_attack,
                 constants.SPECIAL_DEFENSE: self.special_defense,
                 constants.SPEED: self.speed,
+                constants.NATURE: self.nature,
+                constants.EVS: self.evs,
                 constants.ATTACK_BOOST: self.attack_boost,
                 constants.DEFENSE_BOOST: self.defense_boost,
                 constants.SPECIAL_ATTACK_BOOST: self.special_attack_boost,

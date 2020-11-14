@@ -104,6 +104,8 @@ TYPES = "types"
 TYPE = "type"
 BASE_POWER = "basePower"
 WEIGHT = "weight"
+NATURE = "nature"
+EVS = "evs"
 
 SIDE = "side"
 POKEMON = "pokemon"
