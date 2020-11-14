@@ -5334,11 +5334,11 @@
 		"types": ["poison", "psychic"],
 		"baseStats": {
             "hp": 95,
-            "atk": 65,
-            "def": 80,
-            "spa": 110,
-            "spd": 110,
-            "spe": 30
+            "attack": 65,
+            "defense": 80,
+            "special-attack": 110,
+            "special-defense": 110,
+            "speed": 30
         },
 		"abilities": {
             "0": "Curious Medicine",
