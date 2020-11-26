@@ -14629,6 +14629,7 @@
             "sound": 1,
             "authentic": 1
         },
+		"secondary": null,
 		"target": "normal",
 		"type": "psychic",
         "id": "eeriespell"
