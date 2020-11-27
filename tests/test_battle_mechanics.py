@@ -3277,6 +3277,28 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_side_conditions_are_unmodified_after_instruction_generation(self):
+        bot_move = "courtchange"
+        opponent_move = "splash"
+        self.state.self.side_conditions[constants.STEALTH_ROCK] = 1
+        self.state.opponent.side_conditions[constants.STEALTH_ROCK] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SIDE_END, constants.SELF, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.STEALTH_ROCK, 1),
+                    (constants.MUTATOR_SIDE_START, constants.SELF, constants.STEALTH_ROCK, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(self.state.self.side_conditions[constants.STEALTH_ROCK], 1)
+        self.assertEqual(self.state.opponent.side_conditions[constants.STEALTH_ROCK], 1)
+
     def test_courtchange_does_not_swap_zero_value_side_condition(self):
         bot_move = "courtchange"
         opponent_move = "splash"

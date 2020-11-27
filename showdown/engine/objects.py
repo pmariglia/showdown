@@ -567,11 +567,9 @@ class StateMutator:
         side = self.get_side(side)
         side.side_conditions[effect] -= amount
 
-    def side_end(self, side, effect, _):
-        # the third parameter of this function is the amount being removed
-        # this value must be here for reverse purposes
+    def side_end(self, side, effect, amount):
         side = self.get_side(side)
-        side.side_conditions[effect] = 0
+        side.side_conditions[effect] -= amount
 
     def reverse_side_end(self, side, effect, amount):
         self.side_start(side, effect, amount)
