@@ -425,6 +425,7 @@ class Pokemon:
         self.can_ultra_burst = False
         self.can_dynamax = False
         self.is_mega = False
+        self.can_have_assaultvest = True
         self.can_have_choice_item = True
         self.can_have_life_orb = True
         self.can_have_heavydutyboots = True
@@ -539,6 +540,8 @@ class Pokemon:
                 elif i[0] in constants.CHOICE_ITEMS and not self.can_have_choice_item:
                     pass
                 elif i[0] == 'lifeorb' and not self.can_have_life_orb:
+                    pass
+                elif i[0] == 'assaultvest' and not self.can_have_assaultvest:
                     pass
                 elif i[0] == 'heavydutyboots' and not self.can_have_heavydutyboots:
                     pass

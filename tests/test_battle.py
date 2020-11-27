@@ -426,6 +426,43 @@ class TestGetPossibleItems(unittest.TestCase):
 
         self.assertEqual(expected_items, possible_items)
 
+    def test_does_not_guess_assultvest_when_can_have_assultvest_flag_is_false(self):
+        p = Pokemon('pikachu', 100)
+        p.item = constants.UNKNOWN_ITEM
+        p.can_have_assaultvest = False
+
+        items = [
+            ('lightball', 50),
+            ('assaultvest', 50),  # should be ignored because flag is set to False
+        ]
+
+        possible_items = p.get_possible_items(items)
+
+        expected_items = [
+            'lightball',
+        ]
+
+        self.assertEqual(expected_items, possible_items)
+
+    def test_guesses_assultvest_when_can_have_assultvest_flag_is_true(self):
+        p = Pokemon('pikachu', 100)
+        p.item = constants.UNKNOWN_ITEM
+        p.can_have_assaultvest = True
+
+        items = [
+            ('lightball', 50),
+            ('assaultvest', 50),
+        ]
+
+        possible_items = p.get_possible_items(items)
+
+        expected_items = [
+            'lightball',
+            'assaultvest'
+        ]
+
+        self.assertEqual(expected_items, possible_items)
+
     def test_guesses_choice_item_when_can_have_choice_item_flag_is_true(self):
         p = Pokemon('pikachu', 100)
         p.item = constants.UNKNOWN_ITEM

@@ -755,6 +755,24 @@ class TestMove(unittest.TestCase):
 
         self.assertEqual(expected_last_used_move, self.battle.opponent.last_used_move)
 
+    def test_using_status_move_sets_can_have_assaultvest_to_false(self):
+        self.battle.opponent.active.can_have_assaultvest = True
+        split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
+
+        move(self.battle, split_msg)
+
+        self.assertFalse(self.battle.opponent.active.can_have_assaultvest)
+
+    def test_using_nonstatus_move_does_not_set_can_have_assultvest_to_false(self):
+        self.battle.opponent.active.can_have_assaultvest = True
+        split_msg = ['', 'move', 'p2a: Caterpie', 'Tackle']
+        self.battle.opponent.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
+
+        move(self.battle, split_msg)
+
+        self.assertTrue(self.battle.opponent.active.can_have_assaultvest)
+
     def test_sets_can_have_choice_item_to_false_if_two_different_moves_are_used_when_the_pkmn_has_an_unknown_item(self):
         self.battle.opponent.active.can_have_choice_item = True
         split_msg = ['', 'move', 'p2a: Caterpie', 'String Shot']

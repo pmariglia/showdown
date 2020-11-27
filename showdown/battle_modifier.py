@@ -219,6 +219,13 @@ def move(battle, split_msg):
         pass
 
     try:
+        if all_move_json[move_name][constants.CATEGORY] == constants.STATUS:
+            logger.debug("{} used a status-move. Setting can_have_assultvest to False".format(pkmn.name))
+            pkmn.can_have_assaultvest = False
+    except KeyError:
+        pass
+
+    try:
         category = all_move_json[move_name][constants.CATEGORY]
         logger.debug("Setting {}'s last used move: {}".format(pkmn.name, move_name))
         side.last_used_move = LastUsedMove(
