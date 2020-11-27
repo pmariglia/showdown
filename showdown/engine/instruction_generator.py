@@ -509,6 +509,42 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
     return instructions
 
 
+def get_instructions_from_defenders_ability_after_move(mutator, move, ability_name, attacking_pokemon, attacker_string, instruction):
+    all_instructions = [instruction]
+    if instruction.frozen:
+        return all_instructions
+
+    if attacker_string not in opposite_side:
+        raise ValueError("attacker parameter must be one of: {}".format(', '.join(opposite_side)))
+
+    if (
+        ability_name == "static"
+        and constants.CONTACT in move[constants.FLAGS]
+        and attacking_pokemon.item != "protectivepads"
+    ):
+        return get_states_from_status_effects(
+            mutator,
+            attacker_string,
+            constants.PARALYZED,
+            30,
+            instruction
+        )
+    elif (
+        ability_name == "flamebody"
+        and constants.CONTACT in move[constants.FLAGS]
+        and attacking_pokemon.item != "protectivepads"
+    ):
+        return get_states_from_status_effects(
+            mutator,
+            attacker_string,
+            constants.BURN,
+            30,
+            instruction
+        )
+
+    return all_instructions
+
+
 def get_instructions_from_side_conditions(mutator, attacker_string, side_string, condition, instruction):
     if instruction.frozen:
         return [instruction]

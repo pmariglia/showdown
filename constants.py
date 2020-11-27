@@ -252,6 +252,11 @@ BOOST_RESET_MOVES = {
     'clearsmog'
 }
 
+ABILITY_AFTER_MOVE = {
+    "static",
+    "flamebody"
+}
+
 WEIGHT_BASED_MOVES = {
     'heavyslam',
     'heatcrash',

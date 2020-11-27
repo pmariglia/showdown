@@ -1,5 +1,5 @@
 """
-TestGetStateInstructions is the main Pokemon engine test class
+TestBattleMechanics is the main Pokemon engine test class
 All battle mechanics are tested in this TestCase
 """
 
@@ -23,7 +23,7 @@ from showdown.battle import Pokemon as StatePokemon
 from showdown.engine.objects import StateMutator
 
 
-class TestGetStateInstructions(unittest.TestCase):
+class TestBattleMechanics(unittest.TestCase):
     def setUp(self):
         config.damage_calc_type = "average"  # some tests may override this
         self.state = State(
@@ -425,6 +425,256 @@ class TestGetStateInstructions(unittest.TestCase):
                 [],
                 False
             )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_contact_move_into_static_results_in_two_states_where_one_is_paralysis(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.opponent.active.ability = 'static'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 38),
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.PARALYZED)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.7,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 38),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_contact_move_into_flamebody_results_in_two_states_where_one_is_burned(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.opponent.active.ability = 'flamebody'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 38),
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.BURN),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 13),  # end-of-turn burn damage
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.7,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 38),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_protectivepads_protects_from_flamebody(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.self.active.item = 'protectivepads'
+        self.state.opponent.active.ability = 'flamebody'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 38),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_fire_type_is_immune_to_flamebody_burn(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.types = ['fire']
+        self.state.opponent.active.ability = 'flamebody'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_poinsoned_pokemon_cannot_be_burned_by_flamebody(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.self.active.status = constants.POISON
+        self.state.opponent.active.ability = 'flamebody'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 38),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 26),  # end-of-turn-poison damage
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_protectivepads_causes_static_to_not_trigger(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.self.active.item = 'protectivepads'
+        self.state.opponent.active.ability = 'static'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 38),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_paralysis_from_same_turn_makes_flamebody_not_trigger(self):
+        bot_move = "tackle"
+        opponent_move = "glare"
+        self.state.self.active.speed = 1
+        self.state.opponent.active.speed = 2
+        self.state.self.active.types = ['normal']
+        self.state.opponent.active.ability = 'flamebody'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.75,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.PARALYZED),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 38),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.25,
+                [
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.PARALYZED),
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_electric_type_is_immune_to_static(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.types = ['electric']
+        self.state.opponent.active.ability = 'static'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_ground_type_is_not_immune_to_static(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.self.active.types = ['ground']
+        self.state.opponent.active.ability = 'static'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.PARALYZED)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.7,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_move_missing_does_not_trigger_static(self):
+        bot_move = "skyuppercut"  # contact move that can miss (90% accurate)
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.opponent.active.ability = 'static'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.27,  # 90% to hit plus 30% to trigger static
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 26),
+                    (constants.MUTATOR_APPLY_STATUS, constants.SELF, constants.PARALYZED),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.63,  # 90% hit plus 70% to NOT trigger static
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 26),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.09999999999999998,  # the move missed
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_non_contact_move_does_not_activate_static(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.self.active.types = ['normal']
+        self.state.opponent.active.ability = 'static'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22)
+                ],
+                False
+            ),
         ]
 
         self.assertEqual(expected_instructions, instructions)

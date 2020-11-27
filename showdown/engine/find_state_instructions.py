@@ -352,6 +352,12 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
                 temp_instructions += instruction_generator.get_states_from_damage(mutator, defender, dmg, move_accuracy, attacking_move, these_instructions)
         all_instructions = temp_instructions
 
+    if defending_pokemon.ability in constants.ABILITY_AFTER_MOVE:
+        temp_instructions = []
+        for instruction_set in all_instructions:
+            temp_instructions += instruction_generator.get_instructions_from_defenders_ability_after_move(mutator, attacking_move, defending_pokemon.ability, attacking_pokemon, attacker, instruction_set)
+        all_instructions = temp_instructions
+
     if side_condition is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
