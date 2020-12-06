@@ -4983,7 +4983,7 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    @mock.patch('showdown.engine.special_effects.moves.move_special_effect.pokedex')
+    @mock.patch('showdown.engine.special_effects.moves.modify_move.pokedex')
     def test_heavyslam_damage_for_10_times_the_weight(self, pokedex_mock):
         # 10x the weight should result in 120 base-power
         fake_pokedex = {
@@ -5016,7 +5016,7 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    @mock.patch('showdown.engine.special_effects.moves.move_special_effect.pokedex')
+    @mock.patch('showdown.engine.special_effects.moves.modify_move.pokedex')
     def test_heavyslam_damage_for_4_times_the_weight(self, pokedex_mock):
         # 4x the weight should result in 100 base-power
         fake_pokedex = {
@@ -5049,7 +5049,7 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    @mock.patch('showdown.engine.special_effects.moves.move_special_effect.pokedex')
+    @mock.patch('showdown.engine.special_effects.moves.modify_move.pokedex')
     def test_heavyslam_damage_for_the_same_weight(self, pokedex_mock):
         # equal weight should result in 40 base-power
         fake_pokedex = {
@@ -5082,7 +5082,7 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    @mock.patch('showdown.engine.special_effects.moves.move_special_effect.pokedex')
+    @mock.patch('showdown.engine.special_effects.moves.modify_move.pokedex')
     def test_heatcrash_damage_for_the_same_weight(self, pokedex_mock):
         # 10x equal weight should result in 120 base-power
         fake_pokedex = {
@@ -5115,7 +5115,7 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    @mock.patch('showdown.engine.special_effects.moves.move_special_effect.pokedex')
+    @mock.patch('showdown.engine.special_effects.moves.modify_move.pokedex')
     def test_heatcrash_into_flashfire(self, pokedex_mock):
         # the defender has flashfire so no damage should be done, even with 10x the weight
         fake_pokedex = {
@@ -10688,6 +10688,23 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 79),
                     (constants.MUTATOR_HEAL, constants.OPPONENT, 74),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_junglehealing_cures_status(self):
+        bot_move = "splash"
+        opponent_move = "junglehealing"
+        self.state.opponent.active.status = constants.BURN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_REMOVE_STATUS, constants.OPPONENT, constants.BURN),
                 ],
                 False
             ),

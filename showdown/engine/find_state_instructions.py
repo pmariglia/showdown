@@ -11,7 +11,7 @@ from .special_effects.abilities.modify_attack_against import ability_modify_atta
 from .special_effects.abilities.modify_attack_being_used import ability_modify_attack_being_used
 from .special_effects.items.modify_attack_against import item_modify_attack_against
 from .special_effects.items.modify_attack_being_used import item_modify_attack_being_used
-from .special_effects.moves.move_special_effect import modify_attack_being_used
+from .special_effects.moves.modify_move import modify_attack_being_used
 from .special_effects.abilities.before_move import ability_before_move
 from .switch_out_moves import switch_out_move_triggered
 from .switch_out_moves import get_best_switch_pokemon
@@ -336,11 +336,10 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     all_instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, attacking_move, defending_move, instructions)
 
-    if attacking_move[constants.ID] in instruction_generator.SPECIAL_LOGIC_MOVES:
-        temp_instructions = []
-        for instruction_set in all_instructions:
-            temp_instructions += instruction_generator.get_instructions_from_special_logic_move(mutator, attacking_pokemon, defending_pokemon, attacking_move[constants.ID], instruction_set)
-        return temp_instructions
+    temp_instructions = []
+    for instruction_set in all_instructions:
+        temp_instructions += instruction_generator.get_instructions_from_move_special_effect(mutator, attacker, attacking_pokemon, defending_pokemon, attacking_move[constants.ID], instruction_set)
+    all_instructions = temp_instructions
 
     if damage_amounts is not None:
         temp_instructions = []

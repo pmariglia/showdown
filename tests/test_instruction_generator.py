@@ -1381,7 +1381,7 @@ class TestGetInstructionsFromSpecialLogicMoves(unittest.TestCase):
 
         move_name = constants.RAIN
         mutator = StateMutator(self.state)
-        instructions = instruction_generator.get_instructions_from_special_logic_move(mutator, mutator.state.self.active, mutator.state.opponent.active, move_name, self.previous_instruction)
+        instructions = instruction_generator.get_instructions_from_move_special_effect(mutator, constants.SELF, mutator.state.self.active, mutator.state.opponent.active, move_name, self.previous_instruction)
 
         expected_instructions = [
             TransposeInstruction(

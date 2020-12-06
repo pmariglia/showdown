@@ -8,6 +8,7 @@ from .special_effects.abilities.on_switch_in import ability_on_switch_in
 from .special_effects.items.end_of_turn import item_end_of_turn
 from .special_effects.abilities.end_of_turn import ability_end_of_turn
 from .special_effects.moves.after_move import after_move
+from .special_effects.moves import move_special_effect
 
 logger = logging.getLogger(__name__)
 
@@ -34,29 +35,6 @@ opposing_side_strings = [
 ]
 
 
-weather_instructions = {
-    constants.SUN,
-    constants.RAIN,
-    constants.SAND,
-    constants.HAIL,
-}
-
-SWITCH_ITEM_MOVES = {
-    'trick',
-    'switcheroo'
-}
-
-SPECIAL_LOGIC_MOVES = {
-    constants.SUN,
-    constants.RAIN,
-    constants.SAND,
-    constants.HAIL,
-    constants.TRICK_ROOM,
-    'trick',
-    'switcheroo'
-}
-
-
 accuracy_multiplier_lookup = {
     -6: 3/9,
     -5: 3/8,
@@ -74,34 +52,19 @@ accuracy_multiplier_lookup = {
 }
 
 
-def get_instructions_from_special_logic_move(mutator, attacking_pokemon, defending_pokemon, move_name, instructions):
+def get_instructions_from_move_special_effect(mutator, attacking_side, attacking_pokemon, defending_pokemon, move_name, instructions):
     if instructions.frozen:
         return [instructions]
 
-    new_instructions = list()
-    mutator.apply(instructions.instructions)
-    if move_name in weather_instructions and mutator.state.weather != move_name and mutator.state.weather not in constants.IRREVERSIBLE_WEATHER:
-        new_instructions.append(
-            (constants.MUTATOR_WEATHER_START, move_name, mutator.state.weather)
-        )
-    elif move_name == constants.TRICK_ROOM:
-        new_instructions.append(
-            (constants.MUTATOR_TOGGLE_TRICKROOM,)
-        )
-
-    elif (
-        move_name in SWITCH_ITEM_MOVES and
-        (defending_pokemon.item_can_be_removed() or defending_pokemon.item is None) and
-        not (defending_pokemon.item is None and attacking_pokemon.item is None)
-    ):
-        new_instructions.append(
-            (constants.MUTATOR_CHANGE_ITEM, constants.SELF, mutator.state.opponent.active.item, mutator.state.self.active.item)
-        )
-        new_instructions.append(
-            (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, mutator.state.self.active.item, mutator.state.opponent.active.item)
-        )
-
-    mutator.reverse(instructions.instructions)
+    try:
+        special_logic_move_function = getattr(move_special_effect, move_name)
+    except AttributeError:
+        new_instructions = list()
+    else:
+        mutator.apply(instructions.instructions)
+        new_instructions = special_logic_move_function(mutator, attacking_side, attacking_pokemon, defending_pokemon)
+        new_instructions = new_instructions or list()
+        mutator.reverse(instructions.instructions)
 
     for i in new_instructions:
         instructions.add_instruction(i)
