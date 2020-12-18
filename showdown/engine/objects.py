@@ -276,7 +276,10 @@ class Pokemon(object):
             'substitute' in self.volatile_status or
             self.id in constants.POKEMON_CANNOT_HAVE_ITEMS_REMOVED or
             self.id.endswith('mega') and self.id != 'yanmega' or  # yeah this is hacky but who are you to judge?
-            any(self.id.startswith(i) and self.id != i for i in constants.UNKOWN_POKEMON_FORMES) or
+            self.id.startswith("genesect") and self.item.endswith("drive") or
+            self.id.startswith("arceus") and self.item.endswith("plate") or
+            self.id.startswith("silvally") and self.item.endswith("memory") or
+            # any(self.id.startswith(i) and self.id != i for i in constants.UNKOWN_POKEMON_FORMES) or
             self.item.endswith('iumz')
         ):
             return False

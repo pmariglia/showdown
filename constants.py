@@ -23,7 +23,7 @@ SETS = "sets"
 
 UNKNOWN_ITEM = "unknown_item"
 
-UNKOWN_POKEMON_FORMES = ['silvally', 'arceus', 'genesect']
+UNKOWN_POKEMON_FORMES = ['silvally', 'arceus', 'genesect', 'urshifu']
 
 SMOGON_HAS_STATS_PAGE_SUFFIXES = ["ubers", "ou", "uu", "ru", "nu", "pu", "lc", "oublitz", "nationaldexbeta", "nationaldex", "monotype"]
 
@@ -228,6 +228,8 @@ POKEMON_CANNOT_HAVE_ITEMS_REMOVED = {
     'kyogreprimal',
     'groudonprimal',
     'giratinaorigin',
+    'zaciancrowned',
+    'zamazentacrowned'
 }
 
 # Hazards
