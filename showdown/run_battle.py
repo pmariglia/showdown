@@ -17,8 +17,8 @@ from showdown.websocket_client import PSWebsocketClient
 logger = logging.getLogger(__name__)
 
 
-def battle_is_finished(msg):
-    return constants.WIN_STRING in msg and constants.CHAT_STRING not in msg
+def battle_is_finished(battle_tag, msg):
+    return msg.startswith(">{}".format(battle_tag)) and constants.WIN_STRING in msg and constants.CHAT_STRING not in msg
 
 
 async def async_pick_move(battle):
@@ -157,7 +157,7 @@ async def pokemon_battle(ps_websocket_client, pokemon_battle_type):
     while True:
 
         msg = await ps_websocket_client.receive_message()
-        if battle_is_finished(msg):
+        if battle_is_finished(battle.battle_tag, msg):
             winner = msg.split(constants.WIN_STRING)[-1].split('\n')[0].strip()
             logger.debug("Winner: {}".format(winner))
             await ps_websocket_client.send_message(battle.battle_tag, [config.battle_ending_message])

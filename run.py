@@ -39,6 +39,7 @@ def parse_configs():
     config.team_name = env("TEAM_NAME", None)
     config.pokemon_mode = env("POKEMON_MODE", constants.DEFAULT_MODE)
     config.run_count = int(env("RUN_COUNT", 1))
+    config.room_name = env("ROOM_NAME", config.room_name)
 
     if config.bot_mode == constants.CHALLENGE_USER:
         config.user_to_challenge = env("USER_TO_CHALLENGE")
@@ -84,7 +85,7 @@ async def showdown():
         if config.bot_mode == constants.CHALLENGE_USER:
             await ps_websocket_client.challenge_user(config.user_to_challenge, config.pokemon_mode, team)
         elif config.bot_mode == constants.ACCEPT_CHALLENGE:
-            await ps_websocket_client.accept_challenge(config.pokemon_mode, team)
+            await ps_websocket_client.accept_challenge(config.pokemon_mode, team, config.room_name)
         elif config.bot_mode == constants.SEARCH_LADDER:
             await ps_websocket_client.search_for_match(config.pokemon_mode, team)
         else:

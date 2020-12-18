@@ -27,6 +27,7 @@ USER_TO_CHALLENGE: (string, required if BOT_MODE is "CHALLENGE_USER") The user t
 POKEMON_MODE: (string, required) The type of game this bot will play games in
 TEAM_NAME: (string, required if POKEMON_MODE is one where a team is required) The name of the file that contains the team you want to use. More on this below in the Specifying Teams section.
 RUN_COUNT: (integer, required) The amount of games this bot will play before quitting
+ROOM_NAME: (string, optional) Optionally join a room by this name is BOT_MODE is "ACCEPT_CHALLENGE"
 ```
 
 Here is a minimal `.env` file. This configuration will log in and search for a gen8randombattle:
