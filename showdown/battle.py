@@ -18,7 +18,6 @@ from data.parse_smogon_stats import SPREADS_STRING
 from data.parse_smogon_stats import ABILITY_STRING
 from data.parse_smogon_stats import ITEM_STRING
 from data.helpers import get_pokemon_sets
-from data.helpers import get_standard_battle_sets
 from data.helpers import get_mega_pkmn_name
 from data.helpers import PASS_ITEMS
 from data.helpers import PASS_ABILITIES
@@ -69,7 +68,7 @@ class Battle(ABC):
 
         self.request_json = None
 
-    def initialize_team_preview(self, user_json, opponent_pokemon, battle_mode):
+    def initialize_team_preview(self, user_json, opponent_pokemon):
         self.user.from_json(user_json, first_turn=True)
         self.user.reserve.insert(0, self.user.active)
         self.user.active = None
@@ -78,20 +77,15 @@ class Battle(ABC):
             pokemon = Pokemon.from_switch_string(pkmn_string)
             self.opponent.reserve.append(pokemon)
 
-        smogon_usage_data = get_standard_battle_sets(battle_mode)
-        data.pokemon_sets = smogon_usage_data
-
         self.started = True
         self.rqid = user_json[constants.RQID]
 
-    def start_random_battle(self, user_json, opponent_switch_string):
+    def start_non_team_preview_battle(self, user_json, opponent_switch_string):
         self.user.from_json(user_json, first_turn=True)
 
         pkmn_information = opponent_switch_string.split('|')[3]
         pkmn = Pokemon.from_switch_string(pkmn_information)
         self.opponent.active = pkmn
-
-        data.pokemon_sets = data.random_battle_sets
 
         self.started = True
         self.rqid = user_json[constants.RQID]

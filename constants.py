@@ -7,6 +7,13 @@ DEFAULT_MODE = "gen7randombattle"
 STANDARD_BATTLE = "standard_battle"
 RANDOM_BATTLE = "random_battle"
 
+NO_TEAM_PREVIEW_GENS = {
+    "gen1",
+    "gen2",
+    "gen3",
+    "gen4"
+}
+
 PICK_SAFEST = "safest"
 PICK_NASH_EQUILIBRIUM = "nash"
 

@@ -16,4 +16,4 @@ with open(random_battle_set_location, 'r') as f:
     random_battle_sets = json.load(f)
 
 
-pokemon_sets = dict()
+pokemon_sets = random_battle_sets

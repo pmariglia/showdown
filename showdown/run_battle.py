@@ -5,6 +5,8 @@ import concurrent.futures
 from copy import deepcopy
 import logging
 
+import data
+from data.helpers import get_standard_battle_sets
 import constants
 import config
 from showdown.engine.evaluate import Scoring
@@ -89,19 +91,16 @@ async def initialize_battle_with_tag(ps_websocket_client: PSWebsocketClient, set
             return battle, opponent_id, user_json
 
 
-async def start_random_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
-    battle, opponent_id, user_json = await initialize_battle_with_tag(ps_websocket_client)
-    battle.battle_type = constants.RANDOM_BATTLE
-    battle.generation = pokemon_battle_type[:4]
-
+async def read_messages_until_first_pokemon_is_seen(ps_websocket_client, battle, opponent_id, user_json):
     # keep reading messages until the opponent's first pokemon is seen
+    # this is run when starting non team-preview battles
     while True:
         msg = await ps_websocket_client.receive_message()
         if constants.START_STRING in msg:
             split_msg = msg.split(constants.START_STRING)[-1].split('\n')
             for line in split_msg:
                 if opponent_id in line and constants.SWITCH_STRING in line:
-                    battle.start_random_battle(user_json, line)
+                    battle.start_non_team_preview_battle(user_json, line)
 
                 elif battle.started:
                     await async_update_battle(battle, line)
@@ -110,7 +109,17 @@ async def start_random_battle(ps_websocket_client: PSWebsocketClient, pokemon_ba
             best_move = await async_pick_move(battle)
             await ps_websocket_client.send_message(battle.battle_tag, best_move)
 
-            return battle
+            return
+
+
+async def start_random_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
+    battle, opponent_id, user_json = await initialize_battle_with_tag(ps_websocket_client)
+    battle.battle_type = constants.RANDOM_BATTLE
+    battle.generation = pokemon_battle_type[:4]
+
+    await read_messages_until_first_pokemon_is_seen(ps_websocket_client, battle, opponent_id, user_json)
+
+    return battle
 
 
 async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
@@ -118,23 +127,29 @@ async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_
     battle.battle_type = constants.STANDARD_BATTLE
     battle.generation = pokemon_battle_type[:4]
 
-    msg = ''
-    while constants.START_TEAM_PREVIEW not in msg:
-        msg = await ps_websocket_client.receive_message()
+    smogon_usage_data = get_standard_battle_sets(pokemon_battle_type)
+    data.pokemon_sets = smogon_usage_data
 
-    preview_string_lines = msg.split(constants.START_TEAM_PREVIEW)[-1].split('\n')
+    if battle.generation in constants.NO_TEAM_PREVIEW_GENS:
+        await read_messages_until_first_pokemon_is_seen(ps_websocket_client, battle, opponent_id, user_json)
+    else:
+        msg = ''
+        while constants.START_TEAM_PREVIEW not in msg:
+            msg = await ps_websocket_client.receive_message()
 
-    opponent_pokemon = []
-    for line in preview_string_lines:
-        if not line:
-            continue
+        preview_string_lines = msg.split(constants.START_TEAM_PREVIEW)[-1].split('\n')
 
-        split_line = line.split('|')
-        if split_line[1] == constants.TEAM_PREVIEW_POKE and split_line[2].strip() == opponent_id:
-            opponent_pokemon.append(split_line[3])
+        opponent_pokemon = []
+        for line in preview_string_lines:
+            if not line:
+                continue
 
-    battle.initialize_team_preview(user_json, opponent_pokemon, pokemon_battle_type)
-    await handle_team_preview(battle, ps_websocket_client)
+            split_line = line.split('|')
+            if split_line[1] == constants.TEAM_PREVIEW_POKE and split_line[2].strip() == opponent_id:
+                opponent_pokemon.append(split_line[3])
+
+        battle.initialize_team_preview(user_json, opponent_pokemon)
+        await handle_team_preview(battle, ps_websocket_client)
 
     return battle
 
@@ -155,7 +170,6 @@ async def start_battle(ps_websocket_client, pokemon_battle_type):
 async def pokemon_battle(ps_websocket_client, pokemon_battle_type):
     battle = await start_battle(ps_websocket_client, pokemon_battle_type)
     while True:
-
         msg = await ps_websocket_client.receive_message()
         if battle_is_finished(battle.battle_tag, msg):
             winner = msg.split(constants.WIN_STRING)[-1].split('\n')[0].strip()
