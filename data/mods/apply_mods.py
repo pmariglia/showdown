@@ -64,9 +64,40 @@ def apply_gen_6_mods():
 def apply_gen_7_mods():
     apply_move_mods(7)
     apply_pokedex_mods(7)
+    
+PRE_PHYSICAL_SPECIAL_SPLIT_CATEGORY_LOOKUP = {
+    "normal": constants.PHYSICAL,
+    "fighting": constants.PHYSICAL,
+    "flying": constants.PHYSICAL,
+    "poison": constants.PHYSICAL,
+    "ground": constants.PHYSICAL,
+    "rock": constants.PHYSICAL,
+    "bug": constants.PHYSICAL,
+    "ghost": constants.PHYSICAL,
+    "steel": constants.PHYSICAL,
+    "fire": constants.SPECIAL,
+    "water": constants.SPECIAL,
+    "grass": constants.SPECIAL,
+    "electric": constants.SPECIAL,
+    "psychic": constants.SPECIAL,
+    "ice": constants.SPECIAL,
+    "dragon": constants.SPECIAL,
+    "dark": constants.SPECIAL,
+}
+
+
+def physical_special_split():
+    for move_name, move_data in all_move_json.items():
+        if move_data[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
+            move_data[constants.CATEGORY] = PRE_PHYSICAL_SPECIAL_SPLIT_CATEGORY_LOOKUP[move_data[constants.TYPE]]
+
+def apply_gen_3_mods():
+    physical_special_split(3)
 
 
 def apply_mods(game_mode):
+    if "gen3" in game_mode:  # <-- ADD THESE LINES
+        apply_gen_3_mods()
     if "gen4" in game_mode:
         apply_gen_4_mods()
     elif "gen5" in game_mode:
