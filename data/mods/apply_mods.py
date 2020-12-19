@@ -13,6 +13,27 @@ CURRENT_GEN = 8
 PWD = os.path.dirname(os.path.abspath(__file__))
 
 
+PRE_PHYSICAL_SPECIAL_SPLIT_CATEGORY_LOOKUP = {
+    "normal": constants.PHYSICAL,
+    "fighting": constants.PHYSICAL,
+    "flying": constants.PHYSICAL,
+    "poison": constants.PHYSICAL,
+    "ground": constants.PHYSICAL,
+    "rock": constants.PHYSICAL,
+    "bug": constants.PHYSICAL,
+    "ghost": constants.PHYSICAL,
+    "steel": constants.PHYSICAL,
+    "fire": constants.SPECIAL,
+    "water": constants.SPECIAL,
+    "grass": constants.SPECIAL,
+    "electric": constants.SPECIAL,
+    "psychic": constants.SPECIAL,
+    "ice": constants.SPECIAL,
+    "dragon": constants.SPECIAL,
+    "dark": constants.SPECIAL,
+}
+
+
 def apply_move_mods(gen_number):
     logger.debug("Applying move mod for gen {}".format(gen_number))
     for gen_number in reversed(range(gen_number, CURRENT_GEN)):
@@ -35,6 +56,16 @@ def set_random_battle_sets(gen_number):
     logger.debug("Setting random battle sets for gen {}".format(gen_number))
     with open("{}/random_battle_sets_gen{}.json".format(PWD, gen_number), 'r') as f:
         data.random_battle_sets = json.load(f)
+
+
+def apply_gen_3_mods():
+    # no pokedex mods in gen3 (apparently)
+    constants.HIDDEN_POWER_TYPE_STRING_INDEX = -2
+    constants.HIDDEN_POWER_ACTIVE_MOVE_BASE_DAMAGE_STRING = "70"
+    constants.HIDDEN_POWER_RESERVE_MOVE_BASE_DAMAGE_STRING = "70"
+    constants.REQUEST_DICT_ABILITY = "baseAbility"
+    apply_move_mods(3)
+    undo_physical_special_split()
 
 
 def apply_gen_4_mods():
@@ -66,7 +97,18 @@ def apply_gen_7_mods():
     apply_pokedex_mods(7)
 
 
+def undo_physical_special_split():
+    for move_name, move_data in all_move_json.items():
+        if move_data[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
+            try:
+                move_data[constants.CATEGORY] = PRE_PHYSICAL_SPECIAL_SPLIT_CATEGORY_LOOKUP[move_data[constants.TYPE]]
+            except KeyError:
+                pass
+
+
 def apply_mods(game_mode):
+    if "gen3" in game_mode:
+        apply_gen_3_mods()
     if "gen4" in game_mode:
         apply_gen_4_mods()
     elif "gen5" in game_mode:
