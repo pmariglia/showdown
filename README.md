@@ -1,7 +1,7 @@
 # Showdown  ![umbreon](https://play.pokemonshowdown.com/sprites/xyani/umbreon.gif)
 Showdown is a Pokémon battle-bot that can play battles on [Pokemon Showdown](https://pokemonshowdown.com/).
 
-The bot can play single battles in generations 4 through 8 however some of the battle mechanics assume it is gen8.
+The bot can play single battles in generations 3 through 8 however some of the battle mechanics assume it is gen8.
 
 ![badge](https://action-badges.now.sh/pmariglia/showdown)
 
