@@ -3012,6 +3012,127 @@ class TestCheckChoiceItem(unittest.TestCase):
 
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
+    def test_sets_can_not_have_band_or_specs_to_true_when_damage_is_too_low(self):
+        # the damage done was far too little for the opponent to have a band
+
+        self.battle.user.active = Pokemon('Weedle', 100)
+        self.battle.user.active.set_spread('adamant', '0,252,4,0,0,252')
+
+        self.battle.opponent.active = Pokemon('Caterpie', 100)
+        self.battle.opponent.active.set_spread('adamant', '0,252,4,0,0,252')
+
+        msg = (
+           '|move|p1a: Weedle|Tackle|\n'
+           '|-damage|p2a: Caterpie|176/231\n'
+           '|move|p2a: Caterpie|Tackle|\n'
+           '|-damage|p1a: Weedle|159/221\n'
+           '|\n'
+           '|upkeep\n'
+           '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertTrue(self.battle.opponent.active.can_not_have_band)
+        self.assertFalse(self.battle.opponent.active.can_not_have_specs)  # should remain untouched
+
+    def test_does_not_set_can_not_have_band_or_specs_to_true_when_damage_kills(self):
+        # the damage done was far too little for the opponent to have a band
+        # however, the attack killed, so the flag should remain `False` since we do not know enough
+
+        self.battle.user.active = Pokemon('Weedle', 100)
+        self.battle.user.active.set_spread('adamant', '0,252,4,0,0,252')
+        self.battle.user.active.hp = 1
+
+        self.battle.opponent.active = Pokemon('Caterpie', 100)
+        self.battle.opponent.active.set_spread('adamant', '0,252,4,0,0,252')
+
+        msg = (
+           '|move|p1a: Weedle|Tackle|\n'
+           '|-damage|p2a: Caterpie|176/231\n'
+           '|move|p2a: Caterpie|Tackle|\n'
+           '|-damage|p1a: Weedle|0 fnt\n'
+           '|\n'
+           '|upkeep\n'
+           '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertFalse(self.battle.opponent.active.can_not_have_band)
+        self.assertFalse(self.battle.opponent.active.can_not_have_specs)  # should remain untouched
+
+    def test_sets_can_not_have_specs_when_attack_is_special(self):
+        # the damage done was far too little for the opponent to have a band
+
+        self.battle.user.active = Pokemon('Weedle', 100)
+        self.battle.user.active.set_spread('adamant', '0,252,4,0,0,252')
+
+        self.battle.opponent.active = Pokemon('Caterpie', 100)
+        self.battle.opponent.active.set_spread('adamant', '0,252,4,0,0,252')
+
+        msg = (
+           '|move|p1a: Weedle|Tackle|\n'
+           '|-damage|p2a: Caterpie|176/231\n'
+           '|move|p2a: Caterpie|Aura Sphere|\n'
+           '|-damage|p1a: Weedle|187/221\n'
+           '|\n'
+           '|upkeep\n'
+           '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertTrue(self.battle.opponent.active.can_not_have_specs)
+        self.assertFalse(self.battle.opponent.active.can_not_have_band)  # should remain untouched
+
+    def test_does_not_set_can_not_have_band_or_specs_to_true_when_pikachu_can_have_lightball(self):
+        self.battle.user.active = Pokemon('Metagross', 100)
+        self.battle.user.active.set_spread('adamant', '0,252,4,0,0,252')
+
+        self.battle.opponent.active = Pokemon('Pikachu', 100)
+        self.battle.opponent.active.set_spread('adamant', '0,252,4,0,0,252')
+
+        msg = (
+           '|move|p1a: Metagross|Bullet Punch|\n'
+           '|-damage|p2a: Pikachu|91/211\n'
+           '|move|p2a: Pikachu|Volt Tackle|\n'
+           '|-damage|p1a: Metagross|81/301\n'
+           '|\n'
+           '|upkeep\n'
+           '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertFalse(self.battle.opponent.active.can_not_have_band)
+
+    def test_does_not_infer_choice_item_when_pikachu_can_have_a_lightball(self):
+        # pikachu's lightball increases damage far more than a choice item
+        # the logic should not infer a choice item for this amount of damage
+        # since a non-choice item (lightball) is possible
+
+        self.battle.user.active = Pokemon('Metagross', 100)
+        self.battle.user.active.set_spread('adamant', '0,252,4,0,0,252')
+
+        # ability = guts is not set here, it should be guessed by the statistics
+        self.battle.opponent.active = Pokemon('Pikachu', 100)
+        self.battle.opponent.active.set_spread('adamant', '0,252,4,0,0,252')
+
+        msg = (
+           '|move|p1a: Metagross|Bullet Punch|\n'
+           '|-damage|p2a: Pikachu|91/211\n'
+           '|move|p2a: Pikachu|Volt Tackle|\n'
+           '|-damage|p1a: Metagross|81/301\n'
+           '|\n'
+           '|upkeep\n'
+           '|turn|4'
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
     def test_does_not_guess_choiceband_when_suckerpunch_is_used(self):
         # suckperpunch completed successfully because the bot used an attacking move
         # make sure a choice item is not guessed

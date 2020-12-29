@@ -216,6 +216,13 @@ def griseousorb(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def lightball(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_pokemon.id == 'pikachu':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 2
+    return attacking_move
+
+
 def item_modify_attack_being_used(item_name, attacking_move, attacking_pokemon, defending_pokemon):
     try:
         return globals()[item_name](attacking_move, attacking_pokemon, defending_pokemon)

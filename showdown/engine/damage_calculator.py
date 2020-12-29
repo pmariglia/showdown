@@ -66,7 +66,7 @@ def _calculate_damage(attacker, defender, move, conditions=None, calc_type='aver
     # This function assumes the `move` dictionary has already been updated to account for move/item/ability special-effects
     # You may want to use `calculate_damage`
 
-    acceptable_calc_types = ['average', 'max', 'min_max', 'min_max_average', 'all']
+    acceptable_calc_types = ['average', 'min', 'max', 'min_max', 'min_max_average', 'all']
     if calc_type not in acceptable_calc_types:
         raise ValueError("{} is not one of {}".format(calc_type, acceptable_calc_types))
 
@@ -178,6 +178,8 @@ def get_damage_rolls(damage, calc_type):
     if calc_type == 'average':
         damage *= 0.925
         return [int(damage)]
+    elif calc_type == 'min':
+        return [int(damage * 0.85)]
     elif calc_type == 'max':
         return [int(damage)]
     elif calc_type == 'min_max':

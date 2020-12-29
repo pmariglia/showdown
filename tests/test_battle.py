@@ -426,6 +426,64 @@ class TestGetPossibleItems(unittest.TestCase):
 
         self.assertEqual(expected_items, possible_items)
 
+    def test_can_not_have_choice_specs_flag_does_not_affect_choice_band_guess(self):
+        p = Pokemon('pikachu', 100)
+        p.item = constants.UNKNOWN_ITEM
+        p.can_not_have_specs = True
+        p.can_not_have_band = False
+
+        items = [
+            ('lightball', 50),
+            ('choiceband', 50),  # should NOT be ignored because flag is set to False
+                                 # choice_specs flag doesn't matter
+        ]
+
+        possible_items = p.get_possible_items(items)
+
+        expected_items = [
+            'lightball',
+            'choiceband'
+        ]
+
+        self.assertEqual(expected_items, possible_items)
+
+    def test_does_not_guess_choice_band_when_can_not_have_band_or_specs_is_true(self):
+        p = Pokemon('pikachu', 100)
+        p.item = constants.UNKNOWN_ITEM
+        p.can_not_have_band = True
+
+        items = [
+            ('lightball', 50),
+            ('choiceband', 50),  # should be ignored because flag is set to True
+        ]
+
+        possible_items = p.get_possible_items(items)
+
+        expected_items = [
+            'lightball',
+        ]
+
+        self.assertEqual(expected_items, possible_items)
+
+    def test_guesses_choiceband_when_can_not_have_band_is_false(self):
+        p = Pokemon('pikachu', 100)
+        p.item = constants.UNKNOWN_ITEM
+        p.can_not_have_band = False
+
+        items = [
+            ('lightball', 50),
+            ('choiceband', 50),  # should NOT be ignored because flag is set to False
+        ]
+
+        possible_items = p.get_possible_items(items)
+
+        expected_items = [
+            'lightball',
+            'choiceband'
+        ]
+
+        self.assertEqual(expected_items, possible_items)
+
     def test_does_not_guess_assultvest_when_can_have_assultvest_flag_is_false(self):
         p = Pokemon('pikachu', 100)
         p.item = constants.UNKNOWN_ITEM

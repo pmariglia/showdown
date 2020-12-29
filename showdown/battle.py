@@ -421,6 +421,8 @@ class Pokemon:
         self.is_mega = False
         self.can_have_assaultvest = True
         self.can_have_choice_item = True
+        self.can_not_have_band = False
+        self.can_not_have_specs = False
         self.can_have_life_orb = True
         self.can_have_heavydutyboots = True
 
@@ -525,6 +527,11 @@ class Pokemon:
         return remove_duplicate_spreads(possible_spreads)
 
     def get_possible_items(self, items):
+        # a bunch of flags could be set by the logic in the `battle_modifier` module
+        # these flags being set render some items not possible
+        # for example, if a pkmn uses 2 different moves without switching, then 'can_have_choice_item' will be False
+        # this will omit choice items when guessing an item
+
         if self.item == constants.UNKNOWN_ITEM:
             cumulative_percentage = 0
             possible_items = []
@@ -538,6 +545,10 @@ class Pokemon:
                 elif i[0] == 'assaultvest' and not self.can_have_assaultvest:
                     pass
                 elif i[0] == 'heavydutyboots' and not self.can_have_heavydutyboots:
+                    pass
+                elif i[0] == 'choiceband' and self.can_not_have_band:
+                    pass
+                elif i[0] == 'choicespecs' and self.can_not_have_specs:
                     pass
                 elif i[0] not in PASS_ITEMS:
                     possible_items.append(i[0])

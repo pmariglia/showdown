@@ -739,12 +739,15 @@ def check_choice_band_or_specs(battle, damage_dealt):
     if battle.battle_type == constants.RANDOM_BATTLE:
         spread = 'serious', '85,85,85,85,85,85'
 
-    max_damage = float('-inf')
+    min_damage_with_choice_item = float('inf')
+    max_damage_without_choice_item = float('-inf')
     potential_battles = battle.prepare_battles(guess_mega_evo_opponent=False, join_moves_together=True)
 
     battle_copy = deepcopy(battle)
     battle_copy.user.from_json(battle.request_json)
     for b in potential_battles:
+
+        # if the item is not the choice item - use it to find the max damage roll possible for all items
         if b.opponent.active.item != choice_item:
             b.opponent.active.set_spread(*spread)
             b.user.active.stats = battle_copy.user.active.stats
@@ -752,15 +755,43 @@ def check_choice_band_or_specs(battle, damage_dealt):
             state = b.create_state()
 
             damage = calculate_damage(state, constants.OPPONENT, damage_dealt.move, battle.user.last_used_move.move, calc_type='max')[0]
-            max_damage = max(max_damage, damage)
+            max_damage_without_choice_item = max(max_damage_without_choice_item, damage)
+
+        # also find the min damage roll possible for the choice-item
+        b.opponent.active.item = choice_item
+        b.opponent.active.set_spread(*spread)
+        b.user.active.stats = battle_copy.user.active.stats
+
+        state = b.create_state()
+
+        damage = calculate_damage(state, constants.OPPONENT, damage_dealt.move, battle.user.last_used_move.move, calc_type='min')[0]
+        min_damage_with_choice_item = min(min_damage_with_choice_item, damage)
 
     # dont infer if we did not find a damage amount
-    if max_damage == float('-inf'):
+    if max_damage_without_choice_item == float('-inf') or min_damage_with_choice_item == float('inf'):
         return
 
-    if (damage_dealt.percent_damage * battle.user.active.max_hp) > (max_damage * 1.2):  # multiply to avoid rounding errors
+    actual_damage_dealt = damage_dealt.percent_damage * battle.user.active.max_hp
+
+    # if the damage dealt is more than 1.2x the max-roll WITHOUT a choice item then the pkmn DOES have a choice-item
+    if actual_damage_dealt > (max_damage_without_choice_item * 1.2):  # multiply to avoid rounding errors
         logger.debug("{} has {}".format(battle.opponent.active.name, choice_item))
         battle.opponent.active.item = choice_item
+
+    # if the damage dealt is less than 0.8x the min-roll given a choice-item then the pkmn DOES NOT have a choice-item
+    if (
+        actual_damage_dealt < (min_damage_with_choice_item * 0.8) and  # multiply to avoid rounding errors
+        (battle.user.active.hp - actual_damage_dealt) > 1  # this is checking if the move KO-ed
+                                                           # if it did, we do not want to set this flag
+                                                           # Check for greater than 1 to avoid rounding errors
+    ):
+        logger.debug("{} did not do enough damage to have {}".format(battle.opponent.active.name, choice_item))
+        if choice_item == "choiceband":
+            battle.opponent.active.can_not_have_band = True
+        elif choice_item == "choicespecs":
+            battle.opponent.active.can_not_have_specs = True
+        else:
+            raise ValueError("{} is neither 'choiceband' or 'choicespecs'")
 
 
 def check_heavydutyboots(battle, msg_lines):
