@@ -56,6 +56,7 @@ Be sure to use a virtual environment to isolate your packages.
 Running with `python run.py` will start the bot with configurations specified by environment variables read from a file named `.env`
 
 ### Running with Docker
+This requires Docker 17.06 or higher.
 
 #### Clone the repository
 `git clone https://github.com/pmariglia/showdown.git`
