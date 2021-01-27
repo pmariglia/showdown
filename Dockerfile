@@ -1,4 +1,10 @@
-FROM pmariglia/gambit-ubuntu-docker
+FROM pmariglia/gambit-ubuntu-docker AS gambit-builder
+
+
+FROM ubuntu:18.04
+
+# default installation path for gambit
+COPY --from=gambit-builder /usr/local/bin/gambit-enummixed /usr/local/bin
 
 RUN apt-get update && apt-get install -y python3.6 python3-pip
 
