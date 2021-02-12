@@ -31,7 +31,7 @@ def get_smogon_stats_file_name(game_mode, month_delta=1):
         game_mode = game_mode[:-5]
 
     # always use the `-0` file - the higher ladder is for noobs
-    smogon_url = "https://www.smogon.com/stats/{}-{}/moveset/{}-0.txt"
+    smogon_url = "https://www.smogon.com/stats/{}-{}/chaos/{}-0.json"
 
     previous_month = datetime.now() - relativedelta.relativedelta(months=month_delta)
     year = previous_month.year
@@ -46,7 +46,7 @@ def get_pokemon_information(smogon_stats_url):
     """
     r = requests.get(smogon_stats_url)
     if r.status_code == 404:
-        r = requests.get(get_smogon_stats_file_name(ntpath.basename(smogon_stats_url.replace('-0.txt', '')), month_delta=2))
+        r = requests.get(get_smogon_stats_file_name(ntpath.basename(smogon_stats_url.replace('-0.json', '')), month_delta=2))
 
     split_string = str(r.content).split(NEW_PKMN_INDICATOR)
 
