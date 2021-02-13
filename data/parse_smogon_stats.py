@@ -58,8 +58,8 @@ def get_pokemon_information(smogon_stats_url):
             moves.append((k, infos[x]['Moves'][k]))
         for l in infos[x]['Abilities']:
             abilities.append((l, infos[x]['Abilities'][l]))
-        final_infos[x]['spreads'] = spreads
-        final_infos[x]['items'] = items
-        final_infos[x]['moves'] = moves
-        final_infos[x]['abilities'] = abilities
+        final_infos[x][SPREADS_STRING] = spreads
+        final_infos[x][ITEM_STRING] = items
+        final_infos[x][MOVES_STRING] = moves
+        final_infos[x][ABILITY_STRING] = abilities
     return final_infos
