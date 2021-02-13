@@ -48,7 +48,6 @@ def get_pokemon_information(smogon_stats_url):
     for x in infos.keys():
         final_infos[x] = {}
         for t in infos[x]['Spreads']:
-<<<<<<< HEAD
             if float("{:.16f}".format(float(infos[x]['Spreads'][t]))) != 0:
                 spreads.append((normalize_name(t.split(':')[0]), normalize_name(t.split(':')[1].replace('/', ',')), float("{:.16f}".format(float(infos[x]['Spreads'][t])))))
         for j in infos[x]['Items']:
@@ -69,18 +68,3 @@ def get_pokemon_information(smogon_stats_url):
         moves.clear()
         abilities.clear()
     return final_infos
-=======
-            spreads.append((t.split(':')[0], t.split(':')[1].replace('/', ','), float("{:.16f}".format(float(infos[x]['Spreads'][t])))))
-        for j in infos[x]['Items']:
-            items.append((j, infos[x]['Items'][j]))
-        for k in infos[x]['Moves']:
-            moves.append((k, infos[x]['Moves'][k]))
-        for l in infos[x]['Abilities']:
-            abilities.append((l, infos[x]['Abilities'][l]))
-        final_infos[x]['spreads'] = spreads
-        final_infos[x]['items'] = items
-        final_infos[x]['moves'] = moves
-        final_infos[x]['abilities'] = abilities
-    return final_infos
-
->>>>>>> 21002806d8bb5c90d71f0aaf4679186a2fa9ef6d
