@@ -30,6 +30,12 @@
       "description": "The amount of games this bot will play before quitting",
       "value": "1",
       "required": true
+    },
+    "BATTLE_BOT": {
+      "description": "Battle bot to use, Options are safest, nash_equilibrium, most_damage",
+      "value": "safest",
+      "required": true
     }
+      
   }
 }
