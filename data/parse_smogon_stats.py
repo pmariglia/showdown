@@ -46,7 +46,7 @@ def get_pokemon_information(smogon_stats_url):
     infos = r.json()['data']
     final_infos = {}
     for x in infos.keys():
-        final_infos[x] = {}
+        final_infos[normalize_name(x)] = {}
         for t in infos[x]['Spreads']:
             if float("{:.16f}".format(float(infos[x]['Spreads'][t]))) != 0:
                 spreads.append((normalize_name(t.split(':')[0]), normalize_name(t.split(':')[1].replace('/', ',')), float("{:.16f}".format(float(infos[x]['Spreads'][t])))))
@@ -59,10 +59,10 @@ def get_pokemon_information(smogon_stats_url):
         for l in infos[x]['Abilities']:
             if infos[x]['Abilities'][l] != 0:
                 abilities.append((l, infos[x]['Abilities'][l]))
-        final_infos[x][SPREADS_STRING] = spreads
-        final_infos[x][ITEM_STRING] = items
-        final_infos[x][MOVES_STRING] = moves
-        final_infos[x][ABILITY_STRING] = abilities
+        final_infos[normalize_name(x)][SPREADS_STRING] = spreads
+        final_infos[normalize_name(x)][ITEM_STRING] = items
+        final_infos[normalize_name(x)][MOVES_STRING] = moves
+        final_infos[normalize_name(x)][ABILITY_STRING] = abilities
         spreads.clear()
         items.clear()
         moves.clear()
