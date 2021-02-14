@@ -38,14 +38,14 @@ def get_smogon_stats_file_name(game_mode, month_delta=1):
 
 
 def get_pokemon_information(smogon_stats_url):
-    spreads = []
-    items = []
-    moves = []
-    abilities = []
     r = requests.get(smogon_stats_url)
     infos = r.json()['data']
     final_infos = {}
     for x in infos.keys():
+        spreads = []
+        items = []
+        moves = []
+        abilities = []
         final_infos[normalize_name(x)] = {}
         for t in infos[x]['Spreads']:
             if float("{:.16f}".format(float(infos[x]['Spreads'][t]))) != 0:
@@ -63,8 +63,4 @@ def get_pokemon_information(smogon_stats_url):
         final_infos[normalize_name(x)][ITEM_STRING] = items
         final_infos[normalize_name(x)][MOVES_STRING] = moves
         final_infos[normalize_name(x)][ABILITY_STRING] = abilities
-        spreads.clear()
-        items.clear()
-        moves.clear()
-        abilities.clear()
     return final_infos
