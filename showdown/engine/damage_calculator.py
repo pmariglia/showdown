@@ -250,8 +250,6 @@ def weather_modifier(attacking_move, weather):
 def stab_modifier(attacking_pokemon, attacking_move):
     if attacking_move[constants.TYPE] in [t for t in attacking_pokemon.types] and attacking_pokemon.ability != 'adaptability':
         return 1.5
-    elif attacking_move[constants.TYPE] in [t for t in attacking_pokemon.types] and attacking_pokemon.ability == 'adaptability':
-        return 2
     return 1
 
 
