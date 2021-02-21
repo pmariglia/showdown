@@ -41,6 +41,7 @@ RUN_COUNT=1
 ```
 
 ### Running without Docker
+This requires Docker 17.06 or higher.
 
 #### Clone
 

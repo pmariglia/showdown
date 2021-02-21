@@ -1,6 +1,8 @@
-FROM pmariglia/gambit-ubuntu-docker
+FROM pmariglia/gambit-docker as debian-with-gambit
 
-RUN apt-get update && apt-get install -y python3.6 python3-pip
+FROM python:3.6-slim
+
+COPY --from=debian-with-gambit /usr/local/bin/gambit-enummixed /usr/local/bin
 
 WORKDIR /showdown
 
