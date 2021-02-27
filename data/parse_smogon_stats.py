@@ -51,16 +51,16 @@ def get_pokemon_information(smogon_stats_url):
         final_infos[normalize_name(x)] = {}
         for t in infos[x]['Spreads']:
             if float("{:.16f}".format(float(infos[x]['Spreads'][t]))) != 0:
-                spreads.append((normalize_name(t.split(':')[0]), normalize_name(t.split(':')[1].replace('/', ',')), float("{:.16f}".format(float(infos[x]['Spreads'][t])))))
+                spreads.append((normalize_name(t.split(':')[0]), normalize_name(t.split(':')[1].replace('/', ',')), float("{:.16f}".format(float(100*(infos[x]['Spreads'][t]/infos[x]['Raw count']))))))
         for j in infos[x]['Items']:
             if infos[x]['Items'][j] != 0:
-                items.append((j, infos[x]['Items'][j]))
+                items.append((j, 100*(infos[x]['Items'][j]/infos[x]['Raw count'])))
         for k in infos[x]['Moves']:
             if infos[x]['Moves'][k] != 0:
-                moves.append((k, infos[x]['Moves'][k]))
+                moves.append((k, 100*(infos[x]['Moves'][k]/infos[x]['Raw count'])))
         for l in infos[x]['Abilities']:
             if infos[x]['Abilities'][l] != 0:
-                abilities.append((l, infos[x]['Abilities'][l]))
+                abilities.append((l, 100*(infos[x]['Abilities'][l]/infos[x]['Raw count'])))
         final_infos[normalize_name(x)][SPREADS_STRING] = spreads
         final_infos[normalize_name(x)][ITEM_STRING] = items
         final_infos[normalize_name(x)][MOVES_STRING] = moves
