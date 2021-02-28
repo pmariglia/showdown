@@ -65,6 +65,7 @@ class Battle(ABC):
 
         self.battle_type = None
         self.generation = None
+        self.time_remaining = None
 
         self.request_json = None
 

@@ -36,6 +36,7 @@ from showdown.battle_modifier import singleturn
 from showdown.battle_modifier import transform
 from showdown.battle_modifier import update_battle
 from showdown.battle_modifier import upkeep
+from showdown.battle_modifier import inactive
 
 
 # so we can instantiate a Battle object for testing
@@ -2481,6 +2482,104 @@ class TestCheckHeavyDutyBoots(unittest.TestCase):
         update_battle(self.battle, "\n".join(messages))
 
         self.assertEqual('heavydutyboots', self.battle.opponent.active.item)
+
+
+class TestInactive(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+        self.battle.opponent.active.ability = None
+
+        self.user_active = Pokemon('weedle', 100)
+        self.battle.user.active = self.user_active
+
+        self.username = "CoolUsername"
+
+        self.battle.username = self.username
+
+    def test_sets_time_to_15_seconds(self):
+        split_msg = ['', 'inactive', 'Time left: 135 sec this turn', '135 sec total']
+        inactive(self.battle, split_msg)
+
+        self.assertEqual(135, self.battle.time_remaining)
+
+    def test_sets_to_60_seconds(self):
+        split_msg = ['', 'inactive', 'Time left: 60 sec this turn', '60 sec total']
+        inactive(self.battle, split_msg)
+
+        self.assertEqual(60, self.battle.time_remaining)
+
+    def test_capture_group_failing(self):
+        self.battle.time_remaining = 1
+        split_msg = ['', 'inactive', 'some random message']
+        inactive(self.battle, split_msg)
+
+        self.assertEqual(1, self.battle.time_remaining)
+
+    def test_capture_group_failing_but_message_starts_with_username(self):
+        self.battle.time_remaining = 1
+        split_msg = ['', 'inactive', 'Time left: some random message']
+        inactive(self.battle, split_msg)
+
+        self.assertEqual(1, self.battle.time_remaining)
+
+    def test_different_inactive_message_does_not_change_time(self):
+        self.battle.time_remaining = 1
+        split_msg = ['', 'inactive', 'Some Other Person has 10 seconds left']
+        inactive(self.battle, split_msg)
+
+        self.assertEqual(1, self.battle.time_remaining)
+
+
+class TestInactiveOff(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+        self.battle.opponent.active.ability = None
+
+        self.user_active = Pokemon('caterpie', 100)
+        self.battle.user.active = self.user_active
+        self.battle.user.active.previous_hp = self.battle.user.active.hp
+
+        self.username = "CoolUsername"
+
+        self.battle.username = self.username
+
+        self.battle.user.last_used_move = LastUsedMove('caterpie', 'tackle', 0)
+
+        self.battle.request_json = {
+            constants.ACTIVE: [{constants.MOVES: []}],
+            constants.SIDE: {
+                constants.ID: None,
+                constants.NAME: None,
+                constants.POKEMON: [
+
+                ],
+                constants.RQID: None
+            }
+        }
+
+    def test_turns_timer_off(self):
+        self.battle.time_remaining = 60
+        msg = (
+            '|move|p2a: Caterpie|Tackle|\n'
+            '|-damage|p1a: Caterpie|186/252\n'
+            '|move|p1a: Caterpie|Tackle|\n'
+            '|-damage|p2a: Caterpie|85/100\n'
+            '|upkeep\n'
+            "|inactiveoff|Battle timer is now OFF.\n"  # this line is being tested
+            '|turn|4'
+        )
+        update_battle(self.battle, msg)
+        self.assertIsNone(self.battle.time_remaining)
 
 
 class TestGetDamageDealt(unittest.TestCase):

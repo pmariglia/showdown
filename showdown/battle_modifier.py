@@ -1,3 +1,4 @@
+import re
 import json
 from copy import deepcopy
 import logging
@@ -52,6 +53,24 @@ def request(battle, split_msg):
 
         if not battle.wait:
             battle.request_json = battle_json
+
+
+def inactive(battle, split_msg):
+    regex_string = "(\d+) sec this turn"
+    if split_msg[2].startswith(constants.TIME_LEFT):
+        capture = re.search(regex_string, split_msg[2])
+        try:
+            time_left = int(capture.group(1))
+            battle.time_remaining = time_left
+            logger.debug("Time left: {}".format(time_left))
+        except ValueError:
+            logger.warning("{} is not a valid int".format(capture.group(1)))
+        except AttributeError:
+            logger.warning("'{}' does not match the regex '{}'".format(split_msg[2], regex_string))
+
+
+def inactiveoff(battle, _):
+    battle.time_remaining = None
 
 
 def switch_or_drag(battle, split_msg):
@@ -952,6 +971,8 @@ def update_battle(battle, msg):
             '-clearallboost': clearallboost,
             '-singleturn': singleturn,
             'upkeep': upkeep,
+            'inactive': inactive,
+            'inactiveoff': inactiveoff,
             'turn': turn
         }
 
