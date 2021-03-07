@@ -127,9 +127,6 @@ async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_
     battle.battle_type = constants.STANDARD_BATTLE
     battle.generation = pokemon_battle_type[:4]
 
-    smogon_usage_data = get_standard_battle_sets(pokemon_battle_type)
-    data.pokemon_sets = smogon_usage_data
-
     if battle.generation in constants.NO_TEAM_PREVIEW_GENS:
         await read_messages_until_first_pokemon_is_seen(ps_websocket_client, battle, opponent_id, user_json)
     else:
@@ -149,6 +146,13 @@ async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_
                 opponent_pokemon.append(split_line[3])
 
         battle.initialize_team_preview(user_json, opponent_pokemon)
+
+        smogon_usage_data = get_standard_battle_sets(
+            pokemon_battle_type,
+            pokemon_names=[p.name for p in battle.opponent.reserve]
+        )
+        data.pokemon_sets = smogon_usage_data
+
         await handle_team_preview(battle, ps_websocket_client)
 
     return battle

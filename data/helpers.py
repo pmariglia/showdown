@@ -163,21 +163,21 @@ def get_most_likely_spread(pkmn_name):
     return sets[SPREADS_STRING][0]
 
 
-def get_standard_battle_sets(battle_mode):
+def get_standard_battle_sets(battle_mode, pokemon_names=None):
     if any(battle_mode.endswith(s) for s in constants.SMOGON_HAS_STATS_PAGE_SUFFIXES):
         smogon_stats_file_name = get_smogon_stats_file_name(battle_mode)
         logger.debug("Making HTTP request to {} for usage stats".format(smogon_stats_file_name))
-        smogon_usage_data = get_pokemon_information(smogon_stats_file_name)
+        smogon_usage_data = get_pokemon_information(smogon_stats_file_name, pkmn_names=pokemon_names)
     else:
         # use ALL data for a mode like battle-factory
         logger.debug("Making HTTP request for ALL usage stats\nplease wait...")
-        ubers_data = get_pokemon_information(get_smogon_stats_file_name("gen8ubers"))
-        ou_data = get_pokemon_information(get_smogon_stats_file_name("gen8ou"))
-        uu_data = get_pokemon_information(get_smogon_stats_file_name("gen8uu"))
-        ru_data = get_pokemon_information(get_smogon_stats_file_name("gen8ru"))
-        nu_data = get_pokemon_information(get_smogon_stats_file_name("gen8nu"))
-        pu_data = get_pokemon_information(get_smogon_stats_file_name("gen8pu"))
-        lc_data = get_pokemon_information(get_smogon_stats_file_name("gen8lc"))
+        ubers_data = get_pokemon_information(get_smogon_stats_file_name("gen8ubers"), pkmn_names=pokemon_names)
+        ou_data = get_pokemon_information(get_smogon_stats_file_name("gen8ou"), pkmn_names=pokemon_names)
+        uu_data = get_pokemon_information(get_smogon_stats_file_name("gen8uu"), pkmn_names=pokemon_names)
+        ru_data = get_pokemon_information(get_smogon_stats_file_name("gen8ru"), pkmn_names=pokemon_names)
+        nu_data = get_pokemon_information(get_smogon_stats_file_name("gen8nu"), pkmn_names=pokemon_names)
+        pu_data = get_pokemon_information(get_smogon_stats_file_name("gen8pu"), pkmn_names=pokemon_names)
+        lc_data = get_pokemon_information(get_smogon_stats_file_name("gen8lc"), pkmn_names=pokemon_names)
 
         smogon_usage_data = lc_data
         for pkmn_data in [pu_data, nu_data, ru_data, uu_data, ou_data, ubers_data]:
