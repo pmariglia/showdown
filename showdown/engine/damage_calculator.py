@@ -236,15 +236,21 @@ def weather_modifier(attacking_move, weather):
         return 1.5
     elif weather == constants.RAIN and attacking_move[constants.TYPE] == 'fire':
         return 0.5
+    elif weather == constants.HEAVY_RAIN and attacking_move[constants.TYPE] == 'fire':
+        return 0
+    elif weather == constants.HEAVY_RAIN and attacking_move[constants.TYPE] == 'water':
+        return 1.5
     elif weather == constants.DESOLATE_LAND and attacking_move[constants.TYPE] == 'water':
         return 0
+    elif weather == constants.DESOLATE_LAND and attacking_move[constants.TYPE] == 'fire':
+        return 1.5
     return 1
 
 
 def stab_modifier(attacking_pokemon, attacking_move):
     if attacking_move[constants.TYPE] in [t for t in attacking_pokemon.types]:
         return 1.5
-
+    
     return 1
 
 
