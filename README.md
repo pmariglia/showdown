@@ -41,7 +41,6 @@ RUN_COUNT=1
 ```
 
 ### Running without Docker
-This requires Docker 17.06 or higher.
 
 #### Clone
 
@@ -57,6 +56,7 @@ Be sure to use a virtual environment to isolate your packages.
 Running with `python run.py` will start the bot with configurations specified by environment variables read from a file named `.env`
 
 ### Running with Docker
+This requires Docker 17.06 or higher.
 
 #### Clone the repository
 `git clone https://github.com/pmariglia/showdown.git`
@@ -79,11 +79,12 @@ After deploying, go to the Resources tab and turn on the worker.
 use `BATTLE_BOT=safest` (default unless otherwise specified)
 
 The bot searches through the game-tree for two turns and selects the move that minimizes the possible loss for a turn.
-This is equivalent to the [Maximin](https://en.wikipedia.org/wiki/Minimax#Maximin) strategy
 
 For decisions with random outcomes a weighted average is taken for all possible end states.
 For example: If using draco meteor versus some arbitrary other move results in a score of 1000 if it hits (90%) and a score of 900 if it misses (10%), the overall score for using
 draco meteor is (0.9 * 1000) + (0.1 * 900) = 990.
+
+This is equivalent to the [Expectiminimax](https://en.wikipedia.org/wiki/Expectiminimax) strategy.
 
 This decision type is deterministic - the bot will always make the same move given the same situation again.
 
