@@ -1,27 +1,28 @@
-Panda Bear (Urshifu) @ Assault Vest
-Ability: Unseen Fist
-EVs: 252 HP / 20 Atk / 220 Def / 16 SpD
-Impish Nature
-- Close Combat
-- Sucker Punch
-- Wicked Blow
-- Counter
-
-All Seing Eye (Magnezone) @ Choice Specs
-Ability: Sturdy
-EVs: 216 Def / 40 SpA / 252 Spe
-Modest Nature
+Heatran @ Air Balloon
+Ability: Flash Fire
+EVs: 28 HP / 252 SpA / 4 SpD / 224 Spe
+Timid Nature
 IVs: 0 Atk
-- Thunderbolt
+- Overheat
+- Earth Power
 - Flash Cannon
-- Body Press
-- Mirror Coat
+- Taunt
 
-Shiny Horse (Glastrier) @ Weakness Policy
-Ability: Chilling Neigh
-EVs: 116 HP / 252 Atk / 120 Def / 20 SpD
-Adamant Nature
+Primarina @ Custap Berry
+Ability: Torrent
+EVs: 116 HP / 228 Def / 164 Spe
+Bold Nature
+IVs: 0 Atk
+- Hydro Cannon
+- Moonblast
+- Calm Mind
+- Endure
+
+Rillaboom @ Occa Berry
+Ability: Grassy Surge
+EVs: 128 HP / 28 Atk / 252 SpD / 100 Spe
+Careful Nature
+- Fake Out
+- Wood Hammer
+- Grassy Glide
 - Swords Dance
-- Close Combat
-- High Horsepower
-- Icicle Spear
