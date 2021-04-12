@@ -1,55 +1,58 @@
-Froslass (F) @ Focus Sash  
-Ability: Cursed Body  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Icy Wind  
-- Taunt  
-- Spikes  
-- Destiny Bond  
-
-Grimmsnarl (M) @ Light Clay  
-Ability: Prankster  
-EVs: 252 HP / 92 Def / 164 SpD  
-Careful Nature  
-- Reflect  
-- Light Screen  
-- Taunt  
-- Play Rough  
-
-Xerneas @ Power Herb  
-Ability: Fairy Aura  
-EVs: 168 Def / 252 SpA / 88 Spe  
-Modest Nature  
-IVs: 0 Atk  
-- Moonblast  
-- Psyshock  
-- Geomancy  
-- Ingrain  
-
-Zekrom @ Air Balloon  
-Ability: Teravolt  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Bolt Strike  
-- Dragon Claw  
-- Dragon Dance  
-- Substitute  
-
-Groudon @ Lum Berry  
-Ability: Drought  
-EVs: 88 HP / 252 Atk / 168 Spe  
-Adamant Nature  
-- Precipice Blades  
-- Stone Edge  
-- Rock Polish  
-- Swords Dance  
-
-Necrozma-Dusk-Mane @ Weakness Policy  
+Necrozma-Dusk-Mane @ Leftovers  
 Ability: Prism Armor  
-EVs: 12 HP / 252 Atk / 244 Spe  
-Adamant Nature  
-- Sunsteel Strike  
+Shiny: Yes  
+EVs: 252 HP / 4 Atk / 252 Def  
+Impish Nature  
+- Stealth Rock  
+- Morning Sun  
 - Earthquake  
-- Dragon Dance  
-- Stone Edge  
+- Sunsteel Strike  
+
+Zygarde @ Leftovers  
+Ability: Power Construct  
+Shiny: Yes  
+EVs: 204 HP / 248 Def / 56 Spe  
+Impish Nature  
+- Coil  
+- Glare  
+- Thousand Arrows  
+- Rest  
+
+Zacian @ Choice Band  
+Ability: Intrepid Sword  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
+- Play Rough  
+- Close Combat  
+- Wild Charge  
+- Crunch  
+
+Ho-Oh @ Heavy-Duty Boots  
+Ability: Regenerator  
+Shiny: Yes  
+EVs: 252 HP / 188 Def / 52 SpD / 16 Spe  
+Impish Nature  
+- Sacred Fire  
+- Thunder Wave  
+- Whirlwind  
+- Defog  
+
+Yveltal @ Choice Scarf  
+Ability: Dark Aura  
+Shiny: Yes  
+EVs: 252 HP / 72 SpD / 184 Spe  
+Timid Nature  
+- U-turn  
+- Oblivion Wing  
+- Foul Play  
+- Defog  
+
+Eternatus @ Black Sludge  
+Ability: Pressure  
+EVs: 240 HP / 252 SpD / 16 Spe  
+Timid Nature  
+- Dynamax Cannon  
+- Recover  
+- Mystical Fire  
+- Toxic Spikes  
+
