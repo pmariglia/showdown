@@ -72,7 +72,7 @@ def get_pokemon_information(smogon_stats_url, pkmn_names=None):
                 items.append((item, round(100*count / total_count, 2)))
 
         for move, count in pkmn_information['Moves'].items():
-            if count > 0:
+            if count > 0 and move and move.lower() != "nothing":
                 moves.append((move, round(100*count / total_count, 2)))
 
         for ability, count in pkmn_information['Abilities'].items():
