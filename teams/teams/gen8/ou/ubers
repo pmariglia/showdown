@@ -1,58 +1,56 @@
+Tangrowth @ Rocky Helmet  
+Ability: Regenerator  
+EVs: 252 HP / 252 Def / 4 SpD  
+Relaxed Nature  
+- Grass Knot  
+- Earthquake  
+- Knock Off  
+- Leech Seed  
+
 Necrozma-Dusk-Mane @ Leftovers  
 Ability: Prism Armor  
-Shiny: Yes  
-EVs: 252 HP / 4 Atk / 252 Def  
+EVs: 252 HP / 252 Def / 4 SpD  
 Impish Nature  
-- Stealth Rock  
-- Morning Sun  
-- Earthquake  
 - Sunsteel Strike  
+- Stealth Rock  
+- Earthquake  
+- Morning Sun  
 
-Zygarde @ Leftovers  
-Ability: Power Construct  
-Shiny: Yes  
-EVs: 204 HP / 248 Def / 56 Spe  
-Impish Nature  
-- Coil  
-- Glare  
-- Thousand Arrows  
-- Rest  
-
-Zacian @ Choice Band  
-Ability: Intrepid Sword  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
-- Play Rough  
-- Close Combat  
-- Wild Charge  
-- Crunch  
-
-Ho-Oh @ Heavy-Duty Boots  
-Ability: Regenerator  
-Shiny: Yes  
-EVs: 252 HP / 188 Def / 52 SpD / 16 Spe  
-Impish Nature  
-- Sacred Fire  
-- Thunder Wave  
-- Whirlwind  
-- Defog  
-
-Yveltal @ Choice Scarf  
+Yveltal @ Life Orb  
 Ability: Dark Aura  
-Shiny: Yes  
-EVs: 252 HP / 72 SpD / 184 Spe  
-Timid Nature  
-- U-turn  
-- Oblivion Wing  
-- Foul Play  
-- Defog  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Knock Off  
+- Roost  
+- Sucker Punch  
+- Taunt  
 
 Eternatus @ Black Sludge  
 Ability: Pressure  
 EVs: 240 HP / 252 SpD / 16 Spe  
 Timid Nature  
+IVs: 0 Atk  
 - Dynamax Cannon  
+- Flamethrower  
 - Recover  
-- Mystical Fire  
-- Toxic Spikes  
+- Toxic  
+
+Calyrex-Shadow @ Choice Scarf  
+Ability: As One (Spectrier)  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Astral Barrage  
+- Psyshock  
+- Trick  
+- Draining Kiss  
+
+Ho-Oh @ Heavy-Duty Boots  
+Ability: Regenerator  
+EVs: 252 HP / 204 Def / 52 SpD  
+Impish Nature  
+- Sacred Fire  
+- Defog  
+- Whirlwind  
+- Thunder Wave  
 
