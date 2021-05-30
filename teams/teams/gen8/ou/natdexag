@@ -1,54 +1,55 @@
+Arceus-Ground @ Earth Plate  
+Ability: Multitype  
+EVs: 252 Atk / 4 Def / 252 Spe  
+Adamant Nature  
+- Swords Dance  
+- Earthquake  
+- Stone Edge  
+- Recover  
+
+Arceus-Water @ Splash Plate  
+Ability: Multitype  
+EVs: 248 HP / 136 Def / 124 Spe  
+Bold Nature  
+IVs: 0 Atk  
+- Stealth Rock  
+- Judgment  
+- Toxic  
+- Recover  
+
 Yveltal @ Heavy-Duty Boots  
 Ability: Dark Aura  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
+EVs: 252 HP / 4 Def / 252 SpD  
+Careful Nature  
 IVs: 0 Atk  
-- Oblivion Wing  
-- Dark Pulse  
-- Heat Wave  
+- Foul Play  
+- Roost  
+- Toxic  
 - Defog  
-
-Rayquaza-Mega @ Life Orb  
-Ability: Delta Stream  
-EVs: 4 HP / 252 Atk / 252 Spe  
-Adamant Nature  
-- Dragon Ascent  
-- Extreme Speed  
-- V-create  
-- Dragon Dance  
 
 Zacian-Crowned @ Rusted Sword  
 Ability: Intrepid Sword  
-EVs: 252 Atk / 4 SpD / 252 Spe  
+EVs: 252 Atk / 4 Def / 252 Spe  
 Jolly Nature  
 - Behemoth Blade  
-- Close Combat  
 - Wild Charge  
-- Play Rough  
+- Close Combat  
+- Assurance  
 
 Necrozma-Dusk-Mane @ Rocky Helmet  
 Ability: Prism Armor  
-EVs: 252 HP / 252 Def / 4 SpD  
+EVs: 236 HP / 240 Def / 32 Spe  
 Impish Nature  
 - Sunsteel Strike  
-- Earthquake  
-- Stealth Rock  
 - Morning Sun  
+- Dragon Dance  
+- Earthquake  
 
-Calyrex-Shadow @ Focus Sash  
-Ability: As One (Spectrier)  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Astral Barrage  
-- Nasty Plot  
-- Draining Kiss  
-- Psyshock  
-
-Ditto @ Choice Scarf  
-Ability: Imposter  
-EVs: 248 HP / 8 Atk / 252 Def  
-Impish Nature  
-IVs: 30 Atk  
-- Transform  
-
+Rayquaza-Mega @ Life Orb  
+Ability: Delta Stream  
+EVs: 252 Atk / 4 SpA / 252 Spe  
+Naughty Nature  
+- Dragon Ascent  
+- V-create  
+- Extreme Speed  
+- Draco Meteor  
