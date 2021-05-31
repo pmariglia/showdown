@@ -1,57 +1,55 @@
-Skarmory @ Leftovers
-Ability: Keen Eye
-EVs: 252 HP / 252 SpD / 4 Spe
-Careful Nature
-IVs: 0 Atk
-- Spikes
-- Roar
-- Toxic
-- Protect
+Tyranitar (M) @ Leftovers  
+Ability: Sand Stream  
+EVs: 184 HP / 40 Def / 200 SpA / 84 Spe  
+Modest Nature  
+IVs: 0 Atk  
+- Crunch  
+- Flamethrower  
+- Pursuit  
+- Roar  
 
-Jolteon @ Leftovers
-Ability: Volt Absorb
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-IVs: 2 Atk / 30 SpA
-- Thunderbolt
-- Thunder Wave
-- Hidden Power [Grass]
-- Baton Pass
+Forretress (M) @ Leftovers  
+Ability: Sturdy  
+EVs: 252 HP / 12 Def / 244 SpD  
+Sassy Nature  
+- Earthquake  
+- Explosion  
+- Rapid Spin  
+- Spikes  
 
-Tyranitar @ Leftovers
-Ability: Sand Stream
-EVs: 252 HP / 252 Atk / 4 Def
-Adamant Nature
-IVs: 30 SpD / 30 Spe
-- Focus Punch
-- Earthquake
-- Hidden Power [Bug]
-- Rock Slide
+Dugtrio @ Choice Band  
+Ability: Arena Trap  
+EVs: 8 HP / 252 Atk / 20 SpD / 228 Spe  
+Adamant Nature  
+- Earthquake  
+- Rock Slide  
+- Aerial Ace  
+- Hidden Power [Bug]  
 
-Gengar @ Leftovers
-Ability: Levitate
-EVs: 40 HP / 252 SpA / 216 Spe
-Hasty Nature
-- Ice Punch
-- Fire Punch
-- Hidden Power [Grass]
-- Explosion
+Gengar @ Leftovers  
+Ability: Levitate  
+EVs: 248 HP / 52 Def / 112 SpD / 96 Spe  
+Timid Nature  
+- Thunderbolt  
+- Ice Punch  
+- Will-O-Wisp  
+- Explosion  
 
-Metagross @ Choice Band
-Ability: Clear Body
-EVs: 68 HP / 252 Atk / 188 Spe
-Adamant Nature
-- Meteor Mash
-- Earthquake
-- Rock Slide
-- Explosion
+Swampert (M) @ Leftovers  
+Ability: Torrent  
+EVs: 248 HP / 128 Def / 84 SpA / 48 Spe  
+Relaxed Nature  
+- Earthquake  
+- Ice Beam  
+- Protect  
+- Refresh  
 
-Starmie @ Leftovers
-Ability: Natural Cure
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-IVs: 0 Atk
-- Hydro Pump
-- Thunderbolt
-- Ice Beam
-- Psychic
+Blissey @ Leftovers  
+Ability: Natural Cure  
+EVs: 232 HP / 252 Def / 24 Spe  
+Bold Nature  
+IVs: 0 Atk / 30 SpA  
+- Seismic Toss  
+- Thunder Wave  
+- Wish  
+- Soft-Boiled  
