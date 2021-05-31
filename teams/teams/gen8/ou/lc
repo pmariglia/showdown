@@ -1,61 +1,59 @@
-Vulpix @ Choice Scarf  
-Ability: Drought  
+Porygon @ Eviolite  
+Ability: Download  
 Level: 5  
-EVs: 52 HP / 196 SpA / 236 Spe  
+EVs: 236 SpA / 76 SpD / 196 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Weather Ball  
-- Fire Blast  
-- Overheat  
-- Energy Ball  
+- Tri Attack  
+- Psychic  
+- Ice Beam  
+- Agility  
+
+Pawniard @ Eviolite  
+Ability: Defiant  
+Level: 5  
+EVs: 156 Atk / 36 Def / 116 SpD / 196 Spe  
+Jolly Nature  
+- Knock Off  
+- Iron Head  
+- Sucker Punch  
+- Stealth Rock  
+
+Vullaby (F) @ Berry Juice  
+Ability: Overcoat  
+Level: 5  
+EVs: 156 Atk / 76 Def / 76 SpD / 196 Spe  
+- Brave Bird  
+- Knock Off  
+- Heat Wave  
+- Defog  
+
+Grookey @ Life Orb  
+Ability: Grassy Surge  
+Level: 5  
+EVs: 236 Atk / 36 Def / 236 Spe  
+Jolly Nature  
+- Swords Dance  
+- Wood Hammer  
+- Grassy Glide  
+- Drain Punch  
 
 Mienfoo @ Eviolite  
 Ability: Regenerator  
 Level: 5  
 EVs: 76 HP / 196 Def / 196 SpD  
 Impish Nature  
-- Fake Out  
-- U-turn  
-- Knock Off  
 - High Jump Kick  
-
-Vullaby (F) @ Berry Juice  
-Ability: Overcoat  
-Level: 5  
-EVs: 116 HP / 76 Def / 156 SpD / 116 Spe  
-Careful Nature  
 - Knock Off  
-- Brave Bird  
 - U-turn  
-- Defog  
-
-Diglett @ Air Balloon  
-Ability: Arena Trap  
-Level: 5  
-EVs: 116 HP / 156 Atk / 236 Spe  
-Jolly Nature  
-- Earthquake  
-- Beat Up  
-- Final Gambit  
-- Protect  
+- Fake Out  
 
 Mareanie @ Eviolite  
 Ability: Regenerator  
 Level: 5  
-EVs: 116 HP / 180 Def / 12 SpA / 180 SpD  
+EVs: 116 HP / 12 Atk / 180 Def / 12 SpA / 180 SpD  
 Bold Nature  
-IVs: 0 Atk  
-- Sludge Bomb  
 - Scald  
-- Recover  
-- Toxic Spikes  
-
-Pawniard @ Eviolite  
-Ability: Defiant  
-Level: 5  
-EVs: 236 Atk / 36 Def / 116 SpD / 116 Spe  
-Adamant Nature  
+- Sludge Bomb  
 - Knock Off  
-- Iron Head  
-- Sucker Punch  
-- Stealth Rock  
+- Recover  
