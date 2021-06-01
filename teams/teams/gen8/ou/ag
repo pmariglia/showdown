@@ -1,54 +1,55 @@
-Excadrill @ Focus Sash  
-Ability: Mold Breaker  
-EVs: 252 Atk / 4 Def / 252 Spe  
-Jolly Nature  
-- Stealth Rock  
-- Rapid Spin  
-- Rock Tomb  
-- Earthquake  
-
-Necrozma-Dusk-Mane @ Weakness Policy  
-Ability: Prism Armor  
-EVs: 252 Atk / 4 SpD / 252 Spe  
+Zygarde @ Life Orb  
+Ability: Power Construct  
+EVs: 16 HP / 252 Atk / 240 Spe  
 Adamant Nature  
 - Dragon Dance  
-- Sunsteel Strike  
-- Earthquake  
-- Stone Edge  
+- Thousand Arrows  
+- Outrage  
+- Rest  
 
-Yveltal @ Life Orb  
-Ability: Dark Aura  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Mild Nature  
-- Dark Pulse  
-- Oblivion Wing  
-- Sucker Punch  
-- Heat Wave  
-
-Xerneas @ Power Herb  
-Ability: Fairy Aura  
-EVs: 4 Def / 252 SpA / 252 Spe  
-Modest Nature  
-- Geomancy  
-- Moonblast  
-- Thunder  
-- Substitute  
-
-Calyrex-Shadow @ Focus Sash  
+Calyrex-Shadow @ Choice Scarf  
 Ability: As One (Spectrier)  
 EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
+Modest Nature  
 IVs: 0 Atk  
-- Nasty Plot  
 - Astral Barrage  
 - Psyshock  
-- Baton Pass  
+- Trick  
+- Aromatherapy  
 
-Kyogre @ Choice Scarf  
-Ability: Drizzle  
-EVs: 4 Def / 252 SpA / 252 Spe  
+Necrozma-Dusk-Mane @ Heavy-Duty Boots  
+Ability: Prism Armor  
+EVs: 252 HP / 248 Def / 8 Spe  
+Impish Nature  
+- Stealth Rock  
+- Sunsteel Strike  
+- Morning Sun  
+- Earthquake  
+
+Yveltal @ Heavy-Duty Boots  
+Ability: Dark Aura  
+EVs: 248 HP / 72 SpD / 188 Spe  
+Jolly Nature  
+- Defog  
+- Foul Play  
+- Roost  
+- U-turn  
+
+Zacian-Crowned @ Rusted Sword  
+Ability: Intrepid Sword  
+EVs: 252 Atk / 48 SpD / 208 Spe  
+Adamant Nature  
+- Behemoth Blade  
+- Close Combat  
+- Wild Charge  
+- Rest  
+
+Eternatus @ Utility Umbrella  
+Ability: Pressure  
+EVs: 248 HP / 252 SpD / 8 Spe  
 Timid Nature  
-- Water Spout  
-- Origin Pulse  
-- Ice Beam  
-- Thunder  
+- Dragon Tail  
+- Toxic  
+- Flamethrower  
+- Recover  
+
