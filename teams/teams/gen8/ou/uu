@@ -1,55 +1,55 @@
-Divinity (Alakazam) @ Life Orb  
-Ability: Magic Guard  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Psychic  
-- Focus Blast  
-- Shadow Ball  
-- Nasty Plot  
-
-Polygon Dust (Zeraora) @ Heavy-Duty Boots  
-Ability: Volt Absorb  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
-- Plasma Fists  
-- Knock Off  
-- Close Combat  
-- Volt Switch  
-
-Lionhearted (Krookodile) @ Choice Band  
-Ability: Intimidate  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Earthquake  
-- Knock Off  
-- Lash Out  
-- Stealth Rock  
-
-Sad Machine (Amoonguss) @ Rocky Helmet  
+Slowbro-Galar @ Safety Goggles  
 Ability: Regenerator  
-EVs: 252 HP / 196 Def / 36 SpD / 24 Spe  
+EVs: 252 HP / 248 Def / 8 Spe  
 Bold Nature  
-- Spore  
-- Giga Drain  
+IVs: 0 Atk  
+- Calm Mind  
 - Sludge Bomb  
-- Foul Play  
+- Scald  
+- Slack Off  
 
-Fresh Static Snow (Skarmory) @ Safety Goggles  
-Ability: Sturdy  
-EVs: 252 HP / 120 Def / 136 Spe  
-Impish Nature  
-- Brave Bird  
-- Spikes  
-- Whirlwind  
+Keldeo-Resolute @ Choice Specs  
+Ability: Justified  
+EVs: 4 HP / 252 SpA / 252 Spe  
+Timid Nature  
+- Secret Sword  
+- Hydro Pump  
+- Icy Wind  
+- Flip Turn  
+
+Scizor @ Heavy-Duty Boots  
+Ability: Technician  
+EVs: 252 HP / 120 Atk / 136 Spe  
+Adamant Nature  
+- Swords Dance  
+- U-turn  
+- Bullet Punch  
 - Roost  
 
-Sea Of Voices (Slowking) @ Heavy-Duty Boots  
+Tangrowth @ Assault Vest  
 Ability: Regenerator  
-EVs: 252 HP / 240 Def / 16 SpD  
+EVs: 252 HP / 76 Def / 180 SpD  
 Sassy Nature  
-IVs: 0 Atk / 0 Spe  
-- Scald  
-- Future Sight  
-- Slack Off  
-- Teleport  
+- Power Whip  
+- Knock Off  
+- Earthquake  
+- Sludge Bomb  
+
+Moltres @ Heavy-Duty Boots  
+Ability: Flame Body  
+EVs: 252 HP / 56 Def / 100 SpD / 100 Spe  
+Calm Nature  
+IVs: 0 Atk  
+- Defog  
+- Mystical Fire  
+- Roost  
+- Hurricane  
+
+Rhyperior @ Leftovers  
+Ability: Solid Rock  
+EVs: 252 HP / 16 Atk / 192 SpD / 48 Spe  
+Adamant Nature  
+- Stealth Rock  
+- Earthquake  
+- Stone Edge  
+- Heat Crash  
