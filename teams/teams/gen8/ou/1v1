@@ -1,28 +1,27 @@
-Heatran @ Air Balloon
-Ability: Flash Fire
-EVs: 28 HP / 252 SpA / 4 SpD / 224 Spe
+Dragapult @ Choice Band
+Ability: Clear Body
+EVs: 252 Atk / 4 SpA / 252 Spe
+Hasty Nature
+- Dragon Darts
+- Outrage
+- Phantom Force
+- Fire Blast
+
+Tapu Fini @ Sitrus Berry
+Ability: Misty Surge
+EVs: 236 HP / 112 Def / 160 Spe
 Timid Nature
 IVs: 0 Atk
-- Overheat
-- Earth Power
-- Flash Cannon
-- Taunt
-
-Primarina @ Custap Berry
-Ability: Torrent
-EVs: 116 HP / 228 Def / 164 Spe
-Bold Nature
-IVs: 0 Atk
-- Hydro Cannon
-- Moonblast
+- Draining Kiss
 - Calm Mind
-- Endure
+- Taunt
+- Iron Defense
 
-Rillaboom @ Occa Berry
-Ability: Grassy Surge
-EVs: 128 HP / 28 Atk / 252 SpD / 100 Spe
-Careful Nature
-- Fake Out
-- Wood Hammer
-- Grassy Glide
-- Swords Dance
+Zygarde @ Haban Berry
+Ability: Power Construct
+EVs: 236 HP / 204 Atk / 68 Spe
+Impish Nature
+- Thousand Arrows
+- Coil
+- Scale Shot
+- Extreme Speed
