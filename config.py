@@ -1,18 +1,18 @@
 import sys
 import logging
 
-battle_bot_module = None
-websocket_uri = None
-username = None
-password = None
-bot_mode = None
+battle_bot_module = nash_equilibrium
+websocket_uri = sim.smogon.com:8000
+username = blanko AIv2
+password = Jasmine456
+bot_mode = SEARCH_LADDER
 team_name = None
-pokemon_mode = None
-run_count = None
+pokemon_mode = gen7randombattle
+run_count = 20
 user_to_challenge = None
 gambit_exe_path = ""
-greeting_message = 'hf'
-battle_ending_message = 'gg'
+greeting_message = ' '
+battle_ending_message = ' '
 room_name = None
 
 use_relative_weights = False
