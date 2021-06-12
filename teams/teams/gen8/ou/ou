@@ -1,57 +1,60 @@
-Landorus-Therian (M) @ Leftovers  
-Ability: Intimidate  
-EVs: 248 HP / 8 Def / 252 SpD  
-Careful Nature  
-- Earthquake  
-- U-turn  
-- Stealth Rock  
-- Toxic  
-
-Ferrothorn @ Leftovers  
-Ability: Iron Barbs  
-EVs: 248 HP / 252 Def / 8 SpD  
-Impish Nature  
-- Leech Seed  
-- Knock Off  
-- Spikes  
-- Body Press  
-
-Tapu Fini @ Choice Scarf  
+Tapu Fini @ Leftovers  
 Ability: Misty Surge  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
+Shiny: Yes  
+EVs: 248 HP / 252 Def / 8 SpD  
+Bold Nature  
 IVs: 0 Atk  
 - Surf  
-- Moonblast  
-- Trick  
-- Defog  
-
-Heatran @ Leftovers  
-Ability: Flash Fire  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Earth Power  
-- Magma Storm  
+- Draining Kiss  
+- Calm Mind  
 - Taunt  
+
+Buzzwole @ Heavy-Duty Boots  
+Ability: Beast Boost  
+Shiny: Yes  
+EVs: 16 HP / 144 Atk / 108 Def / 240 Spe  
+Jolly Nature  
+- Ice Punch  
+- Leech Life  
+- Close Combat  
+- Roost  
+
+Slowking-Galar (M) @ Assault Vest  
+Ability: Regenerator  
+Shiny: Yes  
+EVs: 248 HP / 236 Def / 24 SpD  
+Sassy Nature  
+- Future Sight  
+- Earthquake  
+- Sludge Bomb  
+- Flamethrower  
+
+Landorus-Therian @ Leftovers  
+Ability: Intimidate  
+Shiny: Yes  
+EVs: 248 HP / 8 Def / 252 SpD  
+Careful Nature  
+- Stealth Rock  
+- Earthquake  
+- U-turn  
 - Toxic  
 
-Rillaboom @ Life Orb  
-Ability: Grassy Surge  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
-- Grassy Glide  
-- Knock Off  
-- Superpower  
-- Swords Dance  
-
-Dragonite @ Heavy-Duty Boots  
-Ability: Multiscale  
-EVs: 44 HP / 212 Atk / 252 Spe  
-Jolly Nature  
-- Earthquake  
+Corviknight (M) @ Leftovers  
+Ability: Pressure  
+Shiny: Yes  
+EVs: 248 HP / 8 Def / 252 SpD  
+Careful Nature  
 - Roost  
-- Dragon Dance  
-- Dual Wingbeat  
+- Defog  
+- Brave Bird  
+- U-turn  
 
-
+Tapu Koko @ Heavy-Duty Boots  
+Ability: Electric Surge  
+Shiny: Yes  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Thunderbolt  
+- Roost  
+- U-turn  
+- Dazzling Gleam  
