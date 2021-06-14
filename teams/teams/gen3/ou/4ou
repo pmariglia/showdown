@@ -1,12 +1,3 @@
-Jirachi @ Leftovers  
-Ability: Serene Grace  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Iron Head  
-- Body Slam  
-- Fire Punch  
-- Protect  
-
 Azelf @ Lum Berry  
 Ability: Levitate  
 EVs: 124 HP / 248 Def / 136 Spe  
@@ -16,14 +7,14 @@ Jolly Nature
 - Taunt  
 - Thunder Wave  
 
-Tyranitar @ Choice Scarf  
-Ability: Sand Stream  
+Jirachi @ Leftovers  
+Ability: Serene Grace  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Crunch  
-- Pursuit  
-- Superpower  
-- Stone Edge  
+- Iron Head  
+- Body Slam  
+- Fire Punch  
+- Protect  
 
 Dragonite @ Lum Berry  
 Ability: Inner Focus  
@@ -33,6 +24,15 @@ Adamant Nature
 - Dragon Dance  
 - Extreme Speed  
 - Earthquake  
+
+Tyranitar @ Choice Scarf  
+Ability: Sand Stream  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Crunch  
+- Pursuit  
+- Superpower  
+- Stone Edge  
 
 Scizor @ Leftovers  
 Ability: Technician  
