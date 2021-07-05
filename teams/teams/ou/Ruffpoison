@@ -1,9 +1,8 @@
 Ruffking-Galar (Slowking-Galar) @ Assault Vest  
 Ability: Regenerator  
 EVs: 252 HP / 72 SpA / 184 SpD  
-Modest Nature  
-IVs: 0 Atk  
-- Sludge Bomb  
+Quiet Nature  
+- Earthquake  
 - Flamethrower  
 - Ice Beam  
 - Psyshock  
@@ -51,12 +50,12 @@ IVs: 0 Atk
 - Focus Blast  
 - Thunderbolt  
 
-Ruffbro-Galar (Slowbro-Galar) @ Black Sludge  
-Ability: Regenerator  
-EVs: 252 HP / 4 Atk / 252 Def  
-Impish Nature  
-- Slack Off  
+Rufficroak (Toxicroak) @ Life Orb  
+Ability: Dry Skin  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Swords Dance  
 - Earthquake  
-- Zen Headbutt  
-- Ice Punch
+- Sucker Punch  
+- Drain Punch  
 
