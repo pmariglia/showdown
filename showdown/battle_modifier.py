@@ -650,6 +650,12 @@ def turn(battle, split_msg):
     battle.turn = int(split_msg[2])
 
 
+def noinit(battle, split_msg):
+    if split_msg[2] == "rename":
+        battle.battle_tag = split_msg[3]
+        logger.debug("Renamed battle to {}".format(battle.battle_tag))
+
+
 def check_choicescarf(battle, msg_lines):
     def get_move_information(m):
         try:
@@ -973,7 +979,8 @@ def update_battle(battle, msg):
             'upkeep': upkeep,
             'inactive': inactive,
             'inactiveoff': inactiveoff,
-            'turn': turn
+            'turn': turn,
+            'noinit': noinit,
         }
 
         function_to_call = battle_modifiers_lookup.get(action)

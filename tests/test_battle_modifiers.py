@@ -2876,6 +2876,29 @@ class TestGetDamageDealt(unittest.TestCase):
         self.assertIsNone(damage_dealt)
 
 
+class TestNoInit(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+
+        self.battle.user.name = 'p1'
+        self.battle.user.active = Pokemon('Caterpie', 100)
+
+        self.battle.opponent.name = 'p2'
+        self.battle.opponent.active = Pokemon('Pikachu', 100)
+
+    def test_renames_battle_when_rename_message_occurs(self):
+        self.battle.battle_tag = "original_tag"
+        new_battle_tag = "new_battle_tag"
+
+        msg = (
+            '|noinit|rename|{}'.format(new_battle_tag)
+        )
+
+        update_battle(self.battle, msg)
+
+        self.assertEqual(self.battle.battle_tag, new_battle_tag)
+
+
 class TestCheckChoiceItem(unittest.TestCase):
     def setUp(self):
         self.battle = Battle(None)
