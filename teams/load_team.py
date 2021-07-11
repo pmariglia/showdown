@@ -14,7 +14,7 @@ def load_team(name):
         team_file_names = list()
         for f in os.listdir(path):
             full_path = os.path.join(path, f)
-            if os.path.isfile(full_path):
+            if os.path.isfile(full_path) and not f.startswith('.'):
                 team_file_names.append(full_path)
         file_path = random.choice(team_file_names)
 
