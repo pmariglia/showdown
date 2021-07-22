@@ -29,12 +29,12 @@ IVs: 0 Atk
 
 Ruffrachi (Jirachi) @ Leftovers  
 Ability: Serene Grace  
-EVs: 224 HP / 252 Atk / 32 Spe  
-Adamant Nature  
+EVs: 4 HP / 252 Atk / 252 Spe  
+Jolly Nature  
 - U-turn  
-- Drain Punch  
+- Play Rough  
 - Thunder Wave  
-- Iron Head  
+- Iron Head
 
 Ruffking-Galar (Slowking-Galar) @ Assault Vest  
 Ability: Regenerator  
@@ -52,5 +52,5 @@ Timid Nature
 - Blue Flare  
 - Scorching Sands  
 - U-turn  
-- Encore  
+- Thunderbolt  
 
