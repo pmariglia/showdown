@@ -28,16 +28,14 @@ IVs: 0 Atk
 - King's Shield  
 - Shadow Ball  
 
-Ruffrachi (Jirachi) @ Leftovers  
-Ability: Serene Grace  
-Shiny: Yes  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Thunderbolt  
-- Psychic  
-- Aura Sphere  
-- Moonblast  
+Ruffalion (Cobalion) @ Leftovers  
+Ability: Justified  
+EVs: 252 HP / 4 Atk / 252 Spe  
+Jolly Nature  
+- Iron Head  
+- Close Combat  
+- Volt Switch  
+- Thunder Wave  
 
 Ruffesteela (Celesteela) @ Leftovers  
 Ability: Beast Boost  
