@@ -141,3 +141,6 @@ Specify a directory:
 ```
 TEAM_NAME=gen8/ou
 ```
+
+## Questions? Wanna Chat?
+Send me a message on discord: pmariglia#5568
