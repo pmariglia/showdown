@@ -37,7 +37,7 @@ def get_smogon_stats_file_name(game_mode, month_delta=1):
 def get_pokemon_information(smogon_stats_url, pkmn_names=None):
     r = requests.get(smogon_stats_url)
     if r.status_code == 404:
-        r = requests.get(get_smogon_stats_file_name(ntpath.basename(smogon_stats_url.replace('-0.txt', '')), month_delta=2))
+        r = requests.get(get_smogon_stats_file_name(ntpath.basename(smogon_stats_url.replace('-0.json', '')), month_delta=2))
 
     infos = r.json()['data']
     final_infos = {}
