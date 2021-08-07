@@ -120,6 +120,7 @@ FNT = "fnt"
 
 SWITCH_STRING = "switch"
 WIN_STRING = "|win|"
+TIE_STRING = "|tie"
 CHAT_STRING = "|c|"
 TIME_LEFT = "Time left:"
 DETAILS = "details"
