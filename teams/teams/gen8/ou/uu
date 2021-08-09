@@ -1,55 +1,53 @@
-Slowbro-Galar @ Safety Goggles  
-Ability: Regenerator  
-EVs: 252 HP / 248 Def / 8 Spe  
-Bold Nature  
-IVs: 0 Atk  
-- Calm Mind  
-- Sludge Bomb  
-- Scald  
-- Slack Off  
-
-Keldeo-Resolute @ Choice Specs  
-Ability: Justified  
-EVs: 4 HP / 252 SpA / 252 Spe  
-Timid Nature  
-- Secret Sword  
-- Hydro Pump  
-- Icy Wind  
-- Flip Turn  
-
-Scizor @ Heavy-Duty Boots  
-Ability: Technician  
-EVs: 252 HP / 120 Atk / 136 Spe  
-Adamant Nature  
-- Swords Dance  
-- U-turn  
-- Bullet Punch  
-- Roost  
-
-Tangrowth @ Assault Vest  
-Ability: Regenerator  
-EVs: 252 HP / 76 Def / 180 SpD  
-Sassy Nature  
-- Power Whip  
-- Knock Off  
-- Earthquake  
-- Sludge Bomb  
-
-Moltres @ Heavy-Duty Boots  
-Ability: Flame Body  
-EVs: 252 HP / 56 Def / 100 SpD / 100 Spe  
-Calm Nature  
-IVs: 0 Atk  
-- Defog  
-- Mystical Fire  
-- Roost  
-- Hurricane  
-
-Rhyperior @ Leftovers  
-Ability: Solid Rock  
-EVs: 252 HP / 16 Atk / 192 SpD / 48 Spe  
-Adamant Nature  
+Krookodile @ Chople Berry  
+Ability: Intimidate  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
 - Stealth Rock  
+- Taunt  
 - Earthquake  
-- Stone Edge  
-- Heat Crash  
+- Knock Off  
+
+Froslass (F) @ Focus Sash  
+Ability: Cursed Body  
+EVs: 252 Atk / 4 SpA / 252 Spe  
+Naive Nature  
+- Spikes  
+- Taunt  
+- Icy Wind  
+- Poltergeist  
+
+Mimikyu @ Life Orb  
+Ability: Disguise  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Swords Dance  
+- Shadow Sneak  
+- Play Rough  
+- Wood Hammer  
+
+Jirachi @ Choice Scarf  
+Ability: Serene Grace  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Trick  
+- Healing Wish  
+- U-turn  
+- Iron Head  
+
+Wolf (Lycanroc-Dusk) @ Life Orb  
+Ability: Tough Claws  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Accelerock  
+- Close Combat  
+- Stone Edge / Psychic Fangs 
+- Crunch  
+
+Salamence @ Lum Berry  
+Ability: Moxie  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Dragon Dance  
+- Dragon Claw  
+- Dual Wingbeat  
+- Earthquake  
