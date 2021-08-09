@@ -1,60 +1,56 @@
-Tapu Fini @ Leftovers  
-Ability: Misty Surge  
-Shiny: Yes  
-EVs: 248 HP / 252 Def / 8 SpD  
-Bold Nature  
+Heatran @ Leftovers  
+Ability: Flash Fire  
+EVs: 252 HP / 248 SpD / 8 Spe  
+Calm Nature  
 IVs: 0 Atk  
-- Surf  
-- Draining Kiss  
-- Calm Mind  
-- Taunt  
-
-Buzzwole @ Heavy-Duty Boots  
-Ability: Beast Boost  
-Shiny: Yes  
-EVs: 16 HP / 144 Atk / 108 Def / 240 Spe  
-Jolly Nature  
-- Ice Punch  
-- Leech Life  
-- Close Combat  
-- Roost  
-
-Slowking-Galar (M) @ Assault Vest  
-Ability: Regenerator  
-Shiny: Yes  
-EVs: 248 HP / 236 Def / 24 SpD  
-Sassy Nature  
-- Future Sight  
-- Earthquake  
-- Sludge Bomb  
-- Flamethrower  
-
-Landorus-Therian @ Leftovers  
-Ability: Intimidate  
-Shiny: Yes  
-EVs: 248 HP / 8 Def / 252 SpD  
-Careful Nature  
-- Stealth Rock  
-- Earthquake  
-- U-turn  
+- Magma Storm  
+- Earth Power  
 - Toxic  
+- Stealth Rock  
 
-Corviknight (M) @ Leftovers  
+Land Spirit (Tapu Lele) @ Choice Specs  
+Ability: Psychic Surge  
+EVs: 28 Def / 252 SpA / 228 Spe  
+Modest Nature  
+IVs: 0 Atk  
+- Psychic  
+- Psyshock  
+- Moonblast  
+- Thunderbolt  
+
+Corviknight @ Leftovers  
 Ability: Pressure  
-Shiny: Yes  
-EVs: 248 HP / 8 Def / 252 SpD  
-Careful Nature  
-- Roost  
-- Defog  
+EVs: 248 HP / 104 Def / 156 SpD  
+Sassy Nature  
+IVs: 0 Spe  
 - Brave Bird  
 - U-turn  
-
-Tapu Koko @ Heavy-Duty Boots  
-Ability: Electric Surge  
-Shiny: Yes  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-- Thunderbolt  
+- Defog  
 - Roost  
+
+Garchomp @ Leftovers  
+Ability: Rough Skin  
+EVs: 44 HP / 212 Atk / 252 Spe  
+Jolly Nature  
+- Earthquake  
+- Scale Shot  
+- Fire Fang  
+- Swords Dance  
+
+Land Spirit (Tapu Fini) @ Leftovers  
+Ability: Misty Surge  
+EVs: 248 HP / 204 Def / 56 Spe  
+Bold Nature  
+- Moonblast  
+- Nature's Madness  
+- Knock Off  
+- Taunt  
+
+Dragapult @ Choice Specs  
+Ability: Infiltrator  
+EVs: 4 Def / 252 SpA / 252 Spe  
+Timid Nature  
+- Draco Meteor  
+- Shadow Ball  
+- Flamethrower  
 - U-turn  
-- Dazzling Gleam  
