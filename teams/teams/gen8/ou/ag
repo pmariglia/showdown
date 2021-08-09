@@ -1,55 +1,56 @@
-Zygarde @ Life Orb  
-Ability: Power Construct  
-EVs: 16 HP / 252 Atk / 240 Spe  
-Adamant Nature  
-- Dragon Dance  
-- Thousand Arrows  
-- Outrage  
-- Rest  
+Eternatus @ Black Sludge  
+Ability: Pressure  
+EVs: 172 HP / 240 SpD / 96 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Flamethrower  
+- Dynamax Cannon  
+- Toxic Spikes  
+- Recover  
 
-Calyrex-Shadow @ Choice Scarf  
+Ferrothorn @ Leftovers  
+Ability: Iron Barbs  
+EVs: 252 HP / 4 Def / 252 SpD  
+Careful Nature  
+- Leech Seed  
+- Spikes  
+- Knock Off  
+- Bullet Seed  
+
+Prism (Necrozma-Dusk-Mane) @ Rocky Helmet  
+Ability: Prism Armor  
+EVs: 252 HP / 252 Def / 4 SpD  
+Impish Nature  
+- Sunsteel Strike  
+- Morning Sun  
+- Stealth Rock  
+- Earthquake  
+
+Warrior (Zacian-Crowned) @ Rusted Sword  
+Ability: Intrepid Sword  
+EVs: 180 HP / 252 Atk / 76 Spe  
+Adamant Nature  
+- Behemoth Blade  
+- Wild Charge  
+- Close Combat  
+- Assurance  
+
+Yveltal @ Heavy-Duty Boots  
+Ability: Dark Aura  
+EVs: 252 HP / 72 SpD / 184 Spe  
+Jolly Nature  
+IVs: 0 Atk  
+- Foul Play  
+- Taunt  
+- Roost  
+- Defog  
+
+High King (Calyrex-Shadow) @ Choice Scarf  
 Ability: As One (Spectrier)  
 EVs: 252 SpA / 4 SpD / 252 Spe  
-Modest Nature  
+Timid Nature  
 IVs: 0 Atk  
 - Astral Barrage  
 - Psyshock  
 - Trick  
 - Aromatherapy  
-
-Necrozma-Dusk-Mane @ Heavy-Duty Boots  
-Ability: Prism Armor  
-EVs: 252 HP / 248 Def / 8 Spe  
-Impish Nature  
-- Stealth Rock  
-- Sunsteel Strike  
-- Morning Sun  
-- Earthquake  
-
-Yveltal @ Heavy-Duty Boots  
-Ability: Dark Aura  
-EVs: 248 HP / 72 SpD / 188 Spe  
-Jolly Nature  
-- Defog  
-- Foul Play  
-- Roost  
-- U-turn  
-
-Zacian-Crowned @ Rusted Sword  
-Ability: Intrepid Sword  
-EVs: 252 Atk / 48 SpD / 208 Spe  
-Adamant Nature  
-- Behemoth Blade  
-- Close Combat  
-- Wild Charge  
-- Rest  
-
-Eternatus @ Utility Umbrella  
-Ability: Pressure  
-EVs: 248 HP / 252 SpD / 8 Spe  
-Timid Nature  
-- Dragon Tail  
-- Toxic  
-- Flamethrower  
-- Recover  
-
