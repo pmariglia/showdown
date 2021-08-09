@@ -1,58 +1,56 @@
-Heatran @ Leftovers  
-Ability: Flash Fire  
-EVs: 252 HP / 252 SpA / 4 SpD  
-Modest Nature  
-IVs: 0 Atk  
-- Earth Power  
-- Lava Plume  
-- Toxic  
-- Flash Cannon  
+Skarmory @ Rocky Helmet
+Ability: Sturdy
+EVs: 252 HP / 232 Def / 24 Spe
+Impish Nature
+IVs: 0 Atk
+- Body Press
+- Spikes
+- Whirlwind
+- Roost
 
-Excadrill @ Choice Scarf  
-Ability: Mold Breaker  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Earthquake  
-- Rapid Spin  
-- Iron Head  
-- Rock Slide  
+Ferrothorn @ Leftovers
+Ability: Iron Barbs
+EVs: 252 HP / 4 Atk / 252 Def
+Impish Nature
+- Power Whip
+- Leech Seed
+- Protect
+- Stealth Rock
 
-Ferrothorn @ Leftovers  
-Ability: Iron Barbs  
-EVs: 248 HP / 8 Atk / 252 Def  
-Relaxed Nature  
-IVs: 0 Spe  
-- Leech Seed  
-- Protect  
-- Power Whip  
-- Spikes  
+Aegislash @ Leftovers
+Ability: Stance Change
+EVs: 248 HP / 8 SpA / 252 SpD
+Calm Nature
+IVs: 0 Atk
+- Substitute
+- Toxic
+- Shadow Ball
+- King's Shield
 
-Aegislash @ Leftovers  
-Ability: Stance Change  
-EVs: 252 HP / 252 Atk / 4 SpA  
-Brave Nature  
-IVs: 0 Spe  
-- Shadow Sneak  
-- Shadow Ball  
-- King's Shield  
-- Close Combat  
+Bisharp @ Lum Berry
+Ability: Defiant
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Swords Dance
+- Knock Off
+- Sucker Punch
+- Substitute / Iron Head
 
-Celesteela @ Leftovers  
-Ability: Beast Boost  
-EVs: 252 HP / 252 SpA / 4 SpD  
-Modest Nature  
-IVs: 0 Atk  
-- Flamethrower  
-- Leech Seed  
-- Air Slash  
-- Flash Cannon  
+Excadrill @ Choice Scarf
+Ability: Mold Breaker
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Rock Slide / Rock Blast
+- Earthquake
+- Iron Head
+- Rapid Spin
 
-Melmetal @ Assault Vest  
-Ability: Iron Fist  
-EVs: 252 HP / 252 Atk / 4 SpD  
-Adamant Nature  
-- Double Iron Bash  
-- Thunder Punch  
-- Earthquake  
-- Ice Punch  
-
+Heatran @ Leftovers
+Ability: Flash Fire
+EVs: 252 HP / 4 SpA / 252 SpD
+Calm Nature
+IVs: 0 Atk
+- Lava Plume
+- Earth Power
+- Toxic
+- Protect
