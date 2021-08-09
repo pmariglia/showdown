@@ -1,54 +1,57 @@
-Tangrowth @ Rocky Helmet  
-Ability: Regenerator  
-EVs: 252 HP / 252 Def / 4 SpD  
-Relaxed Nature  
-- Grass Knot  
-- Leech Seed  
-- Earthquake  
-- Sleep Powder  
-
-Necrozma-Dusk-Mane @ Rocky Helmet  
-Ability: Prism Armor  
-EVs: 252 HP / 252 Def / 4 SpD  
-Impish Nature  
-- Sunsteel Strike  
-- Morning Sun  
-- Earthquake  
-- Swords Dance  
-
-Calyrex-Shadow @ Leftovers  
+High King (Calyrex-Shadow) @ Choice Scarf  
 Ability: As One (Spectrier)  
-EVs: 4 Def / 252 SpA / 252 Spe  
-Timid Nature  
-- Astral Barrage  
-- Substitute  
-- Leech Seed  
-- Nasty Plot  
-
-Ho-Oh @ Heavy-Duty Boots  
-Ability: Regenerator  
-EVs: 252 HP / 204 Def / 52 SpD  
-Impish Nature  
-- Sacred Fire  
-- Defog  
-- Thunder Wave  
-- Whirlwind  
-
-Eternatus @ Black Sludge  
-Ability: Pressure  
-EVs: 240 HP / 252 SpD / 16 Spe  
+EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Dynamax Cannon  
-- Recover  
-- Mystical Fire  
+- Astral Barrage  
+- Trick  
+- Psyshock  
+- Aromatherapy  
+
+Zygarde @ Leftovers  
+Ability: Power Construct  
+EVs: 16 HP / 220 Atk / 36 Def / 236 Spe  
+Impish Nature  
+- Dragon Dance  
+- Substitute  
 - Toxic  
+- Thousand Arrows  
+
+Prism (Necrozma-Dusk-Mane) @ Leftovers  
+Ability: Prism Armor  
+EVs: 252 HP / 252 Def / 4 Spe  
+Impish Nature  
+- Stealth Rock  
+- Morning Sun  
+- Sunsteel Strike  
+- Earthquake  
 
 Yveltal @ Heavy-Duty Boots  
 Ability: Dark Aura  
 EVs: 72 HP / 252 SpD / 184 Spe  
 Timid Nature  
+IVs: 0 Atk  
+- Snarl  
 - Roost  
+- Defog  
 - Foul Play  
-- Knock Off  
-- U-turn  
+
+Eternatus @ Black Sludge  
+Ability: Pressure  
+EVs: 236 HP / 180 SpD / 92 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Toxic  
+- Dynamax Cannon  
+- Mystical Fire  
+- Recover  
+
+Kyogre @ Choice Specs  
+Ability: Drizzle  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Water Spout  
+- Ice Beam  
+- Origin Pulse  
+- Thunder  
