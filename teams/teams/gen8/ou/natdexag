@@ -1,55 +1,53 @@
-Arceus-Ground @ Earth Plate  
-Ability: Multitype  
-EVs: 252 Atk / 4 Def / 252 Spe  
-Adamant Nature  
-- Swords Dance  
-- Earthquake  
-- Stone Edge  
-- Recover  
-
-Arceus-Water @ Splash Plate  
-Ability: Multitype  
-EVs: 248 HP / 136 Def / 124 Spe  
-Bold Nature  
-IVs: 0 Atk  
-- Stealth Rock  
-- Judgment  
-- Toxic  
-- Recover  
-
-Yveltal @ Heavy-Duty Boots  
-Ability: Dark Aura  
-EVs: 252 HP / 4 Def / 252 SpD  
-Careful Nature  
-IVs: 0 Atk  
-- Foul Play  
-- Roost  
+Rainbow (Ho-Oh) @ Heavy-Duty Boots  
+Ability: Regenerator  
+EVs: 248 HP / 208 Def / 52 SpD  
+Impish Nature  
+- Sacred Fire  
 - Toxic  
 - Defog  
+- Whirlwind  
 
-Zacian-Crowned @ Rusted Sword  
-Ability: Intrepid Sword  
-EVs: 252 Atk / 4 Def / 252 Spe  
-Jolly Nature  
-- Behemoth Blade  
-- Wild Charge  
-- Close Combat  
-- Assurance  
+Rainbow (Ho-Oh) @ Heavy-Duty Boots  
+Ability: Regenerator  
+EVs: 252 HP / 4 Def / 252 SpD  
+Careful Nature  
+- Sacred Fire  
+- Toxic  
+- Defog  
+- Protect  
 
-Necrozma-Dusk-Mane @ Rocky Helmet  
+Yveltal @ Choice Scarf  
+Ability: Dark Aura  
+EVs: 252 HP / 72 SpD / 184 Spe  
+Timid Nature  
+- Oblivion Wing  
+- U-turn  
+- Knock Off  
+- Foul Play  
+
+Prism (Necrozma-Dusk-Mane) @ Rocky Helmet  
 Ability: Prism Armor  
-EVs: 236 HP / 240 Def / 32 Spe  
+EVs: 252 HP / 252 Def / 4 SpD  
 Impish Nature  
 - Sunsteel Strike  
 - Morning Sun  
-- Dragon Dance  
-- Earthquake  
+- Stealth Rock  
+- Knock Off  
 
-Rayquaza-Mega @ Life Orb  
-Ability: Delta Stream  
-EVs: 252 Atk / 4 SpA / 252 Spe  
-Naughty Nature  
-- Dragon Ascent  
-- V-create  
-- Extreme Speed  
-- Draco Meteor  
+Zygarde @ Leftovers  
+Ability: Power Construct  
+EVs: 204 HP / 248 Def / 56 Spe  
+Impish Nature  
+- Thousand Arrows  
+- Coil  
+- Rest  
+- Glare  
+
+Continent (Groudon-Primal) @ Red Orb  
+Ability: Desolate Land  
+EVs: 252 HP / 4 Def / 252 SpD  
+Careful Nature  
+- Swords Dance  
+- Rest  
+- Precipice Blades  
+- Stone Edge  
