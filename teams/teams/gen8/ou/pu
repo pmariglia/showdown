@@ -1,55 +1,56 @@
-Toxicroak @ Life Orb  
-Ability: Dry Skin  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Nasty Plot  
-- Sludge Bomb  
-- Shadow Ball  
-- Vacuum Wave  
-
-Regirock @ Leftovers  
-Ability: Clear Body  
-EVs: 248 HP / 228 Def / 24 SpD / 8 Spe  
-Impish Nature  
-- Stone Edge  
-- Body Press  
-- Stealth Rock  
-- Iron Defense  
-
-Guzzlord @ Assault Vest  
-Ability: Beast Boost  
-EVs: 252 SpA / 192 SpD / 64 Spe  
-Modest Nature  
+Scrafty @ Leftovers  
+Ability: Shed Skin  
+EVs: 252 HP / 4 Atk / 200 SpD / 52 Spe  
+Careful Nature  
+- Bulk Up  
 - Knock Off  
-- Draco Meteor  
-- Flamethrower  
-- Sludge Bomb  
+- Drain Punch  
+- Rest  
 
-Talonflame @ Heavy-Duty Boots  
-Ability: Flame Body  
-EVs: 248 HP / 84 Def / 176 Spe  
-Jolly Nature  
-- Defog  
-- Roost  
-- Flare Blitz  
+Lanturn @ Leftovers  
+Ability: Volt Absorb  
+EVs: 36 HP / 196 Def / 16 SpA / 220 SpD / 40 Spe  
+Calm Nature  
+IVs: 0 Atk  
+- Scald  
+- Volt Switch  
 - Toxic  
+- Protect  
 
-Whimsicott @ Choice Specs  
-Ability: Prankster  
+Sandaconda @ Rocky Helmet  
+Ability: Shed Skin  
+EVs: 252 HP / 244 Def / 12 Spe  
+Impish Nature  
+- Stealth Rock  
+- Earthquake  
+- Glare  
+- Rest  
+
+Tsareena (F) @ Heavy-Duty Boots  
+Ability: Queenly Majesty  
+EVs: 252 Atk / 4 Def / 252 Spe  
+Jolly Nature  
+- Rapid Spin  
+- Power Whip  
+- Knock Off  
+- U-turn  
+
+Charizard @ Heavy-Duty Boots  
+Ability: Blaze  
 EVs: 4 Def / 252 SpA / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Moonblast  
-- Energy Ball  
-- Nature Power  
+- Flamethrower  
 - Hurricane  
+- Roost  
+- Will-O-Wisp  
 
-Togedemaru @ Choice Scarf  
-Ability: Lightning Rod  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Toxic  
-- U-turn  
-- Iron Head  
-- Zing Zap  
+Ribombee @ Heavy-Duty Boots  
+Ability: Shield Dust  
+EVs: 4 Def / 252 SpA / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Quiver Dance  
+- Moonblast  
+- Psychic  
+- Roost  
