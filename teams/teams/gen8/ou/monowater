@@ -1,55 +1,56 @@
-Pelipper @ Heavy-Duty Boots  
-Ability: Drizzle  
-EVs: 252 HP / 252 Def / 4 SpD  
-Bold Nature  
-- U-turn  
-- Roost  
-- Defog  
-- Hurricane  
+Pelipper @ Heavy-Duty Boots
+Ability: Drizzle
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Scald
+- Roost
+- U-turn
+- Defog
 
-Urshifu-Rapid-Strike @ Choice Band  
-Ability: Unseen Fist  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Surging Strikes  
-- Close Combat  
-- U-turn  
-- Aqua Jet  
+Wushu (Urshifu-Rapid-Strike) @ Choice Band
+Ability: Unseen Fist
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Surging Strikes
+- Close Combat
+- Aqua Jet
+- U-turn
 
-Toxapex @ Black Sludge  
-Ability: Regenerator  
-EVs: 252 HP / 252 Def / 4 SpD  
-Bold Nature  
-- Recover  
-- Haze  
-- Knock Off  
-- Scald  
+Seismitoad @ Life Orb
+Ability: Swift Swim
+EVs: 252 SpA / 4 SpD / 252 Spe
+Modest Nature
+IVs: 0 Atk
+- Stealth Rock
+- Hydro Pump
+- Earth Power
+- Sludge Wave
 
-Swampert @ Leftovers  
-Ability: Torrent  
-EVs: 252 HP / 4 Atk / 252 SpD  
-Careful Nature  
-- Stealth Rock  
-- Flip Turn  
-- Earthquake  
-- Toxic  
+Barraskewda @ Choice Band
+Ability: Swift Swim
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Waterfall
+- Close Combat
+- Psychic Fangs
+- Flip Turn
 
-Tapu Fini @ Leftovers  
-Ability: Misty Surge  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Calm Mind  
-- Moonblast  
-- Taunt  
-- Draining Kiss  
+Slowking @ Heavy-Duty Boots
+Ability: Regenerator
+EVs: 252 HP / 4 SpA / 252 SpD
+Calm Nature
+IVs: 0 Atk
+- Scald
+- Future Sight
+- Slack Off
+- Teleport
 
-Slowking @ Heavy-Duty Boots  
-Ability: Regenerator  
-EVs: 252 HP / 4 SpA / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
-- Future Sight  
-- Slack Off  
-- Teleport  
-- Scald  
+Kingdra @ Choice Specs
+Ability: Swift Swim
+EVs: 252 SpA / 4 SpD / 252 Spe
+Modest Nature
+IVs: 0 Atk
+- Hydro Pump
+- Surf
+- Draco Meteor
+- Hurricane
