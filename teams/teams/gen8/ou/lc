@@ -1,13 +1,12 @@
-Porygon @ Eviolite  
-Ability: Download  
+Mienfoo @ Eviolite  
+Ability: Regenerator  
 Level: 5  
-EVs: 236 SpA / 76 SpD / 196 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Tri Attack  
-- Psychic  
-- Ice Beam  
-- Agility  
+EVs: 196 Def / 36 SpD / 236 Spe  
+Jolly Nature  
+- Knock Off  
+- U-turn  
+- High Jump Kick  
+- Fake Out  
 
 Pawniard @ Eviolite  
 Ability: Defiant  
@@ -16,44 +15,48 @@ EVs: 156 Atk / 36 Def / 116 SpD / 196 Spe
 Jolly Nature  
 - Knock Off  
 - Iron Head  
-- Sucker Punch  
 - Stealth Rock  
+- Sucker Punch  
 
-Vullaby (F) @ Berry Juice  
-Ability: Overcoat  
-Level: 5  
-EVs: 156 Atk / 76 Def / 76 SpD / 196 Spe  
-- Brave Bird  
-- Knock Off  
-- Heat Wave  
-- Defog  
-
-Grookey @ Life Orb  
-Ability: Grassy Surge  
-Level: 5  
-EVs: 236 Atk / 36 Def / 236 Spe  
-Jolly Nature  
-- Swords Dance  
-- Wood Hammer  
-- Grassy Glide  
-- Drain Punch  
-
-Mienfoo @ Eviolite  
+Foongus @ Eviolite  
 Ability: Regenerator  
 Level: 5  
-EVs: 76 HP / 196 Def / 196 SpD  
-Impish Nature  
-- High Jump Kick  
-- Knock Off  
-- U-turn  
-- Fake Out  
-
-Mareanie @ Eviolite  
-Ability: Regenerator  
-Level: 5  
-EVs: 116 HP / 12 Atk / 180 Def / 12 SpA / 180 SpD  
+EVs: 124 HP / 156 Def / 156 SpD  
 Bold Nature  
-- Scald  
+IVs: 0 Atk  
+- Spore  
+- Giga Drain  
+- Synthesis  
 - Sludge Bomb  
-- Knock Off  
+
+Staryu @ Eviolite  
+Ability: Analytic  
+Level: 5  
+EVs: 116 HP / 156 Def / 236 Spe  
+Timid Nature  
+- Rapid Spin  
 - Recover  
+- Hydro Pump  
+- Thunderbolt  
+
+Ferroseed @ Eviolite  
+Ability: Iron Barbs  
+Level: 5  
+EVs: 84 HP / 36 Atk / 108 Def / 4 SpA / 228 SpD / 36 Spe  
+Bold Nature  
+- Knock Off  
+- Thunder Wave  
+- Giga Drain  
+- Spikes  
+
+Koffing @ Eviolite  
+Ability: Neutralizing Gas  
+Level: 5  
+EVs: 36 HP / 196 SpA / 236 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Sludge Bomb  
+- Fire Blast  
+- Thunderbolt  
+- Will-O-Wisp  
+
