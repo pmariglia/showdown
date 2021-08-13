@@ -1,56 +1,56 @@
-Heatran @ Leftovers  
-Ability: Flash Fire  
-EVs: 252 HP / 248 SpD / 8 Spe  
-Calm Nature  
-IVs: 0 Atk  
-- Magma Storm  
-- Earth Power  
-- Toxic  
-- Stealth Rock  
-
-Akala (Tapu Lele) @ Choice Specs  
-Ability: Psychic Surge  
-EVs: 28 Def / 252 SpA / 228 Spe  
-Modest Nature  
-IVs: 0 Atk  
-- Psychic  
-- Psyshock  
-- Moonblast  
-- Thunderbolt  
-
-Corviknight @ Leftovers  
-Ability: Pressure  
-EVs: 248 HP / 104 Def / 156 SpD  
-Sassy Nature  
-IVs: 0 Spe  
-- Brave Bird  
-- U-turn  
-- Defog  
-- Roost  
-
-Garchomp @ Leftovers  
-Ability: Rough Skin  
-EVs: 44 HP / 212 Atk / 252 Spe  
-Jolly Nature  
+Fertility (Landorus-Therian) (M) @ Leftovers  
+Ability: Intimidate  
+EVs: 248 HP / 8 Def / 252 SpD  
+Careful Nature  
 - Earthquake  
-- Scale Shot  
-- Fire Fang  
-- Swords Dance  
+- U-turn  
+- Stealth Rock  
+- Toxic  
 
-Poni (Tapu Fini) @ Leftovers  
-Ability: Misty Surge  
-EVs: 248 HP / 204 Def / 56 Spe  
-Bold Nature  
-- Moonblast  
-- Nature's Madness  
-- Knock Off  
-- Taunt  
-
-Dragapult @ Choice Specs  
+Stealth (Dragapult) @ Choice Specs  
 Ability: Infiltrator  
-EVs: 4 Def / 252 SpA / 252 Spe  
+EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
+- U-turn  
 - Draco Meteor  
 - Shadow Ball  
 - Flamethrower  
+
+Fairy (Clefable) @ Leftovers  
+Ability: Magic Guard  
+EVs: 252 HP / 252 Def / 4 SpD  
+Bold Nature  
+IVs: 0 Atk  
+- Moonblast  
+- Soft-Boiled  
+- Calm Mind  
+- Heal Bell  
+
+Caldera (Heatran) @ Leftovers  
+Ability: Flash Fire  
+EVs: 248 HP / 216 SpD / 44 Spe  
+Calm Nature  
+IVs: 0 Atk  
+- Earth Power  
+- Magma Storm  
+- Taunt  
+- Toxic  
+
+Spike Ball (Ferrothorn) @ Leftovers  
+Ability: Iron Barbs  
+EVs: 248 HP / 252 Def / 8 SpD  
+Impish Nature  
+- Leech Seed  
+- Knock Off  
+- Spikes  
+- Iron Head  
+
+Raven (Corviknight) @ Leftovers  
+Ability: Pressure  
+EVs: 248 HP / 252 Def / 8 SpD  
+Impish Nature  
+- Roost  
+- Defog  
 - U-turn  
+- Body Press  
+
