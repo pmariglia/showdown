@@ -1,56 +1,55 @@
-Fertility (Landorus-Therian) (M) @ Leftovers  
-Ability: Intimidate  
-EVs: 248 HP / 8 Def / 252 SpD  
-Careful Nature  
-- Earthquake  
-- U-turn  
-- Stealth Rock  
-- Toxic  
-
-Stealth (Dragapult) @ Choice Specs  
-Ability: Infiltrator  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-- U-turn  
-- Draco Meteor  
-- Shadow Ball  
-- Flamethrower  
-
-Fairy (Clefable) @ Leftovers  
-Ability: Magic Guard  
-EVs: 252 HP / 252 Def / 4 SpD  
+Waterfowl (Pelipper) @ Damp Rock  
+Ability: Drizzle  
+EVs: 248 HP / 252 Def / 8 Spe  
 Bold Nature  
-IVs: 0 Atk  
-- Moonblast  
-- Soft-Boiled  
-- Calm Mind  
-- Heal Bell  
-
-Caldera (Heatran) @ Leftovers  
-Ability: Flash Fire  
-EVs: 248 HP / 216 SpD / 44 Spe  
-Calm Nature  
-IVs: 0 Atk  
-- Earth Power  
-- Magma Storm  
-- Taunt  
-- Toxic  
+- Defog  
+- Scald  
+- U-turn  
+- Roost  
 
 Spike Ball (Ferrothorn) @ Leftovers  
 Ability: Iron Barbs  
-EVs: 248 HP / 252 Def / 8 SpD  
-Impish Nature  
-- Leech Seed  
+EVs: 252 HP / 80 Def / 176 SpD  
+Careful Nature  
+- Stealth Rock  
+- Iron Head  
 - Knock Off  
 - Spikes  
-- Iron Head  
 
-Raven (Corviknight) @ Leftovers  
-Ability: Pressure  
-EVs: 248 HP / 252 Def / 8 SpD  
-Impish Nature  
+Skewer (Barraskewda) @ Choice Band  
+Ability: Swift Swim  
+EVs: 24 HP / 252 Atk / 16 Def / 216 Spe  
+Adamant Nature  
+- Flip Turn  
+- Liquidation  
+- Close Combat  
+- Crunch  
+
+Electric Shock (Zapdos) @ Heavy-Duty Boots  
+Ability: Static  
+EVs: 8 HP / 208 SpA / 52 SpD / 240 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Thunder  
+- Hurricane  
+- Weather Ball  
 - Roost  
-- Defog  
-- U-turn  
-- Body Press  
 
+Fairy (Clefable) @ Heavy-Duty Boots  
+Ability: Unaware  
+EVs: 252 HP / 192 Def / 64 SpD  
+Bold Nature  
+IVs: 0 Atk  
+- Moonblast  
+- Thunder Wave  
+- Healing Wish  
+- Soft-Boiled  
+
+Mach (Garchomp) @ Leftovers  
+Ability: Rough Skin  
+EVs: 4 HP / 252 Atk / 252 Spe  
+Jolly Nature  
+- Swords Dance  
+- Earthquake  
+- Scale Shot  
+- Aqua Tail  
