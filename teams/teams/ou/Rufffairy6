@@ -8,14 +8,14 @@ IVs: 0 Atk
 - Thunder Wave  
 - Spikes  
 
-Ruffmarill (Azumarill) @ Sitrus Berry  
+Ruffmarill (Azumarill) @ Choice Band  
 Ability: Huge Power  
-EVs: 4 HP / 252 Atk / 252 Spe  
+EVs: 252 HP / 252 Atk / 4 SpD  
 Adamant Nature  
-- Belly Drum  
+- Liquidation  
 - Aqua Jet  
 - Knock Off  
-- Substitute  
+- Play Rough  
 
 Ruff Koko (Tapu Koko) @ Heavy-Duty Boots  
 Ability: Electric Surge  
@@ -51,7 +51,7 @@ EVs: 252 SpA / 4 SpD / 252 Spe
 Timid Nature  
 IVs: 0 Atk  
 - Expanding Force  
-- Healing Wish  
+- Shadow Ball  
 - Focus Blast  
 - Energy Ball  
 
