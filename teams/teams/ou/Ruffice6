@@ -30,12 +30,12 @@ Jolly Nature
 Ruffrem (Kyurem) @ Choice Specs  
 Ability: Pressure  
 Shiny: Yes  
-EVs: 252 HP / 56 SpA / 84 SpD / 116 Spe  
+EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Substitute  
+- Focus Blast  
 - Earth Power  
-- Roost  
+- Dragon Pulse  
 - Freeze-Dry  
 
 Ruffoswine (Mamoswine) @ Assault Vest  
@@ -54,5 +54,5 @@ Jolly Nature
 - Rapid Spin  
 - Swords Dance  
 - Triple Axel  
-- Rock Slide  
+- Earthquake  
 
