@@ -34,7 +34,7 @@ def parse_configs():
     config.battle_ending_message = env("BATTLE_OVER_MESSAGE", config.battle_ending_message)
     config.websocket_uri = env("WEBSOCKET_URI", "sim.smogon.com:8000")
     config.username = env("PS_USERNAME")
-    config.password = env("PS_PASSWORD", "")
+    config.password = env("PS_PASSWORD")
     config.bot_mode = env("BOT_MODE")
     config.team_name = env("TEAM_NAME", None)
     config.pokemon_mode = env("POKEMON_MODE", constants.DEFAULT_MODE)

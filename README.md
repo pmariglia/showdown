@@ -1,5 +1,5 @@
 # Showdown  ![umbreon](https://play.pokemonshowdown.com/sprites/xyani/umbreon.gif)
-Showdown is a Pokémon battle-bot that can play battles on [Pokemon Showdown](https://pokemonshowdown.com/).
+A Pokémon battle-bot that can play battles on [Pokemon Showdown](https://pokemonshowdown.com/).
 
 The bot can play single battles in generations 3 through 8 however some of the battle mechanics assume it is gen8.
 
@@ -9,7 +9,6 @@ The bot can play single battles in generations 3 through 8 however some of the b
 Developed and tested using Python 3.6.3.
 
 ## Getting Started
-
 
 ### Configuration
 Environment variables are used for configuration which are by default read from a file named `.env`
@@ -40,31 +39,37 @@ POKEMON_MODE=gen8randombattle
 RUN_COUNT=1
 ```
 
+There is a sample `.env` file in this repository.
+
 ### Running without Docker
 
-#### Clone
+**1. Clone**
 
 Clone the repository with `git clone https://github.com/pmariglia/showdown.git`
 
-#### Install Requirements
+**2. Install Requirements**
 
 Install the requirements with `pip install -r requirements.txt`.
-
 Be sure to use a virtual environment to isolate your packages.
 
-#### Run
-Running with `python run.py` will start the bot with configurations specified by environment variables read from a file named `.env`
+**3. Run**
+
+Run with `python run.py` and the bot will start with configurations
+specified by environment variables read from the file named `.env`
 
 ### Running with Docker
 This requires Docker 17.06 or higher.
 
-#### Clone the repository
+**1. Clone the repository**
+
 `git clone https://github.com/pmariglia/showdown.git`
 
-#### Build the Docker image
+**2. Build the Docker image**
+
 `docker build . -t showdown`
 
-#### Run with an environment variable file
+**3. Run with an environment variable file**
+
 `docker run --env-file .env showdown`
 
 ### Running on Heroku
@@ -126,7 +131,7 @@ For more information, see [ENGINE.md](https://github.com/pmariglia/showdown/blob
 You can specify teams by setting the `TEAM_NAME` environment variable.
 Examples can be found in `teams/teams/`.
 
-Passing in a directory will cause a random team to be selected from that directory
+Passing in a directory will cause a random team to be selected from that directory.
 
 The path specified should be relative to `teams/teams/`.
 
