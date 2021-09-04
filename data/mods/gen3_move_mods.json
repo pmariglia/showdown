@@ -8,7 +8,7 @@
     "secondary": {
       "chance": 10,
       "boosts": {
-        "def": -1
+        "defense": -1
       }
     }
   },
@@ -58,7 +58,7 @@
     "secondary": {
       "chance": 20,
       "boosts": {
-        "spd": -1
+        "special-defense": -1
       }
     }
   },
