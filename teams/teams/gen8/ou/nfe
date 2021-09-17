@@ -1,54 +1,56 @@
-Hattrem @ Eviolite  
-Ability: Magic Bounce  
-EVs: 252 HP / 248 Def / 8 Spe  
-Bold Nature  
+Electabuzz @ Heavy-Duty Boots  
+Ability: Static  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
 IVs: 0 Atk  
-- Psychic  
-- Rest  
-- Sleep Talk  
-- Mystical Fire  
+- Thunderbolt  
+- Volt Switch  
+- Focus Blast  
+- Toxic  
 
 Piloswine @ Eviolite  
 Ability: Thick Fat  
-EVs: 160 HP / 252 Atk / 96 Spe  
-Adamant Nature  
+EVs: 252 Atk / 252 SpD / 4 Spe  
+Careful Nature  
 - Stealth Rock  
-- High Horsepower  
-- Icicle Crash  
 - Ice Shard  
+- Icicle Crash  
+- High Horsepower  
 
-Raboot @ Choice Band  
-Ability: Libero  
-EVs: 252 Atk / 4 Def / 252 Spe  
+Golbat @ Choice Scarf  
+Ability: Infiltrator  
+EVs: 248 HP / 172 Def / 88 Spe  
 Jolly Nature  
-- Flare Blitz  
-- High Jump Kick  
+- Roost  
+- Brave Bird  
 - U-turn  
-- Assurance  
+- Thief  
 
-Mareanie @ Eviolite  
-Ability: Regenerator  
-EVs: 248 HP / 40 Def / 220 SpD  
-Sassy Nature  
-- Scald  
-- Knock Off  
-- Recover  
-- Haze  
-
-Tangela @ Eviolite  
-Ability: Regenerator  
-EVs: 252 HP / 168 Def / 72 SpD / 16 Spe  
-Bold Nature  
-- Giga Drain  
-- Sludge Bomb  
-- Knock Off  
-- Sleep Powder  
-
-Rushing (Linoone-Galar) @ Choice Scarf  
-Ability: Quick Feet  
-EVs: 252 Atk / 4 Def / 252 Spe  
+Raboot @ Heavy-Duty Boots  
+Ability: Libero  
+EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Double-Edge  
-- Knock Off  
-- Parting Shot  
-- Switcheroo  
+- High Jump Kick  
+- Flare Blitz  
+- U-turn  
+- Sucker Punch  
+
+Wartortle @ Eviolite  
+Ability: Torrent  
+EVs: 252 HP / 232 Def / 24 SpD  
+Impish Nature  
+- Rapid Spin  
+- Toxic  
+- Flip Turn  
+- Seismic Toss  
+
+Duosion @ Eviolite  
+Ability: Regenerator  
+EVs: 252 HP / 4 SpA / 252 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Recover  
+- Future Sight  
+- Protect  
+- Night Shade  
+
