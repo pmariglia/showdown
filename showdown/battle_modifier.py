@@ -470,6 +470,13 @@ def sideend(battle, split_msg):
         battle.user.side_conditions[condition] = 0
 
 
+def swapsideconditions(battle, _):
+    user_sc = battle.user.side_conditions
+    opponent_sc = battle.opponent.side_conditions
+    for side_condition in constants.COURT_CHANGE_SWAPS:
+        user_sc[side_condition], opponent_sc[side_condition] = opponent_sc[side_condition], user_sc[side_condition]
+
+
 def set_item(battle, split_msg):
     """Set the opponent's item"""
     if is_opponent(battle, split_msg):
@@ -963,6 +970,7 @@ def update_battle(battle, msg):
             '-fieldend': fieldend,
             '-sidestart': sidestart,
             '-sideend': sideend,
+            '-swapsideconditions': swapsideconditions,
             '-item': set_item,
             '-enditem': remove_item,
             '-immune': set_ability,
