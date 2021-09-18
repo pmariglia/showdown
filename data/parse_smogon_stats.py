@@ -1,3 +1,4 @@
+import logging
 import ntpath
 from datetime import datetime
 from dateutil import relativedelta
@@ -6,6 +7,8 @@ import requests
 
 from showdown.engine.helpers import spreads_are_alike
 from showdown.engine.helpers import normalize_name
+
+logger = logging.getLogger(__name__)
 
 OTHER_STRING = "other"
 MOVES_STRING = "moves"
@@ -34,6 +37,13 @@ def get_smogon_stats_file_name(game_mode, month_delta=1):
     return smogon_url.format(year, month, game_mode)
 
 
+def pokemon_is_similar(normalized_name, list_of_pkmn_names):
+    return (
+        any(normalized_name.startswith(n) for n in list_of_pkmn_names) or
+        any(n.startswith(normalized_name) for n in list_of_pkmn_names)
+    )
+
+
 def get_pokemon_information(smogon_stats_url, pkmn_names=None):
     r = requests.get(smogon_stats_url)
     if r.status_code == 404:
@@ -45,8 +55,14 @@ def get_pokemon_information(smogon_stats_url, pkmn_names=None):
         normalized_name = normalize_name(pkmn_name)
 
         # if `pkmn_names` is provided, only find data on pkmn in that list
-        if pkmn_names and normalized_name not in pkmn_names:
+        if (
+            pkmn_names and
+            normalized_name not in pkmn_names and
+            not pokemon_is_similar(normalized_name, pkmn_names)
+        ):
             continue
+        else:
+            logger.debug("Adding {} to sets lookup for this battle".format(normalized_name))
 
         spreads = []
         items = []
