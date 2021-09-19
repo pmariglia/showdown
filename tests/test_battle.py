@@ -722,6 +722,42 @@ class TestBattlerActiveLockedIntoMove(unittest.TestCase):
 
         self.assertTrue(self.battler.active.get_move('firstimpression').disabled)
 
+    def test_taunt_locks_status_move(self):
+        self.battler.active.moves.append(Move('calmmind'))
+        self.battler.active.volatile_statuses.append("taunt")
+
+        self.battler.lock_moves()
+
+        self.assertTrue(self.battler.active.get_move('calmmind').disabled)
+
+    def test_taunt_does_not_lock_physical_move(self):
+        self.battler.active.moves.append(Move('tackle'))
+        self.battler.active.volatile_statuses.append("taunt")
+
+        self.battler.lock_moves()
+
+        self.assertFalse(self.battler.active.get_move('tackle').disabled)
+
+    def test_taunt_does_not_lock_special_move(self):
+        self.battler.active.moves.append(Move('watergun'))
+        self.battler.active.volatile_statuses.append("taunt")
+
+        self.battler.lock_moves()
+
+        self.assertFalse(self.battler.active.get_move('watergun').disabled)
+
+    def test_taunt_with_multiple_moves(self):
+        self.battler.active.moves.append(Move('watergun'))
+        self.battler.active.moves.append(Move('tackle'))
+        self.battler.active.moves.append(Move('calmmind'))
+        self.battler.active.volatile_statuses.append("taunt")
+
+        self.battler.lock_moves()
+
+        self.assertFalse(self.battler.active.get_move('watergun').disabled)
+        self.assertFalse(self.battler.active.get_move('tackle').disabled)
+        self.assertTrue(self.battler.active.get_move('calmmind').disabled)
+
     def test_calmmind_gets_locked_when_user_has_assaultvest(self):
         self.battler.active.moves.append(Move('calmmind'))
         self.battler.active.item = 'assaultvest'
