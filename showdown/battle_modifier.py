@@ -674,6 +674,36 @@ def check_choicescarf(battle, msg_lines):
     if (
         battle.opponent.active is None or
         battle.opponent.active.item != constants.UNKNOWN_ITEM or
+        (
+            battle.weather == constants.RAIN and
+            battle.opponent.active.ability is None and
+            "swiftswim" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.weather == constants.SUN and
+            battle.opponent.active.ability is None and
+            "chlorophyll" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.weather == constants.SAND and
+            battle.opponent.active.ability is None and
+            "sandrush" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.weather == constants.HAIL and
+            battle.opponent.active.ability is None and
+            "slushrush" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.field == constants.ELECTRIC_TERRAIN and
+            battle.opponent.active.ability is None and
+            "surgesurfer" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.opponent.active.status == constants.PARALYZED and
+            battle.opponent.active.ability is None and
+            "quickfeet" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        ) or
         'prankster' in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
     ):
         return

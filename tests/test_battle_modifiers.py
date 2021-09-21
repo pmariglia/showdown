@@ -2194,6 +2194,93 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
+    def test_pokemon_possibly_having_swiftswim_in_rain_does_not_result_in_a_choicescarf_guess(self):
+        self.battle.opponent.active.name = 'seismitoad'  # can have swiftswim
+        self.battle.weather = constants.RAIN
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed can be 414 (max speed caterpie plus swiftswim)
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_seismitoad_choicescarf_is_guessed_when_ability_has_been_revealed(self):
+        self.battle.opponent.active.name = 'seismitoad'  # set ID so lookup says it has swiftswim
+        self.battle.opponent.active.ability = 'waterabsorb'  # but ability has been revealed so if it is faster a choice item should be inferred
+        self.battle.weather = constants.RAIN
+        self.battle.user.active.stats[constants.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim). Yes it is still a caterpie
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual("choicescarf", self.battle.opponent.active.item)
+
+    def test_possible_surgesurfer_does_not_result_in_scarf_inferral(self):
+        self.battle.opponent.active.name = 'raichualola'  # set ID so lookup says it has surgesurfer
+        self.battle.field = constants.ELECTRIC_TERRAIN
+        self.battle.user.active.stats[constants.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim). Yes it is still a caterpie
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_surgesurfer_pokemon_choice_item_is_guessed_if_ability_is_revealed_to_be_otherwise(self):
+        self.battle.opponent.active.name = 'raichualola'  # set ID so lookup says it has surgesurfer
+        self.battle.opponent.active.ability = "some_weird_ability"
+        self.battle.field = constants.ELECTRIC_TERRAIN
+        self.battle.user.active.stats[constants.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim). Yes it is still a caterpie
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual("choicescarf", self.battle.opponent.active.item)
+
+    def test_pokemon_with_possible_quickfeet_does_not_have_choice_scarf_inferred(self):
+        self.battle.opponent.active.name = 'ursaring'  # set ID so lookup says it has quickfeet
+        self.battle.opponent.active.status = constants.PARALYZED
+        self.battle.user.active.stats[constants.SPEED] = 210
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_pokemon_with_possible_quickfeet_does_have_choice_scarf_inferred_if_ability_revealed_to_something_else(self):
+        self.battle.opponent.active.name = 'ursaring'  # set ID so lookup says it has quickfeet
+        self.battle.opponent.active.ability = 'some_other_ability'  # ability cant be quickfeet
+        self.battle.opponent.active.status = constants.PARALYZED
+        self.battle.user.active.stats[constants.SPEED] = 210
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual("choicescarf", self.battle.opponent.active.item)
+
     def test_only_one_move_causes_no_item_to_be_guessed(self):
         self.battle.user.active.stats[constants.SPEED] = 210
 
