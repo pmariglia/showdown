@@ -174,9 +174,11 @@ async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_
 
         smogon_usage_data = get_standard_battle_sets(
             pokemon_battle_type,
-            pokemon_names=[p.name for p in battle.opponent.reserve]
+            pokemon_names=set(p.name for p in battle.opponent.reserve + battle.user.reserve)
         )
         data.pokemon_sets = smogon_usage_data
+        for pkmn, values in smogon_usage_data.items():
+            data.effectiveness[pkmn] = values["effectiveness"]
 
         await handle_team_preview(battle, ps_websocket_client)
 
