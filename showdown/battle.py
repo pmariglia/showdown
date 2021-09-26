@@ -274,10 +274,17 @@ class Battler:
                 if m.name != self.last_used_move.move:
                     m.disabled = True
 
+    def taunt_lock_moves(self):
+        if constants.TAUNT in self.active.volatile_statuses:
+            for m in self.active.moves:
+                if all_move_json[m.name][constants.CATEGORY] == constants.STATUS:
+                    m.disabled = True
+
     def lock_moves(self):
         self.choice_lock_moves()
         self.lock_active_pkmn_status_moves_if_active_has_assaultvest()
         self.lock_active_pkmn_first_turn_moves()
+        self.taunt_lock_moves()
 
     def from_json(self, user_json, first_turn=False):
 

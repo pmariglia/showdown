@@ -16,6 +16,7 @@ from showdown.battle_modifier import activate
 from showdown.battle_modifier import switch_or_drag
 from showdown.battle_modifier import clearallboost
 from showdown.battle_modifier import heal_or_damage
+from showdown.battle_modifier import swapsideconditions
 from showdown.battle_modifier import move
 from showdown.battle_modifier import boost
 from showdown.battle_modifier import unboost
@@ -1282,6 +1283,89 @@ class TestUpdateAbility(unittest.TestCase):
         expected_ability = 'lightningrod'
 
         self.assertEqual(expected_ability, self.battle.user.active.ability)
+
+
+class TestSwapSideConditions(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+        self.battle.opponent.active.ability = None
+
+        self.user_active = Pokemon('weedle', 100)
+        self.battle.user.active = self.user_active
+
+    def get_expected_empty_dict(self):
+        # The defaultdict's start empty, but swapping them adds the values of 0 to them
+        return {k: 0 for k in constants.COURT_CHANGE_SWAPS}
+
+    def test_does_nothing_when_no_side_conditions_are_present(self):
+        split_msg = ['', '-swapsideconditions']
+        swapsideconditions(self.battle, split_msg)
+
+        expected_dict = self.get_expected_empty_dict()
+
+        self.assertEqual(expected_dict, self.battle.user.side_conditions)
+        self.assertEqual(expected_dict, self.battle.opponent.side_conditions)
+
+    def test_swaps_one_layer_of_spikes(self):
+        split_msg = ['', '-swapsideconditions']
+
+        self.battle.user.side_conditions[constants.SPIKES] = 1
+
+        swapsideconditions(self.battle, split_msg)
+
+        expected_user_side_conditions = self.get_expected_empty_dict()
+
+        expected_opponent_side_conditions = self.get_expected_empty_dict()
+        expected_opponent_side_conditions[constants.SPIKES] = 1
+
+        self.assertEqual(expected_user_side_conditions, self.battle.user.side_conditions)
+        self.assertEqual(expected_opponent_side_conditions, self.battle.opponent.side_conditions)
+
+    def test_swaps_one_layer_of_spikes_with_two_layers_of_spikes(self):
+        split_msg = ['', '-swapsideconditions']
+
+        self.battle.user.side_conditions[constants.SPIKES] = 2
+        self.battle.opponent.side_conditions[constants.SPIKES] = 1
+
+        swapsideconditions(self.battle, split_msg)
+
+        expected_user_side_conditions = self.get_expected_empty_dict()
+        expected_user_side_conditions[constants.SPIKES] = 1
+
+        expected_opponent_side_conditions = self.get_expected_empty_dict()
+        expected_opponent_side_conditions[constants.SPIKES] = 2
+
+        self.assertEqual(expected_user_side_conditions, self.battle.user.side_conditions)
+        self.assertEqual(expected_opponent_side_conditions, self.battle.opponent.side_conditions)
+
+    def test_swaps_multiple_side_conditions_on_either_side(self):
+        split_msg = ['', '-swapsideconditions']
+
+        self.battle.user.side_conditions[constants.SPIKES] = 2
+        self.battle.user.side_conditions[constants.REFLECT] = 3
+        self.battle.user.side_conditions[constants.TAILWIND] = 2
+
+        self.battle.opponent.side_conditions[constants.SPIKES] = 1
+        self.battle.opponent.side_conditions[constants.LIGHT_SCREEN] = 2
+
+        swapsideconditions(self.battle, split_msg)
+
+        expected_user_side_conditions = self.get_expected_empty_dict()
+        expected_user_side_conditions[constants.SPIKES] = 1
+        expected_user_side_conditions[constants.LIGHT_SCREEN] = 2
+
+        expected_opponent_side_conditions = self.get_expected_empty_dict()
+        expected_opponent_side_conditions[constants.SPIKES] = 2
+        expected_opponent_side_conditions[constants.REFLECT] = 3
+        expected_opponent_side_conditions[constants.TAILWIND] = 2
+
+        self.assertEqual(expected_user_side_conditions, self.battle.user.side_conditions)
+        self.assertEqual(expected_opponent_side_conditions, self.battle.opponent.side_conditions)
 
 
 class TestFormChange(unittest.TestCase):
