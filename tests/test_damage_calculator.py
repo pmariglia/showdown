@@ -273,6 +273,34 @@ class TestCalculateDamageAmount(unittest.TestCase):
         dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
         self.assertEqual([597], dmg)
 
+    def test_move_versus_partially_typeless_pokemon(self):
+        self.venusaur.types = ["typeless", "grass"]
+        move = 'fireblast'
+
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        self.assertEqual([300], dmg)
+
+    def test_move_versus_partially_typeless_pokemon_with_question_mark_type(self):
+        self.venusaur.types = ["???", "grass"]
+        move = 'fireblast'
+
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        self.assertEqual([300], dmg)
+
+    def test_move_versus_completely_typeless_pokemon(self):
+        self.venusaur.types = ["typeless"]
+        move = 'fireblast'
+
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        self.assertEqual([150], dmg)
+
+    def test_move_versus_completely_typeless_pokemon_with_question_mark_type(self):
+        self.venusaur.types = ["???"]
+        move = 'fireblast'
+
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        self.assertEqual([150], dmg)
+
 
 class TestCalculateDamage(unittest.TestCase):
     def setUp(self):

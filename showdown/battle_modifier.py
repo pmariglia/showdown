@@ -349,7 +349,7 @@ def start_volatile_status(battle, split_msg):
             pkmn_name = normalize_name(split_msg[5].split(":")[-1])
             new_types = deepcopy(pokedex[pkmn_name][constants.TYPES])
         else:
-            new_types = [normalize_name(split_msg[4])]
+            new_types = [normalize_name(t) for t in split_msg[4].split("/")]
 
         logger.debug("Setting {}'s types to {}".format(pkmn.name, new_types))
         pkmn.types = new_types

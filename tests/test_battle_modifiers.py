@@ -1196,6 +1196,13 @@ class TestStartVolatileStatus(unittest.TestCase):
 
         self.assertEqual(['dragon', 'ghost'], self.battle.opponent.active.types)
 
+    def test_typechange_from_multiple_types(self):
+        # |-start|p2a: Moltres|typechange|???/Flying|[from] move: Burn Up
+        split_msg = ['', '-start', 'p2a: Moltres', 'typechange', '???/Flying', '[from] move: Burn Up']
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(['???', 'flying'], self.battle.opponent.active.types)
+
 
 class TestEndVolatileStatus(unittest.TestCase):
     def setUp(self):

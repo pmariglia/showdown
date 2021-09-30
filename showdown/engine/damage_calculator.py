@@ -24,7 +24,10 @@ pokemon_type_indicies = {
     'dark': 15,
     'steel': 16,
     'fairy': 17,
-    'typeless': 18
+
+    # ??? and typeless are the same thing
+    'typeless': 18,
+    '???': 18,
 }
 
 damage_multipication_array = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1/2, 0, 1, 1, 1/2, 1, 1],
