@@ -1189,6 +1189,13 @@ class TestStartVolatileStatus(unittest.TestCase):
 
         self.assertEqual(['fighting'], self.battle.opponent.active.types)
 
+    def test_typechange_works_with_reflect_type(self):
+        # |-start|p1a: Starmie|typechange|[from] move: Reflect Type|[of] p2a: Dragapult
+        split_msg = ['', '-start', 'p2a: Starmie', 'typechange', '[from] move: Reflect Type', '[of] p1a: Dragapult']
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(['dragon', 'ghost'], self.battle.opponent.active.types)
+
 
 class TestEndVolatileStatus(unittest.TestCase):
     def setUp(self):

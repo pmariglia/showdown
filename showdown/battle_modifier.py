@@ -345,9 +345,14 @@ def start_volatile_status(battle, split_msg):
         pkmn.ability = normalize_name(split_msg[5].split('ability:')[-1])
 
     if volatile_status == constants.TYPECHANGE:
-        new_type = normalize_name(split_msg[4])
-        logger.debug("Setting {}'s type to {}".format(pkmn.name, new_type))
-        pkmn.types = [new_type]
+        if split_msg[4] == "[from] move: Reflect Type":
+            pkmn_name = normalize_name(split_msg[5].split(":")[-1])
+            new_types = deepcopy(pokedex[pkmn_name][constants.TYPES])
+        else:
+            new_types = [normalize_name(split_msg[4])]
+
+        logger.debug("Setting {}'s types to {}".format(pkmn.name, new_types))
+        pkmn.types = new_types
 
 
 def end_volatile_status(battle, split_msg):
