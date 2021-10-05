@@ -1285,6 +1285,7 @@ class TestBattleMechanics(unittest.TestCase):
                     # this move does 20 damage without knockoff boost
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 30),
                     (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, None, constants.UNKNOWN_ITEM),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, constants.ITEM_REMOVED)
                 ],
                 False
             )
@@ -1514,6 +1515,7 @@ class TestBattleMechanics(unittest.TestCase):
                     # this move does 20 damage without knockoff boost
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 30),
                     (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, None, 'leftovers'),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, constants.ITEM_REMOVED)
                 ],
                 False
             )
@@ -1534,6 +1536,7 @@ class TestBattleMechanics(unittest.TestCase):
                     # this move does 20 damage without knockoff boost
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 30),
                     (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, None, 'leftovers'),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, constants.ITEM_REMOVED)
                 ],
                 False
             ),
@@ -6005,6 +6008,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.SELF, 82),
                     (constants.MUTATOR_CHANGE_ITEM, constants.SELF, None, constants.UNKNOWN_ITEM),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.ITEM_REMOVED),
                     (constants.MUTATOR_BOOST, constants.SELF, constants.ATTACK, 1),
                 ],
                 False
@@ -11675,3 +11679,20 @@ class TestUserMovesFirst(unittest.TestCase):
         opponent.active.speed = 2
 
         self.assertTrue(user_moves_first(self.state, user_move, opponent_move))
+
+    def test_unburden_activates_general(self):
+        user = self.state.self
+        opponent = self.state.opponent
+        user_move = lookup_move('tackle')
+        opponent_move = lookup_move('tackle')
+
+        user.active.ability = "unburden"
+        user.active.item = None
+        user.active.volatile_status.add(constants.ITEM_REMOVED)
+
+        user.active.speed = 50
+        opponent.active.speed = 99
+
+        self.assertTrue(user_moves_first(self.state, user_move, opponent_move))
+
+    

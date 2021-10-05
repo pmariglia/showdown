@@ -43,7 +43,7 @@ def get_effective_speed(state, side):
     if state.field == constants.ELECTRIC_TERRAIN and side.active.ability == 'surgesurfer':
         boosted_speed *= 2
 
-    if side.active.ability == 'unburden' and not side.active.item:
+    if side.active.ability == 'unburden' and not side.active.item and constants.ITEM_REMOVED in side.active.volatile_status:
         boosted_speed *= 2
     elif side.active.ability == 'quickfeet' and side.active.status is not None:
         boosted_speed *= 1.5

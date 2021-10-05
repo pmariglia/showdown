@@ -1102,6 +1102,7 @@ class TestStartVolatileStatus(unittest.TestCase):
         self.battle.opponent.name = 'p2'
 
         self.opponent_active = Pokemon('caterpie', 100)
+        self.opponent_active.item = "leftovers"
         self.battle.opponent.active = self.opponent_active
 
         self.user_active = Pokemon('weedle', 100)
@@ -1112,6 +1113,14 @@ class TestStartVolatileStatus(unittest.TestCase):
         start_volatile_status(self.battle, split_msg)
 
         expected_volatile_statuese = ['encore']
+
+        self.assertEqual(expected_volatile_statuese, self.battle.opponent.active.volatile_statuses)
+
+    def test_volatile_status_is_set_on_losing_item(self):
+        split_msg = "|-enditem|p2a: Caterpie|Leftovers|[from] move: Knock Off|[of] p1a: Weedle\n"
+        update_battle(self.battle, split_msg)
+
+        expected_volatile_statuese = ['itemRemoved']
 
         self.assertEqual(expected_volatile_statuese, self.battle.opponent.active.volatile_statuses)
 
