@@ -191,7 +191,7 @@ def faint(battle, split_msg):
 
 
 def move(battle, split_msg):
-    if '[from]' in split_msg[-1]:
+    if '[from]' in split_msg[-1] and split_msg[-1] != "[from]lockedmove":
         return
 
     move_name = normalize_name(split_msg[3].strip().lower())
@@ -202,6 +202,12 @@ def move(battle, split_msg):
     else:
         side = battle.user
         pkmn = battle.user.active
+
+    # remove volatile status if they have it
+    # this is for preparation moves like Phantom Force
+    if move_name in pkmn.volatile_statuses:
+        logger.debug("Removing volatile status {} from {}".format(move_name, pkmn.name))
+        pkmn.volatile_statuses.remove(move_name)
 
     # add the move to it's moves if it hasn't been seen
     # decrement the PP by one
@@ -320,6 +326,19 @@ def activate(battle, split_msg):
         item = normalize_name(split_msg[4])
         logger.debug("{} has the item {}".format(pkmn.name, item))
         pkmn.item = item
+
+
+def prepare(battle, split_msg):
+    if is_opponent(battle, split_msg):
+        pkmn = battle.opponent.active
+    else:
+        pkmn = battle.user.active
+
+    being_prepared = normalize_name(split_msg[3])
+    if being_prepared in pkmn.volatile_statuses:
+        logger.warning("{} already has the volatile status {}".format(pkmn.name, being_prepared))
+    else:
+        pkmn.volatile_statuses.append(being_prepared)
 
 
 def start_volatile_status(battle, split_msg):
@@ -996,6 +1015,7 @@ def update_battle(battle, msg):
             '-unboost': unboost,
             '-status': status,
             '-activate': activate,
+            '-prepare': prepare,
             '-start': start_volatile_status,
             '-end': end_volatile_status,
             '-curestatus': curestatus,

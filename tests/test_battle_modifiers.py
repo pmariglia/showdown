@@ -13,6 +13,7 @@ from showdown.battle import DamageDealt
 
 from showdown.battle_modifier import request
 from showdown.battle_modifier import activate
+from showdown.battle_modifier import prepare
 from showdown.battle_modifier import switch_or_drag
 from showdown.battle_modifier import clearallboost
 from showdown.battle_modifier import heal_or_damage
@@ -637,6 +638,29 @@ class TestActivate(unittest.TestCase):
         self.assertEqual('leftovers', self.battle.opponent.active.item)
 
 
+class TestPrepare(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.user_active = Pokemon('caterpie', 100)
+        self.opponent_active = Pokemon('caterpie', 100)
+
+        # manually set hp to 200 for testing purposes
+        self.opponent_active.max_hp = 200
+        self.opponent_active.hp = 200
+
+        self.battle.opponent.active = self.opponent_active
+        self.battle.user.active = self.user_active
+
+    def test_prepare_sets_volatile_status_on_pokemon(self):
+        # |-prepare|p1a: Dragapult|Phantom Force
+        split_msg = ["", "-prepare", "p2a: Caterpie", "Phantom Force"]
+        prepare(self.battle, split_msg)
+        self.assertIn("phantomforce", self.battle.opponent.active.volatile_statuses)
+
+
 class TestClearAllBoosts(unittest.TestCase):
     def setUp(self):
         self.battle = Battle(None)
@@ -774,6 +798,14 @@ class TestMove(unittest.TestCase):
         move(self.battle, split_msg)
 
         self.assertTrue(self.battle.opponent.active.can_have_assaultvest)
+
+    def test_removes_volatilestatus_if_pkmn_has_it_when_using_move(self):
+        self.battle.opponent.active.volatile_statuses = ["phantomforce"]
+        split_msg = ['', 'move', 'p2a: Caterpie', 'Phantom Force', '[from]lockedmove']
+
+        move(self.battle, split_msg)
+
+        self.assertEqual([], self.battle.opponent.active.volatile_statuses)
 
     def test_sets_can_have_choice_item_to_false_if_two_different_moves_are_used_when_the_pkmn_has_an_unknown_item(self):
         self.battle.opponent.active.can_have_choice_item = True

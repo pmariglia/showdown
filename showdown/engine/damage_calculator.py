@@ -305,6 +305,40 @@ def volatile_status_modifier(attacking_move, attacker, defender):
         modifier *= 1.5
     if 'tarshot' in defender.volatile_status and attacking_move[constants.TYPE] == 'fire':
         modifier *= 2
+    if 'phantomforce' in defender.volatile_status:
+        modifier *= 0
+    if 'shadowforce' in defender.volatile_status:
+        modifier *= 0
+    if (
+        'dive' in defender.volatile_status and
+        attacker.ability != "noguard" and
+        defender.ability != "noguard" and
+        attacking_move[constants.ID] not in [
+            "surf", "whirlpool"
+        ]
+    ):
+        modifier *= 0
+    if (
+        'dig' in defender.volatile_status and
+        attacker.ability != "noguard" and
+        defender.ability != "noguard" and
+        attacking_move[constants.ID] not in [
+            "earthquake", "magnitude", "fissure"
+        ]
+    ):
+        modifier *= 0
+    if (
+        (
+            "fly" in defender.volatile_status or
+            "bounce" in defender.volatile_status
+        ) and
+        attacker.ability != "noguard" and
+        defender.ability != "noguard" and
+        attacking_move[constants.ID] not in [
+            "gust", "thunder", "twister", "skyuppercut", "hurricane", "thousandarrows", "smackdown"
+        ]
+    ):
+        modifier *= 0
     return modifier
 
 
