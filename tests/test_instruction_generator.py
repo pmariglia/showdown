@@ -1553,6 +1553,111 @@ class TestGetStateFromSwitch(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switching_into_pokemon_with_grassyseed_causes_that_seed_boost_to_occur_if_terrain_is_up(self):
+        attacker = constants.SELF
+        switch_pokemon_name = "rattata"
+        self.state.self.reserve["rattata"].item = "grassyseed"
+        self.state.field = "grassyterrain"
+
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (
+                        constants.MUTATOR_SWITCH,
+                        attacker,
+                        self.state.self.active.id,
+                        switch_pokemon_name
+                    ),
+                    (
+                        constants.MUTATOR_BOOST,
+                        attacker,
+                        constants.DEFENSE,
+                        1
+                    ),
+                    (
+                        constants.MUTATOR_CHANGE_ITEM,
+                        attacker,
+                        None,
+                        "grassyseed"
+                    ),
+                ],
+                False
+            )
+        ]
+
+        mutator = StateMutator(self.state)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_seed_boost_doesnt_occur_if_stat_is_maxed(self):
+        attacker = constants.SELF
+        switch_pokemon_name = "rattata"
+        self.state.self.reserve["rattata"].item = "grassyseed"
+        self.state.field = constants.GRASSY_TERRAIN
+
+        # this literally cant happen for a pkmn switching in but worth a check I guess?
+        self.state.self.reserve["rattata"].defense_boost = 6
+
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (
+                        constants.MUTATOR_SWITCH,
+                        attacker,
+                        self.state.self.active.id,
+                        switch_pokemon_name
+                    )
+                ],
+                False
+            )
+        ]
+
+        mutator = StateMutator(self.state)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switching_into_pokemon_with_psychicseed_causes_that_seed_boost_to_occur_if_terrain_is_up(self):
+        attacker = constants.SELF
+        switch_pokemon_name = "rattata"
+        self.state.self.reserve["rattata"].item = "psychicseed"
+        self.state.field = constants.PSYCHIC_TERRAIN
+
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (
+                        constants.MUTATOR_SWITCH,
+                        attacker,
+                        self.state.self.active.id,
+                        switch_pokemon_name
+                    ),
+                    (
+                        constants.MUTATOR_BOOST,
+                        attacker,
+                        constants.SPECIAL_DEFENSE,
+                        1
+                    ),
+                    (
+                        constants.MUTATOR_CHANGE_ITEM,
+                        attacker,
+                        None,
+                        "psychicseed"
+                    ),
+                ],
+                False
+            )
+        ]
+
+        mutator = StateMutator(self.state)
+        instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_switch_unboosts_active_pokemon(self):
         self.state.self.active.attack_boost = 3
         self.state.self.active.defense_boost = 2
