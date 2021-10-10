@@ -499,6 +499,7 @@ def remove_item(battle, split_msg):
     logger.debug("Removing {}'s item".format(side.active.name))
     side.active.item = None
     side.active.volatile_statuses.append(constants.ITEM_REMOVED)
+    
 
 def set_ability(battle, split_msg):
     if is_opponent(battle, split_msg):
