@@ -105,6 +105,16 @@ def switch_or_drag(battle, split_msg):
         # reset toxic count for this side
         side.side_conditions[constants.TOXIC_COUNT] = 0
 
+        # if the side is alive and has regenerator, give it back 1/3 of it's maxhp
+        if side.active.hp > 0 and not side.active.fainted and side.active.ability == "regenerator":
+            health_healed = int(side.active.max_hp / 3)
+            side.active.hp = min(side.active.hp + health_healed, side.active.max_hp)
+            logger.debug(
+                "{} switched out with regenerator. Healing it to {}/{}".format(
+                    side.active.name, side.active.hp, side.active.max_hp
+                )
+            )
+
     # check if the pokemon exists in the reserves
     # if it does not, then the newly-created pokemon is used (for formats without team preview)
     pkmn = Pokemon.from_switch_string(split_msg[3])

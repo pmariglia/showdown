@@ -290,6 +290,37 @@ class TestSwitchOrDrag(unittest.TestCase):
 
         self.assertEqual(new_pkmn, self.battle.opponent.active)
 
+    def test_bot_switching_properly_heals_pokemon_if_it_had_regenerator(self):
+        current_active = self.battle.user.active
+        self.battle.user.active.ability = "regenerator"
+        self.battle.user.active.hp = 1
+        self.battle.user.active.max_hp = 300
+        split_msg = ['', 'switch', 'p1a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(101, current_active.hp)  # 100 hp from regenerator heal
+
+    def test_bot_switching_with_regenerator_does_not_overheal(self):
+        current_active = self.battle.user.active
+        self.battle.user.active.ability = "regenerator"
+        self.battle.user.active.hp = 250
+        self.battle.user.active.max_hp = 300
+        split_msg = ['', 'switch', 'p1a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(300, current_active.hp)  # 50 hp from regenerator heal
+
+    def test_fainted_pokemon_switching_does_not_heal(self):
+        current_active = self.battle.user.active
+        self.battle.user.active.ability = "regenerator"
+        self.battle.user.active.hp = 0
+        self.battle.user.active.fainted = True
+        self.battle.user.active.max_hp = 300
+        split_msg = ['', 'switch', 'p1a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(0, current_active.hp)  # no regenerator heal when you are fainted
+
     def test_switch_resets_toxic_count_for_opponent(self):
         self.battle.opponent.side_conditions[constants.TOXIC_COUNT] = 1
         split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
