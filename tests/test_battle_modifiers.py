@@ -13,6 +13,7 @@ from showdown.battle import DamageDealt
 
 from showdown.battle_modifier import request
 from showdown.battle_modifier import activate
+from showdown.battle_modifier import prepare
 from showdown.battle_modifier import switch_or_drag
 from showdown.battle_modifier import clearallboost
 from showdown.battle_modifier import heal_or_damage
@@ -288,6 +289,37 @@ class TestSwitchOrDrag(unittest.TestCase):
         switch_or_drag(self.battle, split_msg)
 
         self.assertEqual(new_pkmn, self.battle.opponent.active)
+
+    def test_bot_switching_properly_heals_pokemon_if_it_had_regenerator(self):
+        current_active = self.battle.user.active
+        self.battle.user.active.ability = "regenerator"
+        self.battle.user.active.hp = 1
+        self.battle.user.active.max_hp = 300
+        split_msg = ['', 'switch', 'p1a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(101, current_active.hp)  # 100 hp from regenerator heal
+
+    def test_bot_switching_with_regenerator_does_not_overheal(self):
+        current_active = self.battle.user.active
+        self.battle.user.active.ability = "regenerator"
+        self.battle.user.active.hp = 250
+        self.battle.user.active.max_hp = 300
+        split_msg = ['', 'switch', 'p1a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(300, current_active.hp)  # 50 hp from regenerator heal
+
+    def test_fainted_pokemon_switching_does_not_heal(self):
+        current_active = self.battle.user.active
+        self.battle.user.active.ability = "regenerator"
+        self.battle.user.active.hp = 0
+        self.battle.user.active.fainted = True
+        self.battle.user.active.max_hp = 300
+        split_msg = ['', 'switch', 'p1a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(0, current_active.hp)  # no regenerator heal when you are fainted
 
     def test_switch_resets_toxic_count_for_opponent(self):
         self.battle.opponent.side_conditions[constants.TOXIC_COUNT] = 1
@@ -637,6 +669,29 @@ class TestActivate(unittest.TestCase):
         self.assertEqual('leftovers', self.battle.opponent.active.item)
 
 
+class TestPrepare(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.user_active = Pokemon('caterpie', 100)
+        self.opponent_active = Pokemon('caterpie', 100)
+
+        # manually set hp to 200 for testing purposes
+        self.opponent_active.max_hp = 200
+        self.opponent_active.hp = 200
+
+        self.battle.opponent.active = self.opponent_active
+        self.battle.user.active = self.user_active
+
+    def test_prepare_sets_volatile_status_on_pokemon(self):
+        # |-prepare|p1a: Dragapult|Phantom Force
+        split_msg = ["", "-prepare", "p2a: Caterpie", "Phantom Force"]
+        prepare(self.battle, split_msg)
+        self.assertIn("phantomforce", self.battle.opponent.active.volatile_statuses)
+
+
 class TestClearAllBoosts(unittest.TestCase):
     def setUp(self):
         self.battle = Battle(None)
@@ -774,6 +829,14 @@ class TestMove(unittest.TestCase):
         move(self.battle, split_msg)
 
         self.assertTrue(self.battle.opponent.active.can_have_assaultvest)
+
+    def test_removes_volatilestatus_if_pkmn_has_it_when_using_move(self):
+        self.battle.opponent.active.volatile_statuses = ["phantomforce"]
+        split_msg = ['', 'move', 'p2a: Caterpie', 'Phantom Force', '[from]lockedmove']
+
+        move(self.battle, split_msg)
+
+        self.assertEqual([], self.battle.opponent.active.volatile_statuses)
 
     def test_sets_can_have_choice_item_to_false_if_two_different_moves_are_used_when_the_pkmn_has_an_unknown_item(self):
         self.battle.opponent.active.can_have_choice_item = True
@@ -1197,6 +1260,20 @@ class TestStartVolatileStatus(unittest.TestCase):
         start_volatile_status(self.battle, split_msg)
 
         self.assertEqual(['fighting'], self.battle.opponent.active.types)
+
+    def test_typechange_works_with_reflect_type(self):
+        # |-start|p1a: Starmie|typechange|[from] move: Reflect Type|[of] p2a: Dragapult
+        split_msg = ['', '-start', 'p2a: Starmie', 'typechange', '[from] move: Reflect Type', '[of] p1a: Dragapult']
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(['dragon', 'ghost'], self.battle.opponent.active.types)
+
+    def test_typechange_from_multiple_types(self):
+        # |-start|p2a: Moltres|typechange|???/Flying|[from] move: Burn Up
+        split_msg = ['', '-start', 'p2a: Moltres', 'typechange', '???/Flying', '[from] move: Burn Up']
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(['???', 'flying'], self.battle.opponent.active.types)
 
 
 class TestEndVolatileStatus(unittest.TestCase):
@@ -2202,6 +2279,93 @@ class TestGuessChoiceScarf(unittest.TestCase):
         check_choicescarf(self.battle, messages)
 
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_pokemon_possibly_having_swiftswim_in_rain_does_not_result_in_a_choicescarf_guess(self):
+        self.battle.opponent.active.name = 'seismitoad'  # can have swiftswim
+        self.battle.weather = constants.RAIN
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed can be 414 (max speed caterpie plus swiftswim)
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_seismitoad_choicescarf_is_guessed_when_ability_has_been_revealed(self):
+        self.battle.opponent.active.name = 'seismitoad'  # set ID so lookup says it has swiftswim
+        self.battle.opponent.active.ability = 'waterabsorb'  # but ability has been revealed so if it is faster a choice item should be inferred
+        self.battle.weather = constants.RAIN
+        self.battle.user.active.stats[constants.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim). Yes it is still a caterpie
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual("choicescarf", self.battle.opponent.active.item)
+
+    def test_possible_surgesurfer_does_not_result_in_scarf_inferral(self):
+        self.battle.opponent.active.name = 'raichualola'  # set ID so lookup says it has surgesurfer
+        self.battle.field = constants.ELECTRIC_TERRAIN
+        self.battle.user.active.stats[constants.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim). Yes it is still a caterpie
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_surgesurfer_pokemon_choice_item_is_guessed_if_ability_is_revealed_to_be_otherwise(self):
+        self.battle.opponent.active.name = 'raichualola'  # set ID so lookup says it has surgesurfer
+        self.battle.opponent.active.ability = "some_weird_ability"
+        self.battle.field = constants.ELECTRIC_TERRAIN
+        self.battle.user.active.stats[constants.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim). Yes it is still a caterpie
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual("choicescarf", self.battle.opponent.active.item)
+
+    def test_pokemon_with_possible_quickfeet_does_not_have_choice_scarf_inferred(self):
+        self.battle.opponent.active.name = 'ursaring'  # set ID so lookup says it has quickfeet
+        self.battle.opponent.active.status = constants.PARALYZED
+        self.battle.user.active.stats[constants.SPEED] = 210
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_pokemon_with_possible_quickfeet_does_have_choice_scarf_inferred_if_ability_revealed_to_something_else(self):
+        self.battle.opponent.active.name = 'ursaring'  # set ID so lookup says it has quickfeet
+        self.battle.opponent.active.ability = 'some_other_ability'  # ability cant be quickfeet
+        self.battle.opponent.active.status = constants.PARALYZED
+        self.battle.user.active.stats[constants.SPEED] = 210
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual("choicescarf", self.battle.opponent.active.item)
 
     def test_only_one_move_causes_no_item_to_be_guessed(self):
         self.battle.user.active.stats[constants.SPEED] = 210

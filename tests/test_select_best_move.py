@@ -244,6 +244,68 @@ class TestGetAllOptions(unittest.TestCase):
 
         self.assertEqual(expected_options, options)
 
+    def test_self_pokemon_with_phantomforce_volatilestatus_must_use_phantomforce(self):
+        self.state.self.active.moves = [
+            {constants.ID: 'phantomforce', constants.DISABLED: False},
+            {constants.ID: 'charm', constants.DISABLED: False},
+            {constants.ID: 'growl', constants.DISABLED: False},
+            {constants.ID: 'stringshot', constants.DISABLED: False},
+        ]
+        self.state.self.active.volatile_status = ("phantomforce",)
+        expected_options = (
+            [
+                'phantomforce'
+            ],
+            [
+                'tackle',
+                'charm',
+                'growl',
+                'stringshot',
+                'switch yveltal',
+                'switch slurpuff',
+                'switch victini',
+                'switch toxapex',
+                'switch bronzong'
+            ]
+        )
+        options = self.state.get_all_options()
+
+        self.assertEqual(expected_options, options)
+
+    def test_opponent_pokemon_with_phantomforce_volatilestatus_must_use_phantomforce(self):
+        self.state.self.active.moves = [
+            {constants.ID: 'tackle', constants.DISABLED: False},
+            {constants.ID: 'charm', constants.DISABLED: False},
+            {constants.ID: 'growl', constants.DISABLED: False},
+            {constants.ID: 'stringshot', constants.DISABLED: False},
+        ]
+        self.state.opponent.active.moves = [
+            {constants.ID: 'phantomforce', constants.DISABLED: False},
+            {constants.ID: 'charm', constants.DISABLED: False},
+            {constants.ID: 'growl', constants.DISABLED: False},
+            {constants.ID: 'stringshot', constants.DISABLED: False},
+        ]
+        self.state.opponent.active.volatile_status = ("phantomforce",)
+        expected_options = (
+            [
+                'tackle',
+                'charm',
+                'growl',
+                'stringshot',
+                'switch xatu',
+                'switch starmie',
+                'switch gyarados',
+                'switch dragonite',
+                'switch hitmonlee'
+            ],
+            [
+                'phantomforce'
+            ]
+        )
+        options = self.state.get_all_options()
+
+        self.assertEqual(expected_options, options)
+
     def test_shedshell_can_always_switch(self):
         self.state.opponent.active.ability = 'shadowtag'
         self.state.self.active.item = 'shedshell'

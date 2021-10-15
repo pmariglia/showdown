@@ -223,11 +223,19 @@ class Battle(ABC):
             opponent_options = self.opponent.get_switches()
             user_options = [constants.DO_NOTHING_MOVE]
         else:
-            user_options = [m.name for m in self.user.active.moves if not m.disabled]
-            user_options += self.user.get_switches()
+            user_forced_move = self.user.active.forced_move()
+            if user_forced_move:
+                user_options = [user_forced_move]
+            else:
+                user_options = [m.name for m in self.user.active.moves if not m.disabled]
+                user_options += self.user.get_switches()
 
-            opponent_options = [m.name for m in self.opponent.active.moves if not m.disabled] or [constants.DO_NOTHING_MOVE]
-            opponent_options += self.opponent.get_switches()
+            opponent_forced_move = self.opponent.active.forced_move()
+            if opponent_forced_move:
+                opponent_options = [opponent_forced_move]
+            else:
+                opponent_options = [m.name for m in self.opponent.active.moves if not m.disabled] or [constants.DO_NOTHING_MOVE]
+                opponent_options += self.opponent.get_switches()
 
         return user_options, opponent_options
 
@@ -605,6 +613,22 @@ class Pokemon:
                 chance_moves.append(m[0])
 
         return expected_moves, chance_moves
+
+    def forced_move(self):
+        if "phantomforce" in self.volatile_statuses:
+            return "phantomforce"
+        elif "shadowforce" in self.volatile_statuses:
+            return "shadowforce"
+        elif "dive" in self.volatile_statuses:
+            return "dive"
+        elif "dig" in self.volatile_statuses:
+            return "dig"
+        elif "bounce" in self.volatile_statuses:
+            return "bounce"
+        elif "fly" in self.volatile_statuses:
+            return "fly"
+        else:
+            return None
 
     def to_dict(self):
         return {

@@ -160,6 +160,7 @@ def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, 
     if constants.CHARGE in attacking_move[constants.FLAGS] and attacking_move[constants.ID] not in attacking_pokemon.volatile_status:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] = 0
+        attacking_move[constants.HEAL] = None
         attacking_move[constants.VOLATILE_STATUS] = attacking_move[constants.ID]
         attacking_move[constants.TARGET] = constants.SELF
         attacking_move[constants.CATEGORY] = constants.STATUS
