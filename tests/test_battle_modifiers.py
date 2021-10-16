@@ -24,6 +24,7 @@ from showdown.battle_modifier import unboost
 from showdown.battle_modifier import status
 from showdown.battle_modifier import weather
 from showdown.battle_modifier import curestatus
+from showdown.battle_modifier import remove_item
 from showdown.battle_modifier import start_volatile_status
 from showdown.battle_modifier import end_volatile_status
 from showdown.battle_modifier import set_ability
@@ -1157,6 +1158,25 @@ class TestCureStatus(unittest.TestCase):
 
         self.assertEqual(None, self.opponent_reserve.status)
 
+class TestRemoveItem(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+
+        self.user_active = Pokemon('weedle', 100)
+        self.battle.user.active = self.user_active
+
+    def test_volatile_status_is_set_on_losing_item(self):
+        split_msg = "|-enditem|p2a: Caterpie|Leftovers|[from] move: Knock Off|[of] p1a: Weedle\n"
+        remove_item(self.battle, split_msg)
+
+        expected_volatile_statuese = ['item_removed']
+
+        self.assertEqual(expected_volatile_statuese, self.battle.opponent.active.volatile_statuses)
 
 class TestStartVolatileStatus(unittest.TestCase):
     def setUp(self):
@@ -1175,14 +1195,6 @@ class TestStartVolatileStatus(unittest.TestCase):
         start_volatile_status(self.battle, split_msg)
 
         expected_volatile_statuese = ['encore']
-
-        self.assertEqual(expected_volatile_statuese, self.battle.opponent.active.volatile_statuses)
-
-    def test_volatile_status_is_set_on_losing_item(self):
-        split_msg = "|-enditem|p2a: Caterpie|Leftovers|[from] move: Knock Off|[of] p1a: Weedle\n"
-        update_battle(self.battle, split_msg)
-
-        expected_volatile_statuese = ['itemRemoved']
 
         self.assertEqual(expected_volatile_statuese, self.battle.opponent.active.volatile_statuses)
 
