@@ -1165,7 +1165,6 @@ class TestStartVolatileStatus(unittest.TestCase):
         self.battle.opponent.name = 'p2'
 
         self.opponent_active = Pokemon('caterpie', 100)
-        self.opponent_active.item = "leftovers"
         self.battle.opponent.active = self.opponent_active
 
         self.user_active = Pokemon('weedle', 100)
