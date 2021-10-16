@@ -12044,4 +12044,16 @@ class TestUserMovesFirst(unittest.TestCase):
 
         self.assertTrue(user_moves_first(self.state, user_move, opponent_move))
 
-    
+    def test_unburden_does_not_activate(self):
+        user = self.state.self
+        opponent = self.state.opponent
+        user_move = lookup_move('tackle')
+        opponent_move = lookup_move('tackle')
+
+        user.active.ability = "unburden"
+        user.active.item = None
+
+        user.active.speed = 50
+        opponent.active.speed = 99
+
+        self.assertFalse(user_moves_first(self.state, user_move, opponent_move))
