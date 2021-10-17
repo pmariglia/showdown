@@ -69,7 +69,7 @@ def get_change_item_instructions(side_string, pokemon, new_item):
     
     return instructions
 
-def get_instructions_from_move_special_effect(mutator, attacking_side, attacking_pokemon, defending_pokemon, move_name, instructions):
+def get_instructions_from_move_special_effect(mutator, attacking_side, defending_side, attacking_pokemon, defending_pokemon, move_name, instructions):
     if instructions.frozen:
         return [instructions]
 
@@ -79,7 +79,7 @@ def get_instructions_from_move_special_effect(mutator, attacking_side, attacking
         new_instructions = list()
     else:
         mutator.apply(instructions.instructions)
-        new_instructions = special_logic_move_function(mutator, attacking_side, attacking_pokemon, defending_pokemon)
+        new_instructions = special_logic_move_function(mutator, attacking_side, defending_side, attacking_pokemon, defending_pokemon)
         new_instructions = new_instructions or list()
         mutator.reverse(instructions.instructions)
 

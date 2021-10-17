@@ -339,7 +339,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     temp_instructions = []
     for instruction_set in all_instructions:
-        temp_instructions += instruction_generator.get_instructions_from_move_special_effect(mutator, attacker, attacking_pokemon, defending_pokemon, attacking_move[constants.ID], instruction_set)
+        temp_instructions += instruction_generator.get_instructions_from_move_special_effect(mutator, attacker, defender, attacking_pokemon, defending_pokemon, attacking_move[constants.ID], instruction_set)
     all_instructions = temp_instructions
 
     if damage_amounts is not None:

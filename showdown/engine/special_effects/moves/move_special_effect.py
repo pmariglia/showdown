@@ -1,22 +1,22 @@
 import constants
 from showdown.engine import instruction_generator
 
-def trickroom(mutator, attacking_side, attacking_pokemon, defending_pokemon):
+def trickroom(mutator, attacking_side, defending_side, attacking_pokemon, defending_pokemon):
     return [
         (constants.MUTATOR_TOGGLE_TRICKROOM,)
     ]
 
 
-def trick(mutator, attacking_side, attacking_pokemon, defending_pokemon):
+def trick(mutator, attacking_side, defending_side, attacking_pokemon, defending_pokemon):
     instructions = []
     if (
             (defending_pokemon.item_can_be_removed() or defending_pokemon.item is None) and
             not (defending_pokemon.item is None and attacking_pokemon.item is None)
     ):
-        self_instructions = instruction_generator.get_change_item_instructions(constants.SELF, attacking_pokemon, defending_pokemon.item)
-        opponent_instructions = instruction_generator.get_change_item_instructions(constants.OPPONENT, defending_pokemon, attacking_pokemon.item)
+        attacking_instructions = instruction_generator.get_change_item_instructions(attacking_side, attacking_pokemon, defending_pokemon.item)
+        defending_instructions = instruction_generator.get_change_item_instructions(defending_side, defending_pokemon, attacking_pokemon.item)
 
-        instructions = self_instructions + opponent_instructions
+        instructions = attacking_instructions + defending_instructions
     
         return instructions
 
@@ -31,23 +31,23 @@ def weather_move(mutator, weather_move_name):
         ]
 
 
-def raindance(mutator, attacking_side, attacking_pokemon, defending_pokemon):
+def raindance(mutator, attacking_side, defending_side, attacking_pokemon, defending_pokemon):
     return weather_move(mutator, constants.RAIN)
 
 
-def sunnyday(mutator, attacking_side, attacking_pokemon, defending_pokemon):
+def sunnyday(mutator, attacking_side, defending_side, attacking_pokemon, defending_pokemon):
     return weather_move(mutator, constants.SUN)
 
 
-def sandstorm(mutator, attacking_side, attacking_pokemon, defending_pokemon):
+def sandstorm(mutator, attacking_side, defending_side, attacking_pokemon, defending_pokemon):
     return weather_move(mutator, constants.SAND)
 
 
-def hail(mutator, attacking_side, attacking_pokemon, defending_pokemon):
+def hail(mutator, attacking_side, defending_side, attacking_pokemon, defending_pokemon):
     return weather_move(mutator, constants.HAIL)
 
 
-def junglehealing(mutator, attacking_side, attacking_pokemon, defending_pokemon):
+def junglehealing(mutator, attacking_side, defending_side, attacking_pokemon, defending_pokemon):
     if attacking_pokemon.status is not None:
         return [
             (constants.MUTATOR_REMOVE_STATUS, attacking_side, attacking_pokemon.status)
