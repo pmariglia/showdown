@@ -33,6 +33,10 @@ class State(object):
         self.trick_room = trick_room
 
     def get_self_options(self, force_switch):
+        forced_move = self.self.active.forced_move()
+        if forced_move:
+            return [forced_move]
+
         if force_switch:
             possible_moves = []
         else:
@@ -46,6 +50,10 @@ class State(object):
         return possible_moves + possible_switches
 
     def get_opponent_options(self):
+        forced_move = self.opponent.active.forced_move()
+        if forced_move:
+            return [forced_move]
+
         if self.opponent.active.hp <= 0:
             possible_moves = []
         else:
@@ -268,6 +276,22 @@ class Pokemon(object):
             burn_multiplier = int(burn_multiplier / 2)
 
         return burn_multiplier
+
+    def forced_move(self):
+        if "phantomforce" in self.volatile_status:
+            return "phantomforce"
+        elif "shadowforce" in self.volatile_status:
+            return "shadowforce"
+        elif "dive" in self.volatile_status:
+            return "dive"
+        elif "dig" in self.volatile_status:
+            return "dig"
+        elif "bounce" in self.volatile_status:
+            return "bounce"
+        elif "fly" in self.volatile_status:
+            return "fly"
+        else:
+            return None
 
     def item_can_be_removed(self):
         if (

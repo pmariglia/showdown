@@ -4086,6 +4086,355 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_fly_makes_user_invulnerable(self):
+        bot_move = "fly"
+        opponent_move = "watergun"
+
+        # ensure bot is faster
+        self.mutator.state.self.active.speed = 2
+        self.mutator.state.opponent.active.speed = 1
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, "fly")
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_gust_can_hit_versus_fly(self):
+        bot_move = "fly"
+        opponent_move = "gust"
+
+        # ensure bot is faster
+        self.mutator.state.self.active.speed = 2
+        self.mutator.state.opponent.active.speed = 1
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, "fly"),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 17),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_gust_can_hit_versus_bounce(self):
+        bot_move = "bounce"
+        opponent_move = "gust"
+
+        # ensure bot is faster
+        self.mutator.state.self.active.speed = 2
+        self.mutator.state.opponent.active.speed = 1
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, "bounce"),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 17),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_fly_does_damage_on_second_turn(self):
+        bot_move = "fly"
+        opponent_move = "watergun"
+
+        self.mutator.state.self.active.volatile_status.add("fly")
+
+        # ensure bot is faster
+        self.mutator.state.self.active.speed = 2
+        self.mutator.state.opponent.active.speed = 1
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.95,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 56),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "fly"),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 34),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.050000000000000044,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "fly"),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 34),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_bounce_does_damage_on_second_turn(self):
+        bot_move = "bounce"
+        opponent_move = "watergun"
+
+        self.mutator.state.self.active.volatile_status.add("bounce")
+
+        # ensure bot is faster
+        self.mutator.state.self.active.speed = 2
+        self.mutator.state.opponent.active.speed = 1
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.19125,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 53),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "bounce"),
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.PARALYZED),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 34),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.06375,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 53),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "bounce"),
+                    (constants.MUTATOR_APPLY_STATUS, constants.OPPONENT, constants.PARALYZED),
+                ],
+                True
+            ),
+            TransposeInstruction(
+                0.595,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 53),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "bounce"),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 34),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.15000000000000002,
+                [
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "bounce"),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 34),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_phantomforce_preparation_puts_user_in_semi_invulnerable_turn(self):
+        bot_move = "phantomforce"
+        opponent_move = "watergun"
+
+        # ensure bot is faster
+        self.mutator.state.self.active.speed = 2
+        self.mutator.state.opponent.active.speed = 1
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, "phantomforce")
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_phantomforce_preparation_does_not_cause_lifeorb_damage(self):
+        bot_move = "phantomforce"
+        opponent_move = "watergun"
+
+        self.mutator.state.self.active.item = "lifeorb"
+
+        # ensure bot is faster
+        self.mutator.state.self.active.speed = 2
+        self.mutator.state.opponent.active.speed = 1
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, "phantomforce")
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_phantomforce_versus_whirlwind(self):
+        bot_move = "phantomforce"
+        opponent_move = "whirlwind"
+
+        # ensure bot is faster
+        self.mutator.state.self.active.speed = 2
+        self.mutator.state.opponent.active.speed = 1
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, "phantomforce"),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "phantomforce"),
+                    (constants.MUTATOR_SWITCH, constants.SELF, "raichu", "xatu")
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, "phantomforce"),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "phantomforce"),
+                    (constants.MUTATOR_SWITCH, constants.SELF, "raichu", "starmie")
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, "phantomforce"),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "phantomforce"),
+                    (constants.MUTATOR_SWITCH, constants.SELF, "raichu", "gyarados")
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, "phantomforce"),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "phantomforce"),
+                    (constants.MUTATOR_SWITCH, constants.SELF, "raichu", "dragonite")
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.2,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, "phantomforce"),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "phantomforce"),
+                    (constants.MUTATOR_SWITCH, constants.SELF, "raichu", "hitmonlee")
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_surf_hits_through_dive(self):
+        bot_move = "dive"
+        opponent_move = "surf"
+
+        # ensure bot is faster
+        self.mutator.state.self.active.speed = 2
+        self.mutator.state.opponent.active.speed = 1
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, "dive"),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 74),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_phantomforce_does_damage_if_user_has_phantomforce_volatilestatus(self):
+        bot_move = "phantomforce"
+        opponent_move = "watergun"
+
+        self.mutator.state.self.active.volatile_status.add("phantomforce")
+
+        # ensure bot is faster
+        self.mutator.state.self.active.speed = 2
+        self.mutator.state.opponent.active.speed = 1
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 56),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "phantomforce"),
+
+                    # damage should be taken because invulnerability ends
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 34)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_phantomforce_does_damage_if_user_has_phantomforce_volatilestatus_and_avoids_damage_if_it_is_slower(self):
+        bot_move = "phantomforce"
+        opponent_move = "watergun"
+
+        self.mutator.state.self.active.volatile_status.add("phantomforce")
+
+        # ensure bot is slower
+        self.mutator.state.self.active.speed = 1
+        self.mutator.state.opponent.active.speed = 2
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    # damage should NOT be taken because invulnerability hasn't ended
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 56),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.SELF, "phantomforce"),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_phantomforce_does_not_stop_opponents_move_if_phantomforce_goes_second(self):
+        bot_move = "phantomforce"
+        opponent_move = "watergun"
+
+        # ensure bot is slower
+        self.mutator.state.self.active.speed = 1
+        self.mutator.state.opponent.active.speed = 2
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 34),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, "phantomforce")
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_charged_solarbeam_executes_normally(self):
         bot_move = "solarbeam"
         opponent_move = "splash"

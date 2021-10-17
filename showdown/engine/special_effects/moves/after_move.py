@@ -8,6 +8,48 @@ def knockoff(state, attacker, defender, attacking_side, defending_side, move_hit
         ]
 
 
+def phantomforce(state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub):
+    if "phantomforce" in attacking_side.active.volatile_status:
+        return [
+            (constants.MUTATOR_REMOVE_VOLATILE_STATUS, attacker, "phantomforce")
+        ]
+
+
+def fly(state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub):
+    if "fly" in attacking_side.active.volatile_status:
+        return [
+            (constants.MUTATOR_REMOVE_VOLATILE_STATUS, attacker, "fly")
+        ]
+
+
+def bounce(state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub):
+    if "bounce" in attacking_side.active.volatile_status:
+        return [
+            (constants.MUTATOR_REMOVE_VOLATILE_STATUS, attacker, "bounce")
+        ]
+
+
+def dig(state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub):
+    if "dig" in attacking_side.active.volatile_status:
+        return [
+            (constants.MUTATOR_REMOVE_VOLATILE_STATUS, attacker, "dig")
+        ]
+
+
+def dive(state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub):
+    if "dive" in attacking_side.active.volatile_status:
+        return [
+            (constants.MUTATOR_REMOVE_VOLATILE_STATUS, attacker, "dive")
+        ]
+
+
+def shadowforce(state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub):
+    if "shadowforce" in attacking_side.active.volatile_status:
+        return [
+            (constants.MUTATOR_REMOVE_VOLATILE_STATUS, attacker, "shadowforce")
+        ]
+
+
 def after_move(move_name, state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub):
     try:
         after_move_instructions = globals()[move_name](state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub)

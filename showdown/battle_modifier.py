@@ -105,6 +105,16 @@ def switch_or_drag(battle, split_msg):
         # reset toxic count for this side
         side.side_conditions[constants.TOXIC_COUNT] = 0
 
+        # if the side is alive and has regenerator, give it back 1/3 of it's maxhp
+        if side.active.hp > 0 and not side.active.fainted and side.active.ability == "regenerator":
+            health_healed = int(side.active.max_hp / 3)
+            side.active.hp = min(side.active.hp + health_healed, side.active.max_hp)
+            logger.debug(
+                "{} switched out with regenerator. Healing it to {}/{}".format(
+                    side.active.name, side.active.hp, side.active.max_hp
+                )
+            )
+
     # check if the pokemon exists in the reserves
     # if it does not, then the newly-created pokemon is used (for formats without team preview)
     pkmn = Pokemon.from_switch_string(split_msg[3])
@@ -191,7 +201,7 @@ def faint(battle, split_msg):
 
 
 def move(battle, split_msg):
-    if '[from]' in split_msg[-1]:
+    if '[from]' in split_msg[-1] and split_msg[-1] != "[from]lockedmove":
         return
 
     move_name = normalize_name(split_msg[3].strip().lower())
@@ -202,6 +212,12 @@ def move(battle, split_msg):
     else:
         side = battle.user
         pkmn = battle.user.active
+
+    # remove volatile status if they have it
+    # this is for preparation moves like Phantom Force
+    if move_name in pkmn.volatile_statuses:
+        logger.debug("Removing volatile status {} from {}".format(move_name, pkmn.name))
+        pkmn.volatile_statuses.remove(move_name)
 
     # add the move to it's moves if it hasn't been seen
     # decrement the PP by one
@@ -322,6 +338,19 @@ def activate(battle, split_msg):
         pkmn.item = item
 
 
+def prepare(battle, split_msg):
+    if is_opponent(battle, split_msg):
+        pkmn = battle.opponent.active
+    else:
+        pkmn = battle.user.active
+
+    being_prepared = normalize_name(split_msg[3])
+    if being_prepared in pkmn.volatile_statuses:
+        logger.warning("{} already has the volatile status {}".format(pkmn.name, being_prepared))
+    else:
+        pkmn.volatile_statuses.append(being_prepared)
+
+
 def start_volatile_status(battle, split_msg):
     if is_opponent(battle, split_msg):
         pkmn = battle.opponent.active
@@ -345,9 +374,14 @@ def start_volatile_status(battle, split_msg):
         pkmn.ability = normalize_name(split_msg[5].split('ability:')[-1])
 
     if volatile_status == constants.TYPECHANGE:
-        new_type = normalize_name(split_msg[4])
-        logger.debug("Setting {}'s type to {}".format(pkmn.name, new_type))
-        pkmn.types = [new_type]
+        if split_msg[4] == "[from] move: Reflect Type":
+            pkmn_name = normalize_name(split_msg[5].split(":")[-1])
+            new_types = deepcopy(pokedex[pkmn_name][constants.TYPES])
+        else:
+            new_types = [normalize_name(t) for t in split_msg[4].split("/")]
+
+        logger.debug("Setting {}'s types to {}".format(pkmn.name, new_types))
+        pkmn.types = new_types
 
 
 def end_volatile_status(battle, split_msg):
@@ -674,6 +708,36 @@ def check_choicescarf(battle, msg_lines):
     if (
         battle.opponent.active is None or
         battle.opponent.active.item != constants.UNKNOWN_ITEM or
+        (
+            battle.weather == constants.RAIN and
+            battle.opponent.active.ability is None and
+            "swiftswim" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.weather == constants.SUN and
+            battle.opponent.active.ability is None and
+            "chlorophyll" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.weather == constants.SAND and
+            battle.opponent.active.ability is None and
+            "sandrush" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.weather == constants.HAIL and
+            battle.opponent.active.ability is None and
+            "slushrush" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.field == constants.ELECTRIC_TERRAIN and
+            battle.opponent.active.ability is None and
+            "surgesurfer" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.opponent.active.status == constants.PARALYZED and
+            battle.opponent.active.ability is None and
+            "quickfeet" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        ) or
         'prankster' in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
     ):
         return
@@ -961,6 +1025,7 @@ def update_battle(battle, msg):
             '-unboost': unboost,
             '-status': status,
             '-activate': activate,
+            '-prepare': prepare,
             '-start': start_volatile_status,
             '-end': end_volatile_status,
             '-curestatus': curestatus,

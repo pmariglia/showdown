@@ -5,6 +5,7 @@ import logging
 
 from .damage_calculator import type_effectiveness_modifier
 from .special_effects.abilities.on_switch_in import ability_on_switch_in
+from .special_effects.items.on_switch_in import item_on_switch_in
 from .special_effects.items.end_of_turn import item_end_of_turn
 from .special_effects.abilities.end_of_turn import ability_end_of_turn
 from .special_effects.moves.after_move import after_move
@@ -232,6 +233,20 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
     )
     if ability_switch_in_instructions is not None:
         for i in ability_switch_in_instructions:
+            mutator.apply_one(i)
+            instruction_additions.append(i)
+
+    # account for switch-in items
+    item_switch_in_instructions = item_on_switch_in(
+        switch_pkmn.item,
+        mutator.state,
+        attacker,
+        attacking_side.active,
+        opposite_side[attacker],
+        defending_side.active
+    )
+    if item_switch_in_instructions is not None:
+        for i in item_switch_in_instructions:
             mutator.apply_one(i)
             instruction_additions.append(i)
 

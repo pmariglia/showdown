@@ -57,7 +57,6 @@ async def handle_team_preview(battle, ps_websocket_client):
 
     team_list_indexes.remove(choice_digit)
     message = ["/team {}{}|{}".format(choice_digit, "".join(str(x) for x in team_list_indexes), battle.rqid)]
-    battle.user.active = battle.user.reserve.pop(choice_digit - 1)
 
     await ps_websocket_client.send_message(battle.battle_tag, message)
 

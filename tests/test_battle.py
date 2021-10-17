@@ -857,6 +857,40 @@ class TestBattle(unittest.TestCase):
 
         self.assertEqual(expected_options, self.battle.get_all_options())
 
+    def test_phantomforce_volatilestatus_makes_the_move_forced_for_user(self):
+        self.battle.user.active.moves = [
+            Move('thunderbolt'),
+            Move('tackle'),
+            Move('charm'),
+            Move('phantomforce'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('thunderbolt')
+        ]
+
+        self.battle.user.active.volatile_statuses = ["phantomforce"]
+
+        expected_options = ['phantomforce'], ['thunderbolt']
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_phantomforce_volatilestatus_makes_the_move_forced_for_opponent(self):
+        self.battle.user.active.moves = [
+            Move('thunderbolt'),
+        ]
+        self.battle.opponent.active.moves = [
+            Move('thunderbolt'),
+            Move('tackle'),
+            Move('charm'),
+            Move('phantomforce'),
+        ]
+
+        self.battle.opponent.active.volatile_statuses = ["phantomforce"]
+
+        expected_options = ['thunderbolt'], ['phantomforce']
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
     def test_gets_multiple_moves_for_both_sides(self):
         self.battle.user.active.moves = [
             Move('thunderbolt'),
