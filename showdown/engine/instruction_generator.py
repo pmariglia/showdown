@@ -52,6 +52,22 @@ accuracy_multiplier_lookup = {
     6: 9/3
 }
 
+def get_change_item_instructions(side_string, pokemon, new_item):
+    instructions = []
+    # apply the general case change instruction
+    change_instruction = (constants.MUTATOR_CHANGE_ITEM, side_string, new_item, pokemon.item)
+    instructions.append(change_instruction)
+    # knock off, or tricking no item to another pokemon, apply volatile status
+    if new_item is None and pokemon.item is not None and (constants.ITEM_REMOVED not in pokemon.volatile_status):
+        item_removed_status_instruction = (constants.MUTATOR_APPLY_VOLATILE_STATUS, side_string, constants.ITEM_REMOVED)
+        instructions.append(item_removed_status_instruction)
+    # tricking an item to a pokemon without an item
+    elif new_item is not None and pokemon.item is None and (constants.ITEM_REMOVED in pokemon.volatile_status):
+        # remove volatile status if necessary
+        item_removed_status_instruction = (constants.MUTATOR_REMOVE_VOLATILE_STATUS, side_string, constants.ITEM_REMOVED)
+        instructions.append(item_removed_status_instruction)
+    
+    return instructions
 
 def get_instructions_from_move_special_effect(mutator, attacking_side, attacking_pokemon, defending_pokemon, move_name, instructions):
     if instructions.frozen:

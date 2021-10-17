@@ -1,5 +1,5 @@
 import constants
-
+from showdown.engine import instruction_generator
 
 def trickroom(mutator, attacking_side, attacking_pokemon, defending_pokemon):
     return [
@@ -13,22 +13,11 @@ def trick(mutator, attacking_side, attacking_pokemon, defending_pokemon):
             (defending_pokemon.item_can_be_removed() or defending_pokemon.item is None) and
             not (defending_pokemon.item is None and attacking_pokemon.item is None)
     ):
-        instructions.append(
-            (
-                constants.MUTATOR_CHANGE_ITEM,
-                constants.SELF,
-                mutator.state.opponent.active.item,
-                mutator.state.self.active.item
-            )
-        )
-        instructions.append(
-            (
-                constants.MUTATOR_CHANGE_ITEM,
-                constants.OPPONENT,
-                mutator.state.self.active.item,
-                mutator.state.opponent.active.item
-            )
-        )
+        self_instructions = instruction_generator.get_change_item_instructions(constants.SELF, attacking_pokemon, defending_pokemon.item)
+        opponent_instructions = instruction_generator.get_change_item_instructions(constants.OPPONENT, defending_pokemon, attacking_pokemon.item)
+
+        instructions = self_instructions + opponent_instructions
+    
         return instructions
 
 

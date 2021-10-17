@@ -1,12 +1,9 @@
 import constants
-
+from showdown.engine import instruction_generator
 
 def knockoff(state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub):
-    if move_hit and defending_side.active.item_can_be_removed():
-        return [
-            (constants.MUTATOR_CHANGE_ITEM, defender, None, defending_side.active.item),
-            (constants.MUTATOR_APPLY_VOLATILE_STATUS, defender, constants.ITEM_REMOVED)
-        ]
+    if move_hit and defending_side.active.item_can_be_removed() and constants.ITEM_REMOVED not in defending_side.active.volatile_status:
+        return instruction_generator.get_change_item_instructions(defender, defending_side.active, None)
 
 
 def phantomforce(state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub):

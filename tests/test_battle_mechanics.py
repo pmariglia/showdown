@@ -8761,6 +8761,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_CHANGE_ITEM, constants.SELF, 'lifeorb', None),
                     (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, None, 'lifeorb'),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, constants.ITEM_REMOVED),
                 ],
                 False
             )
@@ -8779,6 +8780,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_CHANGE_ITEM, constants.SELF, None, 'lifeorb'),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.SELF, constants.ITEM_REMOVED),
                     (constants.MUTATOR_CHANGE_ITEM, constants.OPPONENT, 'lifeorb', None),
                 ],
                 False
