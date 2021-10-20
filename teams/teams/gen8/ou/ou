@@ -1,56 +1,56 @@
-Plasma (Rotom-Wash) @ Leftovers  
-Ability: Levitate  
-EVs: 252 HP / 168 SpD / 88 Spe  
-Calm Nature  
-IVs: 0 Atk  
-- Thunder Wave  
-- Hydro Pump  
-- Volt Switch  
-- Defog  
-
-Stealth (Dragapult) (M) @ Choice Specs  
-Ability: Infiltrator  
-EVs: 4 HP / 252 SpA / 252 Spe  
-Timid Nature  
-- Draco Meteor  
-- Shadow Ball  
-- Flamethrower  
-- U-turn  
-
-Pincer (Scizor) (M) @ Leftovers  
-Ability: Technician  
-EVs: 244 HP / 60 Def / 204 SpD  
-Impish Nature  
-IVs: 30 Spe  
-- Swords Dance  
-- Bullet Punch  
-- U-turn  
-- Roost  
-
-Fertility (Landorus-Therian) (M) @ Leftovers  
+Abundance (Landorus-Therian) (M) @ Leftovers  
 Ability: Intimidate  
-EVs: 200 HP / 192 SpD / 116 Spe  
-Jolly Nature  
+EVs: 248 HP / 8 Def / 252 SpD  
+Careful Nature  
 - Earthquake  
-- Knock Off  
 - U-turn  
-- Defog  
+- Stealth Rock  
+- Toxic  
 
-Boundary (Kyurem) @ Choice Specs  
+Raven (Corviknight) @ Leftovers  
 Ability: Pressure  
-EVs: 4 Def / 252 SpA / 252 Spe  
-Modest Nature  
+EVs: 252 HP / 168 Def / 88 SpD  
+Impish Nature  
+- Roost  
+- Defog  
+- U-turn  
+- Body Press  
+
+Sharp Claw (Weavile) @ Heavy-Duty Boots  
+Ability: Pressure  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Knock Off  
+- Ice Shard  
+- Triple Axel  
+- Swords Dance  
+
+Wushu (Urshifu-Rapid-Strike) @ Choice Band  
+Ability: Unseen Fist  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Surging Strikes  
+- Close Combat  
+- U-turn  
+- Aqua Jet  
+
+Boundary (Kyurem) @ Heavy-Duty Boots  
+Ability: Pressure  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
 IVs: 0 Atk  
-- Ice Beam  
 - Freeze-Dry  
 - Earth Power  
-- Focus Blast  
+- Roost  
+- Ice Beam  
 
-Sword Blade (Bisharp) (M) @ Choice Band  
-Ability: Defiant  
-EVs: 4 HP / 252 Atk / 252 Spe  
-Adamant Nature  
-- Knock Off  
-- Iron Head  
-- Beat Up  
-- Sucker Punch  
+Sun (Volcarona) @ Heavy-Duty Boots  
+Ability: Flame Body  
+EVs: 248 HP / 244 Def / 16 Spe  
+Bold Nature  
+IVs: 0 Atk  
+- Quiver Dance  
+- Roost  
+- Flamethrower  
+- Psychic  
+
