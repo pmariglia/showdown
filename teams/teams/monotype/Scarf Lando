@@ -8,14 +8,14 @@ Jolly Nature
 - Sacred Sword  
 
 Zapdos @ Heavy-Duty Boots  
-Ability: Static  
-EVs: 240 HP / 228 Def / 40 Spe  
-Timid Nature  
+Ability: Pressure  
+EVs: 252 HP / 172 Def / 68 SpA / 16 Spe  
+Bold Nature  
 IVs: 0 Atk  
-- Discharge  
-- Toxic  
+- Thunderbolt  
 - Roost  
 - Defog  
+- Heat Wave  
 
 Heatran @ Leftovers  
 Ability: Flash Fire  
@@ -24,8 +24,8 @@ Calm Nature
 IVs: 0 Atk  
 - Magma Storm  
 - Earth Power  
-- Taunt  
-- Toxic  
+- Iron Defense  
+- Body Press  
 
 Dragapult @ Life Orb  
 Ability: Infiltrator  
@@ -53,3 +53,4 @@ Careful Nature
 - Earthquake  
 - U-turn  
 - Toxic  
+
