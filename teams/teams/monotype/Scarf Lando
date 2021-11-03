@@ -9,10 +9,11 @@ Jolly Nature
 
 Zapdos @ Heavy-Duty Boots  
 Ability: Static  
-EVs: 248 HP / 220 Def / 40 Spe  
+EVs: 240 HP / 228 Def / 40 Spe  
 Timid Nature  
+IVs: 0 Atk  
 - Discharge  
-- Hurricane  
+- Toxic  
 - Roost  
 - Defog  
 
@@ -20,18 +21,19 @@ Heatran @ Leftovers
 Ability: Flash Fire  
 EVs: 252 HP / 136 SpD / 120 Spe  
 Calm Nature  
+IVs: 0 Atk  
 - Magma Storm  
 - Earth Power  
 - Taunt  
 - Toxic  
 
-Dragapult @ Choice Specs  
+Dragapult @ Life Orb  
 Ability: Infiltrator  
-EVs: 4 Def / 252 SpA / 252 Spe  
-Timid Nature  
+EVs: 4 Atk / 252 SpA / 252 Spe  
+Hasty Nature  
 - Shadow Ball  
-- Draco Meteor  
-- U-turn  
+- Dragon Dance  
+- Dragon Darts  
 - Flamethrower  
 
 Tapu Fini @ Leftovers  
@@ -41,13 +43,13 @@ Timid Nature
 - Scald  
 - Moonblast  
 - Knock Off  
-- Taunt  
+- Nature's Madness  
 
-Landorus-Therian @ Choice Scarf  
+Landorus-Therian @ Leftovers  
 Ability: Intimidate  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
+EVs: 252 HP / 164 SpD / 92 Spe  
+Careful Nature  
+- Stealth Rock  
 - Earthquake  
 - U-turn  
-- Knock Off  
-- Stone Edge  
+- Toxic  
