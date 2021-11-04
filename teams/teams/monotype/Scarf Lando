@@ -1,21 +1,20 @@
-Kartana @ Life Orb  
-Ability: Beast Boost  
+Dragonite @ Heavy-Duty Boots  
+Ability: Multiscale  
 EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Knock Off  
-- Smart Strike  
-- Leaf Blade  
-- Sacred Sword  
+Adamant Nature  
+- Dragon Dance  
+- Earthquake  
+- Fire Punch  
+- Ice Punch  
 
-Zapdos @ Heavy-Duty Boots  
-Ability: Pressure  
-EVs: 252 HP / 172 Def / 68 SpA / 16 Spe  
-Bold Nature  
-IVs: 0 Atk  
-- Thunderbolt  
-- Roost  
-- Defog  
-- Heat Wave  
+Landorus-Therian @ Leftovers  
+Ability: Intimidate  
+EVs: 252 HP / 164 SpD / 92 Spe  
+Careful Nature  
+- Stealth Rock  
+- Earthquake  
+- U-turn  
+- Toxic  
 
 Heatran @ Leftovers  
 Ability: Flash Fire  
@@ -27,30 +26,32 @@ IVs: 0 Atk
 - Taunt  
 - Substitute  
 
-Dragapult @ Life Orb  
-Ability: Infiltrator  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Hasty Nature  
-- Shadow Ball  
-- Dragon Dance  
-- Dragon Darts  
-- Flamethrower  
-
-Tapu Fini @ Leftovers  
-Ability: Misty Surge  
-EVs: 252 HP / 64 SpD / 192 Spe  
+Ninetales-Alola @ Heavy-Duty Boots  
+Ability: Snow Warning  
+EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
-- Scald  
+IVs: 0 Atk  
 - Moonblast  
-- Knock Off  
-- Nature's Madness  
+- Freeze-Dry  
+- Aurora Veil  
+- Nasty Plot  
 
-Landorus-Therian @ Leftovers  
-Ability: Intimidate  
-EVs: 252 HP / 164 SpD / 92 Spe  
-Careful Nature  
-- Stealth Rock  
-- Earthquake  
-- U-turn  
+Magnezone @ Air Balloon  
+Ability: Magnet Pull  
+EVs: 4 Def / 252 SpA / 252 Spe  
+Modest Nature  
+IVs: 0 Atk  
+- Thunderbolt  
+- Flash Cannon  
+- Volt Switch  
 - Toxic  
+
+Swampert @ Leftovers  
+Ability: Torrent  
+EVs: 252 HP / 252 Def / 4 SpD  
+Impish Nature  
+- Stealth Rock  
+- Protect  
+- Earthquake  
+- Flip Turn  
 
