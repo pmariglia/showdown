@@ -36,14 +36,15 @@ IVs: 0 Atk
 - Focus Blast  
 - Earth Power  
 
-Braviary (M) @ Heavy-Duty Boots  
-Ability: Defiant  
-EVs: 248 HP / 252 Atk / 8 SpD  
-Adamant Nature  
-- Brave Bird  
-- U-turn  
-- Roost  
-- Close Combat  
+Moltres-Galar @ Heavy-Duty Boots  
+Ability: Berserk  
+EVs: 252 HP / 252 SpA / 4 SpD  
+Modest Nature  
+IVs: 0 Atk  
+- Agility  
+- Nasty Plot  
+- Fiery Wrath  
+- Air Slash  
 
 Blaziken @ Life Orb  
 Ability: Speed Boost  
