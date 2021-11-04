@@ -36,20 +36,21 @@ IVs: 0 Atk
 - Aurora Veil  
 - Foul Play  
 
-Melmetal @ Assault Vest  
-Ability: Iron Fist  
-EVs: 128 HP / 116 Atk / 252 SpD / 12 Spe  
-Careful Nature  
-- Double Iron Bash  
-- Earthquake  
-- Ice Punch  
-- Thunder Punch  
+Victini @ Heavy-Duty Boots  
+Ability: Victory Star  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Scorching Sands  
+- Psychic  
+- Blue Flare  
+- Glaciate  
 
 Swampert @ Leftovers  
 Ability: Torrent  
 EVs: 252 HP / 252 Def / 4 SpD  
-Impish Nature  
-- Body Press  
+Relaxed Nature  
+- Scald  
 - Protect  
 - Earthquake  
 - Flip Turn  
