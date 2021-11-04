@@ -11,20 +11,20 @@ Landorus-Therian @ Life Orb
 Ability: Intimidate  
 EVs: 252 Atk / 4 SpA / 252 Spe  
 Naive Nature  
-- Stone Edge  
+- Swords Dance  
 - Earthquake  
 - U-turn  
 - Knock Off  
 
-Xurkitree @ Choice Scarf  
-Ability: Beast Boost  
+Heatran @ Leftovers  
+Ability: Flash Fire  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Volt Switch  
-- Thunderbolt  
-- Dazzling Gleam  
-- Energy Ball  
+- Earth Power  
+- Dark Pulse  
+- Magma Storm  
+- Protect  
 
 Ninetales-Alola @ Heavy-Duty Boots  
 Ability: Snow Warning  
@@ -36,15 +36,14 @@ IVs: 0 Atk
 - Aurora Veil  
 - Foul Play  
 
-Volcarona @ Heavy-Duty Boots  
-Ability: Flame Body  
-EVs: 4 Def / 252 SpA / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Quiver Dance  
-- Flamethrower  
-- Psychic  
-- Bug Buzz  
+Barraskewda @ Choice Band  
+Ability: Swift Swim  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Close Combat  
+- Flip Turn  
+- Liquidation  
+- Ice Fang  
 
 Weavile @ Heavy-Duty Boots  
 Ability: Pressure  
