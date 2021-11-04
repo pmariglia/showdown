@@ -36,14 +36,15 @@ IVs: 0 Atk
 - Focus Blast  
 - Earth Power  
 
-Grimmsnarl (M) @ Leftovers  
-Ability: Prankster  
-EVs: 252 HP / 252 Atk / 4 SpD  
-Adamant Nature  
-- Bulk Up  
-- Spirit Break  
-- Sucker Punch  
-- Darkest Lariat  
+Dragapult @ Expert Belt  
+Ability: Infiltrator  
+EVs: 4 Def / 252 SpA / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Shadow Ball  
+- Dragon Pulse  
+- Hydro Pump  
+- Flamethrower  
 
 Blaziken @ Life Orb  
 Ability: Speed Boost  
