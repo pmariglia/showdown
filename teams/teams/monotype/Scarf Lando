@@ -1,11 +1,11 @@
-Tyranitar @ Chople Berry  
-Ability: Sand Stream  
+Salamence @ Heavy-Duty Boots  
+Ability: Moxie  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Stone Edge  
 - Dragon Dance  
-- Fire Punch  
-- Crunch  
+- Earthquake  
+- Dual Wingbeat  
+- Roost  
 
 Landorus-Therian @ Leftovers  
 Ability: Intimidate  
@@ -36,15 +36,14 @@ IVs: 0 Atk
 - Aurora Veil  
 - Foul Play  
 
-Tapu Lele @ Choice Specs  
-Ability: Psychic Surge  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Moonblast  
-- Psychic  
-- Focus Blast  
-- Shadow Ball  
+Melmetal @ Assault Vest  
+Ability: Iron Fist  
+EVs: 128 HP / 116 Atk / 252 SpD / 12 Spe  
+Careful Nature  
+- Double Iron Bash  
+- Earthquake  
+- Ice Punch  
+- Thunder Punch  
 
 Swampert @ Leftovers  
 Ability: Torrent  
