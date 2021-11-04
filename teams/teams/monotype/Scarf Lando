@@ -1,23 +1,23 @@
-Cobalion @ Leftovers  
-Ability: Justified  
+Kartana @ Adrenaline Orb  
+Ability: Beast Boost  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Swords Dance  
-- Close Combat  
-- Iron Head  
-- Stone Edge  
+- Leaf Blade  
+- Knock Off  
+- Sacred Sword  
 
-Landorus-Therian @ Life Orb  
+Landorus-Therian @ Choice Band  
 Ability: Intimidate  
-EVs: 252 Atk / 4 SpA / 252 Spe  
-Naive Nature  
-- Swords Dance  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Stone Edge  
 - Earthquake  
 - U-turn  
 - Knock Off  
 
-Heatran @ Leftovers  
-Ability: Flash Fire  
+Heatran @ Air Balloon  
+Ability: Flame Body  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
@@ -26,30 +26,29 @@ IVs: 0 Atk
 - Magma Storm  
 - Protect  
 
-Ninetales-Alola @ Heavy-Duty Boots  
-Ability: Snow Warning  
+Kyurem @ Choice Specs  
+Ability: Pressure  
 EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Moonblast  
+Modest Nature  
 - Freeze-Dry  
-- Aurora Veil  
-- Foul Play  
+- Ice Beam  
+- Focus Blast  
+- Earth Power  
 
-Barraskewda @ Choice Band  
-Ability: Swift Swim  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Close Combat  
+Swampert @ Leftovers  
+Ability: Torrent  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Earthquake  
 - Flip Turn  
 - Liquidation  
-- Ice Fang  
+- Protect  
 
-Weavile @ Heavy-Duty Boots  
+Weavile @ Life Orb  
 Ability: Pressure  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Swords Dance  
+- Low Kick  
 - Triple Axel  
 - Knock Off  
 - Ice Shard  
