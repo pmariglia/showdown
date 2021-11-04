@@ -1,20 +1,20 @@
-Kartana @ Chople Berry  
+Kartana @ Salac Berry  
 Ability: Beast Boost  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Swords Dance  
+- Substitute  
 - Leaf Blade  
 - Knock Off  
 - Sacred Sword  
 
-Landorus-Therian @ Assault Vest  
+Landorus-Therian @ Leftovers  
 Ability: Intimidate  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Body Slam  
+EVs: 252 HP / 164 SpD / 92 Spe  
+Careful Nature  
+- Knock Off  
 - Earthquake  
 - U-turn  
-- Knock Off  
+- Toxic  
 
 Heatran @ Air Balloon  
 Ability: Flash Fire  
@@ -41,7 +41,7 @@ Ability: Emergency Exit
 EVs: 252 HP / 252 Atk / 4 SpD  
 Adamant Nature  
 - Liquidation  
-- First Impression  
+- Sucker Punch  
 - Leech Life  
 - Close Combat  
 
