@@ -1,11 +1,11 @@
-Dragonite @ Heavy-Duty Boots  
-Ability: Multiscale  
+Tyranitar @ Lum Berry  
+Ability: Sand Stream  
 EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
+Jolly Nature  
+- Stone Edge  
 - Dragon Dance  
-- Earthquake  
 - Fire Punch  
-- Ice Punch  
+- Crunch  
 
 Landorus-Therian @ Leftovers  
 Ability: Intimidate  
@@ -34,9 +34,9 @@ IVs: 0 Atk
 - Moonblast  
 - Freeze-Dry  
 - Aurora Veil  
-- Nasty Plot  
+- Foul Play  
 
-Magnezone @ Air Balloon  
+Magnezone @ Choice Scarf  
 Ability: Magnet Pull  
 EVs: 4 Def / 252 SpA / 252 Spe  
 Modest Nature  
@@ -44,13 +44,13 @@ IVs: 0 Atk
 - Thunderbolt  
 - Flash Cannon  
 - Volt Switch  
-- Thunder Wave  
+- Steel Beam  
 
 Swampert @ Leftovers  
 Ability: Torrent  
 EVs: 252 HP / 252 Def / 4 SpD  
 Impish Nature  
-- Ice Punch  
+- Body Press  
 - Protect  
 - Earthquake  
 - Flip Turn  
