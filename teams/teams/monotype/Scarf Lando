@@ -9,12 +9,12 @@ Jolly Nature
 
 Landorus-Therian @ Leftovers  
 Ability: Intimidate  
-EVs: 252 HP / 164 SpD / 92 Spe  
-Careful Nature  
+EVs: 92 HP / 164 Def / 252 Spe  
+Jolly Nature  
 - Knock Off  
 - Earthquake  
 - U-turn  
-- Toxic  
+- Substitute  
 
 Heatran @ Air Balloon  
 Ability: Flame Body  
@@ -36,15 +36,14 @@ IVs: 0 Atk
 - Focus Blast  
 - Earth Power  
 
-Togekiss @ Babiri Berry  
-Ability: Serene Grace  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Thunder Wave  
-- Flamethrower  
-- Air Slash  
-- Dazzling Gleam  
+Sharpedo @ Life Orb  
+Ability: Speed Boost  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
+- Protect  
+- Liquidation  
+- Crunch  
+- Close Combat  
 
 Blaziken @ Life Orb  
 Ability: Speed Boost  
