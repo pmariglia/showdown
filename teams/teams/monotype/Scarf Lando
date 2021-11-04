@@ -1,4 +1,4 @@
-Kartana @ Adrenaline Orb  
+Kartana @ Chople Berry  
 Ability: Beast Boost  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
@@ -16,20 +16,21 @@ Jolly Nature
 - U-turn  
 - Knock Off  
 
-Heatran @ Air Balloon  
-Ability: Flame Body  
+Heatran @ Leftovers  
+Ability: Flash Fire  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
+- Fire Blast  
 - Earth Power  
-- Dark Pulse  
-- Magma Storm  
 - Protect  
+- Stealth Rock  
 
-Kyurem @ Choice Specs  
+Kyurem @ Choice Scarf  
 Ability: Pressure  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Modest Nature  
+IVs: 0 Atk  
 - Freeze-Dry  
 - Ice Beam  
 - Focus Blast  
@@ -49,7 +50,7 @@ Ability: Speed Boost
 EVs: 252 Atk / 4 SpA / 252 Spe  
 Lonely Nature  
 - Protect  
-- Overheat  
+- Flare Blitz  
 - Close Combat  
-- Thunder Punch  
+- Knock Off  
 
