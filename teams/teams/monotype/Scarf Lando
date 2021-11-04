@@ -36,14 +36,15 @@ IVs: 0 Atk
 - Aurora Veil  
 - Foul Play  
 
-Keldeo @ Assault Vest  
-Ability: Justified  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-- Icy Wind  
-- Secret Sword  
-- Hydro Pump  
-- Flip Turn  
+Amoonguss @ Black Sludge  
+Ability: Regenerator  
+EVs: 252 HP / 252 Def / 4 SpA  
+Bold Nature  
+IVs: 0 Atk  
+- Spore  
+- Giga Drain  
+- Sleep Talk  
+- Foul Play  
 
 Weavile @ Heavy-Duty Boots  
 Ability: Pressure  
