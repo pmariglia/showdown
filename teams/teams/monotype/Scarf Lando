@@ -1,17 +1,17 @@
-Kommo-o @ Sitrus Berry  
-Ability: Bulletproof  
+Dragapult @ Dragon Fang  
+Ability: Clear Body  
 EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Clangorous Soul  
-- Close Combat  
-- Earthquake  
-- Ice Punch  
+Adamant Nature  
+- Dragon Dance  
+- Dragon Darts  
+- Phantom Force  
+- Steel Wing  
 
-Landorus-Therian @ Leftovers  
+Landorus-Therian @ Life Orb  
 Ability: Intimidate  
 EVs: 252 Atk / 4 SpA / 252 Spe  
 Naive Nature  
-- Weather Ball  
+- Rock Polish  
 - Earthquake  
 - U-turn  
 - Knock Off  
@@ -44,7 +44,7 @@ IVs: 0 Atk
 - Night Daze  
 - Sludge Bomb  
 - Focus Blast  
-- Nasty Plot  
+- Flamethrower  
 
 Swampert @ Leftovers  
 Ability: Torrent  
