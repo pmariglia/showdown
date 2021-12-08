@@ -363,9 +363,9 @@ def calculate_damage(state, attacking_side_string, attacking_move, defending_mov
         raise ValueError("attacking_side_string must be one of: ['self', 'opponent']")
 
     conditions = {
-        constants.REFLECT: state.opponent.side_conditions[constants.REFLECT],
-        constants.LIGHT_SCREEN: state.opponent.side_conditions[constants.LIGHT_SCREEN],
-        constants.AURORA_VEIL: state.opponent.side_conditions[constants.AURORA_VEIL],
+        constants.REFLECT: defending_side.side_conditions[constants.REFLECT],
+        constants.LIGHT_SCREEN: defending_side.side_conditions[constants.LIGHT_SCREEN],
+        constants.AURORA_VEIL: defending_side.side_conditions[constants.AURORA_VEIL],
         constants.WEATHER: state.weather,
         constants.TERRAIN: state.field
     }
