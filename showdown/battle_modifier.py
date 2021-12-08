@@ -354,10 +354,19 @@ def prepare(battle, split_msg):
 def start_volatile_status(battle, split_msg):
     if is_opponent(battle, split_msg):
         pkmn = battle.opponent.active
+        side = battle.opponent
     else:
         pkmn = battle.user.active
+        side = battle.user
 
     volatile_status = normalize_name(split_msg[3].split(":")[-1])
+
+    # for some reason futuresight is sent with the `-start` message
+    # `-start` is typically reserved for volatile statuses
+    if volatile_status == "futuresight":
+        side.future_sight = (3, pkmn.name)
+        return
+
     if volatile_status not in pkmn.volatile_statuses:
         logger.debug("Starting the volatile status {} on {}".format(volatile_status, pkmn.name))
         pkmn.volatile_statuses.append(volatile_status)
@@ -651,6 +660,14 @@ def upkeep(battle, _):
     if battle.opponent.wish[0] > 0:
         battle.opponent.wish = (battle.opponent.wish[0] - 1, battle.opponent.wish[1])
         logger.debug("Decrementing wish to {} for the opponent".format(battle.opponent.wish[0]))
+
+    if battle.user.future_sight[0] > 0:
+        battle.user.future_sight = (battle.user.future_sight[0] - 1, battle.user.future_sight[1])
+        logger.debug("Decrementing future_sight to {} for the bot".format(battle.user.future_sight[0]))
+
+    if battle.opponent.future_sight[0] > 0:
+        battle.opponent.future_sight = (battle.opponent.future_sight[0] - 1, battle.opponent.future_sight[1])
+        logger.debug("Decrementing future_sight to {} for the opponent".format(battle.opponent.future_sight[0]))
 
 
 def mega(battle, split_msg):

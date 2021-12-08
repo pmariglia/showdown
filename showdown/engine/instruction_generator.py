@@ -63,7 +63,7 @@ def get_instructions_from_move_special_effect(mutator, attacking_side, attacking
         new_instructions = list()
     else:
         mutator.apply(instructions.instructions)
-        new_instructions = special_logic_move_function(mutator, attacking_side, attacking_pokemon, defending_pokemon)
+        new_instructions = special_logic_move_function(mutator, attacking_side, get_side_from_state(mutator.state, attacking_side), attacking_pokemon, defending_pokemon)
         new_instructions = new_instructions or list()
         mutator.reverse(instructions.instructions)
 
@@ -898,6 +898,33 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
             )
             mutator.apply_one(ice_damage_instruction)
             instruction.add_instruction(ice_damage_instruction)
+
+    # futuresight
+    for attacker in sides:
+        side = get_side_from_state(mutator.state, attacker)
+        if side.future_sight[0] == 1:
+            from showdown.engine.damage_calculator import calculate_futuresight_damage
+            damage_dealt = calculate_futuresight_damage(
+                mutator.state,
+                attacker,
+                side.future_sight[1],
+                "splash",
+            )[0]
+            if damage_dealt:
+                futuresight_damage_instruction = (
+                    constants.MUTATOR_DAMAGE,
+                    opposite_side[attacker],
+                    damage_dealt
+                )
+                mutator.apply_one(futuresight_damage_instruction)
+                instruction.add_instruction(futuresight_damage_instruction)
+        if side.future_sight[0] > 0:
+            futuresight_decrement_instruction = (
+                constants.MUTATOR_FUTURESIGHT_DECREMENT,
+                attacker,
+            )
+            mutator.apply_one(futuresight_decrement_instruction)
+            instruction.add_instruction(futuresight_decrement_instruction)
 
     # wish
     for attacker in sides:

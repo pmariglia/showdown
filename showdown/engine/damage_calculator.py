@@ -386,3 +386,49 @@ def calculate_damage(state, attacking_side_string, attacking_move, defending_mov
     )
 
     return _calculate_damage(attacking_side.active, defending_side.active, attacking_move_dict, conditions=conditions, calc_type=calc_type)
+
+
+def calculate_futuresight_damage(state, attacking_side_string, future_sight_user, defending_move, calc_type='average'):
+    if attacking_side_string == constants.SELF:
+        attacking_side = state.self
+        defending_side = state.opponent
+    else:
+        attacking_side = state.opponent
+        defending_side = state.self
+
+    if attacking_side.active.id == future_sight_user:
+        attacker = attacking_side.active
+    else:
+        attacker = attacking_side.reserve[future_sight_user]
+
+    defender = defending_side.active
+
+    attacking_move_dict = {
+        "accuracy": 100,
+        "basePower": 120,
+        "category": "special",
+        "flags": {},
+        "id": "futuresight",
+        "name": "Future Sight",
+        "priority": 0,
+        "secondary": False,
+        "target": "normal",
+        "type": "psychic",
+        "pp": 10
+    }
+
+    conditions = {
+        constants.REFLECT: state.opponent.side_conditions[constants.REFLECT],
+        constants.LIGHT_SCREEN: state.opponent.side_conditions[constants.LIGHT_SCREEN],
+        constants.AURORA_VEIL: state.opponent.side_conditions[constants.AURORA_VEIL],
+        constants.WEATHER: state.weather,
+        constants.TERRAIN: state.field
+    }
+
+    return _calculate_damage(
+        attacker,
+        defender,
+        attacking_move_dict,
+        conditions=conditions,
+        calc_type=calc_type
+    )

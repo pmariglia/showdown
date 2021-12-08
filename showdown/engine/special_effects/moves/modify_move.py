@@ -494,6 +494,14 @@ def weatherball(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
+# there is special logic for futuresight's deferred damage  using an attribute of the `Side` object
+def futuresight(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.BASE_POWER] = 0
+
+    return attacking_move
+
+
 move_lookup = {
     'weatherball': weatherball,
     'surgingstrikes': surgingstrikes,
@@ -564,6 +572,7 @@ move_lookup = {
     'focuspunch': focuspunch,
     'acrobatics': acrobatics,
     'technoblast': technoblast,
+    'futuresight': futuresight,
     'knockoff': knockoff
 }
 

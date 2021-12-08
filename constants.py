@@ -55,6 +55,8 @@ MUTATOR_SIDE_START = "side_start"
 MUTATOR_SIDE_END = "side_end"
 MUTATOR_WISH_START = "wish_start"
 MUTATOR_WISH_DECREMENT = "wish_decrement"
+MUTATOR_FUTURESIGHT_START = "futuresight_start"
+MUTATOR_FUTURESIGHT_DECREMENT = "futuresight_decrement"
 MUTATOR_DISABLE_MOVE = "disable_move"
 MUTATOR_ENABLE_MOVE = "enable_move"
 MUTATOR_WEATHER_START = "weather_start"
@@ -220,6 +222,7 @@ SAFEGUARD = 'safeguard'
 TAILWIND = 'tailwind'
 STICKY_WEB = 'stickyweb'
 WISH = "wish"
+FUTURE_SIGHT = "futuresight"
 HEALING_WISH = 'healingwish'
 
 # weather

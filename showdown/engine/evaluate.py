@@ -15,6 +15,11 @@ class Scoring:
         constants.EVASION: 3
     }
 
+    FUTURE_SIGHT_LOOKUP = {
+        2: 35,
+        1: 35
+    }
+
     POKEMON_BOOST_DIMINISHING_RETURNS = {
         -6: -3.3,
         -5: -3.15,
@@ -130,5 +135,14 @@ def evaluate(state):
             score -= count * Scoring.STATIC_SCORED_SIDE_CONDITIONS[condition]
         elif condition in Scoring.POKEMON_COUNT_SCORED_SIDE_CONDITIONS:
             score -= count * Scoring.POKEMON_COUNT_SCORED_SIDE_CONDITIONS[condition] * opponent_alive_reserves_count
+
+    try:
+        score += Scoring.FUTURE_SIGHT_LOOKUP[state.self.future_sight[0]]
+    except KeyError:
+        pass
+    try:
+        score -= Scoring.FUTURE_SIGHT_LOOKUP[state.opponent.future_sight[0]]
+    except KeyError:
+        pass
 
     return int(score)
