@@ -37,7 +37,8 @@ class TestBattleMechanics(unittest.TestCase):
                                 "hitmonlee": Pokemon.from_state_pokemon_dict(StatePokemon("hitmonlee", 81).to_dict()),
                             },
                             (0, 0),
-                            defaultdict(lambda: 0)
+                            defaultdict(lambda: 0),
+                            (0,"some_pkmn")
                         ),
                         Side(
                             Pokemon.from_state_pokemon_dict(StatePokemon("aromatisse", 81).to_dict()),
@@ -49,7 +50,8 @@ class TestBattleMechanics(unittest.TestCase):
                                 "bronzong": Pokemon.from_state_pokemon_dict(StatePokemon("bronzong", 73).to_dict()),
                             },
                             (0, 0),
-                            defaultdict(lambda: 0)
+                            defaultdict(lambda: 0),
+                            (0,"some_pkmn")
                         ),
                         None,
             None,
@@ -1305,6 +1307,175 @@ class TestBattleMechanics(unittest.TestCase):
                     (constants.MUTATOR_SIDE_START, constants.SELF, constants.PROTECT, 1)
                 ],
                 True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_futuresight_sets_futuresight_and_decrements_at_the_end_of_turn(self):
+        bot_move = "futuresight"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_FUTURESIGHT_START, constants.SELF, self.state.self.active.id, self.state.self.future_sight[1]),
+                    (constants.MUTATOR_FUTURESIGHT_DECREMENT, constants.SELF)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_futuresight_does_nothing_if_futuresight_is_already_active(self):
+        bot_move = "futuresight"
+        opponent_move = "splash"
+        self.state.self.future_sight = (2, "xatu")
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_FUTURESIGHT_DECREMENT, constants.SELF)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_sets_futuresight_even_if_opponent_has_it_active(self):
+        bot_move = "futuresight"
+        opponent_move = "splash"
+        self.state.opponent.future_sight = (2, "aromatisse")
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_FUTURESIGHT_START, constants.SELF, self.state.self.active.id, self.state.self.future_sight[1]),
+                    (constants.MUTATOR_FUTURESIGHT_DECREMENT, constants.SELF),
+                    (constants.MUTATOR_FUTURESIGHT_DECREMENT, constants.OPPONENT)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_futuresight_damage_at_end_of_turn_from_reserve_pokemon(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.future_sight = (1, "xatu")
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 120),
+                    (constants.MUTATOR_FUTURESIGHT_DECREMENT, constants.SELF),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_futuresight_does_not_do_damage_to_dark_type(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.future_sight = (1, "xatu")
+        self.state.opponent.active.types = ["dark"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_FUTURESIGHT_DECREMENT, constants.SELF),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_futuresight_damage_at_end_of_turn_for_both_sides(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.future_sight = (1, "xatu")
+        self.state.opponent.future_sight = (1, "aromatisse")
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 120),
+                    (constants.MUTATOR_FUTURESIGHT_DECREMENT, constants.SELF),
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 99),
+                    (constants.MUTATOR_FUTURESIGHT_DECREMENT, constants.OPPONENT),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_futuresight_damage_at_end_of_turn_from_active_pokemon(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.future_sight = (1, "raichu")
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 63),
+                    (constants.MUTATOR_FUTURESIGHT_DECREMENT, constants.SELF),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_futuresight_damage_halved_by_lightscreen(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.future_sight = (1, "xatu")
+        self.state.opponent.side_conditions[constants.LIGHT_SCREEN] = 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 60),
+                    (constants.MUTATOR_FUTURESIGHT_DECREMENT, constants.SELF),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_futuresight_damage_is_boosted_by_terrain(self):
+        bot_move = "splash"
+        opponent_move = "splash"
+        self.state.self.future_sight = (1, "xatu")
+
+        # xatu is part flying so normally it is not affected by terrain lul
+        self.state.self.reserve["xatu"].types = ["psychic"]
+        self.state.field = constants.PSYCHIC_TERRAIN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 156),
+                    (constants.MUTATOR_FUTURESIGHT_DECREMENT, constants.SELF),
+                ],
+                False
             )
         ]
 
@@ -11784,7 +11955,8 @@ class TestUserMovesFirst(unittest.TestCase):
                                 "hitmonlee": Pokemon.from_state_pokemon_dict(StatePokemon("hitmonlee", 81).to_dict()),
                             },
                             (0, 0),
-                            defaultdict(lambda: 0)
+                            defaultdict(lambda: 0),
+                            (0,0)
                         ),
                         Side(
                             Pokemon.from_state_pokemon_dict(StatePokemon("aromatisse", 81).to_dict()),
@@ -11796,7 +11968,8 @@ class TestUserMovesFirst(unittest.TestCase):
                                 "bronzong": Pokemon.from_state_pokemon_dict(StatePokemon("bronzong", 73).to_dict()),
                             },
                             (0, 0),
-                            defaultdict(lambda: 0)
+                            defaultdict(lambda: 0),
+                            (0,0)
                         ),
                         None,
                         None,

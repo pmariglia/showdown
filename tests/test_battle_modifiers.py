@@ -1158,6 +1158,35 @@ class TestCureStatus(unittest.TestCase):
         self.assertEqual(None, self.opponent_reserve.status)
 
 
+class TestStartFutureSight(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+
+        self.user_active = Pokemon('weedle', 100)
+        self.battle.user.active = self.user_active
+
+    def test_sets_futuresight_on_side_that_used_the_move(self):
+        split_msg = ['', '-start', 'p2a: Caterpie', 'Future Sight']
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual(
+            self.battle.opponent.future_sight,
+            (3, "caterpie")
+        )
+
+    def test_does_not_set_futuresight_as_a_volatilestatus(self):
+        split_msg = ['', '-start', 'p2a: Caterpie', 'Future Sight']
+        self.battle.opponent.active.volatile_statuses = []
+        start_volatile_status(self.battle, split_msg)
+
+        self.assertEqual([], self.battle.opponent.active.volatile_statuses)
+
+
 class TestStartVolatileStatus(unittest.TestCase):
     def setUp(self):
         self.battle = Battle(None)
@@ -2034,6 +2063,20 @@ class TestUpkeep(unittest.TestCase):
         upkeep(self.battle, '')
 
         self.assertEqual(self.battle.user.wish, (0, 100))
+
+    def test_reduces_future_sight_if_it_is_larger_than_0_for_the_bot(self):
+        self.battle.user.future_sight = (2, "pokemon_name")
+
+        upkeep(self.battle, '')
+
+        self.assertEqual(self.battle.user.future_sight, (1, "pokemon_name"))
+
+    def test_does_not_reduce_future_sight_if_it_is_0(self):
+        self.battle.user.future_sight = (0, "pokemon_name")
+
+        upkeep(self.battle, '')
+
+        self.assertEqual(self.battle.user.future_sight, (0, "pokemon_name"))
 
 
 class TestGuessChoiceScarf(unittest.TestCase):

@@ -308,8 +308,8 @@ class TestCalculateDamage(unittest.TestCase):
         self.venusaur = Pokemon.from_state_pokemon_dict(StatePokemon("venusaur", 100).to_dict())
 
         self.state = State(
-            Side(self.blastoise, dict(), (0, 0), defaultdict(lambda: 0)),
-            Side(self.venusaur, dict(), (0, 0), defaultdict(lambda: 0)),
+            Side(self.blastoise, dict(), (0, 0), defaultdict(lambda: 0), (0, 0)),
+            Side(self.venusaur, dict(), (0, 0), defaultdict(lambda: 0), (0, 0)),
             None,
             None,
             None
@@ -326,6 +326,20 @@ class TestCalculateDamage(unittest.TestCase):
         )
 
         self.assertEqual(0, damage_amounts[0])
+
+    def test_bots_reflect_does_not_reduce_its_own_damage(self):
+        self.state.opponent.side_conditions[constants.REFLECT] = 1
+
+        damage_amounts = calculate_damage(
+            self.state,
+            constants.OPPONENT,
+            'earthquake',
+            'splash'
+        )
+
+        # should do normal damage of 68
+        # the attacker (opponent) having reflect up shouldn't change anything
+        self.assertEqual(68, damage_amounts[0])
 
     def test_moldbreaker_ignores_levitate(self):
         self.state.self.active.ability = 'levitate'

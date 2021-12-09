@@ -23,7 +23,8 @@ class TestGetInstructionsFromFlinched(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -35,7 +36,8 @@ class TestGetInstructionsFromFlinched(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,
@@ -85,7 +87,8 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -97,7 +100,8 @@ class TestGetInstructionsFromConditionsThatFreezeState(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,
@@ -233,7 +237,8 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -245,7 +250,8 @@ class TestGetInstructionsFromDamage(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,
@@ -543,7 +549,8 @@ class TestGetInstructionsFromSideConditions(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -555,7 +562,8 @@ class TestGetInstructionsFromSideConditions(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,
@@ -669,7 +677,8 @@ class TestGetInstructionsFromHazardClearingMoves(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -681,7 +690,8 @@ class TestGetInstructionsFromHazardClearingMoves(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,
@@ -836,7 +846,8 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
                     "pidgey": Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -848,7 +859,8 @@ class TestGetInstructionsFromDirectStatusEffects(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,
@@ -1039,7 +1051,8 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -1051,7 +1064,8 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,
@@ -1350,7 +1364,8 @@ class TestGetInstructionsFromSpecialLogicMoves(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -1362,7 +1377,8 @@ class TestGetInstructionsFromSpecialLogicMoves(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,
@@ -1411,7 +1427,8 @@ class TestGetInstructionsFromFlinchingMoves(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -1423,7 +1440,8 @@ class TestGetInstructionsFromFlinchingMoves(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,
@@ -1515,7 +1533,8 @@ class TestGetStateFromSwitch(unittest.TestCase):
                     "pidgey": Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -1527,7 +1546,8 @@ class TestGetStateFromSwitch(unittest.TestCase):
                     "pidgey": Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,
@@ -2393,7 +2413,8 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
                     'pidgey': Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -2405,7 +2426,8 @@ class TestGetStateFromHealingMoves(unittest.TestCase):
                     'pidgey': Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 },
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,
@@ -2570,7 +2592,8 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -2582,7 +2605,8 @@ class TestGetStateFromVolatileStatus(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,
@@ -2689,7 +2713,8 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             Side(
                 Pokemon.from_state_pokemon_dict(StatePokemon("pikachu", 100).to_dict()),
@@ -2701,7 +2726,8 @@ class TestGetStateFromStatusDamage(unittest.TestCase):
                     Pokemon.from_state_pokemon_dict(StatePokemon("pidgey", 100).to_dict())
                 ],
                 (0, 0),
-                defaultdict(lambda: 0)
+                defaultdict(lambda: 0),
+                (0, 0)
             ),
             None,
             None,

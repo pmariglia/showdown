@@ -130,13 +130,14 @@ class State(object):
 
 
 class Side(object):
-    __slots__ = ('active', 'reserve', 'wish', 'side_conditions')
+    __slots__ = ('active', 'reserve', 'wish', 'side_conditions', 'future_sight')
 
-    def __init__(self, active, reserve, wish, side_conditions):
+    def __init__(self, active, reserve, wish, side_conditions, future_sight):
         self.active = active
         self.reserve = reserve
         self.wish = wish
         self.side_conditions = side_conditions
+        self.future_sight = future_sight
 
     def get_switches(self):
         switches = []
@@ -165,7 +166,8 @@ class Side(object):
             Pokemon.from_dict(side_dict[constants.ACTIVE]),
             {p[constants.ID]: Pokemon.from_dict(p) for p in side_dict[constants.RESERVE].values()},
             side_dict[constants.WISH],
-            defaultdict(int, side_dict[constants.SIDE_CONDITIONS])
+            defaultdict(int, side_dict[constants.SIDE_CONDITIONS]),
+            side_dict[constants.FUTURE_SIGHT]
         )
 
     def __repr__(self):
@@ -173,7 +175,8 @@ class Side(object):
             constants.ACTIVE: self.active,
             constants.RESERVE: self.reserve,
             constants.WISH: self.wish,
-            constants.SIDE_CONDITIONS: dict(self.side_conditions)
+            constants.SIDE_CONDITIONS: dict(self.side_conditions),
+            constants.FUTURE_SIGHT: self.future_sight
         })
 
 
@@ -458,6 +461,8 @@ class StateMutator:
             constants.MUTATOR_SIDE_END: self.side_end,
             constants.MUTATOR_WISH_START: self.start_wish,
             constants.MUTATOR_WISH_DECREMENT: self.decrement_wish,
+            constants.MUTATOR_FUTURESIGHT_START: self.start_futuresight,
+            constants.MUTATOR_FUTURESIGHT_DECREMENT: self.decrement_futuresight,
             constants.MUTATOR_DISABLE_MOVE: self.disable_move,
             constants.MUTATOR_ENABLE_MOVE: self.enable_move,
             constants.MUTATOR_WEATHER_START: self.start_weather,
@@ -482,6 +487,8 @@ class StateMutator:
             constants.MUTATOR_SIDE_END: self.reverse_side_end,
             constants.MUTATOR_WISH_START: self.reserve_start_wish,
             constants.MUTATOR_WISH_DECREMENT: self.reverse_decrement_wish,
+            constants.MUTATOR_FUTURESIGHT_START: self.reverse_start_futuresight,
+            constants.MUTATOR_FUTURESIGHT_DECREMENT: self.reverse_decrement_futuresight,
             constants.MUTATOR_DISABLE_MOVE: self.enable_move,
             constants.MUTATOR_ENABLE_MOVE: self.disable_move,
             constants.MUTATOR_WEATHER_START: self.reverse_start_weather,
@@ -600,6 +607,24 @@ class StateMutator:
 
     def reverse_side_end(self, side, effect, amount):
         self.side_start(side, effect, amount)
+
+    def start_futuresight(self, side, pkmn_name, _):
+        # the second parameter is the current futuresight_amount
+        # it is here for reversing purposes
+        side = self.get_side(side)
+        side.future_sight = (3, pkmn_name)
+
+    def reverse_start_futuresight(self, side, _, old_pkmn_name):
+        side = self.get_side(side)
+        side.future_sight = (0, old_pkmn_name)
+
+    def decrement_futuresight(self, side):
+        side = self.get_side(side)
+        side.future_sight = (side.future_sight[0] - 1, side.future_sight[1])
+
+    def reverse_decrement_futuresight(self, side):
+        side = self.get_side(side)
+        side.future_sight = (side.future_sight[0] + 1, side.future_sight[1])
 
     def start_wish(self, side, health, _):
         # the third parameter is the current wish amount
