@@ -388,7 +388,7 @@ def calculate_damage(state, attacking_side_string, attacking_move, defending_mov
     return _calculate_damage(attacking_side.active, defending_side.active, attacking_move_dict, conditions=conditions, calc_type=calc_type)
 
 
-def calculate_futuresight_damage(state, attacking_side_string, future_sight_user, defending_move, calc_type='average'):
+def calculate_futuresight_damage(state, attacking_side_string, future_sight_user, calc_type='average'):
     if attacking_side_string == constants.SELF:
         attacking_side = state.self
         defending_side = state.opponent
@@ -418,9 +418,9 @@ def calculate_futuresight_damage(state, attacking_side_string, future_sight_user
     }
 
     conditions = {
-        constants.REFLECT: state.opponent.side_conditions[constants.REFLECT],
-        constants.LIGHT_SCREEN: state.opponent.side_conditions[constants.LIGHT_SCREEN],
-        constants.AURORA_VEIL: state.opponent.side_conditions[constants.AURORA_VEIL],
+        constants.REFLECT: defending_side.side_conditions[constants.REFLECT],
+        constants.LIGHT_SCREEN: defending_side.side_conditions[constants.LIGHT_SCREEN],
+        constants.AURORA_VEIL: defending_side.side_conditions[constants.AURORA_VEIL],
         constants.WEATHER: state.weather,
         constants.TERRAIN: state.field
     }

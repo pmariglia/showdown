@@ -907,8 +907,7 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
             damage_dealt = calculate_futuresight_damage(
                 mutator.state,
                 attacker,
-                side.future_sight[1],
-                "splash",
+                side.future_sight[1]
             )[0]
             if damage_dealt:
                 futuresight_damage_instruction = (
