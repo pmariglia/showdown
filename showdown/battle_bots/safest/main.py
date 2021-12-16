@@ -34,7 +34,7 @@ def pick_safest_move_from_battles(battles):
         prefixed_scores = prefix_opponent_move(scores, str(i))
         all_scores = {**all_scores, **prefixed_scores}
 
-    decision, payoff = pick_safest(all_scores)
+    decision, payoff = pick_safest(all_scores, remove_guaranteed=True)
     bot_choice = decision[0]
     logger.debug("Safest: {}, {}".format(bot_choice, payoff))
     return bot_choice
