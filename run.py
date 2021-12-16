@@ -30,6 +30,7 @@ def parse_configs():
     config.use_relative_weights = env.bool("USE_RELATIVE_WEIGHTS", config.use_relative_weights)
     config.gambit_exe_path = env("GAMBIT_PATH", config.gambit_exe_path)
     config.search_depth = int(env("MAX_SEARCH_DEPTH", config.search_depth))
+    config.dynamic_search_depth = env.bool("DYNAMIC_SEARCH_DEPTH", config.dynamic_search_depth)
     config.greeting_message = env("GREETING_MESSAGE", config.greeting_message)
     config.battle_ending_message = env("BATTLE_OVER_MESSAGE", config.battle_ending_message)
     config.websocket_uri = env("WEBSOCKET_URI", "sim.smogon.com:8000")
