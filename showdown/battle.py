@@ -45,6 +45,15 @@ LastUsedMove = namedtuple('LastUsedMove', ['pokemon_name', 'move', 'turn'])
 DamageDealt = namedtuple('DamageDealt', ['attacker', 'defender', 'move', 'percent_damage', 'crit'])
 
 
+# Based on the format, this dict controls which pokemon will be replaced during team preview
+# Some pokemon's forms are not revealed in team preview
+smart_team_preview = {
+    "gen8ou": {
+        "urshifu": "urshifurapidstrike"  # urshifu banned in gen8ou
+    }
+}
+
+
 class Battle(ABC):
 
     def __init__(self, battle_tag):
@@ -69,13 +78,24 @@ class Battle(ABC):
 
         self.request_json = None
 
-    def initialize_team_preview(self, user_json, opponent_pokemon):
+    def initialize_team_preview(self, user_json, opponent_pokemon, battle_type):
         self.user.from_json(user_json, first_turn=True)
         self.user.reserve.insert(0, self.user.active)
         self.user.active = None
 
         for pkmn_string in opponent_pokemon:
             pokemon = Pokemon.from_switch_string(pkmn_string)
+
+            if pokemon.name in smart_team_preview.get(battle_type, {}):
+                new_pokemon_name = smart_team_preview[battle_type][pokemon.name]
+                logger.info(
+                    "Smart team preview: Replaced {} with {}".format(
+                        pokemon.name,
+                        new_pokemon_name
+                    )
+                )
+                pokemon = Pokemon(new_pokemon_name, pokemon.level)
+
             self.opponent.reserve.append(pokemon)
 
         self.started = True

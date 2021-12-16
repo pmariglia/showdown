@@ -148,7 +148,7 @@ async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_
             if split_line[1] == constants.TEAM_PREVIEW_POKE and split_line[2].strip() == opponent_id:
                 opponent_pokemon.append(split_line[3])
 
-        battle.initialize_team_preview(user_json, opponent_pokemon)
+        battle.initialize_team_preview(user_json, opponent_pokemon, pokemon_battle_type)
 
         smogon_usage_data = get_standard_battle_sets(
             pokemon_battle_type,
