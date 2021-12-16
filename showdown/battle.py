@@ -43,6 +43,7 @@ logger = logging.getLogger(__name__)
 
 LastUsedMove = namedtuple('LastUsedMove', ['pokemon_name', 'move', 'turn'])
 DamageDealt = namedtuple('DamageDealt', ['attacker', 'defender', 'move', 'percent_damage', 'crit'])
+StatRange = namedtuple("Range", ["min", "max"])
 
 
 # Based on the format, this dict controls which pokemon will be replaced during team preview
@@ -427,6 +428,7 @@ class Pokemon:
         self.level = level
         self.nature = nature
         self.evs = evs
+        self.speed_range = StatRange(min=0, max=float("inf"))
 
         try:
             self.base_stats = pokedex[self.name][constants.BASESTATS]

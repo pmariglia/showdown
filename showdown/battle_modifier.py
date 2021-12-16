@@ -9,17 +9,65 @@ from data import pokedex
 from showdown.battle import Pokemon
 from showdown.battle import LastUsedMove
 from showdown.battle import DamageDealt
+from showdown.battle import StatRange
 from showdown.engine.helpers import normalize_name
 from showdown.engine.helpers import get_pokemon_info_from_condition
 from showdown.engine.helpers import calculate_stats
 from showdown.engine.find_state_instructions import get_effective_speed
 from showdown.engine.damage_calculator import calculate_damage
+from showdown.engine.objects import boost_multiplier_lookup
 
 
 logger = logging.getLogger(__name__)
 
 
 MOVE_END_STRINGS = {'move', 'switch', 'upkeep', ''}
+
+
+def can_have_priority_modified(battle, pokemon, move_name):
+    return (
+        "prankster" in [normalize_name(a) for a in pokedex[pokemon.name][constants.ABILITIES].values()] or
+        move_name == "grassyglide" and battle.field == constants.GRASSY_TERRAIN
+    )
+
+
+def can_have_speed_modified(battle, pokemon):
+    return (
+        (
+            pokemon.item is None and
+            "unburden" in [normalize_name(a) for a in pokedex[pokemon.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.weather == constants.RAIN and
+            pokemon.ability is None and
+            "swiftswim" in [normalize_name(a) for a in pokedex[pokemon.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.weather == constants.SUN and
+            pokemon.ability is None and
+            "chlorophyll" in [normalize_name(a) for a in pokedex[pokemon.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.weather == constants.SAND and
+            pokemon.ability is None and
+            "sandrush" in [normalize_name(a) for a in pokedex[pokemon.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.weather == constants.HAIL and
+            pokemon.ability is None and
+            "slushrush" in [normalize_name(a) for a in pokedex[pokemon.name][constants.ABILITIES].values()]
+        ) or
+        (
+            battle.field == constants.ELECTRIC_TERRAIN and
+            pokemon.ability is None and
+            "surgesurfer" in [normalize_name(a) for a in pokedex[pokemon.name][constants.ABILITIES].values()]
+        ) or
+        (
+            pokemon.status == constants.PARALYZED and
+            pokemon.ability is None and
+            "quickfeet" in [normalize_name(a) for a in pokedex[pokemon.name][constants.ABILITIES].values()]
+        )
+    )
 
 
 def find_pokemon_in_reserves(pkmn_name, reserves):
@@ -714,53 +762,113 @@ def noinit(battle, split_msg):
         logger.debug("Renamed battle to {}".format(battle.battle_tag))
 
 
+def check_speed_ranges(battle, msg_lines):
+    """
+    Intention:
+        This function is intended to set the min or max possible speed that the opponent's
+        active Pokemon could possibly have given a turn that just happened.
+
+        For example: if both the bot and the opponent use an equal priority move but the
+        opponent moves first, then the opponent's min_speed attribute will be set to the
+        bots actual speed. This is because the opponent must have at least that much speed
+        for it to have gone first.
+
+        These min/max speeds are set without knowledge of items. If the opponent goes first
+        when having a choice scarf then min speed will still be set to the bots speed. When
+        it comes time to guess a Pokemon's possible set(s), the item must be taken into account
+        as well when determining the final speed of a Pokemon. Abilities are NOT taken into
+        consideration because their speed modifications are subject to certain conditions
+        being present, whereas a choice scarf ALWAYS boosts speed.
+
+        If there is a situation where an ability could have modified the turn order (either by
+        changing a move's priority or giving a Pokemon more speed) then this check should be
+        skipped. Examples are:
+            - the opponent COULD have a speed-boosting weather ability AND that weather is up
+            - the opponent COULD have prankster and it used a status move
+            - Grassy Glide is used when Grassy Terrain is up
+    """
+    def get_move_information(m):
+        try:
+            return m.split('|')[2], all_move_json[normalize_name(m.split('|')[3])]
+        except KeyError:
+            logger.debug("Unknown move {} - using standard 0 priority move".format(normalize_name(m.split('|')[3])))
+            return m.split('|')[2], {constants.ID: "unknown", constants.PRIORITY: 0}
+
+    moves = [get_move_information(m) for m in msg_lines if m.startswith('|move|')]
+    if len(moves) != 2 or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:
+        return
+
+    bot_went_first = moves[0][0].startswith(battle.user.name)
+
+    if (
+        battle.opponent.active is None or
+        battle.opponent.active.item == "choicescarf" or
+        can_have_speed_modified(battle, battle.opponent.active) or
+        (not bot_went_first and can_have_priority_modified(battle, battle.opponent.active, moves[0][1][constants.ID])) or
+        (bot_went_first and can_have_priority_modified(battle, battle.user.active, moves[0][1][constants.ID]))
+    ):
+        return
+
+    battle_copy = deepcopy(battle)
+    battle_copy.user.from_json(battle_copy.request_json)
+
+    speed_threshold = int(
+        boost_multiplier_lookup[battle_copy.user.active.boosts[constants.SPEED]] *
+        battle_copy.user.active.stats[constants.SPEED] /
+        boost_multiplier_lookup[battle_copy.opponent.active.boosts[constants.SPEED]]
+    )
+
+    if battle.opponent.side_conditions[constants.TAILWIND]:
+        speed_threshold = int(speed_threshold / 2)
+
+    if battle.user.side_conditions[constants.TAILWIND]:
+        speed_threshold = int(speed_threshold * 2)
+
+    if battle.opponent.active.status == constants.PARALYZED:
+        speed_threshold = int(speed_threshold * 2)
+
+    if battle.user.active.status == constants.PARALYZED:
+        speed_threshold = int(speed_threshold / 2)
+
+    if battle.user.active.item == "choicescarf":
+        speed_threshold = int(speed_threshold * 1.5)
+
+    if bot_went_first:
+        opponent_max_speed = min(battle.opponent.active.speed_range.max, speed_threshold)
+        battle.opponent.active.speed_range = StatRange(
+            min=battle.opponent.active.speed_range.min,
+            max=opponent_max_speed
+        )
+        logger.info("Updated {}'s max speed to {}".format(battle.opponent.active.name, battle.opponent.active.speed_range.max))
+
+    else:
+        opponent_min_speed = max(battle.opponent.active.speed_range.min, speed_threshold)
+        battle.opponent.active.speed_range = StatRange(
+            min=opponent_min_speed,
+            max=battle.opponent.active.speed_range.max
+        )
+        logger.info(
+            "Updated {}'s min speed to {}".format(battle.opponent.active.name, battle.opponent.active.speed_range.min))
+
+
 def check_choicescarf(battle, msg_lines):
     def get_move_information(m):
         try:
             return m.split('|')[2], all_move_json[normalize_name(m.split('|')[3])]
         except KeyError:
             logger.debug("Unknown move {} - using standard 0 priority move".format(normalize_name(m.split('|')[3])))
-            return m.split('|')[2], {constants.PRIORITY: 0}
+            return m.split('|')[2], {constants.ID: "unknown", constants.PRIORITY: 0}
+
+    moves = [get_move_information(m) for m in msg_lines if m.startswith('|move|')]
+    if len(moves) != 2 or moves[0][0].startswith(battle.user.name) or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:
+        return
 
     if (
         battle.opponent.active is None or
         battle.opponent.active.item != constants.UNKNOWN_ITEM or
-        (
-            battle.weather == constants.RAIN and
-            battle.opponent.active.ability is None and
-            "swiftswim" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
-        ) or
-        (
-            battle.weather == constants.SUN and
-            battle.opponent.active.ability is None and
-            "chlorophyll" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
-        ) or
-        (
-            battle.weather == constants.SAND and
-            battle.opponent.active.ability is None and
-            "sandrush" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
-        ) or
-        (
-            battle.weather == constants.HAIL and
-            battle.opponent.active.ability is None and
-            "slushrush" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
-        ) or
-        (
-            battle.field == constants.ELECTRIC_TERRAIN and
-            battle.opponent.active.ability is None and
-            "surgesurfer" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
-        ) or
-        (
-            battle.opponent.active.status == constants.PARALYZED and
-            battle.opponent.active.ability is None and
-            "quickfeet" in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
-        ) or
-        'prankster' in [normalize_name(a) for a in pokedex[battle.opponent.active.name][constants.ABILITIES].values()]
+        can_have_speed_modified(battle, battle.opponent.active) or
+        can_have_priority_modified(battle, battle.opponent.active, moves[0][1][constants.ID])
     ):
-        return
-
-    moves = [get_move_information(m) for m in msg_lines if m.startswith('|move|')]
-    if len(moves) != 2 or moves[0][0].startswith(battle.user.name) or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:
         return
 
     battle_copy = deepcopy(battle)
@@ -1023,6 +1131,7 @@ def update_battle(battle, msg):
     msg_lines = msg.split('\n')
 
     action = None
+    check_speed_ranges(battle, msg_lines)
     for i, line in enumerate(msg_lines):
         split_msg = line.split('|')
         if len(split_msg) < 2:
