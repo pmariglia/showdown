@@ -104,6 +104,16 @@ This decision method should only be used when running with Docker and will fail 
 
 This decision method is **not** deterministic. The bot **may** make a different move if presented with the same situation again.
 
+### Ou Scraped Teams (experimental)
+
+use `BATTLE_BOT=ou_scraped_teams`
+
+Only use with `POKEMON_MODE=gen8ou`. Using a file of OU sets & teams, this battle-bot is meant to have a better
+understanding of Pokeon sets that may appear in gen8ou.
+
+Still uses the `safest` decision making method for picking a move, but in theory the knowledge of sets should
+result in better decision making.
+
 ### Most Damage
 use `BATTLE_BOT=most_damage`
 
