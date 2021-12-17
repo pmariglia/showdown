@@ -833,6 +833,10 @@ def check_speed_ranges(battle, msg_lines):
     if battle.user.active.item == "choicescarf":
         speed_threshold = int(speed_threshold * 1.5)
 
+    # we want to swap which attribute gets updated in trickroom because the slower pokemon goes first
+    if battle.trick_room:
+        bot_went_first = not bot_went_first
+
     if bot_went_first:
         opponent_max_speed = min(battle.opponent.active.speed_range.max, speed_threshold)
         battle.opponent.active.speed_range = StatRange(

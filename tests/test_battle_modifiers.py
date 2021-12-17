@@ -2124,6 +2124,35 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
         self.assertEqual(self.battle.user.active.stats[constants.SPEED], self.battle.opponent.active.speed_range.min)
 
+    def test_sets_maxspeed_when_opponent_goes_first_in_trickroom(self):
+        # opponent should have min speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.trick_room = True
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(self.battle.user.active.stats[constants.SPEED], self.battle.opponent.active.speed_range.max)
+
+    def test_nothing_happens_with_priority_move_in_trickroom(self):
+        # opponent should have min speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.trick_room = True
+
+        messages = [
+            '|move|p2a: Caterpie|Aqua Jet|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(float("inf"), self.battle.opponent.active.speed_range.max)
+        self.assertEqual(0, self.battle.opponent.active.speed_range.min)
+
     def test_accounts_for_paralysis_when_calculating_speed_range(self):
         # opponent should have min speed equal to the bot's speed
         self.battle.user.active.stats[constants.SPEED] = 150
