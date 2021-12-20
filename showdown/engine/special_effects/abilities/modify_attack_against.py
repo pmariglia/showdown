@@ -292,45 +292,50 @@ def shielddust(attacking_move, attacking_pokemon, defending_pokemon):
 
 def competitive(attacking_move, attacking_pokemon, defending_pokemon):
     attacking_move = attacking_move.copy()
-    if constants.BOOSTS in attacking_move:
-        attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
-        for _ in attacking_move[constants.BOOSTS].copy():
-            if constants.SPECIAL_ATTACK not in attacking_move[constants.BOOSTS]:
-                attacking_move[constants.BOOSTS][constants.SPECIAL_ATTACK] = 2
-            else:
-                attacking_move[constants.BOOSTS][constants.SPECIAL_ATTACK] += 2
+    if attacking_move[constants.TARGET] == constants.NORMAL:
+        if constants.BOOSTS in attacking_move:
+            attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
+            for boost in attacking_move[constants.BOOSTS].copy():
+                if attacking_move[constants.BOOSTS][boost] < 0:
+                    if constants.SPECIAL_ATTACK not in attacking_move[constants.BOOSTS]:
+                        attacking_move[constants.BOOSTS][constants.SPECIAL_ATTACK] = 2
+                    else:
+                        attacking_move[constants.BOOSTS][constants.SPECIAL_ATTACK] += 2
 
-    elif attacking_move[constants.SECONDARY] and constants.BOOSTS in attacking_move[constants.SECONDARY]:
-        attacking_move[constants.SECONDARY] = attacking_move[constants.SECONDARY].copy()
-        attacking_move[constants.SECONDARY][constants.BOOSTS] = attacking_move[constants.SECONDARY][constants.BOOSTS].copy()
-        for _ in attacking_move[constants.SECONDARY][constants.BOOSTS].copy():
-            if constants.SPECIAL_ATTACK not in attacking_move[constants.SECONDARY][constants.BOOSTS]:
-                attacking_move[constants.SECONDARY][constants.BOOSTS][constants.SPECIAL_ATTACK] = 2
-            else:
-                attacking_move[constants.SECONDARY][constants.BOOSTS][constants.SPECIAL_ATTACK] += 2
+        elif attacking_move[constants.SECONDARY] and constants.BOOSTS in attacking_move[constants.SECONDARY]:
+            attacking_move[constants.SECONDARY] = attacking_move[constants.SECONDARY].copy()
+            attacking_move[constants.SECONDARY][constants.BOOSTS] = attacking_move[constants.SECONDARY][constants.BOOSTS].copy()
+            for boost in attacking_move[constants.SECONDARY][constants.BOOSTS].copy():
+                if attacking_move[constants.SECONDARY][constants.BOOSTS][boost] < 0:
+                    if constants.SPECIAL_ATTACK not in attacking_move[constants.SECONDARY][constants.BOOSTS]:
+                        attacking_move[constants.SECONDARY][constants.BOOSTS][constants.SPECIAL_ATTACK] = 2
+                    else:
+                        attacking_move[constants.SECONDARY][constants.BOOSTS][constants.SPECIAL_ATTACK] += 2
 
     return attacking_move
 
 
 def defiant(attacking_move, attacking_pokemon, defending_pokemon):
     attacking_move = attacking_move.copy()
-    if constants.BOOSTS in attacking_move:
-        attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
-        for _ in attacking_move[constants.BOOSTS].copy():
-            if constants.ATTACK not in attacking_move[constants.BOOSTS]:
-                attacking_move[constants.BOOSTS][constants.ATTACK] = 2
-            else:
-                attacking_move[constants.BOOSTS][constants.ATTACK] += 2
+    if attacking_move[constants.TARGET] == constants.NORMAL:
+        if constants.BOOSTS in attacking_move:
+            attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
+            for boost in attacking_move[constants.BOOSTS].copy():
+                if attacking_move[constants.BOOSTS][boost] < 0:
+                    if constants.ATTACK not in attacking_move[constants.BOOSTS]:
+                        attacking_move[constants.BOOSTS][constants.ATTACK] = 2
+                    else:
+                        attacking_move[constants.BOOSTS][constants.ATTACK] += 2
 
-    elif attacking_move[constants.SECONDARY] and constants.BOOSTS in attacking_move[constants.SECONDARY]:
-        attacking_move[constants.SECONDARY] = attacking_move[constants.SECONDARY].copy()
-        attacking_move[constants.SECONDARY][constants.BOOSTS] = attacking_move[constants.SECONDARY][constants.BOOSTS].copy()
-        for _ in attacking_move[constants.SECONDARY][constants.BOOSTS].copy():
-            if constants.ATTACK not in attacking_move[constants.SECONDARY][constants.BOOSTS]:
-                attacking_move[constants.SECONDARY][constants.BOOSTS][constants.ATTACK] = 2
-            else:
-                attacking_move[constants.SECONDARY][constants.BOOSTS][constants.ATTACK] += 2
-
+        elif attacking_move[constants.SECONDARY] and constants.BOOSTS in attacking_move[constants.SECONDARY]:
+            attacking_move[constants.SECONDARY] = attacking_move[constants.SECONDARY].copy()
+            attacking_move[constants.SECONDARY][constants.BOOSTS] = attacking_move[constants.SECONDARY][constants.BOOSTS].copy()
+            for boost in attacking_move[constants.SECONDARY][constants.BOOSTS].copy():
+                if attacking_move[constants.SECONDARY][constants.BOOSTS][boost] < 0:
+                    if constants.ATTACK not in attacking_move[constants.SECONDARY][constants.BOOSTS]:
+                        attacking_move[constants.SECONDARY][constants.BOOSTS][constants.ATTACK] = 2
+                    else:
+                        attacking_move[constants.SECONDARY][constants.BOOSTS][constants.ATTACK] += 2
     return attacking_move
 
 
