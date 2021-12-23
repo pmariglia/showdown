@@ -31,6 +31,7 @@ from showdown.battle_modifier import set_opponent_ability_from_ability_tag
 from showdown.battle_modifier import form_change
 from showdown.battle_modifier import zpower
 from showdown.battle_modifier import clearnegativeboost
+from showdown.battle_modifier import check_speed_ranges
 from showdown.battle_modifier import check_choicescarf
 from showdown.battle_modifier import check_heavydutyboots
 from showdown.battle_modifier import get_damage_dealt
@@ -39,6 +40,8 @@ from showdown.battle_modifier import transform
 from showdown.battle_modifier import update_battle
 from showdown.battle_modifier import upkeep
 from showdown.battle_modifier import inactive
+
+from showdown.engine.objects import boost_multiplier_lookup
 
 
 # so we can instantiate a Battle object for testing
@@ -2079,6 +2082,421 @@ class TestUpkeep(unittest.TestCase):
         self.assertEqual(self.battle.user.future_sight, (0, "pokemon_name"))
 
 
+class TestCheckSpeedRanges(unittest.TestCase):
+    def setUp(self):
+        self.battle = Battle(None)
+        self.battle.user.name = 'p1'
+        self.battle.opponent.name = 'p2'
+
+        self.opponent_active = Pokemon('caterpie', 100)
+        self.battle.opponent.active = self.opponent_active
+        self.battle.opponent.active.ability = None
+
+        self.user_active = Pokemon('caterpie', 100)
+        self.battle.user.active = self.user_active
+
+        self.username = "CoolUsername"
+
+        self.battle.username = self.username
+
+        self.battle.request_json = {
+            constants.ACTIVE: [{constants.MOVES: []}],
+            constants.SIDE: {
+                constants.ID: None,
+                constants.NAME: None,
+                constants.POKEMON: [
+
+                ],
+                constants.RQID: None
+            }
+        }
+
+    def test_sets_minspeed_when_opponent_goes_first(self):
+        # opponent should have min speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(self.battle.user.active.stats[constants.SPEED], self.battle.opponent.active.speed_range.min)
+
+    def test_sets_maxspeed_when_opponent_goes_first_in_trickroom(self):
+        # opponent should have min speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.trick_room = True
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(self.battle.user.active.stats[constants.SPEED], self.battle.opponent.active.speed_range.max)
+
+    def test_nothing_happens_with_priority_move_in_trickroom(self):
+        # opponent should have min speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.trick_room = True
+
+        messages = [
+            '|move|p2a: Caterpie|Aqua Jet|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(float("inf"), self.battle.opponent.active.speed_range.max)
+        self.assertEqual(0, self.battle.opponent.active.speed_range.min)
+
+    def test_accounts_for_paralysis_when_calculating_speed_range(self):
+        # opponent should have min speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.opponent.active.status = constants.PARALYZED
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        # bot_speed * 2 should be the minspeed it has b/c it went first with paralysis
+        expected_min_speed = int(self.battle.user.active.stats[constants.SPEED] * 2)
+
+        self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
+
+    def test_accounts_for_paralysis_on_bots_side_when_calculating_speed_range(self):
+        # opponent should have min speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.status = constants.PARALYZED
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        # bot_speed / 2 should be the minspeed it has b/c it went first with paralysis
+        expected_min_speed = int(self.battle.user.active.stats[constants.SPEED] / 2)
+
+        self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
+
+    def test_accounts_for_tailwind_on_opponent_side_when_calculating_speed_ranges(self):
+        # opponent should have min speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 300
+        self.battle.opponent.side_conditions[constants.TAILWIND] = 1
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        # bot_speed / 2 should be the minspeed it has b/c it went first with tailwind up
+        expected_min_speed = int(self.battle.user.active.stats[constants.SPEED] / 2)
+
+        self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
+
+    def test_accounts_for_tailwind_on_bot_side_when_calculating_speed_ranges(self):
+        # opponent should have min speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 300
+        self.battle.user.side_conditions[constants.TAILWIND] = 1
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        # bot_speed * 2 should be the minspeed it has b/c it went first with tailwind up
+        expected_min_speed = int(self.battle.user.active.stats[constants.SPEED] * 2)
+
+        self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
+
+    def test_accounts_for_tailwind_on_both_side_when_calculating_speed_ranges(self):
+        # opponent should have min speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 300
+        self.battle.user.side_conditions[constants.TAILWIND] = 1
+        self.battle.opponent.side_conditions[constants.TAILWIND] = 1
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        # bot_speed / 2 should be the minspeed it has b/c it went first with tailwind up
+        expected_min_speed = int(self.battle.user.active.stats[constants.SPEED] / 2)
+
+        # bot_speed * 2 should be the minspeed it has b/c it went first with tailwind up
+        expected_min_speed = int(expected_min_speed * 2)
+
+        self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
+
+    def test_does_not_set_minspeed_when_opponent_could_have_unburden_activated(self):
+        # opponent should have min speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.opponent.active.item = None
+        self.battle.opponent.active.name = "hawlucha"  # can possibly have unburden
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(0, self.battle.opponent.active.speed_range.min)
+
+    def test_sets_maxspeed_when_bot_goes_first(self):
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+
+        messages = [
+            '|move|p1a: Caterpie|Stealth Rock|',
+            '|move|p2a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(self.battle.user.active.stats[constants.SPEED], self.battle.opponent.active.speed_range.max)
+
+    def test_minspeed_is_not_set_when_rain_is_up_and_opponent_can_have_swiftswim(self):
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.weather = constants.RAIN
+        self.battle.opponent.active.name = "seismitoad"
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(0, self.battle.opponent.active.speed_range.min)
+
+    def test_minspeed_is_set_when_only_rain_is_up(self):
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.weather = constants.RAIN
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(self.battle.user.active.stats[constants.SPEED], self.battle.opponent.active.speed_range.min)
+
+    def test_minspeed_is_set_when_rain_is_not_up_but_opponent_could_have_swiftswim(self):
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.opponent.active.name = "seismitoad"
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(self.battle.user.active.stats[constants.SPEED], self.battle.opponent.active.speed_range.min)
+
+    def test_minspeed_is_not_set_when_opponent_has_choicescarf(self):
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.opponent.active.item = "choicescarf"
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(0, self.battle.opponent.active.speed_range.min)
+
+    def test_minspeed_is_correctly_set_when_bot_has_choicescarf(self):
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.item = "choicescarf"
+
+        messages = [
+            '|move|p1a: Caterpie|Stealth Rock|',
+            '|move|p2a: Caterpie|Stealth Rock|',
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(self.battle.user.active.stats[constants.SPEED]*1.5, self.battle.opponent.active.speed_range.max)
+
+    def test_minspeed_is_correctly_set_when_bot_has_choicescarf_and_opponent_is_boosted(self):
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 317
+        self.battle.opponent.active.stats[constants.SPEED] = 383
+        self.battle.user.active.item = "choicescarf"
+        self.battle.opponent.active.boosts[constants.SPEED] = 1
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|',
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        # this is meant to show the rounding inherent with way pokemon floors values
+        # floor(317 / 1.5) = 211
+        # floor(211*1.5) = 316
+        expected_speed = int(self.battle.user.active.stats[constants.SPEED]/1.5)
+        expected_speed = int(expected_speed * 1.5)
+
+        self.assertEqual(expected_speed, self.battle.opponent.active.speed_range.min)
+
+    def test_minspeed_interaction_with_boosted_speed(self):
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.opponent.active.boosts[constants.SPEED] = 1
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        # the minspeed should take into account the fact that the opponent has a boost
+        # therefore, the minimum (unboosted) speed must be divided by the boost multiplier
+        expected_min_speed = int(
+            150 / boost_multiplier_lookup[self.battle.opponent.active.boosts[constants.SPEED]]
+        )
+
+        self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
+
+    def test_minspeed_interaction_with_bots_boosted_speed(self):
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.boosts[constants.SPEED] = 1
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        # the minspeed should take into account the fact that the opponent has a boost
+        # therefore, the minimum (unboosted) speed must be divided by the boost multiplier
+        expected_min_speed = int(
+            150 * boost_multiplier_lookup[self.battle.user.active.boosts[constants.SPEED]] / boost_multiplier_lookup[self.battle.opponent.active.boosts[constants.SPEED]]
+        )
+
+        self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
+
+    def test_minspeed_interaction_with_bot_and_opponents_boosted_speed(self):
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.boosts[constants.SPEED] = 1
+        self.battle.opponent.active.boosts[constants.SPEED] = 3
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        # the minspeed should take into account the fact that the opponent has a boost
+        # therefore, the minimum (unboosted) speed must be divided by the boost multiplier
+        expected_min_speed = int(
+            150 * boost_multiplier_lookup[self.battle.user.active.boosts[constants.SPEED]] / boost_multiplier_lookup[self.battle.opponent.active.boosts[constants.SPEED]]
+        )
+
+        self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
+
+    def test_opponents_unknown_move_is_used_as_a_zero_priority_move(self):
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+
+        messages = [
+            '|move|p2a: Caterpie|unknown-move|',
+            '|move|p1a: Caterpie|unknown-move|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(150, self.battle.opponent.active.speed_range.min)
+
+    def test_bots_unknown_move_is_used_as_a_zero_priority_move(self):
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+
+        messages = [
+            '|move|p1a: Caterpie|unknown-move|',
+            '|move|p2a: Caterpie|unknown-move|',
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        self.assertEqual(150, self.battle.opponent.active.speed_range.max)
+
+    def test_opponent_has_unknown_choicescarf_causing_it_to_be_faster(self):
+        # Situation:
+        #   The opponent's pokemon has a choice scarf but the bot doesn't know that - it only sees it's item as unknown
+        #   The choicescarf causes the opponent to go first, when it wouldn't have gone first normally
+        #   If the opponent didn't have a choicescarf it COULD still be naturally faster than the bot's pokemon
+        #   This means the check_choicescarf function won't assign a choicescarf
+        # Expected Result:
+        #   min_speed should be set to the bot's speed. The set inferral DOES take into account items when validating
+        #   the final speed
+
+        # opponent should have max speed equal to the bot's speed
+        self.battle.user.active.stats[constants.SPEED] = 150
+
+        messages = [
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+        expected_min_speed = 150
+        self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
+
+    def test_opponent_using_grassyglide_in_grassy_terrain_does_not_cause_minspeed_to_be_set(self):
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.field = constants.GRASSY_TERRAIN
+
+        messages = [
+            '|move|p2a: Caterpie|Grassy Glide|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_speed_ranges(self.battle, messages)
+        self.assertEqual(0, self.battle.opponent.active.speed_range.min)
+
+    def test_bot_using_grassyglide_in_grassy_terrain_does_not_cause_maxspeed_to_be_set(self):
+        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.field = constants.GRASSY_TERRAIN
+
+        messages = [
+            '|move|p1a: Caterpie|Grassy Glide|',
+            '|move|p2a: Caterpie|Stealth Rock|',
+        ]
+
+        check_speed_ranges(self.battle, messages)
+        self.assertEqual(float("inf"), self.battle.opponent.active.speed_range.max)
+
+
 class TestGuessChoiceScarf(unittest.TestCase):
     def setUp(self):
         self.battle = Battle(None)
@@ -2181,6 +2599,19 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|'
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
+
+    def test_does_not_guess_choicescarf_when_opponent_uses_grassyglide_in_grassy_terrain(self):
+        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.field = constants.GRASSY_TERRAIN
+
+        messages = [
+            '|move|p2a: Caterpie|Grassy Glide|',
             '|move|p1a: Caterpie|Stealth Rock|'
         ]
 

@@ -6864,6 +6864,49 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_weakarmor_does_not_activate_on_status_move(self):
+        bot_move = "calmmind"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.ability = 'weakarmor'
+        self.state.field = constants.ELECTRIC_TERRAIN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_DEFENSE, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_weakarmor_activates_on_physical_move_when_the_pokemon_uses_a_boosting_move(self):
+        bot_move = "tackle"
+        opponent_move = "calmmind"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.ability = 'weakarmor'
+        self.state.field = constants.ELECTRIC_TERRAIN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.DEFENSE, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_DEFENSE, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_weakarmor_does_not_activate_on_special_move(self):
         bot_move = "watergun"
         opponent_move = "splash"
@@ -6960,8 +7003,27 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 3),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 1),
                     (constants.MUTATOR_SWITCH, constants.SELF, 'raichu', 'xatu')
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_calmmind_versus_competitive(self):
+        bot_move = "calmmind"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.ability = 'competitive'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_DEFENSE, 1),
                 ],
                 False
             )
@@ -7007,6 +7069,25 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_calmmind_into_defiant(self):
+        bot_move = "calmmind"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.ability = 'defiant'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.SELF, constants.SPECIAL_DEFENSE, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_partingshot_into_defiant_boosts_attack_by_4(self):
         bot_move = "partingshot"
         opponent_move = "splash"
@@ -7038,7 +7119,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -2),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 0),
                     (constants.MUTATOR_HEAL, constants.SELF, -208)
                 ],
                 False

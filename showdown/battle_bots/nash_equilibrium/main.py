@@ -154,7 +154,7 @@ def pick_move_in_equilibrium_from_multiple_score_lookups(score_lookups):
         weighted_choices = get_weighted_choices_from_multiple_score_lookups(score_lookups)
     except CouldNotFindEquilibriumError as e:
         logger.warning("Problem finding equilibria: {}".format(e))
-        return random.choice([pick_safest(sl)[0][0] for sl in score_lookups])
+        return random.choice([pick_safest(sl, remove_guaranteed=True)[0][0] for sl in score_lookups])
 
     s = sum([wc[1] for wc in weighted_choices])
     bot_choices = [wc[0] for wc in weighted_choices]
