@@ -11,14 +11,14 @@ pokemon_mode = None
 run_count = None
 user_to_challenge = None
 gambit_exe_path = ""
-greeting_message = 'Clapping you is gonna be a peace of cake'
+greeting_message = 'Clapping you is gonna be way too easy lmao'
 battle_ending_message = 'Yeah this game was a waste either way it ended smfh'
 room_name = None
 
 use_relative_weights = False
 damage_calc_type = 'average'
 search_depth = 2
-dynamic_search_depth = False
+dynamic_search_depth = True
 
 save_replay = False
 
