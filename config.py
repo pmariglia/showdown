@@ -16,7 +16,7 @@ battle_ending_message = 'Yeah this game was a waste either way it ended smfh'
 room_name = None
 
 use_relative_weights = False
-damage_calc_type = 'all'
+damage_calc_type = 'min_max'
 search_depth = 2
 dynamic_search_depth = False
 
