@@ -11,8 +11,8 @@ pokemon_mode = None
 run_count = None
 user_to_challenge = None
 gambit_exe_path = ""
-greeting_message = 'hf'
-battle_ending_message = 'gg'
+greeting_message = 'Clapping you is gonna be a peace of cake'
+battle_ending_message = 'Yeah this game was a waste either way it ended smfh'
 room_name = None
 
 use_relative_weights = False
