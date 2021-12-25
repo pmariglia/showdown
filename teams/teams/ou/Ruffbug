@@ -1,6 +1,6 @@
 Ruffzor (Scizor) @ Metal Coat  
 Ability: Technician  
-EVs: 120 HP / 252 Atk / 136 Spe  
+EVs: 120 HP / 252 Atk / 136 Def  
 Adamant Nature  
 - Swords Dance  
 - Knock Off  
@@ -31,12 +31,12 @@ Ability: Flame Body
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Bug Buzz  
+- Roost  
 - Psychic  
 - Quiver Dance  
 - Fiery Dance  
 
-Ruffquanid (Araquanid) @ Focus Sash  
+Ruffquanid (Araquanid) @ Red Card  
 Ability: Water Bubble  
 Shiny: Yes  
 EVs: 248 HP / 8 Atk / 252 SpD  
@@ -46,12 +46,12 @@ Careful Nature
 - Leech Life  
 - Toxic  
 
-Ruffmaldo (Armaldo) @ Heavy-Duty Boots  
-Ability: Swift Swim  
-EVs: 252 HP / 4 Atk / 252 Def  
-Impish Nature  
-- Rapid Spin  
-- Stone Edge  
-- Knock Off  
-- Stealth Rock  
+Ruffant (Durant) @ Heavy-Duty Boots  
+Ability: Hustle  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- First Impression  
+- Iron Head  
+- Superpower  
+- Rock Slide  
 
