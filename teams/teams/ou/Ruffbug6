@@ -1,11 +1,11 @@
-Ruffzor (Scizor) @ Lum Berry  
+Ruffzor (Scizor) @ Life Orb  
 Ability: Technician  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Adamant Nature  
+- Swords Dance  
+- Bullet Punch  
 - Dual Wingbeat  
 - Knock Off  
-- Bullet Punch  
-- Swords Dance  
 
 Ruffvantula (Galvantula) @ Heavy-Duty Boots  
 Ability: Compound Eyes  
@@ -17,24 +17,24 @@ IVs: 0 Atk
 - Bug Buzz  
 - Energy Ball  
 
-Ruffwole (Buzzwole) @ Choice Scarf  
+Ruffwole (Buzzwole) @ Leftovers  
 Ability: Beast Boost  
-EVs: 252 HP / 252 Atk / 4 SpD  
+EVs: 252 HP / 64 Atk / 188 Def / 4 SpD  
 Adamant Nature  
-- Ice Punch  
-- Leech Life  
-- Close Combat  
-- Earthquake  
+- Substitute  
+- Fell Stinger  
+- Drain Punch  
+- Roost  
 
 Ruffarona (Volcarona) @ Heavy-Duty Boots  
 Ability: Flame Body  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
+EVs: 248 HP / 208 SpD / 52 Spe  
+Calm Nature  
 IVs: 0 Atk  
-- Substitute  
-- Psychic  
 - Quiver Dance  
-- Flamethrower  
+- Fiery Dance  
+- Will-O-Wisp  
+- Roost  
 
 Rufflipede (Scolipede) @ Focus Sash  
 Ability: Speed Boost  
@@ -52,6 +52,6 @@ EVs: 252 HP / 252 Atk / 4 SpD
 Adamant Nature  
 - Liquidation  
 - Close Combat  
-- First Impression  
+- Leech Life  
 - Aqua Jet  
 
