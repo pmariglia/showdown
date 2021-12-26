@@ -7,14 +7,14 @@ Sassy Nature
 - Heavy Slam  
 - Thunder Wave  
 
-Ruffvile (Weavile) @ Choice Scarf  
-Ability: Pressure  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Low Kick  
-- Icicle Crash  
+Rufferoar (Incineroar) @ Leftovers  
+Ability: Intimidate  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Flare Blitz  
+- Fake Out  
+- Drain Punch  
 - Knock Off  
-- Poison Jab  
 
 Ruffdaunt (Crawdaunt) @ Choice Band  
 Ability: Adaptability  
@@ -29,12 +29,12 @@ Ruffibuzz (Mandibuzz) (F) @ Heavy-Duty Boots
 Ability: Overcoat  
 EVs: 248 HP / 244 Def / 16 Spe  
 Bold Nature  
-- Foul Play  
+- Toxic  
 - Roost  
 - Defog  
 - U-turn  
 
-Ruffdreigon (Hydreigon) @ Leftovers  
+Ruffdreigon (Hydreigon) @ Salac Berry  
 Ability: Levitate  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
@@ -42,15 +42,14 @@ IVs: 0 Atk
 - Nasty Plot  
 - Dark Pulse  
 - Flamethrower  
-- Substitute  
+- Flash Cannon  
 
-Rufftres-Galar (Moltres-Galar) @ Leftovers  
-Ability: Berserk  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Nasty Plot  
-- Agility  
-- Fiery Wrath  
-- Air Slash  
+Ruffbleye (Sableye) @ Leftovers  
+Ability: Prankster  
+EVs: 252 HP / 4 Atk / 252 Def  
+Impish Nature  
+- Will-O-Wisp  
+- Knock Off  
+- Encore  
+- Recover  
 
