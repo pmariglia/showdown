@@ -8,7 +8,7 @@ IVs: 0 Atk
 - Heat Wave  
 - Ancient Power  
 
-Ruffezone (Magnezone) @ Leftovers
+Ruffezone (Magnezone) @ Leftovers  
 Ability: Magnet Pull  
 EVs: 252 HP / 44 Def / 212 Spe  
 Bold Nature  
@@ -18,14 +18,15 @@ IVs: 0 Atk
 - Discharge  
 - Flash Cannon  
 
-Ruffchu (Raichu-Alola) @ Life Orb  
-Ability: Surge Surfer  
+Ruffurus (Thundurus) (M) @ Heavy-Duty Boots  
+Ability: Prankster  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
-- Psychic  
+IVs: 0 Atk  
+- Grass Knot  
 - Rising Voltage  
-- Knock Off  
 - Focus Blast  
+- Psychic  
 
 Rufftom (Rotom-Wash) @ Leftovers  
 Ability: Levitate  
@@ -47,7 +48,7 @@ IVs: 0 Atk
 - Grass Knot  
 - Thunderbolt  
 
-Ruffora (Zeraora) @ Leftovers  
+Ruffora (Zeraora) @ Life Orb  
 Ability: Volt Absorb  
 Shiny: Yes  
 EVs: 252 Atk / 4 SpD / 252 Spe  
@@ -55,5 +56,5 @@ Jolly Nature
 - Plasma Fists  
 - Knock Off  
 - Close Combat  
-- Bulk Up  
+- Play Rough  
 
