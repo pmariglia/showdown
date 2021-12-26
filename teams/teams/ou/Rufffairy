@@ -21,7 +21,7 @@ Ruff Koko (Tapu Koko) @ Leftovers
 Ability: Electric Surge  
 EVs: 252 HP / 4 SpA / 252 Spe  
 Timid Nature  
-- Thunderbolt  
+- Discharge  
 - Defog  
 - Roost  
 - U-turn  
@@ -34,12 +34,12 @@ IVs: 0 Atk
 - Moonblast  
 - Psyshock  
 - Focus Blast  
-- Thunderbolt
+- Thunderbolt  
 
-Ruff Bulu (Tapu Bulu) @ Leftovers  
+Ruff Bulu (Tapu Bulu) @ Salac Berry  
 Ability: Grassy Surge  
-EVs: 248 HP / 252 Atk / 8 SpD  
-Adamant Nature  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
 - High Horsepower  
 - Horn Leech  
 - Close Combat  
