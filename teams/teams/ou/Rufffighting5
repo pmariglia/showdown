@@ -1,10 +1,10 @@
-Ruffifu (Urshifu-Rapid-Strike) @ Choice Scarf  
-Ability: Unseen Fist  
-EVs: 252 Atk / 4 SpD / 252 Spe  
+Rufflade (Gallade) (M) @ Choice Scarf  
+Ability: Justified  
+EVs: 40 HP / 252 Atk / 216 Spe  
 Jolly Nature  
-- Surging Strikes  
-- U-turn  
+- Zen Headbutt  
 - Close Combat  
+- Knock Off  
 - Ice Punch  
 
 Ruffakion (Terrakion) @ Eject Pack  
@@ -13,7 +13,7 @@ EVs: 252 Atk / 4 SpD / 252 Spe
 Jolly Nature  
 - Stone Edge  
 - Close Combat  
-- Iron Head  
+- Megahorn  
 - Earthquake  
 
 Ruffalion (Cobalion) @ Leftovers  
@@ -32,7 +32,7 @@ Jolly Nature
 - Brave Bird  
 - Close Combat  
 - U-turn  
-- Blaze Kick  
+- Throat Chop  
 
 Ruffizion (Virizion) @ Leftovers  
 Ability: Justified  
@@ -44,13 +44,13 @@ IVs: 0 Atk
 - Giga Drain  
 - Air Slash  
 
-Ruffcario (Lucario) @ Life Orb  
+Ruffcario (Lucario) @ Salac Berry  
 Ability: Steadfast  
 EVs: 108 HP / 148 SpA / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Agility  
+- Nasty Plot  
 - Flash Cannon  
-- Focus Blast  
+- Vacuum Wave  
 - Psychic  
 
