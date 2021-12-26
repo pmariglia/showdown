@@ -19,15 +19,15 @@ IVs: 0 Atk
 - Focus Blast  
 - Thunderbolt  
 
-Ruffchu (Raichu-Alola) @ Life Orb  
-Ability: Surge Surfer  
+Ruffkou (Raikou) @ Life Orb  
+Ability: Pressure  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Psychic  
 - Rising Voltage  
-- Focus Blast  
-- Grass Knot  
+- Scald  
+- Shadow Ball  
+- Volt Switch  
 
 Rufftom (Rotom-Wash) @ Leftovers  
 Ability: Levitate  
@@ -48,7 +48,7 @@ Naive Nature
 - Grass Knot  
 - Brave Bird  
 
-Ruffora (Zeraora) @ Choice Band  
+Ruffora (Zeraora) @ Expert Belt  
 Ability: Volt Absorb  
 Shiny: Yes  
 EVs: 252 Atk / 4 SpD / 252 Spe  
@@ -56,5 +56,5 @@ Jolly Nature
 - Plasma Fists  
 - Knock Off  
 - Close Combat  
-- Blaze Kick  
+- Grass Knot  
 
