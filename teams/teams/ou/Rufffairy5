@@ -1,3 +1,23 @@
+Ruffing (Weezing-Galar) @ Black Sludge  
+Ability: Neutralizing Gas  
+EVs: 252 HP / 252 Def / 4 Spe  
+Bold Nature  
+IVs: 0 Atk  
+- Sludge Bomb  
+- Will-O-Wisp  
+- Toxic Spikes  
+- Pain Split  
+
+Ruff Fini (Tapu Fini) @ Leftovers  
+Ability: Misty Surge  
+EVs: 252 HP / 4 SpA / 252 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Brine  
+- Nature's Madness  
+- Defog  
+- Whirlpool  
+
 Ruffki (Klefki) @ Light Clay  
 Ability: Prankster  
 EVs: 252 HP / 252 Def / 4 SpD  
@@ -5,28 +25,10 @@ Bold Nature
 IVs: 0 Atk  
 - Reflect  
 - Light Screen  
-- Thunder Wave  
 - Spikes  
+- Foul Play  
 
-Ruffmarill (Azumarill) @ Sitrus Berry  
-Ability: Huge Power  
-EVs: 4 HP / 252 Atk / 252 Spe  
-Adamant Nature  
-- Belly Drum  
-- Aqua Jet  
-- Knock Off  
-- Substitute  
-
-Ruff Koko (Tapu Koko) @ Heavy-Duty Boots  
-Ability: Electric Surge  
-EVs: 4 HP / 252 SpA / 252 Spe  
-Timid Nature  
-- Discharge  
-- U-turn  
-- Roost  
-- Dazzling Gleam  
-
-Ninetales-Alola @ Choice Scarf  
+Rufftales (Ninetales-Alola) @ Choice Specs  
 Ability: Snow Warning  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
@@ -34,24 +36,24 @@ IVs: 0 Atk
 - Blizzard  
 - Freeze-Dry  
 - Moonblast  
-- Foul Play  
+- Dark Pulse  
 
-Ruff Bulu (Tapu Bulu) @ Choice Band  
+Ruff Bulu (Tapu Bulu) @ Heavy-Duty Boots  
 Ability: Grassy Surge  
-EVs: 248 HP / 252 Atk / 8 SpD  
-Adamant Nature  
-- High Horsepower  
+EVs: 252 HP / 164 SpD / 92 Spe  
+Careful Nature  
+- Swords Dance  
+- Protect  
 - Horn Leech  
-- Close Combat  
-- Wood Hammer  
+- High Horsepower  
 
-Ruffekiss (Togekiss) @ Leftovers  
-Ability: Serene Grace  
-EVs: 252 HP / 140 SpD / 116 Spe  
+Ruff Lele (Tapu Lele) @ Choice Scarf  
+Ability: Psychic Surge  
+EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Air Slash  
-- Flamethrower  
-- Substitute  
-- Nasty Plot  
+- Psyshock  
+- Moonblast  
+- Focus Blast  
+- Thunderbolt  
 
