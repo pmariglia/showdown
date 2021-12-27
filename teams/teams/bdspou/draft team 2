@@ -1,4 +1,4 @@
-Azelf @ Choice Specs  
+Azelf @ Choice Scarf  
 Ability: Levitate  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
@@ -7,50 +7,50 @@ Timid Nature
 - Flamethrower  
 - Thunderbolt  
 
-Cradily @ Leftovers  
-Ability: Storm Drain  
-EVs: 252 HP / 4 Atk / 252 SpD  
-Sassy Nature  
-- Recover  
-- Leech Seed  
-- Stone Edge  
-- Giga Drain  
-
-Swellow @ Flame Orb  
-Ability: Guts  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Facade  
-- U-turn  
-- Quick Attack  
-- Brave Bird  
-
-Sharpedo @ Life Orb  
-Ability: Speed Boost  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
-- Protect  
-- Crunch  
-- Waterfall  
-- Earthquake  
-
 Rotom-Wash @ Leftovers  
 Ability: Levitate  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
+EVs: 252 HP / 208 Def / 48 Spe  
+Bold Nature  
 IVs: 0 Atk  
 - Volt Switch  
+- Protect  
 - Will-O-Wisp  
 - Hydro Pump  
-- Discharge  
 
-Typhlosion @ Choice Scarf  
-Ability: Flash Fire  
+Ninetales @ Heat Rock  
+Ability: Drought  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Eruption  
-- Focus Blast  
-- Extrasensory  
+- Nasty Plot  
 - Fire Blast  
+- Energy Ball  
+- Hypnosis  
+
+Victreebel @ Life Orb  
+Ability: Chlorophyll  
+EVs: 252 Atk / 4 SpA / 252 Spe  
+Lonely Nature  
+- Power Whip  
+- Knock Off  
+- Sleep Powder  
+- Weather Ball  
+
+Rhyperior @ Leftovers  
+Ability: Solid Rock  
+EVs: 244 HP / 184 Def / 80 SpD  
+Impish Nature  
+- Earthquake  
+- Stone Edge  
+- Avalanche  
+- Stealth Rock  
+
+Tauros (M) @ Life Orb  
+Ability: Sheer Force  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Zen Headbutt  
+- Rock Climb  
+- Earthquake  
+- Rock Slide  
 
