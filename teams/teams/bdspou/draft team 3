@@ -17,15 +17,6 @@ Relaxed Nature
 - Knock Off  
 - Toxic  
 
-Sharpedo @ Life Orb  
-Ability: Speed Boost  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
-- Protect  
-- Crunch  
-- Waterfall  
-- Ice Fang  
-
 Rhyperior @ Leftovers  
 Ability: Solid Rock  
 EVs: 244 HP / 184 Def / 80 SpD  
@@ -52,4 +43,14 @@ Sassy Nature
 - Rock Slide  
 - Recover  
 - Giga Drain  
+
+Ninetales @ Life Orb  
+Ability: Drought  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Nasty Plot  
+- Fire Blast  
+- Solar Beam  
+- Hypnosis  
 
