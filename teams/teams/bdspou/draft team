@@ -16,16 +16,6 @@ Impish Nature
 - Avalanche  
 - Stealth Rock  
 
-Togekiss @ Leftovers  
-Ability: Serene Grace  
-EVs: 204 HP / 188 Def / 48 SpD / 68 Spe  
-Bold Nature  
-IVs: 0 Atk  
-- Air Slash  
-- Thunder Wave  
-- Dazzling Gleam  
-- Roost  
-
 Azelf @ Choice Scarf  
 Ability: Levitate  
 EVs: 252 SpA / 4 SpD / 252 Spe  
@@ -52,5 +42,15 @@ IVs: 0 Atk
 - Surf  
 - Protect  
 - Roar  
-- Defog  
+- Ice Beam  
+
+Typhlosion @ Choice Scarf  
+Ability: Flash Fire  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Eruption  
+- Focus Blast  
+- Extrasensory  
+- Fire Blast  
 
