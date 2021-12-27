@@ -12,7 +12,7 @@ Ability: Levitate
 EVs: 252 HP / 208 Def / 48 Spe  
 Bold Nature  
 IVs: 0 Atk  
-- Volt Switch  
+- Discharge  
 - Protect  
 - Will-O-Wisp  
 - Hydro Pump  
@@ -26,15 +26,6 @@ IVs: 0 Atk
 - Fire Blast  
 - Energy Ball  
 - Hypnosis  
-
-Victreebel @ Life Orb  
-Ability: Chlorophyll  
-EVs: 252 Atk / 4 SpA / 252 Spe  
-Lonely Nature  
-- Power Whip  
-- Knock Off  
-- Sleep Powder  
-- Weather Ball  
 
 Rhyperior @ Leftovers  
 Ability: Solid Rock  
@@ -53,4 +44,14 @@ Jolly Nature
 - Rock Climb  
 - Earthquake  
 - Rock Slide  
+
+Mismagius @ Life Orb  
+Ability: Levitate  
+EVs: 4 HP / 252 SpA / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Mystical Fire  
+- Will-O-Wisp  
+- Shadow Ball  
+- Energy Ball  
 
