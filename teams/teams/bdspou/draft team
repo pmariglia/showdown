@@ -1,58 +1,57 @@
-Aerodactyl @ Life Orb  
-Ability: Rock Head  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Stone Edge  
+Rotom-Wash @ Leftovers  
+Ability: Levitate  
+EVs: 252 HP / 208 Def / 48 Spe  
+Bold Nature  
+IVs: 0 Atk  
+- Volt Switch  
+- Protect  
+- Will-O-Wisp  
+- Hydro Pump  
+
+Hitmonchan @ Life Orb  
+Ability: Iron Fist  
+EVs: 168 HP / 252 Atk / 88 Spe  
+Adamant Nature  
+- Rapid Spin  
+- Drain Punch  
+- Ice Punch  
+- Bullet Punch  
+
+Rhyperior @ Leftovers  
+Ability: Solid Rock  
+EVs: 244 HP / 184 Def / 80 SpD  
+Impish Nature  
 - Earthquake  
-- Crunch  
+- Stone Edge  
+- Avalanche  
 - Stealth Rock  
 
-Alakazam @ Focus Sash  
-Ability: Magic Guard  
+Togekiss @ Leftovers  
+Ability: Serene Grace  
+EVs: 204 HP / 188 Def / 48 SpD / 68 Spe  
+Bold Nature  
+IVs: 0 Atk  
+- Air Slash  
+- Thunder Wave  
+- Dazzling Gleam  
+- Roost  
+
+Azelf @ Choice Scarf  
+Ability: Levitate  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
-IVs: 0 Atk  
-- Focus Blast  
 - Psychic  
-- Energy Ball  
-- Shadow Ball  
-
-Ninetales @ Choice Specs  
-Ability: Drought  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Fire Blast  
-- Energy Ball  
-- Extrasensory  
-- Shadow Ball  
-
-Rhyperior @ Passho Berry  
-Ability: Solid Rock  
-EVs: 252 HP / 252 Atk / 4 SpD  
-Adamant Nature  
-- Earthquake  
-- Stone Edge  
-- Fire Fang  
-- Avalanche  
+- U-turn  
+- Flamethrower  
+- Thunderbolt  
 
 Slowking @ Leftovers  
 Ability: Regenerator  
-EVs: 252 HP / 4 SpA / 252 SpD  
+EVs: 252 HP / 144 Def / 112 SpD  
 Calm Nature  
 IVs: 0 Atk  
-- Slack Off  
 - Scald  
 - Psychic  
 - Ice Beam  
-
-Togekiss @ Choice Scarf  
-Ability: Serene Grace  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Air Slash  
-- Dazzling Gleam  
-- Fire Blast  
-- Aura Sphere  
+- Yawn  
 
