@@ -1,13 +1,3 @@
-Rotom-Wash @ Leftovers  
-Ability: Levitate  
-EVs: 252 HP / 208 Def / 48 Spe  
-Bold Nature  
-IVs: 0 Atk  
-- Volt Switch  
-- Protect  
-- Will-O-Wisp  
-- Hydro Pump  
-
 Hitmonchan @ Life Orb  
 Ability: Iron Fist  
 EVs: 168 HP / 252 Atk / 88 Spe  
@@ -45,12 +35,22 @@ Timid Nature
 - Flamethrower  
 - Thunderbolt  
 
-Sharpedo @ Life Orb  
-Ability: Speed Boost  
+Swellow @ Flame Orb  
+Ability: Guts  
 EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
+Jolly Nature  
+- Facade  
+- U-turn  
+- Quick Attack  
+- Brave Bird  
+
+Empoleon @ Leftovers  
+Ability: Torrent  
+EVs: 252 HP / 252 SpD / 4 Spe  
+Calm Nature  
+IVs: 0 Atk  
+- Surf  
 - Protect  
-- Crunch  
-- Waterfall  
-- Ice Fang  
+- Roar  
+- Defog  
 
