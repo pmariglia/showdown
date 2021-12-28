@@ -8,15 +8,6 @@ IVs: 0 Atk
 - Dazzling Gleam  
 - Energy Ball  
 
-Shuckle @ Custap Berry  
-Ability: Sturdy  
-EVs: 252 HP / 252 Def / 4 SpD  
-Relaxed Nature  
-- Infestation  
-- Sticky Web  
-- Knock Off  
-- Toxic  
-
 Rhyperior @ Leftovers  
 Ability: Solid Rock  
 EVs: 244 HP / 184 Def / 80 SpD  
@@ -53,4 +44,14 @@ IVs: 0 Atk
 - Fire Blast  
 - Solar Beam  
 - Hypnosis  
+
+Slowking @ Leftovers  
+Ability: Regenerator  
+EVs: 252 HP / 144 Def / 112 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Slack Off  
+- Fire Blast  
+- Ice Beam  
+- Yawn  
 
