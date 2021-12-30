@@ -1,57 +1,56 @@
-Azelf @ Expert Belt  
-Ability: Levitate  
+Typhlosion @ Power Herb  
+Ability: Flash Fire  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
-- Psychic  
-- U-turn  
-- Flamethrower  
-- Shadow Ball  
+- Solar Beam  
+- Focus Blast  
+- Earthquake  
+- Lava Plume  
 
-Rotom-Wash @ Leftovers  
+Hitmonchan @ Leftovers  
+Ability: Iron Fist  
+EVs: 252 HP / 4 Atk / 252 SpD  
+Careful Nature  
+- Rapid Spin  
+- Drain Punch  
+- Mach Punch  
+- Ice Punch  
+
+Rotom (Rotom-Wash) @ Leftovers  
 Ability: Levitate  
-EVs: 252 HP / 208 Def / 48 Spe  
+EVs: 252 HP / 252 Def / 4 SpA  
 Bold Nature  
 IVs: 0 Atk  
-- Discharge  
-- Protect  
+- Volt Switch  
+- Shadow Ball  
 - Will-O-Wisp  
 - Hydro Pump  
 
-Ninetales @ Heat Rock  
-Ability: Drought  
+Sharpedo @ Life Orb  
+Ability: Speed Boost  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Modest Nature  
+IVs: 0 Atk  
+- Protect  
+- Dark Pulse  
+- Hydro Pump  
+- Ice Beam  
+
+Swellow @ Choice Specs  
+Ability: Scrappy  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
-IVs: 0 Atk  
-- Nasty Plot  
-- Fire Blast  
-- Solar Beam  
-- Hypnosis  
+- Boomburst  
+- Hurricane  
+- U-turn  
+- Air Slash  
 
-Rhyperior @ Leftovers  
+Rhyperior @ Passho Berry  
 Ability: Solid Rock  
 EVs: 244 HP / 184 Def / 80 SpD  
 Impish Nature  
 - Earthquake  
 - Stone Edge  
-- Avalanche  
+- Crunch  
 - Stealth Rock  
-
-Tauros (M) @ Life Orb  
-Ability: Sheer Force  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Zen Headbutt  
-- Rock Climb  
-- Earthquake  
-- Rock Slide  
-
-Typhlosion @ Choice Scarf  
-Ability: Blaze  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Eruption  
-- Focus Blast  
-- Extrasensory  
-- Fire Blast  
 
