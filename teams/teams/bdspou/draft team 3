@@ -1,57 +1,57 @@
 Hitmonchan @ Quick Claw  
 Ability: Iron Fist  
-EVs: 252 HP / 252 Atk / 4 SpD  
-Adamant Nature  
-- Rapid Spin  
+EVs: 252 HP / 4 Atk / 252 SpD  
+Careful Nature  
+- Thunder Punch  
 - Drain Punch  
 - Mach Punch  
-- Thunder Punch  
+- Ice Punch  
 
-Azelf @ Expert Belt  
-Ability: Levitate  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-- Psychic  
-- U-turn  
-- Flamethrower  
-- Thunderbolt  
+Alakazam @ Focus Sash  
+Ability: Magic Guard  
+EVs: 4 Atk / 252 SpA / 252 Spe  
+Hasty Nature  
+IVs: 0 Atk  
+- Focus Blast  
+- Psyshock  
+- Shadow Ball  
+- Dazzling Gleam  
 
-Sharpedo @ Life Orb  
+Sharpedo @ Expert Belt  
 Ability: Speed Boost  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Modest Nature  
 IVs: 0 Atk  
 - Protect  
 - Dark Pulse  
-- Hydro Pump  
+- Surf  
 - Ice Beam  
 
-Empoleon @ Leftovers  
-Ability: Torrent  
-EVs: 252 HP / 252 Def / 4 Spe  
+Rotom (Rotom-Wash) @ Leftovers  
+Ability: Levitate  
+EVs: 252 HP / 252 Def / 4 SpA  
 Bold Nature  
 IVs: 0 Atk  
-- Scald  
-- Protect  
-- Ice Beam  
-- Flash Cannon  
+- Volt Switch  
+- Shadow Ball  
+- Nasty Plot  
+- Hydro Pump  
 
 Cradily @ Leftovers  
 Ability: Storm Drain  
-EVs: 252 HP / 4 Atk / 252 SpD  
+EVs: 176 HP / 176 Def / 156 SpD  
 Sassy Nature  
 - Sludge Bomb  
 - Earthquake  
 - Recover  
 - Giga Drain  
 
-Ninetales @ Wise Glasses  
-Ability: Drought  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Hypnosis  
-- Fire Blast  
-- Energy Ball  
-- Shadow Ball  
+Tauros (M) @ Life Orb  
+Ability: Sheer Force  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Facade  
+- Rock Climb  
+- Earthquake  
+- Rock Slide  
 
