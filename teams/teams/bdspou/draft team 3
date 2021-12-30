@@ -7,14 +7,14 @@ Careful Nature
 - Mach Punch  
 - Earthquake  
 
-Tauros (M) @ Life Orb  
-Ability: Sheer Force  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Naive Nature  
-- Rock Climb  
+Azelf @ Choice Scarf  
+Ability: Levitate  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Psychic  
+- U-turn  
 - Flamethrower  
 - Thunderbolt  
-- Ice Beam  
 
 Sharpedo @ Life Orb  
 Ability: Speed Boost  
@@ -26,21 +26,21 @@ IVs: 0 Atk
 - Hydro Pump  
 - Ice Beam  
 
-Rotom (Rotom-Wash) @ Leftovers  
-Ability: Levitate  
-EVs: 252 HP / 252 Def / 4 SpA  
+Empoleon @ Leftovers  
+Ability: Torrent  
+EVs: 252 HP / 252 Def / 4 Spe  
 Bold Nature  
 IVs: 0 Atk  
-- Volt Switch  
-- Shadow Ball  
-- Will-O-Wisp  
-- Hydro Pump  
+- Scald  
+- Protect  
+- Ice Beam  
+- Flash Cannon  
 
 Cradily @ Leftovers  
 Ability: Storm Drain  
 EVs: 252 HP / 4 Atk / 252 SpD  
 Sassy Nature  
-- Stone Edge  
+- Sludge Bomb  
 - Earthquake  
 - Recover  
 - Giga Drain  
@@ -49,8 +49,9 @@ Ninetales @ Wise Glasses
 Ability: Drought  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
+IVs: 0 Atk  
 - Hypnosis  
 - Fire Blast  
 - Energy Ball  
-- Flame Charge  
+- Shadow Ball  
 
