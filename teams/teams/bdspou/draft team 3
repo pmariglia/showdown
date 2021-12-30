@@ -1,57 +1,56 @@
-Alakazam @ Life Orb  
-Ability: Magic Guard  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Hasty Nature  
-IVs: 0 Atk  
-- Focus Blast  
-- Psychic  
-- Dazzling Gleam  
-- Energy Ball  
-
-Rhyperior @ Leftovers  
-Ability: Solid Rock  
-EVs: 244 HP / 184 Def / 80 SpD  
-Impish Nature  
-- Earthquake  
-- Stone Edge  
-- Avalanche  
-- Stealth Rock  
-
-Hitmonchan @ Life Orb  
+Hitmonchan @ Leftovers  
 Ability: Iron Fist  
 EVs: 168 HP / 252 Atk / 88 Spe  
 Adamant Nature  
 - Rapid Spin  
 - Drain Punch  
-- Thunder Punch  
-- Bullet Punch  
+- Mach Punch  
+- Ice Punch  
 
-Tauros (M) @ Life Orb  
-Ability: Sheer Force  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Zen Headbutt  
-- Rock Climb  
+Azelf @ Choice Scarf  
+Ability: Levitate  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Psychic  
+- U-turn  
+- Flamethrower  
+- Thunderbolt  
+
+Togekiss @ Leftovers  
+Ability: Serene Grace  
+EVs: 252 HP / 188 Def / 68 SpD  
+Bold Nature  
+IVs: 0 Atk  
+- Air Slash  
+- Thunder Wave  
+- Flamethrower  
+- Roost  
+
+Rotom (Rotom-Wash) @ Leftovers  
+Ability: Levitate  
+EVs: 252 HP / 252 Def / 4 SpA  
+Bold Nature  
+IVs: 0 Atk  
+- Volt Switch  
+- Shadow Ball  
+- Will-O-Wisp  
+- Hydro Pump  
+
+Cradily @ Leftovers  
+Ability: Storm Drain  
+EVs: 252 HP / 4 Atk / 252 SpD  
+Sassy Nature  
+- Stealth Rock  
 - Earthquake  
-- Rock Slide  
+- Recover  
+- Giga Drain  
 
-Ninetales @ Life Orb  
+Ninetales @ Wise Glasses  
 Ability: Drought  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
-IVs: 0 Atk  
 - Nasty Plot  
 - Fire Blast  
-- Solar Beam  
-- Hypnosis  
-
-Slowking @ Leftovers  
-Ability: Regenerator  
-EVs: 252 HP / 144 Def / 112 SpD  
-Calm Nature  
-IVs: 0 Atk  
-- Slack Off  
-- Fire Blast  
-- Ice Beam  
-- Yawn  
+- Energy Ball  
+- Flame Charge  
 
