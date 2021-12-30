@@ -1,11 +1,11 @@
-Hitmonchan @ Quick Claw  
+Hitmonchan @ Payapa Berry  
 Ability: Iron Fist  
 EVs: 252 HP / 4 Atk / 252 SpD  
 Careful Nature  
 - Thunder Punch  
 - Drain Punch  
 - Mach Punch  
-- Ice Punch  
+- Earthquake  
 
 Alakazam @ Focus Sash  
 Ability: Magic Guard  
@@ -17,22 +17,21 @@ IVs: 0 Atk
 - Shadow Ball  
 - Dazzling Gleam  
 
-Sharpedo @ Expert Belt  
+Sharpedo @ Life Orb  
 Ability: Speed Boost  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Modest Nature  
-IVs: 0 Atk  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
 - Protect  
-- Dark Pulse  
-- Surf  
-- Ice Beam  
+- Crunch  
+- Waterfall  
+- Earthquake  
 
 Rotom (Rotom-Wash) @ Leftovers  
 Ability: Levitate  
 EVs: 252 HP / 252 Def / 4 SpA  
 Bold Nature  
 IVs: 0 Atk  
-- Volt Switch  
+- Discharge  
 - Shadow Ball  
 - Nasty Plot  
 - Hydro Pump  
@@ -48,10 +47,10 @@ Sassy Nature
 
 Tauros (M) @ Life Orb  
 Ability: Sheer Force  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Facade  
-- Rock Climb  
+EVs: 4 Atk / 252 SpA / 252 Spe  
+Naive Nature  
 - Earthquake  
-- Rock Slide  
+- Flamethrower  
+- Thunderbolt  
+- Ice Beam  
 
