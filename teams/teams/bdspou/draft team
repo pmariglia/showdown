@@ -11,7 +11,7 @@ Cradily @ Leftovers
 Ability: Storm Drain  
 EVs: 252 HP / 4 Atk / 252 SpD  
 Sassy Nature  
-- Leech Seed  
+- Ancient Power  
 - Earthquake  
 - Recover  
 - Giga Drain  
@@ -22,7 +22,7 @@ EVs: 252 HP / 252 Def / 4 SpA
 Bold Nature  
 IVs: 0 Atk  
 - Volt Switch  
-- Discharge  
+- Shadow Ball  
 - Will-O-Wisp  
 - Hydro Pump  
 
@@ -35,7 +35,7 @@ Adamant Nature
 - Mach Punch  
 - Ice Punch  
 
-Ninetales @ Life Orb  
+Ninetales @ Wise Glasses  
 Ability: Drought  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
@@ -44,12 +44,13 @@ Timid Nature
 - Energy Ball  
 - Flame Charge  
 
-Aerodactyl @ Yache Berry  
-Ability: Pressure  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Stone Edge  
-- Earthquake  
-- Crunch  
-- Roost  
+Alakazam @ Life Orb  
+Ability: Magic Guard  
+EVs: 4 Atk / 252 SpA / 252 Spe  
+Hasty Nature  
+IVs: 0 Atk  
+- Focus Blast  
+- Psychic  
+- Psyshock  
+- Energy Ball  
 
