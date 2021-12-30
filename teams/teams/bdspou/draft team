@@ -3,9 +3,9 @@ Ability: Sheer Force
 EVs: 4 Atk / 252 SpA / 252 Spe  
 Naive Nature  
 - Rock Climb  
-- Fire Blast  
-- Thunder  
-- Blizzard  
+- Flamethrower  
+- Thunderbolt  
+- Ice Beam  
 
 Cradily @ Leftovers  
 Ability: Storm Drain  
@@ -16,13 +16,13 @@ Sassy Nature
 - Recover  
 - Giga Drain  
 
-Rotom-Wash @ Leftovers  
+Rotom (Rotom-Wash) @ Leftovers  
 Ability: Levitate  
-EVs: 252 HP / 208 Def / 48 Spe  
+EVs: 252 HP / 252 Def / 4 SpA  
 Bold Nature  
 IVs: 0 Atk  
 - Volt Switch  
-- Protect  
+- Discharge  
 - Will-O-Wisp  
 - Hydro Pump  
 
@@ -33,7 +33,7 @@ Adamant Nature
 - Rapid Spin  
 - Drain Punch  
 - Mach Punch  
-- Earthquake  
+- Ice Punch  
 
 Ninetales @ Life Orb  
 Ability: Drought  
@@ -42,7 +42,7 @@ Timid Nature
 - Nasty Plot  
 - Fire Blast  
 - Energy Ball  
-- Hypnosis  
+- Flame Charge  
 
 Aerodactyl @ Yache Berry  
 Ability: Pressure  
