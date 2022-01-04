@@ -1,58 +1,58 @@
-SCP-372 (Scizor) @ Life Orb  
-Ability: Technician  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
-- Swords Dance  
-- Bullet Punch  
-- Dual Wingbeat  
-- Knock Off  
-
-SCP-001 (Volcarona) @ Heavy-Duty Boots  
-Ability: Flame Body  
-Shiny: Yes  
-EVs: 4 HP / 252 SpA / 252 Spe  
-Timid Nature  
-- Quiver Dance  
-- Flamethrower  
-- Psychic  
-- Roost  
-
-SCP-109 (Araquanid) @ Leftovers  
-Ability: Water Bubble  
-Shiny: Yes  
-EVs: 252 HP / 100 Atk / 156 Spe  
-Adamant Nature  
-- Liquidation  
-- Sticky Web  
-- Leech Life  
-- Toxic  
-
-SCP-548 (Galvantula) @ Heavy-Duty Boots  
-Ability: Compound Eyes  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Thunder  
-- Bug Buzz  
-- Energy Ball  
-- Volt Switch  
-
 SCP-772 (Buzzwole) @ Choice Scarf  
 Ability: Beast Boost  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Close Combat  
-- Ice Punch  
-- Earthquake  
 - Leech Life  
+- Stone Edge  
+- Ice Punch  
+
+SCP-372 (Scizor) @ Metal Coat  
+Ability: Technician  
+EVs: 252 Atk / 4 Def / 252 Spe  
+Adamant Nature  
+- Swords Dance  
+- Bullet Punch  
+- Superpower  
+- Knock Off  
+
+SCP-001 (Volcarona) @ Heavy-Duty Boots  
+Ability: Flame Body  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Quiver Dance  
+- Flamethrower  
+- Psychic  
+- Roost  
+
+SCP-410 (Vikavolt) @ Heavy-Duty Boots  
+Ability: Levitate  
+EVs: 252 HP / 220 SpD / 36 Spe  
+Calm Nature  
+IVs: 0 Atk  
+- Sticky Web  
+- Volt Switch  
+- Energy Ball  
+- Roost  
+
+SCP-109 (Araquanid) @ Heavy-Duty Boots  
+Ability: Water Absorb  
+EVs: 248 HP / 252 Def / 8 SpA  
+Bold Nature  
+IVs: 0 Atk  
+- Scald  
+- Toxic  
+- Infestation  
+- Rest  
 
 SCP-2401 (Ribombee) @ Heavy-Duty Boots  
 Ability: Shield Dust  
-EVs: 248 HP / 8 SpA / 252 Spe  
+EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Defog  
-- Moonblast  
-- Roost  
 - Quiver Dance  
+- Moonblast  
+- Psychic  
+- Bug Buzz  
 
