@@ -1,10 +1,11 @@
-SCP-3668 (Aegislash) @ Air Balloon  
+SCP-3668 (Aegislash) @ Colbur Berry  
 Ability: Stance Change  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
-- Swords Dance  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Brave Nature  
+IVs: 0 Spe  
+- King's Shield  
 - Close Combat  
-- Iron Head  
+- Gyro Ball  
 - Shadow Sneak  
 
 SCP-835 (Corsola-Galar) @ Eviolite  
@@ -12,7 +13,7 @@ Ability: Cursed Body
 EVs: 252 HP / 252 Def / 4 SpD  
 Bold Nature  
 IVs: 0 Atk  
-- Stealth Rock  
+- Earth Power  
 - Will-O-Wisp  
 - Strength Sap  
 - Night Shade  
@@ -33,7 +34,7 @@ Timid Nature
 IVs: 0 Atk  
 - Substitute  
 - Mud Shot  
-- Nasty Plot  
+- Disable  
 - Shadow Ball  
 
 SCP-1672 (Dragapult) @ Leftovers  
@@ -42,9 +43,9 @@ Shiny: Yes
 EVs: 252 Atk / 4 SpA / 252 Spe  
 Lonely Nature  
 - Dragon Dance  
-- U-turn  
+- Bite  
 - Dragon Darts  
-- Fire Blast  
+- Body Slam  
 
 SCP-3790 (Gengar) @ Choice Specs  
 Ability: Cursed Body  
@@ -55,5 +56,5 @@ IVs: 0 Atk
 - Shadow Ball  
 - Sludge Wave  
 - Focus Blast  
-- Trick  
+- Thunderbolt  
 
