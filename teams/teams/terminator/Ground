@@ -1,11 +1,11 @@
 SCP-247 (Landorus-Therian) (M) @ Leftovers  
 Ability: Intimidate  
-EVs: 252 HP / 4 Def / 252 Spe  
+EVs: 252 HP / 4 SpD / 252 Spe  
 Jolly Nature  
-- Bulk Up  
-- Substitute  
+- Swords Dance  
+- Knock Off  
 - Earthquake  
-- Gravity  
+- Smack Down  
 
 SCP-682 (Nidoking) (M) @ Life Orb  
 Ability: Sheer Force  
@@ -17,14 +17,14 @@ IVs: 0 Atk
 - Ice Beam  
 - Sludge Wave  
 
-SCP-2683 (Mamoswine) (M) @ Choice Band  
-Ability: Thick Fat  
+SCP-939 (Zygarde-10%) @ Choice Band  
+Ability: Aura Break  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Icicle Crash  
-- Earthquake  
-- Ice Shard  
-- Knock Off  
+- Thousand Arrows  
+- Extreme Speed  
+- Outrage  
+- Rock Slide  
 
 SK1PP0 (Hippowdon) (F) @ Eject Button  
 Ability: Sand Stream  
@@ -33,7 +33,7 @@ Impish Nature
 - Stealth Rock  
 - Earthquake  
 - Slack Off  
-- Whirlwind  
+- Thunder Fang  
 
 SCP-4713 (Excadrill) (M) @ Choice Band  
 Ability: Sand Rush  
