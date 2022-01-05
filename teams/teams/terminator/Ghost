@@ -1,16 +1,15 @@
-SCP-3668 (Aegislash) @ Colbur Berry  
-Ability: Stance Change  
-EVs: 252 HP / 252 Atk / 4 SpD  
-Brave Nature  
-IVs: 0 Spe  
-- King's Shield  
-- Close Combat  
-- Gyro Ball  
-- Shadow Sneak  
+SCP-208 (Runerigus) @ Leftovers  
+Ability: Wandering Spirit  
+EVs: 252 HP / 252 Def / 4 SpD  
+Impish Nature  
+- Stealth Rock  
+- Toxic Spikes  
+- Earthquake  
+- Will-O-Wisp  
 
 SCP-835 (Corsola-Galar) @ Eviolite  
 Ability: Cursed Body  
-EVs: 252 HP / 252 Def / 4 SpD  
+EVs: 252 HP / 64 Def / 192 SpD  
 Bold Nature  
 IVs: 0 Atk  
 - Earth Power  
@@ -27,14 +26,14 @@ Jolly Nature
 - Drain Punch  
 - Shadow Sneak  
 
-SCP-805 (Spectrier) @ Leftovers  
+SCP-805 (Spectrier) @ Choice Specs  
 Ability: Grim Neigh  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Substitute  
+- Hex  
 - Mud Shot  
-- Disable  
+- Foul Play  
 - Shadow Ball  
 
 SCP-1672 (Dragapult) @ Leftovers  
@@ -47,7 +46,7 @@ Lonely Nature
 - Dragon Darts  
 - Fire Blast  
 
-SCP-3790 (Gengar) @ Choice Specs  
+SCP-3790 (Gengar) @ Colbur Berry  
 Ability: Cursed Body  
 Shiny: Yes  
 EVs: 252 SpA / 4 SpD / 252 Spe  
