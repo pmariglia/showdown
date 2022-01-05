@@ -24,7 +24,7 @@ IVs: 0 Atk
 - Freeze-Dry  
 - Earth Power  
 - Roost  
-- Substitute  
+- Body Press  
 
 SCP-2990 (Hydreigon) @ Leftovers  
 Ability: Levitate  
@@ -45,7 +45,7 @@ Jolly Nature
 - Stone Edge  
 - Toxic  
 
-SCP-4026 (Latias) @ Choice Scarf  
+SCP-4026 (Latios) @ Choice Scarf  
 Ability: Levitate  
 Shiny: Yes  
 EVs: 252 SpA / 4 SpD / 252 Spe  
@@ -54,5 +54,5 @@ IVs: 0 Atk
 - Draco Meteor  
 - Psychic  
 - Defog  
-- Healing Wish  
+- Aura Sphere  
 
