@@ -7,13 +7,13 @@ Jolly Nature
 - Earthquake  
 - Ice Punch  
 
-SCP-372 (Scizor) @ Leftovers  
-Ability: Technician  
+SCP-372 (Escavalier) @ Leftovers  
+Ability: Shell Armor  
 EVs: 252 HP / 252 Atk / 4 Def  
 Adamant Nature  
-- Swords Dance  
-- Bullet Punch  
-- Bug Bite  
+- Substitute  
+- Iron Head  
+- Close Combat  
 - Knock Off  
 
 SCP-001 (Volcarona) @ Heavy-Duty Boots  
@@ -24,16 +24,16 @@ IVs: 0 Atk
 - Quiver Dance  
 - Flamethrower  
 - Psychic  
-- Roost  
+- Bug Buzz  
 
-SCP-2928 (Accelgor) @ Choice Specs  
-Ability: Unburden  
-EVs: 68 HP / 252 SpA / 188 Spe  
+SCP-2598 (Frosmoth) @ Heavy-Duty Boots  
+Ability: Ice Scales  
+EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
 - Bug Buzz  
-- Focus Blast  
-- Sludge Bomb  
+- Ice Beam  
+- Quiver Dance  
 - Giga Drain  
 
 SCP-109 (Araquanid) @ Heavy-Duty Boots  
