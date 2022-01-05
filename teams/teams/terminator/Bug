@@ -2,18 +2,18 @@ SCP-772 (Buzzwole) @ Choice Scarf
 Ability: Beast Boost  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Drain Punch 
-- Darkest Lariat
+- Close Combat  
+- Darkest Lariat  
 - Stone Edge  
 - Ice Punch  
 
-SCP-372 (Scizor) @ Metal Coat  
+SCP-372 (Scizor) @ Shell Bell  
 Ability: Technician  
 EVs: 252 Atk / 4 Def / 252 Spe  
 Adamant Nature  
 - Swords Dance  
 - Bullet Punch  
-- Superpower  
+- Bug Bite  
 - Knock Off  
 
 SCP-001 (Volcarona) @ Heavy-Duty Boots  
@@ -22,19 +22,19 @@ EVs: 252 SpA / 4 SpD / 252 Spe
 Timid Nature  
 IVs: 0 Atk  
 - Quiver Dance  
-- Fiery Dance  
+- Flamethrower  
 - Psychic  
 - Roost  
 
-SCP-410 (Vikavolt) @ Heavy-Duty Boots  
-Ability: Levitate  
-EVs: 252 HP / 220 Def / 36 Spe  
-Bold Nature  
+SCP-2928 (Accelgor) @ Throat Spray  
+Ability: Unburden  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Modest Nature  
 IVs: 0 Atk  
-- Discharge  
-- Volt Switch  
-- Energy Ball  
-- Roost  
+- Bug Buzz  
+- Focus Blast  
+- Mud Shot  
+- Giga Drain  
 
 SCP-109 (Araquanid) @ Leftovers  
 Ability: Water Bubble  
