@@ -22,29 +22,28 @@ EVs: 252 SpA / 4 SpD / 252 Spe
 Timid Nature  
 IVs: 0 Atk  
 - Quiver Dance  
-- Flamethrower  
+- Fiery Dance  
 - Psychic  
 - Roost  
 
 SCP-410 (Vikavolt) @ Heavy-Duty Boots  
 Ability: Levitate  
-EVs: 252 HP / 220 SpD / 36 Spe  
-Calm Nature  
+EVs: 252 HP / 220 Def / 36 Spe  
+Bold Nature  
 IVs: 0 Atk  
-- Sticky Web  
+- Discharge  
 - Volt Switch  
 - Energy Ball  
 - Roost  
 
-SCP-109 (Araquanid) @ Heavy-Duty Boots  
-Ability: Water Absorb  
-EVs: 248 HP / 252 Def / 8 SpA  
-Bold Nature  
-IVs: 0 Atk  
-- Scald  
+SCP-109 (Araquanid) @ Leftovers  
+Ability: Water Bubble  
+EVs: 188 HP / 252 Atk / 68 Spe  
+Adamant Nature  
+- Sticky Web  
+- Liquidation  
+- Leech Life  
 - Toxic  
-- Infestation  
-- Rest  
 
 SCP-2401 (Ribombee) @ Heavy-Duty Boots  
 Ability: Shield Dust  
