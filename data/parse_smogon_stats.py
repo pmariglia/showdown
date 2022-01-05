@@ -28,7 +28,7 @@ def get_smogon_stats_file_name(game_mode, month_delta=1):
         game_mode = game_mode[:-5]
 
     # always use the `-0` file - the higher ladder is for noobs
-    smogon_url = "https://www.smogon.com/stats/{}-{}/chaos/{}-0.json"
+    smogon_url = "https://www.smogon.com/stats/{}-{}/chaos/{}-1500.json"
 
     previous_month = datetime.now() - relativedelta.relativedelta(months=month_delta)
     year = previous_month.year
