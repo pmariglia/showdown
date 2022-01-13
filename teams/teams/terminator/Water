@@ -25,14 +25,15 @@ Adamant Nature
 - Crunch  
 - Earthquake  
 
-SCP-748 (Toxapex) @ Black Sludge  
-Ability: Regenerator  
-EVs: 252 HP / 4 Atk / 252 Def  
-Impish Nature  
-- Knock Off  
-- Recover  
-- Haze  
-- Toxic Spikes  
+SCP-272 (Ludicolo) @ Life Orb  
+Ability: Swift Swim  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Modest Nature  
+IVs: 0 Atk  
+- Hydro Pump  
+- Ice Beam  
+- Giga Drain  
+- Encore  
 
 SCP-892 (Urshifu-Rapid-Strike) @ Choice Scarf  
 Ability: Unseen Fist  
