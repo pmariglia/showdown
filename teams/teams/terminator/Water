@@ -1,11 +1,11 @@
-SCP-279 (Pelipper) @ Heavy-Duty Boots  
-Ability: Drizzle  
-EVs: 4 HP / 252 SpA / 252 Spe  
+SCP-121 (Starmie) @ Life Orb  
+Ability: Analytic  
+EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
-- U-turn  
-- Hurricane  
-- Roost  
-- Defog  
+- Rapid Spin  
+- Ice Beam  
+- Thunderbolt  
+- Psychic  
 
 SCP-260 (Swampert) @ Leftovers  
 Ability: Torrent  
@@ -25,15 +25,14 @@ Adamant Nature
 - Crunch  
 - Earthquake  
 
-SCP-537 (Seismitoad) @ Life Orb  
-Ability: Swift Swim  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Modest Nature  
-IVs: 0 Atk  
-- Earth Power  
-- Surf  
-- Sludge Wave  
-- Focus Blast  
+SCP-171 (Lanturn) @ Leftovers  
+Ability: Volt Absorb  
+EVs: 40 HP / 172 Def / 16 SpA / 240 SpD / 40 Spe  
+Calm Nature  
+- Scald  
+- Volt Switch  
+- Toxic  
+- Protect  
 
 SCP-892 (Urshifu-Rapid-Strike) @ Choice Scarf  
 Ability: Unseen Fist  
