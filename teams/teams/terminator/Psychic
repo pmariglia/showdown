@@ -16,42 +16,41 @@ IVs: 0 Atk
 - Roost  
 - Draco Meteor  
 - Aura Sphere  
-- Thunderbolt  
+- Psyshock  
 
 Victini @ Heavy-Duty Boots  
 Ability: Victory Star  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
+EVs: 252 Atk / 4 SpA / 252 Spe  
+Hasty Nature  
 - V-create  
 - U-turn  
 - Bolt Strike  
-- Trick  
+- Scorching Sands  
 
-Latias @ Leftovers  
-Ability: Levitate  
-EVs: 252 HP / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
+Mew @ Leftovers  
+Ability: Synchronize  
+EVs: 252 HP / 4 Atk / 252 Def  
+Impish Nature  
+- Will-O-Wisp  
 - Defog  
 - Roost  
-- Dragon Pulse  
-- Psyshock  
+- U-turn  
 
-Gallade @ Assault Vest  
+Gallade @ Salac Berry  
 Ability: Justified  
-EVs: 252 HP / 252 Atk / 4 SpD  
-Adamant Nature  
-- Shadow Sneak  
-- Close Combat  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Swords Dance  
+- Drain Punch  
 - Knock Off  
-- Zen Headbutt  
+- Triple Axel  
 
-Metagross @ Kasib Berry  
-Ability: Clear Body  
-EVs: 100 HP / 252 Atk / 156 Spe  
-Adamant Nature  
-- Earthquake  
-- Meteor Mash  
-- Bullet Punch  
-- Rock Polish  
+Jirachi @ Choice Scarf  
+Ability: Serene Grace  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Iron Head  
+- U-turn  
+- Body Slam  
+- Healing Wish  
 
