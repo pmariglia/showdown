@@ -1,14 +1,13 @@
-Orbeetle @ Light Clay  
+Orbeetle @ Colbur Berry  
 Ability: Frisk  
-EVs: 252 HP / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Reflect  
-- Light Screen  
+EVs: 248 HP / 252 Def / 8 SpD  
+Impish Nature  
+- Recover  
+- Body Press  
 - Sticky Web  
 - U-turn  
 
-Tapu Lele @ Choice Specs
+Tapu Lele @ Choice Specs  
 Ability: Psychic Surge  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
@@ -28,14 +27,14 @@ IVs: 0 Atk
 - Aura Sphere  
 - Psyshock  
 
-Victini @ Heavy-Duty Boots  
+Victini @ Choice Band  
 Ability: Victory Star  
-EVs: 252 Atk / 4 SpA / 252 Spe  
-Hasty Nature  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
 - V-create  
 - U-turn  
 - Bolt Strike  
-- Scorching Sands  
+- Brick Break  
 
 Mew @ Leftovers  
 Ability: Synchronize  
@@ -50,7 +49,7 @@ Azelf @ Life Orb
 Ability: Levitate  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Drain Punch  
+- Play Rough  
 - U-turn  
 - Ice Punch  
 - Fire Punch  
