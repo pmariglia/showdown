@@ -1,4 +1,14 @@
-Tapu Lele @ Choice Scarf  
+Orbeetle @ Light Clay  
+Ability: Frisk  
+EVs: 252 HP / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Reflect  
+- Light Screen  
+- Sticky Web  
+- U-turn  
+
+Tapu Lele @ Choice Specs
 Ability: Psychic Surge  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
@@ -8,12 +18,12 @@ IVs: 0 Atk
 - Thunderbolt  
 - Focus Blast  
 
-Latios (M) @ Life Orb  
+Latios (M) @ Choice Scarf  
 Ability: Levitate  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Roost  
+- Ice Beam  
 - Draco Meteor  
 - Aura Sphere  
 - Psyshock  
@@ -44,13 +54,4 @@ Jolly Nature
 - U-turn  
 - Ice Punch  
 - Fire Punch  
-
-Jirachi @ Choice Scarf  
-Ability: Serene Grace  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Iron Head  
-- U-turn  
-- Body Slam  
-- Healing Wish  
 
