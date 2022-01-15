@@ -1,21 +1,40 @@
-Hitmonchan @ Payapa Berry  
-Ability: Iron Fist  
-EVs: 252 HP / 4 Atk / 252 SpD  
-Careful Nature  
-- Thunder Punch  
-- Drain Punch  
-- Mach Punch  
-- Earthquake  
-
-Alakazam @ Focus Sash  
-Ability: Magic Guard  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Hasty Nature  
+Rotom-Wash @ Leftovers  
+Ability: Levitate  
+EVs: 252 HP / 208 Def / 48 Spe  
+Bold Nature  
 IVs: 0 Atk  
-- Focus Blast  
-- Psyshock  
-- Shadow Ball  
+- Volt Switch  
+- Flash  
+- Will-O-Wisp  
+- Hydro Pump  
+
+Hitmonchan @ Life Orb  
+Ability: Iron Fist  
+EVs: 168 HP / 52 Atk / 200 SpD / 88 Spe  
+Adamant Nature  
+- Rapid Spin  
+- Drain Punch  
+- Ice Punch  
+- Mach Punch  
+
+Togekiss @ Leftovers  
+Ability: Serene Grace  
+EVs: 252 HP / 188 Def / 68 SpD  
+Bold Nature  
+IVs: 0 Atk  
+- Air Slash  
+- Thunder Wave  
 - Dazzling Gleam  
+- Roost  
+
+Cradily @ Leftovers  
+Ability: Storm Drain  
+EVs: 252 HP / 4 Atk / 252 SpD  
+Sassy Nature  
+- Leech Seed  
+- Rock Slide  
+- Recover  
+- Earthquake  
 
 Sharpedo @ Life Orb  
 Ability: Speed Boost  
@@ -23,34 +42,14 @@ EVs: 252 Atk / 4 SpD / 252 Spe
 Adamant Nature  
 - Protect  
 - Crunch  
-- Waterfall  
-- Poison Jab  
-
-Rotom (Rotom-Wash) @ Leftovers  
-Ability: Levitate  
-EVs: 252 HP / 252 Def / 4 SpA  
-Bold Nature  
-IVs: 0 Atk  
-- Discharge  
-- Shadow Ball  
-- Nasty Plot  
-- Hydro Pump  
-
-Cradily @ Leftovers  
-Ability: Storm Drain  
-EVs: 176 HP / 176 Def / 156 SpD  
-Sassy Nature  
-- Sludge Bomb  
 - Earthquake  
-- Recover  
-- Giga Drain  
+- Ice Fang  
 
-Tauros (M) @ Life Orb  
-Ability: Sheer Force  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Rash Nature  
+Rhyperior @ Leftovers  
+Ability: Solid Rock  
+EVs: 244 HP / 184 Def / 80 SpD  
+Impish Nature  
 - Earthquake  
-- Flamethrower  
-- Thunderbolt  
-- Ice Beam  
-
+- Stone Edge  
+- Avalanche  
+- Stealth Rock  
