@@ -1,40 +1,49 @@
-Typhlosion @ Power Herb  
-Ability: Flash Fire  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-- Solar Beam  
-- Focus Blast  
-- Earthquake  
-- Lava Plume  
-
-Hitmonchan @ Leftovers  
-Ability: Iron Fist  
-EVs: 252 HP / 4 Atk / 252 SpD  
-Careful Nature  
-- Rapid Spin  
-- Drain Punch  
-- Mach Punch  
-- Ice Punch  
-
-Rotom (Rotom-Wash) @ Leftovers  
-Ability: Levitate  
-EVs: 252 HP / 252 Def / 4 SpA  
-Bold Nature  
+Alakazam @ Focus Sash  
+Ability: Magic Guard  
+EVs: 4 Atk / 252 SpA / 252 Spe  
+Hasty Nature  
 IVs: 0 Atk  
-- Volt Switch  
-- Shadow Ball  
-- Will-O-Wisp  
-- Hydro Pump  
+- Focus Blast  
+- Psychic  
+- Charge Beam  
+- Energy Ball  
+
+Rhyperior @ Leftovers  
+Ability: Solid Rock  
+EVs: 244 HP / 184 Def / 80 SpD  
+Impish Nature  
+- Earthquake  
+- Stone Edge  
+- Avalanche  
+- Stealth Rock  
 
 Sharpedo @ Life Orb  
 Ability: Speed Boost  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Modest Nature  
-IVs: 0 Atk  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
 - Protect  
-- Dark Pulse  
-- Hydro Pump  
-- Ice Beam  
+- Crunch  
+- Earthquake  
+- Ice Fang  
+
+Ninetales @ Life Orb  
+Ability: Drought  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Nasty Plot  
+- Fire Blast  
+- Solar Beam  
+- Hypnosis  
+
+Hitmonchan @ Life Orb  
+Ability: Iron Fist  
+EVs: 168 HP / 52 Atk / 200 SpD / 88 Spe  
+Adamant Nature  
+- Rapid Spin  
+- Drain Punch  
+- Ice Punch  
+- Mach Punch  
 
 Tauros (M) @ Life Orb  
 Ability: Sheer Force  
@@ -44,13 +53,3 @@ Jolly Nature
 - Rock Climb  
 - Earthquake  
 - Rock Slide  
-
-Rhyperior @ Passho Berry  
-Ability: Solid Rock  
-EVs: 244 HP / 184 Def / 80 SpD  
-Impish Nature  
-- Earthquake  
-- Stone Edge  
-- Crunch  
-- Stealth Rock  
-
