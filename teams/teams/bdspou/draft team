@@ -1,56 +1,55 @@
-Tauros (M) @ Life Orb  
-Ability: Sheer Force  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Naive Nature  
-- Rock Climb  
-- Flamethrower  
-- Thunderbolt  
-- Ice Beam  
-
 Cradily @ Leftovers  
 Ability: Storm Drain  
 EVs: 252 HP / 4 Atk / 252 SpD  
 Sassy Nature  
-- Stealth Rock  
-- Earthquake  
+- Leech Seed  
+- Rock Slide  
 - Recover  
-- Giga Drain  
+- Earthquake  
 
-Rotom (Rotom-Wash) @ Leftovers  
+Swellow @ Flame Orb  
+Ability: Guts  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Facade  
+- U-turn  
+- Quick Attack  
+- Brave Bird  
+
+Rhyperior @ Leftovers  
+Ability: Solid Rock  
+EVs: 244 HP / 184 Def / 80 SpD  
+Impish Nature  
+- Earthquake  
+- Stone Edge  
+- Avalanche  
+- Stealth Rock  
+
+Rotom-Wash @ Leftovers  
 Ability: Levitate  
-EVs: 252 HP / 252 Def / 4 SpA  
+EVs: 252 HP / 208 Def / 48 Spe  
 Bold Nature  
 IVs: 0 Atk  
 - Volt Switch  
-- Shadow Ball  
+- Flash  
 - Will-O-Wisp  
 - Hydro Pump  
 
-Hitmonchan @ Quick Claw  
-Ability: Iron Fist  
-EVs: 168 HP / 252 Atk / 88 Spe  
-Adamant Nature  
-- Rapid Spin  
-- Drain Punch  
-- Mach Punch  
-- Ice Punch  
-
-Ninetales @ Wise Glasses  
-Ability: Drought  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-- Hypnosis  
-- Fire Blast  
-- Energy Ball  
-- Flame Charge  
-
-Alakazam @ Focus Sash  
-Ability: Magic Guard  
+Azelf @ Choice Scarf  
+Ability: Levitate  
 EVs: 4 Atk / 252 SpA / 252 Spe  
 Hasty Nature  
-IVs: 0 Atk  
-- Focus Blast  
 - Psychic  
-- Psyshock  
-- Energy Ball  
+- U-turn  
+- Drain Punch  
+- Thunderbolt  
 
+Togekiss @ Leftovers  
+Ability: Serene Grace  
+EVs: 252 HP / 188 Def / 68 SpD  
+Bold Nature  
+IVs: 0 Atk  
+- Air Slash  
+- Thunder Wave  
+- Dazzling Gleam  
+- Roost  
