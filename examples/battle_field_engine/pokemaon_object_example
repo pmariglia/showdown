@@ -1,0 +1,43 @@
+from showdown.engine import Pokemon
+
+pokemon = Pokemon(
+    # mandatory upon initialization
+    identifier='pikachu',
+    level=100,
+    types=['electric'],
+    hp=100,
+    maxhp=100,
+    ability='static',
+    item='lightball',
+    attack=100,
+    defense=100,
+    special_attack=100,
+    special_defense=100,
+    speed=100,
+    
+    # the remaining attributes are optional and have default values if not specified
+    
+    # nature is a string, evs are a tuple
+    nature="serious",
+    evs=(85,) * 6,
+
+    # boosts: integer value between -6 and 6
+    attack_boost=0,
+    defense_boost=0,
+    special_attack_boost=0,
+    special_defense_boost=0,
+    speed_boost=0,
+    accuracy_boost=0,
+    evasion_boost=0,
+    
+    # status: <string> or None
+    status=None,
+    
+    # volatile_status: <set>
+    volatile_status=set(),
+    
+    # moves: <list> of <dict>
+    moves=[
+        {'id': 'volttackle', 'disabled': False, 'current_pp': 8},
+    ]
+)

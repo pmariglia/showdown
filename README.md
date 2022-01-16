@@ -8,132 +8,188 @@ The bot can play single battles in generations 3 through 8 however some of the b
 ## Python version
 Developed and tested using Python 3.6.3.
 
-## Getting Started
+## Getting started
 
-### Configuration
-Environment variables are used for configuration which are by default read from a file named `.env`
+* python 3.6 or greater
+* Install requirements with `pip install -r requirements.txt`
+* Codebase is not installable as a python package 
 
-The configurations available are:
+### Config
+
+This project uses `environs` to load environment variable from a `.env` file.
+**Do not add the .env to source control.**
+The following environment variables are accepted
+
 ```
-BATTLE_BOT: (string, default "safest") The BattleBot module to use. More on this below
-SAVE_REPLAY: (bool, default False) Specifies whether or not to save replays of the battles
-LOG_LEVEL: (string, default "DEBUG") The Python logging level 
-WEBSOCKET_URI: (string, default is the official PokemonShowdown websocket address: "sim.smogon.com:8000") The address to use to connect to the Pokemon Showdown websocket 
-PS_USERNAME: (string, required) Pokemon Showdown username
-PS_PASSWORD: (string) Pokemon Showdown password 
-BOT_MODE: (string, required) The mode the the bot will operate in. Options are "CHALLENGE_USER", "SEARCH_LADDER", or "ACCEPT_CHALLENGE"
-USER_TO_CHALLENGE: (string, required if BOT_MODE is "CHALLENGE_USER") The user to challenge
-POKEMON_MODE: (string, required) The type of game this bot will play games in
-TEAM_NAME: (string, required if POKEMON_MODE is one where a team is required) The name of the file that contains the team you want to use. More on this below in the Specifying Teams section.
-RUN_COUNT: (integer, required) The amount of games this bot will play before quitting
-ROOM_NAME: (string, optional) Optionally join a room by this name is BOT_MODE is "ACCEPT_CHALLENGE"
+BATTLE_BOT              default = safest
+SAVE_REPLAY
+USE_RELATIVE_WEIGHTS
+GAMBIT_PATH
+MAX_SEARCH_DEPTH
+DYNAMIC_SEARCH_DEPTH
+GREETING_MESSAGE
+WEBSOCKET_URI           sim.smogon.com:8000
+PS_USERNAME
+BOT_MODE
+TEAM_NAME               None
+POKEMON_MODE
+RUN_COUNT               1
+ROOM_NAME
+```
+### Docker
+
+The project uses Docker to build a maintainable environment for the project, using python:3.6-slim as a base image.
+The container uses ENV variables `PYTHONIOENCODING=utf-8`, `GAMBIT_PATH=gambit-enummixed`.
+The entrypoint to the Docker container is `run.py`:
+
+It runs an asynchronous function `run.showdown`:
+It creates a configuration file from system environment variables.
+It runs a loop which challenges a user or accepts a match
+and runs a pokemon battle.
+The loop tracks the number of wins, losses, and battles run.
+The loop breaks if more battles are run than the config value.
+Raises a ValueError if the bot mode is invalid.
+
+### Developers
+
+* Unit tests are stored in `tests/` (uses unittest)
+* There are no specific developer requirements
+* The project uses GitHub Actions for CI/CD.
+
+| CI File | Purpose |
+|:--------|:--------|
+| `.github/workflows/pythonapp.yml` | Runs unit tests. Executes on push to branch `master` and pull request to branch `master` |
+
+## Code Overview
+
+### Entrypoints
+
+There are 0 source code entrypoints in top-level `__main__`/`__init__` files.
+The codebase has a flat structure with no central package.
+Source code is in:
+`data/`,
+`showdown/`,
+`teams/`.
+
+### Class structure
+
+#### showdown.battle.Battle
+
+The `showdown.battle.Battle` base class has 4 child classes:
+* `showdown.battle_bots.most_damage.main.BattleBot`
+* `showdown.battle_bots.nash_equilibrium.main.BattleBot`
+* `showdown.battle_bots.ou_scraped_teams.main.BattleBot`
+* `showdown.battle_bots.safest.main.BattleBot`
+
+```python
+class showdown.battle.Battle(self, battle_tag)
 ```
 
-Here is a minimal `.env` file. This configuration will log in and search for a gen8randombattle:
-```
-WEBSOCKET_URI=sim.smogon.com:8000
-PS_USERNAME=MyCoolUsername
-PS_PASSWORD=MySuperSecretPassword
-BOT_MODE=SEARCH_LADDER
-POKEMON_MODE=gen8randombattle
-RUN_COUNT=1
+```python
+    def prepare_battles(self, guess_mega_evo_opponent=True, join_moves_together=False)
 ```
 
-There is a sample `.env` file in this repository.
+Returns a list of battles based on this one
+The battles have the opponent's reserve pokemon's unknowns filled in
+The opponent's active pokemon in each of the battles has a different set.
 
-### Running without Docker
+#### showdown.battle_bots.most_damage.main.BattleBot
 
-**1. Clone**
+```python
+class showdown.battle_bots.most_damage.main.BattleBot(*args, **kwargs)
+```
 
-Clone the repository with `git clone https://github.com/pmariglia/showdown.git`
+```python
+    def find_best_moves(self)
+```
 
-**2. Install Requirements**
+### Examples:
 
-Install the requirements with `pip install -r requirements.txt`.
-Be sure to use a virtual environment to isolate your packages.
+#### The Pokemon Object
 
-**3. Run**
+```python
+from showdown.engine import Pokemon
+pokemon = Pokemon(
+    # mandatory upon initialization
+    identifier='pikachu',
+    level=100,
+    types=['electric'],
+    hp=100,
+    maxhp=100,
+    ability='static',
+    item='lightball',
+    attack=100,
+    defense=100,
+    special_attack=100,
+    special_defense=100,
+    speed=100,
+    
+    # the remaining attributes are optional and have default values if not specified
+    
+    # nature is a string, evs are a tuple
+    nature="serious",
+    evs=(85,) * 6,
 
-Run with `python run.py` and the bot will start with configurations
-specified by environment variables read from the file named `.env`
+    # boosts: integer value between -6 and 6
+    attack_boost=0,
+    defense_boost=0,
+    special_attack_boost=0,
+    special_defense_boost=0,
+    speed_boost=0,
+    accuracy_boost=0,
+    evasion_boost=0,
+    
+    # status: <string> or None
+    status=None,
+    
+    # volatile_status: <set>
+    volatile_status=set(),
+    
+    # moves: <list> of <dict>
+    moves=[
+        {'id': 'volttackle', 'disabled': False, 'current_pp': 8},
+    ]
+)
+```
 
-### Running with Docker
-This requires Docker 17.06 or higher.
+#### The Side Object
 
-**1. Clone the repository**
 
-`git clone https://github.com/pmariglia/showdown.git`
+```python
+from showdown.engine import Side
+from showdown.engine import Pokemon
+side = Side(
+    active=Pokemon(...),
+    reserve={
+        'caterpie': Pokemon(...),
+        'pidgey': Pokemon(...),
+        ...
+    },
+    wish=(0, 0),
+    side_conditions={
+        'stealth_rock': 1,
+        'spikes': 3,
+        'toxic_spikes': 2,
+        'tailwind': 1
+    }
+)
+```
 
-**2. Build the Docker image**
+#### The State Object
 
-`docker build . -t showdown`
+This object represents the entire battle.
 
-**3. Run with an environment variable file**
-
-`docker run --env-file .env showdown`
-
-### Running on Heroku
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
-After deploying, go to the Resources tab and turn on the worker.
-
-## Battle Bots
-
-### Safest
-use `BATTLE_BOT=safest` (default unless otherwise specified)
-
-The bot searches through the game-tree for two turns and selects the move that minimizes the possible loss for a turn.
-
-For decisions with random outcomes a weighted average is taken for all possible end states.
-For example: If using draco meteor versus some arbitrary other move results in a score of 1000 if it hits (90%) and a score of 900 if it misses (10%), the overall score for using
-draco meteor is (0.9 * 1000) + (0.1 * 900) = 990.
-
-This is equivalent to the [Expectiminimax](https://en.wikipedia.org/wiki/Expectiminimax) strategy.
-
-This decision type is deterministic - the bot will always make the same move given the same situation again.
-
-### Nash-Equilibrium (experimental)
-use `BATTLE_BOT=nash_equilibrium`
-
-Using the information it has, plus some assumptions about the opponent, the bot will attempt to calculate the [Nash-Equilibrium](https://en.wikipedia.org/wiki/Nash_equilibrium) with the highest payoff
-and select a move from that distribution.
-
-The Nash Equilibrium is calculated using command-line tools provided by the [Gambit](http://www.gambit-project.org/) project.
-This decision method should only be used when running with Docker and will fail otherwise.
-
-This decision method is **not** deterministic. The bot **may** make a different move if presented with the same situation again.
-
-### Ou Scraped Teams (experimental)
-
-use `BATTLE_BOT=ou_scraped_teams`
-
-Only use with `POKEMON_MODE=gen8ou`. Using a file of OU sets & teams, this battle-bot is meant to have a better
-understanding of Pokeon sets that may appear in gen8ou.
-
-Still uses the `safest` decision making method for picking a move, but in theory the knowledge of sets should
-result in better decision making.
-
-### Most Damage
-use `BATTLE_BOT=most_damage`
-
-Selects the move that will do the most damage to the opponent
-
-Does not switch
-
-## Performance
-
-These are the default battle-bot's results in three different formats for roughly 75 games played on a fresh account:
-
-![RelativeWeightsRankings](https://i.imgur.com/eNpIlVg.png)
-
-## Write your own bot
-Create a package in `showdown/battle_bots` with a module named `main.py`. In this module, create a class named `BattleBot`, override the Battle class, and implement your own `find_best_move` function.
-
-Set the `BATTLE_BOT` environment variable to the name of your package and your function will be called each time PokemonShowdown prompts the bot for a move
-
-## The Battle Engine
-The bots in the project all use a Pokemon battle engine to determine all possible transpositions that may occur from a pair of moves.
+```python
+from showdown.engine import State
+from showdown.engine import Side
+state = State(
+    self=Side(...),
+    opponent=Side(...),
+    weather='sunnyday',
+    field='electricterrain',
+    trick_room=False
+)
+```
 
 For more information, see [ENGINE.md](https://github.com/pmariglia/showdown/blob/master/ENGINE.md) 
 

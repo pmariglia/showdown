@@ -1,0 +1,5 @@
+[tool.documatic]
+name = showdown
+srcdir = .
+package = .
+docname = "README"
