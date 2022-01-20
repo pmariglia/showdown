@@ -2,10 +2,11 @@ SCP-4338 (Heatran) @ Leftovers
 Ability: Flash Fire  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
+IVs: 0 Atk  
 - Magma Storm  
 - Earth Power  
 - Toxic  
-- Stone Edge  
+- Dragon Pulse  
 
 SCP-1591 (Celesteela) @ Leftovers  
 Ability: Beast Boost  
@@ -37,20 +38,19 @@ Jolly Nature
 
 SCP-1281 (Jirachi) @ Leftovers  
 Ability: Serene Grace  
-EVs: 252 HP / 4 SpD / 252 Spe  
-Jolly Nature  
-- Cosmic Power  
-- Power-Up Punch  
+EVs: 252 HP / 4 Atk / 252 SpA  
+Quiet Nature  
+- Trick Room  
+- U-turn  
 - Wish  
-- Meteor Mash  
+- Psychic  
 
-SCP-173 (Ferrothorn) @ Leftovers  
-Ability: Iron Barbs  
-Shiny: Yes  
-EVs: 252 HP / 168 Def / 88 SpD  
-Impish Nature  
-- Power Whip  
-- Leech Seed  
-- Body Press  
-- Spikes  
+SCP-809 (Melmetal) @ Choice Band  
+Ability: Iron Fist  
+EVs: 244 HP / 252 Atk / 12 Spe  
+Adamant Nature  
+- Double Iron Bash  
+- Ice Punch  
+- Earthquake  
+- Superpower  
 
