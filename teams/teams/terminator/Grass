@@ -12,20 +12,20 @@ Ability: Storm Drain
 EVs: 248 HP / 8 Def / 252 SpD  
 Careful Nature  
 - Toxic  
-- Stealth Rock  
+- Earthquake  
 - Recover  
 - Rock Blast  
 
 SCP-173 (Ferrothorn) @ Leftovers  
 Ability: Iron Barbs  
 Shiny: Yes  
-EVs: 248 HP / 252 Def / 8 SpD  
+EVs: 248 HP / 116 Def / 144 SpD  
 Relaxed Nature  
 IVs: 0 Spe  
 - Leech Seed  
 - Gyro Ball  
-- Spikes  
-- Protect  
+- Stealth Rock  
+- Knock Off  
 
 SCP-938 (Rotom-Mow) @ Leftovers  
 Ability: Levitate  
@@ -37,21 +37,22 @@ IVs: 0 Atk
 - Thunderbolt  
 - Leaf Storm  
 
-SCP-330 (Whimsicott) @ Pixie Plate  
+SCP-330 (Whimsicott) @ Life Orb  
 Ability: Prankster  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
+IVs: 0 Atk  
 - Moonblast  
-- Defog  
-- U-turn  
-- Knock Off  
+- Stun Spore  
+- Substitute  
+- Leech Seed  
 
-SCP-983 (Zarude) @ Choice Scarf  
-Ability: Leaf Guard  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Power Whip  
-- Darkest Lariat  
-- Close Combat  
-- U-turn  
+SCP-591 (Amoonguss) @ Black Sludge  
+Ability: Regenerator  
+EVs: 252 HP / 4 Atk / 252 Def  
+Relaxed Nature  
+- Spore  
+- Sludge Bomb  
+- Foul Play  
+- Stomping Tantrum  
 
