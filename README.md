@@ -3,7 +3,7 @@ A Pokémon battle-bot that can play battles on [Pokemon Showdown](https://pokemo
 
 The bot can play single battles in generations 3 through 8 however some of the battle mechanics assume it is gen8.
 
-![badge](https://action-badges.now.sh/pmariglia/showdown)
+![badge](https://github.com/pmariglia/showdown/actions/workflows/pythonapp.yml/badge.svg)
 
 ## Python version
 Developed and tested using Python 3.6.3.
