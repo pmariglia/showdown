@@ -1,40 +1,21 @@
-Hitmonlee @ Focus Sash  
-Ability: Unburden  
+Manectric @ Focus Sash  
+Ability: Lightning Rod  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk / 30 Def  
+- Thunderbolt  
+- Volt Switch  
+- Hidden Power [Ice]  
+- Flamethrower  
+
+Swellow @ Flame Orb  
+Ability: Guts  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Rapid Spin  
-- Stone Edge  
-- Knock Off  
-- Close Combat  
-
-Porygon2 @ Eviolite  
-Ability: Analytic  
-EVs: 252 HP / 200 Def / 56 SpD  
-Calm Nature  
-IVs: 0 Atk  
-- Ice Beam  
-- Thunderbolt  
-- Recover  
-- Tri Attack  
-
-Heatran @ Leftovers  
-Ability: Flash Fire  
-EVs: 252 HP / 4 SpA / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
-- Stealth Rock  
-- Earth Power  
-- Toxic  
-- Magma Storm  
-
-Rhydon @ Eviolite  
-Ability: Lightning Rod  
-EVs: 252 HP / 252 Def / 4 SpD  
-Impish Nature  
-- Earthquake  
-- Sleep Talk  
-- Rock Tomb  
-- Rest  
+- Facade  
+- Quick Attack  
+- Brave Bird  
+- U-turn  
 
 Weavile @ Choice Scarf  
 Ability: Pressure  
@@ -43,14 +24,34 @@ Jolly Nature
 - Knock Off  
 - Icicle Crash  
 - Low Kick  
-- Ice Shard  
+- Ice Punch  
 
-Jirachi @ Leftovers  
+Jirachi @ Choice Scarf  
 Ability: Serene Grace  
-EVs: 252 HP / 224 SpD / 32 Spe  
-Careful Nature  
-- Cosmic Power  
-- Meteor Mash  
-- Wish  
-- Energy Ball  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Iron Head  
+- U-turn  
+- Ice Punch  
+- Drain Punch  
+
+Ninetales @ Salac Berry  
+Ability: Flash Fire  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Flamethrower  
+- Dark Pulse  
+- Nasty Plot  
+- Solar Beam  
+
+Porygon2 @ Eviolite  
+Ability: Analytic  
+EVs: 252 HP / 200 Def / 56 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Tri Attack  
+- Ice Beam  
+- Recover  
+- Charge Beam  
 
