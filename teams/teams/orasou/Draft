@@ -14,7 +14,7 @@ Jolly Nature
 - Stone Edge  
 - Close Combat  
 - Megahorn  
-- Facade  
+- Knock Off  
 
 Swellow @ Flame Orb  
 Ability: Guts  
@@ -25,21 +25,22 @@ Jolly Nature
 - Roost  
 - U-turn  
 
-Jirachi @ Leftovers  
-Ability: Serene Grace  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-- Psychic  
-- Thunder  
-- Flash Cannon  
-- U-turn  
+Dragalge @ Black Sludge  
+Ability: Adaptability  
+EVs: 248 HP / 232 SpD / 28 Spe  
+Calm Nature  
+- Draco Meteor  
+- Sludge Wave  
+- Scald  
+- Toxic Spikes  
 
 Porygon2 @ Eviolite  
 Ability: Trace  
 EVs: 252 HP / 200 Def / 56 SpD  
 Calm Nature  
+IVs: 0 Atk  
 - Ice Beam  
-- Thunderbolt  
+- Discharge  
 - Recover  
 - Toxic  
 
