@@ -1,56 +1,56 @@
-Porygon2 @ Eviolite  
-Ability: Analytic  
-EVs: 252 HP / 200 Def / 56 SpD  
-Calm Nature  
-IVs: 0 Atk / 30 SpA  
-- Ice Beam  
-- Shadow Ball  
-- Recover  
-- Hidden Power [Grass]  
-
-Heracross @ Choice Scarf  
-Ability: Moxie  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Stone Edge  
-- Close Combat  
-- Megahorn  
-- Knock Off  
-
 Swellow @ Flame Orb  
 Ability: Guts  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
+- Defog  
 - Facade  
-- Brave Bird  
-- Quick Attack  
 - U-turn  
+- Roost  
 
-Dragalge @ Assault Vest  
-Ability: Adaptability  
-EVs: 252 HP / 252 SpA / 4 SpD  
-Modest Nature  
-IVs: 0 Atk / 30 SpA  
-- Draco Meteor  
-- Sludge Wave  
-- Hidden Power [Grass]  
-- Dragon Pulse  
+Porygon2 @ Eviolite  
+Ability: Analytic  
+EVs: 252 HP / 200 Def / 56 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Ice Beam  
+- Thunderbolt  
+- Recover  
+- Tri Attack  
 
-Weavile @ Life Orb  
-Ability: Pressure  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
-- Knock Off  
-- Ice Shard  
-- Ice Punch  
-- Low Kick  
+Heatran @ Leftovers  
+Ability: Flash Fire  
+EVs: 252 HP / 4 SpA / 252 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Stealth Rock  
+- Earth Power  
+- Toxic  
+- Magma Storm  
 
 Rhydon @ Eviolite  
-Ability: Rock Head  
-EVs: 184 HP / 68 Atk / 252 Def / 4 SpD  
+Ability: Lightning Rod  
+EVs: 252 HP / 252 Def / 4 SpD  
 Impish Nature  
-- Avalanche  
-- Stealth Rock  
 - Earthquake  
-- Rock Blast  
+- Sleep Talk  
+- Rock Tomb  
+- Rest  
+
+Weavile @ Choice Scarf  
+Ability: Pressure  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Knock Off  
+- Icicle Crash  
+- Low Kick  
+- Ice Shard  
+
+Jirachi @ Leftovers  
+Ability: Serene Grace  
+EVs: 252 HP / 224 SpD / 32 Spe  
+Careful Nature  
+- Cosmic Power  
+- Meteor Mash  
+- Wish  
+- Energy Ball  
 
