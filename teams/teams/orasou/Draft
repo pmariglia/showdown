@@ -1,12 +1,12 @@
 Porygon2 @ Eviolite  
-Ability: Trace  
+Ability: Analytic  
 EVs: 252 HP / 200 Def / 56 SpD  
 Calm Nature  
-IVs: 0 Atk  
+IVs: 0 Atk / 30 SpA  
 - Ice Beam  
-- Thunderbolt  
+- Shadow Ball  
 - Recover  
-- Trick Room  
+- Hidden Power [Grass]  
 
 Heracross @ Choice Scarf  
 Ability: Moxie  
@@ -23,7 +23,7 @@ EVs: 252 Atk / 4 SpD / 252 Spe
 Jolly Nature  
 - Facade  
 - Brave Bird  
-- Roost  
+- Quick Attack  
 - U-turn  
 
 Dragalge @ Assault Vest  
@@ -52,5 +52,5 @@ Impish Nature
 - Avalanche  
 - Stealth Rock  
 - Earthquake  
-- Stone Edge  
+- Rock Blast  
 
