@@ -1,11 +1,12 @@
-Jirachi @ Leftovers  
-Ability: Serene Grace  
-EVs: 252 HP / 224 SpD / 32 Spe  
-Careful Nature  
-- Iron Head  
-- Stealth Rock  
-- U-turn  
-- Body Slam  
+Dragalge @ Black Sludge  
+Ability: Adaptability  
+EVs: 248 HP / 232 SpD / 28 Spe  
+Calm Nature  
+IVs: 0 Atk / 30 SpA / 30 Spe  
+- Draco Meteor  
+- Sludge Wave  
+- Hidden Power [Fire]  
+- Toxic Spikes  
 
 Rhydon @ Eviolite  
 Ability: Rock Head  
@@ -16,35 +17,34 @@ Adamant Nature
 - Stone Edge  
 - Rock Polish  
 
-Porygon2 @ Eviolite  
-Ability: Download  
-EVs: 252 HP / 200 Def / 56 SpD  
-Calm Nature  
-IVs: 0 Atk  
-- Ice Beam  
+Jirachi @ Colbur Berry  
+Ability: Serene Grace  
+EVs: 4 Atk / 252 SpA / 252 Spe  
+Hasty Nature  
 - Thunderbolt  
-- Recover  
-- Toxic  
+- U-turn  
+- Psychic  
+- Iron Head  
 
 Heatran @ Choice Scarf  
 Ability: Flash Fire  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
-IVs: 0 Atk / 30 Def  
-- Overheat  
-- Hidden Power [Ice]  
+IVs: 0 Atk  
+- Heat Wave  
+- Dragon Pulse  
 - Earth Power  
-- Flamethrower  
+- Solar Beam  
 
 Ninetales @ Choice Scarf  
 Ability: Drought  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk / 30 Def  
-- Fire Blast  
+- Solar Beam  
 - Hidden Power [Ice]  
 - Extrasensory  
-- Overheat  
+- Flamethrower  
 
 Swellow @ Choice Specs  
 Ability: Scrappy  
