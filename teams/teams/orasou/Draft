@@ -1,57 +1,57 @@
-Dragalge @ Black Sludge  
-Ability: Adaptability  
-EVs: 248 HP / 232 SpD / 28 Spe  
-Calm Nature  
-IVs: 0 Atk / 30 SpA / 30 Spe  
-- Draco Meteor  
-- Sludge Wave  
-- Hidden Power [Fire]  
-- Toxic Spikes  
-
-Rhydon @ Eviolite  
-Ability: Rock Head  
-EVs: 252 HP / 252 Def / 4 Spe  
-Adamant Nature  
-- Earthquake  
-- Superpower  
-- Stone Edge  
-- Rock Polish  
-
-Jirachi @ Colbur Berry  
-Ability: Serene Grace  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Hasty Nature  
+Manectric @ Air Balloon  
+Ability: Lightning Rod  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 1 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe  
 - Thunderbolt  
-- U-turn  
-- Psychic  
+- Volt Switch  
+- Hidden Power [Fighting]  
+- Flamethrower  
+
+Weavile @ Focus Sash  
+Ability: Pressure  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Pursuit  
+- Knock Off  
+- Low Kick  
+- Ice Shard  
+
+Medicham-Mega @ Medichamite  
+Ability: Pure Power  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Drain Punch  
+- Zen Headbutt  
+- Thunder Punch  
+- Bullet Punch  
+
+Ninetales @ Heat Rock  
+Ability: Drought  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 1 Atk / 30 SpA  
+- Solar Beam  
+- Flamethrower  
+- Nasty Plot  
+- Hidden Power [Electric]  
+
+Jirachi @ Shuca Berry  
+Ability: Serene Grace  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Thunder Punch  
 - Iron Head  
+- Fire Punch  
+- Body Slam  
 
 Heatran @ Choice Scarf  
 Ability: Flash Fire  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Heat Wave  
-- Dragon Pulse  
-- Earth Power  
 - Solar Beam  
-
-Ninetales @ Choice Scarf  
-Ability: Drought  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk / 30 Def  
-- Solar Beam  
-- Hidden Power [Ice]  
-- Extrasensory  
+- Flash Cannon  
+- Dark Pulse  
 - Flamethrower  
-
-Swellow @ Choice Specs  
-Ability: Scrappy  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-- Boomburst  
-- Heat Wave  
-- Air Slash  
-- U-turn  
 
