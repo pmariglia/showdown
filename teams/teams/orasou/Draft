@@ -1,39 +1,12 @@
-Weavile @ Life Orb  
-Ability: Pressure  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Knock Off  
-- Icicle Crash  
-- Ice Shard  
-- Low Kick  
-
-Hitmonlee @ Focus Sash  
-Ability: Unburden  
-EVs: 252 Atk / 252 Spe  
-Naughty Nature  
-IVs: 0 HP / 0 Def / 0 SpD  
-- Close Combat  
-- Stone Edge  
-- Knock Off  
-- Reversal  
-
-Drapion @ Black Sludge  
-Ability: Battle Armor  
-EVs: 252 HP / 4 Atk / 252 Def  
-Impish Nature  
-- Pursuit  
-- Toxic Spikes  
-- Knock Off  
-- Poison Jab  
-
-Jirachi @ Choice Scarf  
-Ability: Serene Grace  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Iron Head  
-- Play Rough  
-- U-turn  
-- Zen Headbutt  
+Ninetales @ Focus Sash  
+Ability: Drought  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk / 30 Def  
+- Energy Ball  
+- Fire Blast  
+- Dark Pulse  
+- Hidden Power [Ice]  
 
 Manectric @ Life Orb  
 Ability: Lightning Rod  
@@ -45,13 +18,41 @@ IVs: 0 Atk
 - Volt Switch  
 - Signal Beam  
 
-Ninetales @ Focus Sash  
-Ability: Drought  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk / 30 Def  
-- Energy Ball  
-- Fire Blast  
-- Dark Pulse  
-- Hidden Power [Ice]  
+Weavile @ Life Orb  
+Ability: Pressure  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Knock Off  
+- Icicle Crash  
+- Ice Shard  
+- Low Kick  
+
+Dragalge @ Black Sludge  
+Ability: Adaptability  
+EVs: 156 HP / 120 SpA / 232 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Dragon Pulse  
+- Sludge Wave  
+- Protect  
+- Focus Blast  
+
+Heracross @ Choice Scarf  
+Ability: Moxie  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Close Combat  
+- Megahorn  
+- Knock Off  
+- Stone Edge  
+
+Porygon2 @ Eviolite  
+Ability: Analytic  
+EVs: 252 HP / 252 Def / 4 SpA  
+Bold Nature  
+IVs: 0 Atk  
+- Ice Beam  
+- Recover  
+- Thunderbolt  
+- Substitute  
 
