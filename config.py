@@ -17,7 +17,7 @@ room_name = None
 
 use_relative_weights = False
 damage_calc_type = 'average'
-search_depth = 2
+search_depth = 1
 dynamic_search_depth = False
 
 save_replay = False
