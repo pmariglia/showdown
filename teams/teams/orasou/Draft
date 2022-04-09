@@ -2,10 +2,10 @@ Manectric @ Air Balloon
 Ability: Lightning Rod  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
-IVs: 1 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe  
+IVs: 0 Atk / 30 SpA  
 - Thunderbolt  
 - Volt Switch  
-- Hidden Power [Fighting]  
+- Hidden Power [Grass]  
 - Flamethrower  
 
 Weavile @ Focus Sash  
@@ -36,15 +36,6 @@ IVs: 1 Atk / 30 SpA
 - Nasty Plot  
 - Hidden Power [Electric]  
 
-Jirachi @ Shuca Berry  
-Ability: Serene Grace  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Thunder Punch  
-- Iron Head  
-- Fire Punch  
-- Body Slam  
-
 Heatran @ Choice Scarf  
 Ability: Flash Fire  
 EVs: 252 SpA / 4 SpD / 252 Spe  
@@ -54,4 +45,14 @@ IVs: 0 Atk
 - Flash Cannon  
 - Dark Pulse  
 - Flamethrower  
+
+Porygon2 @ Eviolite  
+Ability: Analytic  
+EVs: 252 HP / 252 Def / 4 SpA  
+Bold Nature  
+IVs: 0 Atk  
+- Ice Beam  
+- Discharge  
+- Recover  
+- Foul Play  
 
