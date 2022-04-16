@@ -13,6 +13,9 @@ user_to_challenge = None
 gambit_exe_path = ""
 greeting_message = 'hf'
 battle_ending_message = 'gg'
+battle_lost_message = 'you beat me'
+battle_won_message = 'you lost to me'
+dynamic_ending_message = False
 room_name = None
 
 use_relative_weights = False

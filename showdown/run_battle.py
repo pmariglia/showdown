@@ -27,6 +27,16 @@ def battle_is_finished(battle_tag, msg):
     )
 
 
+def battle_message(winner):
+    if config.dynamic_ending_message:
+        if winner == config.username:
+            return config.battle_won_message
+        else:
+            return config.battle_lost_message
+    else:
+        return config.battle_ending_message
+
+
 async def async_pick_move(battle):
     battle_copy = deepcopy(battle)
     if battle_copy.request_json:
@@ -205,9 +215,12 @@ async def pokemon_battle(ps_websocket_client, pokemon_battle_type):
                 winner = msg.split(constants.WIN_STRING)[-1].split('\n')[0].strip()
             else:
                 winner = None
+
             logger.debug("Winner: {}".format(winner))
-            await ps_websocket_client.send_message(battle.battle_tag, [config.battle_ending_message])
+
+            await ps_websocket_client.send_message(battle.battle_tag, [battle_message(winner)])
             await ps_websocket_client.leave_battle(battle.battle_tag, save_replay=config.save_replay)
+
             return winner
         else:
             action_required = await async_update_battle(battle, msg)
