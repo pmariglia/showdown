@@ -3969,6 +3969,21 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_poison_move_into_steel_type_does_nothing(self):
+        bot_move = "sludgebomb"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['steel']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_pastelveil_prevents_poison(self):
         bot_move = "toxic"
         opponent_move = "splash"
