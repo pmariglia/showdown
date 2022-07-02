@@ -1,4 +1,5 @@
 import constants
+from data import effectiveness
 
 
 class Scoring:
@@ -39,6 +40,8 @@ class Scoring:
         constants.POISON: -10,
         None: 0
     }
+
+    MATCHUP_BONUS = 20
 
     @staticmethod
     def BURN(burn_multiplier):
@@ -130,5 +133,12 @@ def evaluate(state):
             score -= count * Scoring.STATIC_SCORED_SIDE_CONDITIONS[condition]
         elif condition in Scoring.POKEMON_COUNT_SCORED_SIDE_CONDITIONS:
             score -= count * Scoring.POKEMON_COUNT_SCORED_SIDE_CONDITIONS[condition] * opponent_alive_reserves_count
+
+    try:
+        matchup_score = Scoring.MATCHUP_BONUS * effectiveness[state.self.active.id][state.opponent.active.id]
+        matchup_score -= Scoring.MATCHUP_BONUS * effectiveness[state.opponent.active.id][state.self.active.id]
+        score += matchup_score
+    except KeyError:
+        pass
 
     return int(score)

@@ -20,6 +20,7 @@ with open(random_battle_set_location, 'r') as f:
 
 
 pokemon_sets = random_battle_sets
+effectiveness = {}
 ou_sets = None
 
 
