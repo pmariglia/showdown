@@ -9,14 +9,16 @@ IVs: 0 Atk
 - Grass Knot  
 - Volt Switch  
 
-Ruffoone (Linoone) @ Salac Berry  
-Ability: Gluttony  
-EVs: 4 HP / 252 Atk / 252 Spe  
-Jolly Nature  
-- Belly Drum  
-- Extreme Speed  
-- Play Rough  
-- Shadow Claw  
+Ruffgon2 (Porygon2) @ Eviolite  
+Ability: Analytic  
+Shiny: Yes  
+EVs: 252 HP / 160 Def / 96 SpD  
+Sassy Nature  
+IVs: 0 Atk  
+- Discharge  
+- Ice Beam  
+- Recover  
+- Foul Play  
 
 Ruffwear (Bewear) @ Heavy-Duty Boots  
 Ability: Fluffy  
@@ -48,14 +50,13 @@ Adamant Nature
 - Knock Off  
 - Fire Punch  
 
-Ruffowl (Noctowl) @ Heavy-Duty Boots  
-Ability: Tinted Lens  
+Ruffiary (Braviary) @ Heavy-Duty Boots  
+Ability: Defiant  
 Shiny: Yes  
-EVs: 252 HP / 4 SpA / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
-- Roost  
+EVs: 252 HP / 4 Atk / 252 Def  
+Impish Nature  
 - Defog  
-- Nasty Plot  
-- Hurricane  
+- Roost  
+- Brave Bird  
+- Whirlwind  
 
