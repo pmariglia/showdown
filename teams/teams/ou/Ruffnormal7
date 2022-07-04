@@ -9,13 +9,16 @@ IVs: 0 Atk
 - Grass Knot  
 - Volt Switch  
 
-Ruffo (Ditto) @ Heavy-Duty Boots  
-Ability: Imposter  
+Ruffgon-Z (Porygon-Z) @ Choice Scarf  
+Ability: Download  
 Shiny: Yes  
-EVs: 248 HP / 8 Atk / 252 Def  
-Relaxed Nature  
-IVs: 0 Spe  
-- Transform  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Ice Beam  
+- Thunderbolt  
+- Shadow Ball  
+- Tri Attack  
 
 Ruffwear (Bewear) @ Heavy-Duty Boots  
 Ability: Fluffy  
