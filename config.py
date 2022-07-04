@@ -11,13 +11,13 @@ pokemon_mode = None
 run_count = None
 user_to_challenge = None
 gambit_exe_path = ""
-greeting_message = 'Clapping you is gonna be way too easy lmao'
+greeting_message = 'I\'m one of the top percentage bots out there, now hold this L.'
 battle_ending_message = 'Yeah this game was a waste either way it ended smfh'
 room_name = None
 
 use_relative_weights = False
-damage_calc_type = 'average'
-search_depth = 1
+damage_calc_type = 'min'
+search_depth = 2
 dynamic_search_depth = False
 
 save_replay = False
