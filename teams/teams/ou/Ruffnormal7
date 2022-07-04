@@ -5,7 +5,7 @@ EVs: 252 SpA / 4 SpD / 252 Spe
 Timid Nature  
 IVs: 0 Atk  
 - Thunderbolt  
-- Surf  
+- Dark Pulse  
 - Grass Knot  
 - Volt Switch  
 
@@ -26,7 +26,7 @@ Shiny: Yes
 EVs: 252 HP / 4 Atk / 252 Def  
 Impish Nature  
 - Bulk Up  
-- Facade  
+- Ice Punch  
 - Drain Punch  
 - Darkest Lariat  
 
@@ -38,7 +38,7 @@ IVs: 0 Atk
 - Thunder Wave  
 - Seismic Toss  
 - Soft-Boiled  
-- Stealth Rock  
+- Teleport  
 
 Ruffersby (Diggersby) @ Choice Scarf  
 Ability: Huge Power  
