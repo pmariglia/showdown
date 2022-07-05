@@ -1,26 +1,26 @@
-Ruffiolisk (Heliolisk) @ Expert Belt  
+Ruffiolisk (Heliolisk) @ Choice Specs  
 Ability: Dry Skin  
 Shiny: Yes  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
 - Thunderbolt  
-- Dark Pulse  
 - Grass Knot  
 - Volt Switch  
+- Hyper Voice  
 
 Ruffgon2 (Porygon2) @ Eviolite  
-Ability: Analytic  
+Ability: Download  
 Shiny: Yes  
 EVs: 252 HP / 160 Def / 96 SpD  
-Sassy Nature  
+Calm Nature  
 IVs: 0 Atk  
 - Discharge  
 - Ice Beam  
 - Recover  
-- Foul Play  
+- Shadow Ball  
 
-Ruffwear (Bewear) @ Heavy-Duty Boots  
+Ruffwear (Bewear) @ Leftovers  
 Ability: Fluffy  
 Shiny: Yes  
 EVs: 252 HP / 4 Atk / 252 Def  
@@ -38,7 +38,7 @@ IVs: 0 Atk
 - Thunder Wave  
 - Seismic Toss  
 - Soft-Boiled  
-- Teleport  
+- Fire Blast  
 
 Ruffersby (Diggersby) @ Choice Scarf  
 Ability: Huge Power  
@@ -58,5 +58,5 @@ Impish Nature
 - Defog  
 - Roost  
 - Brave Bird  
-- Whirlwind  
+- U-turn  
 
