@@ -1,4 +1,4 @@
-Kyurem @ Heavy-Duty Boots  
+Ruffrem (Kyurem) @ Heavy-Duty Boots  
 Ability: Pressure  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
@@ -7,7 +7,7 @@ Timid Nature
 - Roost  
 - Draco Meteor  
 
-Dragapult @ Choice Specs  
+Ruffapult (Dragapult) @ Choice Specs  
 Ability: Infiltrator  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
@@ -16,7 +16,7 @@ Timid Nature
 - Thunderbolt  
 - Fire Blast  
 
-Zygarde-10% @ Choice Band  
+Ruffgarde (Zygarde-10%) @ Choice Band  
 Ability: Aura Break  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
@@ -25,16 +25,17 @@ Jolly Nature
 - Extreme Speed  
 - Superpower  
 
-Hydreigon @ Leftovers  
+Ruffreigon (Hydreigon) @ Leftovers  
 Ability: Levitate  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
+IVs: 0 Atk  
 - Nasty Plot  
 - Dark Pulse  
 - Flamethrower  
-- Substitute  
+- Defog  
 
-Dragalge @ Black Sludge  
+Ruffalge (Dragalge) @ Black Sludge  
 Ability: Adaptability  
 EVs: 236 HP / 20 SpA / 252 SpD  
 Sassy Nature  
@@ -44,7 +45,7 @@ IVs: 24 Spe
 - Flip Turn  
 - Protect  
 
-Kommo-o @ Leftovers  
+Ruffmo-o (Kommo-o) @ Leftovers  
 Ability: Bulletproof  
 EVs: 252 HP / 4 Atk / 252 Def  
 Impish Nature  
