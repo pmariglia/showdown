@@ -1,31 +1,29 @@
-Toxapex @ Black Sludge  
-Ability: Regenerator  
-EVs: 252 HP / 252 Def / 4 SpD  
-Bold Nature  
-IVs: 0 Atk  
-- Sludge Bomb  
-- Toxic Spikes  
-- Recover  
-- Haze  
+Araquanid @ Focus Sash  
+Ability: Water Bubble  
+EVs: 252 HP / 4 Atk / 252 SpD  
+Careful Nature  
+- Sticky Web  
+- Liquidation  
+- Leech Life  
+- Toxic  
 
-Starmie @ Life Orb  
-Ability: Analytic  
+Inteleon @ Life Orb  
+Ability: Torrent  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
-IVs: 0 Atk  
-- Thunderbolt  
-- Psychic  
-- Ice Beam  
 - Hydro Pump  
+- Ice Beam  
+- U-turn  
+- Shadow Ball  
 
-Keldeo @ Assault Vest  
-Ability: Justified  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-- Secret Sword  
-- Scald  
-- Icy Wind  
-- Flip Turn  
+Urshifu-Rapid-Strike @ Heavy-Duty Boots  
+Ability: Unseen Fist  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Surging Strikes  
+- Close Combat  
+- Aqua Jet  
+- U-turn  
 
 Swampert @ Leftovers  
 Ability: Damp  
@@ -36,22 +34,21 @@ Impish Nature
 - Roar  
 - Flip Turn  
 
-Rotom-Wash @ Choice Scarf  
-Ability: Levitate  
+Starmie @ Heavy-Duty Boots  
+Ability: Analytic  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
-IVs: 0 Atk  
-- Hydro Pump  
-- Volt Switch  
-- Defog  
-- Discharge  
+- Rapid Spin  
+- Thunderbolt  
+- Psychic  
+- Ice Beam  
 
-Sharpedo @ Life Orb  
-Ability: Speed Boost  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Crunch  
+Crawdaunt @ Choice Band  
+Ability: Adaptability  
+EVs: 252 Atk / 4 Def / 252 Spe  
+Adamant Nature  
+- Knock Off  
+- Crabhammer  
 - Close Combat  
-- Psychic Fangs  
-- Protect  
+- Aqua Jet  
 
