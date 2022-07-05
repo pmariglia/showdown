@@ -1,56 +1,57 @@
-Azumarill @ Choice Band  
-Ability: Huge Power  
-EVs: 252 HP / 252 Atk / 4 SpD  
-Adamant Nature  
-- Liquidation  
-- Play Rough  
-- Knock Off  
-- Aqua Jet  
+Toxapex @ Black Sludge  
+Ability: Regenerator  
+EVs: 252 HP / 252 Def / 4 SpD  
+Bold Nature  
+IVs: 0 Atk  
+- Sludge Bomb  
+- Toxic Spikes  
+- Recover  
+- Haze  
 
 Starmie @ Life Orb  
 Ability: Analytic  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
-- Rapid Spin  
-- Hydro Pump  
-- Psyshock  
-- Ice Beam  
-
-Gastrodon-East @ Leftovers  
-Ability: Storm Drain  
-EVs: 252 HP / 4 Atk / 252 Def  
-Impish Nature  
-- Toxic  
-- Earthquake  
-- Recover  
-- Scald  
-
-Keldeo @ Leftovers  
-Ability: Justified  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Hasty Nature  
 IVs: 0 Atk  
-- Taunt  
+- Thunderbolt  
+- Psychic  
+- Ice Beam  
+- Hydro Pump  
+
+Keldeo @ Assault Vest  
+Ability: Justified  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
 - Secret Sword  
 - Scald  
-- Calm Mind  
+- Icy Wind  
+- Flip Turn  
 
-Gyarados @ Leftovers  
-Ability: Moxie  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Dragon Dance  
-- Waterfall  
+Swampert @ Leftovers  
+Ability: Damp  
+EVs: 252 HP / 188 Def / 68 SpD  
+Impish Nature  
 - Earthquake  
-- Outrage  
+- Stealth Rock  
+- Roar  
+- Flip Turn  
 
-Volcanion @ Choice Scarf  
-Ability: Water Absorb  
+Rotom-Wash @ Choice Scarf  
+Ability: Levitate  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Flamethrower  
-- Earth Power  
-- Steam Eruption  
-- Sludge Wave  
+- Hydro Pump  
+- Volt Switch  
+- Defog  
+- Discharge  
+
+Sharpedo @ Life Orb  
+Ability: Speed Boost  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Crunch  
+- Close Combat  
+- Psychic Fangs  
+- Protect  
 
