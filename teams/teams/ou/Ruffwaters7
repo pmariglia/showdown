@@ -30,34 +30,32 @@ IVs: 0 Atk
 - Ice Beam  
 - Roost  
 
-Ruff Fini (Tapu Fini) @ Choice Scarf  
-Ability: Misty Surge  
-Shiny: Yes  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Hasty Nature  
+Ruffdeo (Keldeo) @ Choice Specs  
+Ability: Justified  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
 IVs: 0 Atk  
-- Moonblast  
+- Aura Sphere  
 - Surf  
-- Ice Beam  
-- Trick  
+- Icy Wind  
+- Secret Sword  
 
 Ruffapex (Toxapex) @ Rocky Helmet  
 Ability: Regenerator  
 Shiny: Yes  
 EVs: 252 HP / 252 Def / 4 SpD  
 Bold Nature  
-IVs: 0 Atk  
 - Sludge Bomb  
 - Haze  
-- Ice Beam  
+- Knock Off  
 - Recover  
 
-Ruffbutops (Kabutops) @ Life Orb  
+Ruffskewda (Barraskewda) @ Life Orb  
 Ability: Swift Swim  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Adamant Nature  
-- Stone Edge  
-- Flip Turn  
+- Close Combat  
 - Liquidation  
-- Superpower  
+- Flip Turn  
+- Crunch  
 
