@@ -1,61 +1,57 @@
-Ruffitoad (Seismitoad) @ Life Orb  
-Ability: Swift Swim  
-Shiny: Yes  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
+Gastrodon-East @ Leftovers  
+Ability: Storm Drain  
+EVs: 252 HP / 4 Atk / 252 Def  
+Impish Nature  
 - Earthquake  
-- Liquidation  
-- Knock Off  
-- Ice Punch  
-
-Ruffitoed (Politoed) @ Leftovers  
-Ability: Drizzle  
-Shiny: Yes  
-EVs: 252 HP / 4 SpA / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
-- Scald  
-- Ice Beam  
-- Protect  
+- Recover  
 - Toxic  
+- Scald  
 
-Ruffipper (Pelipper) @ Heavy-Duty Boots  
-Ability: Drizzle  
-Shiny: Yes  
-EVs: 248 HP / 252 Def / 8 SpD  
-Bold Nature  
+Tapu Fini @ Choice Specs  
+Ability: Misty Surge  
+EVs: 252 HP / 4 Def / 252 SpA  
+Modest Nature  
 IVs: 0 Atk  
-- Defog  
-- Hurricane  
+- Draining Kiss  
 - Ice Beam  
-- Roost  
+- Scald  
+- Moonblast  
 
-Ruffdeo (Keldeo) @ Choice Specs  
-Ability: Justified  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Aura Sphere  
-- Surf  
-- Icy Wind  
-- Secret Sword  
+Urshifu-Rapid-Strike @ Heavy-Duty Boots  
+Ability: Unseen Fist  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Drain Punch  
+- Bulk Up  
+- Surging Strikes  
+- Aqua Jet  
 
-Ruffapex (Toxapex) @ Rocky Helmet  
+Toxapex @ Black Sludge  
 Ability: Regenerator  
-Shiny: Yes  
 EVs: 252 HP / 252 Def / 4 SpD  
-Bold Nature  
-- Sludge Bomb  
+Impish Nature  
+- Poison Jab  
+- Toxic Spikes  
 - Haze  
-- Knock Off  
 - Recover  
 
-Ruffskewda (Barraskewda) @ Life Orb  
-Ability: Swift Swim  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
-- Close Combat  
-- Liquidation  
-- Flip Turn  
-- Crunch  
+Mantine @ Heavy-Duty Boots  
+Ability: Water Absorb  
+EVs: 252 HP / 160 Def / 96 Spe  
+Bold Nature  
+IVs: 0 Atk  
+- Air Slash
+- Defog  
+- Toxic  
+- Roost  
+
+Slowking @ Assault Vest  
+Ability: Regenerator  
+EVs: 252 HP / 4 Def / 252 SpD  
+Sassy Nature  
+IVs: 0 Atk / 0 Spe  
+- Future Sight  
+- Scald  
+- Flamethrower  
+- Ice Beam  
 
