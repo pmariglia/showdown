@@ -7,7 +7,7 @@ IVs: 0 Atk
 - Thunderbolt  
 - Grass Knot  
 - Volt Switch  
-- Hyper Voice  
+- Focus Blast  
 
 Ruffgon2 (Porygon2) @ Eviolite  
 Ability: Download  
@@ -23,9 +23,9 @@ IVs: 0 Atk
 Ruffwear (Bewear) @ Leftovers  
 Ability: Fluffy  
 Shiny: Yes  
-EVs: 252 HP / 4 Atk / 252 Def  
+EVs: 196 HP / 252 Def / 60 Spe  
 Impish Nature  
-- Bulk Up  
+- Taunt  
 - Ice Punch  
 - Drain Punch  
 - Darkest Lariat  
