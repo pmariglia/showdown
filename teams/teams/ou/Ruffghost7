@@ -1,59 +1,56 @@
-Ruffislash (Aegislash) @ Leftovers  
-Ability: Stance Change  
-Shiny: Yes  
+Ruffosand (Palossand) @ Leftovers  
+Ability: Water Compaction  
+EVs: 252 HP / 252 Def / 4 SpA  
+Bold Nature  
+IVs: 0 Atk  
+- Stealth Rock  
+- Shore Up  
+- Scorching Sands  
+- Toxic  
+
+Rufficent (Jellicent) @ Leftovers  
+Ability: Water Absorb  
+EVs: 252 HP / 188 Def / 68 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Scald  
+- Recover  
+- Ice Beam  
+- Will-O-Wisp  
+
+Ruffmise (Dhelmise) @ Heavy-Duty Boots  
+Ability: Steelworker  
 EVs: 252 HP / 4 Atk / 252 SpD  
 Careful Nature  
-- King's Shield  
-- Shadow Sneak  
-- Toxic  
-- Iron Head  
-
-Rufftrier (Spectrier) @ Choice Specs  
-Ability: Grim Neigh  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Dark Pulse  
-- Will-O-Wisp  
-- Mud Shot  
-- Shadow Ball  
+- Anchor Shot  
+- Synthesis  
+- Rapid Spin  
+- Power Whip  
 
 Ruffikyu (Mimikyu) @ Life Orb  
 Ability: Disguise  
-Shiny: Yes  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
+- Swords Dance  
 - Play Rough  
 - Drain Punch  
-- Swords Dance  
 - Shadow Sneak  
 
 Ruffapult (Dragapult) @ Leftovers  
 Ability: Infiltrator  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Adamant Nature  
+- Dragon Dance  
 - Dragon Darts  
 - Phantom Force  
-- Dragon Dance  
-- Sucker Punch  
+- Substitute  
 
 Ruffephalon (Blacephalon) @ Choice Scarf  
 Ability: Beast Boost  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
+EVs: 4 Atk / 252 SpA / 252 Spe  
+Hasty Nature  
 - Flamethrower  
 - Shadow Ball  
-- Trick  
-- Psyshock  
-
-Ruffsola-Galar (Corsola-Galar) @ Eviolite  
-Ability: Cursed Body  
-EVs: 252 HP / 252 Def / 4 SpD  
-Bold Nature  
-IVs: 0 Atk  
-- Will-O-Wisp  
-- Strength Sap  
-- Stealth Rock  
-- Night Shade  
+- Psychic  
+- Knock Off  
 
