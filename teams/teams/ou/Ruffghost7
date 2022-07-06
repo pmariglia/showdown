@@ -1,40 +1,21 @@
-Ruffosand (Palossand) @ Leftovers  
-Ability: Water Compaction  
-EVs: 252 HP / 252 Def / 4 SpA  
-Bold Nature  
+Ruffgar (Gengar) @ Choice Specs  
+Ability: Cursed Body  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
 IVs: 0 Atk  
-- Stealth Rock  
-- Shore Up  
-- Scorching Sands  
-- Toxic  
-
-Rufficent (Jellicent) @ Leftovers  
-Ability: Water Absorb  
-EVs: 252 HP / 188 Def / 68 SpD  
-Calm Nature  
-IVs: 0 Atk  
-- Scald  
-- Recover  
-- Ice Beam  
-- Will-O-Wisp  
-
-Ruffmise (Dhelmise) @ Heavy-Duty Boots  
-Ability: Steelworker  
-EVs: 252 HP / 4 Atk / 252 SpD  
-Careful Nature  
-- Anchor Shot  
-- Synthesis  
-- Rapid Spin  
-- Power Whip  
+- Sludge Wave  
+- Shadow Ball  
+- Focus Blast  
+- Thunderbolt  
 
 Ruffikyu (Mimikyu) @ Life Orb  
 Ability: Disguise  
-EVs: 252 Atk / 4 SpD / 252 Spe  
+EVs: 252 Atk / 4 Def / 252 Spe  
 Jolly Nature  
 - Swords Dance  
 - Play Rough  
-- Drain Punch  
 - Shadow Sneak  
+- Drain Punch  
 
 Ruffapult (Dragapult) @ Leftovers  
 Ability: Infiltrator  
@@ -45,12 +26,31 @@ Adamant Nature
 - Phantom Force  
 - Substitute  
 
+Ruffrier (Spectrier) @ Choice Specs  
+Ability: Grim Neigh  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Shadow Ball  
+- Dark Pulse  
+- Will-O-Wisp  
+- Hex  
+
+Ruffislash (Aegislash) @ Air Balloon  
+Ability: Stance Change  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Swords Dance  
+- Shadow Sneak  
+- Close Combat  
+- Iron Head  
+
 Ruffephalon (Blacephalon) @ Choice Scarf  
 Ability: Beast Boost  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Hasty Nature  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
 - Flamethrower  
 - Shadow Ball  
-- Psychic  
+- Psyshock  
 - Knock Off  
 
