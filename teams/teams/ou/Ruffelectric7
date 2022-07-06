@@ -1,12 +1,12 @@
-Ruffavolt (Vikavolt) @ Heavy-Duty Boots  
-Ability: Levitate  
-EVs: 252 HP / 252 Def / 4 SpA  
+Ruffezone (Magnezone) @ Leftovers  
+Ability: Magnet Pull  
+EVs: 196 HP / 252 Def / 60 Spe  
 Bold Nature  
 IVs: 0 Atk  
-- Bug Buzz  
-- Roost  
-- Sticky Web  
-- Volt Switch  
+- Protect  
+- Flash Cannon  
+- Body Press  
+- Discharge  
 
 Ruffdos (Zapdos) @ Choice Specs  
 Ability: Static  
@@ -19,9 +19,9 @@ Timid Nature
 
 Ruffeleki (Regieleki) @ Life Orb  
 Ability: Transistor  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Modest Nature  
-- Rapid Spin  
+EVs: 4 Atk / 252 SpA / 252 Spe  
+Mild Nature  
+- Body Slam  
 - Rising Voltage  
 - Volt Switch  
 - Explosion  
@@ -34,7 +34,7 @@ IVs: 0 Atk
 - Will-O-Wisp  
 - Hydro Pump  
 - Volt Switch  
-- Pain Split  
+- Defog  
 
 Ruff Koko (Tapu Koko) @ Life Orb  
 Ability: Electric Surge  
@@ -54,5 +54,5 @@ Jolly Nature
 - Plasma Fists  
 - Knock Off  
 - Close Combat  
-- Fake Out  
+- Blaze Kick  
 
