@@ -72,11 +72,24 @@ This requires Docker 17.06 or higher.
 
 `docker run --env-file .env showdown`
 
-### Running on Heroku
+### Running on Heroku 
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+The previous method doesn't work anymore as heroku removed github integration. So just install `heroku-cli package` and type the command `heroku login -i`. This command lets you put your heroku credentials and logs you into your acc. You can also use `heroku login` but this opens up a browser and you haave to login.
 
-After deploying, go to the Resources tab and turn on the worker.
+Step 1:
+`cd <project name>`
+Step 2:
+`git init`
+Step 3:
+heroku git:remote -a <app name>
+Step 4:
+git add .
+Step 5:
+git commit -am "commit message"
+Step 6:
+git push heroku master
+
+Wait for a few minutes and the app would start working.
 
 ## Battle Bots
 
