@@ -76,18 +76,18 @@ This requires Docker 17.06 or higher.
 
 The previous method doesn't work anymore as heroku removed github integration. So just install `heroku-cli package` and type the command `heroku login -i`. This command lets you put your heroku credentials and logs you into your acc. You can also use `heroku login` but this opens up a browser and you haave to login.
 
-Step 1:
-`cd <project name>`
-Step 2:
-`git init`
-Step 3:
-heroku git:remote -a <app name>
-Step 4:
-git add .
-Step 5:
-git commit -am "commit message"
-Step 6:
-git push heroku master
+Step 1: <br />
+`cd <project name>` <br />
+Step 2: <br />
+`git init` <br />
+Step 3: <br />
+`heroku git:remote -a <app name>` <br />
+Step 4: <br />
+`git add .` <br />
+Step 5: <br />
+`git commit -am "commit message"` <br />
+Step 6: <br />
+`git push heroku master` <br />
 
 Wait for a few minutes and the app would start working.
 
