@@ -99,7 +99,7 @@ def find_all_equilibria(matrix):
             ne = convert_from_list(ne, num_rows)
             equilibria.append(ne)
 
-    return np.array(equilibria)
+    return np.array(equilibria, dtype=object)
 
 
 def find_nash_equilibrium(score_lookup):

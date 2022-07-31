@@ -1,6 +1,6 @@
 FROM pmariglia/gambit-docker as debian-with-gambit
 
-FROM python:3.6-slim
+FROM python:3.8-slim
 
 COPY --from=debian-with-gambit /usr/local/bin/gambit-enummixed /usr/local/bin
 
