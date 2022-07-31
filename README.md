@@ -72,12 +72,6 @@ This requires Docker 17.06 or higher.
 
 `docker run --env-file .env showdown`
 
-### Running on Heroku
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
-After deploying, go to the Resources tab and turn on the worker.
-
 ## Battle Bots
 
 ### Safest
