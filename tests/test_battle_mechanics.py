@@ -6548,6 +6548,125 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_knocking_out_with_beastboost_gives_a_boost_to_highest_stat(self):
+        bot_move = "splash"
+        opponent_move = "tackle"
+        self.state.self.active.hp = 1
+        self.state.opponent.active.attack = 100  # highest stat
+        self.state.opponent.active.defense = 1
+        self.state.opponent.active.special_attack = 1
+        self.state.opponent.active.special_defense = 1
+        self.state.opponent.active.speed = 1
+        self.state.opponent.active.ability = "beastboost"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_not_knocking_out_with_beastboost_does_not_increase_stat(self):
+        bot_move = "splash"
+        opponent_move = "tackle"
+        self.state.self.active.hp = 200
+        self.state.opponent.active.attack = 100  # highest stat
+        self.state.opponent.active.defense = 1
+        self.state.opponent.active.special_attack = 1
+        self.state.opponent.active.special_defense = 1
+        self.state.opponent.active.speed = 1
+        self.state.opponent.active.ability = "beastboost"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 22),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_beastboost_prefers_attack_over_any_stat_when_tied(self):
+        bot_move = "splash"
+        opponent_move = "tackle"
+        self.state.self.active.hp = 1
+        self.state.opponent.active.attack = 100  # highest stat
+        self.state.opponent.active.defense = 100
+        self.state.opponent.active.special_attack = 100
+        self.state.opponent.active.special_defense = 100
+        self.state.opponent.active.speed = 100
+        self.state.opponent.active.ability = "beastboost"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_beastboost_will_boost_speed(self):
+        bot_move = "splash"
+        opponent_move = "tackle"
+        self.state.self.active.hp = 1
+        self.state.opponent.active.attack = 99
+        self.state.opponent.active.defense = 99
+        self.state.opponent.active.special_attack = 99
+        self.state.opponent.active.special_defense = 99
+        self.state.opponent.active.speed = 100  # highest stat
+        self.state.opponent.active.ability = "beastboost"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_beastboost_prefers_special_defense_over_speed(self):
+        bot_move = "splash"
+        opponent_move = "tackle"
+        self.state.self.active.hp = 1
+        self.state.opponent.active.attack = 99
+        self.state.opponent.active.defense = 99
+        self.state.opponent.active.special_attack = 99
+        self.state.opponent.active.special_defense = 100  # highest stat
+        self.state.opponent.active.speed = 100
+        self.state.opponent.active.ability = "beastboost"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.SELF, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_DEFENSE, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_no_boost_from_non_damaging_dark_move(self):
         bot_move = "splash"
         opponent_move = "partingshot"

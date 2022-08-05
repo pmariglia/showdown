@@ -53,6 +53,16 @@ accuracy_multiplier_lookup = {
 }
 
 
+def _get_beastboost_stat(pkmn):
+    return max({
+        constants.ATTACK: pkmn.attack,
+        constants.DEFENSE: pkmn.defense,
+        constants.SPECIAL_ATTACK: pkmn.special_attack,
+        constants.SPECIAL_DEFENSE: pkmn.special_defense,
+        constants.SPEED: pkmn.speed,
+    }.items(), key=lambda x: x[1])[0]
+
+
 def get_instructions_from_move_special_effect(mutator, attacking_side, attacking_pokemon, defending_pokemon, move_name, instructions):
     if instructions.frozen:
         return [instructions]
@@ -408,6 +418,17 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
                     actual_damage
                 )
             )
+
+            if attacker_side.active.ability == "beastboost" and actual_damage == damage_side.active.hp:
+                instruction_additions.append(
+                    (
+                        constants.MUTATOR_BOOST,
+                        attacker,
+                        _get_beastboost_stat(attacker_side.active),
+                        1
+                    )
+                )
+
         instruction.update_percentage(percent_hit)
 
         if damage_side.active.hp <= 0:
