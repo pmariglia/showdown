@@ -1,0 +1,35 @@
+{
+  "name": "Showdown bot",
+  "description": "A Pokemon Showdown Battle Bot written in Python",
+  "repository": "https://github.com/pmariglia/showdown",
+  "env": {
+    "WEBSOCKET_URI": {
+      "description": "The address to use to connect to the Pokemon Showdown websocket",
+      "value": "sim.smogon.com:8000",
+      "required": true
+    },
+    "PS_USERNAME": {
+      "description": "Pokemon Showdown username",
+      "value": "MyCoolUsername",
+      "required": true
+    },
+     "PS_PASSWORD": {
+      "description": "Pokemon Showdown password",
+       "required": false
+    },
+    "BOT_MODE": {
+      "description": "The mode the the bot will operate in. Options are CHALLENGE_USER, SEARCH_LADDER, or ACCEPT_CHALLENGE",
+      "required": true
+    },
+    "POKEMON_MODE": {
+      "description": "The type of game this bot will play games in",
+      "value": "gen7randombattle",
+      "required": true
+    },
+    "RUN_COUNT": {
+      "description": "The amount of games this bot will play before quitting",
+      "value": "1",
+      "required": true
+    }
+  }
+}
