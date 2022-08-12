@@ -6,7 +6,7 @@ The bot can play single battles in generations 3 through 8 however some of the b
 ![badge](https://github.com/pmariglia/showdown/actions/workflows/pythonapp.yml/badge.svg)
 
 ## Python version
-Developed and tested using Python 3.6.3.
+Developed and tested using Python 3.8.
 
 ## Getting Started
 
