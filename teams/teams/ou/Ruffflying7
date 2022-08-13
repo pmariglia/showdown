@@ -24,16 +24,16 @@ Relaxed Nature
 - Defog  
 - Roost  
 - U-turn  
-- Body Press  
+- Brave Bird  
 
-Dragonite @ Choice Band  
+Dragonite @ Heavy-Duty Boots  
 Ability: Multiscale  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Adamant Nature  
 - Outrage  
 - Fire Punch  
-- Extreme Speed  
-- Dual Wingbeat  
+- Dragon Dance  
+- Earthquake  
 
 Zapdos @ Leftovers  
 Ability: Pressure  
@@ -41,7 +41,7 @@ EVs: 252 HP / 4 SpA / 252 Spe
 Timid Nature  
 IVs: 0 Atk  
 - Substitute  
-- Thunderbolt  
+- Discharge  
 - Toxic  
 - Roost  
 
@@ -51,6 +51,7 @@ EVs: 252 SpA / 4 SpD / 252 Spe
 Timid Nature  
 IVs: 0 Atk  
 - Volt Switch  
-- Sludge Wave  
+- Thunderbolt  
 - Grass Knot  
 - Focus Blast  
+
