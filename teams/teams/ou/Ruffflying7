@@ -1,58 +1,56 @@
-Rufforus-Therian (Landorus-Therian) @ Leftovers  
+Tornadus-Therian @ Heavy-Duty Boots  
+Ability: Regenerator  
+EVs: 4 Def / 252 SpA / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Nasty Plot  
+- Hurricane  
+- Dark Pulse  
+- Heat Wave  
+
+Landorus-Therian (M) @ Choice Band  
 Ability: Intimidate  
-Shiny: Yes  
-EVs: 252 HP / 48 SpD / 208 Spe  
-Jolly Nature  
-- Earthquake  
-- Toxic  
-- Stealth Rock  
-- Protect  
-
-Ruffiknight (Corviknight) @ Leftovers  
-Ability: Pressure  
-EVs: 252 HP / 252 Def / 4 SpD  
-Impish Nature  
-- Bulk Up  
-- Body Press  
-- Iron Head  
-- Roost  
-
-Ruffdos (Zapdos-Galar) @ Choice Band  
-Ability: Defiant  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Close Combat  
-- Brave Bird  
-- Blaze Kick  
 - U-turn  
+- Earthquake  
+- Stone Edge  
+- Superpower  
 
-Ruffadus-Therian (Tornadus-Therian) (M) @ Heavy-Duty Boots  
-Ability: Regenerator  
-EVs: 200 HP / 56 SpD / 252 Spe  
+Corviknight @ Rocky Helmet  
+Ability: Pressure  
+EVs: 252 HP / 168 Def / 88 SpD  
+Relaxed Nature  
+- Defog  
+- Roost  
+- U-turn  
+- Body Press  
+
+Dragonite @ Choice Band  
+Ability: Multiscale  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
+- Outrage  
+- Fire Punch  
+- Extreme Speed  
+- Dual Wingbeat  
+
+Zapdos @ Leftovers  
+Ability: Pressure  
+EVs: 252 HP / 4 SpA / 252 Spe  
 Timid Nature  
-- U-turn  
-- Hurricane  
-- Heat Wave  
-- Nasty Plot  
+IVs: 0 Atk  
+- Substitute  
+- Thunderbolt  
+- Toxic  
+- Roost  
 
-Ruffurus-Therian (Thundurus-Therian) @ Choice Scarf  
+Thundurus-Therian (M) @ Choice Scarf  
 Ability: Volt Absorb  
-Shiny: Yes  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Thunderbolt  
-- Focus Blast  
-- Grass Knot  
 - Volt Switch  
-
-Rufftine (Mantine) @ Heavy-Duty Boots  
-Ability: Water Absorb  
-EVs: 252 HP / 160 SpD / 96 Spe  
-Calm Nature  
-IVs: 0 Atk  
-- Defog  
-- Haze  
-- Roost  
-- Scald  
-
+- Sludge Wave  
+- Grass Knot  
+- Focus Blast  
