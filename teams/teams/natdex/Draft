@@ -12,7 +12,7 @@ Lopunny @ Lopunnite
 Ability: Limber  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Triple Axel  
+- Thunder Punch  
 - Close Combat  
 - Return  
 - U-turn  
@@ -31,7 +31,7 @@ Ability: Grassy Surge
 EVs: 252 Atk / 4 Def / 252 Spe  
 Adamant Nature  
 - Grassy Glide  
-- Knock Off  
+- High Horsepower  
 - Superpower  
 - Swords Dance  
 
@@ -41,17 +41,17 @@ EVs: 252 HP / 76 Def / 180 SpD
 Sassy Nature  
 IVs: 0 Atk  
 - Scald  
-- Future Sight  
+- Psychic  
 - Fire Blast  
 - Teleport  
 
 Moltres @ Heavy-Duty Boots  
 Ability: Flame Body  
 EVs: 248 HP / 148 Def / 52 SpD / 60 Spe  
-Timid Nature  
+Bold Nature  
 IVs: 0 Atk  
 - Mystical Fire  
 - Scorching Sands  
 - Roost  
-- Defog  
+- Hidden Power [Ice]  
 
