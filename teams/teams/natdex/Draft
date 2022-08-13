@@ -1,11 +1,12 @@
-Melmetal @ Assault Vest  
-Ability: Iron Fist  
-EVs: 252 HP / 96 Atk / 160 SpD  
-Adamant Nature  
-- Double Iron Bash  
-- Earthquake  
-- Thunder Punch  
-- Ice Punch  
+Jolteon @ Life Orb  
+Ability: Volt Absorb  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 1 Atk  
+- Hidden Power [Ice]  
+- Thunderbolt  
+- Volt Switch  
+- Shadow Ball  
 
 Lopunny @ Lopunnite  
 Ability: Limber  
@@ -16,39 +17,41 @@ Jolly Nature
 - Return  
 - U-turn  
 
-Weavile @ Heavy-Duty Boots  
-Ability: Pressure  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Low Kick  
-- Triple Axel  
-- Knock Off  
-- Ice Shard  
-
-Tangrowth @ Rocky Helmet  
-Ability: Regenerator  
-EVs: 252 HP / 252 Def / 4 SpD  
-Relaxed Nature  
-- Giga Drain  
-- Knock Off  
-- Hidden Power [Ice]  
-- Earthquake  
-
-Sharpedo @ Life Orb  
+Sharpedo @ Waterium Z  
 Ability: Speed Boost  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Adamant Nature  
 - Protect  
-- Earthquake  
+- Psychic Fangs  
 - Crunch  
 - Waterfall  
 
-Blaziken @ Life Orb  
-Ability: Speed Boost  
-EVs: 252 Atk / 4 SpD / 252 Spe  
+Rillaboom @ Life Orb  
+Ability: Grassy Surge  
+EVs: 252 Atk / 4 Def / 252 Spe  
 Adamant Nature  
-- Protect  
-- Flare Blitz  
-- Close Combat  
-- Thunder Punch  
+- Grassy Glide  
+- Knock Off  
+- Superpower  
+- Swords Dance  
+
+Slowking @ Heavy-Duty Boots  
+Ability: Regenerator  
+EVs: 252 HP / 76 Def / 180 SpD  
+Sassy Nature  
+IVs: 0 Atk  
+- Scald  
+- Future Sight  
+- Fire Blast  
+- Teleport  
+
+Moltres @ Heavy-Duty Boots  
+Ability: Flame Body  
+EVs: 248 HP / 148 Def / 52 SpD / 60 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Mystical Fire  
+- Scorching Sands  
+- Roost  
+- Defog  
 
