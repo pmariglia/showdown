@@ -9,13 +9,13 @@ Jolly Nature
 
 Slowking @ Heavy-Duty Boots  
 Ability: Regenerator  
-EVs: 252 HP / 76 Def / 180 SpD  
-Sassy Nature  
+EVs: 252 HP / 252 Def / 4 SpA  
+Bold Nature  
 IVs: 0 Atk  
 - Thunder Wave  
 - Psychic  
 - Slack Off  
-- Teleport  
+- Calm Mind  
 
 Lopunny @ Lopunnite  
 Ability: Limber  
@@ -23,7 +23,7 @@ EVs: 252 Atk / 4 SpD / 252 Spe
 Jolly Nature  
 - Play Rough  
 - Close Combat  
-- Mega Kick  
+- Return  
 - U-turn  
 
 Delphox @ Choice Scarf  
@@ -47,7 +47,7 @@ IVs: 1 Atk
 - Shadow Ball  
 
 Lanturn @ Leftovers  
-Ability: Volt Absorb  
+Ability: Water Absorb  
 EVs: 252 HP / 4 SpA / 252 SpD  
 Calm Nature  
 IVs: 0 Atk  
