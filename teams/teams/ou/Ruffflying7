@@ -1,8 +1,9 @@
-Tornadus-Therian @ Choice Specs  
+Tornadus-Therian @ Heavy-Duty Boots  
 Ability: Regenerator  
 EVs: 4 Def / 252 SpA / 252 Spe  
 Timid Nature  
-- U-turn  
+IVs: 0 Atk  
+- Nasty Plot  
 - Hurricane  
 - Dark Pulse  
 - Heat Wave  
@@ -23,26 +24,25 @@ Relaxed Nature
 - Defog  
 - Roost  
 - U-turn  
-- Brave Bird  
+- Body Press  
 
 Dragonite @ Heavy-Duty Boots  
 Ability: Multiscale  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Adamant Nature  
-- Outrage  
-- Fire Punch  
-- Dragon Dance  
+- Dual Wingbeat  
 - Superpower  
+- Dragon Dance  
+- Dragon Claw  
 
-Pelipper @ Heavy-Duty Boots  
-Ability: Drizzle  
-EVs: 248 HP / 252 Def / 8 SpA  
-Bold Nature  
-IVs: 0 Atk  
-- Ice Beam  
-- Scald  
-- Roost  
-- Toxic  
+Celesteela @ Leftovers  
+Ability: Beast Boost  
+EVs: 252 HP / 4 Atk / 252 SpD  
+Careful Nature  
+- Heavy Slam  
+- Earthquake  
+- Leech Seed  
+- Protect  
 
 Thundurus-Therian (M) @ Choice Scarf  
 Ability: Volt Absorb  
