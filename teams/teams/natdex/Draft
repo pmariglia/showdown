@@ -1,4 +1,42 @@
-Jolteon @ Life Orb  
+Weavile @ Life Orb  
+Ability: Pressure  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Low Kick  
+- Triple Axel  
+- Knock Off  
+- Ice Shard  
+
+Slowking @ Heavy-Duty Boots  
+Ability: Regenerator  
+EVs: 252 HP / 76 Def / 180 SpD  
+Sassy Nature  
+IVs: 0 Atk  
+- Thunder Wave  
+- Psychic  
+- Slack Off  
+- Teleport  
+
+Lopunny @ Lopunnite  
+Ability: Limber  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Play Rough  
+- Close Combat  
+- Mega Kick  
+- U-turn  
+
+Delphox @ Choice Scarf  
+Ability: Magician  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Fire Blast  
+- Psychic  
+- Dazzling Gleam  
+- Shadow Ball  
+
+Jolteon @ Ghostium Z  
 Ability: Volt Absorb  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
@@ -8,50 +46,13 @@ IVs: 1 Atk
 - Volt Switch  
 - Shadow Ball  
 
-Lopunny @ Lopunnite  
-Ability: Limber  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Thunder Punch  
-- Close Combat  
-- Return  
-- U-turn  
-
-Sharpedo @ Waterium Z  
-Ability: Speed Boost  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
-- Protect  
-- Psychic Fangs  
-- Crunch  
-- Waterfall  
-
-Rillaboom @ Life Orb  
-Ability: Grassy Surge  
-EVs: 252 Atk / 4 Def / 252 Spe  
-Adamant Nature  
-- Grassy Glide  
-- High Horsepower  
-- Superpower  
-- Swords Dance  
-
-Slowking @ Heavy-Duty Boots  
-Ability: Regenerator  
-EVs: 252 HP / 76 Def / 180 SpD  
-Sassy Nature  
+Lanturn @ Leftovers  
+Ability: Volt Absorb  
+EVs: 252 HP / 4 SpA / 252 SpD  
+Calm Nature  
 IVs: 0 Atk  
 - Scald  
-- Psychic  
-- Fire Blast  
-- Teleport  
-
-Moltres @ Heavy-Duty Boots  
-Ability: Flame Body  
-EVs: 248 HP / 148 Def / 52 SpD / 60 Spe  
-Bold Nature  
-IVs: 0 Atk  
-- Mystical Fire  
-- Scorching Sands  
-- Roost  
-- Hidden Power [Ice]  
+- Volt Switch  
+- Dazzling Gleam  
+- Protect  
 
