@@ -1,11 +1,12 @@
 Sharpedo @ Life Orb  
 Ability: Speed Boost  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Modest Nature  
+IVs: 0 Atk  
 - Protect  
-- Earthquake  
-- Crunch  
-- Waterfall  
+- Ice Beam  
+- Dark Pulse  
+- Hydro Pump  
 
 Ambipom @ Life Orb  
 Ability: Technician  
@@ -16,21 +17,22 @@ Jolly Nature
 - U-turn  
 - Knock Off  
 
-Virizion @ Assault Vest  
+Virizion @ Choice Scarf  
 Ability: Justified  
-EVs: 252 HP / 4 Atk / 252 SpA  
-Mild Nature  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Modest Nature  
+IVs: 1 Atk  
 - Focus Blast  
 - Giga Drain  
-- Hidden Power [Rock]  
-- Quick Attack  
+- Hidden Power [Dark]  
+- Leaf Storm  
 
-Flygon @ Rocky Helmet  
+Flygon @ Steelium Z  
 Ability: Levitate  
 EVs: 252 HP / 4 Atk / 252 Def  
 Impish Nature  
 - Roost  
-- U-turn  
+- Iron Tail  
 - Earthquake  
 - Defog  
 
@@ -38,12 +40,12 @@ Lopunny @ Lopunnite
 Ability: Limber  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Fake Out  
+- Retaliate  
 - Close Combat  
 - Return  
 - U-turn  
 
-Rillaboom @ Groundium Z  
+Rillaboom @ Adrenaline Orb  
 Ability: Grassy Surge  
 EVs: 252 Atk / 4 Def / 252 Spe  
 Adamant Nature  
