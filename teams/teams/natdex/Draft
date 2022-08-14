@@ -1,8 +1,8 @@
-Weavile @ Life Orb  
+Weavile @ Psychium Z  
 Ability: Pressure  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Low Kick  
+- Psycho Cut  
 - Triple Axel  
 - Knock Off  
 - Ice Shard  
@@ -15,39 +15,19 @@ IVs: 0 Atk
 - Thunder Wave  
 - Psychic  
 - Slack Off  
-- Calm Mind  
+- Reflect  
 
 Lopunny @ Lopunnite  
 Ability: Limber  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Play Rough  
+- Fake Out  
 - Close Combat  
 - Return  
 - U-turn  
 
-Delphox @ Choice Scarf  
-Ability: Magician  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Fire Blast  
-- Psychic  
-- Dazzling Gleam  
-- Shadow Ball  
-
-Jolteon @ Ghostium Z  
-Ability: Volt Absorb  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 1 Atk  
-- Hidden Power [Ice]  
-- Thunderbolt  
-- Volt Switch  
-- Shadow Ball  
-
 Lanturn @ Leftovers  
-Ability: Water Absorb  
+Ability: Volt Absorb  
 EVs: 252 HP / 4 SpA / 252 SpD  
 Calm Nature  
 IVs: 0 Atk  
@@ -55,4 +35,22 @@ IVs: 0 Atk
 - Volt Switch  
 - Dazzling Gleam  
 - Protect  
+
+Rillaboom @ Grassy Seed  
+Ability: Grassy Surge  
+EVs: 252 HP / 252 Atk / 4 Def  
+Adamant Nature  
+- Grassy Glide  
+- Knock Off  
+- Acrobatics  
+- Swords Dance  
+
+Melmetal @ Assault Vest  
+Ability: Iron Fist  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Double Iron Bash  
+- Earthquake  
+- Thunder Punch  
+- Ice Punch  
 
