@@ -1,21 +1,38 @@
-Weavile @ Psychium Z  
-Ability: Pressure  
+Sharpedo @ Life Orb  
+Ability: Speed Boost  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
+- Protect  
+- Earthquake  
+- Crunch  
+- Waterfall  
+
+Ambipom @ Life Orb  
+Ability: Technician  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Psycho Cut  
-- Triple Axel  
+- Fake Out  
+- Low Kick  
+- U-turn  
 - Knock Off  
-- Ice Shard  
 
-Slowking @ Heavy-Duty Boots  
-Ability: Regenerator  
-EVs: 252 HP / 252 Def / 4 SpA  
-Bold Nature  
-IVs: 0 Atk  
-- Thunder Wave  
-- Psychic  
-- Slack Off  
-- Reflect  
+Virizion @ Assault Vest  
+Ability: Justified  
+EVs: 252 HP / 4 Atk / 252 SpA  
+Mild Nature  
+- Focus Blast  
+- Giga Drain  
+- Hidden Power [Rock]  
+- Quick Attack  
+
+Flygon @ Rocky Helmet  
+Ability: Levitate  
+EVs: 252 HP / 4 Atk / 252 Def  
+Impish Nature  
+- Roost  
+- U-turn  
+- Earthquake  
+- Defog  
 
 Lopunny @ Lopunnite  
 Ability: Limber  
@@ -26,31 +43,12 @@ Jolly Nature
 - Return  
 - U-turn  
 
-Lanturn @ Leftovers  
-Ability: Volt Absorb  
-EVs: 252 HP / 4 SpA / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
-- Scald  
-- Volt Switch  
-- Dazzling Gleam  
-- Protect  
-
-Rillaboom @ Grassy Seed  
+Rillaboom @ Groundium Z  
 Ability: Grassy Surge  
-EVs: 252 HP / 252 Atk / 4 Def  
+EVs: 252 Atk / 4 Def / 252 Spe  
 Adamant Nature  
 - Grassy Glide  
 - Knock Off  
-- Acrobatics  
 - Swords Dance  
-
-Melmetal @ Assault Vest  
-Ability: Iron Fist  
-EVs: 252 HP / 252 Atk / 4 SpD  
-Adamant Nature  
-- Double Iron Bash  
-- Earthquake  
-- Thunder Punch  
-- Ice Punch  
+- High Horsepower  
 
