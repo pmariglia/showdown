@@ -6,16 +6,16 @@ IVs: 0 Atk
 - Eruption  
 - Earth Power  
 - Dragon Pulse  
-- Flash Cannon  
+- Dark Pulse  
 
-Ruffothorn (Ferrothorn) @ Leftovers  
-Ability: Iron Barbs  
-EVs: 252 HP / 252 Def / 4 SpD  
-Impish Nature  
+Ruffsharp (Bisharp) @ Black Glasses  
+Ability: Defiant  
+EVs: 252 Atk / 4 Def / 252 Spe  
+Adamant Nature  
+- Swords Dance  
+- Iron Head  
 - Knock Off  
-- Leech Seed  
-- Protect  
-- Spikes  
+- Sucker Punch  
 
 Ruffislash (Aegislash) @ Air Balloon  
 Ability: Stance Change  
@@ -40,14 +40,13 @@ IVs: 0 Atk
 Ruffesteela (Celesteela) @ Leftovers  
 Ability: Beast Boost  
 EVs: 252 HP / 252 SpA / 4 SpD  
-Modest Nature  
-IVs: 0 Atk  
+Quiet Nature  
 - Flamethrower  
 - Giga Drain  
 - Protect  
-- Air Slash  
+- Heavy Slam  
 
-Ruffadrill (Excadrill) @ Choice Scarf  
+Ruffadrill (Excadrill) @ Choice Band  
 Ability: Mold Breaker  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
