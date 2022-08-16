@@ -1,12 +1,12 @@
-Rufferene (Hatterene) @ Heavy-Duty Boots  
+Rufferene (Hatterene) @ Leftovers  
 Ability: Magic Bounce  
-EVs: 252 HP / 252 Def / 4 SpA  
-Relaxed Nature  
+EVs: 252 HP / 252 SpA / 4 SpD  
+Quiet Nature  
 IVs: 0 Atk / 0 Spe  
 - Trick Room  
 - Psychic  
-- Calm Mind  
-- Draining Kiss  
+- Giga Drain  
+- Mystical Fire  
 
 Ruff Bulu (Tapu Bulu) @ Assault Vest  
 Ability: Grassy Surge  
@@ -36,23 +36,23 @@ IVs: 0 Atk
 - Energy Ball  
 - Ice Beam  
 
-Ruffki (Klefki) @ Toxic Orb  
+Ruffki (Klefki) @ Light Clay  
 Ability: Prankster  
 EVs: 252 HP / 252 Def / 4 SpD  
 Bold Nature  
 IVs: 0 Atk  
-- Switcheroo  
-- Defog  
-- Thunder Wave  
+- Reflect  
+- Light Screen  
+- Spikes  
 - Foul Play  
 
-Ruffekiss (Togekiss) @ Leftovers  
-Ability: Serene Grace  
-EVs: 252 HP / 252 SpA / 4 SpD  
-Modest Nature  
+Ruff Lele (Tapu Lele) @ Choice Specs  
+Ability: Psychic Surge  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
 IVs: 0 Atk  
-- Nasty Plot  
-- Air Slash  
-- Roost  
-- Flamethrower  
+- Psyshock  
+- Moonblast  
+- Focus Blast  
+- Shadow Ball  
 
