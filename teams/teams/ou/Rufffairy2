@@ -7,18 +7,16 @@ IVs: 0 Atk
 - Psychic  
 - Moonblast  
 - Focus Blast  
-- Thunderbolt  
+- Shadow Ball  
 
-Ruff Fini (Tapu Fini) @ Leftovers  
-Ability: Misty Surge  
-Shiny: Yes  
-EVs: 252 HP / 252 Def / 4 SpD  
-Bold Nature  
-IVs: 0 Atk  
-- Calm Mind  
-- Draining Kiss  
-- Scald  
-- Ice Beam  
+Ruffmarill (Azumarill) @ Sitrus Berry  
+Ability: Huge Power  
+EVs: 4 HP / 252 Atk / 252 Spe  
+Adamant Nature  
+- Belly Drum  
+- Aqua Jet  
+- Knock Off  
+- Substitute  
 
 Ruff Koko (Tapu Koko) @ Life Orb  
 Ability: Electric Surge  
@@ -30,15 +28,15 @@ Jolly Nature
 - Roost  
 - U-turn  
 
-Ruffki (Klefki) @ Leftovers  
+Ruffki (Klefki) @ Light Clay  
 Ability: Prankster  
-EVs: 252 HP / 4 Def / 252 SpD  
-Calm Nature  
+EVs: 252 HP / 252 Def / 4 SpD  
+Bold Nature  
 IVs: 0 Atk  
-- Calm Mind  
-- Iron Defense  
-- Draining Kiss  
-- Stored Power  
+- Reflect  
+- Light Screen  
+- Spikes  
+- Foul Play  
 
 Ruff Bulu (Tapu Bulu) @ Leftovers  
 Ability: Grassy Surge  
@@ -50,12 +48,13 @@ Adamant Nature
 - Close Combat  
 - Swords Dance  
 
-Ruffsnarl (Grimmsnarl) (M) @ Life Orb  
-Ability: Prankster  
-EVs: 252 HP / 252 Atk / 4 SpD  
-Adamant Nature  
-- Sucker Punch  
-- Darkest Lariat  
-- Drain Punch  
-- Bulk Up  
+Ruffarina (Primarina) @ Choice Specs  
+Ability: Torrent  
+EVs: 252 HP / 252 SpA / 4 SpD  
+Modest Nature  
+IVs: 0 Atk  
+- Moonblast  
+- Hydro Pump  
+- Psychic  
+- Ice Beam  
 
