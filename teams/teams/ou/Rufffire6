@@ -1,4 +1,4 @@
-Rufferace (Cinderace) @ Heavy-Duty Boots  
+Rufferace (Cinderace) @ Choice Scarf  
 Ability: Libero  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
@@ -7,14 +7,14 @@ Jolly Nature
 - High Jump Kick  
 - Gunk Shot  
 
-Ruffkoal (Torkoal) @ Heat Rock  
+Ruffkoal (Torkoal) @ Heavy-Duty Boots  
 Ability: Drought  
 EVs: 248 HP / 252 Def / 8 SpA  
 Bold Nature  
 - Rapid Spin  
 - Lava Plume  
 - Yawn  
-- Stealth Rock  
+- Body Press  
 
 Ruffanion (Volcanion) @ Heavy-Duty Boots  
 Ability: Water Absorb  
@@ -26,33 +26,33 @@ IVs: 0 Atk
 - Earth Power  
 - Toxic  
 
-Rufftran (Heatran) @ Air Balloon  
+Rufftran (Heatran) @ Leftovers  
 Ability: Flash Fire  
-EVs: 32 HP / 224 SpA / 252 Spe  
-Timid Nature  
+EVs: 192 HP / 252 SpD / 64 Spe  
+Calm Nature  
 IVs: 0 Atk  
 - Magma Storm  
 - Earth Power  
-- Flash Cannon  
-- Taunt  
+- Stealth Rock  
+- Protect  
 
-Rufftini (Victini) @ Choice Scarf  
-Ability: Victory Star  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- V-create  
-- Bolt Strike  
-- U-turn  
-- Final Gambit  
+Rufftom (Rotom-Heat) @ Heavy-Duty Boots  
+Ability: Levitate  
+EVs: 252 HP / 4 Def / 252 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Overheat  
+- Volt Switch  
+- Pain Split  
+- Discharge  
 
-Ruffphalon (Blacephalon) @ Choice Scarf  
-Ability: Beast Boost  
-Shiny: Yes  
+Ruffarona (Volcarona) @ Heavy-Duty Boots  
+Ability: Flame Body  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Shadow Ball  
-- Mind Blown  
-- Psyshock  
+- Quiver Dance  
 - Flamethrower  
+- Psychic  
+- Roost  
 
