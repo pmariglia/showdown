@@ -1,13 +1,13 @@
-Ruffcross (Heracross) @ Flame Orb  
-Ability: Guts  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
+Scizor @ Lum Berry  
+Ability: Technician  
+EVs: 40 HP / 252 Atk / 216 Spe  
+Adamant Nature  
+- Swords Dance  
+- Bullet Punch  
 - Knock Off  
-- Close Combat  
-- Megahorn  
-- Rock Tomb  
+- Roost  
 
-Ruffvantula (Galvantula) @ Heavy-Duty Boots  
+Ruffvantula (Galvantula) @ Choice Specs  
 Ability: Compound Eyes  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
@@ -17,13 +17,13 @@ IVs: 0 Atk
 - Bug Buzz  
 - Energy Ball  
 
-Ruffwole (Buzzwole) @ Salac Berry  
+Ruffwole (Buzzwole) @ Choice Scarf  
 Ability: Beast Boost  
-EVs: 252 HP / 4 Atk / 252 Spe  
+EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Bulk Up  
-- Leech Life  
-- Drain Punch  
+- Ice Punch  
+- Darkest Lariat  
+- Close Combat  
 - Earthquake  
 
 Ruffarona (Volcarona) @ Heavy-Duty Boots  
@@ -36,21 +36,23 @@ IVs: 0 Atk
 - Quiver Dance  
 - Fiery Dance  
 
-Ruffask (Ninjask) @ Heavy-Duty Boots  
-Ability: Infiltrator  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- U-turn  
-- Dual Wingbeat  
-- Defog  
+Ruffquanid (Araquanid) @ Heavy-Duty Boots  
+Ability: Water Bubble  
+EVs: 248 HP / 252 SpA / 8 SpD  
+Modest Nature  
+IVs: 0 Atk  
+- Hydro Pump  
+- Bug Buzz  
+- Ice Beam  
 - Toxic  
 
-Rufflipede (Scolipede) @ Focus Sash  
-Ability: Speed Boost  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Swords Dance  
-- Megahorn  
-- Earthquake  
-- Rock Slide  
+Ruffbombee (Ribombee) @ Focus Sash  
+Ability: Shield Dust  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Sticky Web  
+- Bug Buzz  
+- Stun Spore  
+- Moonblast  
 
