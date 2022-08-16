@@ -8,14 +8,14 @@ IVs: 24 Spe
 - Flip Turn  
 - Protect  
 
-Ruffapult (Dragapult) @ Leftovers  
+Ruffapult (Dragapult) @ Choice Specs  
 Ability: Infiltrator  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Dragon Darts  
-- Phantom Force  
-- Dragon Dance  
-- Steel Wing  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Draco Meteor  
+- Shadow Ball  
+- Thunderbolt  
+- Fire Blast  
 
 Ruffios (Latios) @ Choice Scarf  
 Ability: Levitate  
@@ -52,8 +52,8 @@ Ruffmo-o (Kommo-o) @ Leftovers
 Ability: Bulletproof  
 EVs: 252 HP / 4 Atk / 252 Def  
 Relaxed Nature  
-- Stealth Rock  
-- Drain Punch  
+- Iron Defense
+- Body Press
 - Flamethrower  
 - Substitute  
 
