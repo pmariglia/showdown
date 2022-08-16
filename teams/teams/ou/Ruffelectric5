@@ -8,15 +8,14 @@ IVs: 0 Atk
 - Heat Wave  
 - Ancient Power  
 
-Ruffavolt (Vikavolt) @ Heavy-Duty Boots  
-Ability: Levitate  
-EVs: 252 HP / 252 Def / 4 SpA  
-Bold Nature  
-IVs: 0 Atk  
-- Bug Buzz  
-- Roost  
-- Energy Ball  
-- Volt Switch  
+Ruffieleki (Regieleki) @ Life Orb  
+Ability: Transistor  
+EVs: 4 Atk / 252 SpA / 252 Spe  
+Hasty Nature  
+- Explosion  
+- Rising Voltage  
+- Thunderbolt  
+- Volt Switch
 
 Ruffchu (Raichu-Alola) @ Life Orb  
 Ability: Surge Surfer  
