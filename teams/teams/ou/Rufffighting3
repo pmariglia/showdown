@@ -1,30 +1,30 @@
-Ruffacross (Heracross) @ Choice Scarf  
-Ability: Moxie  
+Ruffwole (Buzzwole) @ Choice Scarf  
+Ability: Beast Boost  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Megahorn  
 - Close Combat  
-- Knock Off  
+- Ice Punch  
 - Earthquake  
+- Leech Life  
 
-Ruffizion (Virizion) @ Assault Vest  
-Ability: Justified  
-Shiny: Yes  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Hasty Nature  
-- Focus Blast  
-- Giga Drain  
-- Air Slash  
-- Stone Edge  
+Ruffifu (Urshifu-Rapid-Strike) @ Leftovers  
+Ability: Unseen Fist  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Surging Strikes  
+- Drain Punch  
+- Aqua Jet  
+- Bulk Up  
 
 Ruffcario (Lucario) @ Life Orb  
 Ability: Inner Focus  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Swords Dance  
-- Bullet Punch  
-- Close Combat  
-- Thunder Punch  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Nasty Plot  
+- Flash Cannon  
+- Vacuum Wave  
+- Psychic  
 
 Rufflucha (Hawlucha) @ White Herb  
 Ability: Unburden  
@@ -34,7 +34,7 @@ Jolly Nature
 - Swords Dance  
 - Acrobatics  
 - Close Combat  
-- Poison Jab  
+- Taunt  
 
 Ruffdeo (Keldeo) @ Choice Specs  
 Ability: Justified  
