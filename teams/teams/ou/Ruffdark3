@@ -1,56 +1,57 @@
-Ruffranitar (Tyranitar) @ Leftovers  
-Ability: Sand Stream  
-EVs: 252 HP / 4 Atk / 252 SpD  
-Sassy Nature  
-- Stealth Rock  
-- Rock Blast  
-- Heavy Slam  
-- Toxic  
-
-Ruffvile (Weavile) @ Life Orb  
-Ability: Pressure  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Poison Jab  
-- Triple Axel  
-- Knock Off  
-- Ice Shard  
-
-Ruffrude (Zarude-Dada) @ Choice Band  
+Ruffrude (Zarude) @ Choice Scarf  
 Ability: Leaf Guard  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Power Whip  
 - Darkest Lariat  
+- Power Whip  
+- U-turn  
 - Close Combat  
-- U-turn  
 
-Ruffibuzz (Mandibuzz) (F) @ Heavy-Duty Boots  
+Ruffranitar (Tyranitar) @ Leftovers  
+Ability: Sand Stream  
+EVs: 252 HP / 4 Atk / 252 SpD  
+Careful Nature  
+- Rock Blast  
+- Thunder Wave  
+- Stealth Rock  
+- Protect  
+
+Ruffibuzz (Mandibuzz) @ Heavy-Duty Boots  
 Ability: Overcoat  
-EVs: 248 HP / 244 Def / 16 Spe  
-Bold Nature  
-- Whirlwind  
+EVs: 248 HP / 252 Def / 8 SpD  
+Impish Nature  
+IVs: 0 Atk  
 - Roost  
+- Whirlwind  
+- Foul Play  
 - Defog  
-- U-turn  
 
-Ruffdreigon (Hydreigon) @ Leftovers  
+Ruffvile (Weavile) (F) @ Life Orb  
+Ability: Pressure  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Low Kick  
+- Knock Off  
+- Icicle Crash  
+- Ice Shard  
+
+Rufftank (Skuntank) @ Black Sludge  
+Ability: Aftermath  
+EVs: 252 HP / 4 Def / 252 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Haze  
+- Protect  
+- Sludge Bomb  
+- Fire Spin  
+
+Ruffdreigon (Hydreigon) (F) @ Leftovers  
 Ability: Levitate  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Nasty Plot  
-- Dark Pulse  
-- Flamethrower  
 - Substitute  
-
-Ruffoark (Zoroark) @ Life Orb  
-Ability: Illusion  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Extrasensory  
-- Night Daze  
-- Flamethrower  
-- Sludge Bomb  
+- Earth Power  
+- Dark Pulse  
+- Nasty Plot  
 
