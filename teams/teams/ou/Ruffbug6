@@ -1,11 +1,11 @@
-Ruffzor (Scizor) @ Life Orb  
+Scizor @ Life Orb  
 Ability: Technician  
-EVs: 252 Atk / 4 SpD / 252 Spe  
+EVs: 40 HP / 252 Atk / 216 Spe  
 Adamant Nature  
 - Swords Dance  
 - Bullet Punch  
-- Dual Wingbeat  
 - Knock Off  
+- Roost  
 
 Ruffvantula (Galvantula) @ Heavy-Duty Boots  
 Ability: Compound Eyes  
@@ -17,41 +17,41 @@ IVs: 0 Atk
 - Bug Buzz  
 - Energy Ball  
 
-Ruffwole (Buzzwole) @ Leftovers  
+Ruffwole (Buzzwole) @ Choice Scarf  
 Ability: Beast Boost  
-EVs: 252 HP / 64 Atk / 188 Def / 4 SpD  
-Adamant Nature  
-- Substitute  
-- Fell Stinger  
-- Drain Punch  
-- Roost  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Ice Punch  
+- Darkest Lariat  
+- Close Combat  
+- Earthquake  
 
 Ruffarona (Volcarona) @ Heavy-Duty Boots  
 Ability: Flame Body  
-EVs: 248 HP / 208 SpD / 52 Spe  
-Calm Nature  
+EVs: 128 HP / 128 SpA / 252 Spe  
+Timid Nature  
 IVs: 0 Atk  
+- Roost  
+- Psychic  
 - Quiver Dance  
 - Fiery Dance  
-- Will-O-Wisp  
-- Roost  
 
-Rufflipede (Scolipede) @ Focus Sash  
-Ability: Speed Boost  
-Shiny: Yes  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Swords Dance  
-- Earthquake  
-- Rock Slide  
-- Megahorn  
-
-Rufflisopod (Golisopod) @ Heavy-Duty Boots  
-Ability: Emergency Exit  
-EVs: 252 HP / 252 Atk / 4 SpD  
-Adamant Nature  
+Ruffquanid (Araquanid) @ Leftovers  
+Ability: Water Bubble  
+EVs: 252 HP / 4 Atk / 252 SpD  
+Careful Nature  
 - Liquidation  
-- Close Combat  
-- Leech Life  
-- Aqua Jet  
+- Sticky Web  
+- Protect  
+- Toxic  
+
+Ruffbombee (Ribombee) @ Choice Specs  
+Ability: Shield Dust  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Hyper Beam  
+- Bug Buzz  
+- Energy Ball  
+- Moonblast  
 
