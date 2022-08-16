@@ -1,13 +1,11 @@
-Ruffavolt (Vikavolt) @ Heavy-Duty Boots  
-Ability: Levitate  
-Shiny: Yes  
-EVs: 116 HP / 252 SpA / 140 Spe  
-Modest Nature  
-IVs: 0 Atk  
-- Sticky Web  
-- Bug Buzz  
+Ruffieleki (Regieleki) @ Life Orb  
+Ability: Transistor  
+EVs: 4 Atk / 252 SpA / 252 Spe  
+Hasty Nature  
+- Explosion  
+- Rising Voltage  
+- Thunderbolt  
 - Volt Switch  
-- Energy Ball  
 
 Ruffdos (Zapdos) @ Heavy-Duty Boots  
 Ability: Static  
@@ -16,11 +14,11 @@ EVs: 248 HP / 180 Def / 80 Spe
 Bold Nature  
 IVs: 0 Atk  
 - Hurricane  
-- Rising Voltage  
+- Heat Wave  
 - Roost  
 - Defog  
 
-Raichu-Alola @ Life Orb  
+Ruffachu (Raichu-Alola) @ Life Orb  
 Ability: Surge Surfer  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
@@ -55,7 +53,7 @@ Ability: Volt Absorb
 Shiny: Yes  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Bulk Up  
+- Volt Switch  
 - Plasma Fists  
 - Close Combat  
 - Knock Off  
