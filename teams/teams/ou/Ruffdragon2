@@ -1,11 +1,12 @@
-Ruffdra (Goodra) @ Assault Vest
-Ability: Gooey
-EVs: 248 HP / 8 SpA / 252 SpD
-Calm Nature
-- Sludge Bomb
-- Flamethrower
-- Earthquake
-- Ice Beam
+Ruffalge (Dragalge) @ Black Sludge  
+Ability: Adaptability  
+EVs: 236 HP / 20 SpA / 252 SpD  
+Sassy Nature  
+IVs: 24 Spe  
+- Toxic Spikes  
+- Sludge Wave  
+- Flip Turn  
+- Protect  
 
 Ruffapult (Dragapult) @ Choice Band
 Ability: Clear Body
@@ -25,17 +26,17 @@ IVs: 0 Atk
 - Ice Beam
 - Psyshock
 - Thunderbolt
-- Aura Sphere
+- Surf
 
-Rufforus (Haxorus) @ Focus Sash
-Ability: Mold Breaker
-Shiny: Yes
-EVs: 252 Atk / 4 SpD / 252 Spe
-Jolly Nature
-- Close Combat
-- Poison Jab
-- Earthquake
-- Dragon Dance
+Ruffreigon (Hydreigon) @ Life Orb
+Ability: Levitate  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Draco Meteor 
+- Dark Pulse  
+- Flamethrower  
+- Earth Power  
 
 Ruffurem (Kyurem) @ Choice Scarf
 Ability: Pressure
@@ -47,11 +48,11 @@ IVs: 0 Atk
 - Draco Meteor
 - Earth Power
 
-Ruffchomp (Garchomp) @ Focus Sash
+Ruffchomp (Garchomp) @ Life Orb
 Ability: Rough Skin
 EVs: 252 Atk / 4 SpD / 252 Spe
 Jolly Nature
-- Swords Dance
+- Stone Edge
 - Scale Shot
 - Earthquake
-- Fire Fang
+- Swords Dance
