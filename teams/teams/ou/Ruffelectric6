@@ -1,12 +1,11 @@
-Ruffavolt (Vikavolt) @ Heavy-Duty Boots  
-Ability: Levitate  
-EVs: 252 HP / 252 Def / 4 SpA  
-Bold Nature  
-IVs: 0 Atk  
-- Bug Buzz  
-- Roost  
-- Sticky Web  
-- Volt Switch  
+Ruffurus (Thundurus) (M) @ Choice Band  
+Ability: Defiant  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Knock Off  
+- U-turn  
+- Thunder Punch  
+- Superpower
 
 Ruffdos (Zapdos) @ Choice Specs  
 Ability: Static  
@@ -18,24 +17,24 @@ IVs: 0 Atk
 - Heat Wave  
 - Rising Voltage  
 
-Regieleki @ Life Orb  
+Ruffieleki (Regieleki) @ Life Orb  
 Ability: Transistor  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Modest Nature  
-- Rapid Spin  
+EVs: 152 Atk / 104 SpA / 252 Spe  
+Hasty Nature  
+- Explosion  
 - Rising Voltage  
-- Volt Switch  
-- Ancient Power  
-
-Ruffitree (Xurkitree) @ Salac Berry  
-Ability: Beast Boost  
-EVs: 4 HP / 252 SpA / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Energy Ball  
 - Thunderbolt  
-- Dazzling Gleam  
-- Substitute  
+- Volt Switch
+
+Rufftom (Rotom-Wash) @ Leftovers  
+Ability: Levitate  
+EVs: 252 HP / 252 Def / 4 SpD  
+Bold Nature  
+IVs: 0 Atk  
+- Will-O-Wisp  
+- Hydro Pump  
+- Volt Switch  
+- Toxic  
 
 Ruff Koko (Tapu Koko) @ Life Orb  
 Ability: Electric Surge  
