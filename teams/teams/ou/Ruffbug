@@ -36,7 +36,7 @@ IVs: 0 Atk
 - Quiver Dance  
 - Fiery Dance  
 
-Ruffquanid (Araquanid) @ Red Card  
+Ruffquanid (Araquanid) @ Leftovers  
 Ability: Water Bubble  
 Shiny: Yes  
 EVs: 248 HP / 8 Atk / 252 SpD  
@@ -46,12 +46,12 @@ Careful Nature
 - Leech Life  
 - Toxic  
 
-Ruffant (Durant) @ Heavy-Duty Boots  
-Ability: Hustle  
+Ruffipede (Scolipede) @ Life Orb  
+Ability: Speed Boost  
 EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- First Impression  
-- Iron Head  
-- Superpower  
+Adamant Nature  
+- Protect  
+- Earthquake  
 - Rock Slide  
+- Poison Jab  
 
