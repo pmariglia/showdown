@@ -8,15 +8,14 @@ IVs: 0 Atk
 - Toxic Spikes  
 - Pain Split  
 
-Ruff Fini (Tapu Fini) @ Leftovers  
-Ability: Misty Surge  
-EVs: 252 HP / 4 SpA / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
-- Brine  
-- Nature's Madness  
-- Defog  
-- Whirlpool  
+Ruffmarill (Azumarill) @ Choice Band  
+Ability: Huge Power  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Liquidation  
+- Aqua Jet  
+- Knock Off  
+- Play Rough  
 
 Ruffki (Klefki) @ Light Clay  
 Ability: Prankster  
@@ -42,7 +41,7 @@ Ruff Bulu (Tapu Bulu) @ Heavy-Duty Boots
 Ability: Grassy Surge  
 EVs: 252 HP / 164 SpD / 92 Spe  
 Careful Nature  
-- Swords Dance  
+- Rock Slide  
 - Protect  
 - Horn Leech  
 - High Horsepower  
@@ -55,5 +54,5 @@ IVs: 0 Atk
 - Psyshock  
 - Moonblast  
 - Focus Blast  
-- Thunderbolt  
+- Shadow Ball  
 
