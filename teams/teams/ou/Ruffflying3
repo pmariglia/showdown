@@ -1,31 +1,31 @@
-Rufforus-Therian (Landorus-Therian) @ Choice Scarf  
+Rufforus-Therian (Landorus-Therian) @ Leftovers  
 Ability: Intimidate  
 Shiny: Yes  
-EVs: 252 Atk / 4 SpD / 252 Spe  
+EVs: 252 HP / 48 SpD / 208 Spe  
 Jolly Nature  
 - Earthquake  
 - U-turn  
 - Stealth Rock  
 - Knock Off  
 
-Ruffesteela (Celesteela) @ Leftovers  
-Ability: Beast Boost  
-EVs: 252 HP / 4 Atk / 252 Def  
-Relaxed Nature  
-- Heavy Slam  
-- Leech Seed  
-- Flamethrower  
-- Protect  
+Ruffiknight (Corviknight) @ Leftovers  
+Ability: Mirror Armor  
+EVs: 252 HP / 4 Atk / 252 SpD  
+Careful Nature  
+- Iron Defense  
+- Body Press  
+- Roost  
+- Iron Head  
 
 Rufftine (Mantine) @ Heavy-Duty Boots  
 Ability: Water Absorb  
-EVs: 252 HP / 4 Def / 252 SpD  
-Calm Nature  
+EVs: 252 HP / 160 Def / 96 Spe  
+Bold Nature  
 IVs: 0 Atk  
+- Defog  
 - Haze  
 - Roost  
 - Scald  
-- Defog  
 
 Ruffvern (Noivern) @ Choice Specs  
 Ability: Infiltrator  
@@ -44,16 +44,16 @@ EVs: 252 SpA / 4 SpD / 252 Spe
 Timid Nature  
 IVs: 0 Atk  
 - Thunderbolt  
-- Substitute  
+- Volt Switch  
 - Nasty Plot  
 - Focus Blast  
 
-Ruffeops (Archeops) @ Heavy-Duty Boots  
-Ability: Defeatist  
+Ruffamence (Salamence) @ Heavy-Duty Boots  
+Ability: Moxie  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Roost  
-- U-turn  
+- Dragon Claw  
 - Earthquake  
-- Stone Edge  
+- Fire Fang  
+- Dragon Dance  
 
