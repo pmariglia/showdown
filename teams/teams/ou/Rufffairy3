@@ -1,12 +1,12 @@
-Ruffki (Klefki) @ Leftovers  
+Ruffki (Klefki) @ Light Clay  
 Ability: Prankster  
 EVs: 252 HP / 252 Def / 4 SpD  
 Bold Nature  
 IVs: 0 Atk  
-- Foul Play  
-- Swagger  
-- Thunder Wave  
+- Reflect  
+- Light Screen  
 - Spikes  
+- Foul Play  
 
 Ruffmarill (Azumarill) @ Choice Band  
 Ability: Huge Power  
@@ -46,12 +46,13 @@ Jolly Nature
 - Close Combat  
 - Wood Hammer  
 
-Ruffable (Clefable) @ Rocky Helmet  
+Ruffable (Clefable) @ Life Orb  
 Ability: Magic Guard  
-EVs: 252 HP / 4 Atk / 252 Def  
-Relaxed Nature  
-- Soft-Boiled  
-- Stealth Rock  
+EVs: 252 HP / 240 Def / 16 Spe  
+Bold Nature  
+IVs: 0 Atk  
+- Calm Mind  
+- Flamethrower  
 - Moonblast  
-- Knock Off  
+- Soft-Boiled  
 
