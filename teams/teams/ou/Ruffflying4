@@ -35,7 +35,7 @@ IVs: 0 Atk
 - Hurricane  
 - Volt Switch  
 - Heat Wave  
-- Thunderbolt 
+- Thunderbolt  
 
 Ruffurus-Therian (Thundurus-Therian) @ Choice Scarf  
 Ability: Volt Absorb  
@@ -44,16 +44,16 @@ EVs: 252 SpA / 4 SpD / 252 Spe
 Timid Nature  
 IVs: 0 Atk  
 - Thunderbolt  
+- Focus Blast  
 - Grass Knot  
 - Volt Switch  
-- Focus Blast  
 
-Ruffonite (Dragonite) @ Heavy-Duty Boots  
-Ability: Multiscale  
+Ruffrados (Gyarados) @ Heavy-Duty Boots  
+Ability: Moxie  
 EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
+Adamant Nature  
 - Dragon Dance  
-- Extreme Speed  
-- Fire Punch  
+- Waterfall  
+- Stone Edge  
 - Earthquake  
 
