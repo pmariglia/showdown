@@ -1,58 +1,56 @@
-Ruffdra (Goodra) @ Assault Vest  
-Ability: Gooey  
-EVs: 248 HP / 8 SpA / 252 SpD  
-Calm Nature  
-- Sludge Bomb  
-- Flamethrower  
-- Earthquake  
-- Ice Beam  
-
-Ruffapult (Dragapult) @ Choice Band  
-Ability: Infiltrator  
-EVs: 252 Atk / 4 SpA / 252 Spe  
-Hasty Nature  
-- Dragon Darts  
-- Phantom Force  
-- Fire Blast  
-- U-turn
-
-Ruffios (Latios) @ Choice Scarf  
-Ability: Levitate  
-Shiny: Yes  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Draco Meteor  
-- Psyshock  
-- Defog  
-- Thunderbolt  
-
-Ruffonite (Dragonite) @ Heavy-Duty Boots  
-Ability: Multiscale  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
-- Dragon Dance  
-- Earthquake  
-- Dual Wingbeat  
-- Fire Punch
-
-Ruffrem (Kyurem) @ Choice Specs  
+Ruffrem (Kyurem) @ Heavy-Duty Boots  
 Ability: Pressure  
-EVs: 252 SpA / 4 SpD / 252 Spe  
+EVs: 200 HP / 56 SpA / 252 Spe  
 Timid Nature  
-IVs: 0 Atk  
+- Substitute  
+- Roost  
 - Freeze-Dry  
-- Flash Cannon  
-- Ice Beam  
 - Earth Power  
 
-Ruffchomp (Garchomp) @ Focus Sash  
-Ability: Rough Skin  
-Shiny: Yes  
+Ruffapult (Dragapult) @ Choice Specs  
+Ability: Infiltrator  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Draco Meteor  
+- Shadow Ball  
+- Thunderbolt  
+- Fire Blast  
+
+Dracozolt @ Choice Scarf  
+Ability: Hustle  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Swords Dance  
-- Scale Shot  
+- Bolt Beak  
+- Dragon Claw  
 - Earthquake  
+- Low Kick  
+
+Ruffreigon (Hydreigon) @ Leftovers  
+Ability: Levitate  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Nasty Plot  
+- Dark Pulse  
+- Flamethrower  
+- Earth Power  
+
+Ruffalge (Dragalge) @ Black Sludge  
+Ability: Adaptability  
+EVs: 236 HP / 20 SpA / 252 SpD  
+Sassy Nature  
+IVs: 24 Spe  
+- Toxic Spikes  
+- Sludge Wave  
+- Flip Turn  
+- Protect  
+
+Ruffchomp (Garchomp) @ Leftovers  
+Ability: Rough Skin  
+EVs: 252 HP / 4 Atk / 252 Def  
+Lax Nature  
 - Stealth Rock  
+- Fire Blast  
+- Earthquake  
+- Protect  
 
