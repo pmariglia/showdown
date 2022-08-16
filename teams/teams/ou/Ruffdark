@@ -1,6 +1,5 @@
 Ruffdaunt (Crawdaunt) (M) @ Choice Band  
 Ability: Adaptability  
-Shiny: Yes  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Adamant Nature  
 - Knock Off  
@@ -8,46 +7,44 @@ Adamant Nature
 - Aqua Jet  
 - Close Combat  
 
-Ruffodile (Krookodile) (M) @ Choice Scarf  
-Ability: Moxie  
-Shiny: Yes  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Knock Off  
+Ruffranitar (Tyranitar) @ Leftovers  
+Ability: Sand Stream  
+EVs: 252 HP / 4 Atk / 252 SpD  
+Careful Nature  
+- Rock Blast  
 - Earthquake  
-- Close Combat  
-- Iron Tail  
+- Stealth Rock  
+- Protect  
 
 Ruffibuzz (Mandibuzz) @ Heavy-Duty Boots  
 Ability: Overcoat  
 EVs: 248 HP / 252 Def / 8 SpD  
 Impish Nature  
 - Roost  
-- Toxic  
+- Brave Bird  
 - U-turn  
 - Defog  
 
 Ruffvile (Weavile) (F) @ Focus Sash  
 Ability: Pressure  
-Shiny: Yes  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Swords Dance  
 - Knock Off  
-- Triple Axel  
+- Icicle Crash  
 - Ice Shard  
 
-Rufftres (Moltres-Galar) @ Heavy-Duty Boots  
-Ability: Berserk  
-EVs: 252 HP / 252 SpA / 4 SpD  
-Modest Nature  
+Rufftank (Skuntank) @ Black Sludge  
+Ability: Aftermath  
+EVs: 252 HP / 4 Def / 252 SpD  
+Calm Nature  
 IVs: 0 Atk  
-- Hurricane  
-- Fiery Wrath  
-- Agility  
-- Nasty Plot  
+- Haze  
+- Protect  
+- Sludge Bomb  
+- Fire Spin  
 
-Ruffdreigon (Hydreigon) (F) @ Choice Specs  
+Ruffdreigon (Hydreigon) (F) @ Leftovers  
 Ability: Levitate  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
