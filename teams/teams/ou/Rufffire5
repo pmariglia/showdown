@@ -1,4 +1,4 @@
-Rufferace (Cinderace) @ Heavy-Duty Boots  
+Rufferace (Cinderace) @ Choice Scarf  
 Ability: Libero  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
@@ -7,14 +7,15 @@ Jolly Nature
 - High Jump Kick  
 - U-turn  
 
-Ruffkoal (Torkoal) @ Heat Rock  
-Ability: Drought  
-EVs: 248 HP / 252 Def / 8 SpA  
+Rufftres (Moltres) @ Heavy-Duty Boots  
+Ability: Flame Body  
+EVs: 252 HP / 252 Def / 4 SpD  
 Bold Nature  
-- Rapid Spin  
-- Lava Plume  
-- Yawn  
-- Stealth Rock  
+IVs: 0 Atk  
+- Roost  
+- Mystical Fire  
+- Defog  
+- Scorching Sands  
 
 Ruffanion (Volcanion) @ Heavy-Duty Boots  
 Ability: Water Absorb  
@@ -45,14 +46,13 @@ IVs: 0 Atk
 - Thunderbolt  
 - Dazzling Gleam  
 
-Ruffphalon (Blacephalon) @ Choice Scarf  
-Ability: Beast Boost  
-Shiny: Yes  
-EVs: 252 SpA / 4 SpD / 252 Spe  
+Ruffarona (Volcarona) @ Heavy-Duty Boots  
+Ability: Flame Body  
+EVs: 252 HP / 84 SpD / 172 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Shadow Ball  
-- Fire Blast  
-- Psyshock  
-- Flamethrower  
+- Quiver Dance  
+- Fiery Dance  
+- Psychic  
+- Roost  
 
