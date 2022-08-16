@@ -1,59 +1,57 @@
 Ruffalge (Dragalge) @ Black Sludge  
 Ability: Adaptability  
-EVs: 200 HP / 252 SpD / 56 Spe  
-Careful Nature  
+EVs: 236 HP / 20 SpA / 252 SpD  
+Sassy Nature  
 IVs: 24 Spe  
 - Toxic Spikes  
-- Gunk Shot  
+- Sludge Wave  
 - Flip Turn  
 - Protect  
 
-Ruffapult (Dragapult) @ Leftovers  
-Ability: Infiltrator  
+Ruffapult (Dragapult) @ Choice Band  
+Ability: Clear Body  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Dragon Darts  
 - Phantom Force  
-- Dragon Dance  
-- Substitute  
+- Steel Wing  
+- U-turn  
 
-Ruffios (Latios) @ Choice Scarf  
+Ruffonite (Dragonite) @ Heavy-Duty Boots  
+Ability: Multiscale  
+EVs: 252 HP / 4 Atk / 252 Def  
+Impish Nature  
+- Roost  
+- Defog  
+- Body Press  
+- Dual Wingbeat  
+
+Ruffreigon (Hydreigon) @ Life Orb  
 Ability: Levitate  
-Shiny: Yes  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Ice Beam  
-- Psyshock  
-- Mystical Fire  
-- Defog  
+- Draco Meteor  
+- Dark Pulse  
+- Flamethrower  
+- Earth Power  
 
-Rufforus (Haxorus) @ Lum Berry  
-Ability: Mold Breaker  
-Shiny: Yes  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Close Combat  
-- Poison Jab  
-- Earthquake  
-- Dragon Dance  
-
-Ruffurem (Kyurem) @ Choice Specs  
+Ruffurem (Kyurem) @ Choice Scarf  
 Ability: Pressure  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
+- Focus Blast  
 - Freeze-Dry  
-- Ice Beam  
 - Draco Meteor  
 - Earth Power  
 
-Ruffchomp (Garchomp) @ Focus Sash  
+Ruffchomp (Garchomp) @ Life Orb  
 Ability: Rough Skin  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Swords Dance  
+- Stone Edge  
 - Scale Shot  
 - Earthquake  
-- Iron Head  
+- Swords Dance  
 
