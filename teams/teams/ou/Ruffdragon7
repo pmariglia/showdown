@@ -1,56 +1,57 @@
-Ruffrem (Kyurem) @ Heavy-Duty Boots  
-Ability: Pressure  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-- Freeze-Dry  
-- Earth Power  
-- Roost  
-- Draco Meteor  
-
-Ruffapult (Dragapult) @ Choice Specs  
-Ability: Infiltrator  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-- Draco Meteor  
-- Shadow Ball  
-- Thunderbolt  
-- Fire Blast  
-
-Ruffgarde (Zygarde-10%) @ Choice Band  
-Ability: Aura Break  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Thousand Arrows  
-- Outrage  
-- Extreme Speed  
-- Superpower  
-
-Ruffreigon (Hydreigon) @ Leftovers  
-Ability: Levitate  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Nasty Plot  
-- Dark Pulse  
-- Flamethrower  
-- Defog  
-
 Ruffalge (Dragalge) @ Black Sludge  
 Ability: Adaptability  
 EVs: 236 HP / 20 SpA / 252 SpD  
 Sassy Nature  
 IVs: 24 Spe  
-- Toxic Spikes  
+- Scald  
 - Sludge Wave  
 - Flip Turn  
 - Protect  
 
+Ruffapult (Dragapult) @ Expert Belt  
+Ability: Infiltrator  
+EVs: 252 Atk / 4 SpA / 252 Spe  
+Hasty Nature  
+- Dragon Darts  
+- Phantom Force  
+- Dragon Dance  
+- Fire Blast  
+
+Ruffchomp (Garchomp) @ Leftovers  
+Ability: Rough Skin  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Substitute  
+- Earthquake  
+- Stone Edge  
+- Swords Dance  
+
+Ruffdreigon (Hydreigon) @ Leftovers  
+Ability: Levitate  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Nasty Plot  
+- Earth Power  
+- Dark Pulse  
+- Substitute  
+
+Ruffurem (Kyurem) @ Choice Specs  
+Ability: Pressure  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Freeze-Dry  
+- Ice Beam  
+- Dragon Pulse  
+- Earth Power  
+
 Ruffmo-o (Kommo-o) @ Leftovers  
 Ability: Bulletproof  
-EVs: 252 HP / 4 Atk / 252 Def  
-Impish Nature  
-- Body Press  
-- Stealth Rock  
+EVs: 252 HP / 8 Def / 48 SpD / 200 Spe  
+Jolly Nature  
 - Iron Defense  
+- Body Press  
 - Earthquake  
+- Substitute  
 
