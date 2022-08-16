@@ -7,32 +7,41 @@ Careful Nature
 - Blaze Kick  
 - Parting Shot  
 
-Ruffvile (Weavile) @ Life Orb  
-Ability: Pressure  
-EVs: 252 Atk / 4 SpD / 252 Spe  
+Ruffranitar (Tyranitar) @ Leftovers  
+Ability: Sand Stream  
+EVs: 180 HP / 76 Atk / 252 Spe  
 Jolly Nature  
-- Poison Jab  
-- Icicle Crash  
-- Knock Off  
-- Ice Shard  
-
-Ruffodile (Krookodile) @ Focus Sash  
-Ability: Moxie  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
+- Dragon Dance  
+- Rock Blast  
+- Fire Punch  
 - Earthquake  
-- Close Combat  
-- Knock Off  
-- Stealth Rock  
 
 Ruffibuzz (Mandibuzz) (F) @ Heavy-Duty Boots  
 Ability: Overcoat  
 EVs: 248 HP / 244 Def / 16 Spe  
 Bold Nature  
-- Toxic  
+- U-turn  
 - Roost  
 - Defog  
+- Knock Off  
+
+Ruffvile (Weavile) @ Choice Band  
+Ability: Pressure  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Low Kick  
+- Icicle Crash  
+- Knock Off  
+- Ice Shard  
+
+Ruffrude (Zarude) @ Choice Scarf  
+Ability: Leaf Guard  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Power Whip  
 - U-turn  
+- Close Combat  
+- Darkest Lariat  
 
 Ruffdreigon (Hydreigon) @ Choice Specs  
 Ability: Levitate  
@@ -43,13 +52,4 @@ IVs: 0 Atk
 - Dark Pulse  
 - Flamethrower  
 - Earth Power  
-
-Rufftres-Galar (Moltres-Galar) @ Choice Scarf  
-Ability: Berserk  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-- U-turn  
-- Hurricane  
-- Fiery Wrath  
-- Air Slash  
 
