@@ -2,8 +2,8 @@ Ruffzor (Scizor) @ Choice Band
 Ability: Technician  
 EVs: 248 HP / 252 Atk / 8 SpD  
 Adamant Nature  
-- Dual Wingbeat  
 - U-turn  
+- Knock Off  
 - Bullet Punch  
 - Superpower  
 
@@ -22,7 +22,7 @@ Ability: Beast Boost
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Ice Punch  
-- Leech Life  
+- Darkest Lariat  
 - Close Combat  
 - Earthquake  
 
@@ -31,12 +31,12 @@ Ability: Flame Body
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Bug Buzz  
+- Roost  
 - Psychic  
 - Quiver Dance  
 - Fiery Dance  
 
-Ruffquanid (Araquanid) @ Focus Sash  
+Ruffquanid (Araquanid) @ Leftovers  
 Ability: Water Bubble  
 Shiny: Yes  
 EVs: 248 HP / 8 Atk / 252 SpD  
@@ -44,14 +44,14 @@ Careful Nature
 - Sticky Web  
 - Liquidation  
 - Leech Life  
-- Toxic  
+- Protect  
 
-Rufftle (Crustle) @ Heavy-Duty Boots  
-Ability: Sturdy  
+Ruffipede (Scolipede) @ Focus Sash  
+Ability: Speed Boost  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Shell Smash  
-- Rock Slide  
+- Swords Dance  
 - Earthquake  
-- Knock Off  
+- Rock Slide  
+- Poison Jab  
 
