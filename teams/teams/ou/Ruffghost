@@ -1,13 +1,12 @@
 Ruffislash (Aegislash) @ Leftovers  
 Ability: Stance Change  
 Shiny: Yes  
-EVs: 252 HP / 4 Def / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
+EVs: 248 HP / 8 Atk / 252 SpD  
+Careful Nature  
 - Substitute  
 - Toxic  
 - King's Shield  
-- Flash Cannon  
+- Iron Head  
 
 Rufftrier (Spectrier) @ Leftovers  
 Ability: Grim Neigh  
@@ -50,11 +49,11 @@ IVs: 0 Atk
 
 Ruffsola-Galar (Corsola-Galar) @ Eviolite  
 Ability: Cursed Body  
-EVs: 252 HP / 252 Def  
+EVs: 252 HP / 252 Def / 4 SpD  
 Bold Nature  
 IVs: 0 Atk  
+- Will-O-Wisp  
+- Strength Sap  
 - Stealth Rock  
 - Night Shade  
-- Strength Sap  
-- Will-O-Wisp  
 
