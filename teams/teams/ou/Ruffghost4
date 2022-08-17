@@ -13,9 +13,9 @@ Ability: Grim Neigh
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Taunt  
+- Protect  
 - Nasty Plot  
-- Mud Shot  
+- Disable  
 - Shadow Ball  
 
 Ruffikyu (Mimikyu) @ Life Orb  
@@ -31,7 +31,7 @@ Jolly Nature
 Ruffapult (Dragapult) @ Choice Scarf  
 Ability: Infiltrator  
 EVs: 252 Atk / 4 SpA / 252 Spe  
-Hasty Nature  
+Lonely Nature  
 - Dragon Darts  
 - Phantom Force  
 - Fire Blast  
@@ -41,6 +41,7 @@ Ruffgar (Gengar) @ Choice Specs
 Ability: Cursed Body  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
+IVs: 0 Atk  
 - Sludge Wave  
 - Shadow Ball  
 - Focus Blast  
@@ -51,8 +52,8 @@ Ability: Cursed Body
 EVs: 252 HP / 112 Def / 144 SpD  
 Calm Nature  
 IVs: 0 Atk  
-- Stealth Rock  
+- Substitute  
 - Night Shade  
 - Strength Sap  
-- Will-O-Wisp  
+- Scald  
 
