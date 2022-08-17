@@ -1,38 +1,37 @@
-Rufforus-Therian (Landorus-Therian) @ Leftovers  
+Rufforus-Therian (Landorus-Therian) (M) @ Leftovers  
 Ability: Intimidate  
-Shiny: Yes  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
-- Rock Polish  
-- Earthquake  
+EVs: 252 HP / 164 SpD / 92 Spe  
+Careful Nature  
+- Stealth Rock  
 - Knock Off  
-- Swords Dance  
+- Earthquake  
+- U-turn  
 
 Ruffesteela (Celesteela) @ Leftovers  
 Ability: Beast Boost  
-EVs: 252 HP / 4 Atk / 252 SpD  
-Careful Nature  
+EVs: 252 HP / 4 Atk / 252 Def  
+Relaxed Nature  
 - Leech Seed  
-- Heavy Slam  
-- Toxic  
 - Protect  
+- Heavy Slam  
+- Flamethrower  
 
-Ruffdos (Zapdos-Galar) @ Lum Berry  
+Ruffdos (Zapdos-Galar) @ Choice Scarf  
 Ability: Defiant  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Brave Bird  
-- Thunderous Kick  
-- Throat Chop  
-- Bulk Up  
+- Close Combat  
+- U-turn  
+- Assurance  
 
-Rufftres (Moltres-Galar) @ Heavy-Duty Boots  
+Rufftres (Moltres-Galar) @ Leftovers  
 Ability: Berserk  
-EVs: 252 SpA / 4 SpD / 252 Spe  
+EVs: 252 HP / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
+- Protect  
 - Agility  
-- Hurricane  
 - Nasty Plot  
 - Fiery Wrath  
 
@@ -43,17 +42,17 @@ EVs: 252 SpA / 4 SpD / 252 Spe
 Timid Nature  
 IVs: 0 Atk  
 - Thunderbolt  
-- Substitute  
+- Dark Pulse  
 - Nasty Plot  
-- Focus Blast  
+- Sludge Bomb  
 
 Rufftine (Mantine) @ Heavy-Duty Boots  
 Ability: Water Absorb  
-EVs: 252 HP / 252 Def / 4 SpD  
+EVs: 252 HP / 160 Def / 96 Spe  
 Bold Nature  
 IVs: 0 Atk  
-- Scald  
+- Defog  
 - Haze  
 - Roost  
-- Defog  
+- Scald  
 
