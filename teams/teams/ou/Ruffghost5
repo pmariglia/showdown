@@ -13,7 +13,7 @@ Ability: Grim Neigh
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Taunt  
+- Will-O-Wisp  
 - Nasty Plot  
 - Mud Shot  
 - Shadow Ball  
@@ -30,30 +30,30 @@ Jolly Nature
 
 Ruffapult (Dragapult) @ Choice Scarf  
 Ability: Infiltrator  
-EVs: 252 Atk / 4 SpA / 252 Spe  
-Lonely Nature  
-- Dragon Darts  
-- Phantom Force  
-- Fire Blast  
-- U-turn  
-
-Ruffephalon (Blacephalon) @ Choice Scarf  
-Ability: Beast Boost  
 EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
+Modest Nature  
 IVs: 0 Atk  
-- Flamethrower  
+- Draco Meteor  
 - Shadow Ball  
 - Fire Blast  
-- Psyshock  
+- Hydro Pump  
+
+Ruffowak (Marowak-Alola) @ Thick Club  
+Ability: Rock Head  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Flare Blitz  
+- Flame Charge  
+- Poltergeist  
+- Earthquake  
 
 Ruffsola-Galar (Corsola-Galar) @ Eviolite  
 Ability: Cursed Body  
-EVs: 252 HP / 112 Def / 144 SpD  
-Calm Nature  
+EVs: 252 HP / 252 Def / 4 SpD  
+Bold Nature  
 IVs: 0 Atk  
+- Will-O-Wisp  
+- Strength Sap  
 - Stealth Rock  
 - Night Shade  
-- Strength Sap  
-- Will-O-Wisp  
 
