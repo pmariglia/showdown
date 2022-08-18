@@ -12,7 +12,7 @@ Ability: Iron Barbs
 EVs: 252 HP / 4 Atk / 252 Def  
 Relaxed Nature  
 IVs: 0 Spe  
-- Stealth Rock  
+- Knock Off  
 - Gyro Ball  
 - Protect  
 - Leech Seed  
@@ -26,30 +26,31 @@ Sassy Nature
 - Earth Power  
 - Toxic  
 
-Ruffsicott (Whimsicott) @ Heavy-Duty Boots  
+Ruffsicott (Whimsicott) @ Leftovers  
 Ability: Prankster  
-EVs: 4 HP / 252 SpA / 252 Spe  
+EVs: 252 HP / 144 Def / 112 Spe  
 Timid Nature  
+IVs: 0 Atk  
+- Leech Seed  
 - Moonblast  
-- U-turn  
 - Defog  
-- Encore  
+- Cotton Guard  
 
 Ruffaboom (Rillaboom) @ Choice Band  
 Ability: Grassy Surge  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Grassy Glide  
-- Superpower  
-- Knock Off  
 - High Horsepower  
+- Knock Off  
+- U-turn  
 
-Ruffrude (Zarude) @ Chople Berry  
+Ruffrude (Zarude) @ Leftovers  
 Ability: Leaf Guard  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Bulk Up  
 - Darkest Lariat  
-- Taunt  
+- Drain Punch  
 - Jungle Healing  
 
