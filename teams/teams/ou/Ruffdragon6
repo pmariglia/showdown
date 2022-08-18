@@ -3,7 +3,7 @@ Ability: Adaptability
 EVs: 200 HP / 252 SpD / 56 Spe  
 Careful Nature  
 IVs: 24 Spe  
-- Toxic Spikes  
+- Draco Meteor  
 - Gunk Shot  
 - Flip Turn  
 - Protect  
@@ -51,9 +51,9 @@ IVs: 0 Atk
 Ruffmo-o (Kommo-o) @ Leftovers  
 Ability: Bulletproof  
 EVs: 252 HP / 4 Atk / 252 Def  
-Relaxed Nature  
-- Stealth Rock  
+Impish Nature  
+- Substitute
 - Drain Punch  
-- Flamethrower  
+- Rock Slide 
 - Clangorous Soul  
 
