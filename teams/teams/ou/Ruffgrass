@@ -1,9 +1,9 @@
 Ruffdily (Cradily) @ Leftovers  
-Ability: Suction Cups  
+Ability: Storm Drain  
 EVs: 252 HP / 4 Atk / 252 SpD  
-Careful Nature  
+Sassy Nature  
 - Rock Blast  
-- Stealth Rock  
+- Earth Power  
 - Recover  
 - Toxic  
 
@@ -14,17 +14,17 @@ Adamant Nature
 - U-turn  
 - High Horsepower  
 - Grassy Glide  
-- Drain Punch  
+- Knock Off  
 
 Ruffebi (Celebi) @ Leftovers  
 Ability: Natural Cure  
 EVs: 4 HP / 252 SpA / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Nasty Plot  
+- Calm Mind  
 - Psychic  
-- Shock Wave  
-- Giga Drain  
+- Earth Power  
+- Recover  
 
 Ruffothorn (Ferrothorn) @ Leftovers  
 Ability: Iron Barbs  
@@ -50,8 +50,8 @@ Ability: Prankster
 EVs: 252 HP / 4 SpA / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Giga Drain  
-- Encore  
+- Stun Spore  
+- Leech Seed  
 - Moonblast  
 - Defog  
 
