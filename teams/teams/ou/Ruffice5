@@ -1,4 +1,4 @@
-Rufftales (Ninetales-Alola) (F) @ Heavy-Duty Boots  
+Rufftales (Ninetales-Alola) (F) @ Icy Rock  
 Ability: Snow Warning  
 Shiny: Yes  
 EVs: 252 SpA / 4 SpD / 252 Spe  
@@ -7,27 +7,27 @@ IVs: 0 Atk
 - Aurora Veil  
 - Freeze-Dry  
 - Moonblast  
-- Nasty Plot  
+- Pain Split  
 
-Ruffozolt (Arctozolt) @ Heavy-Duty Boots  
+Ruffozolt (Arctozolt) @ Life Orb  
 Ability: Slush Rush  
-EVs: 4 HP / 252 Atk / 252 Spe  
-Jolly Nature  
+EVs: 4 Atk / 252 SpA / 252 Spe  
+Rash Nature  
 - Bolt Beak  
-- Icicle Crash  
-- Low Kick  
-- Substitute  
+- Blizzard  
+- Hydro Pump  
+- Thunderbolt  
 
 Ruffvile (Weavile) @ Life Orb  
 Ability: Pressure  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Knock Off  
-- Triple Axel  
+- Icicle Crash  
 - Low Kick  
-- Swords Dance  
+- Ice Shard  
 
-Ruffrem (Kyurem) @ Choice Specs  
+Ruffrem (Kyurem) @ Leftovers  
 Ability: Pressure  
 Shiny: Yes  
 EVs: 252 HP / 56 SpA / 84 SpD / 116 Spe  
@@ -38,7 +38,7 @@ IVs: 0 Atk
 - Roost  
 - Freeze-Dry  
 
-Ruffanitan-Galar (Darmanitan-Galar) @ Heavy-Duty Boots  
+Ruffanitan-Galar (Darmanitan-Galar) @ Choice Scarf  
 Ability: Gorilla Tactics  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
@@ -47,12 +47,12 @@ Jolly Nature
 - U-turn  
 - Earthquake  
 
-Ruffslash (Sandslash-Alola) @ Life Orb  
+Ruffovish (Arctovish) @ Choice Band  
 Ability: Slush Rush  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Rapid Spin  
-- Swords Dance  
-- Triple Axel  
-- Rock Slide  
+EVs: 4 HP / 252 Atk / 252 Spe  
+Adamant Nature  
+- Fishious Rend  
+- Psychic Fangs  
+- Icicle Spear  
+- Icicle Crash  
 
