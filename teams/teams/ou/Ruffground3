@@ -12,7 +12,7 @@ Ruffowdon (Hippowdon) (F) @ Leftovers
 Ability: Sand Stream  
 EVs: 252 HP / 4 Atk / 252 Def  
 Impish Nature  
-- Stealth Rock  
+- Rock Slide  
 - Earthquake  
 - Slack Off  
 - Whirlwind  
@@ -22,8 +22,7 @@ Ability: Intimidate
 Shiny: Yes  
 EVs: 252 HP / 40 Atk / 144 Def / 56 SpD / 16 Spe  
 Impish Nature  
-IVs: 0 Atk  
-- Substitute  
+- Knock Off  
 - Bulk Up  
 - Earthquake  
 - Smack Down  
@@ -49,13 +48,12 @@ IVs: 0 Atk
 - Thunderbolt  
 - Earth Power  
 
-Ruffodon (Gastrodon) @ Heavy-Duty Boots  
-Ability: Storm Drain  
-EVs: 252 HP / 4 SpA / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
-- Scald  
-- Earth Power  
-- Recover  
-- Toxic  
+Ruffoswine (Mamoswine) @ Choice Band  
+Ability: Thick Fat  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
+- Icicle Crash  
+- Earthquake  
+- Superpower  
+- Ice Shard  
 
