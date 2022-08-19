@@ -9,41 +9,41 @@ IVs: 0 Atk
 - Moonblast  
 - Nasty Plot  
 
-Ruffovish (Arctovish) @ Life Orb  
-Ability: Slush Rush  
-EVs: 252 Atk / 4 Def / 252 Spe  
-Adamant Nature  
-- Fishious Rend  
+Ruffvile (Weavile) @ Choice Scarf  
+Ability: Pressure  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Knock Off  
+- Ice Shard  
+- Low Kick  
 - Icicle Crash  
-- Psychic Fangs  
-- Crunch  
 
 Ruffswine (Mamoswine) (F) @ Choice Band  
 Ability: Thick Fat  
 EVs: 252 Atk / 4 SpD / 252 Spe  
-Adamant Nature  
+Jolly Nature  
 - Icicle Crash  
 - Earthquake  
 - Ice Shard  
 - Superpower  
 
-Ruffrem (Kyurem) @ Choice Specs  
+Ruffrem (Kyurem) @ Heavy-Duty Boots  
 Ability: Pressure  
 Shiny: Yes  
-EVs: 252 SpA / 4 SpD / 252 Spe  
+EVs: 56 HP / 192 SpA / 8 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Focus Blast  
-- Earth Power  
-- Dragon Pulse  
+- Toxic  
+- Roost  
 - Freeze-Dry  
+- Earth Power  
 
-Ruffanitan-Galar (Darmanitan-Galar) @ Choice Scarf  
+Ruffanitan (Darmanitan-Galar) @ Choice Band  
 Ability: Gorilla Tactics  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
 - Icicle Crash  
-- Flare Blitz  
+- Fire Punch  
 - U-turn  
 - Earthquake  
 
@@ -52,7 +52,7 @@ Ability: Sturdy
 Shiny: Yes  
 EVs: 252 HP / 4 Atk / 252 Def  
 Impish Nature  
-- Avalanche  
+- Icicle Spear  
 - Body Press  
 - Recover  
 - Rapid Spin  
