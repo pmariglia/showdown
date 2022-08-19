@@ -1,40 +1,40 @@
-Ruffadrill (Excadrill) @ Choice Band
-Ability: Sand Rush  
+Ruffadrill (Excadrill) @ Choice Scarf  
+Ability: Mold Breaker  
 Shiny: Yes  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Rock Blast
+- Rock Blast  
 - Rapid Spin  
 - Earthquake  
 - Iron Head  
 
-Ruffowdon (Hippowdon) (F) @ Leftovers  
-Ability: Sand Stream  
+Ruffchomp (Garchomp) @ Leftovers  
+Ability: Rough Skin  
 EVs: 252 HP / 4 Atk / 252 Def  
-Impish Nature  
-- Stealth Rock  
-- Earthquake  
-- Slack Off  
-- Whirlwind  
+Relaxed Nature  
+- Toxic  
+- Protect  
+- Fire Blast  
+- Dragon Tail  
 
 Rufforus-Therian (Landorus-Therian) @ Leftovers  
 Ability: Intimidate  
 Shiny: Yes  
-EVs: 252 HP / 40 Atk / 144 Def / 56 SpD / 16 Spe  
-Impish Nature  
-- Substitute  
-- Bulk Up  
+EVs: 172 HP / 68 Atk / 80 Def / 132 SpD / 56 Spe  
+Careful Nature  
 - Earthquake  
-- Smack Down 
+- U-turn  
+- Stealth Rock  
+- Knock Off  
 
-Ruffgarde (Zygarde-10%) @ Focus Sash  
-Ability: Aura Break  
+Rufftrio (Dugtrio) @ Choice Band  
+Ability: Arena Trap  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Thousand Arrows  
-- Extreme Speed  
-- Outrage  
-- Dragon Dance  
+- Earthquake  
+- Stone Edge  
+- Sucker Punch  
+- Double-Edge  
 
 Ruffoking (Nidoking) @ Life Orb  
 Ability: Sheer Force  
@@ -47,13 +47,12 @@ IVs: 0 Atk
 - Thunderbolt  
 - Earth Power  
 
-Ruffodon (Gastrodon) @ Heavy-Duty Boots  
-Ability: Storm Drain  
-EVs: 252 HP / 4 SpA / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
+Ruffitoad (Seismitoad) @ Leftovers  
+Ability: Water Absorb  
+EVs: 252 HP / 4 Atk / 252 SpD  
+Sassy Nature  
 - Scald  
+- Knock Off  
+- Protect  
 - Earth Power  
-- Recover  
-- Toxic  
 
