@@ -12,7 +12,7 @@ Ruffowdon (Hippowdon) (F) @ Leftovers
 Ability: Sand Stream  
 EVs: 252 HP / 4 Atk / 252 Def  
 Impish Nature  
-- Stealth Rock  
+- Rock Tomb  
 - Earthquake  
 - Slack Off  
 - Toxic  
@@ -47,13 +47,12 @@ IVs: 0 Atk
 - Ice Beam  
 - Thunderbolt  
 
-Ruffodon (Gastrodon) @ Heavy-Duty Boots  
-Ability: Storm Drain  
-EVs: 252 HP / 4 SpA / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
+Ruffitoad (Seismitoad) @ Leftovers  
+Ability: Water Absorb  
+EVs: 252 HP / 4 Atk / 252 Def  
+Relaxed Nature  
+- Knock Off  
 - Scald  
-- Earth Power  
-- Recover  
-- Toxic  
+- Protect  
+- Rock Tomb  
 
