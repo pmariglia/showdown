@@ -3,7 +3,7 @@ Ability: Sand Rush
 Shiny: Yes  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Swords Dance  
+- Rock Slide  
 - Rapid Spin  
 - Earthquake  
 - Iron Head  
@@ -12,7 +12,7 @@ Ruffowdon (Hippowdon) (F) @ Leftovers
 Ability: Sand Stream  
 EVs: 252 HP / 4 Atk / 252 Def  
 Impish Nature  
-- Stealth Rock  
+- Whirlwind  
 - Slack Off  
 - Stone Edge  
 - Earthquake  
@@ -20,12 +20,12 @@ Impish Nature
 Rufforus-Therian (Landorus-Therian) @ Life Orb  
 Ability: Intimidate  
 Shiny: Yes  
-EVs: 4 Atk / 252 SpA / 252 Spe  
-Rash Nature  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
 IVs: 0 Atk  
 - Earth Power  
 - Sludge Wave  
-- Psychic  
+- Weather Ball  
 - Focus Blast  
 
 Ruffgarde (Zygarde-10%) @ Choice Band  
@@ -45,16 +45,15 @@ Timid Nature
 IVs: 0 Atk  
 - Fire Blast  
 - Ice Beam  
-- Thunderbolt
+- Thunderbolt  
 - Earth Power  
 
-Ruffodon (Gastrodon) @ Heavy-Duty Boots  
-Ability: Storm Drain  
-EVs: 252 HP / 4 SpA / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
+Ruffitoad (Seismitoad) @ Leftovers  
+Ability: Water Absorb  
+EVs: 252 HP / 4 Def / 252 SpD  
+Sassy Nature  
+- Knock Off  
 - Scald  
-- Earth Power  
-- Recover  
+- Protect  
 - Toxic  
 
