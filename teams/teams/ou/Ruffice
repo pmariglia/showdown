@@ -7,7 +7,7 @@ IVs: 0 Atk
 - Aurora Veil  
 - Freeze-Dry  
 - Moonblast  
-- Encore  
+- Hypnosis  
 
 Ruffovish (Arctovish) @ Life Orb  
 Ability: Slush Rush  
@@ -25,7 +25,7 @@ Adamant Nature
 - Earthquake  
 - Icicle Crash  
 - Ice Shard  
-- Rock Slide  
+- Knock Off  
 
 Ruffrem (Kyurem) @ Choice Specs  
 Ability: Pressure  
@@ -52,8 +52,7 @@ Ability: Sturdy
 Shiny: Yes  
 EVs: 252 HP / 4 Atk / 252 Def  
 Impish Nature  
-IVs: 0 Atk  
-- Toxic  
+- Avalanche  
 - Body Press  
 - Recover  
 - Rapid Spin  
