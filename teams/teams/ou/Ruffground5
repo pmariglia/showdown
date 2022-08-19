@@ -1,46 +1,46 @@
-Ruffadrill (Excadrill) @ Life Orb  
-Ability: Sand Rush  
+Ruffadrill (Excadrill) @ Leftovers  
+Ability: Mold Breaker  
 Shiny: Yes  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Rock Blast  
+EVs: 252 HP / 4 Def / 252 SpD  
+Careful Nature  
+- Toxic  
 - Rapid Spin  
 - Earthquake  
 - Iron Head  
 
-Ruffowdon (Hippowdon) (F) @ Leftovers  
-Ability: Sand Stream  
-EVs: 252 HP / 4 Atk / 252 Def  
-Impish Nature  
-- Stealth Rock  
-- Earthquake  
-- Slack Off  
-- Whirlwind  
-
-Rufforus-Therian (Landorus-Therian) @ Leftovers  
-Ability: Intimidate  
-Shiny: Yes  
-EVs: 252 HP / 40 Atk / 144 Def / 56 SpD / 16 Spe  
-Impish Nature  
-- Knock Off  
-- Bulk Up  
-- Earthquake  
-- Smack Down  
-
-Ruffersby (Diggersby) @ Choice Scarf  
-Ability: Huge Power  
-EVs: 252 Atk / 4 SpD / 252 Spe  
+Ruffoswine (Mamoswine) @ Assault Vest  
+Ability: Thick Fat  
+EVs: 252 HP / 252 Atk / 4 SpD  
 Adamant Nature  
 - Earthquake  
-- Fire Punch  
-- Mega Kick  
+- Ice Shard  
 - Knock Off  
+- Icicle Crash  
+
+Rufforus-Therian (Landorus-Therian) @ Choice Scarf  
+Ability: Intimidate  
+Shiny: Yes  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Knock Off  
+- U-turn  
+- Earthquake  
+- Explosion  
+
+Ruffochomp (Garchomp) @ Leftovers  
+Ability: Rough Skin  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Swords Dance  
+- Scale Shot  
+- Earthquake  
+- Fire Fang  
 
 Ruffoking (Nidoking) @ Life Orb  
 Ability: Sheer Force  
 Shiny: Yes  
 EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
+Modest Nature  
 IVs: 0 Atk  
 - Fire Blast  
 - Ice Beam  
@@ -49,11 +49,10 @@ IVs: 0 Atk
 
 Ruffodon (Gastrodon) @ Heavy-Duty Boots  
 Ability: Storm Drain  
-EVs: 252 HP / 4 SpA / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
+EVs: 252 HP / 252 Def / 4 SpA  
+Bold Nature  
 - Scald  
-- Earth Power  
+- Earthquake  
 - Recover  
-- Toxic  
+- Clear Smog  
 
