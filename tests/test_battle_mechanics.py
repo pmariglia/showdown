@@ -5523,10 +5523,10 @@ class TestBattleMechanics(unittest.TestCase):
         # 10x the weight should result in 120 base-power
         fake_pokedex = {
             'pikachu': {
-                'weight': 100
+                constants.WEIGHT: 100
             },
             'pidgey': {
-                'weight': 10
+                constants.WEIGHT: 10
             }
         }
         pokedex_mock.__getitem__.side_effect = fake_pokedex.__getitem__
@@ -5556,10 +5556,10 @@ class TestBattleMechanics(unittest.TestCase):
         # 4x the weight should result in 100 base-power
         fake_pokedex = {
             'pikachu': {
-                'weight': 100
+                constants.WEIGHT: 100
             },
             'pidgey': {
-                'weight': 25
+                constants.WEIGHT: 25
             }
         }
         pokedex_mock.__getitem__.side_effect = fake_pokedex.__getitem__
@@ -5589,10 +5589,10 @@ class TestBattleMechanics(unittest.TestCase):
         # equal weight should result in 40 base-power
         fake_pokedex = {
             'pikachu': {
-                'weight': 100
+                constants.WEIGHT: 100
             },
             'pidgey': {
-                'weight': 100
+                constants.WEIGHT: 100
             }
         }
         pokedex_mock.__getitem__.side_effect = fake_pokedex.__getitem__
@@ -5622,10 +5622,10 @@ class TestBattleMechanics(unittest.TestCase):
         # 10x equal weight should result in 120 base-power
         fake_pokedex = {
             'pikachu': {
-                'weight': 100
+                constants.WEIGHT: 100
             },
             'pidgey': {
-                'weight': 10
+                constants.WEIGHT: 10
             }
         }
         pokedex_mock.__getitem__.side_effect = fake_pokedex.__getitem__
@@ -5655,10 +5655,10 @@ class TestBattleMechanics(unittest.TestCase):
         # the defender has flashfire so no damage should be done, even with 10x the weight
         fake_pokedex = {
             'pikachu': {
-                'weight': 100
+                constants.WEIGHT: 100
             },
             'pidgey': {
-                'weight': 10
+                constants.WEIGHT: 10
             }
         }
         pokedex_mock.__getitem__.side_effect = fake_pokedex.__getitem__
