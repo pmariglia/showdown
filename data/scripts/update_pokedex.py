@@ -63,5 +63,5 @@ sorted_dex = [i for i in sorted_dex if i[1]["num"] > 0]
 for k, v in sorted_dex + negative_nums:
     new_dict[k] = v
 
-with open("out.json", "w") as f:
+with open("pokedex_new.json", "w") as f:
     json.dump(data_json, f, indent=4)

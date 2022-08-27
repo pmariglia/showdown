@@ -2,7 +2,7 @@ name: Update data files from smogon/pokemon-showdown
 on:
   workflow_dispatch:
   schedule:
-    - cron: 35 5 * * 6
+    - cron: 0 0 * * *
 jobs:
   Update-data-files:
     runs-on: ubuntu-latest
@@ -10,7 +10,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          ref: auto-update-pokedex
+          ref: master
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
@@ -23,7 +23,7 @@ jobs:
           python ./data/scripts/update_pokedex.py
       - name: Overwrite pokedex.json
         run: |
-          mv ./out.json ./data/pokedex.json
+          mv ./pokedex_new.json ./data/pokedex.json
       - name: Create or update pull request
         uses: peter-evans/create-pull-request@v3
         with:
