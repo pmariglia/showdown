@@ -1559,14 +1559,18 @@ class TestGetStateFromSwitch(unittest.TestCase):
         attacker = constants.SELF
         switch_pokemon_name = "rattata"
 
-        expected_instructions = [TransposeInstruction(1, [
-            (
-                constants.MUTATOR_SWITCH,
-                attacker,
-                self.state.self.active.id,
-                switch_pokemon_name
-            ),
-        ], False)]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1579,32 +1583,30 @@ class TestGetStateFromSwitch(unittest.TestCase):
         self.state.self.reserve["rattata"].item = "grassyseed"
         self.state.field = "grassyterrain"
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    ),
-                    (
-                        constants.MUTATOR_BOOST,
-                        attacker,
-                        constants.DEFENSE,
-                        1
-                    ),
-                    (
-                        constants.MUTATOR_CHANGE_ITEM,
-                        attacker,
-                        None,
-                        "grassyseed"
-                    ),
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                ),
+                (
+                    constants.MUTATOR_BOOST,
+                    attacker,
+                    constants.DEFENSE,
+                    1
+                ),
+                (
+                    constants.MUTATOR_CHANGE_ITEM,
+                    attacker,
+                    None,
+                    "grassyseed"
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1620,20 +1622,18 @@ class TestGetStateFromSwitch(unittest.TestCase):
         # this literally cant happen for a pkmn switching in but worth a check I guess?
         self.state.self.reserve["rattata"].defense_boost = 6
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    )
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                )
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1646,32 +1646,30 @@ class TestGetStateFromSwitch(unittest.TestCase):
         self.state.self.reserve["rattata"].item = "psychicseed"
         self.state.field = constants.PSYCHIC_TERRAIN
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    ),
-                    (
-                        constants.MUTATOR_BOOST,
-                        attacker,
-                        constants.SPECIAL_DEFENSE,
-                        1
-                    ),
-                    (
-                        constants.MUTATOR_CHANGE_ITEM,
-                        attacker,
-                        None,
-                        "psychicseed"
-                    ),
-                ],
-                False
-            )
-        ]
+        expected_instructions =  TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                ),
+                (
+                    constants.MUTATOR_BOOST,
+                    attacker,
+                    constants.SPECIAL_DEFENSE,
+                    1
+                ),
+                (
+                    constants.MUTATOR_CHANGE_ITEM,
+                    attacker,
+                    None,
+                    "psychicseed"
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1684,7 +1682,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
         attacker = constants.SELF
         switch_pokemon_name = "rattata"
 
-        expected_instructions = [TransposeInstruction(
+        expected_instructions = TransposeInstruction(
             1,
             [
                 (
@@ -1707,7 +1705,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
                 ),
             ],
             False
-        )]
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1719,21 +1717,19 @@ class TestGetStateFromSwitch(unittest.TestCase):
         attacker = constants.SELF
         switch_pokemon_name = "rattata"
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    ('switch', 'self', 'pikachu', 'rattata'),
-                    (
-                        constants.MUTATOR_DAMAGE,
-                        attacker,
-                        27.75  # 1/8th of rattata's 222 maxhp is 27.75 damage
-                    ),
-                ]
-        ,
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                ('switch', 'self', 'pikachu', 'rattata'),
+                (
+                    constants.MUTATOR_DAMAGE,
+                    attacker,
+                    27.75  # 1/8th of rattata's 222 maxhp is 27.75 damage
+                ),
+            ]
+            ,
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1746,21 +1742,18 @@ class TestGetStateFromSwitch(unittest.TestCase):
         self.state.self.active.hp = 1
         self.state.self.active.ability = 'regenerator'
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_HEAL,
-                        attacker,
-                        77  # 1/3rd of pikachu's maxhp is 77
-                    ),
-                    ('switch', 'self', 'pikachu', 'rattata'),
-
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_HEAL,
+                    attacker,
+                    77  # 1/3rd of pikachu's maxhp is 77
+                ),
+                ('switch', 'self', 'pikachu', 'rattata'),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1773,21 +1766,19 @@ class TestGetStateFromSwitch(unittest.TestCase):
         self.state.self.active.hp -= 1
         self.state.self.active.ability = 'regenerator'
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_HEAL,
-                        attacker,
-                        1
-                    ),
-                    ('switch', 'self', 'pikachu', 'rattata'),
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_HEAL,
+                    attacker,
+                    1
+                ),
+                ('switch', 'self', 'pikachu', 'rattata'),
 
-                ],
-                False
-            )
-        ]
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1799,20 +1790,18 @@ class TestGetStateFromSwitch(unittest.TestCase):
         attacker = constants.SELF
         switch_pokemon_name = "rattata"
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    ('switch', 'self', 'pikachu', 'rattata'),
-                    (
-                        constants.MUTATOR_APPLY_STATUS,
-                        attacker,
-                        constants.POISON,
-                    ),
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                ('switch', 'self', 'pikachu', 'rattata'),
+                (
+                    constants.MUTATOR_APPLY_STATUS,
+                    attacker,
+                    constants.POISON,
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1826,21 +1815,19 @@ class TestGetStateFromSwitch(unittest.TestCase):
 
         self.state.self.reserve[switch_pokemon_name].types = ['poison']
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    ('switch', 'self', 'pikachu', 'rattata'),
-                    (
-                        constants.MUTATOR_SIDE_END,
-                        attacker,
-                        constants.TOXIC_SPIKES,
-                        1
-                    ),
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                ('switch', 'self', 'pikachu', 'rattata'),
+                (
+                    constants.MUTATOR_SIDE_END,
+                    attacker,
+                    constants.TOXIC_SPIKES,
+                    1
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1854,21 +1841,19 @@ class TestGetStateFromSwitch(unittest.TestCase):
 
         self.state.self.reserve[switch_pokemon_name].types = ['poison']
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    ('switch', 'self', 'pikachu', 'rattata'),
-                    (
-                        constants.MUTATOR_SIDE_END,
-                        attacker,
-                        constants.TOXIC_SPIKES,
-                        2
-                    ),
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                ('switch', 'self', 'pikachu', 'rattata'),
+                (
+                    constants.MUTATOR_SIDE_END,
+                    attacker,
+                    constants.TOXIC_SPIKES,
+                    2
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1882,15 +1867,13 @@ class TestGetStateFromSwitch(unittest.TestCase):
 
         self.state.self.reserve[switch_pokemon_name].types = ['poison', 'flying']
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    ('switch', 'self', 'pikachu', 'rattata'),
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                ('switch', 'self', 'pikachu', 'rattata'),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1902,20 +1885,18 @@ class TestGetStateFromSwitch(unittest.TestCase):
         attacker = constants.SELF
         switch_pokemon_name = "rattata"
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    ('switch', 'self', 'pikachu', 'rattata'),
-                    (
-                        constants.MUTATOR_APPLY_STATUS,
-                        attacker,
-                        constants.TOXIC,
-                    ),
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                ('switch', 'self', 'pikachu', 'rattata'),
+                (
+                    constants.MUTATOR_APPLY_STATUS,
+                    attacker,
+                    constants.TOXIC,
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1929,15 +1910,13 @@ class TestGetStateFromSwitch(unittest.TestCase):
 
         self.state.self.reserve[switch_pokemon_name].types = ['flying']
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    ('switch', 'self', 'pikachu', 'rattata'),
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                ('switch', 'self', 'pikachu', 'rattata'),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1949,21 +1928,19 @@ class TestGetStateFromSwitch(unittest.TestCase):
         attacker = constants.SELF
         switch_pokemon_name = "rattata"
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    ('switch', 'self', 'pikachu', 'rattata'),
-                    (
-                        constants.MUTATOR_UNBOOST,
-                        attacker,
-                        constants.SPEED,
-                        1
-                    ),
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                ('switch', 'self', 'pikachu', 'rattata'),
+                (
+                    constants.MUTATOR_UNBOOST,
+                    attacker,
+                    constants.SPEED,
+                    1
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1977,15 +1954,13 @@ class TestGetStateFromSwitch(unittest.TestCase):
 
         self.state.self.reserve[switch_pokemon_name].ability = 'levitate'
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    ('switch', 'self', 'pikachu', 'rattata'),
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                ('switch', 'self', 'pikachu', 'rattata'),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -1999,15 +1974,13 @@ class TestGetStateFromSwitch(unittest.TestCase):
 
         self.state.self.reserve[switch_pokemon_name].item = 'airballoon'
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    ('switch', 'self', 'pikachu', 'rattata'),
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                ('switch', 'self', 'pikachu', 'rattata'),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2021,15 +1994,13 @@ class TestGetStateFromSwitch(unittest.TestCase):
 
         self.state.self.reserve[switch_pokemon_name].types = ['flying']
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    ('switch', 'self', 'pikachu', 'rattata'),
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                ('switch', 'self', 'pikachu', 'rattata'),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2042,25 +2013,23 @@ class TestGetStateFromSwitch(unittest.TestCase):
         attacker = constants.SELF
         switch_pokemon_name = "rattata"
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    ),
-                    (
-                        constants.MUTATOR_DAMAGE,
-                        attacker,
-                        1
-                    ),
-                ],
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                ),
+                (
+                    constants.MUTATOR_DAMAGE,
+                    attacker,
+                    1
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2072,26 +2041,23 @@ class TestGetStateFromSwitch(unittest.TestCase):
         attacker = constants.SELF
         switch_pokemon_name = "pidgey"
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    ),
-                    (
-                        constants.MUTATOR_DAMAGE,
-                        attacker,
-                        60.5  # 1/4 of pidgey's 242 max hp is 60.5
-                    ),
-                ]
-                ,
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                ),
+                (
+                    constants.MUTATOR_DAMAGE,
+                    attacker,
+                    60.5  # 1/4 of pidgey's 242 max hp is 60.5
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2103,21 +2069,18 @@ class TestGetStateFromSwitch(unittest.TestCase):
         attacker = constants.SELF
         switch_pokemon_name = "pidgey"
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    )
-                ]
-                ,
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                )
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2129,26 +2092,23 @@ class TestGetStateFromSwitch(unittest.TestCase):
         attacker = constants.SELF
         switch_pokemon_name = "pidgey"
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_REMOVE_VOLATILE_STATUS,
-                        constants.SELF,
-                        "leechseed"
-                    ),
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    )
-                ]
-                ,
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_REMOVE_VOLATILE_STATUS,
+                    constants.SELF,
+                    "leechseed"
+                ),
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                )
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2160,27 +2120,24 @@ class TestGetStateFromSwitch(unittest.TestCase):
         attacker = constants.SELF
         switch_pokemon_name = "pidgey"
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SIDE_END,
-                        constants.SELF,
-                        constants.TOXIC_COUNT,
-                        2
-                    ),
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    )
-                ]
-                ,
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SIDE_END,
+                    constants.SELF,
+                    constants.TOXIC_COUNT,
+                    2
+                ),
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                )
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2192,26 +2149,23 @@ class TestGetStateFromSwitch(unittest.TestCase):
         switch_pokemon_name = "pidgey"
         self.state.self.reserve[switch_pokemon_name].ability = "drought"
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    ),
-                    (
-                        constants.MUTATOR_WEATHER_START,
-                        constants.SUN,
-                        None
-                    ),
-                ]
-                ,
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                ),
+                (
+                    constants.MUTATOR_WEATHER_START,
+                    constants.SUN,
+                    None
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2223,26 +2177,23 @@ class TestGetStateFromSwitch(unittest.TestCase):
         switch_pokemon_name = "pidgey"
         self.state.self.reserve[switch_pokemon_name].ability = "drizzle"
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    ),
-                    (
-                        constants.MUTATOR_WEATHER_START,
-                        constants.RAIN,
-                        None
-                    ),
-                ]
-                ,
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                ),
+                (
+                    constants.MUTATOR_WEATHER_START,
+                    constants.RAIN,
+                    None
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2255,21 +2206,18 @@ class TestGetStateFromSwitch(unittest.TestCase):
         self.state.weather = 'desolateland'
         self.state.self.reserve[switch_pokemon_name].ability = 'drizzle'
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    ),
-                ]
-                ,
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2282,26 +2230,23 @@ class TestGetStateFromSwitch(unittest.TestCase):
         self.state.weather = constants.HEAVY_RAIN
         self.state.self.reserve[switch_pokemon_name].ability = constants.DESOLATE_LAND
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    ),
-                    (
-                        constants.MUTATOR_WEATHER_START,
-                        constants.DESOLATE_LAND,
-                        constants.HEAVY_RAIN
-                    ),
-                ]
-                ,
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                ),
+                (
+                    constants.MUTATOR_WEATHER_START,
+                    constants.DESOLATE_LAND,
+                    constants.HEAVY_RAIN
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2314,26 +2259,23 @@ class TestGetStateFromSwitch(unittest.TestCase):
         self.state.weather = constants.DESOLATE_LAND
         self.state.self.reserve[switch_pokemon_name].ability = constants.HEAVY_RAIN
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    ),
-                    (
-                        constants.MUTATOR_WEATHER_START,
-                        constants.HEAVY_RAIN,
-                        constants.DESOLATE_LAND
-                    ),
-                ]
-                ,
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                ),
+                (
+                    constants.MUTATOR_WEATHER_START,
+                    constants.HEAVY_RAIN,
+                    constants.DESOLATE_LAND
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2345,27 +2287,24 @@ class TestGetStateFromSwitch(unittest.TestCase):
         switch_pokemon_name = "pidgey"
         self.state.self.reserve[switch_pokemon_name].ability = 'intimidate'
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    ),
-                    (
-                        constants.MUTATOR_UNBOOST,
-                        constants.OPPONENT,
-                        constants.ATTACK,
-                        1
-                    ),
-                ]
-                ,
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                ),
+                (
+                    constants.MUTATOR_UNBOOST,
+                    constants.OPPONENT,
+                    constants.ATTACK,
+                    1
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)
@@ -2378,21 +2317,18 @@ class TestGetStateFromSwitch(unittest.TestCase):
         self.state.self.reserve[switch_pokemon_name].ability = 'intimidate'
         self.state.opponent.active.attack_boost = -6
 
-        expected_instructions = [
-            TransposeInstruction(
-                1,
-                [
-                    (
-                        constants.MUTATOR_SWITCH,
-                        attacker,
-                        self.state.self.active.id,
-                        switch_pokemon_name
-                    ),
-                ]
-                ,
-                False
-            )
-        ]
+        expected_instructions = TransposeInstruction(
+            1,
+            [
+                (
+                    constants.MUTATOR_SWITCH,
+                    attacker,
+                    self.state.self.active.id,
+                    switch_pokemon_name
+                ),
+            ],
+            False
+        )
 
         mutator = StateMutator(self.state)
         instructions = instruction_generator.get_instructions_from_switch(mutator, attacker, switch_pokemon_name, self.previous_instruction)

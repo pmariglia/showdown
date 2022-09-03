@@ -265,7 +265,7 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
     for i in instruction_additions:
         instructions.add_instruction(i)
 
-    return [instructions]
+    return instructions
 
 
 def get_instructions_from_flinched(mutator, attacker, instruction):
@@ -1186,7 +1186,7 @@ def get_instructions_from_drag(mutator, attacking_side_string, move_target, inst
         return [instruction]
 
     for pkmn_name in alive_reserves:
-        new_instruction = get_instructions_from_switch(mutator, affected_side_string, pkmn_name, copy(instruction))[0]
+        new_instruction = get_instructions_from_switch(mutator, affected_side_string, pkmn_name, copy(instruction))
         new_instruction.update_percentage(1 / num_reserve_alive)
         new_instructions.append(new_instruction)
 

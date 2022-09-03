@@ -202,7 +202,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     instructions.frozen = False
 
     if constants.SWITCH_STRING in attacking_move:
-        return instruction_generator.get_instructions_from_switch(mutator, attacker, attacking_move[constants.SWITCH_STRING], instructions)
+        return [instruction_generator.get_instructions_from_switch(mutator, attacker, attacking_move[constants.SWITCH_STRING], instructions)]
 
     # if you are moving second, but you got phased on the first turn, your move will do nothing
     # this can happen if a move with equal priority to a phasing move (generally -6) is used by a slower pokemon and the faster pokemon uses a phasing move
@@ -417,7 +417,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         for i in all_instructions:
             best_switch = get_best_switch_pokemon(mutator, i, attacker, attacking_side, defending_move, first_move)
             if best_switch is not None:
-                temp_instructions += instruction_generator.get_instructions_from_switch(mutator, attacker, best_switch, i)
+                temp_instructions.append(instruction_generator.get_instructions_from_switch(mutator, attacker, best_switch, i))
             else:
                 temp_instructions.append(i)
 
