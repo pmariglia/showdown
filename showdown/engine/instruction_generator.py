@@ -15,8 +15,8 @@ logger = logging.getLogger(__name__)
 
 
 opposite_side = {
-    constants.SELF: constants.OPPONENT,
-    constants.OPPONENT: constants.SELF
+    constants.USER: constants.OPPONENT,
+    constants.OPPONENT: constants.USER
 }
 
 
@@ -659,7 +659,7 @@ def get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, 
                 )
     elif move[constants.ID] == constants.COURT_CHANGE:
         sides = [
-            (constants.SELF, mutator.state.self),
+            (constants.USER, mutator.state.user),
             (constants.OPPONENT, mutator.state.opponent)
         ]
         for side_name, side_object in sides:
@@ -888,9 +888,9 @@ def get_instructions_from_attacker_recovery(mutator, attacker_string, move, inst
 def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, bot_moves_first):
     # determine which goes first
     if bot_moves_first:
-        sides = [constants.SELF, constants.OPPONENT]
+        sides = [constants.USER, constants.OPPONENT]
     else:
-        sides = [constants.OPPONENT, constants.SELF]
+        sides = [constants.OPPONENT, constants.USER]
 
     mutator.apply(instruction.instructions)
 
@@ -1130,7 +1130,7 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
         side = get_side_from_state(mutator.state, attacker)
         pkmn = side.active
 
-        if attacker == constants.SELF:
+        if attacker == constants.USER:
             move = bot_move
             other_move = opponent_move
         else:
@@ -1278,8 +1278,8 @@ def remove_volatile_status_and_boosts_instructions(side, side_string):
 
 
 def get_side_from_state(state, side_string):
-    if side_string == constants.SELF:
-        return state.self
+    if side_string == constants.USER:
+        return state.user
     elif side_string == constants.OPPONENT:
         return state.opponent
     else:

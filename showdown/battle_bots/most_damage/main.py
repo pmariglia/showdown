@@ -28,7 +28,7 @@ class BattleBot(Battle):
         most_damage = -1
         choice = None
         for move in moves:
-            damage_amounts = calculate_damage(state, constants.SELF, move, constants.DO_NOTHING_MOVE)
+            damage_amounts = calculate_damage(state, constants.USER, move, constants.DO_NOTHING_MOVE)
 
             damage = damage_amounts[0] if damage_amounts else 0
 

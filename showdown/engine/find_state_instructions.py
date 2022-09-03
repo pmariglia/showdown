@@ -75,7 +75,7 @@ def get_effective_priority(side, move, field):
 
 
 def user_moves_first(state, user_move, opponent_move):
-    user_effective_speed = get_effective_speed(state, state.self)
+    user_effective_speed = get_effective_speed(state, state.user)
     opponent_effective_speed = get_effective_speed(state, state.opponent)
 
     # both users selected a switch
@@ -94,7 +94,7 @@ def user_moves_first(state, user_move, opponent_move):
             return True
         return False
 
-    user_priority = get_effective_priority(state.self, user_move, state.field)
+    user_priority = get_effective_priority(state.user, user_move, state.field)
     opponent_priority = get_effective_priority(state.opponent, opponent_move, state.field)
 
     if user_priority == opponent_priority:
@@ -458,13 +458,13 @@ def get_all_state_instructions(mutator, user_move_string, opponent_move_string):
 
     all_instructions = []
     if bot_moves_first:
-        instructions = get_state_instructions_from_move(mutator, user_move, opponent_move, constants.SELF, constants.OPPONENT, True, instructions)
+        instructions = get_state_instructions_from_move(mutator, user_move, opponent_move, constants.USER, constants.OPPONENT, True, instructions)
         for instruction in instructions:
-            all_instructions += get_state_instructions_from_move(mutator, opponent_move, user_move, constants.OPPONENT, constants.SELF, False, instruction)
+            all_instructions += get_state_instructions_from_move(mutator, opponent_move, user_move, constants.OPPONENT, constants.USER, False, instruction)
     else:
-        instructions = get_state_instructions_from_move(mutator, opponent_move, user_move, constants.OPPONENT, constants.SELF, True, instructions)
+        instructions = get_state_instructions_from_move(mutator, opponent_move, user_move, constants.OPPONENT, constants.USER, True, instructions)
         for instruction in instructions:
-            all_instructions += get_state_instructions_from_move(mutator, user_move, opponent_move, constants.SELF, constants.OPPONENT, False, instruction)
+            all_instructions += get_state_instructions_from_move(mutator, user_move, opponent_move, constants.USER, constants.OPPONENT, False, instruction)
 
     if end_of_turn_triggered(user_move_string, opponent_move_string):
         temp_instructions = []

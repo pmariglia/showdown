@@ -23,16 +23,16 @@ def trick(mutator, attacking_side_string, attacking_side, attacking_pokemon, def
         instructions.append(
             (
                 constants.MUTATOR_CHANGE_ITEM,
-                constants.SELF,
+                constants.USER,
                 mutator.state.opponent.active.item,
-                mutator.state.self.active.item
+                mutator.state.user.active.item
             )
         )
         instructions.append(
             (
                 constants.MUTATOR_CHANGE_ITEM,
                 constants.OPPONENT,
-                mutator.state.self.active.item,
+                mutator.state.user.active.item,
                 mutator.state.opponent.active.item
             )
         )

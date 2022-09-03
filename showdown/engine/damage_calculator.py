@@ -353,12 +353,12 @@ def calculate_damage(state, attacking_side_string, attacking_move, defending_mov
     else:
         defending_move_dict = get_move(defending_move)
 
-    if attacking_side_string == constants.SELF:
-        attacking_side = state.self
+    if attacking_side_string == constants.USER:
+        attacking_side = state.user
         defending_side = state.opponent
     elif attacking_side_string == constants.OPPONENT:
         attacking_side = state.opponent
-        defending_side = state.self
+        defending_side = state.user
     else:
         raise ValueError("attacking_side_string must be one of: ['self', 'opponent']")
 
@@ -389,12 +389,12 @@ def calculate_damage(state, attacking_side_string, attacking_move, defending_mov
 
 
 def calculate_futuresight_damage(state, attacking_side_string, future_sight_user, calc_type='average'):
-    if attacking_side_string == constants.SELF:
-        attacking_side = state.self
+    if attacking_side_string == constants.USER:
+        attacking_side = state.user
         defending_side = state.opponent
     else:
         attacking_side = state.opponent
-        defending_side = state.self
+        defending_side = state.user
 
     if attacking_side.active.id == future_sight_user:
         attacker = attacking_side.active

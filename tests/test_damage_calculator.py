@@ -316,7 +316,7 @@ class TestCalculateDamage(unittest.TestCase):
         )
 
     def test_earthquake_into_levitate_does_zero_damage(self):
-        self.state.self.active.ability = 'levitate'
+        self.state.user.active.ability = 'levitate'
 
         damage_amounts = calculate_damage(
             self.state,
@@ -342,7 +342,7 @@ class TestCalculateDamage(unittest.TestCase):
         self.assertEqual(68, damage_amounts[0])
 
     def test_moldbreaker_ignores_levitate(self):
-        self.state.self.active.ability = 'levitate'
+        self.state.user.active.ability = 'levitate'
         self.state.opponent.active.ability = 'moldbreaker'
 
         damage_amounts = calculate_damage(

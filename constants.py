@@ -85,6 +85,7 @@ PP = "pp"
 CURRENT_PP = 'current_pp'
 
 SELF = "self"
+USER = "user"
 NORMAL = 'normal'
 OPPONENT = "opponent"
 ALLY_SIDE = "allySide"

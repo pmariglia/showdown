@@ -48,7 +48,7 @@ class TestStatemutator(unittest.TestCase):
     def test_switch_instruction_replaces_active(self):
         instruction = (
             constants.MUTATOR_SWITCH,
-            constants.SELF,
+            constants.USER,
             "pikachu",
             "rattata"
         )
@@ -56,7 +56,7 @@ class TestStatemutator(unittest.TestCase):
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertEqual("rattata", self.state.self.active.id)
+        self.assertEqual("rattata", self.state.user.active.id)
 
     def test_switch_instruction_replaces_active_for_opponent(self):
         instruction = (
@@ -74,7 +74,7 @@ class TestStatemutator(unittest.TestCase):
     def test_switch_instruction_places_active_into_reserve(self):
         instruction = (
             constants.MUTATOR_SWITCH,
-            constants.SELF,
+            constants.USER,
             "pikachu",
             "rattata"
         )
@@ -83,14 +83,14 @@ class TestStatemutator(unittest.TestCase):
         self.mutator.apply(list_of_instructions)
 
         try:
-            self.state.self.reserve["pikachu"]
+            self.state.user.reserve["pikachu"]
         except KeyError:
             self.fail("`pikachu` is not in `self.reserve`")
 
     def test_reverse_switch_instruction_replaces_active(self):
         instruction = (
             constants.MUTATOR_SWITCH,
-            constants.SELF,
+            constants.USER,
             "rattata",
             "pikachu"
         )
@@ -98,95 +98,95 @@ class TestStatemutator(unittest.TestCase):
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual("rattata", self.state.self.active.id)
+        self.assertEqual("rattata", self.state.user.active.id)
 
     def test_apply_volatile_status_properly_applies_status(self):
         instruction = (
             constants.MUTATOR_APPLY_VOLATILE_STATUS,
-            constants.SELF,
+            constants.USER,
             "leechseed"
         )
 
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertIn("leechseed", self.state.self.active.volatile_status)
+        self.assertIn("leechseed", self.state.user.active.volatile_status)
 
     def test_reverse_volatile_status_properly_removes_status(self):
-        self.state.self.active.volatile_status.add("leechseed")
+        self.state.user.active.volatile_status.add("leechseed")
         instruction = (
             constants.MUTATOR_APPLY_VOLATILE_STATUS,
-            constants.SELF,
+            constants.USER,
             "leechseed"
         )
 
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        self.assertNotIn("leechseed", self.state.self.active.volatile_status)
+        self.assertNotIn("leechseed", self.state.user.active.volatile_status)
 
     def test_damage_is_properly_applied(self):
         instruction = (
             constants.MUTATOR_DAMAGE,
-            constants.SELF,
+            constants.USER,
             50
         )
 
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        damage_taken = self.state.self.active.maxhp - self.state.self.active.hp
+        damage_taken = self.state.user.active.maxhp - self.state.user.active.hp
 
         self.assertEqual(50, damage_taken)
 
     def test_damage_is_properly_reversed(self):
-        self.state.self.active.hp -= 50
+        self.state.user.active.hp -= 50
         instruction = (
             constants.MUTATOR_DAMAGE,
-            constants.SELF,
+            constants.USER,
             50
         )
 
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        damage_taken = self.state.self.active.maxhp - self.state.self.active.hp
+        damage_taken = self.state.user.active.maxhp - self.state.user.active.hp
 
         self.assertEqual(0, damage_taken)
 
     def test_healing_is_properly_applied(self):
-        self.state.self.active.hp -= 50
+        self.state.user.active.hp -= 50
         instruction = (
             constants.MUTATOR_HEAL,
-            constants.SELF,
+            constants.USER,
             50
         )
 
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        damage_taken = self.state.self.active.maxhp - self.state.self.active.hp
+        damage_taken = self.state.user.active.maxhp - self.state.user.active.hp
 
         self.assertEqual(0, damage_taken)
 
     def test_healing_is_properly_reversed(self):
         instruction = (
             constants.MUTATOR_HEAL,
-            constants.SELF,
+            constants.USER,
             50
         )
 
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        damage_taken = self.state.self.active.maxhp - self.state.self.active.hp
+        damage_taken = self.state.user.active.maxhp - self.state.user.active.hp
 
         self.assertEqual(50, damage_taken)
 
     def test_boost_is_properly_applied(self):
         instruction = (
             constants.MUTATOR_BOOST,
-            constants.SELF,
+            constants.USER,
             constants.ATTACK,
             1
         )
@@ -194,13 +194,13 @@ class TestStatemutator(unittest.TestCase):
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertEqual(1, self.state.self.active.attack_boost)
+        self.assertEqual(1, self.state.user.active.attack_boost)
 
     def test_boost_is_properly_reversed(self):
-        self.state.self.active.attack_boost = 1
+        self.state.user.active.attack_boost = 1
         instruction = (
             constants.MUTATOR_BOOST,
-            constants.SELF,
+            constants.USER,
             constants.ATTACK,
             1
         )
@@ -208,15 +208,15 @@ class TestStatemutator(unittest.TestCase):
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual(0, self.state.self.active.attack_boost)
+        self.assertEqual(0, self.state.user.active.attack_boost)
 
     def test_boost_is_properly_reversed_when_a_boost_previously_existed(self):
         # the pokemon had attack_boost=2 before
         # it boosted to 4, and now it is being reversed
-        self.state.self.active.attack_boost = 4
+        self.state.user.active.attack_boost = 4
         instruction = (
             constants.MUTATOR_BOOST,
-            constants.SELF,
+            constants.USER,
             constants.ATTACK,
             2
         )
@@ -224,12 +224,12 @@ class TestStatemutator(unittest.TestCase):
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual(2, self.state.self.active.attack_boost)
+        self.assertEqual(2, self.state.user.active.attack_boost)
 
     def test_unboost_is_properly_applied(self):
         instruction = (
             constants.MUTATOR_UNBOOST,
-            constants.SELF,
+            constants.USER,
             constants.ATTACK,
             1
         )
@@ -237,13 +237,13 @@ class TestStatemutator(unittest.TestCase):
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertEqual(-1, self.state.self.active.attack_boost)
+        self.assertEqual(-1, self.state.user.active.attack_boost)
 
     def test_unboost_is_properly_reversed(self):
-        self.state.self.active.attack_boost = -1
+        self.state.user.active.attack_boost = -1
         instruction = (
             constants.MUTATOR_UNBOOST,
-            constants.SELF,
+            constants.USER,
             constants.ATTACK,
             1
         )
@@ -251,62 +251,62 @@ class TestStatemutator(unittest.TestCase):
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual(0, self.state.self.active.attack_boost)
+        self.assertEqual(0, self.state.user.active.attack_boost)
 
     def test_apply_status_properly_applies_status(self):
         instruction = (
             constants.MUTATOR_APPLY_STATUS,
-            constants.SELF,
+            constants.USER,
             constants.BURN
         )
 
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertEqual(constants.BURN, self.state.self.active.status)
+        self.assertEqual(constants.BURN, self.state.user.active.status)
 
     def test_apply_status_is_properly_reversed(self):
-        self.state.self.active.status = constants.BURN
+        self.state.user.active.status = constants.BURN
         instruction = (
             constants.MUTATOR_APPLY_STATUS,
-            constants.SELF,
+            constants.USER,
             constants.BURN
         )
 
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual(None, self.state.self.active.status)
+        self.assertEqual(None, self.state.user.active.status)
 
     def test_remove_status_properly_removes_status(self):
-        self.state.self.active.status = constants.BURN
+        self.state.user.active.status = constants.BURN
         instruction = (
             constants.MUTATOR_REMOVE_STATUS,
-            constants.SELF,
+            constants.USER,
             constants.BURN
         )
 
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertEqual(None, self.state.self.active.status)
+        self.assertEqual(None, self.state.user.active.status)
 
     def test_remove_status_is_properly_reversed(self):
         instruction = (
             constants.MUTATOR_REMOVE_STATUS,
-            constants.SELF,
+            constants.USER,
             constants.BURN
         )
 
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual(constants.BURN, self.state.self.active.status)
+        self.assertEqual(constants.BURN, self.state.user.active.status)
 
     def test_side_start_is_properly_applied(self):
         instruction = (
             constants.MUTATOR_SIDE_START,
-            constants.SELF,
+            constants.USER,
             constants.STEALTH_ROCK,
             1
         )
@@ -314,13 +314,13 @@ class TestStatemutator(unittest.TestCase):
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertEqual(1, self.state.self.side_conditions[constants.STEALTH_ROCK])
+        self.assertEqual(1, self.state.user.side_conditions[constants.STEALTH_ROCK])
 
     def test_side_start_is_properly_reversed(self):
-        self.state.self.side_conditions[constants.STEALTH_ROCK] = 1
+        self.state.user.side_conditions[constants.STEALTH_ROCK] = 1
         instruction = (
             constants.MUTATOR_SIDE_START,
-            constants.SELF,
+            constants.USER,
             constants.STEALTH_ROCK,
             1
         )
@@ -328,13 +328,13 @@ class TestStatemutator(unittest.TestCase):
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual(0, self.state.self.side_conditions[constants.STEALTH_ROCK])
+        self.assertEqual(0, self.state.user.side_conditions[constants.STEALTH_ROCK])
 
     def test_side_end_is_properly_applied(self):
-        self.state.self.side_conditions[constants.STEALTH_ROCK] = 2
+        self.state.user.side_conditions[constants.STEALTH_ROCK] = 2
         instruction = (
             constants.MUTATOR_SIDE_END,
-            constants.SELF,
+            constants.USER,
             constants.STEALTH_ROCK,
             2
         )
@@ -342,12 +342,12 @@ class TestStatemutator(unittest.TestCase):
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertEqual(0, self.state.self.side_conditions[constants.STEALTH_ROCK])
+        self.assertEqual(0, self.state.user.side_conditions[constants.STEALTH_ROCK])
 
     def test_side_end_is_properly_reversed(self):
         instruction = (
             constants.MUTATOR_SIDE_END,
-            constants.SELF,
+            constants.USER,
             constants.STEALTH_ROCK,
             2
         )
@@ -355,7 +355,7 @@ class TestStatemutator(unittest.TestCase):
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual(2, self.state.self.side_conditions[constants.STEALTH_ROCK])
+        self.assertEqual(2, self.state.user.side_conditions[constants.STEALTH_ROCK])
 
     def test_disable_move(self):
         move = {
@@ -363,10 +363,10 @@ class TestStatemutator(unittest.TestCase):
                 'disabled': False,
                 'current_pp': 16
             }
-        self.state.self.active.moves = [move]
+        self.state.user.active.moves = [move]
         instruction = (
             constants.MUTATOR_DISABLE_MOVE,
-            constants.SELF,
+            constants.USER,
             "return",
         )
 
@@ -381,10 +381,10 @@ class TestStatemutator(unittest.TestCase):
                 'disabled': True,
                 'current_pp': 16
             }
-        self.state.self.active.moves = [move]
+        self.state.user.active.moves = [move]
         instruction = (
             constants.MUTATOR_DISABLE_MOVE,
-            constants.SELF,
+            constants.USER,
             "return",
         )
 
@@ -399,10 +399,10 @@ class TestStatemutator(unittest.TestCase):
             'disabled': True,
             'current_pp': 16
         }
-        self.state.self.active.moves = [move]
+        self.state.user.active.moves = [move]
         instruction = (
             constants.MUTATOR_ENABLE_MOVE,
-            constants.SELF,
+            constants.USER,
             "return",
         )
 
@@ -417,10 +417,10 @@ class TestStatemutator(unittest.TestCase):
             'disabled': False,
             'current_pp': 16
         }
-        self.state.self.active.moves = [move]
+        self.state.user.active.moves = [move]
         instruction = (
             constants.MUTATOR_ENABLE_MOVE,
-            constants.SELF,
+            constants.USER,
             "return",
         )
 
@@ -645,220 +645,220 @@ class TestStatemutator(unittest.TestCase):
         self.assertFalse(self.state.trick_room)
 
     def test_change_types_properly_changes_types(self):
-        self.state.self.active.types = ['normal']
+        self.state.user.active.types = ['normal']
         instruction = (
             constants.MUTATOR_CHANGE_TYPE,
-            constants.SELF,
+            constants.USER,
             ['water'],
-            self.state.self.active.types
+            self.state.user.active.types
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertEqual(['water'], self.state.self.active.types)
+        self.assertEqual(['water'], self.state.user.active.types)
 
     def test_reverse_change_types(self):
-        self.state.self.active.types = ['water']
+        self.state.user.active.types = ['water']
         instruction = (
             constants.MUTATOR_CHANGE_TYPE,
-            constants.SELF,
+            constants.USER,
             ['water'],
             ['normal']
         )
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual(['normal'], self.state.self.active.types)
+        self.assertEqual(['normal'], self.state.user.active.types)
 
     def test_apply_and_reverse_change_types(self):
-        self.state.self.active.types = ['normal']
+        self.state.user.active.types = ['normal']
         instruction = (
             constants.MUTATOR_CHANGE_TYPE,
-            constants.SELF,
+            constants.USER,
             ['water', 'grass'],
-            self.state.self.active.types
+            self.state.user.active.types
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
-        if self.state.self.active.types != ['water', 'grass']:
+        if self.state.user.active.types != ['water', 'grass']:
             self.fail('types were not changed')
 
         self.mutator.reverse(list_of_instructions)
-        self.assertEqual(['normal'], self.state.self.active.types)
+        self.assertEqual(['normal'], self.state.user.active.types)
 
     def test_changing_item(self):
-        self.state.self.active.item = 'some_item'
+        self.state.user.active.item = 'some_item'
         instruction = (
             constants.MUTATOR_CHANGE_ITEM,
-            constants.SELF,
+            constants.USER,
             'some_new_item',
-            self.state.self.active.item
+            self.state.user.active.item
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
-        self.assertEqual('some_new_item', self.state.self.active.item)
+        self.assertEqual('some_new_item', self.state.user.active.item)
 
     def test_reversing_changE_item(self):
-        self.state.self.active.item = 'some_new_item'
+        self.state.user.active.item = 'some_new_item'
         instruction = (
             constants.MUTATOR_CHANGE_ITEM,
-            constants.SELF,
+            constants.USER,
             'some_new_item',
             'some_item'
         )
         list_of_instructions = [instruction]
         self.mutator.reverse(list_of_instructions)
-        self.assertEqual('some_item', self.state.self.active.item)
+        self.assertEqual('some_item', self.state.user.active.item)
 
     def test_changing_item_and_reversing_item(self):
-        self.state.self.active.item = 'some_item'
+        self.state.user.active.item = 'some_item'
         instruction = (
             constants.MUTATOR_CHANGE_ITEM,
-            constants.SELF,
+            constants.USER,
             'some_new_item',
-            self.state.self.active.item
+            self.state.user.active.item
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        if self.state.self.active.item != 'some_new_item':
+        if self.state.user.active.item != 'some_new_item':
             self.fail('item was not changed')
 
         self.mutator.reverse(list_of_instructions)
-        self.assertEqual('some_item', self.state.self.active.item)
+        self.assertEqual('some_item', self.state.user.active.item)
 
     def test_wish_starting(self):
-        self.state.self.wish = (0, 0)
+        self.state.user.wish = (0, 0)
         instruction = (
             constants.MUTATOR_WISH_START,
-            constants.SELF,
+            constants.USER,
             100,
             0
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertEqual((2, 100), self.state.self.wish)
+        self.assertEqual((2, 100), self.state.user.wish)
 
     def test_wish_starting_and_reversing(self):
-        self.state.self.wish = (0, 0)
+        self.state.user.wish = (0, 0)
         instruction = (
             constants.MUTATOR_WISH_START,
-            constants.SELF,
+            constants.USER,
             100,
             0
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        if self.state.self.wish != (2, 100):
+        if self.state.user.wish != (2, 100):
             self.fail("wish was not started")
 
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual((0, 0), self.state.self.wish)
+        self.assertEqual((0, 0), self.state.user.wish)
 
     def test_previous_wish_reverses_to_exactly_the_same(self):
-        self.state.self.wish = (0, 200)
+        self.state.user.wish = (0, 200)
         instruction = (
             constants.MUTATOR_WISH_START,
-            constants.SELF,
+            constants.USER,
             100,
             200
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        if self.state.self.wish != (2, 100):
+        if self.state.user.wish != (2, 100):
             self.fail("wish was not started")
 
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual((0, 200), self.state.self.wish)
+        self.assertEqual((0, 200), self.state.user.wish)
 
     def test_decrement_wish(self):
-        self.state.self.wish = (2, 100)
+        self.state.user.wish = (2, 100)
         instruction = (
             constants.MUTATOR_WISH_DECREMENT,
-            constants.SELF,
+            constants.USER,
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertEqual((1, 100), self.state.self.wish)
+        self.assertEqual((1, 100), self.state.user.wish)
 
     def test_decrement_wish_and_reverse_decrement_wish(self):
-        self.state.self.wish = (2, 100)
+        self.state.user.wish = (2, 100)
         instruction = (
             constants.MUTATOR_WISH_DECREMENT,
-            constants.SELF,
+            constants.USER,
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        if self.state.self.wish != (1, 100):
+        if self.state.user.wish != (1, 100):
             self.fail("wish was not decremented")
 
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual((2, 100), self.state.self.wish)
+        self.assertEqual((2, 100), self.state.user.wish)
 
     def test_change_stats_basic_case(self):
-        self.state.self.active.attack = 1
-        self.state.self.active.defense = 2
-        self.state.self.active.special_attack = 3
-        self.state.self.active.special_defense = 4
-        self.state.self.active.speed = 5
+        self.state.user.active.attack = 1
+        self.state.user.active.defense = 2
+        self.state.user.active.special_attack = 3
+        self.state.user.active.special_defense = 4
+        self.state.user.active.speed = 5
         instruction = (
             constants.MUTATOR_CHANGE_STATS,
-            constants.SELF,
+            constants.USER,
             (9, 10, 11, 12, 13, 14),
             (
-                self.state.self.active.maxhp,
-                self.state.self.active.attack,
-                self.state.self.active.defense,
-                self.state.self.active.special_attack,
-                self.state.self.active.special_defense,
-                self.state.self.active.speed,
+                self.state.user.active.maxhp,
+                self.state.user.active.attack,
+                self.state.user.active.defense,
+                self.state.user.active.special_attack,
+                self.state.user.active.special_defense,
+                self.state.user.active.speed,
             ),
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
 
-        self.assertEqual(9, self.state.self.active.maxhp)
-        self.assertEqual(10, self.state.self.active.attack)
-        self.assertEqual(11, self.state.self.active.defense)
-        self.assertEqual(12, self.state.self.active.special_attack)
-        self.assertEqual(13, self.state.self.active.special_defense)
-        self.assertEqual(14, self.state.self.active.speed)
+        self.assertEqual(9, self.state.user.active.maxhp)
+        self.assertEqual(10, self.state.user.active.attack)
+        self.assertEqual(11, self.state.user.active.defense)
+        self.assertEqual(12, self.state.user.active.special_attack)
+        self.assertEqual(13, self.state.user.active.special_defense)
+        self.assertEqual(14, self.state.user.active.speed)
 
     def test_reverse_change_stats_basic_case(self):
-        self.state.self.active.maxhp = 10
-        self.state.self.active.attack = 1
-        self.state.self.active.defense = 2
-        self.state.self.active.special_attack = 3
-        self.state.self.active.special_defense = 4
-        self.state.self.active.speed = 5
+        self.state.user.active.maxhp = 10
+        self.state.user.active.attack = 1
+        self.state.user.active.defense = 2
+        self.state.user.active.special_attack = 3
+        self.state.user.active.special_defense = 4
+        self.state.user.active.speed = 5
         instruction = (
             constants.MUTATOR_CHANGE_STATS,
-            constants.SELF,
+            constants.USER,
             (9, 10, 11, 12, 13, 14),
             (
-                self.state.self.active.maxhp,
-                self.state.self.active.attack,
-                self.state.self.active.defense,
-                self.state.self.active.special_attack,
-                self.state.self.active.special_defense,
-                self.state.self.active.speed,
+                self.state.user.active.maxhp,
+                self.state.user.active.attack,
+                self.state.user.active.defense,
+                self.state.user.active.special_attack,
+                self.state.user.active.special_defense,
+                self.state.user.active.speed,
             ),
         )
         list_of_instructions = [instruction]
         self.mutator.apply(list_of_instructions)
         self.mutator.reverse(list_of_instructions)
 
-        self.assertEqual(10, self.state.self.active.maxhp)
-        self.assertEqual(1, self.state.self.active.attack)
-        self.assertEqual(2, self.state.self.active.defense)
-        self.assertEqual(3, self.state.self.active.special_attack)
-        self.assertEqual(4, self.state.self.active.special_defense)
-        self.assertEqual(5, self.state.self.active.speed)
+        self.assertEqual(10, self.state.user.active.maxhp)
+        self.assertEqual(1, self.state.user.active.attack)
+        self.assertEqual(2, self.state.user.active.defense)
+        self.assertEqual(3, self.state.user.active.special_attack)
+        self.assertEqual(4, self.state.user.active.special_defense)
+        self.assertEqual(5, self.state.user.active.speed)

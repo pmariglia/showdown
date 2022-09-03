@@ -21,7 +21,7 @@ def get_best_switch_pokemon(mutator, instructions, attacker, attacking_side, def
     else:
         other_move = constants.DO_NOTHING_MOVE
 
-    if attacker == constants.SELF:
+    if attacker == constants.USER:
         best_switch = max(get_payoff_matrix(mutator, switches, [other_move], depth=1).items(), key=lambda x: x[1])[0][0]
     else:
         best_switch = min(get_payoff_matrix(mutator, [other_move], switches, depth=1).items(), key=lambda x: x[1])[0][1]

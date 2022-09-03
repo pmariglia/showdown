@@ -42,7 +42,7 @@ class TestGetAllOptions(unittest.TestCase):
                         False
                     )
 
-        self.state.self.active.moves = [
+        self.state.user.active.moves = [
             {constants.ID: 'tackle', constants.DISABLED: False},
             {constants.ID: 'charm', constants.DISABLED: False},
             {constants.ID: 'growl', constants.DISABLED: False},
@@ -85,7 +85,7 @@ class TestGetAllOptions(unittest.TestCase):
         self.assertEqual(expected_options, options)
 
     def test_partiallytrapped_removes_switch_options_for_bot(self):
-        self.state.self.active.volatile_status.add(constants.PARTIALLY_TRAPPED)
+        self.state.user.active.volatile_status.add(constants.PARTIALLY_TRAPPED)
         expected_options = (
             [
                 'tackle',
@@ -135,7 +135,7 @@ class TestGetAllOptions(unittest.TestCase):
         self.assertEqual(expected_options, options)
 
     def test_bot_with_shadowtag_prevents_switch_options_for_opponent(self):
-        self.state.self.active.ability = 'shadowtag'
+        self.state.user.active.ability = 'shadowtag'
         expected_options = (
             [
                 'tackle',
@@ -186,7 +186,7 @@ class TestGetAllOptions(unittest.TestCase):
 
     def test_ghost_type_can_switch_out_versus_shadow_tag(self):
         self.state.opponent.active.ability = 'shadowtag'
-        self.state.self.active.types = ['ghost']
+        self.state.user.active.types = ['ghost']
         expected_options = (
             [
                 'tackle',
@@ -217,7 +217,7 @@ class TestGetAllOptions(unittest.TestCase):
 
     def test_non_steel_can_switch_out_versus_magnetpull(self):
         self.state.opponent.active.ability = 'magnetpull'
-        self.state.self.active.types = ['ghost']
+        self.state.user.active.types = ['ghost']
         expected_options = (
             [
                 'tackle',
@@ -247,13 +247,13 @@ class TestGetAllOptions(unittest.TestCase):
         self.assertEqual(expected_options, options)
 
     def test_self_pokemon_with_phantomforce_volatilestatus_must_use_phantomforce(self):
-        self.state.self.active.moves = [
+        self.state.user.active.moves = [
             {constants.ID: 'phantomforce', constants.DISABLED: False},
             {constants.ID: 'charm', constants.DISABLED: False},
             {constants.ID: 'growl', constants.DISABLED: False},
             {constants.ID: 'stringshot', constants.DISABLED: False},
         ]
-        self.state.self.active.volatile_status = ("phantomforce",)
+        self.state.user.active.volatile_status = ("phantomforce",)
         expected_options = (
             [
                 'phantomforce'
@@ -275,7 +275,7 @@ class TestGetAllOptions(unittest.TestCase):
         self.assertEqual(expected_options, options)
 
     def test_opponent_pokemon_with_phantomforce_volatilestatus_must_use_phantomforce(self):
-        self.state.self.active.moves = [
+        self.state.user.active.moves = [
             {constants.ID: 'tackle', constants.DISABLED: False},
             {constants.ID: 'charm', constants.DISABLED: False},
             {constants.ID: 'growl', constants.DISABLED: False},
@@ -310,7 +310,7 @@ class TestGetAllOptions(unittest.TestCase):
 
     def test_shedshell_can_always_switch(self):
         self.state.opponent.active.ability = 'shadowtag'
-        self.state.self.active.item = 'shedshell'
+        self.state.user.active.item = 'shedshell'
         expected_options = (
             [
                 'tackle',
@@ -341,7 +341,7 @@ class TestGetAllOptions(unittest.TestCase):
 
     def test_bot_can_switch_as_flying_type_versus_arenatrap(self):
         self.state.opponent.active.ability = 'arenatrap'
-        self.state.self.active.types = ['flying']
+        self.state.user.active.types = ['flying']
         expected_options = (
             [
                 'tackle',
@@ -372,8 +372,8 @@ class TestGetAllOptions(unittest.TestCase):
 
     def test_airballoon_allows_holder_to_switch(self):
         self.state.opponent.active.ability = 'arenatrap'
-        self.state.self.active.types = ['normal']
-        self.state.self.active.item = 'airballoon'
+        self.state.user.active.types = ['normal']
+        self.state.user.active.item = 'airballoon'
         expected_options = (
             [
                 'tackle',
@@ -429,7 +429,7 @@ class TestGetAllOptions(unittest.TestCase):
 
     def test_steel_type_cannot_switch_out_versus_magnetpull(self):
         self.state.opponent.active.ability = 'magnetpull'
-        self.state.self.active.types = ['steel']
+        self.state.user.active.types = ['steel']
         expected_options = (
             [
                 'tackle',
@@ -466,7 +466,7 @@ class TestGetAllOptions(unittest.TestCase):
                 constants.DO_NOTHING_MOVE
             ]
         )
-        self.state.self.active.hp = 0
+        self.state.user.active.hp = 0
 
         options = self.state.get_all_options()
 
@@ -483,7 +483,7 @@ class TestGetAllOptions(unittest.TestCase):
         self.assertEqual(expected_user_options, options[0])
 
     def test_double_faint_returns_correct_decisions(self):
-        self.state.self.active.hp = 0
+        self.state.user.active.hp = 0
         self.state.opponent.active.hp = 0
         expected_options = (
             [
@@ -507,10 +507,10 @@ class TestGetAllOptions(unittest.TestCase):
         self.assertEqual(expected_options, options)
 
     def test_double_faint_with_no_reserve_pokemon_returns_correct_decisions(self):
-        self.state.self.active.hp = 0
+        self.state.user.active.hp = 0
         self.state.opponent.active.hp = 0
 
-        for mon in self.state.self.reserve.values():
+        for mon in self.state.user.reserve.values():
             mon.hp = 0
 
         expected_options = (
