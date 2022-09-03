@@ -83,7 +83,7 @@ def get_instructions_from_move_special_effect(mutator, attacking_side, attacking
     return [instructions]
 
 
-def get_state_from_volatile_status(mutator, volatile_status, attacker, affected_side, first_move, instruction):
+def get_instructions_from_volatile_statuses(mutator, volatile_status, attacker, affected_side, first_move, instruction):
     if instruction.frozen or not volatile_status:
         return [instruction]
 
@@ -342,7 +342,7 @@ def get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defe
     return instructions
 
 
-def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, instruction):
+def get_instructions_from_damage(mutator, defender, damage, accuracy, attacking_move, instruction):
     attacker = opposite_side[defender]
     attacker_side = get_side_from_state(mutator.state, attacker)
     damage_side = get_side_from_state(mutator.state, defender)
@@ -521,7 +521,7 @@ def get_instructions_from_defenders_ability_after_move(mutator, move, ability_na
         and constants.CONTACT in move[constants.FLAGS]
         and attacking_pokemon.item != "protectivepads"
     ):
-        return get_states_from_status_effects(
+        return get_instructions_from_status_effects(
             mutator,
             attacker_string,
             constants.PARALYZED,
@@ -533,7 +533,7 @@ def get_instructions_from_defenders_ability_after_move(mutator, move, ability_na
         and constants.CONTACT in move[constants.FLAGS]
         and attacking_pokemon.item != "protectivepads"
     ):
-        return get_states_from_status_effects(
+        return get_instructions_from_status_effects(
             mutator,
             attacker_string,
             constants.BURN,
@@ -692,7 +692,7 @@ def get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, 
     return [instruction]
 
 
-def get_states_from_status_effects(mutator, defender, status, accuracy, instruction):
+def get_instructions_from_status_effects(mutator, defender, status, accuracy, instruction):
     """Returns the possible states from status effects"""
     if instruction.frozen or status is None:
         return [instruction]
@@ -750,7 +750,7 @@ def get_states_from_status_effects(mutator, defender, status, accuracy, instruct
     return instructions
 
 
-def get_states_from_boosts(mutator, side_string, boosts, accuracy, instruction):
+def get_instructions_from_boosts(mutator, side_string, boosts, accuracy, instruction):
     if instruction.frozen or not boosts:
         return [instruction]
 
@@ -813,7 +813,7 @@ def get_states_from_boosts(mutator, side_string, boosts, accuracy, instruction):
     return instructions
 
 
-def get_states_from_flinching_moves(defender, accuracy, first_move, instruction):
+def get_instructions_from_flinching_moves(defender, accuracy, first_move, instruction):
     if instruction.frozen or not first_move:
         return [instruction]
 
@@ -843,7 +843,7 @@ def get_states_from_flinching_moves(defender, accuracy, first_move, instruction)
     return instructions
 
 
-def get_state_from_attacker_recovery(mutator, attacker_string, move, instruction):
+def get_instructions_from_attacker_recovery(mutator, attacker_string, move, instruction):
     if instruction.frozen:
         return [instruction]
 
@@ -1163,7 +1163,7 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
     return [instruction]
 
 
-def get_state_from_drag(mutator, attacking_side_string, move_target, instruction):
+def get_instructions_from_drag(mutator, attacking_side_string, move_target, instruction):
     if instruction.frozen:
         return [instruction]
 

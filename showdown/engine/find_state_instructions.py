@@ -349,7 +349,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
             for dmg in damage_amounts:
                 these_instructions = copy(instruction_set)
                 these_instructions.update_percentage(1 / amount_of_damage_rolls)
-                temp_instructions += instruction_generator.get_states_from_damage(mutator, defender, dmg, move_accuracy, attacking_move, these_instructions)
+                temp_instructions += instruction_generator.get_instructions_from_damage(mutator, defender, dmg, move_accuracy, attacking_move, these_instructions)
         all_instructions = temp_instructions
 
     if defending_pokemon.ability in constants.ABILITY_AFTER_MOVE:
@@ -373,19 +373,19 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     if volatile_status is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += instruction_generator.get_state_from_volatile_status(mutator, volatile_status, attacker, move_target, first_move, instruction_set)
+            temp_instructions += instruction_generator.get_instructions_from_volatile_statuses(mutator, volatile_status, attacker, move_target, first_move, instruction_set)
         all_instructions = temp_instructions
 
     if move_status_effect is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += instruction_generator.get_states_from_status_effects(mutator, move_status_target, move_status_effect, move_status_accuracy, instruction_set)
+            temp_instructions += instruction_generator.get_instructions_from_status_effects(mutator, move_status_target, move_status_effect, move_status_accuracy, instruction_set)
         all_instructions = temp_instructions
 
     if boosts is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += instruction_generator.get_states_from_boosts(mutator, boosts_target, boosts, boosts_chance, instruction_set)
+            temp_instructions += instruction_generator.get_instructions_from_boosts(mutator, boosts_target, boosts, boosts_chance, instruction_set)
         all_instructions = temp_instructions
 
     if attacking_move[constants.ID] in constants.BOOST_RESET_MOVES:
@@ -397,19 +397,19 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     if attacking_move.get(constants.HEAL) is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += instruction_generator.get_state_from_attacker_recovery(mutator, attacker, attacking_move, instruction_set)
+            temp_instructions += instruction_generator.get_instructions_from_attacker_recovery(mutator, attacker, attacking_move, instruction_set)
         all_instructions = temp_instructions
 
     if flinch_accuracy is not None:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += instruction_generator.get_states_from_flinching_moves(defender, flinch_accuracy, first_move, instruction_set)
+            temp_instructions += instruction_generator.get_instructions_from_flinching_moves(defender, flinch_accuracy, first_move, instruction_set)
         all_instructions = temp_instructions
 
     if constants.DRAG in attacking_move[constants.FLAGS]:
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += instruction_generator.get_state_from_drag(mutator, attacker, move_target, instruction_set)
+            temp_instructions += instruction_generator.get_instructions_from_drag(mutator, attacker, move_target, instruction_set)
         all_instructions = temp_instructions
 
     if switch_out_move_triggered(attacking_move, damage_amounts):
