@@ -420,14 +420,16 @@ def get_instructions_from_damage(mutator, defender, damage, accuracy, attacking_
             )
 
             if attacker_side.active.ability == "beastboost" and actual_damage == damage_side.active.hp:
-                instruction_additions.append(
-                    (
-                        constants.MUTATOR_BOOST,
-                        attacker,
-                        _get_beastboost_stat(attacker_side.active),
-                        1
+                beastboost_stat = _get_beastboost_stat(attacker_side.active)
+                if get_boost_from_boost_string(attacker_side, beastboost_stat) < 6:
+                    instruction_additions.append(
+                        (
+                            constants.MUTATOR_BOOST,
+                            attacker,
+                            beastboost_stat,
+                            1
+                        )
                     )
-                )
 
         instruction.update_percentage(percent_hit)
 

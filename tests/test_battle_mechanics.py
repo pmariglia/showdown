@@ -6619,6 +6619,30 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_beastboost_does_not_boost_beyond_6(self):
+        bot_move = "splash"
+        opponent_move = "tackle"
+        self.state.user.active.hp = 1
+        self.state.opponent.active.attack = 101  # highest stat
+        self.state.opponent.active.defense = 100
+        self.state.opponent.active.special_attack = 100
+        self.state.opponent.active.special_defense = 100
+        self.state.opponent.active.speed = 100
+        self.state.opponent.active.attack_boost = 6
+        self.state.opponent.active.ability = "beastboost"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.USER, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_beastboost_will_boost_speed(self):
         bot_move = "splash"
         opponent_move = "tackle"
