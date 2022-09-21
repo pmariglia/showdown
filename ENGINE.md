@@ -126,8 +126,8 @@ from showdown.engine import StateMutator
 
 state = State(...)  # initialize your state
 
-state.self.active.hp = 100
-print(state.self.active.hp)  # prints '100'
+state.user.active.hp = 100
+print(state.user.active.hp)  # prints '100'
 
 mutator = StateMutator(state)
 
@@ -136,10 +136,10 @@ instructions = [
 ]
 
 mutator.apply(instructions)
-print(state.self.active.hp)  # prints '99'
+print(state.user.active.hp)  # prints '99'
 
 mutator.reverse(instructions)
-print(state.self.active.hp)  # prints '100'
+print(state.user.active.hp)  # prints '100'
 ```
 
 ### Generating Instructions from a Pair of Moves

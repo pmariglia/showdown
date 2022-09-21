@@ -15,8 +15,8 @@ logger = logging.getLogger(__name__)
 
 
 opposite_side = {
-    constants.SELF: constants.OPPONENT,
-    constants.OPPONENT: constants.SELF
+    constants.USER: constants.OPPONENT,
+    constants.OPPONENT: constants.USER
 }
 
 
@@ -83,7 +83,7 @@ def get_instructions_from_move_special_effect(mutator, attacking_side, attacking
     return [instructions]
 
 
-def get_state_from_volatile_status(mutator, volatile_status, attacker, affected_side, first_move, instruction):
+def get_instructions_from_volatile_statuses(mutator, volatile_status, attacker, affected_side, first_move, instruction):
     if instruction.frozen or not volatile_status:
         return [instruction]
 
@@ -265,7 +265,7 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
     for i in instruction_additions:
         instructions.add_instruction(i)
 
-    return [instructions]
+    return instructions
 
 
 def get_instructions_from_flinched(mutator, attacker, instruction):
@@ -342,7 +342,7 @@ def get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defe
     return instructions
 
 
-def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, instruction):
+def get_instructions_from_damage(mutator, defender, damage, accuracy, attacking_move, instruction):
     attacker = opposite_side[defender]
     attacker_side = get_side_from_state(mutator.state, attacker)
     damage_side = get_side_from_state(mutator.state, defender)
@@ -420,14 +420,16 @@ def get_states_from_damage(mutator, defender, damage, accuracy, attacking_move, 
             )
 
             if attacker_side.active.ability == "beastboost" and actual_damage == damage_side.active.hp:
-                instruction_additions.append(
-                    (
-                        constants.MUTATOR_BOOST,
-                        attacker,
-                        _get_beastboost_stat(attacker_side.active),
-                        1
+                beastboost_stat = _get_beastboost_stat(attacker_side.active)
+                if get_boost_from_boost_string(attacker_side, beastboost_stat) < 6:
+                    instruction_additions.append(
+                        (
+                            constants.MUTATOR_BOOST,
+                            attacker,
+                            beastboost_stat,
+                            1
+                        )
                     )
-                )
 
         instruction.update_percentage(percent_hit)
 
@@ -521,7 +523,7 @@ def get_instructions_from_defenders_ability_after_move(mutator, move, ability_na
         and constants.CONTACT in move[constants.FLAGS]
         and attacking_pokemon.item != "protectivepads"
     ):
-        return get_states_from_status_effects(
+        return get_instructions_from_status_effects(
             mutator,
             attacker_string,
             constants.PARALYZED,
@@ -533,7 +535,7 @@ def get_instructions_from_defenders_ability_after_move(mutator, move, ability_na
         and constants.CONTACT in move[constants.FLAGS]
         and attacking_pokemon.item != "protectivepads"
     ):
-        return get_states_from_status_effects(
+        return get_instructions_from_status_effects(
             mutator,
             attacker_string,
             constants.BURN,
@@ -659,7 +661,7 @@ def get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, 
                 )
     elif move[constants.ID] == constants.COURT_CHANGE:
         sides = [
-            (constants.SELF, mutator.state.self),
+            (constants.USER, mutator.state.user),
             (constants.OPPONENT, mutator.state.opponent)
         ]
         for side_name, side_object in sides:
@@ -692,7 +694,7 @@ def get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, 
     return [instruction]
 
 
-def get_states_from_status_effects(mutator, defender, status, accuracy, instruction):
+def get_instructions_from_status_effects(mutator, defender, status, accuracy, instruction):
     """Returns the possible states from status effects"""
     if instruction.frozen or status is None:
         return [instruction]
@@ -750,7 +752,7 @@ def get_states_from_status_effects(mutator, defender, status, accuracy, instruct
     return instructions
 
 
-def get_states_from_boosts(mutator, side_string, boosts, accuracy, instruction):
+def get_instructions_from_boosts(mutator, side_string, boosts, accuracy, instruction):
     if instruction.frozen or not boosts:
         return [instruction]
 
@@ -813,7 +815,7 @@ def get_states_from_boosts(mutator, side_string, boosts, accuracy, instruction):
     return instructions
 
 
-def get_states_from_flinching_moves(defender, accuracy, first_move, instruction):
+def get_instructions_from_flinching_moves(defender, accuracy, first_move, instruction):
     if instruction.frozen or not first_move:
         return [instruction]
 
@@ -843,7 +845,7 @@ def get_states_from_flinching_moves(defender, accuracy, first_move, instruction)
     return instructions
 
 
-def get_state_from_attacker_recovery(mutator, attacker_string, move, instruction):
+def get_instructions_from_attacker_recovery(mutator, attacker_string, move, instruction):
     if instruction.frozen:
         return [instruction]
 
@@ -888,9 +890,9 @@ def get_state_from_attacker_recovery(mutator, attacker_string, move, instruction
 def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, bot_moves_first):
     # determine which goes first
     if bot_moves_first:
-        sides = [constants.SELF, constants.OPPONENT]
+        sides = [constants.USER, constants.OPPONENT]
     else:
-        sides = [constants.OPPONENT, constants.SELF]
+        sides = [constants.OPPONENT, constants.USER]
 
     mutator.apply(instruction.instructions)
 
@@ -1130,7 +1132,7 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
         side = get_side_from_state(mutator.state, attacker)
         pkmn = side.active
 
-        if attacker == constants.SELF:
+        if attacker == constants.USER:
             move = bot_move
             other_move = opponent_move
         else:
@@ -1163,7 +1165,7 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
     return [instruction]
 
 
-def get_state_from_drag(mutator, attacking_side_string, move_target, instruction):
+def get_instructions_from_drag(mutator, attacking_side_string, move_target, instruction):
     if instruction.frozen:
         return [instruction]
 
@@ -1186,7 +1188,7 @@ def get_state_from_drag(mutator, attacking_side_string, move_target, instruction
         return [instruction]
 
     for pkmn_name in alive_reserves:
-        new_instruction = get_instructions_from_switch(mutator, affected_side_string, pkmn_name, copy(instruction))[0]
+        new_instruction = get_instructions_from_switch(mutator, affected_side_string, pkmn_name, copy(instruction))
         new_instruction.update_percentage(1 / num_reserve_alive)
         new_instructions.append(new_instruction)
 
@@ -1278,8 +1280,8 @@ def remove_volatile_status_and_boosts_instructions(side, side_string):
 
 
 def get_side_from_state(state, side_string):
-    if side_string == constants.SELF:
-        return state.self
+    if side_string == constants.USER:
+        return state.user
     elif side_string == constants.OPPONENT:
         return state.opponent
     else:

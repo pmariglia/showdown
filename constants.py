@@ -85,6 +85,7 @@ PP = "pp"
 CURRENT_PP = 'current_pp'
 
 SELF = "self"
+USER = "user"
 NORMAL = 'normal'
 OPPONENT = "opponent"
 ALLY_SIDE = "allySide"
@@ -103,7 +104,6 @@ MOVE_TARGET_OPPONENT = [NORMAL, OPPONENT, ALL_ADJACENT, ALL_ADJACENT_FOES, ALL, 
 
 DO_NOTHING_MOVE = 'splash'
 
-MOVES = "moves"
 ID = "id"
 BASESTATS = "baseStats"
 LEVEL = "level"
@@ -112,7 +112,7 @@ STATUS = "status"
 TYPES = "types"
 TYPE = "type"
 BASE_POWER = "basePower"
-WEIGHT = "weight"
+WEIGHT = "weightkg"
 NATURE = "nature"
 EVS = "evs"
 
@@ -171,7 +171,6 @@ EVASION_BOOST = "evasion_boost"
 
 ABILITY = 'ability'
 REQUEST_DICT_ABILITY = ABILITY
-MOST_LIKELY_ABILITY = 'most_likely_ability'
 
 MAX_BOOSTS = 6
 

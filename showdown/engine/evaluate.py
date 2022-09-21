@@ -105,12 +105,12 @@ def evaluate(state):
     score = 0
 
     number_of_opponent_reserve_revealed = len(state.opponent.reserve) + 1
-    bot_alive_reserve_count = len([p.hp for p in state.self.reserve.values() if p.hp > 0])
+    bot_alive_reserve_count = len([p.hp for p in state.user.reserve.values() if p.hp > 0])
     opponent_alive_reserves_count = len([p for p in state.opponent.reserve.values() if p.hp > 0]) + (6-number_of_opponent_reserve_revealed)
 
     # evaluate the bot's pokemon
-    score += evaluate_pokemon(state.self.active)
-    for pkmn in state.self.reserve.values():
+    score += evaluate_pokemon(state.user.active)
+    for pkmn in state.user.reserve.values():
         this_pkmn_score = evaluate_pokemon(pkmn)
         score += this_pkmn_score
 
@@ -121,7 +121,7 @@ def evaluate(state):
         score -= this_pkmn_score
 
     # evaluate the side-conditions for the bot
-    for condition, count in state.self.side_conditions.items():
+    for condition, count in state.user.side_conditions.items():
         if condition in Scoring.STATIC_SCORED_SIDE_CONDITIONS:
             score += count * Scoring.STATIC_SCORED_SIDE_CONDITIONS[condition]
         elif condition in Scoring.POKEMON_COUNT_SCORED_SIDE_CONDITIONS:
@@ -135,8 +135,8 @@ def evaluate(state):
             score -= count * Scoring.POKEMON_COUNT_SCORED_SIDE_CONDITIONS[condition] * opponent_alive_reserves_count
 
     try:
-        matchup_score = Scoring.MATCHUP_BONUS * effectiveness[state.self.active.id][state.opponent.active.id]
-        matchup_score -= Scoring.MATCHUP_BONUS * effectiveness[state.opponent.active.id][state.self.active.id]
+        matchup_score = Scoring.MATCHUP_BONUS * effectiveness[state.user.active.id][state.opponent.active.id]
+        matchup_score -= Scoring.MATCHUP_BONUS * effectiveness[state.opponent.active.id][state.user.active.id]
         score += matchup_score
     except KeyError:
         pass

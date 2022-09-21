@@ -23,29 +23,29 @@ boost_multiplier_lookup = {
 
 
 class State(object):
-    __slots__ = ('self', 'opponent', 'weather', 'field', 'trick_room')
+    __slots__ = ('user', 'opponent', 'weather', 'field', 'trick_room')
 
     def __init__(self, user, opponent, weather, field, trick_room):
-        self.self = user
+        self.user = user
         self.opponent = opponent
         self.weather = weather
         self.field = field
         self.trick_room = trick_room
 
     def get_self_options(self, force_switch):
-        forced_move = self.self.active.forced_move()
+        forced_move = self.user.active.forced_move()
         if forced_move:
             return [forced_move]
 
         if force_switch:
             possible_moves = []
         else:
-            possible_moves = [m[constants.ID] for m in self.self.active.moves if not m[constants.DISABLED]]
+            possible_moves = [m[constants.ID] for m in self.user.active.moves if not m[constants.DISABLED]]
 
-        if self.self.trapped(self.opponent.active):
+        if self.user.trapped(self.opponent.active):
             possible_switches = []
         else:
-            possible_switches = self.self.get_switches()
+            possible_switches = self.user.get_switches()
 
         return possible_moves + possible_switches
 
@@ -59,7 +59,7 @@ class State(object):
         else:
             possible_moves = [m[constants.ID] for m in self.opponent.active.moves if not m[constants.DISABLED]]
 
-        if self.opponent.trapped(self.self.active):
+        if self.opponent.trapped(self.user.active):
             possible_switches = []
         else:
             possible_switches = self.opponent.get_switches()
@@ -67,7 +67,7 @@ class State(object):
         return possible_moves + possible_switches
 
     def get_all_options(self):
-        force_switch = self.self.active.hp <= 0
+        force_switch = self.user.active.hp <= 0
         wait = self.opponent.active.hp <= 0
 
         # double faint or team preview
@@ -100,7 +100,7 @@ class State(object):
         #   -1 if the opponent has won
         #    False if the battle is not over
 
-        if self.self.active.hp <= 0 and not any(pkmn.hp for pkmn in self.self.reserve.values()):
+        if self.user.active.hp <= 0 and not any(pkmn.hp for pkmn in self.user.reserve.values()):
             return -1
         elif self.opponent.active.hp <= 0 and not any(pkmn.hp for pkmn in self.opponent.reserve.values()) and len(self.opponent.reserve) == 5:
             return 1
@@ -110,7 +110,7 @@ class State(object):
     @classmethod
     def from_dict(cls, state_dict):
         return State(
-            Side.from_dict(state_dict[constants.SELF]),
+            Side.from_dict(state_dict[constants.USER]),
             Side.from_dict(state_dict[constants.OPPONENT]),
             state_dict[constants.WEATHER],
             state_dict[constants.FIELD],
@@ -120,7 +120,7 @@ class State(object):
     def __repr__(self):
         return str(
             {
-                constants.SELF: self.self,
+                constants.USER: self.user,
                 constants.OPPONENT: self.opponent,
                 constants.WEATHER: self.weather,
                 constants.FIELD: self.field,

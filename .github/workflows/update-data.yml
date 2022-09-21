@@ -1,0 +1,38 @@
+name: Update data files from smogon/pokemon-showdown
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 0 * * *
+jobs:
+  Update-data-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: master
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install Requirements
+        run: |
+          python -m pip install requests
+      - name: Run update script
+        run: |
+          python ./data/scripts/update_pokedex.py
+      - name: Overwrite pokedex.json
+        run: |
+          mv ./pokedex_new.json ./data/pokedex.json
+      - name: Create or update pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: pokedex update from smogon/pokemon-showdown
+          branch: create-pull-request/update-data
+          delete-branch: true
+          title: Automatic pokedex update from smogon/pokemon-showdown
+          body: |
+            Automated pokedex update
+          assignees: ${{ github.repository_owner }}
+          reviewers: ${{ github.repository_owner }}
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>

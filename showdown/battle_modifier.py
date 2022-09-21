@@ -886,7 +886,7 @@ def check_choicescarf(battle, msg_lines):
             battle_copy.opponent.active.set_spread('jolly', '0,0,0,0,0,252')  # assume as fast as possible
     state = battle_copy.create_state()
     opponent_effective_speed = get_effective_speed(state, state.opponent)
-    bot_effective_speed = get_effective_speed(state, state.self)
+    bot_effective_speed = get_effective_speed(state, state.user)
 
     if battle.trick_room:
         has_scarf = opponent_effective_speed > bot_effective_speed
