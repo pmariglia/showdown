@@ -1,56 +1,57 @@
-Sharpedo @ Life Orb  
-Ability: Speed Boost  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Modest Nature  
-IVs: 0 Atk  
-- Protect  
-- Ice Beam  
-- Dark Pulse  
-- Hydro Pump  
-
-Ambipom @ Life Orb  
-Ability: Technician  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Fake Out  
-- Low Kick  
-- U-turn  
-- Knock Off  
-
-Virizion @ Choice Scarf  
-Ability: Justified  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Modest Nature  
-IVs: 1 Atk  
-- Focus Blast  
-- Giga Drain  
-- Hidden Power [Dark]  
-- Leaf Storm  
-
-Flygon @ Steelium Z  
+Cryogonal @ Leftovers  
 Ability: Levitate  
-EVs: 252 HP / 4 Atk / 252 Def  
-Impish Nature  
-- Roost  
-- Iron Tail  
-- Earthquake  
+EVs: 252 HP / 4 SpA / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Freeze-Dry  
+- Recover  
+- Toxic  
 - Defog  
 
-Lopunny @ Lopunnite  
-Ability: Limber  
+Jirachi @ Leftovers  
+Ability: Serene Grace  
+EVs: 252 HP / 4 SpA / 252 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Stealth Rock  
+- Thunder  
+- Wish  
+- Moonblast  
+
+Weavile @ Choice Band  
+Ability: Pressure  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Retaliate  
-- Close Combat  
-- Return  
-- U-turn  
-
-Rillaboom @ Adrenaline Orb  
-Ability: Grassy Surge  
-EVs: 252 Atk / 4 Def / 252 Spe  
-Adamant Nature  
-- Grassy Glide  
 - Knock Off  
-- Swords Dance  
-- High Horsepower  
+- Ice Shard  
+- Triple Axel  
+- Low Kick  
+
+Kartana @ Choice Scarf  
+Ability: Beast Boost  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Knock Off  
+- Leaf Blade  
+- Smart Strike  
+- Sacred Sword  
+
+Ninetales @ Heavy-Duty Boots  
+Ability: Drought  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Solar Beam  
+- Fire Blast  
+- Energy Ball  
+- Foul Play  
+
+Dragapult @ Leftovers  
+Ability: Clear Body  
+EVs: 252 Atk / 4 SpA / 252 Spe  
+Hasty Nature  
+- Dragon Dance  
+- Dragon Darts  
+- Fire Blast  
+- Thunderbolt  
 
