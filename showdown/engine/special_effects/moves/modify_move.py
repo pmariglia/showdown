@@ -1,5 +1,13 @@
 import constants
 from data import pokedex
+from ...damage_calculator import is_super_effective
+
+
+def collisioncourse(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    if is_super_effective(attacking_move[constants.TYPE], defending_pokemon.types):
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.3
+    return attacking_move
 
 
 def suckerpunch(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
@@ -596,6 +604,7 @@ move_lookup = {
     'futuresight': futuresight,
     'knockoff': knockoff,
     'barbbarrage': barbbarrage,
+    'collisioncourse': collisioncourse,
 }
 
 

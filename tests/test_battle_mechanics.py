@@ -8823,6 +8823,23 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_collisioncourse_supereffective_boost(self):
+        bot_move = "collisioncourse"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 162),  # without 1.3x from move this would do 125 dmg
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_weaknesspolicy_activates_on_super_effective_damage(self):
         bot_move = "machpunch"
         opponent_move = "splash"
