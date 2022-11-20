@@ -11977,6 +11977,25 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_barbbarrage_double_damage_versus_poisoned(self):
+        bot_move = "barbbarrage"
+        opponent_move = "splash"
+        self.state.opponent.active.status = constants.POISON
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 149),  # un-boosted damage would be 75
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),  # end-of-turn poison damage
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_willowisp_on_flashfire(self):
         bot_move = "willowisp"
         opponent_move = "splash"

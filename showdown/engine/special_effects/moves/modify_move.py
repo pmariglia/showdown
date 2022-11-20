@@ -39,6 +39,13 @@ def hex(attacking_move, defending_move, attacking_pokemon, defending_pokemon, fi
     return attacking_move
 
 
+def barbbarrage(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    if defending_pokemon.status in [constants.POISON, constants.TOXIC]:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 2
+    return attacking_move
+
+
 def foulplay(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.BASE_POWER] *= defending_pokemon.calculate_boosted_stats()[constants.ATTACK] / \
@@ -587,7 +594,8 @@ move_lookup = {
     'acrobatics': acrobatics,
     'technoblast': technoblast,
     'futuresight': futuresight,
-    'knockoff': knockoff
+    'knockoff': knockoff,
+    'barbbarrage': barbbarrage,
 }
 
 
