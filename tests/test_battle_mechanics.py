@@ -8857,6 +8857,40 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_fillet_away_boosts_if_health_allows(self):
+        bot_move = "filletaway"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 2),
+                    (constants.MUTATOR_HEAL, constants.USER, -104)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_fillet_away_fails_if_health_is_below_half(self):
+        bot_move = "filletaway"
+        opponent_move = "splash"
+        self.state.user.active.hp = int(self.state.user.active.maxhp / 2) - 1
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_weaknesspolicy_activates_on_super_effective_damage(self):
         bot_move = "machpunch"
         opponent_move = "splash"

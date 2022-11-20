@@ -259,6 +259,7 @@ moves_dict["partingshot"]["boosts"] = {
 }
 
 del moves_dict["clangoroussoul"]["boosts"]
+del moves_dict["filletaway"]["boosts"]
 
 moves_dict["clangingscales"]["self"] = moves_dict["clangingscales"]["selfBoost"]
 del moves_dict["clangingscales"]["selfBoost"]

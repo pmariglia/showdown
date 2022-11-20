@@ -322,6 +322,19 @@ def clangoroussoul(attacking_move, defending_move, attacking_pokemon, defending_
     return attacking_move
 
 
+def filletaway(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    if attacking_pokemon.hp > int(attacking_pokemon.maxhp / 2):
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.HEAL_TARGET] = constants.SELF
+        attacking_move[constants.HEAL] = [-1, 2]
+        attacking_move[constants.BOOSTS] = {
+            constants.ATTACK: 2,
+            constants.SPECIAL_ATTACK: 2,
+            constants.SPEED: 2
+          }
+    return attacking_move
+
+
 def bodypress(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     boosted_stats = attacking_pokemon.calculate_boosted_stats()
@@ -606,6 +619,7 @@ move_lookup = {
     'barbbarrage': barbbarrage,
     'collisioncourse': collisioncourse,
     'electrodrift': collisioncourse,
+    'filletaway': filletaway,
 }
 
 

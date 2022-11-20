@@ -4260,11 +4260,6 @@
     "filletaway": {
         "accuracy": true,
         "basePower": 0,
-        "boosts": {
-            "attack": 2,
-            "special-attack": 2,
-            "speed": 2
-        },
         "category": "status",
         "flags": {
             "snatch": 1
