@@ -11953,6 +11953,30 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_axekick_causes_crash_damage(self):
+        bot_move = "axekick"
+        opponent_move = "splash"
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.9,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.09999999999999998,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.USER, self.state.user.active.maxhp / 2),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_willowisp_on_flashfire(self):
         bot_move = "willowisp"
         opponent_move = "splash"

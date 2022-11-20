@@ -722,6 +722,10 @@
         "accuracy": 90,
         "basePower": 120,
         "category": "physical",
+        "crash": [
+            1,
+            2
+        ],
         "flags": {
             "contact": 1,
             "mirror": 1,
