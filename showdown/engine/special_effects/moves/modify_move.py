@@ -497,6 +497,13 @@ def dualwingbeat(attacking_move, defending_move, attacking_pokemon, defending_po
     return attacking_move
 
 
+def flowertrick(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.BASE_POWER] *= 1.5
+
+    return attacking_move
+
+
 def wickedblow(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.BASE_POWER] *= 1.5
@@ -544,6 +551,7 @@ def futuresight(attacking_move, defending_move, attacking_pokemon, defending_pok
 
 move_lookup = {
     'weatherball': weatherball,
+    'flowertrick': flowertrick,
     'surgingstrikes': surgingstrikes,
     'wickedblow': wickedblow,
     'dualwingbeat': dualwingbeat,
