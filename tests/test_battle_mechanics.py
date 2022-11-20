@@ -2049,6 +2049,39 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_chillyreception_allows_switch(self):
+        bot_move = "chillyreception"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_WEATHER_START, constants.SNOW, self.state.weather),
+                    (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'xatu'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_snowscape(self):
+        bot_move = "snowscape"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_WEATHER_START, constants.SNOW, self.state.weather),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_parting_shot_allows_switch(self):
         self.state.user.active.types = ['ground']
         bot_move = "tackle"

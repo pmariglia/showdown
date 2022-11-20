@@ -49,6 +49,14 @@ def weather_move(mutator, weather_move_name):
         ]
 
 
+def chillyreception(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
+    return weather_move(mutator, constants.SNOW)
+
+
+def snowscape(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
+    return weather_move(mutator, constants.SNOW)
+
+
 def raindance(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
     return weather_move(mutator, constants.RAIN)
 

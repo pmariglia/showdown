@@ -229,6 +229,7 @@ RAIN = "raindance"
 SUN = "sunnyday"
 SAND = "sandstorm"
 HAIL = "hail"
+SNOW = "snow"
 DESOLATE_LAND = "desolateland"
 HEAVY_RAIN = "primordialsea"
 
@@ -320,7 +321,7 @@ MISTY_TERRAIN = "mistyterrain"
 PSYCHIC_TERRAIN = "psychicterrain"
 
 # switch-out moves
-SWITCH_OUT_MOVES = {"uturn", "voltswitch", "partingshot", "teleport", 'flipturn'}
+SWITCH_OUT_MOVES = {"uturn", "voltswitch", "partingshot", "teleport", 'flipturn', 'chillyreception'}
 
 # volatile statuses
 FLINCH = "flinch"
