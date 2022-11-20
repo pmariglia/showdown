@@ -9,7 +9,7 @@ from showdown.engine import damage_calculator
 
 logger = logging.getLogger(__name__)
 
-CURRENT_GEN = 8
+CURRENT_GEN = 9
 PWD = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -97,6 +97,11 @@ def apply_gen_7_mods():
     apply_pokedex_mods(7)
 
 
+def apply_gen_8_mods():
+    # apply_move_mods(7)
+    apply_pokedex_mods(8)
+
+
 def undo_physical_special_split():
     for move_name, move_data in all_move_json.items():
         if move_data[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
@@ -117,6 +122,8 @@ def apply_mods(game_mode):
         apply_gen_6_mods()
     elif "gen7" in game_mode:
         apply_gen_7_mods()
+    elif "gen8" in game_mode:
+        apply_gen_8_mods()
 
     if str(CURRENT_GEN) not in game_mode[:4]:
         set_random_battle_sets(7)  # use random battle sets from gen7 if we are not in gen8
