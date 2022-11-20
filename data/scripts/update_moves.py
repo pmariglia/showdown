@@ -23,10 +23,9 @@ Version 4.2.3
 """
 
 
-# Fetch last gen8 version
-# gen9 will be handled separately
+# Fetch latest version
 data = requests.get(
-    "https://raw.githubusercontent.com/smogon/pokemon-showdown/8225c4fad1abb0ded5c78ec4852f956fb2bb0c60/data/moves.ts"
+    "https://raw.githubusercontent.com/smogon/pokemon-showdown/master/data/moves.ts"
 ).text
 
 # write .ts temp file

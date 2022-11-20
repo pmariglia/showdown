@@ -98,7 +98,7 @@ def apply_gen_7_mods():
 
 
 def apply_gen_8_mods():
-    # apply_move_mods(7)
+    apply_move_mods(8)
     apply_pokedex_mods(8)
 
 
