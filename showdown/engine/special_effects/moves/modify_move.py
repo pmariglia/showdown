@@ -605,6 +605,7 @@ move_lookup = {
     'knockoff': knockoff,
     'barbbarrage': barbbarrage,
     'collisioncourse': collisioncourse,
+    'electrodrift': collisioncourse,
 }
 
 
