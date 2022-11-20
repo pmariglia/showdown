@@ -4807,6 +4807,29 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_ceaselessedge_creates_spikes(self):
+        bot_move = "ceaselessedge"
+        opponent_move = "splash"
+        self.state.opponent.side_conditions[constants.SPIKES] = 2
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.9,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 20),
+                    (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.SPIKES, 1)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.09999999999999998,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_spikes_goes_to_3_layers(self):
         bot_move = "spikes"
         opponent_move = "splash"

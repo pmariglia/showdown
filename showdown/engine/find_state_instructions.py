@@ -282,6 +282,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     # move is a damaging move
     if attacking_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
+        side_condition = attacking_move.get(constants.SIDE_CONDITIONS)
         damage_amounts = _calculate_damage(attacking_pokemon, defending_pokemon, attacking_move, conditions=conditions, calc_type=config.damage_calc_type)
 
         attacking_move_secondary = attacking_move[constants.SECONDARY]
