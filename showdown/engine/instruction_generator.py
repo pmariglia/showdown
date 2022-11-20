@@ -359,7 +359,7 @@ def get_instructions_from_damage(mutator, defender, damage, accuracy, attacking_
 
     mutator.apply(instruction.instructions)
 
-    if accuracy is True:
+    if accuracy is True or "glaiverush" in damage_side.active.volatile_status:
         accuracy = 100
     else:
         accuracy = min(100, accuracy * accuracy_multiplier_lookup[attacker_side.active.accuracy_boost] / accuracy_multiplier_lookup[damage_side.active.evasion_boost])

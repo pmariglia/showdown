@@ -3196,6 +3196,69 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_glaiverush_adds_volatile(self):
+        bot_move = "glaiverush"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ["normal"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, "glaiverush"),
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 74),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_having_glaiverush_volatile_doubles_damage(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.opponent.active.volatile_status = {"glaiverush"}
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 51),  # typical damage is 25
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_having_glaiverush_volatile_makes_move_not_able_to_miss_against_you(self):
+        bot_move = "iciclecrash"
+        opponent_move = "splash"
+        self.state.opponent.active.volatile_status = {"glaiverush"}
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+
+        # No chance to miss - only to flinch
+        expected_instructions = [
+            TransposeInstruction(
+                0.3,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 107),  # typical damage is 53
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, constants.FLINCH),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.OPPONENT, constants.FLINCH),
+                ],
+                True
+            ),
+            TransposeInstruction(
+                0.7,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 107),  # typical damage is 53
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_tackle_into_ironbarbs_causes_recoil(self):
         bot_move = "splash"
         opponent_move = "tackle"

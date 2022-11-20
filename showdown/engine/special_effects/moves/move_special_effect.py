@@ -78,3 +78,10 @@ def junglehealing(mutator, attacking_side_string, attacking_side, attacking_poke
         return [
             (constants.MUTATOR_REMOVE_STATUS, attacking_side_string, attacking_pokemon.status)
         ]
+
+
+def glaiverush(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
+    if "glaiverush" not in attacking_pokemon.volatile_status:
+        return [
+            (constants.MUTATOR_APPLY_VOLATILE_STATUS, attacking_side_string, "glaiverush")
+        ]

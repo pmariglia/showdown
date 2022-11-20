@@ -339,6 +339,8 @@ def volatile_status_modifier(attacking_move, attacker, defender):
         ]
     ):
         modifier *= 0
+    if 'glaiverush' in defender.volatile_status:
+        modifier *= 2
     return modifier
 
 
