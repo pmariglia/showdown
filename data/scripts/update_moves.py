@@ -186,6 +186,9 @@ moves_dict["softboiled"]["heal_target"] = "self"
 moves_dict["junglehealing"]["heal"] = [1, 4]
 moves_dict["junglehealing"]["heal_target"] = "self"
 
+moves_dict["lunarblessing"]["heal"] = [1, 4]
+moves_dict["lunarblessing"]["heal_target"] = "self"
+
 moves_dict["memento"]["heal"] = [-1, 1]
 moves_dict["memento"]["heal_target"] = "self"
 

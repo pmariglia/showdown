@@ -8021,6 +8021,11 @@
             "heal": 1,
             "snatch": 1
         },
+        "heal": [
+            1,
+            4
+        ],
+        "heal_target": "self",
         "id": "lunarblessing",
         "name": "Lunar Blessing",
         "pp": 5,

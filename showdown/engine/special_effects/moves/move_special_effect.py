@@ -80,6 +80,13 @@ def junglehealing(mutator, attacking_side_string, attacking_side, attacking_poke
         ]
 
 
+def lunarblessing(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
+    if attacking_pokemon.status is not None:
+        return [
+            (constants.MUTATOR_REMOVE_STATUS, attacking_side_string, attacking_pokemon.status)
+        ]
+
+
 def glaiverush(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
     if "glaiverush" not in attacking_pokemon.volatile_status:
         return [

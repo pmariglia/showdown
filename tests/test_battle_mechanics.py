@@ -11763,6 +11763,40 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_lunarblessing_heals(self):
+        bot_move = "eruption"
+        opponent_move = "lunarblessing"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 79),
+                    (constants.MUTATOR_HEAL, constants.OPPONENT, 74),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_lunarblessing_cures_status(self):
+        bot_move = "splash"
+        opponent_move = "lunarblessing"
+        self.state.opponent.active.status = constants.BURN
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_REMOVE_STATUS, constants.OPPONENT, constants.BURN),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_lifedew_healing(self):
         bot_move = "lifedew"
         opponent_move = "splash"
