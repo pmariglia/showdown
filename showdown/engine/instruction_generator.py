@@ -1127,6 +1127,17 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
             mutator.apply_one(partially_trapped_damage_instruction)
             instruction.add_instruction(partially_trapped_damage_instruction)
 
+        if "saltcure" in pkmn.volatile_status:
+            divisor = 4 if any(t in pkmn.types for t in ["water", "steel"]) else 8
+            damage_taken = max(0, int(min(pkmn.maxhp * (1/divisor), pkmn.hp)))
+            partially_trapped_damage_instruction = (
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                damage_taken
+            )
+            mutator.apply_one(partially_trapped_damage_instruction)
+            instruction.add_instruction(partially_trapped_damage_instruction)
+
     # disable not used moves if choice-item is held
     for attacker in sides:
         side = get_side_from_state(mutator.state, attacker)
