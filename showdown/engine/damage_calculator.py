@@ -134,6 +134,15 @@ def _calculate_damage(attacker, defender, move, conditions=None, calc_type='aver
     except KeyError:
         pass
 
+    if defender.ability == "tabletsofruin":
+        attacking_stats[constants.ATTACK] *= 0.75
+    elif defender.ability == "vesselofruin":
+        attacking_stats[constants.SPECIAL_ATTACK] *= 0.75
+    elif attacker.ability == "swordofruin":
+        defending_stats[constants.DEFENSE] *= 0.75
+    elif attacker.ability == "beadsofruin":
+        defending_stats[constants.SPECIAL_DEFENSE] *= 0.75
+
     damage = int(int((2 * attacker.level) / 5) + 2) * attacking_move[constants.BASE_POWER]
     damage = int(damage * attacking_stats[attack] / defending_stats[defense])
     damage = int(damage / 50) + 2

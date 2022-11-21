@@ -9431,6 +9431,74 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_tabletsofruin_damage_reduction(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'tabletsofruin'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 19)  # would be 25 dmg normally
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_vesselofruin_damage_reduction(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = 'vesselofruin'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 16)  # would be 22 dmg normally
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_swordofruin_damage_amp(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.user.active.ability = 'swordofruin'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 34)  # would be 25 dmg normally
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_beadsofruin_damage_amp(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.user.active.ability = 'beadsofruin'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 29)  # would be 22 dmg normally
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_collisioncourse_supereffective_boost(self):
         bot_move = "collisioncourse"
         opponent_move = "splash"
