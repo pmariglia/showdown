@@ -8642,6 +8642,43 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_ember_cannot_burn_when_defender_has_covertcoak(self):
+        bot_move = "ember"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.item = "covertcloak"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_covertcloak_does_not_stop_poweruppunch_boost(self):
+        bot_move = "poweruppunch"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.item = "covertcloak"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 51),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 1),
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_torrent_boosts_damage_below_one_third(self):
         bot_move = "watergun"
         opponent_move = "splash"
