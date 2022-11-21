@@ -165,6 +165,20 @@ def multiattack(attacking_side, attacking_move, defending_move, attacking_pokemo
     return attacking_move
 
 
+def ragingbull(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    if attacking_pokemon.id == "taurospaldea":
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = "fighting"
+    elif attacking_pokemon.id == "taurospaldeafire":
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = "fire"
+    elif attacking_pokemon.id == "taurospaldeawater":
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = "water"
+
+    return attacking_move
+
+
 def knockoff(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if defending_pokemon.item_can_be_removed():
         attacking_move = attacking_move.copy()
@@ -574,6 +588,7 @@ def populationbomb(attacking_side, attacking_move, defending_move, attacking_pok
 
 
 move_lookup = {
+    'ragingbull': ragingbull,
     'populationbomb': populationbomb,
     'lastrespects': lastrespects,
     'weatherball': weatherball,

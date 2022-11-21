@@ -5200,6 +5200,26 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_raging_bull_type_change(self):
+        bot_move = "ragingbull"
+        opponent_move = "splash"
+        self.state.user.active.id = "taurospaldea"
+        self.state.user.active.types = ["fighting"]
+        self.state.opponent.active.types = ["fighting"]
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 84)  # would do 56 damage if not boosted by STAB
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_defog_removes_terrain_and_spikes(self):
         bot_move = "splash"
         opponent_move = "defog"
