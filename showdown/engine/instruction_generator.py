@@ -1352,6 +1352,8 @@ def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
         return True
     if state.field == constants.MISTY_TERRAIN and defending_pkmn.is_grounded():
         return True
+    if defending_pkmn.ability == "purifyingsalt":
+        return True
 
     # Specific status immunity
     return (

@@ -470,7 +470,16 @@ def damp(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def purifyingsalt(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == "ghost":
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] /= 2
+
+    return attacking_move
+
+
 ability_lookup = {
+    'purifyingsalt': purifyingsalt,
     'windrider': windrider,
     'goodasgold': goodasgold,
     'damp': damp,

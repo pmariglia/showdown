@@ -10604,6 +10604,38 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_purifyingsalt_cannot_be_statused(self):
+        bot_move = "spore"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = "purifyingsalt"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_purifyingsalt_reduce_ghost_moves(self):
+        bot_move = "shadowsneak"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = "purifyingsalt"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 13)  # normal damage is 25
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_rocky_helmet_and_rough_skin_do_not_activate_on_protect(self):
         bot_move = "protect"
         opponent_move = "tackle"
