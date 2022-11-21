@@ -165,6 +165,7 @@ moves_dict["healingwish"]["side_conditions"] = "healingwish"
 moves_dict["wish"]["side_conditions"] = "wish"
 
 moves_dict["ceaselessedge"]["side_conditions"] = "spikes"
+moves_dict["stoneaxe"]["side_conditions"] = "stealthrock"
 
 moves_dict["rest"]["heal"] = [1, 1]
 moves_dict["rest"]["heal_target"] = "self"

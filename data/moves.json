@@ -13664,6 +13664,7 @@
         "pp": 15,
         "priority": 0,
         "secondary": null,
+        "side_conditions": "stealthrock",
         "target": "normal",
         "type": "rock"
     },
