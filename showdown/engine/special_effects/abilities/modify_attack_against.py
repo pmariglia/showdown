@@ -158,6 +158,23 @@ def bulletproof(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def windrider(attacking_move, attacking_pokemon, defending_pokemon):
+    if 'wind' in attacking_move[constants.FLAGS] and attacking_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
+        attacking_move = attacking_move.copy()
+
+        if constants.BOOSTS in attacking_move:
+            attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
+        else:
+            attacking_move[constants.BOOSTS] = dict()
+
+        if constants.ATTACK in attacking_move[constants.BOOSTS]:
+            attacking_move[constants.BOOSTS][constants.ATTACK] += 1
+        else:
+            attacking_move[constants.BOOSTS][constants.ATTACK] = 1
+
+    return attacking_move
+
+
 def furcoat(attacking_move, attacking_pokemon, defending_pokemon):
     if attacking_move[constants.CATEGORY] == constants.PHYSICAL:
         attacking_move = attacking_move.copy()
@@ -454,6 +471,7 @@ def damp(attacking_move, attacking_pokemon, defending_pokemon):
 
 
 ability_lookup = {
+    'windrider': windrider,
     'goodasgold': goodasgold,
     'damp': damp,
     'steamengine': steamengine,

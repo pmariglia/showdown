@@ -341,7 +341,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         # boosts from moves that only boost (dragon dance)
         if attacking_move.get(constants.BOOSTS) is not None:
             boosts = attacking_move[constants.BOOSTS]
-            boosts_target = attacker if attacking_move[constants.TARGET] == constants.SELF else defender
+            boosts_target = attacker if attacking_move[constants.TARGET] in constants.MOVE_TARGET_SELF else defender
             boosts_chance = attacking_move[constants.ACCURACY]
 
     mutator.reverse(instructions.instructions)

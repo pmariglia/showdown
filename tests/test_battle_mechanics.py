@@ -8733,6 +8733,44 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_fairywind_into_windrider(self):
+        bot_move = "fairywind"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.opponent.active.ability = "windrider"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1)
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_using_tailwind_with_windrider(self):
+        bot_move = "tailwind"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.user.active.ability = "windrider"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SIDE_START, constants.USER, constants.TAILWIND, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 1)
+                ],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_goodasgold_versus_non_status_move(self):
         bot_move = "accelerock"
         opponent_move = "splash"
