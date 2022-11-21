@@ -293,9 +293,9 @@ COURT_CHANGE_SWAPS = {
     'tailwind'
 }
 
-HAZARD_CLEARING_MOVES = ['rapidspin', 'defog', 'courtchange', 'mortalspin']
+HAZARD_CLEARING_MOVES = ['rapidspin', 'defog', 'courtchange', 'mortalspin', 'tidyup']
 
-SPIN_CLEARS = [
+SPIN_TIDYUP_CLEARS = [
     STEALTH_ROCK,
     SPIKES,
     TOXIC_SPIKES,
