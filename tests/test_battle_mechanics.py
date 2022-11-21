@@ -1210,6 +1210,30 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_ruination_does_half_health(self):
+        bot_move = "ruination"
+        opponent_move = "splash"
+        self.state.opponent.active.maxhp = 100
+        self.state.opponent.active.hp = 80
+        self.state.opponent.active.types = ["normal"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.9,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 40)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.09999999999999998,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_finalgambit_does_damage_equal_to_health_and_faints_user(self):
         bot_move = "finalgambit"
         opponent_move = "splash"
