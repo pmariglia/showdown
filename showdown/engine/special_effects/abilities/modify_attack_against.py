@@ -36,6 +36,13 @@ def stormdrain(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def goodasgold(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.CATEGORY] == constants.STATUS:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.ACCURACY] = False
+    return attacking_move
+
+
 def voltabsorb(attacking_move, attacking_pokemon, defending_pokemon):
     if attacking_move[constants.TYPE] == 'electric' and attacking_move[constants.TARGET] in constants.MOVE_TARGET_OPPONENT:
         attacking_move = attacking_move.copy()
@@ -447,6 +454,7 @@ def damp(attacking_move, attacking_pokemon, defending_pokemon):
 
 
 ability_lookup = {
+    'goodasgold': goodasgold,
     'damp': damp,
     'steamengine': steamengine,
     'punkrock': punkrock,
