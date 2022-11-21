@@ -7972,6 +7972,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_CHANGE_TYPE, constants.USER, ['water'], ['water', 'grass']),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.TYPECHANGE),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 72),
                 ],
                 False
@@ -7991,6 +7992,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_CHANGE_TYPE, constants.USER, ['water'], ['normal']),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.TYPECHANGE),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 72),  # non-STAB surf does 48 damage
                 ],
                 False
@@ -8040,6 +8042,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 68),
                     (constants.MUTATOR_CHANGE_TYPE, constants.USER, ['water'], ['normal']),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.TYPECHANGE),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 72),
                 ],
                 False
@@ -8059,6 +8062,7 @@ class TestBattleMechanics(unittest.TestCase):
                 0.8,
                 [
                     (constants.MUTATOR_CHANGE_TYPE, constants.USER, ['water'], ['normal']),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.TYPECHANGE),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 88),
                 ],
                 False
@@ -8067,6 +8071,7 @@ class TestBattleMechanics(unittest.TestCase):
                 0.19999999999999996,
                 [
                     (constants.MUTATOR_CHANGE_TYPE, constants.USER, ['water'], ['normal']),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.TYPECHANGE),
                 ],
                 False
             )
@@ -8085,6 +8090,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_CHANGE_TYPE, constants.USER, ['ground'], ['normal']),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.TYPECHANGE),
                     (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.SPIKES, 1)
                 ],
                 False
@@ -8104,7 +8110,35 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_CHANGE_TYPE, constants.USER, ['ground'], ['water', 'grass']),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.TYPECHANGE),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 94),
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_protean_does_not_activate_if_pkmn_has_volatilestatus(self):
+        bot_move = "earthquake"
+        opponent_move = "thunderwave"
+        self.state.user.active.types = ['water', 'grass']
+        self.state.user.active.ability = 'libero'
+        self.state.user.active.volatile_status.add(constants.TYPECHANGE)
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.9,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62),
+                    (constants.MUTATOR_APPLY_STATUS, constants.USER, constants.PARALYZED)
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.09999999999999998,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62),
                 ],
                 True
             )
@@ -8135,6 +8169,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 34),
                     (constants.MUTATOR_CHANGE_TYPE, constants.USER, ['ground'], ['water', 'grass']),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.TYPECHANGE),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 94),
                 ],
                 False
