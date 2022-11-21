@@ -3283,6 +3283,28 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_tripledive(self):
+        bot_move = "tripledive"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+
+        expected_instructions = [
+            TransposeInstruction(
+                0.95,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 56),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.050000000000000044,
+                [],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_tackle_into_ironbarbs_causes_recoil(self):
         bot_move = "splash"
         opponent_move = "tackle"
