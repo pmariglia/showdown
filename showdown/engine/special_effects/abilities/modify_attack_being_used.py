@@ -18,6 +18,13 @@ def adaptability(attacking_move, defending_move, attacking_pokemon, defending_po
     return attacking_move
 
 
+def rockypayload(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_move[constants.TYPE] == "rock":
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] = int(attacking_move[constants.BASE_POWER] * 3/2)
+    return attacking_move
+
+
 def aerilate(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
     if attacking_move[constants.TYPE] == 'normal':
         attacking_move = attacking_move.copy()
@@ -369,6 +376,7 @@ def dragonsmaw(attacking_move, defending_move, attacking_pokemon, defending_poke
 
 
 ability_lookup = {
+    'rockypayload': rockypayload,
     'transistor': transistor,
     'dragonsmaw': dragonsmaw,
     'solarpower': solarpower,

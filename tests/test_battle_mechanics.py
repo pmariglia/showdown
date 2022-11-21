@@ -8699,6 +8699,24 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_rockypayload(self):
+        bot_move = "accelerock"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.user.active.ability = "rockypayload"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_using_move_with_choice_item_locks_other_moves(self):
         bot_move = "tackle"
         opponent_move = "splash"
