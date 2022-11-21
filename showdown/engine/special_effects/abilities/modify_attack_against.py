@@ -162,6 +162,13 @@ def wellbakedbody(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def armortail(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.PRIORITY] > 0:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.ACCURACY] = False
+    return attacking_move
+
+
 def bulletproof(attacking_move, attacking_pokemon, defending_pokemon):
     if 'bullet' in attacking_move[constants.FLAGS]:
         attacking_move = attacking_move.copy()
@@ -498,6 +505,7 @@ ability_lookup = {
     'steamengine': steamengine,
     'punkrock': punkrock,
     'icescales': icescales,
+    'armortail': armortail,
     'fairyaura': fairyaura,
     'darkaura': darkaura,
     'soundproof': soundproof,
