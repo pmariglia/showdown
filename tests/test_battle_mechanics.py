@@ -5121,6 +5121,25 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_icespinner_removes_terrain(self):
+        bot_move = "splash"
+        opponent_move = "icespinner"
+        self.state.field = constants.ELECTRIC_TERRAIN
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_FIELD_END, constants.ELECTRIC_TERRAIN),
+                    (constants.MUTATOR_DAMAGE, constants.USER, 68)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_defog_removes_terrain_and_spikes(self):
         bot_move = "splash"
         opponent_move = "defog"

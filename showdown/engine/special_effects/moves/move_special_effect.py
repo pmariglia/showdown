@@ -85,3 +85,10 @@ def glaiverush(mutator, attacking_side_string, attacking_side, attacking_pokemon
         return [
             (constants.MUTATOR_APPLY_VOLATILE_STATUS, attacking_side_string, "glaiverush")
         ]
+
+
+def icespinner(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
+    if mutator.state.field is not None:
+        return [
+            (constants.MUTATOR_FIELD_END, mutator.state.field)
+        ]
