@@ -647,10 +647,10 @@ def get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, 
                 )
 
     # ghost-type misses are dealt with by freezing the state. i.e. this elif will not be reached if the move missed
-    elif move[constants.ID] == 'rapidspin':
+    elif move[constants.ID] == "rapidspin" or move[constants.ID] == "mortalspin":
         side = get_side_from_state(mutator.state, attacker_string)
         for side_condition, amount in side.side_conditions.items():
-            if amount > 0 and side_condition in constants.RAPID_SPIN_CLEARS:
+            if amount > 0 and side_condition in constants.SPIN_CLEARS:
                 instruction_additions.append(
                     (
                         constants.MUTATOR_SIDE_END,

@@ -5062,6 +5062,26 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_spikes_into_mortal_spin_clears_the_spikes(self):
+        bot_move = "spikes"
+        opponent_move = "mortalspin"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.SPIKES, 1),
+                    (constants.MUTATOR_DAMAGE, constants.USER, 26),
+                    (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.SPIKES, 1),
+                    (constants.MUTATOR_APPLY_STATUS, constants.USER, constants.POISON),
+                    (constants.MUTATOR_DAMAGE, constants.USER, 26)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_spikes_into_rapid_spin_does_not_clear_spikes_when_user_is_ghost_type(self):
         bot_move = "spikes"
         opponent_move = "rapidspin"
