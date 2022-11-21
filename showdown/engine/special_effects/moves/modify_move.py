@@ -192,6 +192,12 @@ def tripledive(attacking_side, attacking_move, defending_move, attacking_pokemon
     return attacking_move
 
 
+def twinbeam(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.BASE_POWER] *= 2
+    return attacking_move
+
+
 def hurricane(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if weather == constants.SUN:
         attacking_move = attacking_move.copy()
@@ -672,6 +678,7 @@ move_lookup = {
     'futuresight': futuresight,
     'knockoff': knockoff,
     'tripledive': tripledive,
+    'twinbeam': twinbeam,
     'barbbarrage': barbbarrage,
     'collisioncourse': collisioncourse,
     'electrodrift': collisioncourse,
