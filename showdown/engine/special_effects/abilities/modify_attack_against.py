@@ -151,6 +151,17 @@ def flashfire(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def wellbakedbody(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'fire':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] = 0
+        attacking_move[constants.STATUS] = None
+        attacking_move[constants.SECONDARY] = None
+        attacking_move[constants.CATEGORY] = constants.STATUS
+        attacking_move[constants.BOOSTS] = {constants.DEFENSE: 2}
+    return attacking_move
+
+
 def bulletproof(attacking_move, attacking_pokemon, defending_pokemon):
     if 'bullet' in attacking_move[constants.FLAGS]:
         attacking_move = attacking_move.copy()
@@ -479,6 +490,7 @@ def purifyingsalt(attacking_move, attacking_pokemon, defending_pokemon):
 
 
 ability_lookup = {
+    'wellbakedbody': wellbakedbody,
     'purifyingsalt': purifyingsalt,
     'windrider': windrider,
     'goodasgold': goodasgold,
