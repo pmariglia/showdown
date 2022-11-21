@@ -125,9 +125,12 @@ def _calculate_damage(attacker, defender, move, conditions=None, calc_type='aver
             pass
 
     # rock types get 1.5x SPDEF in sand
+    # ice types get 1.5x DEF in snow
     try:
         if conditions[constants.WEATHER] == constants.SAND and 'rock' in defender.types:
             defending_stats[constants.SPECIAL_DEFENSE] = int(defending_stats[constants.SPECIAL_DEFENSE] * 1.5)
+        elif conditions[constants.WEATHER] == constants.SNOW and 'ice' in defender.types:
+            defending_stats[constants.DEFENSE] = int(defending_stats[constants.DEFENSE] * 1.5)
     except KeyError:
         pass
 

@@ -5616,6 +5616,24 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_snow_properly_increses_defense_for_ice(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.weather = constants.SNOW
+        self.state.opponent.active.types = ['ice']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 17),  # without snow damage would be 25
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_sand_does_not_increase_special_defense_for_ground(self):
         bot_move = "surf"
         opponent_move = "splash"
