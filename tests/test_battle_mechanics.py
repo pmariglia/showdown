@@ -9341,6 +9341,42 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_eartheater(self):
+        bot_move = "earthquake"
+        opponent_move = "splash"
+        self.state.opponent.active.hp = 1
+        self.state.opponent.active.ability = 'eartheater'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_HEAL, constants.OPPONENT, 74)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_eartheater_versus_water_move(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.opponent.active.hp = 100
+        self.state.opponent.active.ability = 'eartheater'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_airballoon_makes_immune(self):
         bot_move = "tackle"
         opponent_move = "earthquake"

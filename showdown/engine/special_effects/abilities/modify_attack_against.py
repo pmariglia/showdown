@@ -71,6 +71,20 @@ def waterabsorb(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def eartheater(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'ground' and attacking_move[constants.TARGET] in constants.MOVE_TARGET_OPPONENT:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.ACCURACY] = True
+        attacking_move[constants.BASE_POWER] = 0
+        attacking_move[constants.HEAL_TARGET] = constants.NORMAL
+        attacking_move[constants.CATEGORY] = constants.STATUS
+        attacking_move[constants.HEAL] = [
+            1,
+            4
+        ]
+    return attacking_move
+
+
 def motordrive(attacking_move, attacking_pokemon, defending_pokemon):
     if attacking_move[constants.TYPE] == 'electric' and attacking_move[constants.TARGET] in constants.MOVE_TARGET_OPPONENT:
         attacking_move = attacking_move.copy()
@@ -528,6 +542,7 @@ ability_lookup = {
     'voltabsorb': voltabsorb,
     'waterabsorb': waterabsorb,
     'dryskin': waterabsorb,
+    'eartheater': eartheater,
     'motordrive': motordrive,
     'sapsipper': sapsipper,
     'multiscale': multiscale,
