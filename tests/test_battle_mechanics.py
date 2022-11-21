@@ -3806,6 +3806,24 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_clearbody_using_boost(self):
+        bot_move = "dragondance"
+        opponent_move = "splash"
+        self.state.user.active.ability = 'clearbody'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_serenegrace(self):
         bot_move = "ironhead"
         opponent_move = "tackle"
@@ -7825,6 +7843,25 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switching_with_intimidate_into_clearamulet(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.user.reserve['xatu'].ability = 'intimidate'
+        self.state.opponent.active.item = 'clearamulet'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'xatu'),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_switching_into_intimidate_into_rattled(self):
         bot_move = "switch xatu"
         opponent_move = "splash"
@@ -9595,6 +9632,21 @@ class TestBattleMechanics(unittest.TestCase):
         bot_move = "splash"
         opponent_move = "charm"
         self.state.user.active.ability = 'clearbody'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_charm_against_pokemon_with_clearamulet(self):
+        bot_move = "splash"
+        opponent_move = "charm"
+        self.state.user.active.item = 'clearamulet'
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(

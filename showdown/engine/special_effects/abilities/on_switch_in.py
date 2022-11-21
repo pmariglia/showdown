@@ -96,6 +96,8 @@ def mistysurge(state, attacking_side, attacking_pokemon, defending_side, defendi
 def intimidate(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
     if defending_pokemon.ability in ['fullmetalbody', 'clearbody', 'hypercutter', 'whitesmoke', 'innerfocus', 'oblivious', 'owntempo', 'scrappy']:
         return None
+    if defending_pokemon.item in constants.IMMUNE_TO_STAT_LOWERING_ITEMS:
+        return None
 
     # I shouldn't be doing this here but w/e sue me
     if defending_pokemon.ability == 'defiant':

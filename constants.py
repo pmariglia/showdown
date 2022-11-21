@@ -364,6 +364,10 @@ IMMUNE_TO_STAT_LOWERING_ABILITIES = {
     'fullmetalbody'
 }
 
+IMMUNE_TO_STAT_LOWERING_ITEMS = {
+    "clearamulet"
+}
+
 IMMUNE_TO_SLEEP_ABILITIES = {'insomnia', 'sweetveil', 'vitalspirit'}
 IMMUNE_TO_BURN_ABILITIES = {'waterveil', 'waterbubble'}
 IMMUNE_TO_FROZEN_ABILITIES = {'magmaarmor'}

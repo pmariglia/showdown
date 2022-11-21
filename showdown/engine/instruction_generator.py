@@ -770,9 +770,6 @@ def get_instructions_from_boosts(mutator, side_string, boosts, accuracy, instruc
 
     mutator.apply(instruction.instructions)
     side = get_side_from_state(mutator.state, side_string)
-    if side.active.ability in constants.IMMUNE_TO_STAT_LOWERING_ABILITIES:
-        mutator.reverse(instruction.instructions)
-        return [instruction]
 
     instruction_additions = []
     move_missed_instruction = copy(instruction)
@@ -789,7 +786,11 @@ def get_instructions_from_boosts(mutator, side_string, boosts, accuracy, instruc
                     k,
                     new_boost - pkmn_boost
                 )
-            else:
+                instruction_additions.append(boost_instruction)
+            elif (
+                side.active.ability not in constants.IMMUNE_TO_STAT_LOWERING_ABILITIES and
+                side.active.item not in constants.IMMUNE_TO_STAT_LOWERING_ITEMS
+            ):
                 new_boost = pkmn_boost + v
                 if new_boost < -1 * constants.MAX_BOOSTS:
                     new_boost = -1 * constants.MAX_BOOSTS
@@ -799,7 +800,7 @@ def get_instructions_from_boosts(mutator, side_string, boosts, accuracy, instruc
                     k,
                     new_boost - pkmn_boost
                 )
-            instruction_additions.append(boost_instruction)
+                instruction_additions.append(boost_instruction)
 
         instruction.update_percentage(percent_hit)
         instructions.append(instruction)
