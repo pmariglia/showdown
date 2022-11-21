@@ -561,7 +561,20 @@ def lastrespects(attacking_side, attacking_move, defending_move, attacking_pokem
     return attacking_move
 
 
+def populationbomb(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    # This is a very bad hack that misses most interactions with this move
+    # but I need to implement multi-hit moves to do this properly
+    attacking_move = attacking_move.copy()
+    if attacking_side.active.item == "widelens":
+        attacking_move[constants.BASE_POWER] = 180
+    else:
+        attacking_move[constants.BASE_POWER] = 105
+
+    return attacking_move
+
+
 move_lookup = {
+    'populationbomb': populationbomb,
     'lastrespects': lastrespects,
     'weatherball': weatherball,
     'flowertrick': flowertrick,
