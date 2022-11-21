@@ -1354,6 +1354,8 @@ def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
         return True
     if defending_pkmn.ability == "purifyingsalt":
         return True
+    if defending_pkmn.ability == "thermalexchange" and status == constants.BURN:
+        return True
 
     # Specific status immunity
     return (

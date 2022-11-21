@@ -85,6 +85,16 @@ def eartheater(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def thermalexchange(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'fire' and attacking_move[constants.TARGET] in constants.MOVE_TARGET_OPPONENT:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.SECONDARY] = {
+            constants.CHANCE: 100,
+            constants.BOOSTS: {constants.ATTACK: 1}
+        }
+    return attacking_move
+
+
 def motordrive(attacking_move, attacking_pokemon, defending_pokemon):
     if attacking_move[constants.TYPE] == 'electric' and attacking_move[constants.TARGET] in constants.MOVE_TARGET_OPPONENT:
         attacking_move = attacking_move.copy()
@@ -512,6 +522,7 @@ def purifyingsalt(attacking_move, attacking_pokemon, defending_pokemon):
 
 ability_lookup = {
     'wellbakedbody': wellbakedbody,
+    'thermalexchange': thermalexchange,
     'purifyingsalt': purifyingsalt,
     'windrider': windrider,
     'goodasgold': goodasgold,

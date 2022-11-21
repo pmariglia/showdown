@@ -9377,6 +9377,43 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_thermalexchange_versus_fire_move(self):
+        bot_move = "ember"
+        opponent_move = "splash"
+        self.state.opponent.active.hp = 100
+        self.state.opponent.active.ability = 'thermalexchange'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_thermalexchange_versus_water_move(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.opponent.active.hp = 100
+        self.state.opponent.active.ability = 'thermalexchange'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_airballoon_makes_immune(self):
         bot_move = "tackle"
         opponent_move = "earthquake"
