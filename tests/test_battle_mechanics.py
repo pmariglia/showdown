@@ -10636,6 +10636,23 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_sharpness_with_slicing_move(self):
+        bot_move = "xscissor"
+        opponent_move = "splash"
+        self.state.user.active.ability = "sharpness"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37)  # normal damage is 24
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_rocky_helmet_and_rough_skin_do_not_activate_on_protect(self):
         bot_move = "protect"
         opponent_move = "tackle"

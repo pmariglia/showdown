@@ -102,6 +102,13 @@ def ironfist(attacking_move, defending_move, attacking_pokemon, defending_pokemo
     return attacking_move
 
 
+def sharpness(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if "slicing" in attacking_move[constants.FLAGS]:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.5
+    return attacking_move
+
+
 def megalauncher(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
     if "pulse" in attacking_move[constants.FLAGS]:
         attacking_move = attacking_move.copy()
@@ -431,6 +438,7 @@ ability_lookup = {
     'parentalbond': parentalbond,
     'toxicboost': toxicboost,
     'tintedlens': tintedlens,
+    'sharpness': sharpness,
     'skilllink': skilllink
 }
 
