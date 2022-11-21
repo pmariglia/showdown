@@ -3,14 +3,14 @@ from data import pokedex
 from ...damage_calculator import is_super_effective
 
 
-def collisioncourse(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def collisioncourse(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if is_super_effective(attacking_move[constants.TYPE], defending_pokemon.types):
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.3
     return attacking_move
 
 
-def suckerpunch(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def suckerpunch(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if not first_move or defending_move.get(constants.CATEGORY) not in constants.DAMAGING_CATEGORIES:
         attacking_move = attacking_move.copy()
         attacking_move[constants.ACCURACY] = 0
@@ -18,14 +18,14 @@ def suckerpunch(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
-def eruption(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def eruption(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacker_hp_percent = attacking_pokemon.hp / attacking_pokemon.maxhp
     attacking_move[constants.BASE_POWER] *= attacker_hp_percent
     return attacking_move
 
 
-def tailslap(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def tailslap(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     # skill-link will boost damage by 5x, so no need to do it again here if that is the pokemon's ability
     if attacking_pokemon.ability != 'skilllink':
         attacking_move = attacking_move.copy()
@@ -33,35 +33,35 @@ def tailslap(attacking_move, defending_move, attacking_pokemon, defending_pokemo
     return attacking_move
 
 
-def freezedry(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def freezedry(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if 'water' in defending_pokemon.types:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 4
     return attacking_move
 
 
-def hex(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def hex(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if defending_pokemon.status is not None:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 2
     return attacking_move
 
 
-def barbbarrage(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def barbbarrage(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if defending_pokemon.status in [constants.POISON, constants.TOXIC]:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 2
     return attacking_move
 
 
-def foulplay(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def foulplay(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.BASE_POWER] *= defending_pokemon.calculate_boosted_stats()[constants.ATTACK] / \
                                             attacking_pokemon.calculate_boosted_stats()[constants.ATTACK]
     return attacking_move
 
 
-def storedpower(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def storedpower(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     multiplier = attacking_pokemon.attack_boost + attacking_pokemon.defense_boost + \
                  attacking_pokemon.special_attack_boost + attacking_pokemon.special_defense_boost + \
                  attacking_pokemon.speed_boost
@@ -71,28 +71,28 @@ def storedpower(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
-def psyshock(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def psyshock(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     defending_stats = defending_pokemon.calculate_boosted_stats()
     attacking_move = attacking_move.copy()
     attacking_move[constants.BASE_POWER] *= (defending_stats[constants.SPECIAL_DEFENSE] / defending_stats[constants.DEFENSE])
     return attacking_move
 
 
-def facade(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def facade(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if attacking_pokemon.status is not None:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 2
     return attacking_move
 
 
-def avalanche(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def avalanche(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if first_move is False and defending_move.get(constants.CATEGORY) in constants.DAMAGING_CATEGORIES:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 2
     return attacking_move
 
 
-def gyroball(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def gyroball(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     # power = (25 × TargetSpeed ÷ UserSpeed) + 1
     attacking_move = attacking_move.copy()
     attacker_speed = attacking_pokemon.calculate_boosted_stats()[constants.SPEED]
@@ -101,7 +101,7 @@ def gyroball(attacking_move, defending_move, attacking_pokemon, defending_pokemo
     return attacking_move
 
 
-def electroball(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def electroball(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     speed_ratio = defending_pokemon.calculate_boosted_stats()[constants.SPEED] / attacking_pokemon.calculate_boosted_stats()[constants.SPEED]
 
     attacking_move = attacking_move.copy()
@@ -119,7 +119,7 @@ def electroball(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
-def focuspunch(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def focuspunch(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     # technically wrong - a move missing would allow focuspunch to hit, however that information is not present here
     if first_move or defending_move.get(constants.CATEGORY) in constants.DAMAGING_CATEGORIES:
         attacking_move = attacking_move.copy()
@@ -127,7 +127,7 @@ def focuspunch(attacking_move, defending_move, attacking_pokemon, defending_poke
     return attacking_move
 
 
-def acrobatics(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def acrobatics(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     # acrobatics is 110 by default. If the pokemon has an item, it will go to 55
     # technically this should be the other way around, but the evaluation logic should
     # assume that the opponent's pokemon has a 110 BP move (worst case unless known)
@@ -137,7 +137,7 @@ def acrobatics(attacking_move, defending_move, attacking_pokemon, defending_poke
     return attacking_move
 
 
-def technoblast(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def technoblast(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if attacking_pokemon.item == 'burndrive':
         attacking_move = attacking_move.copy()
         attacking_move[constants.TYPE] = 'fire'
@@ -157,7 +157,7 @@ def technoblast(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
-def multiattack(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def multiattack(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if attacking_pokemon.item is not None and attacking_pokemon.item.endswith('memory'):
         attacking_move = attacking_move.copy()
         attacking_move[constants.TYPE] = attacking_pokemon.item.replace('memory', '')
@@ -165,14 +165,14 @@ def multiattack(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
-def knockoff(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def knockoff(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if defending_pokemon.item_can_be_removed():
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.5
     return attacking_move
 
 
-def hurricane(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def hurricane(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if weather == constants.SUN:
         attacking_move = attacking_move.copy()
         attacking_move[constants.ACCURACY] = 50
@@ -182,14 +182,14 @@ def hurricane(attacking_move, defending_move, attacking_pokemon, defending_pokem
     return attacking_move
 
 
-def blizzard(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def blizzard(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if weather == constants.HAIL:
         attacking_move = attacking_move.copy()
         attacking_move[constants.ACCURACY] = True
     return attacking_move
 
 
-def solarbeam(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def solarbeam(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if weather == constants.SUN:
         attacking_move = attacking_move.copy()
         attacking_move[constants.FLAGS] = attacking_move[constants.FLAGS].copy()
@@ -197,14 +197,14 @@ def solarbeam(attacking_move, defending_move, attacking_pokemon, defending_pokem
     return attacking_move
 
 
-def toxic(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def toxic(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if 'poison' in attacking_pokemon.types:
         attacking_move = attacking_move.copy()
         attacking_move[constants.ACCURACY] = True
     return attacking_move
 
 
-def strengthsap(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def strengthsap(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.BOOSTS] = {
         constants.ATTACK: -1
@@ -218,14 +218,14 @@ def strengthsap(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
-def revelationdance(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def revelationdance(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.TYPE] = attacking_pokemon.types[0]
 
     return attacking_move
 
 
-def lowkick(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def lowkick(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     defending_pokemon_weight = pokedex[defending_pokemon.id][constants.WEIGHT]
 
@@ -245,7 +245,7 @@ def lowkick(attacking_move, defending_move, attacking_pokemon, defending_pokemon
     return attacking_move
 
 
-def painsplit(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def painsplit(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     # damage done to the opponent is handled in the damage calculation module
     attacking_move = attacking_move.copy()
     total_hp = attacking_pokemon.hp + defending_pokemon.hp
@@ -261,53 +261,53 @@ def painsplit(attacking_move, defending_move, attacking_pokemon, defending_pokem
     return attacking_move
 
 
-def pursuit(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def pursuit(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if defending_move.get(constants.SWITCH_STRING):
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 2
     return attacking_move
 
 
-def aurawheel(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def aurawheel(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if attacking_pokemon.id == "morpekohangry":
         attacking_move = attacking_move.copy()
         attacking_move[constants.TYPE] = 'dark'
     return attacking_move
 
 
-def dynamaxcannon(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def dynamaxcannon(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if constants.DYNAMAX in defending_pokemon.volatile_status:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 2
     return attacking_move
 
 
-def dragondarts(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def dragondarts(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.BASE_POWER] *= 2
     return attacking_move
 
 
-def geargrind(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def geargrind(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.BASE_POWER] *= 2
     return attacking_move
 
 
-def bonemerang(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def bonemerang(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.BASE_POWER] *= 2
     return attacking_move
 
 
-def boltbeak(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def boltbeak(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if first_move or defending_move.get(constants.SWITCH_STRING):
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 2
     return attacking_move
 
 
-def clangoroussoul(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def clangoroussoul(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if attacking_pokemon.hp > int(attacking_pokemon.maxhp / 3):
         attacking_move = attacking_move.copy()
         attacking_move[constants.HEAL_TARGET] = constants.SELF
@@ -322,7 +322,7 @@ def clangoroussoul(attacking_move, defending_move, attacking_pokemon, defending_
     return attacking_move
 
 
-def filletaway(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def filletaway(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if attacking_pokemon.hp > int(attacking_pokemon.maxhp / 2):
         attacking_move = attacking_move.copy()
         attacking_move[constants.HEAL_TARGET] = constants.SELF
@@ -335,34 +335,34 @@ def filletaway(attacking_move, defending_move, attacking_pokemon, defending_poke
     return attacking_move
 
 
-def bodypress(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def bodypress(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     boosted_stats = attacking_pokemon.calculate_boosted_stats()
     attacking_move[constants.BASE_POWER] *= (boosted_stats[constants.DEFENSE] / boosted_stats[constants.ATTACK])
     return attacking_move
 
 
-def lifedew(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def lifedew(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.HEAL] = [1, 4]
     attacking_move[constants.HEAL_TARGET] = constants.SELF
     return attacking_move
 
 
-def steelbeam(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def steelbeam(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.HEAL] = [-1, 2]
     attacking_move[constants.HEAL_TARGET] = constants.SELF
     return attacking_move
 
 
-def doubleironbash(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def doubleironbash(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.BASE_POWER] *= 2  # double-hit move
     return attacking_move
 
 
-def morningsun(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def morningsun(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if weather in [constants.SAND, constants.RAIN, constants.HAIL]:
         attacking_move = attacking_move.copy()
         attacking_move[constants.HEAL] = [1, 4]
@@ -372,7 +372,7 @@ def morningsun(attacking_move, defending_move, attacking_pokemon, defending_poke
     return attacking_move
 
 
-def shoreup(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def shoreup(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.HEAL_TARGET] = constants.SELF
     if weather in [constants.SAND, constants.RAIN, constants.HAIL]:
@@ -383,7 +383,7 @@ def shoreup(attacking_move, defending_move, attacking_pokemon, defending_pokemon
     return attacking_move
 
 
-def heavyslam(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def heavyslam(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     try:
         weight_ratio = pokedex[defending_pokemon.id][constants.WEIGHT] / pokedex[attacking_pokemon.id][constants.WEIGHT]
     except ZeroDivisionError:
@@ -404,14 +404,14 @@ def heavyslam(attacking_move, defending_move, attacking_pokemon, defending_pokem
     return attacking_move
 
 
-def noretreat(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def noretreat(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if 'noretreat' in attacking_pokemon.volatile_status:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BOOSTS] = dict()
     return attacking_move
 
 
-def growth(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def growth(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if weather == constants.SUN:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BOOSTS] = {
@@ -421,35 +421,35 @@ def growth(attacking_move, defending_move, attacking_pokemon, defending_pokemon,
     return attacking_move
 
 
-def expandingforce(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def expandingforce(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if terrain == constants.PSYCHIC_TERRAIN:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.5
     return attacking_move
 
 
-def risingvoltage(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def risingvoltage(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if terrain == constants.ELECTRIC_TERRAIN:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.5
     return attacking_move
 
 
-def steelroller(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def steelroller(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if terrain is None:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] = 0
     return attacking_move
 
 
-def mistyexplosion(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def mistyexplosion(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if terrain == constants.MISTY_TERRAIN:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.5
     return attacking_move
 
 
-def terrainpulse(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def terrainpulse(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if terrain == constants.MISTY_TERRAIN:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 2
@@ -470,7 +470,7 @@ def terrainpulse(attacking_move, defending_move, attacking_pokemon, defending_po
     return attacking_move
 
 
-def poltergeist(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def poltergeist(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if defending_pokemon.item is None:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] = 0
@@ -478,7 +478,7 @@ def poltergeist(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
-def tripleaxel(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def tripleaxel(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
 
     # really ugly ass hack because multi-hit doesnt exist and I'm lazy as fuck
@@ -488,7 +488,7 @@ def tripleaxel(attacking_move, defending_move, attacking_pokemon, defending_poke
     return attacking_move
 
 
-def dualwingbeat(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def dualwingbeat(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
 
     # really ugly ass hack because multi-hit doesnt exist and I'm lazy as fuck
@@ -497,21 +497,21 @@ def dualwingbeat(attacking_move, defending_move, attacking_pokemon, defending_po
     return attacking_move
 
 
-def flowertrick(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def flowertrick(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.BASE_POWER] *= 1.5
 
     return attacking_move
 
 
-def wickedblow(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def wickedblow(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.BASE_POWER] *= 1.5
 
     return attacking_move
 
 
-def surgingstrikes(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def surgingstrikes(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
 
     # x3 for multihit, x1.5 for crit; Yes this is a hack just like the others
@@ -520,7 +520,7 @@ def surgingstrikes(attacking_move, defending_move, attacking_pokemon, defending_
     return attacking_move
 
 
-def weatherball(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def weatherball(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if weather == constants.SUN:
         attacking_move = attacking_move.copy()
         attacking_move[constants.TYPE] = 'fire'
@@ -541,15 +541,28 @@ def weatherball(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
-# there is special logic for futuresight's deferred damage  using an attribute of the `Side` object
-def futuresight(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+# there is special logic for futuresight's deferred damage  using an attribute of the ``Side`` object
+def futuresight(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.BASE_POWER] = 0
 
     return attacking_move
 
 
+def lastrespects(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    base_power = attacking_move[constants.BASE_POWER]
+    for pkmn in attacking_side.reserve.values():
+        if pkmn.hp <= 0:
+            base_power += 50
+
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.BASE_POWER] = base_power
+
+    return attacking_move
+
+
 move_lookup = {
+    'lastrespects': lastrespects,
     'weatherball': weatherball,
     'flowertrick': flowertrick,
     'surgingstrikes': surgingstrikes,
@@ -631,9 +644,9 @@ move_lookup = {
 }
 
 
-def modify_attack_being_used(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+def modify_attack_being_used(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     move_func = move_lookup.get(attacking_move[constants.ID])
     if move_func is not None:
-        return move_func(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain)
+        return move_func(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain)
     else:
         return attacking_move

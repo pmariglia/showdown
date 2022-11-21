@@ -380,6 +380,7 @@ def calculate_damage(state, attacking_side_string, attacking_move, defending_mov
         attacking_move_dict[constants.FLAGS].pop(constants.CHARGE, None)
 
     attacking_move_dict = update_attacking_move(
+        attacking_side,
         attacking_side.active,
         defending_side.active,
         attacking_move_dict,

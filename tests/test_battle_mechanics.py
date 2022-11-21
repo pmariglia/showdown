@@ -5140,6 +5140,24 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_lastrespects_damage_boost(self):
+        bot_move = "lastrespects"
+        opponent_move = "splash"
+
+        self.state.user.reserve["xatu"].hp = 0
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62)  # 50BP would do 32 dmg
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_defog_removes_terrain_and_spikes(self):
         bot_move = "splash"
         opponent_move = "defog"

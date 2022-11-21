@@ -110,13 +110,14 @@ def user_moves_first(state, user_move, opponent_move):
         return False
 
 
-def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move, weather, terrain):
+def update_attacking_move(attacking_side, attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move, weather, terrain):
     # update the attacking move based on certain special-effects:
     #   - abilities
     #   - items
     #   - protect
 
     attacking_move = modify_attack_being_used(
+        attacking_side,
         attacking_move,
         defending_move,
         attacking_pokemon,
@@ -235,6 +236,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         return [instructions]
 
     attacking_move = update_attacking_move(
+        attacking_side,
         attacking_pokemon,
         defending_pokemon,
         attacking_move,
