@@ -10420,6 +10420,63 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_silktrap_into_contact_move(self):
+        bot_move = "silktrap"
+        opponent_move = "tackle"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.SILK_TRAP),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, -1),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.USER, constants.SILK_TRAP),
+                    (constants.MUTATOR_SIDE_START, constants.USER, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_silktrap_into_noncontact_move(self):
+        bot_move = "silktrap"
+        opponent_move = "earthquake"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.SILK_TRAP),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.USER, constants.SILK_TRAP),
+                    (constants.MUTATOR_SIDE_START, constants.USER, constants.PROTECT, 1)
+                ],
+                True
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_silktrap_into_crash_move(self):
+        bot_move = "silktrap"
+        opponent_move = "highjumpkick"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.SILK_TRAP),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, -1),
+                    (constants.MUTATOR_HEAL, constants.OPPONENT, -148),
+                    (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.USER, constants.SILK_TRAP),
+                    (constants.MUTATOR_SIDE_START, constants.USER, constants.PROTECT, 1)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_spiky_shield_does_not_work_when_user_has_protect_side_condition(self):
         bot_move = "spikyshield"
         opponent_move = "tackle"

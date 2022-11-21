@@ -191,6 +191,14 @@ def update_attacking_move(attacking_side, attacking_pokemon, defending_pokemon, 
                 crash_percent = attacking_move[constants.CRASH][0] / attacking_move[constants.CRASH][1]
                 damage_decimal = -1*(crash_percent + 1/8)
                 attacking_move[constants.HEAL] = damage_decimal.as_integer_ratio()
+        elif constants.SILK_TRAP in defending_pokemon.volatile_status and constants.CONTACT in attacking_move[constants.FLAGS]:
+            attacking_move[constants.ACCURACY] = True
+            attacking_move[constants.CATEGORY] = constants.STATUS
+            attacking_move[constants.BOOSTS] = {constants.SPEED: -1}
+            attacking_move[constants.TARGET] = constants.SELF
+            if constants.CRASH in attacking_move:
+                attacking_move[constants.HEAL_TARGET] = constants.SELF
+                attacking_move[constants.HEAL] = [-1*attacking_move[constants.CRASH][0], attacking_move[constants.CRASH][1]]
 
     return attacking_move
 

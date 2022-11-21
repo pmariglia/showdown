@@ -1078,6 +1078,8 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
                 volatile_status_to_remove = constants.BANEFUL_BUNKER
             elif constants.SPIKY_SHIELD in pkmn.volatile_status:
                 volatile_status_to_remove = constants.SPIKY_SHIELD
+            elif constants.SILK_TRAP in pkmn.volatile_status:
+                volatile_status_to_remove = constants.SILK_TRAP
             else:
                 # should never happen
                 raise Exception("Pokemon has volatile status that is not caught here: {}".format(pkmn.volatile_status))
