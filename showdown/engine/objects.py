@@ -280,6 +280,32 @@ class Pokemon(object):
 
         return burn_multiplier
 
+    def get_highest_stat(self):
+        return max({
+           constants.ATTACK: self.attack,
+           constants.DEFENSE: self.defense,
+           constants.SPECIAL_ATTACK: self.special_attack,
+           constants.SPECIAL_DEFENSE: self.special_defense,
+           constants.SPEED: self.speed,
+       }.items(), key=lambda x: x[1])[0]
+
+    def get_boost_from_boost_string(self, boost_string):
+        if boost_string == constants.ATTACK:
+            return self.attack_boost
+        elif boost_string == constants.DEFENSE:
+            return self.defense_boost
+        elif boost_string == constants.SPECIAL_ATTACK:
+            return self.special_attack_boost
+        elif boost_string == constants.SPECIAL_DEFENSE:
+            return self.special_defense_boost
+        elif boost_string == constants.SPEED:
+            return self.speed_boost
+        elif boost_string == constants.ACCURACY:
+            return self.accuracy_boost
+        elif boost_string == constants.EVASION:
+            return self.evasion_boost
+        raise ValueError("{} is not a valid boost".format(boost_string))
+
     def forced_move(self):
         if "phantomforce" in self.volatile_status:
             return "phantomforce"

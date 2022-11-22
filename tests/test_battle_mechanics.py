@@ -7979,6 +7979,70 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switching_with_quarkdrive_boosterenergy(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.user.reserve['xatu'].ability = 'quarkdrive'
+        self.state.user.reserve['xatu'].item = 'boosterenergy'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'xatu'),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, "quarkdrivespa"),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.USER, None, "boosterenergy")
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switching_with_protosynthesis_boosterenergy(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.user.reserve['xatu'].ability = 'protosynthesis'
+        self.state.user.reserve['xatu'].item = 'boosterenergy'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'xatu'),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, "protosynthesisspa"),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.USER, None, "boosterenergy")
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switching_with_protosynthesis_boosterenergy_boosting_attack(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.user.reserve['xatu'].attack = 500
+        self.state.user.reserve['xatu'].ability = 'protosynthesis'
+        self.state.user.reserve['xatu'].item = 'boosterenergy'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'xatu'),
+                    (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, "protosynthesisatk"),
+                    (constants.MUTATOR_CHANGE_ITEM, constants.USER, None, "boosterenergy")
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_switching_with_intimidate_into_clearamulet(self):
         bot_move = "switch xatu"
         opponent_move = "splash"

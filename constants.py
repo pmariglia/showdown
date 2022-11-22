@@ -184,6 +184,16 @@ STAT_ABBREVIATION_LOOKUPS = {
     "evasion": EVASION
 }
 
+STAT_ABBREVIATION_REVERSE_LOOKUPS = {
+    ATTACK: "atk",
+    DEFENSE: "def",
+    SPECIAL_ATTACK: "spa",
+    SPECIAL_DEFENSE: "spd",
+    SPEED: "spe",
+    ACCURACY: "accuracy",
+    EVASION: "evasion"
+}
+
 STAT_STRINGS = [ATTACK, DEFENSE, SPECIAL_ATTACK, SPECIAL_DEFENSE, SPEED]
 
 HIDDEN_POWER = 'hiddenpower'

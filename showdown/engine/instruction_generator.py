@@ -53,14 +53,7 @@ accuracy_multiplier_lookup = {
 }
 
 
-def _get_beastboost_stat(pkmn):
-    return max({
-        constants.ATTACK: pkmn.attack,
-        constants.DEFENSE: pkmn.defense,
-        constants.SPECIAL_ATTACK: pkmn.special_attack,
-        constants.SPECIAL_DEFENSE: pkmn.special_defense,
-        constants.SPEED: pkmn.speed,
-    }.items(), key=lambda x: x[1])[0]
+
 
 
 def get_instructions_from_move_special_effect(mutator, attacking_side, attacking_pokemon, defending_pokemon, move_name, instructions):
@@ -420,13 +413,13 @@ def get_instructions_from_damage(mutator, defender, damage, accuracy, attacking_
             )
 
             if attacker_side.active.ability == "beastboost" and actual_damage == damage_side.active.hp:
-                beastboost_stat = _get_beastboost_stat(attacker_side.active)
-                if get_boost_from_boost_string(attacker_side, beastboost_stat) < 6:
+                highest_stat = attacker_side.active.get_highest_stat()
+                if attacker_side.active.get_boost_from_boost_string(highest_stat) < 6:
                     instruction_additions.append(
                         (
                             constants.MUTATOR_BOOST,
                             attacker,
-                            beastboost_stat,
+                            highest_stat,
                             1
                         )
                     )
@@ -775,7 +768,7 @@ def get_instructions_from_boosts(mutator, side_string, boosts, accuracy, instruc
     move_missed_instruction = copy(instruction)
     if percent_hit > 0:
         for k, v in boosts.items():
-            pkmn_boost = get_boost_from_boost_string(side, k)
+            pkmn_boost = side.active.get_boost_from_boost_string(k)
             if v > 0:
                 new_boost = pkmn_boost + v
                 if new_boost > constants.MAX_BOOSTS:
@@ -1300,24 +1293,6 @@ def get_side_from_state(state, side_string):
         return state.opponent
     else:
         raise ValueError("Invalid value for `side`")
-
-
-def get_boost_from_boost_string(side, boost_string):
-    if boost_string == constants.ATTACK:
-        return side.active.attack_boost
-    elif boost_string == constants.DEFENSE:
-        return side.active.defense_boost
-    elif boost_string == constants.SPECIAL_ATTACK:
-        return side.active.special_attack_boost
-    elif boost_string == constants.SPECIAL_DEFENSE:
-        return side.active.special_defense_boost
-    elif boost_string == constants.SPEED:
-        return side.active.speed_boost
-    elif boost_string == constants.ACCURACY:
-        return side.active.accuracy_boost
-    elif boost_string == constants.EVASION:
-        return side.active.evasion_boost
-    raise ValueError("{} is not a valid boost".format(boost_string))
 
 
 def can_be_volatile_statused(side, volatile_status, first_move):
