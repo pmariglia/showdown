@@ -138,7 +138,7 @@ def _calculate_damage(attacker, defender, move, conditions=None, calc_type='aver
         attacking_stats[constants.ATTACK] *= 0.75
     elif defender.ability == "vesselofruin":
         attacking_stats[constants.SPECIAL_ATTACK] *= 0.75
-    elif attacker.ability == "swordofruin":
+    if attacker.ability == "swordofruin":
         defending_stats[constants.DEFENSE] *= 0.75
     elif attacker.ability == "beadsofruin":
         defending_stats[constants.SPECIAL_DEFENSE] *= 0.75
