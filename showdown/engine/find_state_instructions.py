@@ -57,6 +57,9 @@ def get_effective_speed(state, side):
     if constants.PARALYZED == side.active.status and side.active.ability != 'quickfeet':
         boosted_speed *= 0.5
 
+    if any(vs in side.active.volatile_status for vs in ["quarkdrivespe", "protosynthesisspe"]):
+        boosted_speed *= 1.5
+
     return int(boosted_speed)
 
 

@@ -3255,6 +3255,142 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_quarkdriveatk_increases_physical_damage(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.user.active.volatile_status = {"quarkdriveatk"}
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 33),  # typical damage is 25
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_protosynthesisatk_increases_physical_damage(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.user.active.volatile_status = {"protosynthesisatk"}
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 33),  # typical damage is 25
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_quarkdriveatk_does_not_increase_special_damage(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.user.active.volatile_status = {"quarkdriveatk"}
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_protosynthesisatk_does_not_increase_special_damage(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.user.active.volatile_status = {"protosynthesisatk"}
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_quarkdrivespa_increases_special_damage(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.user.active.volatile_status = {"quarkdrivespa"}
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 28),  # typical damage is 22
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_quarkdrivespd_increases_special_defense(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.opponent.active.volatile_status = {"quarkdrivespd"}
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 17),  # typical damage is 22
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_quarkdrivedef_increases_defense(self):
+        bot_move = "tackle"
+        opponent_move = "splash"
+        self.state.opponent.active.volatile_status = {"quarkdrivedef"}
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 19),  # typical damage is 25
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_quarkdrivedef_does_not_increase_spd(self):
+        bot_move = "watergun"
+        opponent_move = "splash"
+        self.state.opponent.active.volatile_status = {"quarkdrivedef"}
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_having_glaiverush_volatile_makes_move_not_able_to_miss_against_you(self):
         bot_move = "iciclecrash"
         opponent_move = "splash"
@@ -13587,5 +13723,31 @@ class TestUserMovesFirst(unittest.TestCase):
 
         user.active.speed = 1
         opponent.active.speed = 2
+
+        self.assertTrue(user_moves_first(self.state, user_move, opponent_move))
+
+    def test_quarkdrivespe_boosts_speed_to_allow_moving_first(self):
+        user = self.state.user
+        opponent = self.state.opponent
+        user_move = lookup_move('tackle')
+        opponent_move = lookup_move('tackle')
+
+        user.active.speed = 100
+        opponent.active.speed = 101
+
+        self.state.user.active.volatile_status = {"quarkdrivespe"}
+
+        self.assertTrue(user_moves_first(self.state, user_move, opponent_move))
+
+    def test_protosynthesisspe_boosts_speed_to_allow_moving_first(self):
+        user = self.state.user
+        opponent = self.state.opponent
+        user_move = lookup_move('tackle')
+        opponent_move = lookup_move('tackle')
+
+        user.active.speed = 100
+        opponent.active.speed = 101
+
+        self.state.user.active.volatile_status = {"protosynthesisspe"}
 
         self.assertTrue(user_moves_first(self.state, user_move, opponent_move))

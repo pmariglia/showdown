@@ -354,6 +354,14 @@ def volatile_status_modifier(attacking_move, attacker, defender):
         modifier *= 0
     if 'glaiverush' in defender.volatile_status:
         modifier *= 2
+    if any(vs in attacker.volatile_status for vs in ['quarkdriveatk', "protosynthesisatk"]) and attacking_move[constants.CATEGORY] == constants.PHYSICAL:
+        modifier *= 1.3
+    if any(vs in attacker.volatile_status for vs in ['quarkdrivespa', "protosynthesisspa"]) and attacking_move[constants.CATEGORY] == constants.SPECIAL:
+        modifier *= 1.3
+    if any(vs in defender.volatile_status for vs in ['quarkdrivedef', "protosynthesisdef"]) and attacking_move[constants.CATEGORY] == constants.PHYSICAL:
+        modifier *= (1/1.3)
+    if any(vs in defender.volatile_status for vs in ['quarkdrivespd', "protosynthesisspd"]) and attacking_move[constants.CATEGORY] == constants.SPECIAL:
+        modifier *= (1/1.3)
     return modifier
 
 
