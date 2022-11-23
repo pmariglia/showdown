@@ -38650,7 +38650,7 @@
         },
         "abilities": {
             "0": "Thick Fat",
-            "1": "Slush Rush",
+            "1": "Snow Cloak",
             "H": "Sheer Force"
         },
         "heightm": 1.2,
@@ -39708,7 +39708,7 @@
         ],
         "gender": "N",
         "baseStats": {
-            "hp": 115,
+            "hp": 111,
             "attack": 127,
             "defense": 99,
             "special-attack": 79,
@@ -40048,8 +40048,8 @@
         "baseStats": {
             "hp": 155,
             "attack": 110,
-            "defense": 130,
-            "special-attack": 50,
+            "defense": 125,
+            "special-attack": 55,
             "special-defense": 80,
             "speed": 45
         },
@@ -40472,7 +40472,7 @@
         "color": "Black",
         "prevo": "Bisharp",
         "evoType": "other",
-        "evoCondition": "Defeat 3 Bisharp holding Leader's Crest while holding Leader's Crest",
+        "evoCondition": "Defeat 3 Bisharp leading Pawniard and level-up",
         "eggGroups": [
             "Human-Like"
         ]
@@ -40532,7 +40532,7 @@
         "color": "Gray",
         "prevo": "Primeape",
         "evoType": "other",
-        "evoCondition": "Use Rage Fist 20 times",
+        "evoCondition": "Use Rage Fist 20 times and level-up",
         "eggGroups": [
             "Field"
         ]
