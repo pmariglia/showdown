@@ -100,7 +100,7 @@ def intimidate(state, attacking_side, attacking_pokemon, defending_side, defendi
         return None
 
     # I shouldn't be doing this here but w/e sue me
-    if defending_pokemon.ability == 'defiant':
+    if defending_pokemon.ability == 'defiant' or defending_pokemon.ability == "guarddog":
         return [(
             constants.MUTATOR_BOOST,
             defending_side,

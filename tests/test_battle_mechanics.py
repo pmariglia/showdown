@@ -249,6 +249,21 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_pkmn_with_guarddog_cannot_be_dragged(self):
+        bot_move = "whirlwind"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = "guarddog"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_haze_removes_status_boosts(self):
         bot_move = "haze"
         opponent_move = "splash"
@@ -8089,6 +8104,26 @@ class TestBattleMechanics(unittest.TestCase):
         self.state.opponent.active.types = ['normal']
         self.state.user.reserve['xatu'].ability = 'intimidate'
         self.state.opponent.active.ability = 'defiant'
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'xatu'),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switching_with_intimidate_into_guarddog(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.opponent.active.types = ['normal']
+        self.state.user.reserve['xatu'].ability = 'intimidate'
+        self.state.opponent.active.ability = 'guarddog'
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
         expected_instructions = [
             TransposeInstruction(

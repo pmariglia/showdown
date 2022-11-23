@@ -512,6 +512,16 @@ def damp(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def guarddog(attacking_move, attacking_pokemon, defending_pokemon):
+    if constants.DRAG in attacking_move[constants.FLAGS]:
+        attacking_move = attacking_move.copy()
+        attacking_move_flags = attacking_move[constants.FLAGS].copy()
+        attacking_move_flags.pop(constants.DRAG)
+        attacking_move[constants.FLAGS] = attacking_move_flags
+
+    return attacking_move
+
+
 def purifyingsalt(attacking_move, attacking_pokemon, defending_pokemon):
     if attacking_move[constants.TYPE] == "ghost":
         attacking_move = attacking_move.copy()
@@ -521,6 +531,7 @@ def purifyingsalt(attacking_move, attacking_pokemon, defending_pokemon):
 
 
 ability_lookup = {
+    'guarddog': guarddog,
     'wellbakedbody': wellbakedbody,
     'thermalexchange': thermalexchange,
     'purifyingsalt': purifyingsalt,
