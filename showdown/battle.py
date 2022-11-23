@@ -450,6 +450,7 @@ class Pokemon:
         self.types = pokedex[self.name][constants.TYPES]
         self.item = constants.UNKNOWN_ITEM
 
+        self.terastallized = False
         self.fainted = False
         self.moves = []
         self.status = None
@@ -670,6 +671,7 @@ class Pokemon:
             constants.EVS: self.evs,
             constants.BOOSTS: self.boosts,
             constants.STATUS: self.status,
+            constants.TERASTALLIZED: self.terastallized,
             constants.VOLATILE_STATUS: set(self.volatile_statuses),
             constants.MOVES: [m.to_dict() for m in self.moves]
         }

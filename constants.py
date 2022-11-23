@@ -115,6 +115,7 @@ BASE_POWER = "basePower"
 WEIGHT = "weightkg"
 NATURE = "nature"
 EVS = "evs"
+TERASTALLIZED = "terastallized"
 
 SIDE = "side"
 POKEMON = "pokemon"

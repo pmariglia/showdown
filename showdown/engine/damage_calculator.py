@@ -3,6 +3,7 @@ from copy import deepcopy
 
 import constants
 from data import all_move_json
+from data import pokedex
 
 
 pokemon_type_indicies = {
@@ -265,8 +266,20 @@ def weather_modifier(attacking_move, weather):
 
 def stab_modifier(attacking_pokemon, attacking_move):
     if attacking_move[constants.TYPE] in [t for t in attacking_pokemon.types]:
+        if (
+            attacking_pokemon.terastallized and
+            attacking_pokemon.types[0] in pokedex[attacking_pokemon.id][constants.TYPES]
+        ):
+            return 2
+        else:
+            return 1.5
+
+    elif (
+        attacking_pokemon.terastallized and
+        attacking_move[constants.TYPE] in pokedex[attacking_pokemon.id][constants.TYPES]
+    ):
         return 1.5
-    
+
     return 1
 
 
