@@ -11729,6 +11729,26 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_terablast_changes_type_if_terastallized(self):
+        bot_move = "terablast"
+        opponent_move = "splash"
+        self.state.user.active.terastallized = True
+        self.state.user.active.types = ["water"]
+        self.state.opponent.active.types = ["ghost"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    # normal terablast would miss on a ghost normally
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 65)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_galvanize_boosts_normal_move_without_stab(self):
         bot_move = "tackle"
         opponent_move = "splash"

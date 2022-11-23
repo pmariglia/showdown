@@ -361,6 +361,19 @@ def filletaway(attacking_side, attacking_move, defending_move, attacking_pokemon
     return attacking_move
 
 
+def terablast(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    if attacking_pokemon.terastallized:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.TYPE] = attacking_pokemon.types[0]
+
+        boosted_stats = attacking_pokemon.calculate_boosted_stats()
+
+        if boosted_stats[constants.SPECIAL_ATTACK] > boosted_stats[constants.ATTACK]:
+            attacking_move[constants.CATEGORY] = constants.PHYSICAL
+
+    return attacking_move
+
+
 def bodypress(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     boosted_stats = attacking_pokemon.calculate_boosted_stats()
@@ -683,6 +696,7 @@ move_lookup = {
     'collisioncourse': collisioncourse,
     'electrodrift': collisioncourse,
     'filletaway': filletaway,
+    'terablast': terablast,
 }
 
 
