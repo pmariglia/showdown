@@ -37,7 +37,7 @@ def get_effective_speed(state, side):
         boosted_speed *= 2
     elif state.weather == constants.SAND and side.active.ability == 'sandrush':
         boosted_speed *= 2
-    elif state.weather == constants.HAIL and side.active.ability == 'slushrush':
+    elif state.weather in constants.HAIL_OR_SNOW and side.active.ability == 'slushrush':
         boosted_speed *= 2
 
     if state.field == constants.ELECTRIC_TERRAIN and side.active.ability == 'surgesurfer':

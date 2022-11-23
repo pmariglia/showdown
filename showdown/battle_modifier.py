@@ -53,7 +53,7 @@ def can_have_speed_modified(battle, pokemon):
             "sandrush" in [normalize_name(a) for a in pokedex[pokemon.name][constants.ABILITIES].values()]
         ) or
         (
-            battle.weather == constants.HAIL and
+            battle.weather in constants.HAIL_OR_SNOW and
             pokemon.ability is None and
             "slushrush" in [normalize_name(a) for a in pokedex[pokemon.name][constants.ABILITIES].values()]
         ) or

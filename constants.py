@@ -240,10 +240,12 @@ SUN = "sunnyday"
 SAND = "sandstorm"
 HAIL = "hail"
 SNOW = "snow"
+ICE_WEATHER = "snow"
 DESOLATE_LAND = "desolateland"
 HEAVY_RAIN = "primordialsea"
 
 IRREVERSIBLE_WEATHER = {DESOLATE_LAND, HEAVY_RAIN}
+HAIL_OR_SNOW = {HAIL, SNOW}
 
 POKEMON_CANNOT_HAVE_ITEMS_REMOVED = {
     'kyogreprimal',

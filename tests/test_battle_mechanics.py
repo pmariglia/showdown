@@ -10648,6 +10648,60 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_switching_in_with_snowwarning_produces_correct_ice_weather_instruction(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.user.reserve["xatu"].ability = "snowwarning"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.USER, "raichu", "xatu"),
+                    (constants.MUTATOR_WEATHER_START, constants.SNOW, None)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switching_in_with_snowwarning_produces_correct_ice_weather_instruction(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.user.reserve["xatu"].ability = "snowwarning"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.USER, "raichu", "xatu"),
+                    (constants.MUTATOR_WEATHER_START, constants.SNOW, None)
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_switching_in_with_snowwarning_does_not_produce_instruction_if_weather_already_set(self):
+        bot_move = "switch xatu"
+        opponent_move = "splash"
+        self.state.user.reserve["xatu"].ability = "snowwarning"
+        self.state.weather = constants.ICE_WEATHER
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_SWITCH, constants.USER, "raichu", "xatu"),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_using_sunnyday_in_heavyrain_does_not_change_weather(self):
         bot_move = "sunnyday"
         opponent_move = "splash"

@@ -209,7 +209,7 @@ def hurricane(attacking_side, attacking_move, defending_move, attacking_pokemon,
 
 
 def blizzard(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
-    if weather == constants.HAIL:
+    if weather in constants.HAIL_OR_SNOW:
         attacking_move = attacking_move.copy()
         attacking_move[constants.ACCURACY] = True
     return attacking_move
@@ -389,7 +389,7 @@ def doubleironbash(attacking_side, attacking_move, defending_move, attacking_pok
 
 
 def morningsun(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
-    if weather in [constants.SAND, constants.RAIN, constants.HAIL]:
+    if weather in [constants.SAND, constants.RAIN, constants.HAIL, constants.SNOW]:
         attacking_move = attacking_move.copy()
         attacking_move[constants.HEAL] = [1, 4]
     elif weather == constants.SUN:
@@ -401,7 +401,7 @@ def morningsun(attacking_side, attacking_move, defending_move, attacking_pokemon
 def shoreup(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.HEAL_TARGET] = constants.SELF
-    if weather in [constants.SAND, constants.RAIN, constants.HAIL]:
+    if weather == constants.SAND:
         attacking_move[constants.HEAL] = [2, 3]
     else:
         attacking_move[constants.HEAL] = [1, 2]
@@ -555,7 +555,7 @@ def weatherball(attacking_side, attacking_move, defending_move, attacking_pokemo
         attacking_move = attacking_move.copy()
         attacking_move[constants.TYPE] = 'water'
         attacking_move[constants.BASE_POWER] *= 2
-    elif weather == constants.HAIL:
+    elif weather in constants.HAIL_OR_SNOW:
         attacking_move = attacking_move.copy()
         attacking_move[constants.TYPE] = 'ice'
         attacking_move[constants.BASE_POWER] *= 2

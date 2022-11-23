@@ -574,7 +574,7 @@ def get_instructions_from_side_conditions(mutator, attacker_string, side_string,
         elif condition == constants.TOXIC_SPIKES:
             max_layers = 2
         elif condition == constants.AURORA_VEIL:
-            max_layers = 1 if mutator.state.weather == constants.HAIL else 0
+            max_layers = 1 if mutator.state.weather in constants.HAIL_OR_SNOW else 0
         else:
             max_layers = 1
 

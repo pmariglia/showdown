@@ -125,6 +125,9 @@ def apply_mods(game_mode):
     elif "gen8" in game_mode:
         apply_gen_8_mods()
 
-    if str(CURRENT_GEN) not in game_mode[:4]:
-        set_random_battle_sets(7)  # use random battle sets from gen7 if we are not in gen8
-        damage_calculator.TERRAIN_DAMAGE_BOOST = 1.5  # terrain gave a 1.5x damage boost prior to gen8
+    if game_mode[:3] == "gen":
+        if int(game_mode[3]) < 8:
+            set_random_battle_sets(7)
+            damage_calculator.TERRAIN_DAMAGE_BOOST = 1.5  # terrain gave a 1.5x damage boost prior to gen8
+        if int(game_mode[3]) < 9:
+            constants.ICE_WEATHER = constants.HAIL  # ice-type weather was hail prior to gen9
