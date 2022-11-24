@@ -135,6 +135,7 @@ MEGA_EVOLVE_GENERATIONS = [
 CAN_MEGA_EVO = "canMegaEvo"
 CAN_ULTRA_BURST = "canUltraBurst"
 CAN_DYNAMAX = "canDynamax"
+CAN_TERASTALLIZE = "canTerastallize"
 CAN_Z_MOVE = "canZMove"
 ZMOVE = "zmove"
 ULTRA_BURST = "ultra"
@@ -348,6 +349,7 @@ BANEFUL_BUNKER = "banefulbunker"
 SILK_TRAP = "silktrap"
 SPIKY_SHIELD = "spikyshield"
 DYNAMAX = "dynamax"
+TERASTALLIZE = "terastallize"
 PARTIALLY_TRAPPED = "partiallytrapped"
 TRANSFORM = 'transform'
 

@@ -323,7 +323,13 @@ class Battler:
         if first_turn:
             existing_conditions = (None, None, None)
         else:
-            existing_conditions = (self.active.name, self.active.boosts, self.active.volatile_statuses)
+            existing_conditions = (
+                self.active.name,
+                self.active.boosts,
+                self.active.volatile_statuses,
+                self.active.terastallized,
+                self.active.types
+            )
 
         try:
             trapped = user_json[constants.ACTIVE][0].get(constants.TRAPPED, False)
@@ -350,6 +356,9 @@ class Battler:
                 if existing_conditions[0] == pkmn.name:
                     pkmn.boosts = existing_conditions[1]
                     pkmn.volatile_statuses = existing_conditions[2]
+                    if existing_conditions[3]:
+                        pkmn.terastallized = True
+                        pkmn.types = existing_conditions[4]
             else:
                 self.reserve.append(pkmn)
 
@@ -374,6 +383,11 @@ class Battler:
             self.active.can_dynamax = user_json[constants.ACTIVE][0][constants.CAN_DYNAMAX]
         except KeyError:
             self.active.can_dynamax = False
+
+        try:
+            self.active.can_terastallize = user_json[constants.ACTIVE][0][constants.CAN_TERASTALLIZE]
+        except KeyError:
+            self.active.can_terastallize = False
 
         # clear the active moves so they can be reset by the options available
         self.active.moves.clear()
