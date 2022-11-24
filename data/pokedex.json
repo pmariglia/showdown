@@ -29266,7 +29266,7 @@
         },
         "abilities": {
             "0": "Overgrow",
-            "H": "Long Reach"
+            "H": "Scrappy"
         },
         "heightm": 1.6,
         "weightkg": 37,
@@ -39648,8 +39648,8 @@
         "num": 977,
         "name": "gholdengo",
         "types": [
-            "ghost",
-            "steel"
+            "steel",
+            "ghost"
         ],
         "gender": "N",
         "baseStats": {
@@ -40317,7 +40317,7 @@
             "defense": 40,
             "special-attack": 50,
             "special-defense": 40,
-            "speed": 30
+            "speed": 35
         },
         "abilities": {
             "0": "Flash Fire",
