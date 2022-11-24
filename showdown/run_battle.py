@@ -125,8 +125,8 @@ async def start_random_battle(ps_websocket_client: PSWebsocketClient, pokemon_ba
     return battle
 
 
-def _set_gen8ou_teams(battle):
-    data.ou_sets = data.get_ou_sets([p.name for p in battle.opponent.reserve])
+def set_team_datasets(battle):
+    data.team_datasets = data.get_team_datasets([p.name for p in battle.opponent.reserve])
     exact_team = data.get_ou_team([p.name for p in battle.opponent.reserve])
     if exact_team is not None:
         logger.info("Found an exact team")
@@ -169,8 +169,8 @@ async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_
 
         battle.initialize_team_preview(user_json, opponent_pokemon, pokemon_battle_type)
 
-        if pokemon_battle_type == "gen8ou":
-            _set_gen8ou_teams(battle)
+        if config.battle_bot_module == "team_datasets":
+            set_team_datasets(battle)
 
         smogon_usage_data = get_standard_battle_sets(
             pokemon_battle_type,

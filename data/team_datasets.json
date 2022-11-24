@@ -1,0 +1,2245 @@
+{
+    "pokemon": {
+        "clodsire": {
+            "waterabsorb|blacksludge|careful|252,4,0,0,252,0|earthquake|recover|spikes|toxic": 3,
+            "waterabsorb|blacksludge|careful|252,4,0,0,252,0|earthquake|poisonjab|recover|stealthrock": 1,
+            "waterabsorb|leftovers|careful|252,0,0,0,252,4|earthquake|recover|spikes|toxic": 1,
+            "unaware|blacksludge|careful|252,0,4,0,252,0|earthquake|recover|stealthrock|toxic": 1,
+            "waterabsorb|mentalherb|careful|252,0,4,0,252,0|earthquake|recover|spikes|toxic": 1,
+            "unaware|leftovers|careful|252,4,0,0,252,0|earthquake|protect|recover|toxic": 1,
+            "unaware|redcard|careful|248,8,0,0,252,0|curse|earthquake|recover|toxic": 1,
+            "waterabsorb|blacksludge|careful|252,4,0,0,252,0|earthquake|poisonjab|recover|spikes": 1,
+            "waterabsorb|leftovers|careful|252,0,24,0,232,0|earthquake|recover|spikes|yawn": 1,
+            "waterabsorb|leftovers|careful|252,0,4,0,252,0|earthquake|poisonjab|recover|stealthrock": 1,
+            "waterabsorb|leftovers|careful|252,4,0,0,252,0|earthquake|haze|recover|spikes": 2,
+            "unaware|rockyhelmet|serious|252,0,252,0,4,0|earthquake|recover|stealthrock|toxic": 1,
+            "waterabsorb|leftovers|impish|252,4,252,0,0,0|earthquake|recover|stealthrock|toxic": 1,
+            "unaware|leftovers|careful|252,4,0,0,252,0|earthquake|recover|spikes|toxic": 1,
+            "unaware|heavydutyboots|impish|252,0,252,0,4,0|earthquake|recover|spikes|toxic": 1,
+            "waterabsorb|leftovers|calm|252,0,80,0,176,0|earthpower|recover|stealthrock|toxic": 1,
+            "unaware|leftovers|careful|252,4,0,0,252,0|earthquake|recover|stealthrock|toxicspikes": 1
+        },
+        "drifblim": {
+            "aftermath|heavydutyboots|bold|252,0,252,0,4,0|defog|hex|strengthsap|willowisp": 1
+        },
+        "dragapult": {
+            "infiltrator|choicespecs|timid|0,0,0,252,4,252|dracometeor|hydropump|shadowball|uturn": 1,
+            "infiltrator|choicespecs|timid|0,0,0,252,4,252|dracometeor|shadowball|thunder|uturn": 1,
+            "infiltrator|lifeorb|hasty|0,4,0,252,0,252|dracometeor|dragondarts|shadowball|terablast": 1,
+            "infiltrator|choicespecs|timid|0,0,0,252,4,252|dracometeor|flamethrower|shadowball|uturn": 2,
+            "infiltrator|expertbelt|jolly|4,252,0,0,0,252|dragondarts|suckerpunch|thunderwave|willowisp": 1,
+            "clearbody|choicespecs|timid|0,0,0,252,4,252|dracometeor|fireblast|shadowball|uturn": 1,
+            "infiltrator|choiceband|jolly|0,252,0,0,4,252|dragondarts|quickattack|suckerpunch|uturn": 1,
+            "infiltrator|choiceband|hasty|0,252,0,4,0,252|dragondarts|suckerpunch|terablast|uturn": 1,
+            "cursedbody|leftovers|timid|252,0,0,4,0,252|disable|hex|substitute|willowisp": 1,
+            "infiltrator|choicespecs|timid|0,4,0,252,0,252|dracometeor|fireblast|shadowball|uturn": 2,
+            "infiltrator|lifeorb|lonely|0,252,0,4,0,252|dragondance|dragondarts|suckerpunch|terablast": 1,
+            "clearbody|heavydutyboots|timid|0,0,0,252,4,252|dracometeor|hex|uturn|willowisp": 1,
+            "infiltrator|choicespecs|hasty|0,0,0,252,4,252|dracometeor|flamethrower|shadowball|uturn": 1,
+            "infiltrator|heavydutyboots|timid|0,0,0,252,4,252|dracometeor|hex|uturn|willowisp": 2,
+            "infiltrator|choicespecs|timid|0,0,4,252,0,252|dracometeor|shadowball|thunderbolt|uturn": 1,
+            "infiltrator|choiceband|jolly|0,252,4,0,0,252|dragondarts|suckerpunch|terablast|uturn": 1,
+            "infiltrator|choicespecs|timid|0,0,0,252,4,252|dracometeor|fireblast|terablast|thunderbolt": 1,
+            "infiltrator|choicespecs|modest|4,0,0,252,0,252|dracometeor|flamethrower|shadowball|surf": 1,
+            "infiltrator|lifeorb|jolly|0,252,0,0,0,252|dragondance|dragondarts|substitute|terablast": 1,
+            "clearbody|choicespecs|timid|0,0,0,252,4,252|dracometeor|hex|shadowball|uturn": 1
+        },
+        "breloom": {
+            "technician|focussash|adamant|0,252,0,0,4,252|bulletseed|closecombat|machpunch|spore": 2,
+            "technician|choiceband|adamant|0,252,0,0,4,252|bulletseed|closecombat|machpunch|rocktomb": 2,
+            "technician|lifeorb|jolly|0,252,0,0,4,252|bulletseed|closecombat|machpunch|spore": 1,
+            "poisonheal|toxicorb|adamant|248,152,0,0,0,108|machpunch|seedbomb|spore|terablast": 1,
+            "technician|focussash|adamant|0,252,0,0,4,252|bulletseed|machpunch|spore|swordsdance": 1,
+            "technician|focussash|adamant|0,252,0,0,4,252|bulletseed|machpunch|rocktomb|swordsdance": 1,
+            "technician|choiceband|jolly|0,252,0,0,4,252|bulletseed|closecombat|focuspunch|machpunch": 1,
+            "technician|choicescarf|jolly|0,252,0,0,4,252|bulletseed|closecombat|gunkshot|spore": 1,
+            "technician|loadeddice|jolly|0,252,0,0,4,252|bulletseed|gunkshot|machpunch|spore": 1,
+            "technician|loadeddice|jolly|0,252,0,0,4,252|bulletseed|machpunch|spore|swordsdance": 1
+        },
+        "cloyster": {
+            "skilllink|focussash|adamant|0,252,0,0,4,252|iciclespear|rockblast|shellsmash|waterfall": 1,
+            "skilllink|focussash|adamant|0,252,0,0,4,252|iciclespear|liquidation|rockblast|shellsmash": 1
+        },
+        "chiyu": {
+            "beadsofruin|choicescarf|timid|0,0,0,252,4,252|darkpulse|flamethrower|overheat|psychic": 3,
+            "beadsofruin|choicescarf|timid|0,0,0,252,4,252|darkpulse|flamethrower|overheat|terablast": 3,
+            "beadsofruin|choicespecs|timid|0,0,0,252,4,252|darkpulse|lavaplume|overheat|psychic": 1,
+            "beadsofruin|heavydutyboots|timid|0,0,0,252,4,252|darkpulse|flamethrower|nastyplot|terablast": 1,
+            "beadsofruin|choicescarf|modest|0,0,0,252,4,252|darkpulse|fireblast|flamethrower|terablast": 1,
+            "beadsofruin|choicespecs|timid|0,0,0,252,4,252|darkpulse|flamethrower|overheat|psychic": 2,
+            "beadsofruin|choicescarf|timid|0,0,0,252,4,252|darkpulse|flamethrower|memento|overheat": 1,
+            "beadsofruin|choicescarf|timid|0,0,4,252,0,252|darkpulse|fireblast|flamethrower|psychic": 1,
+            "beadsofruin|choicespecs|timid|0,0,4,252,0,252|darkpulse|flamethrower|overheat|willowisp": 1,
+            "beadsofruin|heavydutyboots|timid|0,0,0,252,4,252|flamecharge|flamethrower|nastyplot|terablast": 1,
+            "beadsofruin|choicespecs|timid|0,0,0,252,4,252|darkpulse|flamethrower|overheat|sunnyday": 1,
+            "beadsofruin|choicescarf|timid|0,0,0,252,4,252|darkpulse|flamethrower|psychic|willowisp": 1,
+            "beadsofruin|heavydutyboots|timid|0,0,0,252,4,252|darkpulse|flamethrower|snarl|taunt": 1
+        },
+        "ceruledge": {
+            "weakarmor|focussash|adamant|0,252,0,0,4,252|bitterblade|closecombat|shadowsneak|swordsdance": 1,
+            "flashfire|leftovers|adamant|0,252,0,0,4,252|bitterblade|bulkup|solarblade|willowisp": 1,
+            "weakarmor|leftovers|jolly|0,252,0,0,4,252|bitterblade|shadowclaw|substitute|swordsdance": 2,
+            "flashfire|expertbelt|jolly|0,252,0,0,4,252|bitterblade|closecombat|shadowclaw|swordsdance": 1,
+            "weakarmor|focussash|jolly|0,252,0,0,4,252|bitterblade|shadowsneak|solarblade|swordsdance": 1,
+            "weakarmor|lifeorb|adamant|0,252,0,0,4,252|bitterblade|closecombat|shadowsneak|swordsdance": 1,
+            "weakarmor|airballoon|adamant|0,252,4,0,0,252|bitterblade|shadowsneak|substitute|swordsdance": 1,
+            "flashfire|choicescarf|jolly|0,252,0,0,4,252|bitterblade|closecombat|nightslash|shadowclaw": 1,
+            "flashfire|lifeorb|jolly|0,252,0,0,4,252|bitterblade|closecombat|shadowsneak|swordsdance": 1
+        },
+        "fluttermane": {
+            "protosynthesis|lifeorb|modest|0,0,0,252,4,252|moonblast|psyshock|shadowball|sunnyday": 1,
+            "protosynthesis|choicespecs|timid|4,0,0,252,0,252|memento|moonblast|mysticalfire|shadowball": 1,
+            "protosynthesis|choicescarf|timid|0,0,0,252,4,252|moonblast|mysticalfire|shadowball|thunderwave": 1,
+            "protosynthesis|choicespecs|timid|0,0,0,252,4,252|energyball|moonblast|psyshock|shadowball": 1,
+            "protosynthesis|choicespecs|timid|0,0,0,252,4,252|moonblast|mysticalfire|shadowball|thunderbolt": 2,
+            "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|mysticalfire|shadowball": 6,
+            "protosynthesis|choicespecs|timid|0,0,0,252,4,252|moonblast|mysticalfire|psyshock|shadowball": 1,
+            "protosynthesis|leftovers|calm|0,0,0,64,252,192|calmmind|hex|moonblast|thunderwave": 1,
+            "protosynthesis|choicescarf|timid|0,0,0,252,140,116|moonblast|mysticalfire|psyshock|shadowball": 1,
+            "protosynthesis|lifeorb|timid|0,0,0,252,4,252|moonblast|shadowball|taunt|thunderbolt": 1,
+            "protosynthesis|boosterenergy|hasty|0,4,0,252,0,252|memento|moonblast|mysticalfire|shadowball": 1,
+            "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|shadowball|substitute": 3,
+            "protosynthesis|lifeorb|timid|0,0,0,252,4,252|calmmind|moonblast|shadowball|substitute": 1,
+            "protosynthesis|choicescarf|timid|0,0,0,252,4,252|moonblast|mysticalfire|shadowball|thunderbolt": 1,
+            "protosynthesis|choicespecs|timid|0,0,4,252,0,252|moonblast|mysticalfire|powergem|shadowball": 1,
+            "protosynthesis|lifeorb|timid|0,0,0,252,4,252|calmmind|darkpulse|moonblast|shadowball": 1,
+            "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|drainingkiss|moonblast|mysticalfire|shadowball": 1,
+            "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|psyshock|shadowball": 2,
+            "protosynthesis|boosterenergy|timid|0,0,0,252,0,252|calmmind|drainingkiss|hex|mysticalfire": 1,
+            "protosynthesis|choicespecs|timid|0,0,0,252,4,252|moonblast|psyshock|shadowball|thunderbolt": 1
+        },
+        "greattusk": {
+            "protosynthesis|choicescarf|jolly|0,252,4,0,0,252|closecombat|headlongrush|headsmash|rapidspin": 1,
+            "protosynthesis|leftovers|jolly|0,252,0,0,4,252|closecombat|earthquake|playrough|rapidspin": 1,
+            "protosynthesis|choicescarf|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stealthrock": 1,
+            "protosynthesis|leftovers|impish|252,0,252,0,0,4|bodypress|earthquake|rapidspin|stealthrock": 1,
+            "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stealthrock": 3,
+            "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stoneedge": 4,
+            "protosynthesis|leftovers|jolly|252,4,0,0,0,252|bulkup|closecombat|headlongrush|icespinner": 1,
+            "protosynthesis|lifeorb|jolly|0,252,0,0,4,252|closecombat|headlongrush|knockoff|rapidspin": 1,
+            "protosynthesis|rockyhelmet|impish|252,4,252,0,0,0|bodypress|earthquake|knockoff|rapidspin": 1,
+            "protosynthesis|leftovers|careful|252,4,0,0,252,0|earthquake|knockoff|rapidspin|stealthrock": 1,
+            "protosynthesis|redcard|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stealthrock": 1,
+            "protosynthesis|focussash|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stealthrock": 2,
+            "protosynthesis|leftovers|jolly|0,252,4,0,0,252|closecombat|headlongrush|icespinner|rapidspin": 1,
+            "protosynthesis|focussash|jolly|0,252,0,0,4,252|closecombat|headlongrush|icespinner|rapidspin": 1,
+            "protosynthesis|assaultvest|impish|248,48,40,0,132,40|bodypress|earthquake|knockoff|rapidspin": 1,
+            "protosynthesis|choicescarf|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stoneedge": 1,
+            "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|knockoff|rapidspin": 1,
+            "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|icespinner|rapidspin": 2,
+            "protosynthesis|assaultvest|adamant|0,252,0,0,152,104|closecombat|headlongrush|icespinner|rapidspin": 2,
+            "protosynthesis|focussash|jolly|0,252,4,0,0,252|closecombat|headlongrush|stealthrock|taunt": 1,
+            "protosynthesis|focussash|jolly|0,252,4,0,0,252|bulkup|closecombat|headlongrush|rapidspin": 1,
+            "protosynthesis|heavydutyboots|jolly|0,252,0,0,4,252|brickbreak|headlongrush|icespinner|rapidspin": 1,
+            "protosynthesis|focussash|jolly|44,208,0,0,4,252|closecombat|headlongrush|rapidspin|stoneedge": 1,
+            "protosynthesis|focussash|jolly|0,252,4,0,0,252|firefang|headlongrush|rapidspin|stealthrock": 1,
+            "protosynthesis|leftovers|impish|252,0,252,0,0,4|earthquake|knockoff|rapidspin|stealthrock": 1,
+            "protosynthesis|heavydutyboots|jolly|0,252,0,0,0,252|headlongrush|rapidspin|stealthrock|taunt": 1
+        },
+        "roaringmoon": {
+            "protosynthesis|lifeorb|adamant|0,252,0,0,4,252|dragondance|earthquake|scaleshot|terablast": 1,
+            "protosynthesis|boosterenergy|adamant|0,252,0,0,4,252|acrobatics|crunch|dragondance|earthquake": 2,
+            "protosynthesis|choiceband|jolly|0,220,32,0,4,252|crunch|dragonclaw|ironhead|uturn": 1,
+            "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|acrobatics|crunch|dragondance|earthquake": 4,
+            "protosynthesis|lifeorb|adamant|0,252,0,0,4,252|dragondance|earthquake|ironhead|jawlock": 1,
+            "protosynthesis|boosterenergy|jolly|0,220,36,0,0,252|acrobatics|crunch|dragondance|earthquake": 1,
+            "protosynthesis|choiceband|jolly|0,220,36,0,0,252|crunch|earthquake|terablast|uturn": 1,
+            "protosynthesis|boosterenergy|jolly|0,252,24,0,0,232|crunch|dragondance|earthquake|ironhead": 1,
+            "protosynthesis|focussash|adamant|0,252,0,0,4,252|acrobatics|crunch|dragonclaw|dragondance": 1,
+            "protosynthesis|boosterenergy|adamant|0,252,0,0,4,252|crunch|dragondance|ironhead|outrage": 1,
+            "protosynthesis|boosterenergy|adamant|0,252,0,0,4,252|acrobatics|crunch|dragonclaw|dragondance": 1,
+            "protosynthesis|mirrorherb|adamant|0,252,0,0,4,252|dragondance|ironhead|jawlock|substitute": 1,
+            "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|crunch|dragondance|ironhead|outrage": 1,
+            "protosynthesis|choiceband|jolly|32,220,0,0,4,252|crunch|dragonclaw|earthquake|uturn": 1,
+            "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|acrobatics|dragondance|earthquake|jawlock": 2,
+            "protosynthesis|boosterenergy|adamant|0,252,0,0,4,252|dragondance|earthquake|ironhead|scaleshot": 1,
+            "protosynthesis|boosterenergy|jolly|0,252,0,0,0,252|acrobatics|dragondance|earthquake|outrage": 1,
+            "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|acrobatics|crunch|dragonclaw|dragondance": 1,
+            "protosynthesis|leftovers|jolly|252,0,0,0,104,152|jawlock|roost|taunt|uturn": 1,
+            "protosynthesis|boosterenergy|adamant|0,252,0,0,4,252|dragondance|earthquake|ironhead|jawlock": 1,
+            "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|crunch|dragondance|outrage|stoneedge": 1,
+            "protosynthesis|choicescarf|jolly|0,252,0,0,4,252|crunch|earthquake|outrage|uturn": 1,
+            "protosynthesis|choicescarf|jolly|0,252,0,0,4,252|earthquake|jawlock|outrage|uturn": 1
+        },
+        "cyclizar": {
+            "regenerator|heatrock|jolly|248,8,0,0,0,252|knockoff|rapidspin|shedtail|sunnyday": 1,
+            "regenerator|sitrusberry|timid|252,0,0,4,0,252|dracometeor|overheat|rapidspin|shedtail": 2,
+            "regenerator|heavydutyboots|jolly|248,0,0,0,8,252|rapidspin|shedtail|taunt|uturn": 2,
+            "regenerator|heavydutyboots|jolly|252,0,0,0,4,252|knockoff|rapidspin|shedtail|taunt": 3,
+            "regenerator|ejectbutton|jolly|0,252,0,0,4,252|knockoff|rapidspin|shedtail|uturn": 1,
+            "regenerator|choicescarf|timid|236,0,0,20,0,252|dracometeor|rapidspin|shedtail|uturn": 1,
+            "regenerator|heavydutyboots|jolly|252,4,0,0,0,252|knockoff|rapidspin|shedtail|uturn": 5,
+            "regenerator|heavydutyboots|jolly|0,252,4,0,0,252|knockoff|rapidspin|shedtail|uturn": 4,
+            "regenerator|choicescarf|jolly|252,4,0,0,0,252|dragontail|icespinner|knockoff|shedtail": 1,
+            "regenerator|heavydutyboots|timid|240,0,0,16,0,252|dracometeor|knockoff|rapidspin|shedtail": 3,
+            "regenerator|heavydutyboots|timid|252,0,0,4,0,252|dracometeor|rapidspin|shedtail|uturn": 1,
+            "regenerator|choicescarf|jolly|252,4,0,0,0,252|rapidspin|shedtail|taunt|uturn": 1,
+            "regenerator|ejectbutton|jolly|248,0,8,0,0,252|knockoff|shedtail|terablast|uturn": 1
+        },
+        "brutebonnet": {
+            "protosynthesis|chopleberry|impish|252,0,252,0,4,0|bodypress|spore|suckerpunch|synthesis": 1,
+            "protosynthesis|heavydutyboots|brave|252,0,4,0,252,0|seedbomb|spore|synthesis|terablast": 1
+        },
+        "rotomwash": {
+            "levitate|assaultvest|calm|252,0,0,252,4,0|darkpulse|discharge|hydropump|voltswitch": 2,
+            "levitate|leftovers|bold|252,0,248,0,0,8|hydropump|nastyplot|thunderwave|voltswitch": 1,
+            "levitate|choicespecs|calm|200,0,200,16,92,0|hydropump|terablast|trick|voltswitch": 1,
+            "levitate|leftovers|calm|252,0,0,4,252,0|hydropump|thunderwave|voltswitch|willowisp": 1,
+            "levitate|heavydutyboots|bold|248,0,252,0,8,0|darkpulse|thunderwave|voltswitch|willowisp": 1,
+            "levitate|leftovers|bold|252,0,252,4,0,0|hydropump|thunderwave|voltswitch|willowisp": 1,
+            "levitate|choicescarf|timid|0,0,0,252,4,252|hydropump|thunderwave|trick|voltswitch": 1,
+            "levitate|leftovers|calm|252,0,0,0,168,88|hydropump|protect|thunderwave|voltswitch": 1,
+            "levitate|choicescarf|timid|0,0,0,252,4,252|hydropump|shadowball|trick|voltswitch": 1
+        },
+        "corviknight": {
+            "pressure|rockyhelmet|impish|248,0,252,0,8,0|bodypress|defog|roost|uturn": 6,
+            "pressure|rockyhelmet|careful|252,0,4,0,252,0|defog|ironhead|roost|uturn": 1,
+            "pressure|shedshell|impish|252,0,252,0,4,0|bodypress|defog|ironhead|roost": 1,
+            "pressure|leftovers|careful|252,0,4,0,252,0|bravebird|defog|roost|uturn": 2,
+            "pressure|leftovers|impish|252,0,252,0,4,0|bodypress|defog|roost|uturn": 1,
+            "pressure|leftovers|impish|252,0,168,0,88,0|bodypress|defog|roost|uturn": 2,
+            "pressure|leftovers|impish|252,4,252,0,0,0|bodypress|bravebird|defog|roost": 2,
+            "pressure|leftovers|impish|252,4,252,0,0,0|bravebird|defog|roost|uturn": 3,
+            "mirrorarmor|rockyhelmet|impish|248,0,252,0,8,0|bravebird|defog|roost|uturn": 1,
+            "pressure|rockyhelmet|careful|248,8,0,0,252,0|bravebird|bulkup|roost|taunt": 1,
+            "pressure|rockyhelmet|impish|248,0,252,0,8,0|bodypress|bravebird|irondefense|roost": 1,
+            "pressure|rockyhelmet|impish|252,0,252,0,4,0|bravebird|defog|roost|uturn": 3,
+            "pressure|rockyhelmet|impish|248,0,252,0,0,8|bodypress|defog|irondefense|roost": 2,
+            "pressure|leftovers|impish|252,0,168,0,88,0|bravebird|bulkup|roost|uturn": 1,
+            "pressure|weaknesspolicy|adamant|188,144,0,0,0,176|agility|bulkup|powertrip|roost": 1,
+            "pressure|rockyhelmet|impish|248,0,252,0,8,0|bodypress|bravebird|defog|roost": 1,
+            "pressure|heavydutyboots|impish|248,8,252,0,0,0|bravebird|defog|roost|uturn": 1,
+            "pressure|heavydutyboots|impish|252,0,168,0,88,0|bodypress|defog|roost|uturn": 1,
+            "pressure|rockyhelmet|impish|252,0,168,0,88,0|bodypress|defog|roost|uturn": 1,
+            "pressure|rockyhelmet|impish|252,0,160,0,96,0|bodypress|bravebird|defog|roost": 1,
+            "pressure|heavydutyboots|impish|252,0,168,0,88,0|bravebird|defog|roost|uturn": 1,
+            "pressure|rockyhelmet|impish|176,0,216,0,116,0|bodypress|bravebird|defog|roost": 1
+        },
+        "gholdengo": {
+            "goodasgold|leftovers|calm|252,0,92,0,160,4|makeitrain|nastyplot|recover|shadowball": 1,
+            "goodasgold|choicescarf|timid|0,0,0,252,4,252|focusblast|makeitrain|shadowball|thunderbolt": 1,
+            "goodasgold|rockyhelmet|modest|248,0,0,252,0,8|makeitrain|psychic|shadowball|thunderbolt": 1,
+            "goodasgold|airballoon|modest|108,0,0,252,0,148|makeitrain|nastyplot|shadowball|substitute": 1,
+            "goodasgold|choicescarf|timid|0,0,0,252,4,252|makeitrain|recover|shadowball|trick": 1,
+            "goodasgold|choicescarf|timid|0,0,0,252,4,252|focusblast|makeitrain|shadowball|trick": 7,
+            "goodasgold|choicescarf|timid|0,0,0,252,0,252|makeitrain|shadowball|thunderbolt|thunderwave": 1,
+            "goodasgold|leftovers|modest|4,0,0,252,0,252|focusblast|makeitrain|nastyplot|shadowball": 1,
+            "goodasgold|airballoon|modest|4,0,0,252,0,252|makeitrain|nastyplot|recover|shadowball": 1,
+            "goodasgold|choicescarf|timid|0,0,0,252,4,252|makeitrain|psyshock|shadowball|trick": 1,
+            "goodasgold|leftovers|calm|252,0,92,0,160,4|makeitrain|recover|shadowball|thunderwave": 1,
+            "goodasgold|choicescarf|timid|74,0,4,252,0,178|dazzlinggleam|makeitrain|shadowball|thunderbolt": 1,
+            "goodasgold|leftovers|modest|252,0,0,252,0,4|makeitrain|nastyplot|recover|shadowball": 1,
+            "goodasgold|leftovers|modest|252,0,0,252,4,0|makeitrain|metalsound|recover|shadowball": 1,
+            "goodasgold|leftovers|modest|248,0,0,196,0,64|makeitrain|nastyplot|recover|shadowball": 1,
+            "goodasgold|choicescarf|timid|0,0,0,252,4,252|makeitrain|shadowball|thunderbolt|trick": 3,
+            "goodasgold|choicespecs|timid|4,0,0,252,0,252|makeitrain|psychic|shadowball|thunderbolt": 1,
+            "goodasgold|choicescarf|timid|0,0,0,252,4,252|makeitrain|psychic|shadowball|trick": 1,
+            "goodasgold|heavydutyboots|modest|252,0,0,252,0,4|makeitrain|nastyplot|recover|shadowball": 1,
+            "goodasgold|shucaberry|timid|252,0,0,4,0,252|makeitrain|memento|recover|thunderwave": 1,
+            "goodasgold|choicescarf|timid|32,0,0,252,0,224|focusblast|makeitrain|shadowball|trick": 1,
+            "goodasgold|airballoon|timid|0,0,0,252,4,252|dazzlinggleam|makeitrain|shadowball|thunderbolt": 1
+        },
+        "torkoal": {
+            "drought|heatrock|modest|248,0,0,252,8,0|earthpower|heatwave|solarbeam|yawn": 1,
+            "drought|heatrock|bold|248,0,252,8,0,0|lavaplume|rapidspin|stealthrock|yawn": 3,
+            "drought|heatrock|modest|248,0,0,252,8,0|clearsmog|eruption|rapidspin|sunnyday": 1,
+            "drought|heatrock|bold|252,0,252,0,4,0|bodypress|lavaplume|rapidspin|stealthrock": 1,
+            "drought|ejectbutton|bold|248,0,252,8,0,0|bodypress|lavaplume|rapidspin|stealthrock": 1,
+            "drought|heatrock|bold|248,0,252,8,0,0|lavaplume|rapidspin|stealthrock|willowisp": 2,
+            "drought|heatrock|bold|248,0,252,0,8,0|bodypress|lavaplume|stealthrock|yawn": 2,
+            "drought|heatrock|bold|248,0,156,0,104,0|lavaplume|rapidspin|solarbeam|stealthrock": 1,
+            "drought|heatrock|bold|252,0,216,0,40,0|bodypress|lavaplume|stealthrock|yawn": 1,
+            "drought|heatrock|bold|252,0,252,0,4,0|lavaplume|solarbeam|stealthrock|willowisp": 1,
+            "drought|heatrock|bold|248,0,252,8,0,0|bodypress|rapidspin|stealthrock|yawn": 1,
+            "drought|heatrock|relaxed|248,0,252,0,8,0|bodypress|lavaplume|rapidspin|stealthrock": 1
+        },
+        "chienpao": {
+            "swordofruin|heavydutyboots|jolly|0,252,0,0,4,252|crunch|icespinner|psychicfangs|swordsdance": 1,
+            "swordofruin|lifeorb|jolly|4,252,0,0,0,252|iceshard|sacredsword|swordsdance|throatchop": 2,
+            "swordofruin|heavydutyboots|jolly|0,252,0,0,4,252|crunch|iciclecrash|suckerpunch|swordsdance": 1,
+            "swordofruin|lifeorb|jolly|0,252,0,0,4,252|icespinner|sacredsword|suckerpunch|swordsdance": 2,
+            "swordofruin|choiceband|jolly|0,252,0,0,4,252|crunch|iceshard|iciclecrash|sacredsword": 1,
+            "swordofruin|lifeorb|naive|0,252,0,4,0,252|crunch|icespinner|suckerpunch|terablast": 1,
+            "swordofruin|choiceband|jolly|0,252,0,0,4,252|crunch|iciclecrash|psychicfangs|suckerpunch": 1,
+            "swordofruin|heavydutyboots|jolly|0,252,0,0,4,252|iciclecrash|suckerpunch|swordsdance|throatchop": 1,
+            "swordofruin|assaultvest|jolly|0,252,0,0,4,252|crunch|iciclecrash|sacredsword|suckerpunch": 1,
+            "swordofruin|focussash|adamant|0,252,4,0,0,252|iceshard|iciclecrash|sacredsword|swordsdance": 1,
+            "swordofruin|focussash|jolly|0,252,0,0,4,252|icespinner|nightslash|sacredsword|swordsdance": 1,
+            "swordofruin|lifeorb|jolly|0,252,0,0,4,252|iceshard|iciclecrash|sacredsword|throatchop": 1,
+            "swordofruin|blackglasses|jolly|0,252,0,0,4,252|crunch|iciclecrash|suckerpunch|swordsdance": 1,
+            "swordofruin|heavydutyboots|jolly|0,252,0,0,4,252|icespinner|sacredsword|suckerpunch|swordsdance": 1
+        },
+        "garchomp": {
+            "roughskin|rockyhelmet|jolly|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 1,
+            "roughskin|leftovers|jolly|252,0,136,0,0,120|earthquake|spikes|stealthrock|stoneedge": 1,
+            "roughskin|rockyhelmet|jolly|252,0,120,0,0,136|dragontail|earthquake|spikes|stealthrock": 1,
+            "roughskin|choicescarf|adamant|0,252,4,0,0,252|dragonclaw|earthquake|outrage|stealthrock": 1,
+            "roughskin|rockyhelmet|jolly|252,0,128,0,0,128|dragontail|earthquake|spikes|sunnyday": 1,
+            "roughskin|leftovers|jolly|0,252,0,0,4,252|earthquake|spikes|stoneedge|swordsdance": 1,
+            "roughskin|lifeorb|adamant|0,252,0,0,0,252|earthquake|spikes|stealthrock|terablast": 1,
+            "roughskin|focussash|jolly|0,252,0,0,4,252|earthquake|outrage|stealthrock|stoneedge": 1,
+            "roughskin|leftovers|jolly|252,0,0,0,4,252|dragontail|earthquake|spikes|stealthrock": 1
+        },
+        "volcarona": {
+            "flamebody|heavydutyboots|timid|0,0,0,252,4,252|bugbuzz|flamethrower|gigadrain|quiverdance": 2,
+            "flamebody|heavydutyboots|modest|0,0,0,252,4,252|bugbuzz|flamethrower|quiverdance|terablast": 1,
+            "flamebody|heavydutyboots|timid|248,0,156,16,0,88|flamethrower|gigadrain|morningsun|quiverdance": 1,
+            "swarm|heavydutyboots|modest|0,0,0,252,4,252|bugbuzz|flamethrower|quiverdance|substitute": 1,
+            "flamebody|heavydutyboots|timid|0,0,4,252,0,252|bugbuzz|flamethrower|quiverdance|terablast": 1,
+            "flamebody|heavydutyboots|timid|0,0,4,252,0,252|bugbuzz|fierydance|gigadrain|quiverdance": 1,
+            "flamebody|heavydutyboots|timid|0,0,4,252,0,252|fierydance|gigadrain|quiverdance|terablast": 1,
+            "flamebody|heavydutyboots|timid|0,0,0,252,4,252|bugbuzz|fireblast|gigadrain|quiverdance": 1
+        },
+        "ironmoth": {
+            "quarkdrive|choicespecs|timid|0,0,0,252,4,252|energyball|overheat|sludgewave|uturn": 1,
+            "quarkdrive|heavydutyboots|modest|4,0,0,252,252,0|agility|bugbuzz|flamethrower|sludgewave": 1,
+            "quarkdrive|heavydutyboots|timid|0,0,4,252,0,252|fireblast|morningsun|sludgewave|toxicspikes": 1,
+            "quarkdrive|boosterenergy|timid|120,0,4,132,0,252|discharge|energyball|fierydance|sludgewave": 1,
+            "quarkdrive|assaultvest|timid|0,0,0,252,4,252|fierydance|sludgewave|terablast|uturn": 1,
+            "quarkdrive|boosterenergy|timid|4,0,0,252,0,252|agility|bugbuzz|discharge|fierydance": 1,
+            "quarkdrive|boosterenergy|timid|0,0,0,252,4,252|dazzlinggleam|fierydance|sludgewave|toxicspikes": 1,
+            "quarkdrive|boosterenergy|modest|0,0,0,252,4,252|agility|discharge|fierydance|sludgewave": 1,
+            "quarkdrive|boosterenergy|timid|0,0,0,252,4,252|energyball|fierydance|sludgewave|uturn": 1,
+            "quarkdrive|choicescarf|timid|0,0,0,252,4,252|energyball|fierydance|psychic|sludgewave": 1
+        },
+        "slitherwing": {
+            "protosynthesis|lifeorb|jolly|0,252,0,0,4,252|closecombat|flareblitz|leechlife|trailblaze": 1,
+            "protosynthesis|lifeorb|adamant|0,252,0,0,0,252|closecombat|earthquake|firstimpression|uturn": 1,
+            "protosynthesis|choicescarf|jolly|0,252,0,0,4,252|closecombat|flareblitz|uturn|wildcharge": 1,
+            "protosynthesis|lifeorb|adamant|0,252,0,0,4,252|closecombat|firstimpression|uturn|wildcharge": 1,
+            "protosynthesis|choiceband|adamant|0,252,4,0,0,252|closecombat|firstimpression|flareblitz|leechlife": 1,
+            "protosynthesis|choiceband|adamant|0,252,0,0,4,252|closecombat|firstimpression|flareblitz|uturn": 1,
+            "protosynthesis|boosterenergy|jolly|184,252,0,0,4,68|closecombat|earthquake|flareblitz|uturn": 1,
+            "protosynthesis|heavydutyboots|adamant|160,252,0,0,0,96|closecombat|earthquake|firstimpression|uturn": 1,
+            "protosynthesis|choicescarf|jolly|0,252,0,0,4,252|closecombat|firstimpression|flareblitz|uturn": 1
+        },
+        "grafaiai": {
+            "prankster|heatrock|careful|252,4,0,0,252,0|encore|knockoff|partingshot|sunnyday": 2,
+            "unburden|sitrusberry|adamant|4,252,0,0,0,252|acrobatics|lowsweep|substitute|swordsdance": 1,
+            "prankster|damprock|careful|252,4,0,0,252,0|encore|knockoff|partingshot|raindance": 1
+        },
+        "baxcalibur": {
+            "thermalexchange|loadeddice|adamant|0,252,0,0,4,252|dragondance|glaiverush|iceshard|iciclespear": 1,
+            "thermalexchange|lifeorb|jolly|0,252,4,0,0,252|dragondance|earthquake|glaiverush|iciclecrash": 1,
+            "thermalexchange|heavydutyboots|jolly|0,252,0,0,4,252|dragondance|glaiverush|iciclecrash|substitute": 1,
+            "icebody|assaultvest|adamant|252,252,0,0,4,0|earthquake|glaiverush|iceshard|iciclecrash": 1,
+            "thermalexchange|lifeorb|jolly|252,0,0,0,24,232|dragondance|earthquake|glaiverush|iciclecrash": 1,
+            "thermalexchange|heavydutyboots|jolly|0,252,4,0,0,252|dragondance|earthquake|glaiverush|iciclecrash": 1,
+            "thermalexchange|loadeddice|jolly|0,252,0,0,4,252|dragondance|earthquake|glaiverush|iciclespear": 1
+        },
+        "mausholdfour": {
+            "technician|loadeddice|jolly|0,252,0,0,4,252|bite|bulletseed|populationbomb|tidyup": 1,
+            "technician|lifeorb|jolly|0,252,0,0,4,252|bulletseed|playrough|populationbomb|tidyup": 1,
+            "technician|widelens|jolly|0,252,0,0,4,252|populationbomb|taunt|tidyup|uturn": 1,
+            "technician|widelens|jolly|0,252,0,0,4,252|bite|populationbomb|tidyup|uturn": 1,
+            "technician|loadeddice|jolly|0,252,4,0,0,252|bulletseed|populationbomb|tidyup|uturn": 1
+        },
+        "orthworm": {
+            "eartheater|leftovers|impish|252,0,252,0,4,0|bodypress|heavyslam|irondefense|shedtail": 1,
+            "eartheater|chestoberry|bold|248,0,252,0,8,0|bodypress|rest|shedtail|stealthrock": 1,
+            "eartheater|leftovers|impish|252,4,252,0,0,0|bodypress|coil|earthquake|heavyslam": 1,
+            "eartheater|sitrusberry|impish|248,0,252,0,8,0|ironhead|shedtail|spikes|stealthrock": 1,
+            "eartheater|chopleberry|calm|252,0,4,0,252,0|bodypress|irondefense|rest|shedtail": 1,
+            "eartheater|leftovers|bold|252,0,252,0,4,0|bodypress|irondefense|shedtail|spikes": 1,
+            "eartheater|sitrusberry|impish|248,8,252,0,0,0|bodypress|heavyslam|shedtail|stealthrock": 1,
+            "eartheater|leftovers|impish|252,0,252,0,4,0|bodypress|heavyslam|shedtail|stealthrock": 1,
+            "eartheater|sitrusberry|impish|252,0,252,0,4,0|bodypress|earthquake|shedtail|stealthrock": 1,
+            "eartheater|leftovers|impish|252,4,252,0,0,0|bodypress|curse|heavyslam|spikes": 1
+        },
+        "lokix": {
+            "tintedlens|heavydutyboots|adamant|0,252,0,0,4,252|axekick|firstimpression|leechlife|suckerpunch": 1,
+            "tintedlens|lifeorb|adamant|0,252,0,0,4,252|firstimpression|suckerpunch|swordsdance|uturn": 2,
+            "tintedlens|lifeorb|adamant|0,252,0,0,4,252|firstimpression|suckerpunch|throatchop|uturn": 2,
+            "tintedlens|choiceband|jolly|0,252,0,0,4,252|axekick|firstimpression|suckerpunch|uturn": 1,
+            "tintedlens|choiceband|adamant|0,252,4,0,0,252|axekick|firstimpression|suckerpunch|uturn": 1,
+            "tintedlens|lifeorb|jolly|0,252,0,0,4,252|firstimpression|suckerpunch|throatchop|uturn": 1
+        },
+        "glimmora": {
+            "toxicdebris|focussash|timid|252,0,0,4,0,252|earthpower|memento|mortalspin|sludgewave": 1,
+            "toxicdebris|focussash|jolly|252,4,0,0,0,252|memento|mortalspin|spikes|stealthrock": 4,
+            "toxicdebris|focussash|naive|252,0,0,4,0,252|earthpower|mortalspin|spikes|stealthrock": 1,
+            "toxicdebris|focussash|jolly|252,4,0,0,0,252|memento|mortalspin|spikes|toxicspikes": 1,
+            "toxicdebris|focussash|timid|0,0,0,252,4,252|powergem|stealthrock|terablast|toxic": 1,
+            "toxicdebris|focussash|timid|0,0,0,252,4,252|earthpower|mortalspin|sludgewave|stealthrock": 1,
+            "toxicdebris|blacksludge|timid|0,0,0,252,4,252|earthpower|powergem|sludgebomb|spikes": 1,
+            "toxicdebris|blacksludge|careful|248,0,0,0,8,252|memento|mortalspin|spikes|stealthrock": 1,
+            "toxicdebris|focussash|timid|0,0,0,252,4,252|earthpower|sludgebomb|spikes|stealthrock": 1,
+            "toxicdebris|focussash|naive|0,4,0,252,0,252|mortalspin|spikes|stealthrock|venoshock": 1,
+            "toxicdebris|focussash|timid|252,0,4,0,0,252|memento|mortalspin|spikes|stealthrock": 1,
+            "toxicdebris|airballoon|naive|0,4,0,252,0,252|earthpower|mortalspin|sludgebomb|spikes": 1,
+            "toxicdebris|focussash|timid|0,0,252,0,4,252|earthpower|mortalspin|spikes|stealthrock": 1,
+            "toxicdebris|focussash|lax|252,0,252,0,0,4|earthpower|mortalspin|spikes|stealthrock": 1,
+            "toxicdebris|focussash|timid|0,4,0,252,0,252|earthpower|mortalspin|powergem|spikes": 1
+        },
+        "houndstone": {
+            "fluffy|leftovers|adamant|0,252,252,0,0,4|bodypress|lastrespects|shadowsneak|substitute": 1,
+            "sandrush|choiceband|adamant|0,252,4,0,0,252|crunch|destinybond|lastrespects|playrough": 1,
+            "sandrush|spelltag|jolly|4,252,0,0,0,252|bodypress|crunch|lastrespects|terablast": 1,
+            "sandrush|lifeorb|adamant|0,252,0,0,4,252|lastrespects|playrough|shadowsneak|terablast": 1,
+            "sandrush|lifeorb|jolly|4,252,0,0,0,252|disable|lastrespects|playrough|terablast": 1,
+            "sandrush|choicescarf|adamant|0,252,0,0,4,252|lastrespects|playrough|psychicfangs|terablast": 1,
+            "fluffy|leftovers|adamant|0,252,252,0,0,4|bodypress|lastrespects|protect|substitute": 1,
+            "fluffy|lifeorb|brave|4,252,252,0,0,0|bodypress|lastrespects|shadowsneak|substitute": 1,
+            "sandrush|leftovers|adamant|252,4,0,0,0,252|bodypress|lastrespects|protect|willowisp": 1,
+            "sandrush|choicescarf|jolly|0,252,0,0,4,252|bodypress|lastrespects|memento|trick": 1,
+            "fluffy|leftovers|adamant|0,252,0,0,4,252|bodypress|lastrespects|protect|willowisp": 1
+        },
+        "tinglu": {
+            "vesselofruin|rockyhelmet|adamant|0,252,252,0,0,4|earthquake|ruination|stealthrock|taunt": 1,
+            "vesselofruin|mentalherb|careful|252,0,0,0,252,4|earthquake|memento|spikes|whirlwind": 1,
+            "vesselofruin|assaultvest|impish|4,0,252,0,252,0|bodypress|earthquake|ruination|throatchop": 1,
+            "vesselofruin|leftovers|adamant|248,68,16,0,176,0|earthquake|ruination|stealthrock|whirlwind": 1,
+            "vesselofruin|leftovers|brave|252,0,4,0,252,0|earthquake|ruination|stealthrock|stoneedge": 1,
+            "vesselofruin|chestoberry|impish|200,52,112,0,144,0|earthquake|rest|stealthrock|whirlwind": 1,
+            "vesselofruin|rockyhelmet|adamant|0,252,252,0,0,4|earthquake|stealthrock|taunt|throatchop": 1,
+            "vesselofruin|leftovers|impish|56,0,216,0,236,0|earthquake|heavyslam|ruination|stealthrock": 1,
+            "vesselofruin|leftovers|careful|0,252,4,0,252,0|earthquake|payback|stealthrock|whirlwind": 1,
+            "vesselofruin|leftovers|careful|252,0,4,0,252,0|earthquake|ruination|stealthrock|whirlwind": 1,
+            "vesselofruin|leftovers|careful|252,0,88,0,168,0|earthquake|ruination|spikes|whirlwind": 2,
+            "vesselofruin|leftovers|relaxed|252,4,252,0,0,0|earthquake|protect|ruination|stealthrock": 1
+        },
+        "ironvaliant": {
+            "quarkdrive|boosterenergy|naive|0,56,0,200,0,252|closecombat|moonblast|terablast|thunderbolt": 1,
+            "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|closecombat|icepunch|knockoff|swordsdance": 1,
+            "quarkdrive|choiceband|jolly|4,252,0,0,0,252|closecombat|knockoff|leafblade|terablast": 1,
+            "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|closecombat|spiritbreak|swordsdance|thunderpunch": 1,
+            "quarkdrive|boosterenergy|naive|0,156,0,100,0,252|closecombat|knockoff|moonblast|thunderbolt": 1,
+            "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|closecombat|spiritbreak|swordsdance|zenheadbutt": 1,
+            "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|closecombat|shadowsneak|spiritbreak|swordsdance": 2,
+            "quarkdrive|boosterenergy|adamant|0,252,0,0,0,252|closecombat|psychocut|shadowsneak|spiritbreak": 1,
+            "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|closecombat|knockoff|leafblade|spiritbreak": 1
+        },
+        "ironhands": {
+            "quarkdrive|boosterenergy|adamant|0,252,4,0,0,252|drainpunch|icepunch|swordsdance|thunderpunch": 1,
+            "quarkdrive|assaultvest|adamant|248,252,0,0,8,0|closecombat|drainpunch|fakeout|wildcharge": 2,
+            "quarkdrive|heavydutyboots|adamant|248,252,8,0,0,0|closecombat|fakeout|heavyslam|wildcharge": 1,
+            "quarkdrive|boosterenergy|brave|0,252,4,0,252,0|closecombat|earthquake|swordsdance|wildcharge": 1,
+            "quarkdrive|boosterenergy|impish|140,116,252,0,0,0|drainpunch|ironhead|swordsdance|wildcharge": 1
+        },
+        "grimmsnarl": {
+            "prankster|lightclay|careful|252,0,120,0,136,0|lightscreen|partingshot|reflect|spiritbreak": 1,
+            "prankster|lightclay|calm|252,0,4,0,252,0|lightscreen|partingshot|reflect|taunt": 3,
+            "prankster|lightclay|careful|92,252,0,0,164,0|lightscreen|partingshot|reflect|spiritbreak": 1,
+            "prankster|laggingtail|careful|252,4,156,0,96,0|partingshot|spiritbreak|taunt|trick": 1,
+            "prankster|lightclay|impish|252,0,252,0,4,0|lightscreen|partingshot|reflect|taunt": 1,
+            "prankster|lightclay|timid|252,0,4,0,0,252|lightscreen|partingshot|reflect|taunt": 1,
+            "prankster|lightclay|careful|252,4,0,0,252,0|lightscreen|partingshot|reflect|spiritbreak": 1
+        },
+        "armarouge": {
+            "flashfire|choicescarf|timid|0,0,0,252,4,252|armorcannon|aurasphere|psychic|psyshock": 1,
+            "weakarmor|focussash|modest|0,0,0,252,4,252|armorcannon|calmmind|energyball|psychic": 1,
+            "weakarmor|weaknesspolicy|modest|0,0,0,252,4,252|armorcannon|calmmind|energyball|storedpower": 1,
+            "weakarmor|leftovers|calm|252,0,188,0,0,68|calmmind|irondefense|storedpower|terablast": 1,
+            "flashfire|choicescarf|timid|0,0,0,252,4,252|armorcannon|expandingforce|focusblast|shadowball": 1,
+            "flashfire|choicespecs|modest|72,0,184,252,0,0|armorcannon|flashcannon|psychic|psyshock": 1,
+            "flashfire|choicescarf|timid|0,0,0,252,4,252|armorcannon|aurasphere|psyshock|terablast": 1,
+            "flashfire|choicescarf|timid|0,0,0,252,4,252|armorcannon|aurasphere|energyball|psyshock": 1
+        },
+        "meowscarada": {
+            "protean|choiceband|jolly|0,252,0,0,4,252|flowertrick|knockoff|playrough|uturn": 1,
+            "protean|choicescarf|jolly|0,252,0,0,4,252|knockoff|petalblizzard|trick|uturn": 1,
+            "protean|choicescarf|jolly|0,252,0,0,4,252|flowertrick|knockoff|trick|uturn": 1,
+            "protean|pixieplate|hasty|0,252,0,4,0,252|flowertrick|spikes|terablast|uturn": 1,
+            "protean|tr43|jolly|0,252,0,0,0,252|acrobatics|fling|flowertrick|uturn": 1,
+            "protean|assaultvest|adamant|0,252,0,0,0,252|petalblizzard|playrough|suckerpunch|uturn": 1,
+            "protean|choiceband|jolly|0,252,0,0,4,252|flowertrick|knockoff|lowkick|uturn": 1,
+            "protean|choiceband|jolly|0,252,4,0,0,252|flowertrick|knockoff|suckerpunch|uturn": 2,
+            "protean|lifeorb|jolly|0,252,4,0,0,252|flowertrick|spikes|suckerpunch|uturn": 1
+        },
+        "wochien": {
+            "tabletsofruin|leftovers|relaxed|252,0,4,0,252,0|foulplay|knockoff|leechseed|snarl": 1,
+            "tabletsofruin|lightclay|careful|248,0,252,0,8,0|knockoff|lightscreen|reflect|stunspore": 1,
+            "tabletsofruin|leftovers|sassy|252,4,0,0,252,0|grassknot|knockoff|leechseed|substitute": 1
+        },
+        "espathra": {
+            "speedboost|psychicseed|bold|252,0,252,0,0,4|calmmind|dazzlinggleam|roost|storedpower": 1,
+            "speedboost|leftovers|modest|0,0,0,252,4,252|calmmind|dazzlinggleam|luminacrash|shadowball": 1,
+            "speedboost|redcard|modest|0,0,0,252,4,252|calmmind|dazzlinggleam|luminacrash|protect": 1,
+            "speedboost|colburberry|bold|252,0,252,0,4,0|calmmind|dazzlinggleam|protect|storedpower": 2,
+            "opportunist|choicescarf|timid|0,0,0,252,4,252|dazzlinggleam|flashcannon|luminacrash|terablast": 1,
+            "speedboost|leftovers|bold|252,0,252,4,0,0|calmmind|dazzlinggleam|roost|storedpower": 1,
+            "speedboost|leftovers|bold|112,0,252,0,0,144|calmmind|roost|storedpower|terablast": 1
+        },
+        "indeedee": {
+            "psychicsurge|terrainextender|timid|0,0,0,252,4,252|encore|healingwish|hypervoice|psychic": 1,
+            "psychicsurge|terrainextender|timid|0,0,0,252,4,252|dazzlinggleam|healingwish|psychic|shadowball": 1,
+            "psychicsurge|choicescarf|timid|0,0,0,252,4,252|hypervoice|psychic|shadowball|trick": 1
+        },
+        "garganacl": {
+            "purifyingsalt|leftovers|careful|252,4,0,0,252,0|bodypress|irondefense|recover|saltcure": 2,
+            "purifyingsalt|leftovers|careful|252,0,28,0,228,0|bodypress|irondefense|recover|saltcure": 1,
+            "purifyingsalt|leftovers|impish|252,4,252,0,0,0|bodypress|irondefense|recover|saltcure": 1,
+            "purifyingsalt|chestoberry|careful|252,4,0,0,252,0|bodypress|curse|rest|stoneedge": 1,
+            "purifyingsalt|leftovers|careful|252,0,4,0,252,0|bodypress|curse|recover|saltcure": 1
+        },
+        "skeledirge": {
+            "unaware|leftovers|bold|252,0,252,0,0,4|shadowball|slackoff|torchsong|willowisp": 1,
+            "blaze|throatspray|modest|0,0,0,252,4,252|earthpower|shadowball|terablast|torchsong": 1,
+            "unaware|heavydutyboots|calm|248,0,0,8,252,0|shadowball|slackoff|torchsong|willowisp": 1,
+            "unaware|throatspray|bold|248,0,252,0,8,0|fireblast|hex|torchsong|willowisp": 1,
+            "unaware|heavydutyboots|bold|252,0,252,0,4,0|hex|slackoff|torchsong|willowisp": 1,
+            "unaware|heavydutyboots|calm|252,0,12,0,244,0|hex|slackoff|torchsong|willowisp": 1,
+            "unaware|heavydutyboots|bold|252,0,188,0,56,12|hex|slackoff|torchsong|willowisp": 1,
+            "unaware|heavydutyboots|bold|252,0,52,0,0,204|hex|slackoff|torchsong|willowisp": 1
+        },
+        "irontreads": {
+            "quarkdrive|leftovers|jolly|252,4,0,0,0,252|earthquake|rapidspin|stealthrock|voltswitch": 2,
+            "quarkdrive|assaultvest|adamant|0,252,4,0,0,252|bodypress|earthquake|heavyslam|icespinner": 1,
+            "quarkdrive|sitrusberry|jolly|252,32,0,0,0,224|earthquake|knockoff|stealthrock|voltswitch": 1,
+            "quarkdrive|leftovers|careful|252,0,0,0,44,212|earthquake|heavyslam|rapidspin|stealthrock": 1,
+            "quarkdrive|assaultvest|careful|252,0,0,0,252,4|earthquake|knockoff|rapidspin|voltswitch": 1,
+            "quarkdrive|focussash|jolly|0,252,0,0,4,252|earthquake|icespinner|rapidspin|stealthrock": 2,
+            "quarkdrive|airballoon|jolly|0,4,0,0,252,252|earthquake|ironhead|rapidspin|stealthrock": 1,
+            "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|earthquake|ironhead|rapidspin|stealthrock": 1,
+            "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|earthquake|knockoff|rapidspin|stealthrock": 1,
+            "quarkdrive|leftovers|impish|220,52,176,0,0,60|earthquake|ironhead|knockoff|rapidspin": 1,
+            "quarkdrive|rockyhelmet|impish|252,4,252,0,0,0|earthquake|knockoff|rapidspin|stealthrock": 1,
+            "quarkdrive|leftovers|careful|252,0,0,0,252,0|earthquake|knockoff|protect|rapidspin": 1,
+            "quarkdrive|leftovers|impish|252,0,252,0,4,0|bodypress|irondefense|knockoff|rapidspin": 1,
+            "quarkdrive|heavydutyboots|adamant|0,252,0,0,4,252|earthquake|icespinner|rapidspin|stealthrock": 1
+        },
+        "ironbundle": {
+            "quarkdrive|choicespecs|timid|0,0,0,252,4,252|encore|freezedry|hydropump|icebeam": 1,
+            "quarkdrive|boosterenergy|timid|0,0,0,252,4,252|freezedry|hydropump|icebeam|terablast": 2,
+            "quarkdrive|choicespecs|timid|0,0,0,252,4,252|freezedry|hydropump|terablast|uturn": 1,
+            "quarkdrive|lifeorb|timid|0,0,4,252,0,252|freezedry|hydropump|taunt|terablast": 1,
+            "quarkdrive|boosterenergy|timid|0,0,0,252,4,252|flipturn|freezedry|hydropump|icebeam": 2,
+            "quarkdrive|choicespecs|timid|0,0,0,252,4,252|flipturn|freezedry|hydropump|icebeam": 1,
+            "quarkdrive|boosterenergy|modest|0,0,0,252,4,252|blizzard|flipturn|freezedry|hydropump": 1,
+            "quarkdrive|boosterenergy|modest|0,0,0,252,4,252|agility|freezedry|hydropump|icebeam": 1,
+            "quarkdrive|choicespecs|timid|0,0,0,252,4,252|freezedry|hydropump|icebeam|uturn": 1,
+            "quarkdrive|heavydutyboots|timid|0,0,0,252,4,252|flipturn|freezedry|hydropump|taunt": 1,
+            "quarkdrive|boosterenergy|modest|0,0,0,252,4,252|agility|freezedry|hydropump|terablast": 2,
+            "quarkdrive|choicescarf|timid|0,0,0,252,4,252|freezedry|hydropump|icebeam|terablast": 1
+        },
+        "brambleghast": {
+            "infiltrator|leftovers|impish|248,0,72,0,0,188|leechseed|rapidspin|shadowsneak|strengthsap": 1,
+            "infiltrator|leftovers|impish|252,0,252,0,4,0|leechseed|protect|strengthsap|substitute": 1,
+            "windrider|choicescarf|jolly|0,252,4,0,0,252|beatup|phantomforce|powerwhip|terablast": 1,
+            "infiltrator|rockyhelmet|impish|252,0,252,0,4,0|nightshade|rapidspin|spikes|strengthsap": 1
+        },
+        "hippowdon": {
+            "sandstream|leftovers|impish|252,0,144,0,112,0|earthquake|slackoff|stealthrock|whirlwind": 1,
+            "sandstream|rockyhelmet|impish|252,4,252,0,0,0|earthquake|slackoff|stealthrock|yawn": 1,
+            "sandstream|leftovers|careful|248,0,8,0,252,0|earthquake|slackoff|stealthrock|whirlwind": 1,
+            "sandstream|smoothrock|careful|252,8,0,0,248,0|earthquake|slackoff|stealthrock|whirlwind": 1,
+            "sandstream|smoothrock|impish|252,0,252,0,4,0|earthquake|slackoff|stealthrock|whirlwind": 1
+        },
+        "taurospaldeafire": {
+            "intimidate|leftovers|adamant|248,152,0,0,0,108|closecombat|earthquake|ragingbull|willowisp": 1,
+            "intimidate|charcoal|jolly|0,252,0,0,4,252|bulkup|closecombat|earthquake|flamecharge": 1
+        },
+        "dragonite": {
+            "multiscale|silkscarf|adamant|252,252,0,0,0,4|dragondance|earthquake|extremespeed|firepunch": 2,
+            "multiscale|heavydutyboots|jolly|0,252,0,0,4,252|dragondance|earthquake|extremespeed|icespinner": 1,
+            "multiscale|heavydutyboots|adamant|0,252,0,0,4,252|dragondance|extremespeed|outrage|roost": 1,
+            "multiscale|heavydutyboots|adamant|0,252,0,0,4,252|dragondance|earthquake|extremespeed|icespinner": 1,
+            "multiscale|heavydutyboots|jolly|0,252,0,0,4,252|dragonclaw|dragondance|earthquake|firepunch": 1,
+            "multiscale|heavydutyboots|jolly|248,8,0,0,0,252|dragondance|earthquake|icepunch|roost": 1,
+            "multiscale|heavydutyboots|jolly|4,252,0,0,0,252|dragondance|earthquake|firepunch|terablast": 1,
+            "multiscale|heavydutyboots|adamant|0,252,36,0,124,96|dragondance|earthquake|extremespeed|roost": 1
+        },
+        "magnezone": {
+            "magnetpull|airballoon|modest|0,0,0,252,4,252|bodypress|flashcannon|thunderbolt|voltswitch": 1,
+            "magnetpull|choicespecs|timid|0,0,0,252,4,252|flashcannon|terablast|thunderbolt|voltswitch": 1,
+            "magnetpull|assaultvest|modest|252,0,0,252,4,0|flashcannon|terablast|thunderbolt|voltswitch": 1,
+            "magnetpull|assaultvest|modest|124,0,0,252,0,132|flashcannon|terablast|thunderbolt|voltswitch": 1
+        },
+        "slowking": {
+            "regenerator|leftovers|calm|252,0,0,4,252,0|chillingwater|futuresight|slackoff|thunderwave": 1,
+            "regenerator|lightclay|bold|252,0,168,0,88,0|chillyreception|lightscreen|reflect|yawn": 1,
+            "regenerator|leftovers|calm|252,0,0,4,252,0|chillyreception|psychic|slackoff|surf": 1,
+            "regenerator|heavydutyboots|relaxed|252,0,252,0,4,0|chillyreception|psychic|slackoff|surf": 1,
+            "regenerator|colburberry|bold|252,0,176,0,80,0|chillyreception|foulplay|slackoff|thunderwave": 1,
+            "regenerator|leftovers|calm|252,0,252,0,4,0|chillyreception|futuresight|slackoff|surf": 1,
+            "regenerator|heavydutyboots|sassy|252,0,4,0,252,0|futuresight|protect|slackoff|surf": 1,
+            "regenerator|heavydutyboots|calm|252,0,4,0,252,0|futuresight|icebeam|slackoff|thunderwave": 1,
+            "regenerator|heavydutyboots|calm|252,0,0,4,252,0|chillyreception|futuresight|slackoff|surf": 1
+        },
+        "scizor": {
+            "technician|choiceband|adamant|252,252,0,0,4,0|bulletpunch|closecombat|terablast|uturn": 2,
+            "technician|metalcoat|impish|76,216,150,0,66,0|bulletpunch|closecombat|swordsdance|uturn": 1,
+            "technician|choiceband|adamant|248,252,0,0,8,0|bulletpunch|closecombat|trailblaze|uturn": 1,
+            "technician|leftovers|adamant|252,92,140,0,0,24|bulletpunch|closecombat|defog|uturn": 1,
+            "technician|lifeorb|adamant|252,252,0,0,4,0|bulletpunch|closecombat|swordsdance|uturn": 1,
+            "technician|choiceband|adamant|248,252,0,0,8,0|aerialace|bulletpunch|closecombat|uturn": 1,
+            "technician|choiceband|adamant|248,252,0,0,8,0|bulletpunch|closecombat|nightslash|uturn": 1,
+            "technician|lifeorb|adamant|0,252,0,0,0,252|aerialace|bulletpunch|closecombat|swordsdance": 1,
+            "technician|metalcoat|adamant|252,252,0,0,4,0|bulletpunch|pounce|swordsdance|uturn": 1
+        },
+        "scovillain": {
+            "chlorophyll|lifeorb|modest|0,0,0,252,4,252|flamethrower|gigadrain|growth|terablast": 3,
+            "chlorophyll|lifeorb|hasty|0,4,0,252,0,252|fireblast|gigadrain|growth|stompingtantrum": 1,
+            "chlorophyll|heavydutyboots|naive|0,4,0,252,0,252|flamethrower|growth|solarbeam|stompingtantrum": 1,
+            "chlorophyll|lifeorb|modest|0,0,0,252,4,252|flamethrower|gigadrain|growth|solarbeam": 1,
+            "chlorophyll|lifeorb|modest|0,0,0,252,4,252|flamethrower|growth|solarbeam|terablast": 1,
+            "chlorophyll|heavydutyboots|modest|0,0,0,252,4,252|fireblast|growth|solarbeam|terablast": 1
+        },
+        "pawmot": {
+            "voltabsorb|choicescarf|jolly|0,252,0,0,0,252|closecombat|doubleshock|revivalblessing|voltswitch": 1,
+            "ironfist|punchingglove|jolly|0,252,0,0,4,252|bulkup|icepunch|machpunch|thunderpunch": 1,
+            "ironfist|choiceband|jolly|0,252,0,0,4,252|closecombat|doubleshock|icepunch|machpunch": 1,
+            "ironfist|choicescarf|jolly|0,252,0,0,4,252|closecombat|machpunch|revivalblessing|thunderpunch": 1,
+            "naturalcure|punchingglove|jolly|0,252,0,0,4,252|closecombat|doubleshock|icepunch|voltswitch": 1,
+            "ironfist|lifeorb|jolly|0,252,0,0,4,252|closecombat|icepunch|machpunch|seedbomb": 1
+        },
+        "palafin": {
+            "zerotohero|choiceband|jolly|0,252,0,0,4,252|closecombat|flipturn|jetpunch|wavecrash": 3,
+            "zerotohero|choiceband|jolly|0,252,0,0,4,252|closecombat|flipturn|icepunch|jetpunch": 1,
+            "zerotohero|leftovers|adamant|236,252,0,0,0,20|bulkup|drainpunch|jetpunch|taunt": 1,
+            "zerotohero|choicescarf|jolly|0,252,0,0,4,252|closecombat|flipturn|icepunch|wavecrash": 1,
+            "zerotohero|choiceband|adamant|0,252,0,0,4,252|flipturn|jetpunch|wavecrash|zenheadbutt": 1,
+            "zerotohero|punchingglove|jolly|0,252,0,0,4,252|bulkup|drainpunch|flipturn|jetpunch": 1
+        },
+        "oinkologne": {
+            "gluttony|aguavberry|adamant|248,252,0,0,8,0|doubleedge|playrough|yawn|zenheadbutt": 1
+        },
+        "rabsca": {
+            "synchronize|heavydutyboots|quiet|252,0,0,252,4,0|bugbuzz|psyshock|terablast|trickroom": 1,
+            "synchronize|leftovers|calm|252,0,4,0,252,0|bugbuzz|cosmicpower|recover|storedpower": 1
+        },
+        "ironjugulis": {
+            "quarkdrive|lifeorb|timid|0,0,0,252,4,252|darkpulse|hurricane|tailwind|terablast": 1,
+            "quarkdrive|choicescarf|timid|0,0,0,252,4,252|airslash|darkpulse|terablast|uturn": 1,
+            "quarkdrive|boosterenergy|modest|0,0,0,252,4,252|airslash|darkpulse|flamethrower|flashcannon": 1
+        },
+        "quaquaval": {
+            "moxie|leftovers|jolly|0,252,4,0,0,252|aquastep|bravebird|icespinner|uturn": 1,
+            "moxie|mysticwater|jolly|0,252,0,0,4,252|aquajet|aquastep|closecombat|swordsdance": 1,
+            "moxie|heavydutyboots|jolly|0,252,0,0,4,252|aquastep|bulkup|closecombat|icespinner": 1,
+            "moxie|lifeorb|jolly|0,252,0,0,4,252|aquastep|closecombat|icespinner|swordsdance": 2,
+            "moxie|choiceband|jolly|0,252,0,0,4,252|aquastep|closecombat|icespinner|uturn": 1,
+            "moxie|lifeorb|jolly|0,252,0,0,4,252|aquastep|closecombat|swordsdance|wavecrash": 1
+        },
+        "kingambit": {
+            "defiant|lifeorb|adamant|252,252,0,0,4,0|ironhead|kowtowcleave|suckerpunch|swordsdance": 1,
+            "supremeoverlord|lumberry|adamant|112,252,0,0,4,140|ironhead|kowtowcleave|suckerpunch|swordsdance": 1,
+            "supremeoverlord|blackglasses|adamant|108,252,0,0,0,148|ironhead|kowtowcleave|suckerpunch|swordsdance": 1,
+            "supremeoverlord|blackglasses|adamant|244,252,0,0,0,12|ironhead|kowtowcleave|suckerpunch|swordsdance": 1,
+            "supremeoverlord|lifeorb|adamant|212,252,0,0,0,44|ironhead|kowtowcleave|suckerpunch|swordsdance": 1,
+            "supremeoverlord|blackglasses|adamant|252,252,0,0,4,0|brickbreak|kowtowcleave|suckerpunch|swordsdance": 1,
+            "supremeoverlord|blackglasses|adamant|252,252,0,0,4,0|ironhead|kowtowcleave|stealthrock|suckerpunch": 1
+        },
+        "revavroom": {
+            "overcoat|lifeorb|adamant|0,252,4,0,0,252|ironhead|poisonjab|shiftgear|terablast": 1,
+            "overcoat|focussash|jolly|0,252,0,0,4,252|bulldoze|gunkshot|ironhead|shiftgear": 1
+        },
+        "klawf": {
+            "angershell|focussash|jolly|0,252,4,0,0,252|crabhammer|knockoff|stoneedge|swordsdance": 1,
+            "angershell|weaknesspolicy|jolly|0,252,0,0,4,252|endure|highhorsepower|knockoff|stoneedge": 1
+        },
+        "kilowattrel": {
+            "windpower|heavydutyboots|modest|252,0,0,252,4,0|hurricane|tailwind|thunderbolt|voltswitch": 1,
+            "voltabsorb|heavydutyboots|timid|0,0,0,252,4,252|hurricane|roost|thunderbolt|uturn": 1,
+            "voltabsorb|choicespecs|timid|0,0,0,252,4,252|hurricane|terablast|thunderbolt|uturn": 1
+        },
+        "mabosstiff": {
+            "guarddog|chestoberry|lax|252,4,252,0,0,0|crunch|honeclaws|rest|terablast": 1
+        },
+        "ironthorns": {
+            "quarkdrive|assaultvest|adamant|252,252,0,0,4,0|bodypress|earthquake|stoneedge|wildcharge": 1,
+            "quarkdrive|boosterenergy|adamant|0,128,84,0,84,212|dragondance|earthquake|rockslide|thunderpunch": 1,
+            "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|dragondance|earthquake|rockslide|thunderpunch": 1,
+            "quarkdrive|boosterenergy|jolly|4,252,0,0,0,252|dragondance|stoneedge|terablast|wildcharge": 1
+        },
+        "slowbro": {
+            "regenerator|heavydutyboots|bold|248,0,252,0,8,0|bodypress|psychic|slackoff|thunderwave": 1,
+            "regenerator|heavydutyboots|bold|252,0,252,0,4,0|futuresight|icebeam|slackoff|thunderwave": 1,
+            "regenerator|colburberry|bold|252,0,252,4,0,0|bodypress|futuresight|slackoff|surf": 1,
+            "regenerator|colburberry|bold|252,0,252,0,4,0|bodypress|irondefense|slackoff|surf": 1
+        },
+        "annihilape": {
+            "defiant|chestoberry|adamant|248,252,0,0,8,0|bulkup|drainpunch|ragefist|rest": 1,
+            "defiant|leftovers|adamant|92,252,0,0,8,156|bulkup|drainpunch|ragefist|substitute": 1,
+            "defiant|leftovers|careful|220,0,64,0,128,96|bulkup|drainpunch|ragefist|taunt": 2,
+            "defiant|punchingglove|jolly|0,252,0,0,4,252|bulkup|drainpunch|icepunch|ragefist": 1,
+            "defiant|leftovers|careful|220,60,0,0,128,100|bulkup|drainpunch|ragefist|taunt": 1,
+            "defiant|leftovers|adamant|252,252,4,0,0,0|closecombat|ragefist|rest|sleeptalk": 1,
+            "defiant|choiceband|jolly|0,252,0,0,0,252|closecombat|gunkshot|icepunch|uturn": 1,
+            "defiant|focussash|jolly|252,0,0,0,4,252|closecombat|finalgambit|shadowclaw|stealthrock": 1,
+            "defiant|leftovers|jolly|252,4,0,0,0,252|bulkup|drainpunch|ragefist|taunt": 1
+        },
+        "arboliva": {
+            "harvest|starfberry|calm|252,0,0,4,252,0|earthpower|gigadrain|substitute|synthesis": 1,
+            "seedsower|leftovers|bold|252,0,252,4,0,0|gigadrain|hypervoice|leechseed|protect": 1,
+            "seedsower|terrainextender|bold|248,0,252,8,0,0|earthpower|gigadrain|leechseed|strengthsap": 1,
+            "harvest|sitrusberry|modest|248,0,0,252,8,0|dazzlinggleam|solarbeam|synthesis|weatherball": 1,
+            "harvest|iapapaberry|modest|248,0,0,252,8,0|dazzlinggleam|earthpower|energyball|growth": 1,
+            "seedsower|ejectbutton|bold|252,0,252,0,4,0|earthpower|gigadrain|memento|strengthsap": 1
+        },
+        "palafinhero": {
+            "zerotohero|leftovers|adamant|252,216,0,0,24,16|bulkup|drainpunch|jetpunch|taunt": 1,
+            "zerotohero|leftovers|adamant|252,240,0,0,0,16|bulkup|drainpunch|jetpunch|taunt": 6,
+            "zerotohero|leftovers|jolly|0,252,0,0,4,252|bulkup|drainpunch|jetpunch|taunt": 2,
+            "zerotohero|choiceband|jolly|0,252,0,0,4,252|closecombat|flipturn|jetpunch|wavecrash": 2,
+            "zerotohero|leftovers|adamant|148,252,0,0,0,108|bulkup|drainpunch|jetpunch|taunt": 3,
+            "zerotohero|lifeorb|jolly|0,252,0,0,4,252|bulkup|closecombat|flipturn|jetpunch": 1,
+            "zerotohero|choiceband|adamant|200,252,0,0,0,56|drainpunch|jetpunch|taunt|wavecrash": 1,
+            "zerotohero|leftovers|brave|252,0,0,252,0,4|boomburst|bulkup|drainpunch|jetpunch": 1,
+            "zerotohero|leftovers|adamant|252,252,0,0,0,4|bulkup|drainpunch|jetpunch|substitute": 1,
+            "zerotohero|heavydutyboots|adamant|0,252,0,0,4,252|bulkup|drainpunch|flipturn|jetpunch": 1
+        },
+        "azumarill": {
+            "hugepower|sitrusberry|adamant|4,252,0,0,0,252|aquajet|bellydrum|icepunch|playrough": 1,
+            "hugepower|choiceband|adamant|252,252,0,0,4,0|aquajet|liquidation|playrough|superpower": 1,
+            "hugepower|sitrusberry|adamant|252,252,0,0,0,4|aquajet|bellydrum|icespinner|playrough": 1
+        },
+        "dondozo": {
+            "unaware|leftovers|careful|252,0,4,0,252,0|avalanche|bodypress|curse|liquidation": 1,
+            "unaware|leftovers|impish|252,4,252,0,0,0|curse|liquidation|rest|sleeptalk": 1,
+            "unaware|leftovers|impish|252,4,252,0,0,0|bodypress|curse|liquidation|protect": 1,
+            "unaware|chestoberry|lax|248,8,252,0,0,0|nobleroar|rest|terablast|yawn": 1,
+            "unaware|leftovers|impish|252,4,252,0,0,0|bodypress|rest|sleeptalk|wavecrash": 1,
+            "unaware|leftovers|careful|252,0,4,0,252,0|bodypress|curse|liquidation|rest": 1,
+            "unaware|leftovers|impish|0,4,252,0,252,0|bodypress|curse|liquidation|rest": 1,
+            "unaware|leftovers|adamant|252,252,0,0,4,0|avalanche|curse|earthquake|wavecrash": 1
+        },
+        "toedscruel": {
+            "myceliummight|leftovers|bold|252,0,196,0,0,60|gigadrain|knockoff|rapidspin|spore": 1,
+            "myceliummight|heavydutyboots|timid|252,0,0,0,4,252|earthpower|knockoff|rapidspin|toxic": 1,
+            "myceliummight|leftovers|calm|252,0,4,0,252,0|earthpower|knockoff|stunspore|toxicspikes": 1
+        },
+        "toxapex": {
+            "regenerator|blacksludge|impish|252,4,252,0,0,0|banefulbunker|liquidation|recover|toxic": 1,
+            "regenerator|blacksludge|calm|248,0,8,0,252,0|haze|recover|toxic|toxicspikes": 1,
+            "regenerator|leftovers|impish|252,0,40,0,216,0|haze|liquidation|recover|toxic": 1,
+            "regenerator|leftovers|impish|252,0,16,0,240,0|haze|liquidation|recover|toxic": 1,
+            "regenerator|blacksludge|impish|252,0,252,0,4,0|haze|liquidation|toxic|toxicspikes": 1,
+            "regenerator|blacksludge|careful|252,0,4,0,252,0|liquidation|recover|toxic|toxicspikes": 1
+        },
+        "ditto": {
+            "imposter|choicescarf|impish|248,8,252,0,0,0|transform": 3,
+            "imposter|choicescarf|bold|252,0,252,4,0,0|transform": 1,
+            "imposter|choicescarf|modest|252,0,4,252,0,0|transform": 1
+        },
+        "veluza": {
+            "sharpness|sitrusberry|jolly|4,252,0,0,0,252|aquacutter|filletaway|psychocut|terablast": 1,
+            "moldbreaker|sitrusberry|modest|0,0,0,252,8,248|filletaway|storedpower|surf|terablast": 1
+        },
+        "tyranitar": {
+            "sandstream|smoothrock|careful|252,4,0,0,252,0|crunch|stealthrock|stoneedge|thunderwave": 1,
+            "sandstream|leftovers|careful|252,4,0,0,252,0|earthquake|rockblast|stealthrock|thunderwave": 1,
+            "sandstream|smoothrock|adamant|252,252,0,0,4,0|earthquake|stealthrock|stoneedge|terablast": 1,
+            "sandstream|choiceband|adamant|0,252,0,0,12,244|crunch|earthquake|icepunch|stoneedge": 1
+        },
+        "pelipper": {
+            "drizzle|damprock|bold|248,0,252,8,0,0|hurricane|roost|surf|uturn": 2,
+            "drizzle|heavydutyboots|bold|248,0,252,8,0,0|hurricane|roost|surf|uturn": 1,
+            "drizzle|choicespecs|timid|0,0,0,252,4,252|hurricane|icebeam|surf|uturn": 1
+        },
+        "sandyshocks": {
+            "protosynthesis|choicespecs|timid|0,0,0,252,4,252|earthpower|spikes|thunder|voltswitch": 1,
+            "protosynthesis|lifeorb|timid|0,0,0,252,4,252|earthpower|spikes|thunderbolt|voltswitch": 1,
+            "protosynthesis|airballoon|naive|0,4,0,252,0,252|earthpower|stealthrock|thunderbolt|voltswitch": 1
+        },
+        "gastrodon": {
+            "stormdrain|leftovers|calm|252,0,0,4,252,0|chillingwater|earthpower|recover|stealthrock": 1
+        },
+        "gyarados": {
+            "moxie|lumberry|jolly|0,252,0,0,4,252|dragondance|earthquake|thunderwave|waterfall": 1
+        },
+        "screamtail": {
+            "protosynthesis|leftovers|timid|248,0,76,0,0,184|calmmind|dazzlinggleam|protect|wish": 1,
+            "protosynthesis|lightclay|timid|252,0,0,0,4,252|encore|lightscreen|reflect|stealthrock": 1,
+            "protosynthesis|mentalherb|bold|252,0,252,0,4,0|perishsong|stealthrock|trickroom|wish": 1,
+            "protosynthesis|leftovers|calm|132,0,0,0,252,124|dazzlinggleam|protect|thunderwave|wish": 1
+        },
+        "salamence": {
+            "intimidate|heavydutyboots|timid|248,0,0,8,0,252|dracometeor|fireblast|hurricane|roost": 1
+        },
+        "cetitan": {
+            "slushrush|sitrusberry|jolly|4,252,0,0,0,252|bellydrum|earthquake|iceshard|icespinner": 1,
+            "slushrush|iapapaberry|jolly|0,252,0,0,4,252|bellydrum|earthquake|iceshard|iciclecrash": 1,
+            "slushrush|choiceband|adamant|0,252,0,0,4,252|earthquake|heavyslam|icespinner|playrough": 1,
+            "slushrush|lifeorb|adamant|0,252,4,0,0,252|earthquake|iciclecrash|superpower|terablast": 1,
+            "slushrush|lifeorb|jolly|0,252,0,0,0,252|earthquake|heavyslam|icespinner|terablast": 1
+        },
+        "goodra": {
+            "sapsipper|assaultvest|calm|224,0,0,32,252,0|acidspray|chillingwater|flamethrower|thunderbolt": 1
+        },
+        "tinkaton": {
+            "moldbreaker|leftovers|careful|252,4,0,0,252,0|knockoff|playrough|stealthrock|thunderwave": 1,
+            "moldbreaker|leftovers|impish|252,0,252,0,0,4|gigatonhammer|knockoff|stealthrock|thunderwave": 1,
+            "moldbreaker|lifeorb|adamant|12,252,0,0,0,244|gigatonhammer|substitute|swordsdance|terablast": 1,
+            "moldbreaker|leftovers|careful|252,0,4,0,252,0|foulplay|gigatonhammer|knockoff|stealthrock": 1,
+            "moldbreaker|leftovers|adamant|252,168,64,0,0,24|gigatonhammer|knockoff|protect|swordsdance": 1,
+            "moldbreaker|choiceband|jolly|0,252,0,0,4,252|gigatonhammer|icehammer|knockoff|playrough": 1
+        },
+        "abomasnow": {
+            "snowwarning|icyrock|jolly|252,4,0,0,0,252|auroraveil|iceshard|icespinner|woodhammer": 1
+        },
+        "indeedeef": {
+            "psychicsurge|choicescarf|timid|0,0,0,252,4,252|dazzlinggleam|healingwish|psychic|shadowball": 1,
+            "psychicsurge|terrainextender|timid|252,0,4,0,0,252|calmmind|dazzlinggleam|healingwish|psyshock": 1
+        },
+        "hawlucha": {
+            "unburden|psychicseed|adamant|0,252,0,0,4,252|acrobatics|closecombat|substitute|swordsdance": 1,
+            "unburden|electricseed|adamant|0,252,0,0,4,252|acrobatics|closecombat|swordsdance|thunderpunch": 1
+        },
+        "quagsire": {
+            "unaware|leftovers|impish|248,0,252,0,8,0|earthquake|recover|spikes|stealthrock": 1
+        },
+        "blissey": {
+            "naturalcure|heavydutyboots|bold|252,0,252,0,4,0|healbell|seismictoss|shadowball|softboiled": 1,
+            "naturalcure|leftovers|bold|252,0,252,4,0,0|icebeam|shadowball|softboiled|stealthrock": 1,
+            "naturalcure|heavydutyboots|bold|252,0,252,0,4,0|seismictoss|shadowball|softboiled|stealthrock": 1,
+            "naturalcure|heavydutyboots|bold|252,0,252,0,4,0|healbell|seismictoss|softboiled|thunderwave": 1,
+            "naturalcure|heavydutyboots|impish|252,0,252,0,4,0|seismictoss|softboiled|stealthrock|thunderwave": 1,
+            "naturalcure|utilityumbrella|bold|252,0,252,0,4,0|healbell|icebeam|seismictoss|softboiled": 1
+        },
+        "avalugg": {
+            "sturdy|leftovers|impish|248,0,252,0,8,0|bodypress|rapidspin|recover|terablast": 1,
+            "sturdy|heavydutyboots|impish|252,0,252,0,4,0|avalanche|earthquake|rapidspin|recover": 1
+        },
+        "squawkabillyblue": {
+            "guts|flameorb|jolly|0,252,0,0,4,252|bravebird|facade|roost|uturn": 1
+        },
+        "espeon": {
+            "magicbounce|lightclay|timid|0,0,0,252,0,252|dazzlinggleam|lightscreen|psychic|reflect": 1,
+            "magicbounce|ejectbutton|timid|252,0,4,0,0,252|dazzlinggleam|futuresight|psychic|yawn": 1,
+            "magicbounce|lifeorb|timid|0,0,0,252,4,252|calmmind|psyshock|shadowball|terablast": 1
+        },
+        "dudunsparcethreesegment": {
+            "rattled|heavydutyboots|modest|252,0,0,252,0,4|boomburst|glare|hex|roost": 1,
+            "serenegrace|leftovers|jolly|0,4,0,0,252,252|agility|coil|hyperdrill|rockslide": 1
+        },
+        "spidops": {
+            "insomnia|focussash|impish|248,8,252,0,0,0|lunge|memento|spikes|stickyweb": 1
+        },
+        "hatterene": {
+            "magicbounce|leftovers|bold|252,0,244,0,0,12|drainingkiss|healingwish|mysticalfire|psyshock": 1,
+            "magicbounce|focussash|quiet|252,0,0,252,4,0|dazzlinggleam|healingwish|psychic|trickroom": 1
+        },
+        "mimikyu": {
+            "disguise|lifeorb|adamant|0,252,0,0,4,252|playrough|shadowclaw|shadowsneak|swordsdance": 1,
+            "disguise|mentalherb|brave|252,252,0,0,4,0|curse|playrough|shadowsneak|trickroom": 1
+        },
+        "dachsbun": {
+            "wellbakedbody|leftovers|impish|252,0,4,0,252,0|bodypress|playrough|protect|wish": 1,
+            "wellbakedbody|leftovers|impish|252,4,252,0,0,0|playrough|protect|terablast|wish": 1
+        },
+        "masquerain": {
+            "intimidate|focussash|modest|0,0,0,252,4,252|hurricane|quiverdance|stickyweb|surf": 1,
+            "intimidate|focussash|timid|0,0,4,252,0,252|bugbuzz|icebeam|stickyweb|stunspore": 1,
+            "intimidate|focussash|timid|0,0,0,252,4,252|bugbuzz|hurricane|stickyweb|stunspore": 1
+        },
+        "toedscool": {
+            "myceliummight|eviolite|jolly|0,116,0,0,196,196|knockoff|rapidspin|spikes|spore": 1
+        },
+        "snover": {
+            "snowwarning|icyrock|naive|36,20,36,180,36,196|blizzard|gigadrain|iceshard|protect": 1
+        },
+        "flittle": {
+            "speedboost|eviolite|modest|0,0,0,236,36,236|calmmind|protect|storedpower|terablast": 1
+        },
+        "varoom": {
+            "overcoat|choicescarf|jolly|0,196,0,0,76,220|gunkshot|ironhead|partingshot|terablast": 1
+        },
+        "cetoddle": {
+            "slushrush|berryjuice|adamant|52,212,0,0,196,12|bellydrum|earthquake|iceshard|icespinner": 1
+        },
+        "diglett": {
+            "arenatrap|focussash|jolly|36,236,0,0,0,236|earthquake|finalgambit|rockslide|suckerpunch": 1
+        },
+        "polteageist": {
+            "weakarmor|focussash|modest|0,0,4,252,0,252|shadowball|shellsmash|storedpower|terablast": 1
+        },
+        "maushold": {
+            "technician|focussash|adamant|0,252,0,0,4,252|lowkick|populationbomb|shadowclaw|tidyup": 1
+        },
+        "sylveon": {
+            "pixilate|leftovers|bold|252,0,200,56,0,0|calmmind|drainingkiss|psyshock|shadowball": 1
+        },
+        "staraptor": {
+            "reckless|choiceband|jolly|0,252,0,0,4,252|bravebird|closecombat|doubleedge|quickattack": 1,
+            "reckless|choicescarf|jolly|0,252,0,0,4,252|bravebird|closecombat|doubleedge|finalgambit": 1
+        },
+        "flamigo": {
+            "scrappy|choicescarf|jolly|0,252,4,0,0,252|bravebird|closecombat|copycat|uturn": 1,
+            "scrappy|focussash|adamant|4,252,0,0,0,252|agility|bravebird|closecombat|swordsdance": 1,
+            "scrappy|choicescarf|jolly|0,252,4,0,0,252|bravebird|closecombat|tailwind|uturn": 1
+        },
+        "toxtricity": {
+            "punkrock|choicespecs|modest|4,0,0,252,0,252|boomburst|overdrive|sludgebomb|voltswitch": 1
+        },
+        "hydreigon": {
+            "levitate|blacksludge|timid|0,0,4,252,0,252|darkpulse|dracometeor|nastyplot|terablast": 1,
+            "levitate|leftovers|modest|252,0,0,252,4,0|darkpulse|earthpower|focusblast|thunderwave": 1
+        },
+        "amoonguss": {
+            "regenerator|blacksludge|bold|252,0,252,0,4,0|gigadrain|sludgebomb|spore|synthesis": 1,
+            "regenerator|blacksludge|calm|248,0,8,0,252,0|clearsmog|gigadrain|sludgebomb|spore": 1,
+            "regenerator|rockyhelmet|bold|252,0,240,0,16,0|gigadrain|sludgebomb|spore|synthesis": 1,
+            "regenerator|rockyhelmet|bold|252,0,220,0,36,0|foulplay|gigadrain|sludgebomb|spore": 1,
+            "regenerator|rockyhelmet|bold|252,0,252,0,4,0|foulplay|gigadrain|sludgebomb|spore": 1,
+            "regenerator|blacksludge|bold|252,0,252,0,4,0|clearsmog|gigadrain|sludgebomb|spore": 1,
+            "regenerator|rockyhelmet|bold|252,0,252,0,4,0|foulplay|gigadrain|spore|toxic": 1,
+            "regenerator|ejectbutton|bold|248,0,252,0,8,0|clearsmog|foulplay|gigadrain|spore": 1
+        },
+        "bisharp": {
+            "defiant|lifeorb|jolly|0,252,0,0,4,252|ironhead|nightslash|suckerpunch|swordsdance": 1
+        },
+        "basculegion": {
+            "adaptability|choicescarf|jolly|4,252,0,0,0,252|aquajet|lastrespects|psychicfangs|wavecrash": 1
+        },
+        "farigiraf": {
+            "cudchew|leftovers|modest|252,0,0,4,0,252|agility|calmmind|terablast|twinbeam": 1,
+            "armortail|leftovers|timid|148,0,0,236,0,124|agility|calmmind|storedpower|terablast": 1
+        },
+        "bombirdier": {
+            "rockypayload|choicescarf|jolly|4,252,0,0,0,252|bravebird|drillrun|knockoff|rockslide": 1
+        },
+        "bellibolt": {
+            "electromorphosis|lightclay|calm|252,0,48,0,208,0|chillingwater|lightscreen|reflect|voltswitch": 1,
+            "electromorphosis|assaultvest|modest|176,0,8,252,72,0|discharge|muddywater|paraboliccharge|voltswitch": 1
+        },
+        "toxtricitylowkey": {
+            "punkrock|lifeorb|quiet|252,0,0,252,4,0|boomburst|overdrive|sludgebomb|voltswitch": 1
+        },
+        "gallade": {
+            "sharpness|assaultvest|careful|252,4,0,0,252,0|leafblade|psychocut|sacredsword|shadowsneak": 1
+        },
+        "barraskewda": {
+            "swiftswim|choiceband|adamant|0,252,0,0,4,252|closecombat|drillrun|liquidation|psychicfangs": 1
+        },
+        "krookodile": {
+            "moxie|choicescarf|jolly|0,252,0,0,4,252|closecombat|earthquake|gunkshot|stealthrock": 1
+        },
+        "medicham": {
+            "purepower|choiceband|adamant|0,252,0,0,4,252|bulletpunch|closecombat|icepunch|zenheadbutt": 1
+        },
+        "alomomola": {
+            "regenerator|heavydutyboots|impish|252,0,252,0,4,0|chillingwater|protect|whirlpool|wish": 1
+        },
+        "lucario": {
+            "justified|lifeorb|jolly|0,252,0,0,4,252|closecombat|extremespeed|finalgambit|meteormash": 1,
+            "justified|lifeorb|adamant|0,252,0,0,4,252|bulletpunch|closecombat|extremespeed|swordsdance": 1
+        },
+        "haxorus": {
+            "moldbreaker|expertbelt|adamant|0,252,4,0,0,252|closecombat|dragondance|earthquake|terablast": 1
+        },
+        "basculin": {
+            "adaptability|choicescarf|jolly|0,252,0,0,4,252|aquajet|icefang|liquidation|wavecrash": 1
+        },
+        "drednaw": {
+            "swiftswim|whiteherb|adamant|0,252,0,0,4,252|icespinner|liquidation|shellsmash|stoneedge": 1
+        },
+        "umbreon": {
+            "innerfocus|leftovers|bold|252,0,252,0,4,0|foulplay|protect|wish|yawn": 1
+        },
+        "pincurchin": {
+            "electricsurge|terrainextender|adamant|0,132,188,0,188,0|liquidation|poisonjab|spikes|thunderwave": 1
+        }
+    },
+    "teams": {
+        "drifblim|breloom|clodsire|cloyster|dragapult|chiyu": [
+            {
+                "clodsire": "waterabsorb|blacksludge|careful|252,4,0,0,252,0|earthquake|recover|spikes|toxic",
+                "drifblim": "aftermath|heavydutyboots|bold|252,0,252,0,4,0|defog|hex|strengthsap|willowisp",
+                "dragapult": "infiltrator|choicespecs|timid|0,0,0,252,4,252|dracometeor|hydropump|shadowball|uturn",
+                "breloom": "technician|focussash|adamant|0,252,0,0,4,252|bulletseed|closecombat|machpunch|spore",
+                "cloyster": "skilllink|focussash|adamant|0,252,0,0,4,252|iciclespear|rockblast|shellsmash|waterfall",
+                "chiyu": "beadsofruin|choicescarf|timid|0,0,0,252,4,252|darkpulse|flamethrower|overheat|psychic"
+            }
+        ],
+        "fluttermane|roaringmoon|brutebonnet|cyclizar|greattusk|ceruledge": [
+            {
+                "ceruledge": "weakarmor|focussash|adamant|0,252,0,0,4,252|bitterblade|closecombat|shadowsneak|swordsdance",
+                "fluttermane": "protosynthesis|lifeorb|modest|0,0,0,252,4,252|moonblast|psyshock|shadowball|sunnyday",
+                "greattusk": "protosynthesis|choicescarf|jolly|0,252,4,0,0,252|closecombat|headlongrush|headsmash|rapidspin",
+                "roaringmoon": "protosynthesis|lifeorb|adamant|0,252,0,0,4,252|dragondance|earthquake|scaleshot|terablast",
+                "cyclizar": "regenerator|heatrock|jolly|248,8,0,0,0,252|knockoff|rapidspin|shedtail|sunnyday",
+                "brutebonnet": "protosynthesis|chopleberry|impish|252,0,252,0,4,0|bodypress|spore|suckerpunch|synthesis"
+            }
+        ],
+        "cyclizar|corviknight|rotomwash|roaringmoon|gholdengo": [
+            {
+                "cyclizar": "regenerator|sitrusberry|timid|252,0,0,4,0,252|dracometeor|overheat|rapidspin|shedtail",
+                "rotomwash": "levitate|assaultvest|calm|252,0,0,252,4,0|darkpulse|discharge|hydropump|voltswitch",
+                "corviknight": "pressure|rockyhelmet|impish|248,0,252,0,8,0|bodypress|defog|roost|uturn",
+                "roaringmoon": "protosynthesis|boosterenergy|adamant|0,252,0,0,4,252|acrobatics|crunch|dragondance|earthquake",
+                "gholdengo": "goodasgold|leftovers|calm|252,0,92,0,160,4|makeitrain|nastyplot|recover|shadowball"
+            }
+        ],
+        "torkoal|garchomp|roaringmoon|greattusk|cyclizar|chienpao": [
+            {
+                "torkoal": "drought|heatrock|modest|248,0,0,252,8,0|earthpower|heatwave|solarbeam|yawn",
+                "chienpao": "swordofruin|heavydutyboots|jolly|0,252,0,0,4,252|crunch|icespinner|psychicfangs|swordsdance",
+                "cyclizar": "regenerator|heavydutyboots|jolly|248,0,0,0,8,252|rapidspin|shedtail|taunt|uturn",
+                "roaringmoon": "protosynthesis|choiceband|jolly|0,220,32,0,4,252|crunch|dragonclaw|ironhead|uturn",
+                "garchomp": "roughskin|rockyhelmet|jolly|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock",
+                "greattusk": "protosynthesis|leftovers|jolly|0,252,0,0,4,252|closecombat|earthquake|playrough|rapidspin"
+            }
+        ],
+        "volcarona|ironmoth|slitherwing|torkoal|chiyu|grafaiai": [
+            {
+                "volcarona": "flamebody|heavydutyboots|timid|0,0,0,252,4,252|bugbuzz|flamethrower|gigadrain|quiverdance",
+                "ironmoth": "quarkdrive|choicespecs|timid|0,0,0,252,4,252|energyball|overheat|sludgewave|uturn",
+                "chiyu": "beadsofruin|choicescarf|timid|0,0,0,252,4,252|darkpulse|flamethrower|overheat|terablast",
+                "slitherwing": "protosynthesis|lifeorb|jolly|0,252,0,0,4,252|closecombat|flareblitz|leechlife|trailblaze",
+                "grafaiai": "prankster|heatrock|careful|252,4,0,0,252,0|encore|knockoff|partingshot|sunnyday",
+                "torkoal": "drought|heatrock|bold|248,0,252,8,0,0|lavaplume|rapidspin|stealthrock|yawn"
+            }
+        ],
+        "mausholdfour|gholdengo|baxcalibur|orthworm|clodsire|lokix": [
+            {
+                "baxcalibur": "thermalexchange|loadeddice|adamant|0,252,0,0,4,252|dragondance|glaiverush|iceshard|iciclespear",
+                "clodsire": "waterabsorb|blacksludge|careful|252,4,0,0,252,0|earthquake|poisonjab|recover|stealthrock",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|focusblast|makeitrain|shadowball|thunderbolt",
+                "mausholdfour": "technician|loadeddice|jolly|0,252,0,0,4,252|bite|bulletseed|populationbomb|tidyup",
+                "orthworm": "eartheater|leftovers|impish|252,0,252,0,4,0|bodypress|heavyslam|irondefense|shedtail",
+                "lokix": "tintedlens|heavydutyboots|adamant|0,252,0,0,4,252|axekick|firstimpression|leechlife|suckerpunch"
+            }
+        ],
+        "tinglu|chienpao|fluttermane|glimmora|gholdengo|houndstone": [
+            {
+                "glimmora": "toxicdebris|focussash|timid|252,0,0,4,0,252|earthpower|memento|mortalspin|sludgewave",
+                "houndstone": "fluffy|leftovers|adamant|0,252,252,0,0,4|bodypress|lastrespects|shadowsneak|substitute",
+                "tinglu": "vesselofruin|rockyhelmet|adamant|0,252,252,0,0,4|earthquake|ruination|stealthrock|taunt",
+                "fluttermane": "protosynthesis|choicespecs|timid|4,0,0,252,0,252|memento|moonblast|mysticalfire|shadowball",
+                "gholdengo": "goodasgold|rockyhelmet|modest|248,0,0,252,0,8|makeitrain|psychic|shadowball|thunderbolt",
+                "chienpao": "swordofruin|lifeorb|jolly|4,252,0,0,0,252|iceshard|sacredsword|swordsdance|throatchop"
+            }
+        ],
+        "ironvaliant|chiyu|gholdengo|greattusk|rotomwash|corviknight": [
+            {
+                "corviknight": "pressure|rockyhelmet|careful|252,0,4,0,252,0|defog|ironhead|roost|uturn",
+                "ironvaliant": "quarkdrive|boosterenergy|naive|0,56,0,200,0,252|closecombat|moonblast|terablast|thunderbolt",
+                "greattusk": "protosynthesis|choicescarf|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stealthrock",
+                "gholdengo": "goodasgold|airballoon|modest|108,0,0,252,0,148|makeitrain|nastyplot|shadowball|substitute",
+                "chiyu": "beadsofruin|choicespecs|timid|0,0,0,252,4,252|darkpulse|lavaplume|overheat|psychic",
+                "rotomwash": "levitate|leftovers|bold|252,0,248,0,0,8|hydropump|nastyplot|thunderwave|voltswitch"
+            }
+        ],
+        "grimmsnarl|volcarona|cyclizar|ironhands|gholdengo|roaringmoon": [
+            {
+                "cyclizar": "regenerator|heavydutyboots|jolly|252,0,0,0,4,252|knockoff|rapidspin|shedtail|taunt",
+                "ironhands": "quarkdrive|boosterenergy|adamant|0,252,4,0,0,252|drainpunch|icepunch|swordsdance|thunderpunch",
+                "roaringmoon": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|acrobatics|crunch|dragondance|earthquake",
+                "volcarona": "flamebody|heavydutyboots|modest|0,0,0,252,4,252|bugbuzz|flamethrower|quiverdance|terablast",
+                "grimmsnarl": "prankster|lightclay|careful|252,0,120,0,136,0|lightscreen|partingshot|reflect|spiritbreak",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|makeitrain|recover|shadowball|trick"
+            }
+        ],
+        "greattusk|ironvaliant|chienpao|fluttermane|clodsire|volcarona": [
+            {
+                "ironvaliant": "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|closecombat|icepunch|knockoff|swordsdance",
+                "chienpao": "swordofruin|heavydutyboots|jolly|0,252,0,0,4,252|crunch|iciclecrash|suckerpunch|swordsdance",
+                "fluttermane": "protosynthesis|choicescarf|timid|0,0,0,252,4,252|moonblast|mysticalfire|shadowball|thunderwave",
+                "greattusk": "protosynthesis|leftovers|impish|252,0,252,0,0,4|bodypress|earthquake|rapidspin|stealthrock",
+                "volcarona": "flamebody|heavydutyboots|timid|248,0,156,16,0,88|flamethrower|gigadrain|morningsun|quiverdance",
+                "clodsire": "waterabsorb|leftovers|careful|252,0,0,0,252,4|earthquake|recover|spikes|toxic"
+            }
+        ],
+        "torkoal|cyclizar|glimmora|ceruledge|roaringmoon|gholdengo": [
+            {
+                "ceruledge": "flashfire|leftovers|adamant|0,252,0,0,4,252|bitterblade|bulkup|solarblade|willowisp",
+                "glimmora": "toxicdebris|focussash|jolly|252,4,0,0,0,252|memento|mortalspin|spikes|stealthrock",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|focusblast|makeitrain|shadowball|trick",
+                "cyclizar": "regenerator|ejectbutton|jolly|0,252,0,0,4,252|knockoff|rapidspin|shedtail|uturn",
+                "roaringmoon": "protosynthesis|lifeorb|adamant|0,252,0,0,4,252|dragondance|earthquake|ironhead|jawlock",
+                "torkoal": "drought|heatrock|modest|248,0,0,252,8,0|clearsmog|eruption|rapidspin|sunnyday"
+            }
+        ],
+        "wochien|ironhands|meowscarada|armarouge|greattusk|glimmora": [
+            {
+                "armarouge": "flashfire|choicescarf|timid|0,0,0,252,4,252|armorcannon|aurasphere|psychic|psyshock",
+                "greattusk": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stealthrock",
+                "ironhands": "quarkdrive|assaultvest|adamant|248,252,0,0,8,0|closecombat|drainpunch|fakeout|wildcharge",
+                "glimmora": "toxicdebris|focussash|naive|252,0,0,4,0,252|earthpower|mortalspin|spikes|stealthrock",
+                "meowscarada": "protean|choiceband|jolly|0,252,0,0,4,252|flowertrick|knockoff|playrough|uturn",
+                "wochien": "tabletsofruin|leftovers|relaxed|252,0,4,0,252,0|foulplay|knockoff|leechseed|snarl"
+            }
+        ],
+        "tinglu|espathra|gholdengo|indeedee|cyclizar|greattusk": [
+            {
+                "cyclizar": "regenerator|choicescarf|timid|236,0,0,20,0,252|dracometeor|rapidspin|shedtail|uturn",
+                "greattusk": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stoneedge",
+                "espathra": "speedboost|psychicseed|bold|252,0,252,0,0,4|calmmind|dazzlinggleam|roost|storedpower",
+                "tinglu": "vesselofruin|mentalherb|careful|252,0,0,0,252,4|earthquake|memento|spikes|whirlwind",
+                "indeedee": "psychicsurge|terrainextender|timid|0,0,0,252,4,252|encore|healingwish|hypervoice|psychic",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,0,252|makeitrain|shadowball|thunderbolt|thunderwave"
+            }
+        ],
+        "garganacl|gholdengo|skeledirge|breloom|lokix|irontreads": [
+            {
+                "lokix": "tintedlens|lifeorb|adamant|0,252,0,0,4,252|firstimpression|suckerpunch|swordsdance|uturn",
+                "gholdengo": "goodasgold|leftovers|modest|4,0,0,252,0,252|focusblast|makeitrain|nastyplot|shadowball",
+                "garganacl": "purifyingsalt|leftovers|careful|252,4,0,0,252,0|bodypress|irondefense|recover|saltcure",
+                "skeledirge": "unaware|leftovers|bold|252,0,252,0,0,4|shadowball|slackoff|torchsong|willowisp",
+                "irontreads": "quarkdrive|leftovers|jolly|252,4,0,0,0,252|earthquake|rapidspin|stealthrock|voltswitch",
+                "breloom": "technician|choiceband|adamant|0,252,0,0,4,252|bulletseed|closecombat|machpunch|rocktomb"
+            }
+        ],
+        "garganacl|hippowdon|roaringmoon|ironbundle|brambleghast|taurospaldeafire": [
+            {
+                "ironbundle": "quarkdrive|choicespecs|timid|0,0,0,252,4,252|encore|freezedry|hydropump|icebeam",
+                "roaringmoon": "protosynthesis|boosterenergy|jolly|0,220,36,0,0,252|acrobatics|crunch|dragondance|earthquake",
+                "brambleghast": "infiltrator|leftovers|impish|248,0,72,0,0,188|leechseed|rapidspin|shadowsneak|strengthsap",
+                "garganacl": "purifyingsalt|leftovers|careful|252,0,28,0,228,0|bodypress|irondefense|recover|saltcure",
+                "hippowdon": "sandstream|leftovers|impish|252,0,144,0,112,0|earthquake|slackoff|stealthrock|whirlwind",
+                "taurospaldeafire": "intimidate|leftovers|adamant|248,152,0,0,0,108|closecombat|earthquake|ragingbull|willowisp"
+            }
+        ],
+        "grimmsnarl|ceruledge|dragonite|fluttermane|chienpao|greattusk": [
+            {
+                "chienpao": "swordofruin|lifeorb|jolly|0,252,0,0,4,252|icespinner|sacredsword|suckerpunch|swordsdance",
+                "grimmsnarl": "prankster|lightclay|calm|252,0,4,0,252,0|lightscreen|partingshot|reflect|taunt",
+                "fluttermane": "protosynthesis|choicespecs|timid|0,0,0,252,4,252|energyball|moonblast|psyshock|shadowball",
+                "greattusk": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stoneedge",
+                "ceruledge": "weakarmor|leftovers|jolly|0,252,0,0,4,252|bitterblade|shadowclaw|substitute|swordsdance",
+                "dragonite": "multiscale|silkscarf|adamant|252,252,0,0,0,4|dragondance|earthquake|extremespeed|firepunch"
+            },
+            {
+                "greattusk": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stoneedge",
+                "chienpao": "swordofruin|lifeorb|jolly|0,252,0,0,4,252|icespinner|sacredsword|suckerpunch|swordsdance",
+                "fluttermane": "protosynthesis|choicespecs|timid|0,0,0,252,4,252|moonblast|mysticalfire|shadowball|thunderbolt",
+                "grimmsnarl": "prankster|lightclay|calm|252,0,4,0,252,0|lightscreen|partingshot|reflect|taunt",
+                "dragonite": "multiscale|silkscarf|adamant|252,252,0,0,0,4|dragondance|earthquake|extremespeed|firepunch",
+                "ceruledge": "weakarmor|leftovers|jolly|0,252,0,0,4,252|bitterblade|shadowclaw|substitute|swordsdance"
+            }
+        ],
+        "slitherwing|corviknight|clodsire|slowking|baxcalibur|magnezone": [
+            {
+                "corviknight": "pressure|shedshell|impish|252,0,252,0,4,0|bodypress|defog|ironhead|roost",
+                "clodsire": "unaware|blacksludge|careful|252,0,4,0,252,0|earthquake|recover|stealthrock|toxic",
+                "magnezone": "magnetpull|airballoon|modest|0,0,0,252,4,252|bodypress|flashcannon|thunderbolt|voltswitch",
+                "slowking": "regenerator|leftovers|calm|252,0,0,4,252,0|chillingwater|futuresight|slackoff|thunderwave",
+                "slitherwing": "protosynthesis|lifeorb|adamant|0,252,0,0,0,252|closecombat|earthquake|firstimpression|uturn",
+                "baxcalibur": "thermalexchange|lifeorb|jolly|0,252,4,0,0,252|dragondance|earthquake|glaiverush|iciclecrash"
+            }
+        ],
+        "lokix|gholdengo|clodsire|greattusk|scizor|ironbundle": [
+            {
+                "gholdengo": "goodasgold|airballoon|modest|4,0,0,252,0,252|makeitrain|nastyplot|recover|shadowball",
+                "greattusk": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stealthrock",
+                "lokix": "tintedlens|lifeorb|adamant|0,252,0,0,4,252|firstimpression|suckerpunch|throatchop|uturn",
+                "clodsire": "waterabsorb|mentalherb|careful|252,0,4,0,252,0|earthquake|recover|spikes|toxic",
+                "scizor": "technician|choiceband|adamant|252,252,0,0,4,0|bulletpunch|closecombat|terablast|uturn",
+                "ironbundle": "quarkdrive|boosterenergy|timid|0,0,0,252,4,252|freezedry|hydropump|icebeam|terablast"
+            }
+        ],
+        "torkoal|scovillain|corviknight|chiyu|fluttermane|pawmot": [
+            {
+                "torkoal": "drought|heatrock|bold|252,0,252,0,4,0|bodypress|lavaplume|rapidspin|stealthrock",
+                "corviknight": "pressure|leftovers|careful|252,0,4,0,252,0|bravebird|defog|roost|uturn",
+                "scovillain": "chlorophyll|lifeorb|modest|0,0,0,252,4,252|flamethrower|gigadrain|growth|terablast",
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|mysticalfire|shadowball",
+                "chiyu": "beadsofruin|heavydutyboots|timid|0,0,0,252,4,252|darkpulse|flamethrower|nastyplot|terablast",
+                "pawmot": "voltabsorb|choicescarf|jolly|0,252,0,0,0,252|closecombat|doubleshock|revivalblessing|voltswitch"
+            }
+        ],
+        "brambleghast|garchomp|chienpao|clodsire|corviknight|ironbundle": [
+            {
+                "brambleghast": "infiltrator|leftovers|impish|252,0,252,0,4,0|leechseed|protect|strengthsap|substitute",
+                "ironbundle": "quarkdrive|choicespecs|timid|0,0,0,252,4,252|freezedry|hydropump|terablast|uturn",
+                "clodsire": "unaware|leftovers|careful|252,4,0,0,252,0|earthquake|protect|recover|toxic",
+                "chienpao": "swordofruin|choiceband|jolly|0,252,0,0,4,252|crunch|iceshard|iciclecrash|sacredsword",
+                "garchomp": "roughskin|leftovers|jolly|252,0,136,0,0,120|earthquake|spikes|stealthrock|stoneedge",
+                "corviknight": "pressure|leftovers|impish|252,0,252,0,4,0|bodypress|defog|roost|uturn"
+            }
+        ],
+        "gholdengo|glimmora|grafaiai|greattusk|houndstone|ironbundle|ironhands|ironjugulis|ironmoth|ironthorns|irontreads|ironvaliant|kilowattrel|kingambit|klawf|mabosstiff|mausholdfour|meowscarada|oinkologne|orthworm|palafin|quaquaval|rabsca|revavroom": [
+            {
+                "palafin": "zerotohero|choiceband|jolly|0,252,0,0,4,252|closecombat|flipturn|jetpunch|wavecrash",
+                "oinkologne": "gluttony|aguavberry|adamant|248,252,0,0,8,0|doubleedge|playrough|yawn|zenheadbutt",
+                "rabsca": "synchronize|heavydutyboots|quiet|252,0,0,252,4,0|bugbuzz|psyshock|terablast|trickroom",
+                "greattusk": "protosynthesis|leftovers|jolly|252,4,0,0,0,252|bulkup|closecombat|headlongrush|icespinner",
+                "orthworm": "eartheater|chestoberry|bold|248,0,252,0,8,0|bodypress|rest|shedtail|stealthrock",
+                "glimmora": "toxicdebris|focussash|jolly|252,4,0,0,0,252|memento|mortalspin|spikes|toxicspikes",
+                "ironbundle": "quarkdrive|lifeorb|timid|0,0,4,252,0,252|freezedry|hydropump|taunt|terablast",
+                "ironvaliant": "quarkdrive|choiceband|jolly|4,252,0,0,0,252|closecombat|knockoff|leafblade|terablast",
+                "ironjugulis": "quarkdrive|lifeorb|timid|0,0,0,252,4,252|darkpulse|hurricane|tailwind|terablast",
+                "grafaiai": "unburden|sitrusberry|adamant|4,252,0,0,0,252|acrobatics|lowsweep|substitute|swordsdance",
+                "quaquaval": "moxie|leftovers|jolly|0,252,4,0,0,252|aquastep|bravebird|icespinner|uturn",
+                "kingambit": "defiant|lifeorb|adamant|252,252,0,0,4,0|ironhead|kowtowcleave|suckerpunch|swordsdance",
+                "revavroom": "overcoat|lifeorb|adamant|0,252,4,0,0,252|ironhead|poisonjab|shiftgear|terablast",
+                "ironmoth": "quarkdrive|heavydutyboots|modest|4,0,0,252,252,0|agility|bugbuzz|flamethrower|sludgewave",
+                "klawf": "angershell|focussash|jolly|0,252,4,0,0,252|crabhammer|knockoff|stoneedge|swordsdance",
+                "ironhands": "quarkdrive|heavydutyboots|adamant|248,252,8,0,0,0|closecombat|fakeout|heavyslam|wildcharge",
+                "irontreads": "quarkdrive|assaultvest|adamant|0,252,4,0,0,252|bodypress|earthquake|heavyslam|icespinner",
+                "mausholdfour": "technician|lifeorb|jolly|0,252,0,0,4,252|bulletseed|playrough|populationbomb|tidyup",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|makeitrain|psyshock|shadowball|trick",
+                "kilowattrel": "windpower|heavydutyboots|modest|252,0,0,252,4,0|hurricane|tailwind|thunderbolt|voltswitch",
+                "houndstone": "sandrush|choiceband|adamant|0,252,4,0,0,252|crunch|destinybond|lastrespects|playrough",
+                "meowscarada": "protean|choicescarf|jolly|0,252,0,0,4,252|knockoff|petalblizzard|trick|uturn",
+                "mabosstiff": "guarddog|chestoberry|lax|252,4,252,0,0,0|crunch|honeclaws|rest|terablast",
+                "ironthorns": "quarkdrive|assaultvest|adamant|252,252,0,0,4,0|bodypress|earthquake|stoneedge|wildcharge"
+            }
+        ],
+        "ironmoth|corviknight|garchomp|slowbro|meowscarada|dragapult": [
+            {
+                "dragapult": "infiltrator|choicespecs|timid|0,0,0,252,4,252|dracometeor|shadowball|thunder|uturn",
+                "garchomp": "roughskin|rockyhelmet|jolly|252,0,120,0,0,136|dragontail|earthquake|spikes|stealthrock",
+                "slowbro": "regenerator|heavydutyboots|bold|248,0,252,0,8,0|bodypress|psychic|slackoff|thunderwave",
+                "corviknight": "pressure|leftovers|impish|252,0,168,0,88,0|bodypress|defog|roost|uturn",
+                "meowscarada": "protean|choicescarf|jolly|0,252,0,0,4,252|flowertrick|knockoff|trick|uturn",
+                "ironmoth": "quarkdrive|heavydutyboots|timid|0,0,4,252,0,252|fireblast|morningsun|sludgewave|toxicspikes"
+            }
+        ],
+        "palafin|greattusk|lokix|annihilape|ironbundle|tinglu": [
+            {
+                "greattusk": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stealthrock",
+                "ironbundle": "quarkdrive|boosterenergy|timid|0,0,0,252,4,252|flipturn|freezedry|hydropump|icebeam",
+                "annihilape": "defiant|chestoberry|adamant|248,252,0,0,8,0|bulkup|drainpunch|ragefist|rest",
+                "lokix": "tintedlens|lifeorb|adamant|0,252,0,0,4,252|firstimpression|suckerpunch|swordsdance|uturn",
+                "tinglu": "vesselofruin|assaultvest|impish|4,0,252,0,252,0|bodypress|earthquake|ruination|throatchop",
+                "palafin": "zerotohero|choiceband|jolly|0,252,0,0,4,252|closecombat|flipturn|icepunch|jetpunch"
+            }
+        ],
+        "scovillain|torkoal|arboliva|slitherwing|armarouge|grafaiai": [
+            {
+                "torkoal": "drought|heatrock|bold|248,0,252,8,0,0|lavaplume|rapidspin|stealthrock|yawn",
+                "grafaiai": "prankster|heatrock|careful|252,4,0,0,252,0|encore|knockoff|partingshot|sunnyday",
+                "armarouge": "weakarmor|focussash|modest|0,0,0,252,4,252|armorcannon|calmmind|energyball|psychic",
+                "slitherwing": "protosynthesis|choicescarf|jolly|0,252,0,0,4,252|closecombat|flareblitz|uturn|wildcharge",
+                "scovillain": "chlorophyll|lifeorb|modest|0,0,0,252,4,252|flamethrower|gigadrain|growth|terablast",
+                "arboliva": "harvest|starfberry|calm|252,0,0,4,252,0|earthpower|gigadrain|substitute|synthesis"
+            }
+        ],
+        "cyclizar|torkoal|roaringmoon|greattusk|fluttermane|scovillain": [
+            {
+                "torkoal": "drought|ejectbutton|bold|248,0,252,8,0,0|bodypress|lavaplume|rapidspin|stealthrock",
+                "roaringmoon": "protosynthesis|choiceband|jolly|0,220,36,0,0,252|crunch|earthquake|terablast|uturn",
+                "cyclizar": "regenerator|heavydutyboots|jolly|252,4,0,0,0,252|knockoff|rapidspin|shedtail|uturn",
+                "scovillain": "chlorophyll|lifeorb|hasty|0,4,0,252,0,252|fireblast|gigadrain|growth|stompingtantrum",
+                "fluttermane": "protosynthesis|choicespecs|timid|0,0,0,252,4,252|moonblast|mysticalfire|psyshock|shadowball",
+                "greattusk": "protosynthesis|lifeorb|jolly|0,252,0,0,4,252|closecombat|headlongrush|knockoff|rapidspin"
+            }
+        ],
+        "wochien|azumarill|armarouge|dondozo|palafinhero|roaringmoon": [
+            {
+                "palafinhero": "zerotohero|leftovers|adamant|252,216,0,0,24,16|bulkup|drainpunch|jetpunch|taunt",
+                "azumarill": "hugepower|sitrusberry|adamant|4,252,0,0,0,252|aquajet|bellydrum|icepunch|playrough",
+                "dondozo": "unaware|leftovers|careful|252,0,4,0,252,0|avalanche|bodypress|curse|liquidation",
+                "armarouge": "weakarmor|weaknesspolicy|modest|0,0,0,252,4,252|armorcannon|calmmind|energyball|storedpower",
+                "roaringmoon": "protosynthesis|boosterenergy|jolly|0,252,24,0,0,232|crunch|dragondance|earthquake|ironhead",
+                "wochien": "tabletsofruin|lightclay|careful|248,0,252,0,8,0|knockoff|lightscreen|reflect|stunspore"
+            }
+        ],
+        "mausholdfour|chienpao|corviknight|glimmora|clodsire|dragapult": [
+            {
+                "chienpao": "swordofruin|lifeorb|naive|0,252,0,4,0,252|crunch|icespinner|suckerpunch|terablast",
+                "clodsire": "unaware|redcard|careful|248,8,0,0,252,0|curse|earthquake|recover|toxic",
+                "glimmora": "toxicdebris|focussash|timid|0,0,0,252,4,252|powergem|stealthrock|terablast|toxic",
+                "dragapult": "infiltrator|lifeorb|hasty|0,4,0,252,0,252|dracometeor|dragondarts|shadowball|terablast",
+                "corviknight": "pressure|leftovers|impish|252,4,252,0,0,0|bodypress|bravebird|defog|roost",
+                "mausholdfour": "technician|widelens|jolly|0,252,0,0,4,252|populationbomb|taunt|tidyup|uturn"
+            }
+        ],
+        "cyclizar|corviknight|irontreads|rotomwash|roaringmoon|gholdengo": [
+            {
+                "irontreads": "quarkdrive|sitrusberry|jolly|252,32,0,0,0,224|earthquake|knockoff|stealthrock|voltswitch",
+                "gholdengo": "goodasgold|leftovers|calm|252,0,92,0,160,4|makeitrain|recover|shadowball|thunderwave",
+                "rotomwash": "levitate|assaultvest|calm|252,0,0,252,4,0|darkpulse|discharge|hydropump|voltswitch",
+                "cyclizar": "regenerator|sitrusberry|timid|248,0,0,8,0,252|dracometeor|overheat|rapidspin|shedtail",
+                "corviknight": "pressure|rockyhelmet|impish|248,0,252,0,8,0|bodypress|defog|roost|uturn",
+                "roaringmoon": "protosynthesis|boosterenergy|adamant|0,252,0,0,4,252|acrobatics|crunch|dragondance|earthquake"
+            }
+        ],
+        "greattusk|fluttermane|chienpao|chiyu|torkoal|roaringmoon": [
+            {
+                "roaringmoon": "protosynthesis|focussash|adamant|0,252,0,0,4,252|acrobatics|crunch|dragonclaw|dragondance",
+                "fluttermane": "protosynthesis|leftovers|calm|0,0,0,64,252,192|calmmind|hex|moonblast|thunderwave",
+                "torkoal": "drought|heatrock|bold|248,0,252,8,0,0|lavaplume|rapidspin|stealthrock|yawn",
+                "chiyu": "beadsofruin|choicescarf|modest|0,0,0,252,4,252|darkpulse|fireblast|flamethrower|terablast",
+                "chienpao": "swordofruin|choiceband|jolly|0,252,0,0,4,252|crunch|iciclecrash|psychicfangs|suckerpunch",
+                "greattusk": "protosynthesis|rockyhelmet|impish|252,4,252,0,0,0|bodypress|earthquake|knockoff|rapidspin"
+            }
+        ],
+        "toedscruel|gholdengo|dragonite|toxapex|glimmora|chiyu": [
+            {
+                "toedscruel": "myceliummight|leftovers|bold|252,0,196,0,0,60|gigadrain|knockoff|rapidspin|spore",
+                "dragonite": "multiscale|heavydutyboots|jolly|0,252,0,0,4,252|dragondance|earthquake|extremespeed|icespinner",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|focusblast|makeitrain|shadowball|trick",
+                "toxapex": "regenerator|blacksludge|impish|252,4,252,0,0,0|banefulbunker|liquidation|recover|toxic",
+                "chiyu": "beadsofruin|choicespecs|timid|0,0,0,252,4,252|darkpulse|flamethrower|overheat|psychic",
+                "glimmora": "toxicdebris|focussash|timid|0,0,0,252,4,252|earthpower|mortalspin|sludgewave|stealthrock"
+            }
+        ],
+        "gholdengo|rotomwash|cyclizar|scizor|ironthorns|ditto": [
+            {
+                "scizor": "technician|metalcoat|impish|76,216,150,0,66,0|bulletpunch|closecombat|swordsdance|uturn",
+                "ironthorns": "quarkdrive|boosterenergy|adamant|0,128,84,0,84,212|dragondance|earthquake|rockslide|thunderpunch",
+                "cyclizar": "regenerator|heavydutyboots|jolly|0,252,4,0,0,252|knockoff|rapidspin|shedtail|uturn",
+                "gholdengo": "goodasgold|choicescarf|timid|74,0,4,252,0,178|dazzlinggleam|makeitrain|shadowball|thunderbolt",
+                "ditto": "imposter|choicescarf|impish|248,8,252,0,0,0|transform",
+                "rotomwash": "levitate|choicespecs|calm|200,0,200,16,92,0|hydropump|terablast|trick|voltswitch"
+            }
+        ],
+        "glimmora|cyclizar|chienpao|veluza|fluttermane|roaringmoon": [
+            {
+                "veluza": "sharpness|sitrusberry|jolly|4,252,0,0,0,252|aquacutter|filletaway|psychocut|terablast",
+                "roaringmoon": "protosynthesis|boosterenergy|adamant|0,252,0,0,4,252|crunch|dragondance|ironhead|outrage",
+                "glimmora": "toxicdebris|focussash|jolly|252,0,0,0,4,252|memento|mortalspin|spikes|stealthrock",
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|mysticalfire|shadowball",
+                "cyclizar": "regenerator|choicescarf|jolly|252,4,0,0,0,252|dragontail|icespinner|knockoff|shedtail",
+                "chienpao": "swordofruin|heavydutyboots|jolly|0,252,0,0,4,252|iciclecrash|suckerpunch|swordsdance|throatchop"
+            }
+        ],
+        "tyranitar|houndstone|clodsire|corviknight|fluttermane|breloom": [
+            {
+                "breloom": "technician|lifeorb|jolly|0,252,0,0,4,252|bulletseed|closecombat|machpunch|spore",
+                "houndstone": "sandrush|spelltag|jolly|4,252,0,0,0,252|bodypress|crunch|lastrespects|terablast",
+                "fluttermane": "protosynthesis|choicespecs|timid|0,0,0,252,4,252|moonblast|mysticalfire|shadowball|thunderbolt",
+                "clodsire": "waterabsorb|blacksludge|careful|252,4,0,0,252,0|earthquake|poisonjab|recover|spikes",
+                "corviknight": "pressure|leftovers|impish|252,4,252,0,0,0|bodypress|bravebird|defog|roost",
+                "tyranitar": "sandstream|smoothrock|careful|252,4,0,0,252,0|crunch|stealthrock|stoneedge|thunderwave"
+            }
+        ],
+        "pelipper|palafinhero|ironbundle|sandyshocks|cyclizar|scizor": [
+            {
+                "ironbundle": "quarkdrive|boosterenergy|timid|0,0,0,252,4,252|flipturn|freezedry|hydropump|icebeam",
+                "scizor": "technician|choiceband|adamant|248,252,0,0,8,0|bulletpunch|closecombat|trailblaze|uturn",
+                "pelipper": "drizzle|damprock|bold|248,0,252,8,0,0|hurricane|roost|surf|uturn",
+                "palafinhero": "zerotohero|leftovers|adamant|252,240,0,0,0,16|bulkup|drainpunch|jetpunch|taunt",
+                "sandyshocks": "protosynthesis|choicespecs|timid|0,0,0,252,4,252|earthpower|spikes|thunder|voltswitch",
+                "cyclizar": "regenerator|heavydutyboots|jolly|248,0,0,0,8,252|knockoff|rapidspin|shedtail|uturn"
+            }
+        ],
+        "chienpao|meowscarada|gastrodon|corviknight|ceruledge|rotomwash": [
+            {
+                "rotomwash": "levitate|leftovers|calm|252,0,0,4,252,0|hydropump|thunderwave|voltswitch|willowisp",
+                "gastrodon": "stormdrain|leftovers|calm|252,0,0,4,252,0|chillingwater|earthpower|recover|stealthrock",
+                "corviknight": "pressure|leftovers|impish|252,4,252,0,0,0|bravebird|defog|roost|uturn",
+                "ceruledge": "flashfire|expertbelt|jolly|0,252,0,0,4,252|bitterblade|closecombat|shadowclaw|swordsdance",
+                "chienpao": "swordofruin|assaultvest|jolly|0,252,0,0,4,252|crunch|iciclecrash|sacredsword|suckerpunch",
+                "meowscarada": "protean|pixieplate|hasty|0,252,0,4,0,252|flowertrick|spikes|terablast|uturn"
+            }
+        ],
+        "pelipper|ironbundle|grimmsnarl|irontreads|quaquaval|gyarados": [
+            {
+                "pelipper": "drizzle|damprock|bold|248,0,252,8,0,0|hurricane|roost|surf|uturn",
+                "irontreads": "quarkdrive|leftovers|careful|252,0,0,0,44,212|earthquake|heavyslam|rapidspin|stealthrock",
+                "gyarados": "moxie|lumberry|jolly|0,252,0,0,4,252|dragondance|earthquake|thunderwave|waterfall",
+                "grimmsnarl": "prankster|lightclay|careful|92,252,0,0,164,0|lightscreen|partingshot|reflect|spiritbreak",
+                "ironbundle": "quarkdrive|choicespecs|timid|0,0,0,252,4,252|flipturn|freezedry|hydropump|icebeam",
+                "quaquaval": "moxie|mysticwater|jolly|0,252,0,0,4,252|aquajet|aquastep|closecombat|swordsdance"
+            }
+        ],
+        "chiyu|garchomp|palafinhero|corviknight|breloom|screamtail": [
+            {
+                "garchomp": "roughskin|choicescarf|adamant|0,252,4,0,0,252|dragonclaw|earthquake|outrage|stealthrock",
+                "corviknight": "mirrorarmor|rockyhelmet|impish|248,0,252,0,8,0|bravebird|defog|roost|uturn",
+                "screamtail": "protosynthesis|leftovers|timid|248,0,76,0,0,184|calmmind|dazzlinggleam|protect|wish",
+                "chiyu": "beadsofruin|choicespecs|timid|0,0,0,252,4,252|darkpulse|flamethrower|overheat|psychic",
+                "breloom": "poisonheal|toxicorb|adamant|248,152,0,0,0,108|machpunch|seedbomb|spore|terablast",
+                "palafinhero": "zerotohero|leftovers|jolly|0,252,0,0,4,252|bulkup|drainpunch|jetpunch|taunt"
+            }
+        ],
+        "arboliva|greattusk|salamence|gholdengo|chiyu|palafinhero": [
+            {
+                "salamence": "intimidate|heavydutyboots|timid|248,0,0,8,0,252|dracometeor|fireblast|hurricane|roost",
+                "palafinhero": "zerotohero|leftovers|adamant|252,252,0,0,4,0|bulkup|drainpunch|jetpunch|taunt",
+                "gholdengo": "goodasgold|leftovers|modest|252,0,0,252,0,4|makeitrain|nastyplot|recover|shadowball",
+                "arboliva": "seedsower|leftovers|bold|252,0,252,4,0,0|gigadrain|hypervoice|leechseed|protect",
+                "chiyu": "beadsofruin|choicescarf|timid|0,0,0,252,4,252|darkpulse|flamethrower|overheat|psychic",
+                "greattusk": "protosynthesis|leftovers|careful|252,4,0,0,252,0|earthquake|knockoff|rapidspin|stealthrock"
+            }
+        ],
+        "torkoal|scovillain|fluttermane|garchomp|slitherwing|ceruledge": [
+            {
+                "torkoal": "drought|heatrock|bold|248,0,252,8,0,0|lavaplume|rapidspin|stealthrock|willowisp",
+                "ceruledge": "weakarmor|focussash|jolly|0,252,0,0,4,252|bitterblade|shadowsneak|solarblade|swordsdance",
+                "garchomp": "roughskin|rockyhelmet|jolly|252,0,128,0,0,128|dragontail|earthquake|spikes|sunnyday",
+                "scovillain": "chlorophyll|heavydutyboots|naive|0,4,0,252,0,252|flamethrower|growth|solarbeam|stompingtantrum",
+                "slitherwing": "protosynthesis|lifeorb|adamant|0,252,0,0,4,252|closecombat|firstimpression|uturn|wildcharge",
+                "fluttermane": "protosynthesis|choicescarf|timid|0,0,0,252,140,116|moonblast|mysticalfire|psyshock|shadowball"
+            }
+        ],
+        "breloom|dragapult|armarouge|slowking|cetitan|greattusk": [
+            {
+                "slowking": "regenerator|lightclay|bold|252,0,168,0,88,0|chillyreception|lightscreen|reflect|yawn",
+                "breloom": "technician|focussash|adamant|0,252,0,0,4,252|bulletseed|machpunch|spore|swordsdance",
+                "cetitan": "slushrush|sitrusberry|jolly|4,252,0,0,0,252|bellydrum|earthquake|iceshard|icespinner",
+                "greattusk": "protosynthesis|redcard|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stealthrock",
+                "dragapult": "infiltrator|choicespecs|timid|0,0,0,252,4,252|dracometeor|flamethrower|shadowball|uturn",
+                "armarouge": "weakarmor|leftovers|calm|252,0,188,0,0,68|calmmind|irondefense|storedpower|terablast"
+            }
+        ],
+        "hippowdon|houndstone|ironthorns|cyclizar|espathra|corviknight": [
+            {
+                "espathra": "speedboost|leftovers|modest|0,0,0,252,4,252|calmmind|dazzlinggleam|luminacrash|shadowball",
+                "corviknight": "pressure|rockyhelmet|careful|248,8,0,0,252,0|bravebird|bulkup|roost|taunt",
+                "houndstone": "sandrush|lifeorb|adamant|0,252,0,0,4,252|lastrespects|playrough|shadowsneak|terablast",
+                "hippowdon": "sandstream|rockyhelmet|impish|252,4,252,0,0,0|earthquake|slackoff|stealthrock|yawn",
+                "cyclizar": "regenerator|heavydutyboots|jolly|252,4,0,0,0,252|knockoff|rapidspin|shedtail|uturn",
+                "ironthorns": "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|dragondance|earthquake|rockslide|thunderpunch"
+            }
+        ],
+        "lokix|gholdengo|dragapult|irontreads|rotomwash|goodra": [
+            {
+                "irontreads": "quarkdrive|assaultvest|careful|252,0,0,0,252,4|earthquake|knockoff|rapidspin|voltswitch",
+                "dragapult": "infiltrator|expertbelt|jolly|4,252,0,0,0,252|dragondarts|suckerpunch|thunderwave|willowisp",
+                "lokix": "tintedlens|choiceband|jolly|0,252,0,0,4,252|axekick|firstimpression|suckerpunch|uturn",
+                "rotomwash": "levitate|heavydutyboots|bold|248,0,252,0,8,0|darkpulse|thunderwave|voltswitch|willowisp",
+                "gholdengo": "goodasgold|leftovers|modest|252,0,0,252,4,0|makeitrain|metalsound|recover|shadowball",
+                "goodra": "sapsipper|assaultvest|calm|224,0,0,32,252,0|acidspray|chillingwater|flamethrower|thunderbolt"
+            }
+        ],
+        "roaringmoon|glimmora|dragapult|tinkaton|rotomwash|taurospaldeafire": [
+            {
+                "rotomwash": "levitate|leftovers|bold|252,0,252,4,0,0|hydropump|thunderwave|voltswitch|willowisp",
+                "roaringmoon": "protosynthesis|boosterenergy|adamant|0,252,0,0,4,252|acrobatics|crunch|dragonclaw|dragondance",
+                "tinkaton": "moldbreaker|leftovers|careful|252,4,0,0,252,0|knockoff|playrough|stealthrock|thunderwave",
+                "glimmora": "toxicdebris|blacksludge|timid|0,0,0,252,4,252|earthpower|powergem|sludgebomb|spikes",
+                "taurospaldeafire": "intimidate|charcoal|jolly|0,252,0,0,4,252|bulkup|closecombat|earthquake|flamecharge",
+                "dragapult": "clearbody|choicespecs|timid|0,0,0,252,4,252|dracometeor|fireblast|shadowball|uturn"
+            }
+        ],
+        "abomasnow|cetitan|ironmoth|orthworm|glimmora|fluttermane": [
+            {
+                "abomasnow": "snowwarning|icyrock|jolly|252,4,0,0,0,252|auroraveil|iceshard|icespinner|woodhammer",
+                "ironmoth": "quarkdrive|boosterenergy|timid|120,0,4,132,0,252|discharge|energyball|fierydance|sludgewave",
+                "glimmora": "toxicdebris|blacksludge|careful|248,0,0,0,8,252|memento|mortalspin|spikes|stealthrock",
+                "fluttermane": "protosynthesis|lifeorb|timid|0,0,0,252,4,252|moonblast|shadowball|taunt|thunderbolt",
+                "cetitan": "slushrush|iapapaberry|jolly|0,252,0,0,4,252|bellydrum|earthquake|iceshard|iciclecrash",
+                "orthworm": "eartheater|leftovers|impish|252,4,252,0,0,0|bodypress|coil|earthquake|heavyslam"
+            }
+        ],
+        "roaringmoon|screamtail|volcarona|hawlucha|indeedeef|fluttermane": [
+            {
+                "indeedeef": "psychicsurge|choicescarf|timid|0,0,0,252,4,252|dazzlinggleam|healingwish|psychic|shadowball",
+                "screamtail": "protosynthesis|lightclay|timid|252,0,0,0,4,252|encore|lightscreen|reflect|stealthrock",
+                "volcarona": "swarm|heavydutyboots|modest|0,0,0,252,4,252|bugbuzz|flamethrower|quiverdance|substitute",
+                "hawlucha": "unburden|psychicseed|adamant|0,252,0,0,4,252|acrobatics|closecombat|substitute|swordsdance",
+                "fluttermane": "protosynthesis|boosterenergy|hasty|0,4,0,252,0,252|memento|moonblast|mysticalfire|shadowball",
+                "roaringmoon": "protosynthesis|mirrorherb|adamant|0,252,0,0,4,252|dragondance|ironhead|jawlock|substitute"
+            }
+        ],
+        "magnezone|baxcalibur|roaringmoon|dragapult|dragonite|tinkaton": [
+            {
+                "roaringmoon": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|crunch|dragondance|ironhead|outrage",
+                "tinkaton": "moldbreaker|leftovers|impish|252,0,252,0,0,4|gigatonhammer|knockoff|stealthrock|thunderwave",
+                "baxcalibur": "thermalexchange|heavydutyboots|jolly|0,252,0,0,4,252|dragondance|glaiverush|iciclecrash|substitute",
+                "dragonite": "multiscale|heavydutyboots|adamant|0,252,0,0,4,252|dragondance|extremespeed|outrage|roost",
+                "magnezone": "magnetpull|choicespecs|timid|0,0,0,252,4,252|flashcannon|terablast|thunderbolt|voltswitch",
+                "dragapult": "infiltrator|choiceband|jolly|0,252,0,0,4,252|dragondarts|quickattack|suckerpunch|uturn"
+            }
+        ],
+        "orthworm|palafinhero|pawmot|dragonite|veluza|annihilape": [
+            {
+                "dragonite": "multiscale|heavydutyboots|adamant|0,252,0,0,4,252|dragondance|earthquake|extremespeed|icespinner",
+                "veluza": "moldbreaker|sitrusberry|modest|0,0,0,252,8,248|filletaway|storedpower|surf|terablast",
+                "orthworm": "eartheater|sitrusberry|impish|248,0,252,0,8,0|ironhead|shedtail|spikes|stealthrock",
+                "annihilape": "defiant|leftovers|adamant|92,252,0,0,8,156|bulkup|drainpunch|ragefist|substitute",
+                "pawmot": "ironfist|punchingglove|jolly|0,252,0,0,4,252|bulkup|icepunch|machpunch|thunderpunch",
+                "palafinhero": "zerotohero|choiceband|jolly|0,252,0,0,4,252|closecombat|flipturn|jetpunch|wavecrash"
+            }
+        ],
+        "slowking|cetitan|kilowattrel|baxcalibur|ironbundle|irontreads": [
+            {
+                "baxcalibur": "icebody|assaultvest|adamant|252,252,0,0,4,0|earthquake|glaiverush|iceshard|iciclecrash",
+                "irontreads": "quarkdrive|focussash|jolly|0,252,0,0,4,252|earthquake|icespinner|rapidspin|stealthrock",
+                "slowking": "regenerator|leftovers|calm|252,0,0,4,252,0|chillyreception|psychic|slackoff|surf",
+                "kilowattrel": "voltabsorb|heavydutyboots|timid|0,0,0,252,4,252|hurricane|roost|thunderbolt|uturn",
+                "ironbundle": "quarkdrive|boosterenergy|modest|0,0,0,252,4,252|blizzard|flipturn|freezedry|hydropump",
+                "cetitan": "slushrush|choiceband|adamant|0,252,0,0,4,252|earthquake|heavyslam|icespinner|playrough"
+            }
+        ],
+        "blissey|toxapex|ditto|avalugg|corviknight|quagsire": [
+            {
+                "ditto": "imposter|choicescarf|impish|252,0,252,0,0,4|transform",
+                "quagsire": "unaware|leftovers|impish|248,0,252,0,8,0|earthquake|recover|spikes|stealthrock",
+                "toxapex": "regenerator|blacksludge|calm|248,0,8,0,252,0|haze|recover|toxic|toxicspikes",
+                "blissey": "naturalcure|heavydutyboots|bold|252,0,252,0,4,0|healbell|seismictoss|shadowball|softboiled",
+                "corviknight": "pressure|rockyhelmet|impish|248,0,252,0,8,0|bodypress|bravebird|irondefense|roost",
+                "avalugg": "sturdy|leftovers|impish|248,0,252,0,8,0|bodypress|rapidspin|recover|terablast"
+            }
+        ],
+        "meowscarada|rabsca|squawkabillyblue|annihilape|dondozo|espeon": [
+            {
+                "meowscarada": "protean|tr43|jolly|0,252,0,0,0,252|acrobatics|fling|flowertrick|uturn",
+                "dondozo": "unaware|leftovers|impish|252,4,252,0,0,0|curse|liquidation|rest|sleeptalk",
+                "annihilape": "defiant|leftovers|careful|220,0,64,0,128,96|bulkup|drainpunch|ragefist|taunt",
+                "rabsca": "synchronize|leftovers|calm|252,0,4,0,252,0|bugbuzz|cosmicpower|recover|storedpower",
+                "squawkabillyblue": "guts|flameorb|jolly|0,252,0,0,4,252|bravebird|facade|roost|uturn",
+                "espeon": "magicbounce|lightclay|timid|0,0,0,252,0,252|dazzlinggleam|lightscreen|psychic|reflect"
+            }
+        ],
+        "mausholdfour|dudunsparcethreesegment|orthworm|greattusk|dragapult|palafin": [
+            {
+                "dudunsparcethreesegment": "rattled|heavydutyboots|modest|252,0,0,252,0,4|boomburst|glare|hex|roost",
+                "dragapult": "infiltrator|choiceband|hasty|0,252,0,4,0,252|dragondarts|suckerpunch|terablast|uturn",
+                "orthworm": "eartheater|chopleberry|calm|252,0,4,0,252,0|bodypress|irondefense|rest|shedtail",
+                "palafin": "zerotohero|leftovers|adamant|236,252,0,0,0,20|bulkup|drainpunch|jetpunch|taunt",
+                "mausholdfour": "technician|widelens|jolly|0,252,0,0,4,252|bite|populationbomb|tidyup|uturn",
+                "greattusk": "protosynthesis|focussash|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stealthrock"
+            }
+        ],
+        "irontreads|fluttermane|ironvaliant|ironbundle|orthworm|palafin": [
+            {
+                "ironvaliant": "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|closecombat|spiritbreak|swordsdance|thunderpunch",
+                "ironbundle": "quarkdrive|boosterenergy|modest|0,0,0,252,4,252|agility|freezedry|hydropump|icebeam",
+                "irontreads": "quarkdrive|airballoon|jolly|0,4,0,0,252,252|earthquake|ironhead|rapidspin|stealthrock",
+                "orthworm": "eartheater|leftovers|bold|252,0,252,0,4,0|bodypress|irondefense|shedtail|spikes",
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|shadowball|substitute",
+                "palafin": "zerotohero|choiceband|jolly|0,252,0,0,4,252|closecombat|flipturn|jetpunch|wavecrash"
+            }
+        ],
+        "spidops|palafin|chienpao|roaringmoon|cyclizar|gholdengo": [
+            {
+                "palafin": "zerotohero|choiceband|jolly|0,252,4,0,0,252|closecombat|flipturn|jetpunch|wavecrash",
+                "roaringmoon": "protosynthesis|boosterenergy|jolly|0,252,4,0,0,252|acrobatics|crunch|dragondance|earthquake",
+                "chienpao": "swordofruin|focussash|adamant|0,252,4,0,0,252|iceshard|iciclecrash|sacredsword|swordsdance",
+                "cyclizar": "regenerator|heavydutyboots|timid|240,0,0,16,0,252|dracometeor|knockoff|rapidspin|shedtail",
+                "gholdengo": "goodasgold|leftovers|modest|248,0,0,196,0,64|makeitrain|nastyplot|recover|shadowball",
+                "spidops": "insomnia|focussash|impish|248,8,252,0,0,0|lunge|memento|spikes|stickyweb"
+            }
+        ],
+        "torkoal|greattusk|hatterene|kingambit|chiyu|scovillain": [
+            {
+                "torkoal": "drought|heatrock|bold|248,0,252,0,8,0|bodypress|lavaplume|stealthrock|yawn",
+                "greattusk": "protosynthesis|leftovers|jolly|0,252,4,0,0,252|closecombat|headlongrush|icespinner|rapidspin",
+                "chiyu": "beadsofruin|choicescarf|timid|0,0,0,252,4,252|darkpulse|flamethrower|memento|overheat",
+                "kingambit": "supremeoverlord|lumberry|adamant|112,252,0,0,4,140|ironhead|kowtowcleave|suckerpunch|swordsdance",
+                "scovillain": "chlorophyll|lifeorb|modest|0,0,0,252,4,252|flamethrower|gigadrain|growth|solarbeam",
+                "hatterene": "magicbounce|leftovers|bold|252,0,244,0,0,12|drainingkiss|healingwish|mysticalfire|psyshock"
+            }
+        ],
+        "tinkaton|arboliva|hippowdon|corviknight|volcarona|palafin": [
+            {
+                "palafin": "zerotohero|choicescarf|jolly|0,252,0,0,4,252|closecombat|flipturn|icepunch|wavecrash",
+                "volcarona": "flamebody|heavydutyboots|timid|0,0,4,252,0,252|bugbuzz|flamethrower|quiverdance|terablast",
+                "corviknight": "pressure|rockyhelmet|impish|252,0,252,0,4,0|bravebird|defog|roost|uturn",
+                "tinkaton": "moldbreaker|lifeorb|adamant|12,252,0,0,0,244|gigatonhammer|substitute|swordsdance|terablast",
+                "arboliva": "seedsower|terrainextender|bold|248,0,252,8,0,0|earthpower|gigadrain|leechseed|strengthsap",
+                "hippowdon": "sandstream|leftovers|careful|248,0,8,0,252,0|earthquake|slackoff|stealthrock|whirlwind"
+            }
+        ],
+        "greattusk|slitherwing|volcarona|ironmoth|breloom|mimikyu": [
+            {
+                "slitherwing": "protosynthesis|choiceband|adamant|0,252,4,0,0,252|closecombat|firstimpression|flareblitz|leechlife",
+                "ironmoth": "quarkdrive|assaultvest|timid|0,0,0,252,4,252|fierydance|sludgewave|terablast|uturn",
+                "breloom": "technician|focussash|adamant|0,252,0,0,4,252|bulletseed|machpunch|rocktomb|swordsdance",
+                "greattusk": "protosynthesis|focussash|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stealthrock",
+                "volcarona": "flamebody|heavydutyboots|timid|0,0,4,252,0,252|bugbuzz|fierydance|gigadrain|quiverdance",
+                "mimikyu": "disguise|lifeorb|adamant|0,252,0,0,4,252|playrough|shadowclaw|shadowsneak|swordsdance"
+            }
+        ],
+        "torkoal|chiyu|fluttermane|slitherwing|greattusk|dachsbun": [
+            {
+                "chiyu": "beadsofruin|choicescarf|timid|0,0,4,252,0,252|darkpulse|fireblast|flamethrower|psychic",
+                "slitherwing": "protosynthesis|choiceband|adamant|0,252,0,0,4,252|closecombat|firstimpression|flareblitz|uturn",
+                "dachsbun": "wellbakedbody|leftovers|impish|252,0,4,0,252,0|bodypress|playrough|protect|wish",
+                "greattusk": "protosynthesis|focussash|jolly|0,252,0,0,4,252|closecombat|headlongrush|icespinner|rapidspin",
+                "fluttermane": "protosynthesis|lifeorb|timid|0,0,0,252,4,252|calmmind|moonblast|shadowball|substitute",
+                "torkoal": "drought|heatrock|bold|248,0,252,0,8,0|lavaplume|rapidspin|stealthrock|willowisp"
+            }
+        ],
+        "roaringmoon|torkoal|dragonite|arboliva|ceruledge|greattusk": [
+            {
+                "ceruledge": "weakarmor|lifeorb|adamant|0,252,0,0,4,252|bitterblade|closecombat|shadowsneak|swordsdance",
+                "torkoal": "drought|heatrock|bold|248,0,156,0,104,0|lavaplume|rapidspin|solarbeam|stealthrock",
+                "dragonite": "multiscale|heavydutyboots|jolly|0,252,0,0,4,252|dragonclaw|dragondance|earthquake|firepunch",
+                "roaringmoon": "protosynthesis|choiceband|jolly|32,220,0,0,4,252|crunch|dragonclaw|earthquake|uturn",
+                "greattusk": "protosynthesis|assaultvest|impish|248,48,40,0,132,40|bodypress|earthquake|knockoff|rapidspin",
+                "arboliva": "harvest|sitrusberry|modest|248,0,0,252,8,0|dazzlinggleam|solarbeam|synthesis|weatherball"
+            }
+        ],
+        "corviknight|kingambit|tinglu|ironbundle|clodsire|gholdengo": [
+            {
+                "corviknight": "pressure|rockyhelmet|impish|252,0,248,0,8,0|bravebird|defog|roost|uturn",
+                "ironbundle": "quarkdrive|choicespecs|timid|0,0,0,252,4,252|freezedry|hydropump|icebeam|uturn",
+                "tinglu": "vesselofruin|leftovers|adamant|248,68,16,0,176,0|earthquake|ruination|stealthrock|whirlwind",
+                "clodsire": "waterabsorb|leftovers|careful|252,0,24,0,232,0|earthquake|recover|spikes|yawn",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|focusblast|makeitrain|shadowball|trick",
+                "kingambit": "supremeoverlord|blackglasses|adamant|108,252,0,0,0,148|ironhead|kowtowcleave|suckerpunch|swordsdance"
+            }
+        ],
+        "quaquaval|skeledirge|irontreads|masquerain|annihilape|roaringmoon": [
+            {
+                "masquerain": "intimidate|focussash|modest|0,0,0,252,4,252|hurricane|quiverdance|stickyweb|surf",
+                "irontreads": "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|earthquake|ironhead|rapidspin|stealthrock",
+                "quaquaval": "moxie|heavydutyboots|jolly|0,252,0,0,4,252|aquastep|bulkup|closecombat|icespinner",
+                "skeledirge": "blaze|throatspray|modest|0,0,0,252,4,252|earthpower|shadowball|terablast|torchsong",
+                "roaringmoon": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|acrobatics|dragondance|earthquake|jawlock",
+                "annihilape": "defiant|leftovers|careful|220,0,64,0,128,96|bulkup|drainpunch|ragefist|taunt"
+            }
+        ],
+        "snover|cetoddle|flittle|varoom|diglett|toedscool": [
+            {
+                "toedscool": "myceliummight|eviolite|jolly|0,116,0,0,196,196|knockoff|rapidspin|spikes|spore",
+                "snover": "snowwarning|icyrock|naive|36,20,36,180,36,196|blizzard|gigadrain|iceshard|protect",
+                "flittle": "speedboost|eviolite|modest|0,0,0,236,36,236|calmmind|protect|storedpower|terablast",
+                "varoom": "overcoat|choicescarf|jolly|0,196,0,0,76,220|gunkshot|ironhead|partingshot|terablast",
+                "cetoddle": "slushrush|berryjuice|adamant|52,212,0,0,196,12|bellydrum|earthquake|iceshard|icespinner",
+                "diglett": "arenatrap|focussash|jolly|36,236,0,0,0,236|earthquake|finalgambit|rockslide|suckerpunch"
+            }
+        ],
+        "indeedeef|espeon|polteageist|cloyster|revavroom|maushold": [
+            {
+                "polteageist": "weakarmor|focussash|modest|0,0,4,252,0,252|shadowball|shellsmash|storedpower|terablast",
+                "maushold": "technician|focussash|adamant|0,252,0,0,4,252|lowkick|populationbomb|shadowclaw|tidyup",
+                "cloyster": "skilllink|focussash|adamant|0,252,0,0,4,252|iciclespear|liquidation|rockblast|shellsmash",
+                "indeedeef": "psychicsurge|terrainextender|timid|252,0,4,0,0,252|calmmind|dazzlinggleam|healingwish|psyshock",
+                "espeon": "magicbounce|ejectbutton|timid|252,0,4,0,0,252|dazzlinggleam|futuresight|psychic|yawn",
+                "revavroom": "overcoat|focussash|jolly|0,252,0,0,4,252|bulldoze|gunkshot|ironhead|shiftgear"
+            }
+        ],
+        "ironvaliant|ironbundle|glimmora|gholdengo|palafinhero|volcarona": [
+            {
+                "volcarona": "flamebody|heavydutyboots|timid|0,0,0,252,4,252|bugbuzz|flamethrower|gigadrain|quiverdance",
+                "palafinhero": "zerotohero|leftovers|adamant|148,252,0,0,0,108|bulkup|drainpunch|jetpunch|taunt",
+                "ironvaliant": "quarkdrive|boosterenergy|naive|0,156,0,100,0,252|closecombat|knockoff|moonblast|thunderbolt",
+                "glimmora": "toxicdebris|focussash|timid|0,0,0,252,4,252|earthpower|sludgebomb|spikes|stealthrock",
+                "ironbundle": "quarkdrive|heavydutyboots|timid|0,0,0,252,4,252|flipturn|freezedry|hydropump|taunt",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|focusblast|makeitrain|shadowball|trick"
+            }
+        ],
+        "palafinhero|dragapult|tinglu|armarouge|indeedee|breloom": [
+            {
+                "indeedee": "psychicsurge|terrainextender|timid|0,0,0,252,4,252|dazzlinggleam|healingwish|psychic|shadowball",
+                "dragapult": "infiltrator|choicespecs|timid|0,0,0,252,4,252|dracometeor|flamethrower|shadowball|uturn",
+                "palafinhero": "zerotohero|lifeorb|jolly|0,252,0,0,4,252|bulkup|closecombat|flipturn|jetpunch",
+                "breloom": "technician|choiceband|jolly|0,252,0,0,4,252|bulletseed|closecombat|focuspunch|machpunch",
+                "armarouge": "flashfire|choicescarf|timid|0,0,0,252,4,252|armorcannon|expandingforce|focusblast|shadowball",
+                "tinglu": "vesselofruin|leftovers|brave|252,0,4,0,252,0|earthquake|ruination|stealthrock|stoneedge"
+            }
+        ],
+        "lokix|garganacl|staraptor|greattusk|dragapult|sylveon": [
+            {
+                "garganacl": "purifyingsalt|leftovers|impish|252,4,252,0,0,0|bodypress|irondefense|recover|saltcure",
+                "lokix": "tintedlens|choiceband|adamant|0,252,4,0,0,252|axekick|firstimpression|suckerpunch|uturn",
+                "dragapult": "cursedbody|leftovers|timid|252,0,0,4,0,252|disable|hex|substitute|willowisp",
+                "sylveon": "pixilate|leftovers|bold|252,0,200,56,0,0|calmmind|drainingkiss|psyshock|shadowball",
+                "greattusk": "protosynthesis|choicescarf|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stoneedge",
+                "staraptor": "reckless|choiceband|jolly|0,252,0,0,4,252|bravebird|closecombat|doubleedge|quickattack"
+            }
+        ],
+        "ironthorns|hippowdon|houndstone|fluttermane|slowking|greattusk": [
+            {
+                "ironthorns": "quarkdrive|boosterenergy|jolly|4,252,0,0,0,252|dragondance|stoneedge|terablast|wildcharge",
+                "slowking": "regenerator|heavydutyboots|relaxed|252,0,252,0,4,0|chillyreception|psychic|slackoff|surf",
+                "fluttermane": "protosynthesis|choicescarf|timid|0,0,0,252,4,252|moonblast|mysticalfire|shadowball|thunderbolt",
+                "houndstone": "sandrush|lifeorb|jolly|4,252,0,0,0,252|disable|lastrespects|playrough|terablast",
+                "greattusk": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|knockoff|rapidspin",
+                "hippowdon": "sandstream|smoothrock|careful|252,8,0,0,248,0|earthquake|slackoff|stealthrock|whirlwind"
+            }
+        ],
+        "clodsire|corviknight|chiyu|palafinhero|sandyshocks|flamigo": [
+            {
+                "flamigo": "scrappy|choicescarf|jolly|0,252,4,0,0,252|bravebird|closecombat|copycat|uturn",
+                "clodsire": "waterabsorb|leftovers|careful|252,0,4,0,252,0|earthquake|poisonjab|recover|stealthrock",
+                "corviknight": "pressure|leftovers|impish|252,0,252,0,4,0|bravebird|defog|roost|uturn",
+                "palafinhero": "zerotohero|leftovers|adamant|148,252,0,0,0,108|bulkup|drainpunch|jetpunch|taunt",
+                "sandyshocks": "protosynthesis|lifeorb|timid|0,0,0,252,4,252|earthpower|spikes|thunderbolt|voltswitch",
+                "chiyu": "beadsofruin|choicespecs|timid|0,0,4,252,0,252|darkpulse|flamethrower|overheat|willowisp"
+            }
+        ],
+        "breloom|dragapult|greattusk|tyranitar|scizor|espathra": [
+            {
+                "breloom": "technician|choicescarf|jolly|0,252,0,0,4,252|bulletseed|closecombat|gunkshot|spore",
+                "greattusk": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|icespinner|rapidspin",
+                "dragapult": "infiltrator|choicespecs|timid|0,4,0,252,0,252|dracometeor|fireblast|shadowball|uturn",
+                "scizor": "technician|leftovers|adamant|252,92,140,0,0,24|bulletpunch|closecombat|defog|uturn",
+                "espathra": "speedboost|redcard|modest|0,0,0,252,4,252|calmmind|dazzlinggleam|luminacrash|protect",
+                "tyranitar": "sandstream|leftovers|careful|252,4,0,0,252,0|earthquake|rockblast|stealthrock|thunderwave"
+            }
+        ],
+        "roaringmoon|irontreads|slowking|fluttermane|kingambit|cetitan": [
+            {
+                "cetitan": "slushrush|lifeorb|adamant|0,252,4,0,0,252|earthquake|iciclecrash|superpower|terablast",
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|mysticalfire|shadowball",
+                "kingambit": "supremeoverlord|blackglasses|adamant|244,252,0,0,0,12|ironhead|kowtowcleave|suckerpunch|swordsdance",
+                "irontreads": "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|earthquake|knockoff|rapidspin|stealthrock",
+                "roaringmoon": "protosynthesis|boosterenergy|adamant|0,252,0,0,4,252|dragondance|earthquake|ironhead|scaleshot",
+                "slowking": "regenerator|colburberry|bold|252,0,176,0,80,0|chillyreception|foulplay|slackoff|thunderwave"
+            }
+        ],
+        "dondozo": [
+            {
+                "dondozo": "unaware|leftovers|impish|252,4,252,0,0,0|bodypress|curse|liquidation|protect"
+            }
+        ],
+        "ironmoth|toxtricity|dragapult|azumarill|roaringmoon|meowscarada": [
+            {
+                "ironmoth": "quarkdrive|boosterenergy|timid|4,0,0,252,0,252|agility|bugbuzz|discharge|fierydance",
+                "meowscarada": "protean|assaultvest|adamant|0,252,0,0,0,252|petalblizzard|playrough|suckerpunch|uturn",
+                "dragapult": "infiltrator|choicespecs|timid|0,0,0,252,4,252|dracometeor|fireblast|shadowball|uturn",
+                "toxtricity": "punkrock|choicespecs|modest|4,0,0,252,0,252|boomburst|overdrive|sludgebomb|voltswitch",
+                "azumarill": "hugepower|choiceband|adamant|252,252,0,0,4,0|aquajet|liquidation|playrough|superpower",
+                "roaringmoon": "protosynthesis|boosterenergy|jolly|0,252,0,0,0,252|acrobatics|dragondance|earthquake|outrage"
+            }
+        ],
+        "tyranitar|houndstone|palafin|clodsire|corviknight|gholdengo": [
+            {
+                "clodsire": "waterabsorb|blacksludge|careful|252,4,0,0,252,0|earthquake|recover|spikes|toxic",
+                "tyranitar": "sandstream|smoothrock|adamant|252,252,0,0,4,0|earthquake|stealthrock|stoneedge|terablast",
+                "corviknight": "pressure|rockyhelmet|impish|248,0,252,0,0,8|bodypress|defog|irondefense|roost",
+                "houndstone": "sandrush|choicescarf|adamant|0,252,0,0,4,252|lastrespects|playrough|psychicfangs|terablast",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|focusblast|makeitrain|shadowball|trick",
+                "palafin": "zerotohero|choiceband|adamant|0,252,0,0,4,252|flipturn|jetpunch|wavecrash|zenheadbutt"
+            }
+        ],
+        "volcarona|roaringmoon|glimmora|ceruledge|indeedee|espeon": [
+            {
+                "espeon": "magicbounce|lifeorb|timid|0,0,0,252,4,252|calmmind|psyshock|shadowball|terablast",
+                "volcarona": "flamebody|heavydutyboots|timid|0,0,4,252,0,252|fierydance|gigadrain|quiverdance|terablast",
+                "roaringmoon": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|acrobatics|crunch|dragondance|earthquake",
+                "ceruledge": "weakarmor|airballoon|adamant|0,252,4,0,0,252|bitterblade|shadowsneak|substitute|swordsdance",
+                "indeedee": "psychicsurge|choicescarf|timid|0,0,0,252,4,252|hypervoice|psychic|shadowball|trick",
+                "glimmora": "toxicdebris|focussash|naive|0,4,0,252,0,252|mortalspin|spikes|stealthrock|venoshock"
+            }
+        ],
+        "masquerain|annihilape|pawmot|lokix|quaquaval|garchomp": [
+            {
+                "lokix": "tintedlens|lifeorb|adamant|0,252,0,0,4,252|firstimpression|suckerpunch|throatchop|uturn",
+                "quaquaval": "moxie|lifeorb|jolly|0,252,0,0,4,252|aquastep|closecombat|icespinner|swordsdance",
+                "pawmot": "ironfist|choiceband|jolly|0,252,0,0,4,252|closecombat|doubleshock|icepunch|machpunch",
+                "masquerain": "intimidate|focussash|timid|0,0,4,252,0,252|bugbuzz|icebeam|stickyweb|stunspore",
+                "annihilape": "defiant|punchingglove|jolly|0,252,0,0,4,252|bulkup|drainpunch|icepunch|ragefist",
+                "garchomp": "roughskin|leftovers|jolly|0,252,0,0,4,252|earthquake|spikes|stoneedge|swordsdance"
+            }
+        ],
+        "greattusk|torkoal|chiyu|fluttermane|dragonite|toxapex": [
+            {
+                "toxapex": "regenerator|leftovers|impish|252,0,40,0,216,0|haze|liquidation|recover|toxic",
+                "torkoal": "drought|heatrock|bold|252,0,216,0,40,0|bodypress|lavaplume|stealthrock|yawn",
+                "fluttermane": "protosynthesis|choicespecs|timid|0,0,4,252,0,252|moonblast|mysticalfire|powergem|shadowball",
+                "dragonite": "multiscale|heavydutyboots|jolly|248,8,0,0,0,252|dragondance|earthquake|icepunch|roost",
+                "chiyu": "beadsofruin|choicescarf|timid|0,0,4,252,0,252|darkpulse|flamethrower|overheat|terablast",
+                "greattusk": "protosynthesis|assaultvest|adamant|0,252,0,0,152,104|closecombat|headlongrush|icespinner|rapidspin"
+            }
+        ],
+        "hydreigon|dragapult|cyclizar|quaquaval|ironhands|armarouge": [
+            {
+                "hydreigon": "levitate|blacksludge|timid|0,0,4,252,0,252|darkpulse|dracometeor|nastyplot|terablast",
+                "quaquaval": "moxie|lifeorb|jolly|0,252,0,0,4,252|aquastep|closecombat|icespinner|swordsdance",
+                "cyclizar": "regenerator|heavydutyboots|jolly|0,252,0,0,4,252|knockoff|rapidspin|shedtail|uturn",
+                "armarouge": "flashfire|choicespecs|modest|72,0,184,252,0,0|armorcannon|flashcannon|psychic|psyshock",
+                "ironhands": "quarkdrive|assaultvest|adamant|248,252,0,0,8,0|closecombat|drainpunch|fakeout|wildcharge",
+                "dragapult": "infiltrator|lifeorb|lonely|0,252,0,4,0,252|dragondance|dragondarts|suckerpunch|terablast"
+            }
+        ],
+        "espathra|cyclizar|gholdengo|roaringmoon|orthworm|amoonguss": [
+            {
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|focusblast|makeitrain|shadowball|trick",
+                "orthworm": "eartheater|sitrusberry|impish|248,8,252,0,0,0|bodypress|heavyslam|shedtail|stealthrock",
+                "roaringmoon": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|acrobatics|crunch|dragonclaw|dragondance",
+                "cyclizar": "regenerator|heavydutyboots|jolly|0,252,0,0,4,252|knockoff|rapidspin|shedtail|uturn",
+                "espathra": "speedboost|colburberry|bold|252,0,252,0,4,0|calmmind|dazzlinggleam|protect|storedpower",
+                "amoonguss": "regenerator|blacksludge|bold|252,0,252,0,4,0|gigadrain|sludgebomb|spore|synthesis"
+            }
+        ],
+        "palafinhero|cyclizar|ditto|ironvaliant|sandyshocks|dragapult": [
+            {
+                "ditto": "imposter|choicescarf|impish|248,8,252,0,0,0|transform",
+                "palafinhero": "zerotohero|leftovers|adamant|244,244,0,0,0,20|bulkup|drainpunch|jetpunch|taunt",
+                "dragapult": "clearbody|heavydutyboots|timid|0,0,0,252,4,252|dracometeor|hex|uturn|willowisp",
+                "cyclizar": "regenerator|heavydutyboots|jolly|248,8,0,0,0,252|knockoff|rapidspin|shedtail|taunt",
+                "sandyshocks": "protosynthesis|airballoon|naive|0,4,0,252,0,252|earthpower|stealthrock|thunderbolt|voltswitch",
+                "ironvaliant": "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|closecombat|spiritbreak|swordsdance|zenheadbutt"
+            }
+        ],
+        "annihilape|palafinhero|gholdengo|tinglu|ironmoth|irontreads": [
+            {
+                "annihilape": "defiant|leftovers|careful|220,60,0,0,128,100|bulkup|drainpunch|ragefist|taunt",
+                "palafinhero": "zerotohero|choiceband|adamant|200,252,0,0,0,56|drainpunch|jetpunch|taunt|wavecrash",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|makeitrain|shadowball|thunderbolt|trick",
+                "ironmoth": "quarkdrive|boosterenergy|timid|0,0,0,252,4,252|dazzlinggleam|fierydance|sludgewave|toxicspikes",
+                "irontreads": "quarkdrive|leftovers|impish|220,52,176,0,0,60|earthquake|ironhead|knockoff|rapidspin",
+                "tinglu": "vesselofruin|chestoberry|impish|200,52,112,0,144,0|earthquake|rest|stealthrock|whirlwind"
+            }
+        ],
+        "bisharp|quaquaval|glimmora|dragapult|corviknight|ditto": [
+            {
+                "bisharp": "defiant|lifeorb|jolly|0,252,0,0,4,252|ironhead|nightslash|suckerpunch|swordsdance",
+                "dragapult": "infiltrator|choicespecs|hasty|0,0,0,252,4,252|dracometeor|flamethrower|shadowball|uturn",
+                "glimmora": "toxicdebris|focussash|timid|252,0,4,0,0,252|memento|mortalspin|spikes|stealthrock",
+                "ditto": "imposter|choicescarf|bold|252,0,252,4,0,0|transform",
+                "quaquaval": "moxie|choiceband|jolly|0,252,0,0,4,252|aquastep|closecombat|icespinner|uturn",
+                "corviknight": "pressure|leftovers|impish|252,0,168,0,88,0|bravebird|bulkup|roost|uturn"
+            }
+        ],
+        "roaringmoon": [
+            {
+                "roaringmoon": "protosynthesis|leftovers|jolly|252,0,0,0,104,152|jawlock|roost|taunt|uturn"
+            }
+        ],
+        "basculegion|pawmot|annihilape|arboliva|armarouge|baxcalibur|bellibolt|bombirdier|brambleghast|brutebonnet|ceruledge|cetitan|chienpao|chiyu|clodsire|cyclizar|dachsbun|dondozo|dudunsparcethreesegment|espathra|farigiraf|flamigo|fluttermane|garganacl": [
+            {
+                "chienpao": "swordofruin|focussash|jolly|0,252,0,0,4,252|icespinner|nightslash|sacredsword|swordsdance",
+                "pawmot": "ironfist|choicescarf|jolly|0,252,0,0,4,252|closecombat|machpunch|revivalblessing|thunderpunch",
+                "garganacl": "purifyingsalt|chestoberry|careful|252,4,0,0,252,0|bodypress|curse|rest|stoneedge",
+                "clodsire": "waterabsorb|leftovers|careful|252,4,0,0,252,0|earthquake|haze|recover|spikes",
+                "cetitan": "slushrush|lifeorb|jolly|0,252,0,0,0,252|earthquake|heavyslam|icespinner|terablast",
+                "basculegion": "adaptability|choicescarf|jolly|4,252,0,0,0,252|aquajet|lastrespects|psychicfangs|wavecrash",
+                "fluttermane": "protosynthesis|lifeorb|timid|0,0,0,252,4,252|calmmind|darkpulse|moonblast|shadowball",
+                "flamigo": "scrappy|focussash|adamant|4,252,0,0,0,252|agility|bravebird|closecombat|swordsdance",
+                "arboliva": "harvest|iapapaberry|modest|248,0,0,252,8,0|dazzlinggleam|earthpower|energyball|growth",
+                "brutebonnet": "protosynthesis|heavydutyboots|brave|252,0,4,0,252,0|seedbomb|spore|synthesis|terablast",
+                "brambleghast": "windrider|choicescarf|jolly|0,252,4,0,0,252|beatup|phantomforce|powerwhip|terablast",
+                "farigiraf": "cudchew|leftovers|modest|252,0,0,4,0,252|agility|calmmind|terablast|twinbeam",
+                "dondozo": "unaware|chestoberry|lax|248,8,252,0,0,0|nobleroar|rest|terablast|yawn",
+                "baxcalibur": "thermalexchange|lifeorb|jolly|252,0,0,0,24,232|dragondance|earthquake|glaiverush|iciclecrash",
+                "bombirdier": "rockypayload|choicescarf|jolly|4,252,0,0,0,252|bravebird|drillrun|knockoff|rockslide",
+                "espathra": "opportunist|choicescarf|timid|0,0,0,252,4,252|dazzlinggleam|flashcannon|luminacrash|terablast",
+                "armarouge": "flashfire|choicescarf|timid|0,0,0,252,4,252|armorcannon|aurasphere|psyshock|terablast",
+                "ceruledge": "flashfire|choicescarf|jolly|0,252,0,0,4,252|bitterblade|closecombat|nightslash|shadowclaw",
+                "dudunsparcethreesegment": "serenegrace|leftovers|jolly|0,4,0,0,252,252|agility|coil|hyperdrill|rockslide",
+                "cyclizar": "regenerator|heavydutyboots|jolly|248,0,0,0,8,252|rapidspin|shedtail|taunt|uturn",
+                "bellibolt": "electromorphosis|lightclay|calm|252,0,48,0,208,0|chillingwater|lightscreen|reflect|voltswitch",
+                "chiyu": "beadsofruin|heavydutyboots|timid|0,0,0,252,4,252|flamecharge|flamethrower|nastyplot|terablast",
+                "annihilape": "defiant|leftovers|adamant|252,252,4,0,0,0|closecombat|ragefist|rest|sleeptalk",
+                "dachsbun": "wellbakedbody|leftovers|impish|252,4,252,0,0,0|playrough|protect|terablast|wish"
+            }
+        ],
+        "tinglu|chienpao|dragonite|toedscruel|gholdengo|houndstone": [
+            {
+                "toedscruel": "myceliummight|heavydutyboots|timid|252,0,0,0,4,252|earthpower|knockoff|rapidspin|toxic",
+                "dragonite": "multiscale|heavydutyboots|jolly|4,252,0,0,0,252|dragondance|earthquake|firepunch|terablast",
+                "gholdengo": "goodasgold|choicespecs|timid|4,0,0,252,0,252|makeitrain|psychic|shadowball|thunderbolt",
+                "chienpao": "swordofruin|lifeorb|jolly|4,252,0,0,0,252|iceshard|sacredsword|swordsdance|throatchop",
+                "tinglu": "vesselofruin|rockyhelmet|adamant|0,252,252,0,0,4|earthquake|stealthrock|taunt|throatchop",
+                "houndstone": "fluffy|leftovers|adamant|0,252,252,0,0,4|bodypress|lastrespects|protect|substitute"
+            }
+        ],
+        "meowscarada|tyranitar|glimmora|slowking|chienpao|blissey": [
+            {
+                "glimmora": "toxicdebris|airballoon|naive|0,4,0,252,0,252|earthpower|mortalspin|sludgebomb|spikes",
+                "chienpao": "swordofruin|lifeorb|jolly|0,252,0,0,4,252|iceshard|iciclecrash|sacredsword|throatchop",
+                "tyranitar": "sandstream|choiceband|adamant|0,252,0,0,12,244|crunch|earthquake|icepunch|stoneedge",
+                "meowscarada": "protean|choiceband|jolly|0,252,0,0,4,252|flowertrick|knockoff|lowkick|uturn",
+                "slowking": "regenerator|leftovers|calm|252,0,252,0,4,0|chillyreception|futuresight|slackoff|surf",
+                "blissey": "naturalcure|leftovers|bold|252,0,252,4,0,0|icebeam|shadowball|softboiled|stealthrock"
+            }
+        ],
+        "skeledirge|corviknight|annihilape|meowscarada|amoonguss|clodsire": [
+            {
+                "clodsire": "unaware|rockyhelmet|serious|252,0,252,0,4,0|earthquake|recover|stealthrock|toxic",
+                "corviknight": "pressure|rockyhelmet|impish|248,0,252,0,8,0|bodypress|defog|roost|uturn",
+                "annihilape": "defiant|choiceband|jolly|0,252,0,0,0,252|closecombat|gunkshot|icepunch|uturn",
+                "skeledirge": "unaware|heavydutyboots|calm|248,0,0,8,252,0|shadowball|slackoff|torchsong|willowisp",
+                "meowscarada": "protean|choiceband|jolly|0,252,4,0,0,252|flowertrick|knockoff|suckerpunch|uturn",
+                "amoonguss": "regenerator|blacksludge|calm|248,0,8,0,252,0|clearsmog|gigadrain|sludgebomb|spore"
+            }
+        ],
+        "houndstone|hatterene|mimikyu|screamtail|ironhands|toxtricitylowkey": [
+            {
+                "screamtail": "protosynthesis|mentalherb|bold|252,0,252,0,4,0|perishsong|stealthrock|trickroom|wish",
+                "mimikyu": "disguise|mentalherb|brave|252,252,0,0,4,0|curse|playrough|shadowsneak|trickroom",
+                "hatterene": "magicbounce|focussash|quiet|252,0,0,252,4,0|dazzlinggleam|healingwish|psychic|trickroom",
+                "houndstone": "fluffy|lifeorb|brave|4,252,252,0,0,0|bodypress|lastrespects|shadowsneak|substitute",
+                "ironhands": "quarkdrive|boosterenergy|brave|0,252,4,0,252,0|closecombat|earthquake|swordsdance|wildcharge",
+                "toxtricitylowkey": "punkrock|lifeorb|quiet|252,0,0,252,4,0|boomburst|overdrive|sludgebomb|voltswitch"
+            }
+        ],
+        "gallade|ironvaliant|greattusk|irontreads|hydreigon|ironjugulis": [
+            {
+                "ironjugulis": "quarkdrive|choicescarf|timid|0,0,0,252,4,252|airslash|darkpulse|terablast|uturn",
+                "ironvaliant": "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|closecombat|shadowsneak|spiritbreak|swordsdance",
+                "hydreigon": "levitate|leftovers|modest|252,0,0,252,4,0|darkpulse|earthpower|focusblast|thunderwave",
+                "irontreads": "quarkdrive|rockyhelmet|impish|252,4,252,0,0,0|earthquake|knockoff|rapidspin|stealthrock",
+                "greattusk": "protosynthesis|focussash|jolly|0,252,4,0,0,252|closecombat|headlongrush|stealthrock|taunt",
+                "gallade": "sharpness|assaultvest|careful|252,4,0,0,252,0|leafblade|psychocut|sacredsword|shadowsneak"
+            }
+        ],
+        "garganacl|greattusk|ironvaliant|dondozo|gholdengo|ironjugulis": [
+            {
+                "greattusk": "protosynthesis|focussash|jolly|0,252,4,0,0,252|bulkup|closecombat|headlongrush|rapidspin",
+                "garganacl": "purifyingsalt|leftovers|careful|252,0,4,0,252,0|bodypress|curse|recover|saltcure",
+                "ironjugulis": "quarkdrive|boosterenergy|modest|0,0,0,252,4,252|airslash|darkpulse|flamethrower|flashcannon",
+                "dondozo": "unaware|leftovers|impish|252,4,252,0,0,0|bodypress|rest|sleeptalk|wavecrash",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|makeitrain|psychic|shadowball|trick",
+                "ironvaliant": "quarkdrive|boosterenergy|adamant|0,252,0,0,0,252|closecombat|psychocut|shadowsneak|spiritbreak"
+            }
+        ],
+        "corviknight|scizor|dragapult|clodsire|pelipper|barraskewda": [
+            {
+                "pelipper": "drizzle|heavydutyboots|bold|248,0,252,8,0,0|hurricane|roost|surf|uturn",
+                "barraskewda": "swiftswim|choiceband|adamant|0,252,0,0,4,252|closecombat|drillrun|liquidation|psychicfangs",
+                "scizor": "technician|lifeorb|adamant|252,252,0,0,4,0|bulletpunch|closecombat|swordsdance|uturn",
+                "clodsire": "waterabsorb|leftovers|impish|252,4,252,0,0,0|earthquake|recover|stealthrock|toxic",
+                "dragapult": "infiltrator|heavydutyboots|timid|0,0,0,252,4,252|dracometeor|hex|uturn|willowisp",
+                "corviknight": "pressure|rockyhelmet|impish|248,8,252,0,0,0|bravebird|defog|roost|uturn"
+            }
+        ],
+        "krookodile|grimmsnarl|irontreads|roaringmoon|slowbro|magnezone": [
+            {
+                "grimmsnarl": "prankster|laggingtail|careful|252,4,156,0,96,0|partingshot|spiritbreak|taunt|trick",
+                "irontreads": "quarkdrive|leftovers|careful|252,0,0,0,252,0|earthquake|knockoff|protect|rapidspin",
+                "slowbro": "regenerator|heavydutyboots|bold|252,0,252,0,4,0|futuresight|icebeam|slackoff|thunderwave",
+                "magnezone": "magnetpull|assaultvest|modest|252,0,0,252,4,0|flashcannon|terablast|thunderbolt|voltswitch",
+                "krookodile": "moxie|choicescarf|jolly|0,252,0,0,4,252|closecombat|earthquake|gunkshot|stealthrock",
+                "roaringmoon": "protosynthesis|boosterenergy|adamant|0,252,0,0,4,252|dragondance|earthquake|ironhead|jawlock"
+            }
+        ],
+        "espathra|volcarona|grimmsnarl|garchomp|ditto|corviknight": [
+            {
+                "garchomp": "roughskin|lifeorb|adamant|0,252,0,0,0,252|earthquake|spikes|stealthrock|terablast",
+                "grimmsnarl": "prankster|lightclay|calm|252,0,4,0,252,0|lightscreen|partingshot|reflect|taunt",
+                "corviknight": "pressure|weaknesspolicy|adamant|188,144,0,0,0,176|agility|bulkup|powertrip|roost",
+                "ditto": "imposter|choicescarf|modest|252,0,4,252,0,0|transform",
+                "espathra": "speedboost|leftovers|bold|252,0,252,4,0,0|calmmind|dazzlinggleam|roost|storedpower",
+                "volcarona": "flamebody|heavydutyboots|timid|0,0,0,252,4,252|bugbuzz|fireblast|gigadrain|quiverdance"
+            }
+        ],
+        "dondozo|amoonguss|medicham|corviknight|orthworm|fluttermane": [
+            {
+                "amoonguss": "regenerator|rockyhelmet|bold|252,0,240,0,16,0|gigadrain|sludgebomb|spore|synthesis",
+                "corviknight": "pressure|rockyhelmet|impish|248,0,252,0,8,0|bodypress|bravebird|defog|roost",
+                "medicham": "purepower|choiceband|adamant|0,252,0,0,4,252|bulletpunch|closecombat|icepunch|zenheadbutt",
+                "dondozo": "unaware|leftovers|careful|252,0,4,0,252,0|bodypress|curse|liquidation|rest",
+                "orthworm": "eartheater|leftovers|impish|252,0,252,0,4,0|bodypress|heavyslam|shedtail|stealthrock",
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|shadowball|substitute"
+            }
+        ],
+        "azumarill|cyclizar|tinkaton|brambleghast|flamigo|dragapult": [
+            {
+                "cyclizar": "regenerator|heavydutyboots|jolly|252,0,4,0,0,252|knockoff|rapidspin|shedtail|uturn",
+                "tinkaton": "moldbreaker|leftovers|careful|252,0,4,0,252,0|foulplay|gigatonhammer|knockoff|stealthrock",
+                "flamigo": "scrappy|choicescarf|jolly|0,252,4,0,0,252|bravebird|closecombat|tailwind|uturn",
+                "brambleghast": "infiltrator|rockyhelmet|impish|252,0,252,0,4,0|nightshade|rapidspin|spikes|strengthsap",
+                "dragapult": "infiltrator|choicespecs|timid|0,0,4,252,0,252|dracometeor|shadowball|thunderbolt|uturn",
+                "azumarill": "hugepower|sitrusberry|adamant|252,252,0,0,0,4|aquajet|bellydrum|icespinner|playrough"
+            }
+        ],
+        "mausholdfour|garchomp|roaringmoon|fluttermane|corviknight|clodsire": [
+            {
+                "corviknight": "pressure|heavydutyboots|impish|248,8,252,0,0,0|bravebird|defog|roost|uturn",
+                "mausholdfour": "technician|loadeddice|jolly|0,252,4,0,0,252|bulletseed|populationbomb|tidyup|uturn",
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|mysticalfire|shadowball",
+                "roaringmoon": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|crunch|dragondance|outrage|stoneedge",
+                "garchomp": "roughskin|focussash|jolly|0,252,0,0,4,252|earthquake|outrage|stealthrock|stoneedge",
+                "clodsire": "unaware|leftovers|careful|252,4,0,0,252,0|earthquake|recover|spikes|toxic"
+            }
+        ],
+        "slowbro|corviknight|clodsire|garganacl|hippowdon|houndstone": [
+            {
+                "slowbro": "regenerator|colburberry|bold|252,0,252,4,0,0|bodypress|futuresight|slackoff|surf",
+                "houndstone": "sandrush|leftovers|adamant|252,4,0,0,0,252|bodypress|lastrespects|protect|willowisp",
+                "clodsire": "waterabsorb|blacksludge|careful|248,8,0,0,252,0|earthquake|recover|spikes|toxic",
+                "garganacl": "purifyingsalt|leftovers|careful|252,0,4,0,252,0|bodypress|irondefense|recover|saltcure",
+                "hippowdon": "sandstream|smoothrock|impish|252,0,252,0,4,0|earthquake|slackoff|stealthrock|whirlwind",
+                "corviknight": "pressure|rockyhelmet|impish|248,0,252,0,8,0|bodypress|defog|irondefense|roost"
+            }
+        ],
+        "clodsire|gholdengo|blissey|alomomola|corviknight|avalugg": [
+            {
+                "gholdengo": "goodasgold|heavydutyboots|modest|252,0,0,252,0,4|makeitrain|nastyplot|recover|shadowball",
+                "corviknight": "pressure|rockyhelmet|impish|252,0,252,0,4,0|bodypress|defog|roost|uturn",
+                "alomomola": "regenerator|heavydutyboots|impish|252,0,252,0,4,0|chillingwater|protect|whirlpool|wish",
+                "blissey": "naturalcure|heavydutyboots|bold|252,0,252,0,4,0|seismictoss|shadowball|softboiled|stealthrock",
+                "avalugg": "sturdy|heavydutyboots|impish|252,0,252,0,4,0|avalanche|earthquake|rapidspin|recover",
+                "clodsire": "unaware|heavydutyboots|impish|252,0,252,0,4,0|earthquake|recover|spikes|toxic"
+            }
+        ],
+        "houndstone|kingambit|annihilape|staraptor|lucario|masquerain": [
+            {
+                "kingambit": "supremeoverlord|lifeorb|adamant|212,252,0,0,0,44|ironhead|kowtowcleave|suckerpunch|swordsdance",
+                "annihilape": "defiant|focussash|jolly|252,0,0,0,4,252|closecombat|finalgambit|shadowclaw|stealthrock",
+                "staraptor": "reckless|choicescarf|jolly|0,252,0,0,4,252|bravebird|closecombat|doubleedge|finalgambit",
+                "masquerain": "intimidate|focussash|timid|0,0,0,252,4,252|bugbuzz|hurricane|stickyweb|stunspore",
+                "lucario": "justified|lifeorb|jolly|0,252,0,0,4,252|closecombat|extremespeed|finalgambit|meteormash",
+                "houndstone": "sandrush|choicescarf|jolly|0,252,0,0,4,252|bodypress|lastrespects|memento|trick"
+            }
+        ],
+        "irontreads|bellibolt|cyclizar|haxorus|quaquaval|corviknight": [
+            {
+                "irontreads": "quarkdrive|leftovers|jolly|252,4,0,0,0,252|earthquake|rapidspin|stealthrock|voltswitch",
+                "haxorus": "moldbreaker|expertbelt|adamant|0,252,4,0,0,252|closecombat|dragondance|earthquake|terablast",
+                "bellibolt": "electromorphosis|assaultvest|modest|176,0,8,252,72,0|discharge|muddywater|paraboliccharge|voltswitch",
+                "cyclizar": "regenerator|heavydutyboots|timid|252,0,0,4,0,252|dracometeor|rapidspin|shedtail|uturn",
+                "quaquaval": "moxie|lifeorb|jolly|0,252,0,0,4,252|aquastep|closecombat|swordsdance|wavecrash",
+                "corviknight": "pressure|rockyhelmet|impish|248,0,252,0,8,0|bodypress|defog|roost|uturn"
+            }
+        ],
+        "dragapult|tinglu|toxapex|breloom|corviknight|chiyu": [
+            {
+                "corviknight": "pressure|leftovers|careful|248,0,8,0,252,0|bravebird|defog|roost|uturn",
+                "dragapult": "infiltrator|choiceband|jolly|0,252,4,0,0,252|dragondarts|suckerpunch|terablast|uturn",
+                "toxapex": "regenerator|leftovers|impish|252,0,16,0,240,0|haze|liquidation|recover|toxic",
+                "chiyu": "beadsofruin|choicescarf|timid|0,0,4,252,0,252|darkpulse|flamethrower|overheat|terablast",
+                "tinglu": "vesselofruin|leftovers|impish|56,0,216,0,236,0|earthquake|heavyslam|ruination|stealthrock",
+                "breloom": "technician|focussash|adamant|0,252,4,0,0,252|bulletseed|closecombat|machpunch|spore"
+            }
+        ],
+        "skeledirge|slitherwing|dragapult|cyclizar|rotomwash|breloom": [
+            {
+                "rotomwash": "levitate|choicescarf|timid|0,0,0,252,4,252|hydropump|thunderwave|trick|voltswitch",
+                "slitherwing": "protosynthesis|boosterenergy|jolly|184,252,0,0,4,68|closecombat|earthquake|flareblitz|uturn",
+                "skeledirge": "unaware|throatspray|bold|248,0,252,0,8,0|fireblast|hex|torchsong|willowisp",
+                "cyclizar": "regenerator|heavydutyboots|timid|236,0,0,20,0,252|dracometeor|knockoff|rapidspin|shedtail",
+                "breloom": "technician|loadeddice|jolly|0,252,0,0,4,252|bulletseed|gunkshot|machpunch|spore",
+                "dragapult": "infiltrator|choicespecs|timid|0,0,0,252,4,252|dracometeor|fireblast|terablast|thunderbolt"
+            }
+        ],
+        "meowscarada|torkoal|armarouge|greattusk|clodsire|gholdengo": [
+            {
+                "gholdengo": "goodasgold|shucaberry|timid|252,0,0,4,0,252|makeitrain|memento|recover|thunderwave",
+                "meowscarada": "protean|choiceband|jolly|0,252,0,0,4,252|flowertrick|knockoff|suckerpunch|uturn",
+                "clodsire": "waterabsorb|leftovers|careful|248,8,0,0,252,0|earthquake|haze|recover|spikes",
+                "greattusk": "protosynthesis|heavydutyboots|jolly|0,252,0,0,4,252|brickbreak|headlongrush|icespinner|rapidspin",
+                "armarouge": "flashfire|choicescarf|timid|0,0,0,252,4,252|armorcannon|aurasphere|energyball|psyshock",
+                "torkoal": "drought|heatrock|bold|252,0,252,0,4,0|lavaplume|solarbeam|stealthrock|willowisp"
+            }
+        ],
+        "scovillain|torkoal|greattusk|roaringmoon|fluttermane|chiyu": [
+            {
+                "scovillain": "chlorophyll|lifeorb|modest|0,0,0,252,4,252|flamethrower|growth|solarbeam|terablast",
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|drainingkiss|moonblast|mysticalfire|shadowball",
+                "torkoal": "drought|heatrock|bold|248,0,252,8,0,0|bodypress|rapidspin|stealthrock|yawn",
+                "greattusk": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|icespinner|rapidspin",
+                "roaringmoon": "protosynthesis|choicescarf|jolly|0,252,0,0,4,252|crunch|earthquake|outrage|uturn",
+                "chiyu": "beadsofruin|choicespecs|timid|0,0,0,252,4,252|darkpulse|flamethrower|overheat|sunnyday"
+            }
+        ],
+        "espathra|cyclizar": [
+            {
+                "cyclizar": "regenerator|heavydutyboots|jolly|0,252,0,0,4,252|knockoff|rapidspin|shedtail|uturn",
+                "espathra": "speedboost|colburberry|bold|252,0,252,0,4,0|calmmind|dazzlinggleam|protect|storedpower"
+            }
+        ],
+        "torkoal|cyclizar|greattusk|scovillain|chiyu|ironvaliant": [
+            {
+                "scovillain": "chlorophyll|heavydutyboots|modest|0,0,0,252,4,252|fireblast|growth|solarbeam|terablast",
+                "cyclizar": "regenerator|heavydutyboots|jolly|248,8,0,0,0,252|knockoff|rapidspin|shedtail|taunt",
+                "ironvaliant": "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|closecombat|shadowsneak|spiritbreak|swordsdance",
+                "greattusk": "protosynthesis|focussash|jolly|44,208,0,0,4,252|closecombat|headlongrush|rapidspin|stoneedge",
+                "torkoal": "drought|heatrock|bold|248,0,252,8,0,0|bodypress|lavaplume|stealthrock|yawn",
+                "chiyu": "beadsofruin|choicescarf|timid|0,0,0,252,4,252|darkpulse|flamethrower|overheat|psychic"
+            }
+        ],
+        "dondozo|blissey|skeledirge|corviknight|tinglu|palafinhero": [
+            {
+                "palafinhero": "zerotohero|leftovers|brave|252,0,0,252,0,4|boomburst|bulkup|drainpunch|jetpunch",
+                "dondozo": "unaware|leftovers|impish|0,4,252,0,252,0|bodypress|curse|liquidation|rest",
+                "tinglu": "vesselofruin|leftovers|careful|0,252,4,0,252,0|earthquake|payback|stealthrock|whirlwind",
+                "skeledirge": "unaware|heavydutyboots|bold|252,0,252,0,4,0|hex|slackoff|torchsong|willowisp",
+                "corviknight": "pressure|leftovers|impish|252,0,252,0,4,0|bravebird|defog|roost|uturn",
+                "blissey": "naturalcure|heavydutyboots|bold|252,0,252,0,4,0|healbell|seismictoss|softboiled|thunderwave"
+            }
+        ],
+        "tinkaton|slowking|corviknight|slitherwing|ironmoth|tinglu": [
+            {
+                "corviknight": "pressure|leftovers|impish|252,0,168,0,88,0|bodypress|defog|roost|uturn",
+                "ironmoth": "quarkdrive|boosterenergy|modest|0,0,0,252,4,252|agility|discharge|fierydance|sludgewave",
+                "slitherwing": "protosynthesis|heavydutyboots|adamant|160,252,0,0,0,96|closecombat|earthquake|firstimpression|uturn",
+                "slowking": "regenerator|heavydutyboots|sassy|252,0,4,0,252,0|futuresight|protect|slackoff|surf",
+                "tinkaton": "moldbreaker|leftovers|adamant|252,168,64,0,0,24|gigatonhammer|knockoff|protect|swordsdance",
+                "tinglu": "vesselofruin|leftovers|careful|252,0,4,0,252,0|earthquake|ruination|stealthrock|whirlwind"
+            }
+        ],
+        "blissey|amoonguss|toxapex|corviknight|tinglu|skeledirge": [
+            {
+                "blissey": "naturalcure|heavydutyboots|impish|252,0,252,0,4,0|seismictoss|softboiled|stealthrock|thunderwave",
+                "amoonguss": "regenerator|rockyhelmet|bold|252,0,220,0,36,0|foulplay|gigadrain|sludgebomb|spore",
+                "toxapex": "regenerator|blacksludge|impish|252,0,252,0,4,0|haze|liquidation|toxic|toxicspikes",
+                "corviknight": "pressure|heavydutyboots|impish|252,0,168,0,88,0|bodypress|defog|roost|uturn",
+                "skeledirge": "unaware|heavydutyboots|calm|252,0,12,0,244,0|hex|slackoff|torchsong|willowisp",
+                "tinglu": "vesselofruin|leftovers|careful|252,0,88,0,168,0|earthquake|ruination|spikes|whirlwind"
+            }
+        ],
+        "amoonguss|fluttermane|scizor|palafinhero|greattusk|ironbundle": [
+            {
+                "palafinhero": "zerotohero|leftovers|adamant|232,252,0,0,4,20|bulkup|drainpunch|jetpunch|taunt",
+                "scizor": "technician|choiceband|adamant|248,252,0,0,8,0|aerialace|bulletpunch|closecombat|uturn",
+                "amoonguss": "regenerator|rockyhelmet|bold|252,0,252,0,4,0|foulplay|gigadrain|sludgebomb|spore",
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|shadowball|substitute",
+                "ironbundle": "quarkdrive|boosterenergy|modest|0,0,0,252,4,252|agility|freezedry|hydropump|terablast",
+                "greattusk": "protosynthesis|focussash|jolly|0,252,4,0,0,252|firefang|headlongrush|rapidspin|stealthrock"
+            }
+        ],
+        "grimmsnarl|palafinhero|glimmora|annihilape|arboliva|baxcalibur": [
+            {
+                "arboliva": "seedsower|ejectbutton|bold|252,0,252,0,4,0|earthpower|gigadrain|memento|strengthsap",
+                "grimmsnarl": "prankster|lightclay|impish|252,0,252,0,4,0|lightscreen|partingshot|reflect|taunt",
+                "glimmora": "toxicdebris|focussash|timid|0,0,252,0,4,252|earthpower|mortalspin|spikes|stealthrock",
+                "baxcalibur": "thermalexchange|heavydutyboots|jolly|0,252,4,0,0,252|dragondance|earthquake|glaiverush|iciclecrash",
+                "palafinhero": "zerotohero|leftovers|adamant|252,252,0,0,0,4|bulkup|drainpunch|jetpunch|substitute",
+                "annihilape": "defiant|leftovers|jolly|252,4,0,0,0,252|bulkup|drainpunch|ragefist|taunt"
+            }
+        ],
+        "irontreads|dragapult|kingambit|ironbundle|palafinhero|scizor": [
+            {
+                "irontreads": "quarkdrive|focussash|jolly|0,252,0,0,4,252|earthquake|icespinner|rapidspin|stealthrock",
+                "kingambit": "supremeoverlord|blackglasses|adamant|252,252,0,0,4,0|brickbreak|kowtowcleave|suckerpunch|swordsdance",
+                "palafinhero": "zerotohero|leftovers|adamant|240,252,0,0,0,16|bulkup|drainpunch|jetpunch|taunt",
+                "ironbundle": "quarkdrive|boosterenergy|timid|0,0,0,252,4,252|freezedry|hydropump|icebeam|terablast",
+                "scizor": "technician|choiceband|adamant|252,252,0,0,4,0|bulletpunch|closecombat|terablast|uturn",
+                "dragapult": "infiltrator|choicespecs|modest|4,0,0,252,0,252|dracometeor|flamethrower|shadowball|surf"
+            }
+        ],
+        "espathra|chiyu|palafinhero|lokix|clodsire|corviknight": [
+            {
+                "chiyu": "beadsofruin|choicescarf|timid|0,0,0,252,4,252|darkpulse|flamethrower|psychic|willowisp",
+                "palafinhero": "zerotohero|heavydutyboots|adamant|0,252,0,0,4,252|bulkup|drainpunch|flipturn|jetpunch",
+                "corviknight": "pressure|rockyhelmet|impish|252,0,168,0,88,0|bodypress|defog|roost|uturn",
+                "clodsire": "waterabsorb|leftovers|calm|252,0,80,0,176,0|earthpower|recover|stealthrock|toxic",
+                "lokix": "tintedlens|lifeorb|jolly|0,252,0,0,4,252|firstimpression|suckerpunch|throatchop|uturn",
+                "espathra": "speedboost|leftovers|bold|112,0,252,0,0,144|calmmind|roost|storedpower|terablast"
+            }
+        ],
+        "grimmsnarl|cyclizar|fluttermane|roaringmoon|ironbundle|chienpao": [
+            {
+                "ironbundle": "quarkdrive|boosterenergy|modest|0,0,4,252,0,252|agility|freezedry|hydropump|terablast",
+                "grimmsnarl": "prankster|lightclay|timid|252,0,4,0,0,252|lightscreen|partingshot|reflect|taunt",
+                "cyclizar": "regenerator|choicescarf|jolly|252,4,0,0,0,252|rapidspin|shedtail|taunt|uturn",
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|mysticalfire|shadowball",
+                "chienpao": "swordofruin|blackglasses|jolly|0,252,0,0,4,252|crunch|iciclecrash|suckerpunch|swordsdance",
+                "roaringmoon": "protosynthesis|boosterenergy|jolly|0,252,4,0,0,252|acrobatics|crunch|dragondance|earthquake"
+            }
+        ],
+        "palafinhero|ceruledge|kilowattrel|greattusk|kingambit|amoonguss": [
+            {
+                "palafinhero": "zerotohero|leftovers|adamant|236,252,0,0,0,20|bulkup|drainpunch|jetpunch|taunt",
+                "greattusk": "protosynthesis|assaultvest|adamant|0,252,0,0,152,104|closecombat|headlongrush|icespinner|rapidspin",
+                "kilowattrel": "voltabsorb|choicespecs|timid|0,0,0,252,4,252|hurricane|terablast|thunderbolt|uturn",
+                "amoonguss": "regenerator|blacksludge|bold|252,0,252,0,4,0|clearsmog|gigadrain|sludgebomb|spore",
+                "ceruledge": "flashfire|lifeorb|jolly|0,252,0,0,4,252|bitterblade|closecombat|shadowsneak|swordsdance",
+                "kingambit": "supremeoverlord|blackglasses|adamant|252,252,0,0,4,0|ironhead|kowtowcleave|stealthrock|suckerpunch"
+            }
+        ],
+        "dragapult|dragonite|cyclizar|magnezone|fluttermane|meowscarada": [
+            {
+                "cyclizar": "regenerator|heavydutyboots|timid|236,0,0,20,0,252|dracometeor|knockoff|rapidspin|shedtail",
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|psyshock|shadowball",
+                "meowscarada": "protean|lifeorb|jolly|0,252,4,0,0,252|flowertrick|spikes|suckerpunch|uturn",
+                "dragapult": "infiltrator|lifeorb|jolly|0,252,0,0,0,252|dragondance|dragondarts|substitute|terablast",
+                "magnezone": "magnetpull|assaultvest|modest|124,0,0,252,0,132|flashcannon|terablast|thunderbolt|voltswitch",
+                "dragonite": "multiscale|heavydutyboots|adamant|0,252,36,0,124,96|dragondance|earthquake|extremespeed|roost"
+            }
+        ],
+        "grimmsnarl|fluttermane|baxcalibur|lucario|orthworm|ironmoth": [
+            {
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|mysticalfire|shadowball",
+                "baxcalibur": "thermalexchange|loadeddice|jolly|0,252,0,0,4,252|dragondance|earthquake|glaiverush|iciclespear",
+                "orthworm": "eartheater|sitrusberry|impish|252,0,252,0,4,0|bodypress|earthquake|shedtail|stealthrock",
+                "ironmoth": "quarkdrive|boosterenergy|timid|0,0,0,252,4,252|energyball|fierydance|sludgewave|uturn",
+                "lucario": "justified|lifeorb|adamant|0,252,0,0,4,252|bulletpunch|closecombat|extremespeed|swordsdance",
+                "grimmsnarl": "prankster|lightclay|careful|252,4,0,0,252,0|lightscreen|partingshot|reflect|spiritbreak"
+            }
+        ],
+        "torkoal|scovillain|roaringmoon|screamtail|orthworm|slitherwing": [
+            {
+                "torkoal": "drought|heatrock|relaxed|248,0,252,0,8,0|bodypress|lavaplume|rapidspin|stealthrock",
+                "slitherwing": "protosynthesis|choicescarf|jolly|0,252,0,0,4,252|closecombat|firstimpression|flareblitz|uturn",
+                "screamtail": "protosynthesis|leftovers|calm|132,0,0,0,252,124|dazzlinggleam|protect|thunderwave|wish",
+                "roaringmoon": "protosynthesis|choicescarf|jolly|0,252,0,0,4,252|earthquake|jawlock|outrage|uturn",
+                "scovillain": "chlorophyll|lifeorb|modest|0,0,0,252,4,252|flamethrower|gigadrain|growth|terablast",
+                "orthworm": "eartheater|leftovers|impish|252,4,252,0,0,0|bodypress|curse|heavyslam|spikes"
+            }
+        ],
+        "pawmot|greattusk|corviknight|skeledirge|chienpao|slowking": [
+            {
+                "skeledirge": "unaware|heavydutyboots|bold|252,0,188,0,56,12|hex|slackoff|torchsong|willowisp",
+                "greattusk": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|closecombat|headlongrush|rapidspin|stoneedge",
+                "slowking": "regenerator|heavydutyboots|calm|252,0,4,0,252,0|futuresight|icebeam|slackoff|thunderwave",
+                "pawmot": "naturalcure|punchingglove|jolly|0,252,0,0,4,252|closecombat|doubleshock|icepunch|voltswitch",
+                "corviknight": "pressure|rockyhelmet|impish|252,0,160,0,96,0|bodypress|bravebird|defog|roost",
+                "chienpao": "swordofruin|heavydutyboots|jolly|0,252,0,0,4,252|icespinner|sacredsword|suckerpunch|swordsdance"
+            }
+        ],
+        "amoonguss|chiyu|dragapult|greattusk|slowking|gholdengo": [
+            {
+                "dragapult": "infiltrator|heavydutyboots|timid|0,0,0,252,4,252|dracometeor|hex|uturn|willowisp",
+                "greattusk": "protosynthesis|leftovers|impish|252,0,252,0,0,4|earthquake|knockoff|rapidspin|stealthrock",
+                "slowking": "regenerator|heavydutyboots|calm|252,0,0,4,252,0|chillyreception|futuresight|slackoff|surf",
+                "amoonguss": "regenerator|rockyhelmet|bold|252,0,252,0,4,0|foulplay|gigadrain|spore|toxic",
+                "chiyu": "beadsofruin|heavydutyboots|timid|0,0,0,252,4,252|darkpulse|flamethrower|snarl|taunt",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|focusblast|makeitrain|shadowball|trick"
+            }
+        ],
+        "tinkaton|palafinhero|fluttermane|corviknight|rotomwash|tinglu": [
+            {
+                "corviknight": "pressure|heavydutyboots|impish|252,0,168,0,88,0|bravebird|defog|roost|uturn",
+                "tinglu": "vesselofruin|leftovers|careful|252,0,88,0,168,0|earthquake|ruination|spikes|whirlwind",
+                "palafinhero": "zerotohero|choiceband|jolly|0,252,0,0,4,252|closecombat|flipturn|jetpunch|wavecrash",
+                "rotomwash": "levitate|leftovers|calm|252,0,0,0,168,88|hydropump|protect|thunderwave|voltswitch",
+                "tinkaton": "moldbreaker|choiceband|jolly|0,252,0,0,4,252|gigatonhammer|icehammer|knockoff|playrough",
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,4,252|calmmind|moonblast|psyshock|shadowball"
+            }
+        ],
+        "klawf|basculin|pelipper|grafaiai|drednaw|glimmora": [
+            {
+                "basculin": "adaptability|choicescarf|jolly|0,252,0,0,4,252|aquajet|icefang|liquidation|wavecrash",
+                "drednaw": "swiftswim|whiteherb|adamant|0,252,0,0,4,252|icespinner|liquidation|shellsmash|stoneedge",
+                "grafaiai": "prankster|damprock|careful|252,4,0,0,252,0|encore|knockoff|partingshot|raindance",
+                "klawf": "angershell|weaknesspolicy|jolly|0,252,0,0,4,252|endure|highhorsepower|knockoff|stoneedge",
+                "pelipper": "drizzle|choicespecs|timid|0,0,0,252,4,252|hurricane|icebeam|surf|uturn",
+                "glimmora": "toxicdebris|focussash|jolly|252,4,0,0,0,252|memento|mortalspin|spikes|stealthrock"
+            }
+        ],
+        "palafinhero|glimmora|gholdengo|cyclizar|houndstone|roaringmoon": [
+            {
+                "roaringmoon": "protosynthesis|boosterenergy|jolly|0,252,0,0,4,252|acrobatics|dragondance|earthquake|jawlock",
+                "houndstone": "fluffy|leftovers|adamant|0,252,0,0,4,252|bodypress|lastrespects|protect|willowisp",
+                "glimmora": "toxicdebris|focussash|jolly|252,4,0,0,0,252|memento|mortalspin|spikes|stealthrock",
+                "cyclizar": "regenerator|ejectbutton|jolly|248,0,8,0,0,252|knockoff|shedtail|terablast|uturn",
+                "gholdengo": "goodasgold|choicescarf|timid|32,0,0,252,0,224|focusblast|makeitrain|shadowball|trick",
+                "palafinhero": "zerotohero|leftovers|adamant|148,252,0,0,0,108|bulkup|drainpunch|jetpunch|taunt"
+            }
+        ],
+        "glimmora|wochien|dondozo|scizor|rotomwash|gholdengo": [
+            {
+                "scizor": "technician|choiceband|adamant|248,252,0,0,8,0|bulletpunch|closecombat|nightslash|uturn",
+                "glimmora": "toxicdebris|focussash|lax|252,0,252,0,0,4|earthpower|mortalspin|spikes|stealthrock",
+                "rotomwash": "levitate|choicescarf|timid|0,0,0,252,4,252|hydropump|shadowball|trick|voltswitch",
+                "dondozo": "unaware|leftovers|adamant|252,252,0,0,4,0|avalanche|curse|earthquake|wavecrash",
+                "gholdengo": "goodasgold|airballoon|timid|0,0,0,252,4,252|dazzlinggleam|makeitrain|shadowball|thunderbolt",
+                "wochien": "tabletsofruin|leftovers|sassy|252,4,0,0,252,0|grassknot|knockoff|leechseed|substitute"
+            }
+        ],
+        "clodsire|irontreads|blissey|skeledirge|slowbro|umbreon": [
+            {
+                "umbreon": "innerfocus|leftovers|bold|252,0,252,0,4,0|foulplay|protect|wish|yawn",
+                "clodsire": "unaware|leftovers|careful|252,4,0,0,252,0|earthquake|recover|stealthrock|toxicspikes",
+                "irontreads": "quarkdrive|leftovers|impish|252,0,252,0,4,0|bodypress|irondefense|knockoff|rapidspin",
+                "blissey": "naturalcure|utilityumbrella|bold|252,0,252,0,4,0|healbell|icebeam|seismictoss|softboiled",
+                "slowbro": "regenerator|colburberry|bold|252,0,252,0,4,0|bodypress|irondefense|slackoff|surf",
+                "skeledirge": "unaware|heavydutyboots|bold|252,0,52,0,0,204|hex|slackoff|torchsong|willowisp"
+            }
+        ],
+        "pawmot|palafin|gholdengo|amoonguss|corviknight|ironvaliant": [
+            {
+                "corviknight": "pressure|rockyhelmet|impish|176,0,216,0,116,0|bodypress|bravebird|defog|roost",
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|makeitrain|shadowball|thunderbolt|trick",
+                "palafin": "zerotohero|punchingglove|jolly|0,252,0,0,4,252|bulkup|drainpunch|flipturn|jetpunch",
+                "ironvaliant": "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|closecombat|knockoff|leafblade|spiritbreak",
+                "pawmot": "ironfist|lifeorb|jolly|0,252,0,0,4,252|closecombat|icepunch|machpunch|seedbomb",
+                "amoonguss": "regenerator|ejectbutton|bold|248,0,252,0,8,0|clearsmog|foulplay|gigadrain|spore"
+            }
+        ],
+        "dragapult|glimmora|toxapex|tinglu|fluttermane|corviknight": [
+            {
+                "glimmora": "toxicdebris|focussash|timid|0,4,0,252,0,252|earthpower|mortalspin|powergem|spikes",
+                "dragapult": "clearbody|choicespecs|timid|0,0,0,252,4,252|dracometeor|hex|shadowball|uturn",
+                "corviknight": "pressure|rockyhelmet|impish|252,4,252,0,0,0|bodypress|defog|roost|uturn",
+                "tinglu": "vesselofruin|leftovers|relaxed|252,4,252,0,0,0|earthquake|protect|ruination|stealthrock",
+                "toxapex": "regenerator|blacksludge|careful|252,0,4,0,252,0|liquidation|recover|toxic|toxicspikes",
+                "fluttermane": "protosynthesis|boosterenergy|timid|0,0,0,252,0,252|calmmind|drainingkiss|hex|mysticalfire"
+            }
+        ],
+        "cyclizar|palafinhero|garchomp|gholdengo|scizor|breloom": [
+            {
+                "gholdengo": "goodasgold|choicescarf|timid|0,0,0,252,4,252|makeitrain|shadowball|thunderbolt|trick",
+                "scizor": "technician|lifeorb|adamant|0,252,0,0,0,252|aerialace|bulletpunch|closecombat|swordsdance",
+                "palafinhero": "zerotohero|leftovers|jolly|0,252,0,0,4,252|bulkup|drainpunch|jetpunch|taunt",
+                "breloom": "technician|choiceband|adamant|0,252,0,0,4,252|bulletseed|closecombat|machpunch|rocktomb",
+                "cyclizar": "regenerator|heavydutyboots|jolly|252,0,0,0,4,252|knockoff|rapidspin|shedtail|uturn",
+                "garchomp": "roughskin|leftovers|jolly|252,0,0,0,4,252|dragontail|earthquake|spikes|stealthrock"
+            }
+        ],
+        "ironhands|fluttermane|ironbundle|irontreads|hawlucha|pincurchin": [
+            {
+                "fluttermane": "protosynthesis|choicespecs|timid|0,0,0,252,4,252|moonblast|psyshock|shadowball|thunderbolt",
+                "irontreads": "quarkdrive|heavydutyboots|adamant|0,252,0,0,4,252|earthquake|icespinner|rapidspin|stealthrock",
+                "hawlucha": "unburden|electricseed|adamant|0,252,0,0,4,252|acrobatics|closecombat|swordsdance|thunderpunch",
+                "ironbundle": "quarkdrive|choicescarf|timid|0,0,0,252,4,252|freezedry|hydropump|icebeam|terablast",
+                "pincurchin": "electricsurge|terrainextender|adamant|0,132,188,0,188,0|liquidation|poisonjab|spikes|thunderwave",
+                "ironhands": "quarkdrive|boosterenergy|impish|140,116,252,0,0,0|drainpunch|ironhead|swordsdance|wildcharge"
+            }
+        ],
+        "greattusk|breloom|toedscruel|scizor|farigiraf|ironmoth": [
+            {
+                "scizor": "technician|metalcoat|adamant|252,252,0,0,4,0|bulletpunch|pounce|swordsdance|uturn",
+                "greattusk": "protosynthesis|heavydutyboots|jolly|0,252,0,0,0,252|headlongrush|rapidspin|stealthrock|taunt",
+                "farigiraf": "armortail|leftovers|timid|148,0,0,236,0,124|agility|calmmind|storedpower|terablast",
+                "breloom": "technician|loadeddice|jolly|0,252,0,0,4,252|bulletseed|machpunch|spore|swordsdance",
+                "toedscruel": "myceliummight|leftovers|calm|252,0,4,0,252,0|earthpower|knockoff|stunspore|toxicspikes",
+                "ironmoth": "quarkdrive|choicescarf|timid|0,0,0,252,4,252|energyball|fierydance|psychic|sludgewave"
+            }
+        ]
+    }
+}

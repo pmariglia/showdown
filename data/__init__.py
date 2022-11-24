@@ -21,11 +21,11 @@ with open(random_battle_set_location, 'r') as f:
 
 pokemon_sets = random_battle_sets
 effectiveness = {}
-ou_sets = None
+team_datasets = None
 
 
-def get_ou_sets(pkmn_names):
-    sets = os.path.join(PWD, 'ou_sets.json')
+def get_team_datasets(pkmn_names):
+    sets = os.path.join(PWD, 'team_datasets.json')
     with open(sets, 'r') as f:
         sets_dict = json.load(f)["pokemon"]
 
@@ -40,7 +40,7 @@ def get_ou_sets(pkmn_names):
 
 
 def get_ou_team(pkmn_names):
-    sets = os.path.join(PWD, 'ou_sets.json')
+    sets = os.path.join(PWD, 'team_datasets.json')
     with open(sets, 'r') as f:
         teams_dict = json.load(f)["teams"]
 
