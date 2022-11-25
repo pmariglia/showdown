@@ -518,6 +518,39 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_doubleshock_fails_if_user_is_not_electric(self):
+        bot_move = "doubleshock"
+        opponent_move = "splash"
+        self.state.user.active.types = ['ground', 'fairy']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_doubleshock_changes_user_type(self):
+        bot_move = "doubleshock"
+        opponent_move = "splash"
+        self.state.user.active.types = ['electric', 'fairy']
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 112),
+                    (constants.MUTATOR_CHANGE_TYPE, constants.USER, ["electric", "fairy"], ["typeless", "fairy"]),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_fire_type_is_immune_to_flamebody_burn(self):
         bot_move = "tackle"
         opponent_move = "splash"

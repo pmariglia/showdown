@@ -50,6 +50,15 @@ def shadowforce(state, attacker, defender, attacking_side, defending_side, move_
         ]
 
 
+def doubleshock(state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub):
+    if "electric" in attacking_side.active.types:
+        new_types = attacking_side.active.types.copy()
+        new_types[new_types.index("electric")] = "typeless"
+        return [
+            (constants.MUTATOR_CHANGE_TYPE, attacker, attacking_side.active.types, new_types)
+        ]
+
+
 def after_move(move_name, state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub):
     try:
         after_move_instructions = globals()[move_name](state, attacker, defender, attacking_side, defending_side, move_hit, hit_sub)

@@ -612,7 +612,16 @@ def populationbomb(attacking_side, attacking_move, defending_move, attacking_pok
     return attacking_move
 
 
+def doubleshock(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    if 'electric' not in attacking_pokemon.types:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] = 0
+
+    return attacking_move
+
+
 move_lookup = {
+    'doubleshock': doubleshock,
     'ragingbull': ragingbull,
     'populationbomb': populationbomb,
     'lastrespects': lastrespects,
