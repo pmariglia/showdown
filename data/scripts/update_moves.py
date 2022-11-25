@@ -202,6 +202,9 @@ moves_dict["recover"]["heal_target"] = "self"
 moves_dict["mindblown"]["heal"] = [-1, 2]
 moves_dict["mindblown"]["heal_target"] = "self"
 
+moves_dict["chloroblast"]["heal"] = [-1, 2]
+moves_dict["chloroblast"]["heal_target"] = "self"
+
 moves_dict["synthesis"]["heal"] = [1, 2]
 moves_dict["synthesis"]["heal_target"] = "self"
 

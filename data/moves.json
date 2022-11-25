@@ -1972,6 +1972,11 @@
             "mirror": 1,
             "protect": 1
         },
+        "heal": [
+            -1,
+            2
+        ],
+        "heal_target": "self",
         "id": "chloroblast",
         "name": "Chloroblast",
         "pp": 5,

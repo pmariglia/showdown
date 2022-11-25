@@ -13231,6 +13231,29 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_chloroblast(self):
+        bot_move = "chloroblast"
+        opponent_move = "splash"
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.95,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 79),
+                    (constants.MUTATOR_HEAL, constants.USER, -104.0),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.050000000000000044,
+                [],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_closecombat_kills_and_reduces_stats(self):
         bot_move = "closecombat"
         opponent_move = "tackle"
