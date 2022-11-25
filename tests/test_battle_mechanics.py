@@ -7,7 +7,7 @@ All battle mechanics are tested in this TestCase
 import unittest
 from unittest import mock
 
-import config
+from config import ShowdownConfig
 import constants
 from collections import defaultdict
 from copy import deepcopy
@@ -25,7 +25,7 @@ from showdown.engine.objects import StateMutator
 
 class TestBattleMechanics(unittest.TestCase):
     def setUp(self):
-        config.damage_calc_type = "average"  # some tests may override this
+        ShowdownConfig.damage_calc_type = "average"  # some tests may override this
         self.state = State(
                         Side(
                             Pokemon.from_state_pokemon_dict(StatePokemon("raichu", 73).to_dict()),
@@ -12517,7 +12517,7 @@ class TestBattleMechanics(unittest.TestCase):
         self.assertEqual(expected_instructions, instructions)
 
     def test_thunder_produces_all_states_with_damage_rolls_accounted_for(self):
-        config.damage_calc_type = "min_max_average"
+        ShowdownConfig.damage_calc_type = "min_max_average"
         bot_move = "thunder"
         opponent_move = "splash"
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
@@ -12950,7 +12950,7 @@ class TestBattleMechanics(unittest.TestCase):
         self.assertEqual(expected_instructions, instructions)
 
     def test_attack_into_healing_with_multiple_attack_damage_rolls(self):
-        config.damage_calc_type = "min_max_average"
+        ShowdownConfig.damage_calc_type = "min_max_average"
         bot_move = "tackle"
         opponent_move = "recover"
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)

@@ -7,8 +7,8 @@ from abc import ABC
 from abc import abstractmethod
 
 import constants
-import config
 import logging
+from config import ShowdownConfig
 
 import data
 from data import all_move_json
@@ -113,7 +113,10 @@ class Battle(ABC):
         self.rqid = user_json[constants.RQID]
 
     def mega_evolve_possible(self):
-        return any(g in self.generation for g in constants.MEGA_EVOLVE_GENERATIONS) or 'nationaldex' in config.pokemon_mode
+        return (
+                any(g in self.generation for g in constants.MEGA_EVOLVE_GENERATIONS) or
+                'nationaldex' in ShowdownConfig.pokemon_mode
+        )
 
     def prepare_battles(self, guess_mega_evo_opponent=True, join_moves_together=False):
         """Returns a list of battles based on this one

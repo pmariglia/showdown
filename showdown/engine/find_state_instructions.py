@@ -1,7 +1,7 @@
 from copy import copy
 
-import config
 import constants
+from config import ShowdownConfig
 from data import all_move_json
 
 from . import instruction_generator
@@ -296,7 +296,13 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
     # move is a damaging move
     if attacking_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
         side_condition = attacking_move.get(constants.SIDE_CONDITIONS)
-        damage_amounts = _calculate_damage(attacking_pokemon, defending_pokemon, attacking_move, conditions=conditions, calc_type=config.damage_calc_type)
+        damage_amounts = _calculate_damage(
+            attacking_pokemon,
+            defending_pokemon,
+            attacking_move,
+            conditions=conditions,
+            calc_type=ShowdownConfig.damage_calc_type
+        )
 
         attacking_move_secondary = attacking_move[constants.SECONDARY]
         attacking_move_self = attacking_move.get(constants.SELF)

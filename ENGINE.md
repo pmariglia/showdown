@@ -224,24 +224,3 @@ Notice that damage calculations are constant per move. This is done for simplici
 This behaviour can be changed by setting a global configuration value.
 
 Obviously, if this is done then the number of instructions generated will become very large even for simple pairs of moves
-
-Looking at 'tackle' vs 'tackle' again:
-```python
->> import config
->> config.damage_calc_type = 'all'  # other acceptable values are 'min_max', 'min_max_average', and 'average'
-
->> from showdown.engine import State
->> from showdown.engine import StateMutator
->> from showdown.engine import get_all_state_instructions
-
->> state = State(...)  # initialize your state
-
->> mutator = StateMutator(state)
->> my_move = 'tackle'
->> your_move = 'tackle'
-
->> transpose_instructions = get_all_state_instructions(mutator, my_move, your_move)
-
->> len(transpose_instructions)
->> 80  # in this contrived example there are 8 possible damage rolls for one tackle, and 10 for the other
-```
