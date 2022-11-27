@@ -16,20 +16,21 @@ You may either set these in your environment before running,
 or populate them in the [env](https://github.com/pmariglia/showdown/blob/master/env) file.
 
 The configurations available are:
-```
-BATTLE_BOT:         The BattleBot module to use. More on this below in the Battle Bots section
-WEBSOCKET_URI:      The address to use to connect to the Pokemon Showdown websocket 
-PS_USERNAME:        Pokemon Showdown username
-PS_PASSWORD:        Pokemon Showdown password 
-BOT_MODE:           The mode the the bot will operate in. Options are CHALLENGE_USER, SEARCH_LADDER, or ACCEPT_CHALLENGE
-POKEMON_MODE:       The type of game this bot will play: gen8ou, gen7randombattle, etc.
-RUN_COUNT:          The number of games the bot will play before quitting
-TEAM_NAME:          The name of the file that contains the team you want to use. More on this below in the Specifying Teams section.
-USER_TO_CHALLENGE:  If BOT_MODE is CHALLENGE_USER, this is the user to challenge
-ROOM_NAME:          If BOT_MODE is ACCEPT_CHALLENGE, the bot will join this room while waiting for a challenge.
-SAVE_REPLAY:        Specifies whether or not to save replays of the battles (True / False)
-LOG_LEVEL:          The Python logging level (DEBUG, INFO, etc.)
-```
+
+| Config Name | Type | Required | Description |
+|---|:---:|:---:|---|
+| **`BATTLE_BOT`** | string | yes | The BattleBot module to use. More on this below in the Battle Bots section |
+| **`WEBSOCKET_URI`** | string | yes | The address to use to connect to the Pokemon Showdown websocket |
+| **`PS_USERNAME`** | string | yes | Pokemon Showdown username |
+| **`PS_PASSWORD`** | string | yes | Pokemon Showdown password  |
+| **`BOT_MODE`** | string | yes | The mode the the bot will operate in. Options are `CHALLENGE_USER`, `SEARCH_LADDER`, or `ACCEPT_CHALLENGE` |
+| **`POKEMON_MODE`** | string | yes | The type of game this bot will play: `gen8ou`, `gen7randombattle`, etc. |
+| **`USER_TO_CHALLENGE`** | string | only if `BOT_MODE` is `CHALLENGE_USER` | If `BOT_MODE` is `CHALLENGE_USER`, this is the name of the user you want your bot to challenge |
+| **`RUN_COUNT`** | int | no | The number of games the bot will play before quitting |
+| **`TEAM_NAME`** | string | no | The name of the file that contains the team you want to use. More on this below in the Specifying Teams section. |
+| **`ROOM_NAME`** | string | no | If `BOT_MODE` is `ACCEPT_CHALLENGE`, the bot will join this chatroom while waiting for a challenge. |
+| **`SAVE_REPLAY`** | boolean | no | Specifies whether or not to save replays of the battles (`True` / `False`) |
+| **`LOG_LEVEL`** | string | no | The Python logging level (`DEBUG`, `INFO`, etc.) |
 
 ### Running without Docker
 
@@ -41,7 +42,20 @@ Clone the repository with `git clone https://github.com/pmariglia/showdown.git`
 
 Install the requirements with `pip install -r requirements.txt`.
 
-**3. Run**
+**3. Populate the [env](https://github.com/pmariglia/showdown/blob/master/env) file**
+
+Here is a sample:
+```
+BATTLE_BOT=safest
+WEBSOCKET_URI=sim.smogon.com:8000
+PS_USERNAME=MyUsername
+PS_PASSWORD=MyPassword
+BOT_MODE=SEARCH_LADDER
+POKEMON_MODE=gen7randombattle
+RUN_COUNT=1
+```
+
+**4. Run**
 
 Run with `python run.py`
 
@@ -107,14 +121,10 @@ Selects the move that will do the most damage to the opponent
 
 Does not switch
 
-## Performance
-
-These are the default battle-bot's results in three different formats for roughly 75 games played on a fresh account:
-
-![RelativeWeightsRankings](https://i.imgur.com/eNpIlVg.png)
-
 ## Write your own bot
-Create a package in `showdown/battle_bots` with a module named `main.py`. In this module, create a class named `BattleBot`, override the Battle class, and implement your own `find_best_move` function.
+Create a package in [showdown/battle_bots](https://github.com/pmariglia/showdown/tree/master/showdown/battle_bots) with
+a module named `main.py`. In this module, create a class named `BattleBot`, override the Battle class,
+and implement your own `find_best_move` function.
 
 Set the `BATTLE_BOT` environment variable to the name of your package and your function will be called each time PokemonShowdown prompts the bot for a move
 

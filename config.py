@@ -40,12 +40,12 @@ class _ShowdownConfig:
         self.password = env("PS_PASSWORD")
         self.bot_mode = env("BOT_MODE")
         self.pokemon_mode = env("POKEMON_MODE")
-        self.run_count = env.int("RUN_COUNT")
 
+        self.run_count = env.int("RUN_COUNT", 1)
         self.team = env("TEAM_NAME", None)
         self.user_to_challenge = env("USER_TO_CHALLENGE", None)
 
-        self.save_replay = env("SAVE_REPLAY", False)
+        self.save_replay = env.bool("SAVE_REPLAY", False)
         self.room_name = env("ROOM_NAME", None)
         self.damage_calc_type = env("DAMAGE_CALC_TYPE", "average")
 

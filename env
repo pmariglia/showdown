@@ -1,7 +1,7 @@
 BATTLE_BOT=safest
 WEBSOCKET_URI=sim.smogon.com:8000
-PS_USERNAME=MyCoolUsername
-PS_PASSWORD=MySuperSecretPassword
+PS_USERNAME=MyUsername
+PS_PASSWORD=MyPassword
 BOT_MODE=SEARCH_LADDER
 POKEMON_MODE=gen7randombattle
 RUN_COUNT=1
