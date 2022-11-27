@@ -14,6 +14,7 @@ class TestSinglePokemonExportToDict(unittest.TestCase):
             "ability": "",
             "moves": [],
             "nature": "",
+            "tera_type": "",
             "evs": {
                 "hp": "",
                 "atk": "",
@@ -237,5 +238,17 @@ class TestSinglePokemonExportToDict(unittest.TestCase):
         pkmn_dict = single_pokemon_export_to_dict(export_string)
         self.expected_pkmn_dict['name'] = 'tyranitar'
         self.expected_pkmn_dict['nature'] = 'adamant'
+
+        self.assertEqual(self.expected_pkmn_dict, pkmn_dict)
+
+    def test_parses_terra_type(self):
+        export_string = (
+            "Tyranitar\n"
+            "Tera Type: Water \r "
+        )
+
+        pkmn_dict = single_pokemon_export_to_dict(export_string)
+        self.expected_pkmn_dict['name'] = 'tyranitar'
+        self.expected_pkmn_dict['tera_type'] = 'water'
 
         self.assertEqual(self.expected_pkmn_dict, pkmn_dict)
