@@ -37690,7 +37690,8 @@
         "weightkg": 39.2,
         "color": "Yellow",
         "prevo": "Dunsparce",
-        "evoLevel": 18,
+        "evoType": "levelMove",
+        "evoMove": "Hyper Drill",
         "otherFormes": [
             "Dudunsparce-Three-Segment"
         ],
@@ -37727,7 +37728,8 @@
         "weightkg": 47.4,
         "color": "Yellow",
         "prevo": "Dunsparce",
-        "evoLevel": 18,
+        "evoType": "levelMove",
+        "evoMove": "Hyper Drill",
         "eggGroups": [
             "Field"
         ]
