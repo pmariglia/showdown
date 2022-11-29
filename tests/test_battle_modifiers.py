@@ -671,6 +671,16 @@ class TestActivate(unittest.TestCase):
         activate(self.battle, split_msg)
         self.assertEqual('leftovers', self.battle.opponent.active.item)
 
+    def test_sets_item_from_activate(self):
+        split_msg = ['', '-activate', 'p2a: Mandibuzz', 'item: Safety Goggles', 'Stun Spore']
+        activate(self.battle, split_msg)
+        self.assertEqual('safetygoggles', self.battle.opponent.active.item)
+
+    def test_sets_ability_from_activate(self):
+        split_msg = ['', '-activate', 'p2a: Ferrothorn', 'ability: Iron Barbs']
+        activate(self.battle, split_msg)
+        self.assertEqual('ironbarbs', self.battle.opponent.active.ability)
+
 
 class TestPrepare(unittest.TestCase):
     def setUp(self):

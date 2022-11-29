@@ -273,6 +273,18 @@ def dragondarts(attacking_move, defending_move, attacking_pokemon, defending_pok
     return attacking_move
 
 
+def geargrind(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.BASE_POWER] *= 2
+    return attacking_move
+
+
+def bonemerang(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    attacking_move = attacking_move.copy()
+    attacking_move[constants.BASE_POWER] *= 2
+    return attacking_move
+
+
 def boltbeak(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if first_move or defending_move.get(constants.SWITCH_STRING):
         attacking_move = attacking_move.copy()
@@ -530,6 +542,8 @@ move_lookup = {
     'fishiousrend': boltbeak,
     'boltbeak': boltbeak,
     'dragondarts': dragondarts,
+    'geargrind': geargrind,
+    'bonemerang': bonemerang,
     'dynamaxcannon': dynamaxcannon,
     'behemothblade': dynamaxcannon,
     'behemothbash': dynamaxcannon,

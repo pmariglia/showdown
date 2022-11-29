@@ -94,7 +94,8 @@ side = Side(
         'spikes': 3,
         'toxic_spikes': 2,
         'tailwind': 1
-    }
+    },
+    future_sight=(0, 0)
 )
 ```
 

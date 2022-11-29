@@ -1795,6 +1795,7 @@
         "prevo": "Pikachu",
         "evoType": "useItem",
         "evoItem": "Thunder Stone",
+        "evoRegion": "Alola",
         "eggGroups": [
             "Field",
             "Fairy"
@@ -5296,6 +5297,7 @@
         "prevo": "Exeggcute",
         "evoType": "useItem",
         "evoItem": "Leaf Stone",
+        "evoRegion": "Alola",
         "eggGroups": [
             "Grass"
         ]
@@ -5395,6 +5397,7 @@
         "prevo": "Cubone",
         "evoLevel": 28,
         "evoCondition": "at night",
+        "evoRegion": "Alola",
         "eggGroups": [
             "Monster"
         ]
@@ -5607,6 +5610,7 @@
         "color": "Gray",
         "prevo": "Koffing",
         "evoLevel": 35,
+        "evoRegion": "Galar",
         "eggGroups": [
             "Amorphous"
         ]
@@ -6047,6 +6051,7 @@
         "prevo": "Mime Jr.",
         "evoType": "levelMove",
         "evoMove": "Mimic",
+        "evoRegion": "Galar",
         "evos": [
             "Mr. Rime"
         ],
@@ -39019,9 +39024,9 @@
             "hp": 85,
             "attack": 135,
             "defense": 60,
-            "special-attack": 115,
-            "special-defense": 85,
-            "speed": 92
+            "special-attack": 88,
+            "special-defense": 105,
+            "speed": 99
         },
         "abilities": {
             "0": "Neutralizing Gas",
@@ -39044,7 +39049,7 @@
         "name": "chromera",
         "types": [
             "dark",
-            "poison"
+            "normal"
         ],
         "gender": "N",
         "baseStats": {
@@ -39235,7 +39240,7 @@
         "gender": "N",
         "baseStats": {
             "hp": 85,
-            "attack": 70,
+            "attack": 50,
             "defense": 113,
             "special-attack": 118,
             "special-defense": 90,
@@ -39249,7 +39254,7 @@
         "weightkg": 11.5,
         "color": "Purple",
         "eggGroups": [
-            "Undiscovered"
+            "Amorphous"
         ],
         "otherFormes": [
             "Venomicon-Epilogue"
@@ -39274,9 +39279,9 @@
             "hp": 85,
             "attack": 102,
             "defense": 85,
-            "special-attack": 63,
+            "special-attack": 62,
             "special-defense": 85,
-            "speed": 120
+            "speed": 101
         },
         "abilities": {
             "0": "Tinted Lens"
@@ -39285,7 +39290,7 @@
         "weightkg": 12.4,
         "color": "Purple",
         "eggGroups": [
-            "Undiscovered"
+            "Amorphous"
         ],
         "requiredItem": "Vile Vial",
         "changesFrom": "Venomicon",
@@ -39299,11 +39304,11 @@
         ],
         "baseStats": {
             "hp": 70,
-            "attack": 120,
+            "attack": 112,
             "defense": 105,
             "special-attack": 65,
-            "special-defense": 130,
-            "speed": 90
+            "special-defense": 123,
+            "speed": 78
         },
         "abilities": {
             "0": "Water Absorb",

@@ -3321,6 +3321,50 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_geargrind_does_double_damage(self):
+        self.state.opponent.active.types = ['normal']
+        bot_move = "geargrind"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.85,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62)  # one hit would do 32
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.15000000000000002,
+                [],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_bonemerang_does_double_damage(self):
+        self.state.opponent.active.types = ['normal']
+        bot_move = "bonemerang"
+        opponent_move = "splash"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.9,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 62)  # one hit would do 32
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.09999999999999998,
+                [],
+                False
+            ),
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_boltbeak_does_normal_damage_when_moving_second(self):
         self.state.user.active.speed = 1
         self.state.opponent.active.speed = 2
@@ -8528,9 +8572,9 @@ class TestBattleMechanics(unittest.TestCase):
                 0.95,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 111),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, -2),
                     (constants.MUTATOR_BOOST, constants.USER, constants.DEFENSE, -1),
                     (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_DEFENSE, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, -2),
                 ],
                 False
             ),
@@ -11021,6 +11065,30 @@ class TestBattleMechanics(unittest.TestCase):
             ),
             TransposeInstruction(
                 0.15000000000000002,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_scaleshot_damage_with_boosts(self):
+        bot_move = "scaleshot"
+        opponent_move = "splash"
+        self.mutator.state.opponent.active.types = ["normal"]
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                0.9,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 49),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.DEFENSE, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 1),
+                ],
+                False
+            ),
+            TransposeInstruction(
+                0.09999999999999998,
                 [],
                 False
             )

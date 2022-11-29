@@ -385,6 +385,15 @@ def activate(battle, split_msg):
         logger.debug("{} has the item {}".format(pkmn.name, item))
         pkmn.item = item
 
+    if split_msg[3].lower().startswith("ability: "):
+        ability = normalize_name(split_msg[3].split(':')[-1].strip())
+        logger.debug("Setting {}'s ability to {}".format(pkmn.name, ability))
+        pkmn.ability = ability
+    elif split_msg[3].lower().startswith("item: "):
+        item = normalize_name(split_msg[3].split(':')[-1].strip())
+        logger.debug("Setting {}'s item to {}".format(pkmn.name, item))
+        pkmn.item = item
+
 
 def prepare(battle, split_msg):
     if is_opponent(battle, split_msg):

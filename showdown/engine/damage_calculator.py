@@ -372,8 +372,10 @@ def calculate_damage(state, attacking_side_string, attacking_move, defending_mov
 
     attacker_moves_first = user_moves_first(state, attacking_move_dict, defending_move_dict)
 
-    # a charge move doesn't need to charge when only calculating damage
-    attacking_move_dict[constants.FLAGS].pop(constants.CHARGE, None)
+    if constants.CHARGE in attacking_move_dict[constants.FLAGS]:
+        attacking_move_dict = attacking_move_dict.copy()
+        # a charge move doesn't need to charge when only calculating damage
+        attacking_move_dict[constants.FLAGS].pop(constants.CHARGE, None)
 
     attacking_move_dict = update_attacking_move(
         attacking_side.active,
