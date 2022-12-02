@@ -77,6 +77,13 @@ def find_pokemon_in_reserves(pkmn_name, reserves):
     return None
 
 
+def find_reserve_pokemon_by_nickname(pkmn_nickname, reserves):
+    for reserve_pkmn in reserves:
+        if pkmn_nickname == reserve_pkmn.nickname:
+            return reserve_pkmn
+    return None
+
+
 def is_opponent(battle,  split_msg):
     return not split_msg[2].startswith(battle.user.name)
 
@@ -166,12 +173,14 @@ def switch_or_drag(battle, split_msg):
 
     # check if the pokemon exists in the reserves
     # if it does not, then the newly-created pokemon is used (for formats without team preview)
-    pkmn = Pokemon.from_switch_string(split_msg[3])
-    pkmn = find_pokemon_in_reserves(pkmn.name, side.reserve)
+    nickname = split_msg[2]
+    temp_pkmn = Pokemon.from_switch_string(split_msg[3], nickname=nickname)
+    pkmn = find_pokemon_in_reserves(temp_pkmn.name, side.reserve)
 
     if pkmn is None:
-        pkmn = Pokemon.from_switch_string(split_msg[3])
+        pkmn = Pokemon.from_switch_string(split_msg[3], nickname=nickname)
     else:
+        pkmn.nickname = temp_pkmn.nickname
         side.reserve.remove(pkmn)
 
     side.last_used_move = LastUsedMove(
@@ -186,7 +195,7 @@ def switch_or_drag(battle, split_msg):
 
     side.active = pkmn
     if side.active.name in constants.UNKOWN_POKEMON_FORMES:
-        side.active = Pokemon.from_switch_string(split_msg[3])
+        side.active = Pokemon.from_switch_string(split_msg[3], nickname=nickname)
 
 
 def heal_or_damage(battle, split_msg):
@@ -194,6 +203,9 @@ def heal_or_damage(battle, split_msg):
         side = battle.opponent
         other_side = battle.user
         pkmn = battle.opponent.active
+        if len(split_msg) == 5 and split_msg[4] == "[from] move: Revival Blessing":
+            nickname = Pokemon.extract_nickname_from_pokemonshowdown_string(split_msg[2])
+            pkmn = find_reserve_pokemon_by_nickname(nickname, side.reserve)
 
         # opponent hp is given as a percentage
         if constants.FNT in split_msg[3]:
@@ -206,6 +218,9 @@ def heal_or_damage(battle, split_msg):
         side = battle.user
         other_side = battle.opponent
         pkmn = battle.user.active
+        if len(split_msg) == 5 and split_msg[4] == "[from] move: Revival Blessing":
+            nickname = Pokemon.extract_nickname_from_pokemonshowdown_string(split_msg[2])
+            pkmn = find_reserve_pokemon_by_nickname(nickname, side.reserve)
         if constants.FNT in split_msg[3]:
             pkmn.hp = 0
         else:

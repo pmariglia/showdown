@@ -941,6 +941,55 @@ class TestBattle(unittest.TestCase):
 
         self.assertEqual(expected_options, self.battle.get_all_options())
 
+    def test_reviving_pokemon_must_choose_fainted_pokemon_to_switch(self):
+        self.battle.force_switch = True
+        self.battle.user.active.moves = []
+        self.battle.opponent.active.moves = []
+
+        self.battle.user.active.reviving = True
+        user_fainted_caterpie = Pokemon('caterpie', 100)
+        user_fainted_caterpie.hp = 0
+        user_fainted_caterpie.fainted = True
+        self.battle.user.reserve = [user_fainted_caterpie]
+        self.battle.opponent.reserve = []
+
+        expected_options = (
+            [
+                'switch caterpie'
+            ],
+            [
+                'splash',
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
+    def test_reviving_pokemon_only_chooses_fainted_pokemon_to_switch(self):
+        self.battle.force_switch = True
+        self.battle.user.active.moves = []
+        self.battle.opponent.active.moves = []
+
+        self.battle.user.active.reviving = True
+        user_fainted_caterpie = Pokemon('caterpie', 100)
+        user_fainted_caterpie.hp = 0
+        user_fainted_caterpie.fainted = True
+        user_alive_metapod = Pokemon('metapod', 100)
+        user_alive_metapod.hp = 100
+        user_alive_metapod.fainted = False
+        self.battle.user.reserve = [user_fainted_caterpie, user_alive_metapod]
+        self.battle.opponent.reserve = []
+
+        expected_options = (
+            [
+                'switch caterpie'
+            ],
+            [
+                'splash',
+            ]
+        )
+
+        self.assertEqual(expected_options, self.battle.get_all_options())
+
     def test_gets_multiple_switches_and_splash(self):
         self.battle.user.active.moves = []
         self.battle.opponent.active.moves = []

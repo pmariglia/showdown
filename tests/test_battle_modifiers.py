@@ -336,6 +336,14 @@ class TestSwitchOrDrag(unittest.TestCase):
 
         self.assertEqual(0, current_active.hp)  # no regenerator heal when you are fainted
 
+    def test_nickname_attribute_is_set_when_switching(self):
+        # |switch|p2a: Sus|Amoonguss, F|100/100
+        split_msg = ['', 'switch', 'p2a: Sus', 'Amoonguss, F', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(self.battle.opponent.active.name, "amoonguss")
+        self.assertEqual(self.battle.opponent.active.nickname, "Sus")
+
     def test_switch_resets_toxic_count_for_opponent(self):
         self.battle.opponent.side_conditions[constants.TOXIC_COUNT] = 1
         split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
@@ -655,6 +663,33 @@ class TestHealOrDamage(unittest.TestCase):
         split_msg = ['', '-heal', 'p2a: Caterpie', '50/100', '[from] ability: Volt Absorb', '[of] p1a: Caterpie']
         heal_or_damage(self.battle, split_msg)
         self.assertIsNone(self.battle.user.active.ability)
+
+    def test_healing_from_revivalblessing_for_opponent_pkmn(self):
+        amoongus_reserve = Pokemon("amoonguss", 100)
+        amoongus_reserve.nickname = "Sus"
+        amoongus_reserve.hp = 0
+        amoongus_reserve.fainted = True
+        self.battle.opponent.reserve = [
+            amoongus_reserve
+        ]
+
+        # |-heal|p1: Amoonguss|50/100|[from] move: Revival Blessing
+        split_msg = ['', '-heal', 'p2a: Sus', '50/100', '[from] move: Revival Blessing']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual(amoongus_reserve.hp, int(amoongus_reserve.max_hp / 2))
+
+    def test_healing_from_revivalblessing_for_bot_pkmn(self):
+        amoongus_reserve = Pokemon("amoonguss", 100)
+        amoongus_reserve.nickname = "Sus"
+        amoongus_reserve.hp = 0
+        amoongus_reserve.fainted = True
+        self.battle.user.reserve = [
+            amoongus_reserve
+        ]
+
+        split_msg = ['', '-heal', 'p1a: Sus', '150/301', '[from] move: Revival Blessing']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual(amoongus_reserve.hp, int(amoongus_reserve.max_hp / 2))
 
 
 class TestActivate(unittest.TestCase):

@@ -232,7 +232,7 @@ class Battle(ABC):
             return user_options, opponent_options
 
         if force_switch:
-            user_options = self.user.get_switches()
+            user_options = self.user.get_switches(reviving=self.user.active.reviving)
 
             # uturn or voltswitch
             if (
@@ -345,9 +345,11 @@ class Battler:
         self.reserve.clear()
         for index, pkmn_dict in enumerate(user_json[constants.SIDE][constants.POKEMON]):
 
-            pkmn = Pokemon.from_switch_string(pkmn_dict[constants.DETAILS])
+            nickname = pkmn_dict[constants.IDENT]
+            pkmn = Pokemon.from_switch_string(pkmn_dict[constants.DETAILS], nickname=nickname)
             pkmn.ability = pkmn_dict[constants.REQUEST_DICT_ABILITY]
             pkmn.index = index + 1
+            pkmn.reviving = pkmn_dict.get(constants.REVIVING, False)
             pkmn.hp, pkmn.max_hp, pkmn.status = get_pokemon_info_from_condition(pkmn_dict[constants.CONDITION])
             for stat, number in pkmn_dict[constants.STATS].items():
                 pkmn.stats[constants.STAT_ABBREVIATION_LOOKUPS[stat]] = number
@@ -416,14 +418,18 @@ class Battler:
             except KeyError:
                 pass
 
-    def get_switches(self):
+    def get_switches(self, reviving=False):
         if self.trapped:
             return []
 
         switches = []
-        for pkmn in self.reserve:
-            if pkmn.hp > 0:
-                switches.append("{} {}".format(constants.SWITCH_STRING, pkmn.name))
+        if reviving:
+            it = filter(lambda p: p.hp <= 0, self.reserve)
+        else:
+            it = filter(lambda p: p.hp > 0, self.reserve)
+
+        for pkmn in it:
+            switches.append("{} {}".format(constants.SWITCH_STRING, pkmn.name))
         return switches
 
     def to_dict(self):
@@ -441,6 +447,7 @@ class Pokemon:
 
     def __init__(self, name: str, level: int, nature="serious", evs=(85,) * 6):
         self.name = normalize_name(name)
+        self.nickname = None
         self.base_name = self.name
         self.level = level
         self.nature = nature
@@ -469,6 +476,7 @@ class Pokemon:
 
         self.terastallized = False
         self.fainted = False
+        self.reviving = False
         self.moves = []
         self.status = None
         self.volatile_statuses = []
@@ -510,14 +518,23 @@ class Pokemon:
         return self.hp > 0
 
     @classmethod
-    def from_switch_string(cls, switch_string):
+    def extract_nickname_from_pokemonshowdown_string(cls, ps_string):
+        return "".join(ps_string.split(":")[1:]).strip()
+
+    @classmethod
+    def from_switch_string(cls, switch_string, nickname=None):
+        if nickname is not None:
+            nickname = cls.extract_nickname_from_pokemonshowdown_string(nickname)
+
         details = switch_string.split(',')
         name = details[0]
         try:
             level = int(details[1].replace('L', '').strip())
         except (IndexError, ValueError):
             level = 100
-        return Pokemon(name, level)
+        pkmn = Pokemon(name, level)
+        pkmn.nickname = nickname
+        return pkmn
 
     def set_spread(self, nature, evs):
         evs = [int(e) for e in evs.split(',')]
