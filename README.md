@@ -1,7 +1,7 @@
 # Showdown  ![umbreon](https://play.pokemonshowdown.com/sprites/xyani/umbreon.gif)
 A Pokémon battle-bot that can play battles on [Pokemon Showdown](https://pokemonshowdown.com/).
 
-The bot can play single battles in generations 3 through 9.
+The bot can play single battles in generations 3 through 8.
 
 ![badge](https://github.com/pmariglia/showdown/actions/workflows/pythonapp.yml/badge.svg)
 
@@ -42,7 +42,7 @@ Clone the repository with `git clone https://github.com/pmariglia/showdown.git`
 
 Install the requirements with `pip install -r requirements.txt`.
 
-**3. Populate the [env](https://github.com/pmariglia/showdown/blob/master/env) file**
+**3. Configure your [env](https://github.com/pmariglia/showdown/blob/master/env) file**
 
 Here is a sample:
 ```
