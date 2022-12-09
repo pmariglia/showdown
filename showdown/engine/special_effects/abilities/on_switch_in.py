@@ -12,10 +12,10 @@ def sandstream(state, attacking_side, attacking_pokemon, defending_side, defendi
 
 
 def snowwarning(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    if state.weather not in constants.IRREVERSIBLE_WEATHER and state.weather != constants.HAIL:
+    if state.weather not in constants.IRREVERSIBLE_WEATHER and state.weather != constants.ICE_WEATHER:
         return [(
             constants.MUTATOR_WEATHER_START,
-            constants.HAIL,
+            constants.ICE_WEATHER,
             state.weather
         )]
     return None
@@ -96,9 +96,11 @@ def mistysurge(state, attacking_side, attacking_pokemon, defending_side, defendi
 def intimidate(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
     if defending_pokemon.ability in ['fullmetalbody', 'clearbody', 'hypercutter', 'whitesmoke', 'innerfocus', 'oblivious', 'owntempo', 'scrappy']:
         return None
+    if defending_pokemon.item in constants.IMMUNE_TO_STAT_LOWERING_ITEMS:
+        return None
 
     # I shouldn't be doing this here but w/e sue me
-    if defending_pokemon.ability == 'defiant':
+    if defending_pokemon.ability == 'defiant' or defending_pokemon.ability == "guarddog":
         return [(
             constants.MUTATOR_BOOST,
             defending_side,

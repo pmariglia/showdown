@@ -20,6 +20,5 @@ COPY showdown /showdown/showdown
 COPY teams /showdown/teams
 
 ENV PYTHONIOENCODING=utf-8
-ENV GAMBIT_PATH=gambit-enummixed
 
 CMD ["python3", "run.py"]

@@ -64,7 +64,7 @@ def dryskin(state, attacking_side, attacking_pokemon, defending_side, defending_
 
 
 def icebody(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
-    if state.weather == constants.HAIL:
+    if state.weather in constants.HAIL_OR_SNOW:
         return (
             constants.MUTATOR_HEAL,
             attacking_side,

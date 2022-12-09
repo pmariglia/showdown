@@ -17,7 +17,8 @@ data = "{" + data[1]
 data = data.replace("\t", " ")
 
 # Remove comments
-data = re.sub(r" +//.+", "", data)
+data = re.sub(r" +//.+", "", data)  # end-of-line comments
+data = re.sub(r"\/\*[\s\S]*?\*\/", "", data)  # multi-line comments
 
 # double newlines are unnecessary
 while "\n\n" in data:
@@ -34,7 +35,6 @@ data = re.sub(r': ""(.*)":(.*)",', r': "\1:\2",', data)
 
 # remove semicolon at end of file
 data = data.replace("};", "}")
-
 
 # should be parseable as JSON now
 data_json = json.loads(data)

@@ -9,7 +9,7 @@ from showdown.engine import damage_calculator
 
 logger = logging.getLogger(__name__)
 
-CURRENT_GEN = 8
+CURRENT_GEN = 9
 PWD = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -97,6 +97,11 @@ def apply_gen_7_mods():
     apply_pokedex_mods(7)
 
 
+def apply_gen_8_mods():
+    apply_move_mods(8)
+    apply_pokedex_mods(8)
+
+
 def undo_physical_special_split():
     for move_name, move_data in all_move_json.items():
         if move_data[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
@@ -117,7 +122,12 @@ def apply_mods(game_mode):
         apply_gen_6_mods()
     elif "gen7" in game_mode:
         apply_gen_7_mods()
+    elif "gen8" in game_mode:
+        apply_gen_8_mods()
 
-    if str(CURRENT_GEN) not in game_mode[:4]:
-        set_random_battle_sets(7)  # use random battle sets from gen7 if we are not in gen8
-        damage_calculator.TERRAIN_DAMAGE_BOOST = 1.5  # terrain gave a 1.5x damage boost prior to gen8
+    if game_mode[:3] == "gen":
+        if int(game_mode[3]) < 8:
+            set_random_battle_sets(7)
+            damage_calculator.TERRAIN_DAMAGE_BOOST = 1.5  # terrain gave a 1.5x damage boost prior to gen8
+        if int(game_mode[3]) < 9:
+            constants.ICE_WEATHER = constants.HAIL  # ice-type weather was hail prior to gen9

@@ -8,7 +8,7 @@ import logging
 import data
 from data.helpers import get_standard_battle_sets
 import constants
-import config
+from config import ShowdownConfig
 from showdown.engine.evaluate import Scoring
 from showdown.battle import Pokemon
 from showdown.battle import LastUsedMove
@@ -74,7 +74,7 @@ async def get_battle_tag_and_opponent(ps_websocket_client: PSWebsocketClient):
 
 
 async def initialize_battle_with_tag(ps_websocket_client: PSWebsocketClient, set_request_json=True):
-    battle_module = importlib.import_module('showdown.battle_bots.{}.main'.format(config.battle_bot_module))
+    battle_module = importlib.import_module('showdown.battle_bots.{}.main'.format(ShowdownConfig.battle_bot_module))
 
     battle_tag, opponent_name = await get_battle_tag_and_opponent(ps_websocket_client)
     while True:
@@ -125,8 +125,8 @@ async def start_random_battle(ps_websocket_client: PSWebsocketClient, pokemon_ba
     return battle
 
 
-def _set_gen8ou_teams(battle):
-    data.ou_sets = data.get_ou_sets([p.name for p in battle.opponent.reserve])
+def set_team_datasets(battle):
+    data.team_datasets = data.get_team_datasets([p.name for p in battle.opponent.reserve])
     exact_team = data.get_ou_team([p.name for p in battle.opponent.reserve])
     if exact_team is not None:
         logger.info("Found an exact team")
@@ -169,8 +169,8 @@ async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_
 
         battle.initialize_team_preview(user_json, opponent_pokemon, pokemon_battle_type)
 
-        if pokemon_battle_type == "gen8ou":
-            _set_gen8ou_teams(battle)
+        if ShowdownConfig.battle_bot_module == "team_datasets":
+            set_team_datasets(battle)
 
         smogon_usage_data = get_standard_battle_sets(
             pokemon_battle_type,
@@ -192,7 +192,7 @@ async def start_battle(ps_websocket_client, pokemon_battle_type):
     else:
         battle = await start_standard_battle(ps_websocket_client, pokemon_battle_type)
 
-    await ps_websocket_client.send_message(battle.battle_tag, [config.greeting_message])
+    await ps_websocket_client.send_message(battle.battle_tag, ["hf"])
     await ps_websocket_client.send_message(battle.battle_tag, ['/timer on'])
 
     return battle
@@ -208,8 +208,8 @@ async def pokemon_battle(ps_websocket_client, pokemon_battle_type):
             else:
                 winner = None
             logger.debug("Winner: {}".format(winner))
-            await ps_websocket_client.send_message(battle.battle_tag, [config.battle_ending_message])
-            await ps_websocket_client.leave_battle(battle.battle_tag, save_replay=config.save_replay)
+            await ps_websocket_client.send_message(battle.battle_tag, ["gg"])
+            await ps_websocket_client.leave_battle(battle.battle_tag, save_replay=ShowdownConfig.save_replay)
             return winner
         else:
             action_required = await async_update_battle(battle, msg)

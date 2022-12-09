@@ -53,14 +53,7 @@ accuracy_multiplier_lookup = {
 }
 
 
-def _get_beastboost_stat(pkmn):
-    return max({
-        constants.ATTACK: pkmn.attack,
-        constants.DEFENSE: pkmn.defense,
-        constants.SPECIAL_ATTACK: pkmn.special_attack,
-        constants.SPECIAL_DEFENSE: pkmn.special_defense,
-        constants.SPEED: pkmn.speed,
-    }.items(), key=lambda x: x[1])[0]
+
 
 
 def get_instructions_from_move_special_effect(mutator, attacking_side, attacking_pokemon, defending_pokemon, move_name, instructions):
@@ -359,7 +352,7 @@ def get_instructions_from_damage(mutator, defender, damage, accuracy, attacking_
 
     mutator.apply(instruction.instructions)
 
-    if accuracy is True:
+    if accuracy is True or "glaiverush" in damage_side.active.volatile_status:
         accuracy = 100
     else:
         accuracy = min(100, accuracy * accuracy_multiplier_lookup[attacker_side.active.accuracy_boost] / accuracy_multiplier_lookup[damage_side.active.evasion_boost])
@@ -420,13 +413,13 @@ def get_instructions_from_damage(mutator, defender, damage, accuracy, attacking_
             )
 
             if attacker_side.active.ability == "beastboost" and actual_damage == damage_side.active.hp:
-                beastboost_stat = _get_beastboost_stat(attacker_side.active)
-                if get_boost_from_boost_string(attacker_side, beastboost_stat) < 6:
+                highest_stat = attacker_side.active.get_highest_stat()
+                if attacker_side.active.get_boost_from_boost_string(highest_stat) < 6:
                     instruction_additions.append(
                         (
                             constants.MUTATOR_BOOST,
                             attacker,
-                            beastboost_stat,
+                            highest_stat,
                             1
                         )
                     )
@@ -581,7 +574,7 @@ def get_instructions_from_side_conditions(mutator, attacker_string, side_string,
         elif condition == constants.TOXIC_SPIKES:
             max_layers = 2
         elif condition == constants.AURORA_VEIL:
-            max_layers = 1 if mutator.state.weather == constants.HAIL else 0
+            max_layers = 1 if mutator.state.weather in constants.HAIL_OR_SNOW else 0
         else:
             max_layers = 1
 
@@ -647,10 +640,10 @@ def get_instructions_from_hazard_clearing_moves(mutator, attacker_string, move, 
                 )
 
     # ghost-type misses are dealt with by freezing the state. i.e. this elif will not be reached if the move missed
-    elif move[constants.ID] == 'rapidspin':
+    elif move[constants.ID] == "rapidspin" or move[constants.ID] == "mortalspin" or move[constants.ID] == "tidyup":
         side = get_side_from_state(mutator.state, attacker_string)
         for side_condition, amount in side.side_conditions.items():
-            if amount > 0 and side_condition in constants.RAPID_SPIN_CLEARS:
+            if amount > 0 and side_condition in constants.SPIN_TIDYUP_CLEARS:
                 instruction_additions.append(
                     (
                         constants.MUTATOR_SIDE_END,
@@ -770,15 +763,12 @@ def get_instructions_from_boosts(mutator, side_string, boosts, accuracy, instruc
 
     mutator.apply(instruction.instructions)
     side = get_side_from_state(mutator.state, side_string)
-    if side.active.ability in constants.IMMUNE_TO_STAT_LOWERING_ABILITIES:
-        mutator.reverse(instruction.instructions)
-        return [instruction]
 
     instruction_additions = []
     move_missed_instruction = copy(instruction)
     if percent_hit > 0:
         for k, v in boosts.items():
-            pkmn_boost = get_boost_from_boost_string(side, k)
+            pkmn_boost = side.active.get_boost_from_boost_string(k)
             if v > 0:
                 new_boost = pkmn_boost + v
                 if new_boost > constants.MAX_BOOSTS:
@@ -789,7 +779,11 @@ def get_instructions_from_boosts(mutator, side_string, boosts, accuracy, instruc
                     k,
                     new_boost - pkmn_boost
                 )
-            else:
+                instruction_additions.append(boost_instruction)
+            elif (
+                side.active.ability not in constants.IMMUNE_TO_STAT_LOWERING_ABILITIES and
+                side.active.item not in constants.IMMUNE_TO_STAT_LOWERING_ITEMS
+            ):
                 new_boost = pkmn_boost + v
                 if new_boost < -1 * constants.MAX_BOOSTS:
                     new_boost = -1 * constants.MAX_BOOSTS
@@ -799,7 +793,7 @@ def get_instructions_from_boosts(mutator, side_string, boosts, accuracy, instruc
                     k,
                     new_boost - pkmn_boost
                 )
-            instruction_additions.append(boost_instruction)
+                instruction_additions.append(boost_instruction)
 
         instruction.update_percentage(percent_hit)
         instructions.append(instruction)
@@ -1078,6 +1072,8 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
                 volatile_status_to_remove = constants.BANEFUL_BUNKER
             elif constants.SPIKY_SHIELD in pkmn.volatile_status:
                 volatile_status_to_remove = constants.SPIKY_SHIELD
+            elif constants.SILK_TRAP in pkmn.volatile_status:
+                volatile_status_to_remove = constants.SILK_TRAP
             else:
                 # should never happen
                 raise Exception("Pokemon has volatile status that is not caught here: {}".format(pkmn.volatile_status))
@@ -1119,6 +1115,17 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
 
         if constants.PARTIALLY_TRAPPED in pkmn.volatile_status:
             damage_taken = max(0, int(min(pkmn.maxhp * 0.125, pkmn.hp)))
+            partially_trapped_damage_instruction = (
+                constants.MUTATOR_DAMAGE,
+                attacker,
+                damage_taken
+            )
+            mutator.apply_one(partially_trapped_damage_instruction)
+            instruction.add_instruction(partially_trapped_damage_instruction)
+
+        if "saltcure" in pkmn.volatile_status:
+            divisor = 4 if any(t in pkmn.types for t in ["water", "steel"]) else 8
+            damage_taken = max(0, int(min(pkmn.maxhp * (1/divisor), pkmn.hp)))
             partially_trapped_damage_instruction = (
                 constants.MUTATOR_DAMAGE,
                 attacker,
@@ -1288,24 +1295,6 @@ def get_side_from_state(state, side_string):
         raise ValueError("Invalid value for `side`")
 
 
-def get_boost_from_boost_string(side, boost_string):
-    if boost_string == constants.ATTACK:
-        return side.active.attack_boost
-    elif boost_string == constants.DEFENSE:
-        return side.active.defense_boost
-    elif boost_string == constants.SPECIAL_ATTACK:
-        return side.active.special_attack_boost
-    elif boost_string == constants.SPECIAL_DEFENSE:
-        return side.active.special_defense_boost
-    elif boost_string == constants.SPEED:
-        return side.active.speed_boost
-    elif boost_string == constants.ACCURACY:
-        return side.active.accuracy_boost
-    elif boost_string == constants.EVASION:
-        return side.active.evasion_boost
-    raise ValueError("{} is not a valid boost".format(boost_string))
-
-
 def can_be_volatile_statused(side, volatile_status, first_move):
     if volatile_status in constants.PROTECT_VOLATILE_STATUSES:
         if side.side_conditions[constants.PROTECT]:
@@ -1337,6 +1326,10 @@ def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
     if defending_pkmn.ability == 'comatose':
         return True
     if state.field == constants.MISTY_TERRAIN and defending_pkmn.is_grounded():
+        return True
+    if defending_pkmn.ability == "purifyingsalt":
+        return True
+    if defending_pkmn.ability == "thermalexchange" and status == constants.BURN:
         return True
 
     # Specific status immunity

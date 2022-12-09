@@ -53,7 +53,7 @@ def can_have_speed_modified(battle, pokemon):
             "sandrush" in [normalize_name(a) for a in pokedex[pokemon.name][constants.ABILITIES].values()]
         ) or
         (
-            battle.weather == constants.HAIL and
+            battle.weather in constants.HAIL_OR_SNOW and
             pokemon.ability is None and
             "slushrush" in [normalize_name(a) for a in pokedex[pokemon.name][constants.ABILITIES].values()]
         ) or
@@ -131,7 +131,8 @@ def switch_or_drag(battle, split_msg):
 
     if side.active is not None:
         # set the pkmn's types back to their original value if the types were changed
-        if constants.TYPECHANGE in side.active.volatile_statuses:
+        # if the pkmn is terastallized, this does not happen
+        if constants.TYPECHANGE in side.active.volatile_statuses and not side.active.terastallized:
             original_types = pokedex[side.active.name][constants.TYPES]
             logger.debug("{} had it's type changed - changing its types back to {}".format(side.active.name, original_types))
             side.active.types = original_types
@@ -406,6 +407,17 @@ def prepare(battle, split_msg):
         logger.warning("{} already has the volatile status {}".format(pkmn.name, being_prepared))
     else:
         pkmn.volatile_statuses.append(being_prepared)
+
+
+def terastallize(battle, split_msg):
+    if is_opponent(battle, split_msg):
+        pkmn = battle.opponent.active
+    else:
+        pkmn = battle.user.active
+
+    # Type-Change is sent explicitly by showdown and handled in `typechange()`
+    pkmn.terastallized = True
+    logger.debug("Terastallized {}".format(pkmn.name))
 
 
 def start_volatile_status(battle, split_msg):
@@ -1184,6 +1196,7 @@ def update_battle(battle, msg):
             '-formechange': form_change,
             '-transform': transform,
             '-mega': mega,
+            '-terastallize': terastallize,
             '-zpower': zpower,
             '-clearnegativeboost': clearnegativeboost,
             '-clearallboost': clearallboost,

@@ -41,7 +41,16 @@ def weaknesspolicy(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def covertcloak(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.SECONDARY] and constants.SELF not in attacking_move[constants.SECONDARY]:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.SECONDARY] = None
+
+    return attacking_move
+
+
 item_lookup = {
+    'covertcloak': covertcloak,
     'weaknesspolicy': weaknesspolicy,
     'eviolite': eviolite,
     'rockyhelmet': rockyhelmet,

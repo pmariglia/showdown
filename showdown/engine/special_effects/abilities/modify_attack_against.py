@@ -36,6 +36,13 @@ def stormdrain(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def goodasgold(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.CATEGORY] == constants.STATUS:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.ACCURACY] = False
+    return attacking_move
+
+
 def voltabsorb(attacking_move, attacking_pokemon, defending_pokemon):
     if attacking_move[constants.TYPE] == 'electric' and attacking_move[constants.TARGET] in constants.MOVE_TARGET_OPPONENT:
         attacking_move = attacking_move.copy()
@@ -61,6 +68,30 @@ def waterabsorb(attacking_move, attacking_pokemon, defending_pokemon):
             1,
             4
         ]
+    return attacking_move
+
+
+def eartheater(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'ground' and attacking_move[constants.TARGET] in constants.MOVE_TARGET_OPPONENT:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.ACCURACY] = True
+        attacking_move[constants.BASE_POWER] = 0
+        attacking_move[constants.HEAL_TARGET] = constants.NORMAL
+        attacking_move[constants.CATEGORY] = constants.STATUS
+        attacking_move[constants.HEAL] = [
+            1,
+            4
+        ]
+    return attacking_move
+
+
+def thermalexchange(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'fire' and attacking_move[constants.TARGET] in constants.MOVE_TARGET_OPPONENT:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.SECONDARY] = {
+            constants.CHANCE: 100,
+            constants.BOOSTS: {constants.ATTACK: 1}
+        }
     return attacking_move
 
 
@@ -144,10 +175,45 @@ def flashfire(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def wellbakedbody(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == 'fire':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] = 0
+        attacking_move[constants.STATUS] = None
+        attacking_move[constants.SECONDARY] = None
+        attacking_move[constants.CATEGORY] = constants.STATUS
+        attacking_move[constants.BOOSTS] = {constants.DEFENSE: 2}
+    return attacking_move
+
+
+def armortail(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.PRIORITY] > 0:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.ACCURACY] = False
+    return attacking_move
+
+
 def bulletproof(attacking_move, attacking_pokemon, defending_pokemon):
     if 'bullet' in attacking_move[constants.FLAGS]:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] = 0
+    return attacking_move
+
+
+def windrider(attacking_move, attacking_pokemon, defending_pokemon):
+    if 'wind' in attacking_move[constants.FLAGS] and attacking_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
+        attacking_move = attacking_move.copy()
+
+        if constants.BOOSTS in attacking_move:
+            attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
+        else:
+            attacking_move[constants.BOOSTS] = dict()
+
+        if constants.ATTACK in attacking_move[constants.BOOSTS]:
+            attacking_move[constants.BOOSTS][constants.ATTACK] += 1
+        else:
+            attacking_move[constants.BOOSTS][constants.ATTACK] = 1
+
     return attacking_move
 
 
@@ -446,11 +512,36 @@ def damp(attacking_move, attacking_pokemon, defending_pokemon):
     return attacking_move
 
 
+def guarddog(attacking_move, attacking_pokemon, defending_pokemon):
+    if constants.DRAG in attacking_move[constants.FLAGS]:
+        attacking_move = attacking_move.copy()
+        attacking_move_flags = attacking_move[constants.FLAGS].copy()
+        attacking_move_flags.pop(constants.DRAG)
+        attacking_move[constants.FLAGS] = attacking_move_flags
+
+    return attacking_move
+
+
+def purifyingsalt(attacking_move, attacking_pokemon, defending_pokemon):
+    if attacking_move[constants.TYPE] == "ghost":
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] /= 2
+
+    return attacking_move
+
+
 ability_lookup = {
+    'guarddog': guarddog,
+    'wellbakedbody': wellbakedbody,
+    'thermalexchange': thermalexchange,
+    'purifyingsalt': purifyingsalt,
+    'windrider': windrider,
+    'goodasgold': goodasgold,
     'damp': damp,
     'steamengine': steamengine,
     'punkrock': punkrock,
     'icescales': icescales,
+    'armortail': armortail,
     'fairyaura': fairyaura,
     'darkaura': darkaura,
     'soundproof': soundproof,
@@ -473,6 +564,7 @@ ability_lookup = {
     'voltabsorb': voltabsorb,
     'waterabsorb': waterabsorb,
     'dryskin': waterabsorb,
+    'eartheater': eartheater,
     'motordrive': motordrive,
     'sapsipper': sapsipper,
     'multiscale': multiscale,

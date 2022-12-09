@@ -1,7 +1,7 @@
 from copy import copy
 
-import config
 import constants
+from config import ShowdownConfig
 from data import all_move_json
 
 from . import instruction_generator
@@ -37,7 +37,7 @@ def get_effective_speed(state, side):
         boosted_speed *= 2
     elif state.weather == constants.SAND and side.active.ability == 'sandrush':
         boosted_speed *= 2
-    elif state.weather == constants.HAIL and side.active.ability == 'slushrush':
+    elif state.weather in constants.HAIL_OR_SNOW and side.active.ability == 'slushrush':
         boosted_speed *= 2
 
     if state.field == constants.ELECTRIC_TERRAIN and side.active.ability == 'surgesurfer':
@@ -56,6 +56,9 @@ def get_effective_speed(state, side):
 
     if constants.PARALYZED == side.active.status and side.active.ability != 'quickfeet':
         boosted_speed *= 0.5
+
+    if any(vs in side.active.volatile_status for vs in ["quarkdrivespe", "protosynthesisspe"]):
+        boosted_speed *= 1.5
 
     return int(boosted_speed)
 
@@ -110,13 +113,14 @@ def user_moves_first(state, user_move, opponent_move):
         return False
 
 
-def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move, weather, terrain):
+def update_attacking_move(attacking_side, attacking_pokemon, defending_pokemon, attacking_move, defending_move, first_move, weather, terrain):
     # update the attacking move based on certain special-effects:
     #   - abilities
     #   - items
     #   - protect
 
     attacking_move = modify_attack_being_used(
+        attacking_side,
         attacking_move,
         defending_move,
         attacking_pokemon,
@@ -190,6 +194,14 @@ def update_attacking_move(attacking_pokemon, defending_pokemon, attacking_move, 
                 crash_percent = attacking_move[constants.CRASH][0] / attacking_move[constants.CRASH][1]
                 damage_decimal = -1*(crash_percent + 1/8)
                 attacking_move[constants.HEAL] = damage_decimal.as_integer_ratio()
+        elif constants.SILK_TRAP in defending_pokemon.volatile_status and constants.CONTACT in attacking_move[constants.FLAGS]:
+            attacking_move[constants.ACCURACY] = True
+            attacking_move[constants.CATEGORY] = constants.STATUS
+            attacking_move[constants.BOOSTS] = {constants.SPEED: -1}
+            attacking_move[constants.TARGET] = constants.SELF
+            if constants.CRASH in attacking_move:
+                attacking_move[constants.HEAL_TARGET] = constants.SELF
+                attacking_move[constants.HEAL] = [-1*attacking_move[constants.CRASH][0], attacking_move[constants.CRASH][1]]
 
     return attacking_move
 
@@ -235,6 +247,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         return [instructions]
 
     attacking_move = update_attacking_move(
+        attacking_side,
         attacking_pokemon,
         defending_pokemon,
         attacking_move,
@@ -282,7 +295,14 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
 
     # move is a damaging move
     if attacking_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
-        damage_amounts = _calculate_damage(attacking_pokemon, defending_pokemon, attacking_move, conditions=conditions, calc_type=config.damage_calc_type)
+        side_condition = attacking_move.get(constants.SIDE_CONDITIONS)
+        damage_amounts = _calculate_damage(
+            attacking_pokemon,
+            defending_pokemon,
+            attacking_move,
+            conditions=conditions,
+            calc_type=ShowdownConfig.damage_calc_type
+        )
 
         attacking_move_secondary = attacking_move[constants.SECONDARY]
         attacking_move_self = attacking_move.get(constants.SELF)
@@ -330,7 +350,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
         # boosts from moves that only boost (dragon dance)
         if attacking_move.get(constants.BOOSTS) is not None:
             boosts = attacking_move[constants.BOOSTS]
-            boosts_target = attacker if attacking_move[constants.TARGET] == constants.SELF else defender
+            boosts_target = attacker if attacking_move[constants.TARGET] in constants.MOVE_TARGET_SELF else defender
             boosts_chance = attacking_move[constants.ACCURACY]
 
     mutator.reverse(instructions.instructions)
