@@ -345,7 +345,7 @@
         },
         "id": "aquacutter",
         "name": "Aqua Cutter",
-        "pp": 15,
+        "pp": 20,
         "priority": 0,
         "secondary": null,
         "target": "normal",
@@ -1809,7 +1809,8 @@
         "name": "Ceaseless Edge",
         "pp": 15,
         "priority": 0,
-        "secondary": null,
+        "secondary": {},
+        "self": {},
         "side_conditions": "spikes",
         "target": "normal",
         "type": "dark"
@@ -7416,6 +7417,7 @@
             "protect": 1,
             "punch": 1
         },
+        "hasSheerForce": true,
         "id": "jetpunch",
         "name": "Jet Punch",
         "pp": 15,
@@ -13662,13 +13664,15 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "stoneaxe",
         "name": "Stone Axe",
         "pp": 15,
         "priority": 0,
-        "secondary": null,
+        "secondary": {},
+        "self": {},
         "side_conditions": "stealthrock",
         "target": "normal",
         "type": "rock"

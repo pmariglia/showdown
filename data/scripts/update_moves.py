@@ -146,6 +146,9 @@ moves_dict["obstruct"]["volatileStatus"] = "protect"
 
 moves_dict["roost"]["volatileStatus"] = "roost"
 
+moves_dict["saltcure"]["volatileStatus"] = "saltcure"
+moves_dict["saltcure"]["secondary"] = None
+
 # it is easier for the bot to assume the opponent
 # has a 110bp move. It will cut this in half if the
 # opponent is assumed to have an item
