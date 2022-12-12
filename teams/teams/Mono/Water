@@ -1,20 +1,20 @@
 Ruffipper (Pelipper) @ Choice Specs  
 Ability: Drizzle  
-EVs: 248 HP / 252 SpA / 8 SpD  
+EVs: 252 SpA / 4 SpD / 252 Spe  
 Modest Nature  
 - Surf  
 - Ice Beam  
 - U-turn  
 - Hurricane  
 
-Ruffdozo (Dondozo) @ Leftovers  
-Ability: Unaware  
-EVs: 252 HP / 4 Atk / 252 SpD  
-Careful Nature  
-- Curse  
+Barraskewda @ Choice Band  
+Ability: Swift Swim  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Close Combat  
 - Liquidation  
-- Rest  
-- Earthquake  
+- Psychic Fangs  
+- Crunch  
 
 Ruffapex (Toxapex) @ Black Sludge  
 Ability: Regenerator  
@@ -30,7 +30,7 @@ Ruffquaval (Quaquaval) @ Heavy-Duty Boots
 Ability: Moxie  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Rapid Spin  
+- Swords Dance  
 - Ice Spinner  
 - Close Combat  
 - Aqua Step  
