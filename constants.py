@@ -2,7 +2,6 @@ CHALLENGE_USER = "CHALLENGE_USER"
 ACCEPT_CHALLENGE = "ACCEPT_CHALLENGE"
 SEARCH_LADDER = "SEARCH_LADDER"
 BOT_MODES = [CHALLENGE_USER, ACCEPT_CHALLENGE, SEARCH_LADDER]
-DEFAULT_MODE = "gen7randombattle"
 
 STANDARD_BATTLE = "standard_battle"
 RANDOM_BATTLE = "random_battle"
@@ -115,6 +114,7 @@ BASE_POWER = "basePower"
 WEIGHT = "weightkg"
 NATURE = "nature"
 EVS = "evs"
+TERASTALLIZED = "terastallized"
 
 SIDE = "side"
 POKEMON = "pokemon"
@@ -134,6 +134,7 @@ MEGA_EVOLVE_GENERATIONS = [
 CAN_MEGA_EVO = "canMegaEvo"
 CAN_ULTRA_BURST = "canUltraBurst"
 CAN_DYNAMAX = "canDynamax"
+CAN_TERASTALLIZE = "canTerastallize"
 CAN_Z_MOVE = "canZMove"
 ZMOVE = "zmove"
 ULTRA_BURST = "ultra"
@@ -184,6 +185,16 @@ STAT_ABBREVIATION_LOOKUPS = {
     "evasion": EVASION
 }
 
+STAT_ABBREVIATION_REVERSE_LOOKUPS = {
+    ATTACK: "atk",
+    DEFENSE: "def",
+    SPECIAL_ATTACK: "spa",
+    SPECIAL_DEFENSE: "spd",
+    SPEED: "spe",
+    ACCURACY: "accuracy",
+    EVASION: "evasion"
+}
+
 STAT_STRINGS = [ATTACK, DEFENSE, SPECIAL_ATTACK, SPECIAL_DEFENSE, SPEED]
 
 HIDDEN_POWER = 'hiddenpower'
@@ -229,10 +240,13 @@ RAIN = "raindance"
 SUN = "sunnyday"
 SAND = "sandstorm"
 HAIL = "hail"
+SNOW = "snow"
+ICE_WEATHER = "snow"
 DESOLATE_LAND = "desolateland"
 HEAVY_RAIN = "primordialsea"
 
 IRREVERSIBLE_WEATHER = {DESOLATE_LAND, HEAVY_RAIN}
+HAIL_OR_SNOW = {HAIL, SNOW}
 
 POKEMON_CANNOT_HAVE_ITEMS_REMOVED = {
     'kyogreprimal',
@@ -292,9 +306,9 @@ COURT_CHANGE_SWAPS = {
     'tailwind'
 }
 
-HAZARD_CLEARING_MOVES = ['rapidspin', 'defog', 'courtchange']
+HAZARD_CLEARING_MOVES = ['rapidspin', 'defog', 'courtchange', 'mortalspin', 'tidyup']
 
-RAPID_SPIN_CLEARS = [
+SPIN_TIDYUP_CLEARS = [
     STEALTH_ROCK,
     SPIKES,
     TOXIC_SPIKES,
@@ -320,7 +334,7 @@ MISTY_TERRAIN = "mistyterrain"
 PSYCHIC_TERRAIN = "psychicterrain"
 
 # switch-out moves
-SWITCH_OUT_MOVES = {"uturn", "voltswitch", "partingshot", "teleport", 'flipturn'}
+SWITCH_OUT_MOVES = {"uturn", "voltswitch", "partingshot", "teleport", 'flipturn', 'chillyreception'}
 
 # volatile statuses
 FLINCH = "flinch"
@@ -331,12 +345,14 @@ TAUNT = "taunt"
 ROOST = "roost"
 PROTECT = "protect"
 BANEFUL_BUNKER = "banefulbunker"
+SILK_TRAP = "silktrap"
 SPIKY_SHIELD = "spikyshield"
 DYNAMAX = "dynamax"
+TERASTALLIZE = "terastallize"
 PARTIALLY_TRAPPED = "partiallytrapped"
 TRANSFORM = 'transform'
 
-PROTECT_VOLATILE_STATUSES = [PROTECT, BANEFUL_BUNKER, SPIKY_SHIELD]
+PROTECT_VOLATILE_STATUSES = [PROTECT, BANEFUL_BUNKER, SPIKY_SHIELD, SILK_TRAP]
 
 # non-volatile statuses
 SLEEP = "slp"
@@ -360,6 +376,10 @@ IMMUNE_TO_STAT_LOWERING_ABILITIES = {
     'clearbody',
     'whitesmoke',
     'fullmetalbody'
+}
+
+IMMUNE_TO_STAT_LOWERING_ITEMS = {
+    "clearamulet"
 }
 
 IMMUNE_TO_SLEEP_ABILITIES = {'insomnia', 'sweetveil', 'vitalspirit'}

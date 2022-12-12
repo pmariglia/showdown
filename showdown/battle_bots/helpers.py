@@ -35,6 +35,10 @@ def format_decision(battle, decision):
         if battle.user.active.can_dynamax and all(p.hp == 0 for p in battle.user.reserve):
             message = "{} {}".format(message, constants.DYNAMAX)
 
+        # only terastallize on last pokemon. Come back to this later because this is bad.
+        elif battle.user.active.can_terastallize and all(p.hp == 0 for p in battle.user.reserve):
+            message = "{} {}".format(message, constants.TERASTALLIZE)
+
         if battle.user.active.get_move(decision).can_z:
             message = "{} {}".format(message, constants.ZMOVE)
 
@@ -58,7 +62,7 @@ def pick_safest_move_from_battles(battles):
         mutator = StateMutator(state)
         user_options, opponent_options = b.get_all_options()
         logger.debug("Searching through the state: {}".format(mutator.state))
-        scores = get_payoff_matrix(mutator, user_options, opponent_options, depth=config.search_depth, prune=True)
+        scores = get_payoff_matrix(mutator, user_options, opponent_options, prune=True)
 
         prefixed_scores = prefix_opponent_move(scores, str(i))
         all_scores = {**all_scores, **prefixed_scores}
@@ -122,7 +126,3 @@ def pick_safest_move_using_dynamic_search_depth(battles):
     logger.debug("Safest: {}, {}".format(bot_choice, payoff))
     logger.debug("Depth: {}".format(search_depth))
     return bot_choice
-
-
-if config.dynamic_search_depth:
-    pick_safest_move_from_battles = pick_safest_move_using_dynamic_search_depth

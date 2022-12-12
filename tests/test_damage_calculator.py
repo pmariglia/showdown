@@ -301,6 +301,42 @@ class TestCalculateDamageAmount(unittest.TestCase):
         dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
         self.assertEqual([150], dmg)
 
+    def test_terastallized_pokemon_gets_2x_stab_when_terratype_in_original_types(self):
+        self.charizard.types = ["fire"]
+        self.charizard.terastallized = True
+        move = 'fireblast'
+
+        # typical max damage is 300 with normal STAB
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        self.assertEqual([400], dmg)
+
+    def test_terastallized_pokemon_gets_normal_stab_when_terratype_not_in_original_types(self):
+        self.charizard.types = ["water"]
+        self.charizard.terastallized = True
+        move = 'watergun'
+
+        # watergun would do 18 damage from charizard -> venusaur normally, and 27 with STAB
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        self.assertEqual([27], dmg)
+
+    def test_terastallized_pokemon_gets_normal_stab_with_original_types(self):
+        self.charizard.types = ["water"]
+        self.charizard.terastallized = True
+        move = 'fireblast'
+
+        # 1.5x STAB should give 300 damage from charizard -> venusaur
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        self.assertEqual([300], dmg)
+
+    def test_terastallized_pokemon_does_not_get_stab_on_nonterra_type(self):
+        self.charizard.types = ["fire"]
+        self.charizard.terastallized = True
+        move = 'watergun'
+
+        # non-stab watergun should do 18 dmg
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        self.assertEqual([18], dmg)
+
 
 class TestCalculateDamage(unittest.TestCase):
     def setUp(self):

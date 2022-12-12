@@ -23,10 +23,9 @@ Version 4.2.3
 """
 
 
-# Fetch last gen8 version
-# gen9 will be handled separately
+# Fetch latest version
 data = requests.get(
-    "https://raw.githubusercontent.com/smogon/pokemon-showdown/8225c4fad1abb0ded5c78ec4852f956fb2bb0c60/data/moves.ts"
+    "https://raw.githubusercontent.com/smogon/pokemon-showdown/master/data/moves.ts"
 ).text
 
 # write .ts temp file
@@ -147,6 +146,9 @@ moves_dict["obstruct"]["volatileStatus"] = "protect"
 
 moves_dict["roost"]["volatileStatus"] = "roost"
 
+moves_dict["saltcure"]["volatileStatus"] = "saltcure"
+moves_dict["saltcure"]["secondary"] = None
+
 # it is easier for the bot to assume the opponent
 # has a 110bp move. It will cut this in half if the
 # opponent is assumed to have an item
@@ -164,6 +166,9 @@ moves_dict["healingwish"]["heal_target"] = "self"
 moves_dict["healingwish"]["side_conditions"] = "healingwish"
 
 moves_dict["wish"]["side_conditions"] = "wish"
+
+moves_dict["ceaselessedge"]["side_conditions"] = "spikes"
+moves_dict["stoneaxe"]["side_conditions"] = "stealthrock"
 
 moves_dict["rest"]["heal"] = [1, 1]
 moves_dict["rest"]["heal_target"] = "self"
@@ -185,6 +190,9 @@ moves_dict["softboiled"]["heal_target"] = "self"
 moves_dict["junglehealing"]["heal"] = [1, 4]
 moves_dict["junglehealing"]["heal_target"] = "self"
 
+moves_dict["lunarblessing"]["heal"] = [1, 4]
+moves_dict["lunarblessing"]["heal_target"] = "self"
+
 moves_dict["memento"]["heal"] = [-1, 1]
 moves_dict["memento"]["heal_target"] = "self"
 
@@ -196,6 +204,9 @@ moves_dict["recover"]["heal_target"] = "self"
 
 moves_dict["mindblown"]["heal"] = [-1, 2]
 moves_dict["mindblown"]["heal_target"] = "self"
+
+moves_dict["chloroblast"]["heal"] = [-1, 2]
+moves_dict["chloroblast"]["heal_target"] = "self"
 
 moves_dict["synthesis"]["heal"] = [1, 2]
 moves_dict["synthesis"]["heal_target"] = "self"
@@ -258,6 +269,7 @@ moves_dict["partingshot"]["boosts"] = {
 }
 
 del moves_dict["clangoroussoul"]["boosts"]
+del moves_dict["filletaway"]["boosts"]
 
 moves_dict["clangingscales"]["self"] = moves_dict["clangingscales"]["selfBoost"]
 del moves_dict["clangingscales"]["selfBoost"]
@@ -267,6 +279,7 @@ del moves_dict["scaleshot"]["selfBoost"]
 
 moves_dict["jumpkick"]["crash"] = [1, 2]
 moves_dict["highjumpkick"]["crash"] = [1, 2]
+moves_dict["axekick"]["crash"] = [1, 2]
 
 with open("data/new_moves.json", "w") as f:
     json.dump(moves_dict, f, indent=4, sort_keys=True)

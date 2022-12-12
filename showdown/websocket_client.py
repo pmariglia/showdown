@@ -101,8 +101,12 @@ class PSWebsocketClient:
             logger.error("Could not log-in\nDetails:\n{}".format(response.content))
             raise LoginError("Could not log-in")
 
-    async def update_team(self, team):
-        message = ["/utm {}".format(team)]
+    async def update_team(self, battle_format, team):
+        if "random" in battle_format:
+            logger.info("Setting team to None because the pokemon mode is {}".format(battle_format))
+            message = ["/utm None"]
+        else:
+            message = ["/utm {}".format(team)]
         await self.send_message('', message)
 
     async def challenge_user(self, user_to_challenge, battle_format, team):
@@ -110,7 +114,7 @@ class PSWebsocketClient:
         if time.time() - self.last_challenge_time < 10:
             logger.info("Sleeping for 10 seconds because last challenge was less than 10 seconds ago")
             await asyncio.sleep(10)
-        await self.update_team(team)
+        await self.update_team(battle_format, team)
         message = ["/challenge {},{}".format(user_to_challenge, battle_format)]
         await self.send_message('', message)
         self.last_challenge_time = time.time()
@@ -120,7 +124,7 @@ class PSWebsocketClient:
             await self.join_room(room_name)
 
         logger.debug("Waiting for a {} challenge".format(battle_format))
-        await self.update_team(team)
+        await self.update_team(battle_format, team)
         username = None
         while username is None:
             msg = await self.receive_message()
@@ -139,7 +143,7 @@ class PSWebsocketClient:
 
     async def search_for_match(self, battle_format, team):
         logger.debug("Searching for ranked {} match".format(battle_format))
-        await self.update_team(team)
+        await self.update_team(battle_format, team)
         message = ["/search {}".format(battle_format)]
         await self.send_message("", message)
 

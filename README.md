@@ -1,7 +1,7 @@
 # Showdown  ![umbreon](https://play.pokemonshowdown.com/sprites/xyani/umbreon.gif)
 A Pokémon battle-bot that can play battles on [Pokemon Showdown](https://pokemonshowdown.com/).
 
-The bot can play single battles in generations 3 through 8 however some of the battle mechanics assume it is gen8.
+The bot can play single battles in generations 3 through 8.
 
 ![badge](https://github.com/pmariglia/showdown/actions/workflows/pythonapp.yml/badge.svg)
 
@@ -11,35 +11,26 @@ Developed and tested using Python 3.8.
 ## Getting Started
 
 ### Configuration
-Environment variables are used for configuration which are by default read from a file named `.env`
+Environment variables are used for configuration.
+You may either set these in your environment before running,
+or populate them in the [env](https://github.com/pmariglia/showdown/blob/master/env) file.
 
 The configurations available are:
-```
-BATTLE_BOT: (string, default "safest") The BattleBot module to use. More on this below
-SAVE_REPLAY: (bool, default False) Specifies whether or not to save replays of the battles
-LOG_LEVEL: (string, default "DEBUG") The Python logging level 
-WEBSOCKET_URI: (string, default is the official PokemonShowdown websocket address: "sim.smogon.com:8000") The address to use to connect to the Pokemon Showdown websocket 
-PS_USERNAME: (string, required) Pokemon Showdown username
-PS_PASSWORD: (string) Pokemon Showdown password 
-BOT_MODE: (string, required) The mode the the bot will operate in. Options are "CHALLENGE_USER", "SEARCH_LADDER", or "ACCEPT_CHALLENGE"
-USER_TO_CHALLENGE: (string, required if BOT_MODE is "CHALLENGE_USER") The user to challenge
-POKEMON_MODE: (string, required) The type of game this bot will play games in
-TEAM_NAME: (string, required if POKEMON_MODE is one where a team is required) The name of the file that contains the team you want to use. More on this below in the Specifying Teams section.
-RUN_COUNT: (integer, required) The amount of games this bot will play before quitting
-ROOM_NAME: (string, optional) Optionally join a room by this name if BOT_MODE is "ACCEPT_CHALLENGE"
-```
 
-Here is a minimal `.env` file. This configuration will log in and search for a gen8randombattle:
-```
-WEBSOCKET_URI=sim.smogon.com:8000
-PS_USERNAME=MyCoolUsername
-PS_PASSWORD=MySuperSecretPassword
-BOT_MODE=SEARCH_LADDER
-POKEMON_MODE=gen8randombattle
-RUN_COUNT=1
-```
-
-There is a sample `.env` file in this repository.
+| Config Name | Type | Required | Description |
+|---|:---:|:---:|---|
+| **`BATTLE_BOT`** | string | yes | The BattleBot module to use. More on this below in the Battle Bots section |
+| **`WEBSOCKET_URI`** | string | yes | The address to use to connect to the Pokemon Showdown websocket |
+| **`PS_USERNAME`** | string | yes | Pokemon Showdown username |
+| **`PS_PASSWORD`** | string | yes | Pokemon Showdown password  |
+| **`BOT_MODE`** | string | yes | The mode the the bot will operate in. Options are `CHALLENGE_USER`, `SEARCH_LADDER`, or `ACCEPT_CHALLENGE` |
+| **`POKEMON_MODE`** | string | yes | The type of game this bot will play: `gen8ou`, `gen7randombattle`, etc. |
+| **`USER_TO_CHALLENGE`** | string | only if `BOT_MODE` is `CHALLENGE_USER` | If `BOT_MODE` is `CHALLENGE_USER`, this is the name of the user you want your bot to challenge |
+| **`RUN_COUNT`** | int | no | The number of games the bot will play before quitting |
+| **`TEAM_NAME`** | string | no | The name of the file that contains the team you want to use. More on this below in the Specifying Teams section. |
+| **`ROOM_NAME`** | string | no | If `BOT_MODE` is `ACCEPT_CHALLENGE`, the bot will join this chatroom while waiting for a challenge. |
+| **`SAVE_REPLAY`** | boolean | no | Specifies whether or not to save replays of the battles (`True` / `False`) |
+| **`LOG_LEVEL`** | string | no | The Python logging level (`DEBUG`, `INFO`, etc.) |
 
 ### Running without Docker
 
@@ -50,12 +41,23 @@ Clone the repository with `git clone https://github.com/pmariglia/showdown.git`
 **2. Install Requirements**
 
 Install the requirements with `pip install -r requirements.txt`.
-Be sure to use a virtual environment to isolate your packages.
 
-**3. Run**
+**3. Configure your [env](https://github.com/pmariglia/showdown/blob/master/env) file**
 
-Run with `python run.py` and the bot will start with configurations
-specified by environment variables read from the file named `.env`
+Here is a sample:
+```
+BATTLE_BOT=safest
+WEBSOCKET_URI=sim.smogon.com:8000
+PS_USERNAME=MyUsername
+PS_PASSWORD=MyPassword
+BOT_MODE=SEARCH_LADDER
+POKEMON_MODE=gen7randombattle
+RUN_COUNT=1
+```
+
+**4. Run**
+
+Run with `python run.py`
 
 ### Running with Docker
 This requires Docker 17.06 or higher.
@@ -70,7 +72,7 @@ This requires Docker 17.06 or higher.
 
 **3. Run with an environment variable file**
 
-`docker run --env-file .env showdown`
+`docker run --env-file env showdown`
 
 ### Running on Heroku
 
@@ -80,8 +82,11 @@ After deploying, go to the Resources tab and turn on the worker.
 
 ## Battle Bots
 
+This project has a few different battle bot implementations.
+Each of these battle bots use a different method to determine which move to use.
+
 ### Safest
-use `BATTLE_BOT=safest` (default unless otherwise specified)
+use `BATTLE_BOT=safest`
 
 The bot searches through the game-tree for two turns and selects the move that minimizes the possible loss for a turn.
 
@@ -104,12 +109,13 @@ This decision method should only be used when running with Docker and will fail 
 
 This decision method is **not** deterministic. The bot **may** make a different move if presented with the same situation again.
 
-### Ou Scraped Teams (experimental)
+### Team Datasets (experimental)
 
-use `BATTLE_BOT=ou_scraped_teams`
+use `BATTLE_BOT=team_datasets`
 
-Only use with `POKEMON_MODE=gen8ou`. Using a file of OU sets & teams, this battle-bot is meant to have a better
-understanding of Pokeon sets that may appear in gen8ou.
+Using a file of sets & teams, this battle-bot is meant to have a better
+understanding of Pokeon sets that may appear.
+Populate this dataset by editing `data/team_datasets.json`.
 
 Still uses the `safest` decision making method for picking a move, but in theory the knowledge of sets should
 result in better decision making.
@@ -121,14 +127,10 @@ Selects the move that will do the most damage to the opponent
 
 Does not switch
 
-## Performance
-
-These are the default battle-bot's results in three different formats for roughly 75 games played on a fresh account:
-
-![RelativeWeightsRankings](https://i.imgur.com/eNpIlVg.png)
-
 ## Write your own bot
-Create a package in `showdown/battle_bots` with a module named `main.py`. In this module, create a class named `BattleBot`, override the Battle class, and implement your own `find_best_move` function.
+Create a package in [showdown/battle_bots](https://github.com/pmariglia/showdown/tree/master/showdown/battle_bots) with
+a module named `main.py`. In this module, create a class named `BattleBot`, override the Battle class,
+and implement your own `find_best_move` function.
 
 Set the `BATTLE_BOT` environment variable to the name of your package and your function will be called each time PokemonShowdown prompts the bot for a move
 
@@ -156,6 +158,3 @@ Specify a directory:
 ```
 TEAM_NAME=gen8/ou
 ```
-
-## Questions? Wanna Chat?
-Send me a message on discord: pmariglia#5568

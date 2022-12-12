@@ -12,6 +12,7 @@ from showdown.battle import LastUsedMove
 from showdown.battle import DamageDealt
 
 from showdown.battle_modifier import request
+from showdown.battle_modifier import terastallize
 from showdown.battle_modifier import activate
 from showdown.battle_modifier import prepare
 from showdown.battle_modifier import switch_or_drag
@@ -285,6 +286,17 @@ class TestSwitchOrDrag(unittest.TestCase):
         switch_or_drag(self.battle, split_msg)
 
         self.assertEqual(['bug'], active.types)
+
+    def test_switch_does_not_reset_types_if_pkmn_has_been_terastallized(self):
+        self.battle.opponent.active.volatile_statuses.append(constants.TYPECHANGE)
+        self.battle.opponent.active.terastallized = True
+        self.battle.opponent.active.types = ['fire']
+        active = self.battle.opponent.active
+        split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        # weedle would normally be reverted to `bug`
+        self.assertEqual(['fire'], active.types)
 
     def test_switch_opponents_pokemon_successfully_creates_new_pokemon_for_active(self):
         new_pkmn = Pokemon('weedle', 100)
@@ -1272,6 +1284,12 @@ class TestStartVolatileStatus(unittest.TestCase):
 
         self.assertEqual(hp * 2, self.battle.user.active.hp)
         self.assertEqual(maxhp * 2, self.battle.user.active.max_hp)
+
+    def test_terastallize(self):
+        split_msg = ['', '-terastallize', 'p2a: Caterpie', 'Fire']
+        terastallize(self.battle, split_msg)
+
+        self.assertTrue(self.battle.opponent.active.terastallized)
 
     def test_sets_ability(self):
         # |-start|p1a: Cinderace|typechange|Fighting|[from] ability: Libero

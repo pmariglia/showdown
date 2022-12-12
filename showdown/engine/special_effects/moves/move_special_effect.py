@@ -49,6 +49,14 @@ def weather_move(mutator, weather_move_name):
         ]
 
 
+def chillyreception(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
+    return weather_move(mutator, constants.SNOW)
+
+
+def snowscape(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
+    return weather_move(mutator, constants.SNOW)
+
+
 def raindance(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
     return weather_move(mutator, constants.RAIN)
 
@@ -69,4 +77,25 @@ def junglehealing(mutator, attacking_side_string, attacking_side, attacking_poke
     if attacking_pokemon.status is not None:
         return [
             (constants.MUTATOR_REMOVE_STATUS, attacking_side_string, attacking_pokemon.status)
+        ]
+
+
+def lunarblessing(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
+    if attacking_pokemon.status is not None:
+        return [
+            (constants.MUTATOR_REMOVE_STATUS, attacking_side_string, attacking_pokemon.status)
+        ]
+
+
+def glaiverush(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
+    if "glaiverush" not in attacking_pokemon.volatile_status:
+        return [
+            (constants.MUTATOR_APPLY_VOLATILE_STATUS, attacking_side_string, "glaiverush")
+        ]
+
+
+def icespinner(mutator, attacking_side_string, attacking_side, attacking_pokemon, defending_pokemon):
+    if mutator.state.field is not None:
+        return [
+            (constants.MUTATOR_FIELD_END, mutator.state.field)
         ]

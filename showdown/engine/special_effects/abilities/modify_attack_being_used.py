@@ -18,6 +18,13 @@ def adaptability(attacking_move, defending_move, attacking_pokemon, defending_po
     return attacking_move
 
 
+def rockypayload(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_move[constants.TYPE] == "rock":
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] = int(attacking_move[constants.BASE_POWER] * 3/2)
+    return attacking_move
+
+
 def aerilate(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
     if attacking_move[constants.TYPE] == 'normal':
         attacking_move = attacking_move.copy()
@@ -92,6 +99,13 @@ def ironfist(attacking_move, defending_move, attacking_pokemon, defending_pokemo
     if "punch" in attacking_move[constants.FLAGS]:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BASE_POWER] *= 1.2
+    return attacking_move
+
+
+def sharpness(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if "slicing" in attacking_move[constants.FLAGS]:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.5
     return attacking_move
 
 
@@ -368,7 +382,16 @@ def dragonsmaw(attacking_move, defending_move, attacking_pokemon, defending_poke
     return attacking_move
 
 
+def windrider(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
+    if attacking_move[constants.ID] == 'tailwind':
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BOOSTS] = {constants.ATTACK: 1}
+    return attacking_move
+
+
 ability_lookup = {
+    'windrider': windrider,
+    'rockypayload': rockypayload,
     'transistor': transistor,
     'dragonsmaw': dragonsmaw,
     'solarpower': solarpower,
@@ -415,6 +438,7 @@ ability_lookup = {
     'parentalbond': parentalbond,
     'toxicboost': toxicboost,
     'tintedlens': tintedlens,
+    'sharpness': sharpness,
     'skilllink': skilllink
 }
 

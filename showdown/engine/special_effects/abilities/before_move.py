@@ -46,13 +46,23 @@ def stancechange(state, attacking_side, attacking_move, attacking_pokemon, defen
 
 
 def protean(state, attacking_side, attacking_move, attacking_pokemon, defending_pokemon):
-    if [attacking_move[constants.TYPE]] != attacking_pokemon.types:
-        return [(
-            constants.MUTATOR_CHANGE_TYPE,
-            attacking_side,
-            [attacking_move[constants.TYPE]],
-            attacking_pokemon.types
-        )]
+    if (
+        [attacking_move[constants.TYPE]] != attacking_pokemon.types and
+        constants.TYPECHANGE not in attacking_pokemon.volatile_status
+    ):
+        return [
+            (
+                constants.MUTATOR_CHANGE_TYPE,
+                attacking_side,
+                [attacking_move[constants.TYPE]],
+                attacking_pokemon.types
+            ),
+            (
+                constants.MUTATOR_APPLY_VOLATILE_STATUS,
+                attacking_side,
+                constants.TYPECHANGE
+            )
+        ]
 
 
 libero = protean

@@ -3,6 +3,7 @@ from copy import deepcopy
 
 import constants
 from data import all_move_json
+from data import pokedex
 
 
 pokemon_type_indicies = {
@@ -56,6 +57,7 @@ SPECIAL_LOGIC_MOVES = {
     "nightshade": lambda attacker, defender: [int(attacker.level)] if "normal" not in defender.types else None,
     "superfang": lambda attacker, defender: [int(defender.hp / 2)] if "ghost" not in defender.types else None,
     "naturesmadness": lambda attacker, defender: [int(defender.hp / 2)],
+    "ruination": lambda attacker, defender: [int(defender.hp / 2)],
     "finalgambit": lambda attacker, defender: [int(attacker.hp)] if "ghost" not in defender.types else None,
     "endeavor": lambda attacker, defender: [int(defender.hp - attacker.hp)] if defender.hp > attacker.hp and "ghost" not in defender.types else None,
     "painsplit": lambda attacker, defender: [defender.hp - (attacker.hp + defender.hp)/2],
@@ -124,11 +126,23 @@ def _calculate_damage(attacker, defender, move, conditions=None, calc_type='aver
             pass
 
     # rock types get 1.5x SPDEF in sand
+    # ice types get 1.5x DEF in snow
     try:
         if conditions[constants.WEATHER] == constants.SAND and 'rock' in defender.types:
             defending_stats[constants.SPECIAL_DEFENSE] = int(defending_stats[constants.SPECIAL_DEFENSE] * 1.5)
+        elif conditions[constants.WEATHER] == constants.SNOW and 'ice' in defender.types:
+            defending_stats[constants.DEFENSE] = int(defending_stats[constants.DEFENSE] * 1.5)
     except KeyError:
         pass
+
+    if defender.ability == "tabletsofruin":
+        attacking_stats[constants.ATTACK] *= 0.75
+    elif defender.ability == "vesselofruin":
+        attacking_stats[constants.SPECIAL_ATTACK] *= 0.75
+    if attacker.ability == "swordofruin":
+        defending_stats[constants.DEFENSE] *= 0.75
+    elif attacker.ability == "beadsofruin":
+        defending_stats[constants.SPECIAL_DEFENSE] *= 0.75
 
     damage = int(int((2 * attacker.level) / 5) + 2) * attacking_move[constants.BASE_POWER]
     damage = int(damage * attacking_stats[attack] / defending_stats[defense])
@@ -252,8 +266,20 @@ def weather_modifier(attacking_move, weather):
 
 def stab_modifier(attacking_pokemon, attacking_move):
     if attacking_move[constants.TYPE] in [t for t in attacking_pokemon.types]:
+        if (
+            attacking_pokemon.terastallized and
+            attacking_pokemon.types[0] in pokedex[attacking_pokemon.id][constants.TYPES]
+        ):
+            return 2
+        else:
+            return 1.5
+
+    elif (
+        attacking_pokemon.terastallized and
+        attacking_move[constants.TYPE] in pokedex[attacking_pokemon.id][constants.TYPES]
+    ):
         return 1.5
-    
+
     return 1
 
 
@@ -339,6 +365,16 @@ def volatile_status_modifier(attacking_move, attacker, defender):
         ]
     ):
         modifier *= 0
+    if 'glaiverush' in defender.volatile_status:
+        modifier *= 2
+    if any(vs in attacker.volatile_status for vs in ['quarkdriveatk', "protosynthesisatk"]) and attacking_move[constants.CATEGORY] == constants.PHYSICAL:
+        modifier *= 1.3
+    if any(vs in attacker.volatile_status for vs in ['quarkdrivespa', "protosynthesisspa"]) and attacking_move[constants.CATEGORY] == constants.SPECIAL:
+        modifier *= 1.3
+    if any(vs in defender.volatile_status for vs in ['quarkdrivedef', "protosynthesisdef"]) and attacking_move[constants.CATEGORY] == constants.PHYSICAL:
+        modifier *= (1/1.3)
+    if any(vs in defender.volatile_status for vs in ['quarkdrivespd', "protosynthesisspd"]) and attacking_move[constants.CATEGORY] == constants.SPECIAL:
+        modifier *= (1/1.3)
     return modifier
 
 
@@ -378,6 +414,7 @@ def calculate_damage(state, attacking_side_string, attacking_move, defending_mov
         attacking_move_dict[constants.FLAGS].pop(constants.CHARGE, None)
 
     attacking_move_dict = update_attacking_move(
+        attacking_side,
         attacking_side.active,
         defending_side.active,
         attacking_move_dict,

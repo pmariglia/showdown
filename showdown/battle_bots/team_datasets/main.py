@@ -34,7 +34,7 @@ def get_pokemon_sets_and_movesets(pkmn):
     full_sets = {}
     movesets = {}
     try:
-        pkmn_dict = data.ou_sets[pkmn.name]
+        pkmn_dict = data.team_datasets[pkmn.name]
     except KeyError:
         return full_sets, movesets
 

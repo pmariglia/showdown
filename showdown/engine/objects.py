@@ -206,34 +206,38 @@ class Pokemon(object):
         'status',
         'volatile_status',
         'moves',
+        'terastallized',
         'burn_multiplier'
     )
 
-    def __init__(self,
-                 identifier,
-                 level,
-                 types,
-                 hp,
-                 maxhp,
-                 ability,
-                 item,
-                 attack,
-                 defense,
-                 special_attack,
-                 special_defense,
-                 speed,
-                 nature="serious",
-                 evs=(85,) * 6,
-                 attack_boost=0,
-                 defense_boost=0,
-                 special_attack_boost=0,
-                 special_defense_boost=0,
-                 speed_boost=0,
-                 accuracy_boost=0,
-                 evasion_boost=0,
-                 status=None,
-                 volatile_status=None,
-                 moves=None):
+    def __init__(
+        self,
+        identifier,
+        level,
+        types,
+        hp,
+        maxhp,
+        ability,
+        item,
+        attack,
+        defense,
+        special_attack,
+        special_defense,
+        speed,
+        nature="serious",
+        evs=(85,) * 6,
+        attack_boost=0,
+        defense_boost=0,
+        special_attack_boost=0,
+        special_defense_boost=0,
+        speed_boost=0,
+        accuracy_boost=0,
+        evasion_boost=0,
+        status=None,
+        terastallized=False,
+        volatile_status=None,
+        moves=None
+    ):
         self.id = identifier
         self.level = level
         self.types = types
@@ -256,6 +260,7 @@ class Pokemon(object):
         self.accuracy_boost = accuracy_boost
         self.evasion_boost = evasion_boost
         self.status = status
+        self.terastallized = terastallized
         self.volatile_status = volatile_status or set()
         self.moves = moves or list()
 
@@ -279,6 +284,32 @@ class Pokemon(object):
             burn_multiplier = int(burn_multiplier / 2)
 
         return burn_multiplier
+
+    def get_highest_stat(self):
+        return max({
+           constants.ATTACK: self.attack,
+           constants.DEFENSE: self.defense,
+           constants.SPECIAL_ATTACK: self.special_attack,
+           constants.SPECIAL_DEFENSE: self.special_defense,
+           constants.SPEED: self.speed,
+       }.items(), key=lambda x: x[1])[0]
+
+    def get_boost_from_boost_string(self, boost_string):
+        if boost_string == constants.ATTACK:
+            return self.attack_boost
+        elif boost_string == constants.DEFENSE:
+            return self.defense_boost
+        elif boost_string == constants.SPECIAL_ATTACK:
+            return self.special_attack_boost
+        elif boost_string == constants.SPECIAL_DEFENSE:
+            return self.special_defense_boost
+        elif boost_string == constants.SPEED:
+            return self.speed_boost
+        elif boost_string == constants.ACCURACY:
+            return self.accuracy_boost
+        elif boost_string == constants.EVASION:
+            return self.evasion_boost
+        raise ValueError("{} is not a valid boost".format(boost_string))
 
     def forced_move(self):
         if "phantomforce" in self.volatile_status:
@@ -338,6 +369,7 @@ class Pokemon(object):
             d[constants.BOOSTS][constants.ACCURACY],
             d[constants.BOOSTS][constants.EVASION],
             d[constants.STATUS],
+            d[constants.TERASTALLIZED],
             d[constants.VOLATILE_STATUS],
             d[constants.MOVES]
         )
@@ -367,6 +399,7 @@ class Pokemon(object):
             d.get(constants.ACCURACY_BOOST, 0),
             d.get(constants.EVASION_BOOST, 0),
             d[constants.STATUS],
+            d[constants.TERASTALLIZED],
             set(d[constants.VOLATILE_STATUS]),
             d[constants.MOVES]
         )
@@ -386,7 +419,8 @@ class Pokemon(object):
         return True
 
     def __repr__(self):
-        return str({
+        return str(
+            {
                 constants.ID: self.id,
                 constants.LEVEL: self.level,
                 constants.TYPES: self.types,
@@ -409,9 +443,11 @@ class Pokemon(object):
                 constants.ACCURACY_BOOST: self.accuracy_boost,
                 constants.EVASION_BOOST: self.evasion_boost,
                 constants.STATUS: self.status,
+                constants.TERASTALLIZED: self.terastallized,
                 constants.VOLATILE_STATUS: list(self.volatile_status),
                 constants.MOVES: self.moves
-            })
+            }
+        )
 
 
 class TransposeInstruction:

@@ -73,7 +73,7 @@ def find_all_equilibria(matrix):
     string = format_string_for_options(num_rows, num_cols)
     string = append_items_to_string(matrix, string).encode()
 
-    cmd = [config.gambit_exe_path, '-q', '-d', '2']
+    cmd = ["gambit-enummixed", '-q', '-d', '2']
 
     # sometimes this call fails and stdout is empty - repeating until completion seems to have fixed the issue
     stdout = ''

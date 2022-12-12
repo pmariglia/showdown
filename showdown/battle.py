@@ -7,8 +7,8 @@ from abc import ABC
 from abc import abstractmethod
 
 import constants
-import config
 import logging
+from config import ShowdownConfig
 
 import data
 from data import all_move_json
@@ -113,7 +113,10 @@ class Battle(ABC):
         self.rqid = user_json[constants.RQID]
 
     def mega_evolve_possible(self):
-        return any(g in self.generation for g in constants.MEGA_EVOLVE_GENERATIONS) or 'nationaldex' in config.pokemon_mode
+        return (
+                any(g in self.generation for g in constants.MEGA_EVOLVE_GENERATIONS) or
+                'nationaldex' in ShowdownConfig.pokemon_mode
+        )
 
     def prepare_battles(self, guess_mega_evo_opponent=True, join_moves_together=False):
         """Returns a list of battles based on this one
@@ -323,7 +326,13 @@ class Battler:
         if first_turn:
             existing_conditions = (None, None, None)
         else:
-            existing_conditions = (self.active.name, self.active.boosts, self.active.volatile_statuses)
+            existing_conditions = (
+                self.active.name,
+                self.active.boosts,
+                self.active.volatile_statuses,
+                self.active.terastallized,
+                self.active.types
+            )
 
         try:
             trapped = user_json[constants.ACTIVE][0].get(constants.TRAPPED, False)
@@ -350,6 +359,9 @@ class Battler:
                 if existing_conditions[0] == pkmn.name:
                     pkmn.boosts = existing_conditions[1]
                     pkmn.volatile_statuses = existing_conditions[2]
+                    if existing_conditions[3]:
+                        pkmn.terastallized = True
+                        pkmn.types = existing_conditions[4]
             else:
                 self.reserve.append(pkmn)
 
@@ -374,6 +386,11 @@ class Battler:
             self.active.can_dynamax = user_json[constants.ACTIVE][0][constants.CAN_DYNAMAX]
         except KeyError:
             self.active.can_dynamax = False
+
+        try:
+            self.active.can_terastallize = user_json[constants.ACTIVE][0][constants.CAN_TERASTALLIZE]
+        except KeyError:
+            self.active.can_terastallize = False
 
         # clear the active moves so they can be reset by the options available
         self.active.moves.clear()
@@ -450,6 +467,7 @@ class Pokemon:
         self.types = pokedex[self.name][constants.TYPES]
         self.item = constants.UNKNOWN_ITEM
 
+        self.terastallized = False
         self.fainted = False
         self.moves = []
         self.status = None
@@ -670,6 +688,7 @@ class Pokemon:
             constants.EVS: self.evs,
             constants.BOOSTS: self.boosts,
             constants.STATUS: self.status,
+            constants.TERASTALLIZED: self.terastallized,
             constants.VOLATILE_STATUS: set(self.volatile_statuses),
             constants.MOVES: [m.to_dict() for m in self.moves]
         }

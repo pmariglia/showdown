@@ -137,7 +137,8 @@
             "contact": 1,
             "distance": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "aerialace",
         "name": "Aerial Ace",
@@ -204,7 +205,9 @@
         "category": "special",
         "flags": {
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1,
+            "wind": 1
         },
         "id": "aircutter",
         "name": "Air Cutter",
@@ -221,7 +224,8 @@
         "flags": {
             "distance": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "airslash",
         "name": "Air Slash",
@@ -330,6 +334,23 @@
         "target": "normal",
         "type": "grass"
     },
+    "aquacutter": {
+        "accuracy": 100,
+        "basePower": 70,
+        "category": "physical",
+        "flags": {
+            "mirror": 1,
+            "protect": 1,
+            "slicing": 1
+        },
+        "id": "aquacutter",
+        "name": "Aqua Cutter",
+        "pp": 20,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "water"
+    },
     "aquajet": {
         "accuracy": 100,
         "basePower": 40,
@@ -363,6 +384,31 @@
         "type": "water",
         "volatileStatus": "aquaring"
     },
+    "aquastep": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "dance": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "aquastep",
+        "name": "Aqua Step",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "self": {
+                "boosts": {
+                    "speed": 1
+                }
+            }
+        },
+        "target": "normal",
+        "type": "water"
+    },
     "aquatail": {
         "accuracy": 90,
         "basePower": 90,
@@ -379,6 +425,28 @@
         "secondary": null,
         "target": "normal",
         "type": "water"
+    },
+    "armorcannon": {
+        "accuracy": 100,
+        "basePower": 120,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "armorcannon",
+        "name": "Armor Cannon",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "self": {
+            "boosts": {
+                "defense": -1,
+                "special-defense": -1
+            }
+        },
+        "target": "normal",
+        "type": "fire"
     },
     "armthrust": {
         "accuracy": 100,
@@ -650,6 +718,30 @@
         "target": "normal",
         "type": "ice"
     },
+    "axekick": {
+        "accuracy": 90,
+        "basePower": 120,
+        "category": "physical",
+        "crash": [
+            1,
+            2
+        ],
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "axekick",
+        "name": "Axe Kick",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 30,
+            "volatileStatus": "confusion"
+        },
+        "target": "normal",
+        "type": "fighting"
+    },
     "babydolleyes": {
         "accuracy": 100,
         "basePower": 0,
@@ -702,6 +794,25 @@
         "target": "self",
         "type": "poison",
         "volatileStatus": "banefulbunker"
+    },
+    "barbbarrage": {
+        "accuracy": 100,
+        "basePower": 60,
+        "category": "physical",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "barbbarrage",
+        "name": "Barb Barrage",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 50,
+            "status": "psn"
+        },
+        "target": "normal",
+        "type": "poison"
     },
     "barrage": {
         "accuracy": 85,
@@ -813,7 +924,8 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "behemothblade",
         "name": "Behemoth Blade",
@@ -934,6 +1046,49 @@
         "target": "normal",
         "type": "dark"
     },
+    "bitterblade": {
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "physical",
+        "drain": [
+            1,
+            2
+        ],
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1,
+            "slicing": 1
+        },
+        "id": "bitterblade",
+        "name": "Bitter Blade",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "fire"
+    },
+    "bittermalice": {
+        "accuracy": 100,
+        "basePower": 75,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "bittermalice",
+        "name": "Bitter Malice",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "boosts": {
+                "attack": -1
+            },
+            "chance": 100
+        },
+        "target": "normal",
+        "type": "ghost"
+    },
     "blastburn": {
         "accuracy": 90,
         "basePower": 150,
@@ -974,13 +1129,54 @@
         "target": "normal",
         "type": "fire"
     },
+    "blazingtorque": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "physical",
+        "flags": {
+            "protect": 1
+        },
+        "id": "blazingtorque",
+        "name": "Blazing Torque",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 30,
+            "status": "brn"
+        },
+        "target": "normal",
+        "type": "fire"
+    },
+    "bleakwindstorm": {
+        "accuracy": 80,
+        "basePower": 100,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1,
+            "wind": 1
+        },
+        "id": "bleakwindstorm",
+        "name": "Bleakwind Storm",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "boosts": {
+                "speed": -1
+            },
+            "chance": 30
+        },
+        "target": "allAdjacentFoes",
+        "type": "flying"
+    },
     "blizzard": {
         "accuracy": 70,
         "basePower": 110,
         "category": "special",
         "flags": {
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "wind": 1
         },
         "id": "blizzard",
         "name": "Blizzard",
@@ -1599,6 +1795,26 @@
         "target": "allAdjacentFoes",
         "type": "normal"
     },
+    "ceaselessedge": {
+        "accuracy": 90,
+        "basePower": 65,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1,
+            "slicing": 1
+        },
+        "id": "ceaselessedge",
+        "name": "Ceaseless Edge",
+        "pp": 15,
+        "priority": 0,
+        "secondary": {},
+        "self": {},
+        "side_conditions": "spikes",
+        "target": "normal",
+        "type": "dark"
+    },
     "celebrate": {
         "accuracy": true,
         "basePower": 0,
@@ -1697,6 +1913,41 @@
         "target": "any",
         "type": "flying"
     },
+    "chillingwater": {
+        "accuracy": 100,
+        "basePower": 50,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "chillingwater",
+        "name": "Chilling Water",
+        "pp": 20,
+        "priority": 0,
+        "secondary": {
+            "boosts": {
+                "attack": -1
+            },
+            "chance": 100
+        },
+        "target": "normal",
+        "type": "water"
+    },
+    "chillyreception": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {},
+        "id": "chillyreception",
+        "name": "Chilly Reception",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "all",
+        "type": "ice",
+        "weather": "snow"
+    },
     "chipaway": {
         "accuracy": 100,
         "basePower": 70,
@@ -1713,6 +1964,27 @@
         "secondary": null,
         "target": "normal",
         "type": "normal"
+    },
+    "chloroblast": {
+        "accuracy": 95,
+        "basePower": 150,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "heal": [
+            -1,
+            2
+        ],
+        "heal_target": "self",
+        "id": "chloroblast",
+        "name": "Chloroblast",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "grass"
     },
     "circlethrow": {
         "accuracy": 90,
@@ -1869,6 +2141,41 @@
         "target": "self",
         "type": "poison"
     },
+    "collisioncourse": {
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "collisioncourse",
+        "name": "Collision Course",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "fighting"
+    },
+    "combattorque": {
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "physical",
+        "flags": {
+            "protect": 1
+        },
+        "id": "combattorque",
+        "name": "Combat Torque",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 30,
+            "status": "par"
+        },
+        "target": "normal",
+        "type": "fighting"
+    },
     "cometpunch": {
         "accuracy": 85,
         "basePower": 18,
@@ -1890,6 +2197,23 @@
         "secondary": null,
         "target": "normal",
         "type": "normal"
+    },
+    "comeuppance": {
+        "accuracy": 100,
+        "basePower": 0,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "comeuppance",
+        "name": "Comeuppance",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "scripted",
+        "type": "dark"
     },
     "confide": {
         "accuracy": true,
@@ -2209,7 +2533,8 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "crosspoison",
         "name": "Cross Poison",
@@ -2312,7 +2637,8 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "cut",
         "name": "Cut",
@@ -2544,6 +2870,23 @@
         "target": "normal",
         "type": "ground"
     },
+    "direclaw": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "direclaw",
+        "name": "Dire Claw",
+        "pp": 15,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "poison"
+    },
     "disable": {
         "accuracy": 100,
         "basePower": 0,
@@ -2641,6 +2984,19 @@
         "target": "normal",
         "type": "normal"
     },
+    "doodle": {
+        "accuracy": 100,
+        "basePower": 0,
+        "category": "status",
+        "flags": {},
+        "id": "doodle",
+        "name": "Doodle",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "adjacentFoe",
+        "type": "normal"
+    },
     "doomdesire": {
         "accuracy": 100,
         "basePower": 140,
@@ -2732,6 +3088,24 @@
         "secondary": null,
         "target": "normal",
         "type": "fighting"
+    },
+    "doubleshock": {
+        "accuracy": 100,
+        "basePower": 120,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "doubleshock",
+        "name": "Double Shock",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "self": {},
+        "target": "normal",
+        "type": "electric"
     },
     "doubleslap": {
         "accuracy": 85,
@@ -3353,6 +3727,23 @@
         "target": "normal",
         "type": "electric"
     },
+    "electrodrift": {
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "special",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "electrodrift",
+        "name": "Electro Drift",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "electric"
+    },
     "electroweb": {
         "accuracy": 95,
         "basePower": 55,
@@ -3517,6 +3908,29 @@
         "target": "allAdjacentFoes",
         "type": "fire"
     },
+    "esperwing": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "esperwing",
+        "name": "Esper Wing",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "self": {
+                "boosts": {
+                    "speed": 1
+                }
+            }
+        },
+        "target": "normal",
+        "type": "psychic"
+    },
     "eternabeam": {
         "accuracy": 90,
         "basePower": 160,
@@ -3649,7 +4063,8 @@
         "category": "special",
         "flags": {
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "wind": 1
         },
         "id": "fairywind",
         "name": "Fairy Wind",
@@ -3847,6 +4262,21 @@
         },
         "target": "allAdjacentFoes",
         "type": "dark"
+    },
+    "filletaway": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "snatch": 1
+        },
+        "id": "filletaway",
+        "name": "Fillet Away",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "self",
+        "type": "normal"
     },
     "finalgambit": {
         "accuracy": 100,
@@ -4328,6 +4758,23 @@
         "target": "all",
         "type": "fairy"
     },
+    "flowertrick": {
+        "accuracy": true,
+        "basePower": 70,
+        "category": "physical",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "flowertrick",
+        "name": "Flower Trick",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "grass",
+        "willCrit": true
+    },
     "fly": {
         "accuracy": 95,
         "basePower": 90,
@@ -4668,7 +5115,8 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "furycutter",
         "name": "Fury Cutter",
@@ -4861,9 +5309,25 @@
         "target": "normal",
         "type": "normal"
     },
+    "gigatonhammer": {
+        "accuracy": 100,
+        "basePower": 160,
+        "category": "physical",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "gigatonhammer",
+        "name": "Gigaton Hammer",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "steel"
+    },
     "glaciallance": {
         "accuracy": 100,
-        "basePower": 130,
+        "basePower": 120,
         "category": "physical",
         "flags": {
             "mirror": 1,
@@ -4897,6 +5361,26 @@
         },
         "target": "allAdjacentFoes",
         "type": "ice"
+    },
+    "glaiverush": {
+        "accuracy": 100,
+        "basePower": 120,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "glaiverush",
+        "name": "Glaive Rush",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "self": {
+            "volatileStatus": "glaiverush"
+        },
+        "target": "normal",
+        "type": "dragon"
     },
     "glare": {
         "accuracy": 100,
@@ -4991,7 +5475,7 @@
     },
     "grassyglide": {
         "accuracy": 100,
-        "basePower": 70,
+        "basePower": 60,
         "category": "physical",
         "flags": {
             "contact": 1,
@@ -5192,7 +5676,8 @@
         "flags": {
             "distance": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "wind": 1
         },
         "id": "gust",
         "name": "Gust",
@@ -5343,6 +5828,30 @@
         "secondary": null,
         "target": "normal",
         "type": "normal"
+    },
+    "headlongrush": {
+        "accuracy": 100,
+        "basePower": 120,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1,
+            "punch": 1
+        },
+        "id": "headlongrush",
+        "name": "Headlong Rush",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "self": {
+            "boosts": {
+                "defense": -1,
+                "special-defense": -1
+            }
+        },
+        "target": "normal",
+        "type": "ground"
     },
     "headsmash": {
         "accuracy": 80,
@@ -5526,7 +6035,8 @@
         "category": "special",
         "flags": {
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "wind": 1
         },
         "id": "heatwave",
         "name": "Heat Wave",
@@ -6290,7 +6800,8 @@
         "flags": {
             "distance": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "wind": 1
         },
         "id": "hurricane",
         "name": "Hurricane",
@@ -6356,6 +6867,22 @@
         "self": {
             "volatileStatus": "mustrecharge"
         },
+        "target": "normal",
+        "type": "normal"
+    },
+    "hyperdrill": {
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1
+        },
+        "id": "hyperdrill",
+        "name": "Hyper Drill",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
         "target": "normal",
         "type": "normal"
     },
@@ -6588,6 +7115,23 @@
         "target": "normal",
         "type": "ice"
     },
+    "icespinner": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "icespinner",
+        "name": "Ice Spinner",
+        "pp": 15,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "ice"
+    },
     "iciclecrash": {
         "accuracy": 90,
         "basePower": 85,
@@ -6633,7 +7177,8 @@
         "category": "special",
         "flags": {
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "wind": 1
         },
         "id": "icywind",
         "name": "Icy Wind",
@@ -6680,6 +7225,25 @@
         "secondary": null,
         "target": "allAdjacentFoes",
         "type": "fire"
+    },
+    "infernalparade": {
+        "accuracy": 100,
+        "basePower": 60,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "infernalparade",
+        "name": "Infernal Parade",
+        "pp": 15,
+        "priority": 0,
+        "secondary": {
+            "chance": 30,
+            "status": "brn"
+        },
+        "target": "normal",
+        "type": "ghost"
     },
     "inferno": {
         "accuracy": 50,
@@ -6843,6 +7407,25 @@
         "target": "normal",
         "type": "dark"
     },
+    "jetpunch": {
+        "accuracy": 100,
+        "basePower": 60,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1,
+            "punch": 1
+        },
+        "hasSheerForce": true,
+        "id": "jetpunch",
+        "name": "Jet Punch",
+        "pp": 15,
+        "priority": 1,
+        "secondary": null,
+        "target": "normal",
+        "type": "water"
+    },
     "judgment": {
         "accuracy": 100,
         "basePower": 100,
@@ -6971,6 +7554,24 @@
         "target": "normal",
         "type": "dark"
     },
+    "kowtowcleave": {
+        "accuracy": true,
+        "basePower": 85,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1,
+            "slicing": 1
+        },
+        "id": "kowtowcleave",
+        "name": "Kowtow Cleave",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "dark"
+    },
     "landswrath": {
         "accuracy": 100,
         "basePower": 90,
@@ -7038,6 +7639,22 @@
         "target": "normal",
         "type": "normal"
     },
+    "lastrespects": {
+        "accuracy": 100,
+        "basePower": 50,
+        "category": "physical",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "lastrespects",
+        "name": "Last Respects",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "ghost"
+    },
     "lavaplume": {
         "accuracy": 100,
         "basePower": 80,
@@ -7080,7 +7697,8 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "leafblade",
         "name": "Leaf Blade",
@@ -7381,6 +7999,48 @@
         "target": "allySide",
         "type": "normal"
     },
+    "luminacrash": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "luminacrash",
+        "name": "Lumina Crash",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "boosts": {
+                "special-defense": -2
+            },
+            "chance": 100
+        },
+        "target": "normal",
+        "type": "psychic"
+    },
+    "lunarblessing": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "heal": 1,
+            "snatch": 1
+        },
+        "heal": [
+            1,
+            4
+        ],
+        "heal_target": "self",
+        "id": "lunarblessing",
+        "name": "Lunar Blessing",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "target": "allies",
+        "type": "psychic"
+    },
     "lunardance": {
         "accuracy": true,
         "basePower": 0,
@@ -7474,6 +8134,24 @@
         "secondary": null,
         "target": "normal",
         "type": "grass"
+    },
+    "magicaltorque": {
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "physical",
+        "flags": {
+            "protect": 1
+        },
+        "id": "magicaltorque",
+        "name": "Magical Torque",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 30,
+            "volatileStatus": "confusion"
+        },
+        "target": "normal",
+        "type": "fairy"
     },
     "magiccoat": {
         "accuracy": true,
@@ -7607,6 +8285,27 @@
         "secondary": null,
         "target": "allAdjacent",
         "type": "ground"
+    },
+    "makeitrain": {
+        "accuracy": 100,
+        "basePower": 120,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "makeitrain",
+        "name": "Make It Rain",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "self": {
+            "boosts": {
+                "special-attack": -1
+            }
+        },
+        "target": "allAdjacentFoes",
+        "type": "steel"
     },
     "matblock": {
         "accuracy": true,
@@ -7908,6 +8607,7 @@
         "noMetronome": [
             "After You",
             "Apple Acid",
+            "Armor Cannon",
             "Assist",
             "Astral Barrage",
             "Aura Wheel",
@@ -7917,12 +8617,18 @@
             "Behemoth Blade",
             "Belch",
             "Bestow",
+            "Blazing Torque",
             "Body Press",
             "Branch Poke",
             "Breaking Swipe",
             "Celebrate",
             "Chatter",
+            "Chilling Water",
+            "Chilly Reception",
             "Clangorous Soul",
+            "Collision Course",
+            "Combat Torque",
+            "Comeuppance",
             "Copycat",
             "Counter",
             "Covet",
@@ -7931,17 +8637,21 @@
             "Destiny Bond",
             "Detect",
             "Diamond Storm",
+            "Doodle",
             "Double Iron Bash",
+            "Double Shock",
             "Dragon Ascent",
             "Dragon Energy",
             "Dragon Hammer",
             "Drum Beating",
             "Dynamax Cannon",
+            "Electro Drift",
             "Endure",
             "Eternabeam",
             "False Surrender",
             "Feint",
             "Fiery Wrath",
+            "Fillet Away",
             "Fleur Cannon",
             "Focus Punch",
             "Follow Me",
@@ -7951,14 +8661,18 @@
             "Grav Apple",
             "Helping Hand",
             "Hold Hands",
+            "Hyper Drill",
             "Hyperspace Fury",
             "Hyperspace Hole",
             "Ice Burn",
             "Instruct",
+            "Jet Punch",
             "Jungle Healing",
             "King's Shield",
             "Life Dew",
             "Light of Ruin",
+            "Magical Torque",
+            "Make It Rain",
             "Mat Block",
             "Me First",
             "Meteor Assault",
@@ -7970,30 +8684,45 @@
             "Moongeist Beam",
             "Nature Power",
             "Nature's Madness",
+            "Noxious Torque",
             "Obstruct",
             "Origin Pulse",
             "Overdrive",
             "Photon Geyser",
             "Plasma Fists",
+            "Population Bomb",
+            "Pounce",
+            "Power Shift",
             "Precipice Blades",
             "Protect",
             "Pyro Ball",
             "Quash",
             "Quick Guard",
+            "Rage Fist",
             "Rage Powder",
+            "Raging Bull",
+            "Raging Fury",
             "Relic Song",
+            "Revival Blessing",
+            "Ruination",
+            "Salt Cure",
             "Secret Sword",
+            "Shed Tail",
             "Shell Trap",
+            "Silk Trap",
             "Sketch",
             "Sleep Talk",
             "Snap Trap",
             "Snarl",
             "Snatch",
             "Snore",
+            "Snowscape",
             "Spectral Thief",
+            "Spicy Extract",
             "Spiky Shield",
             "Spirit Break",
             "Spotlight",
+            "Springtide Storm",
             "Steam Eruption",
             "Steel Beam",
             "Strange Steam",
@@ -8003,14 +8732,18 @@
             "Switcheroo",
             "Techno Blast",
             "Thief",
+            "Tidy Up",
             "Thousand Arrows",
             "Thousand Waves",
             "Thunder Cage",
             "Thunderous Kick",
+            "Trailblaze",
             "Transform",
             "Trick",
+            "Twin Beam",
             "V-create",
             "Wicked Blow",
+            "Wicked Torque",
             "Wide Guard"
         ],
         "pp": 10,
@@ -8034,7 +8767,7 @@
         "heal_target": "self",
         "id": "milkdrink",
         "name": "Milk Drink",
-        "pp": 10,
+        "pp": 5,
         "priority": 0,
         "secondary": null,
         "target": "self",
@@ -8336,6 +9069,45 @@
         "target": "self",
         "type": "normal"
     },
+    "mortalspin": {
+        "accuracy": 100,
+        "basePower": 30,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "mortalspin",
+        "name": "Mortal Spin",
+        "pp": 15,
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "status": "psn"
+        },
+        "target": "allAdjacentFoes",
+        "type": "poison"
+    },
+    "mountaingale": {
+        "accuracy": 85,
+        "basePower": 100,
+        "category": "physical",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "mountaingale",
+        "name": "Mountain Gale",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 30,
+            "volatileStatus": "flinch"
+        },
+        "target": "normal",
+        "type": "ice"
+    },
     "mudbomb": {
         "accuracy": 85,
         "basePower": 65,
@@ -8474,6 +9246,29 @@
         },
         "target": "normal",
         "type": "fire"
+    },
+    "mysticalpower": {
+        "accuracy": 90,
+        "basePower": 70,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "mysticalpower",
+        "name": "Mystical Power",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "self": {
+                "boosts": {
+                    "special-attack": 1
+                }
+            }
+        },
+        "target": "normal",
+        "type": "psychic"
     },
     "nastyplot": {
         "accuracy": true,
@@ -8620,7 +9415,8 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "nightslash",
         "name": "Night Slash",
@@ -8690,6 +9486,24 @@
         "secondary": null,
         "target": "self",
         "type": "normal"
+    },
+    "noxioustorque": {
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "physical",
+        "flags": {
+            "protect": 1
+        },
+        "id": "noxioustorque",
+        "name": "Noxious Torque",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 30,
+            "status": "psn"
+        },
+        "target": "normal",
+        "type": "poison"
     },
     "nuzzle": {
         "accuracy": 100,
@@ -8832,6 +9646,23 @@
         },
         "target": "normal",
         "type": "ghost"
+    },
+    "orderup": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "physical",
+        "flags": {
+            "mirror": 1,
+            "protect": 1,
+            "pulse": 1
+        },
+        "id": "orderup",
+        "name": "Order Up",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "dragon"
     },
     "originpulse": {
         "accuracy": 85,
@@ -9065,7 +9896,8 @@
         "category": "physical",
         "flags": {
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "wind": 1
         },
         "id": "petalblizzard",
         "name": "Petal Blizzard",
@@ -9394,6 +10226,48 @@
         "target": "normal",
         "type": "ghost"
     },
+    "populationbomb": {
+        "accuracy": 90,
+        "basePower": 20,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1,
+            "slicing": 1
+        },
+        "id": "populationbomb",
+        "multiaccuracy": true,
+        "multihit": 10,
+        "name": "Population Bomb",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "normal"
+    },
+    "pounce": {
+        "accuracy": 100,
+        "basePower": 50,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "pounce",
+        "name": "Pounce",
+        "pp": 20,
+        "priority": 0,
+        "secondary": {
+            "boosts": {
+                "speed": -1
+            },
+            "chance": 100
+        },
+        "target": "normal",
+        "type": "bug"
+    },
     "pound": {
         "accuracy": 100,
         "basePower": 40,
@@ -9465,6 +10339,22 @@
         "secondary": null,
         "target": "normal",
         "type": "rock"
+    },
+    "powershift": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "snatch": 1
+        },
+        "id": "powershift",
+        "name": "Power Shift",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "self",
+        "type": "normal",
+        "volatileStatus": "powershift"
     },
     "powersplit": {
         "accuracy": true,
@@ -9743,7 +10633,8 @@
         "category": "physical",
         "flags": {
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "psychocut",
         "name": "Psycho Cut",
@@ -9785,6 +10676,30 @@
         "secondary": null,
         "target": "normal",
         "type": "normal"
+    },
+    "psyshieldbash": {
+        "accuracy": 90,
+        "basePower": 70,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "psyshieldbash",
+        "name": "Psyshield Bash",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "self": {
+                "boosts": {
+                    "defense": 1
+                }
+            }
+        },
+        "target": "normal",
+        "type": "psychic"
     },
     "psyshock": {
         "accuracy": 100,
@@ -9998,6 +10913,24 @@
         "target": "normal",
         "type": "normal"
     },
+    "ragefist": {
+        "accuracy": 100,
+        "basePower": 50,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1,
+            "punch": 1
+        },
+        "id": "ragefist",
+        "name": "Rage Fist",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "ghost"
+    },
     "ragepowder": {
         "accuracy": true,
         "basePower": 0,
@@ -10013,6 +10946,42 @@
         "target": "self",
         "type": "bug",
         "volatileStatus": "ragepowder"
+    },
+    "ragingbull": {
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "ragingbull",
+        "name": "Raging Bull",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "normal"
+    },
+    "ragingfury": {
+        "accuracy": 100,
+        "basePower": 120,
+        "category": "physical",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "ragingfury",
+        "name": "Raging Fury",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "self": {
+            "volatileStatus": "lockedmove"
+        },
+        "target": "randomNormal",
+        "type": "fire"
     },
     "raindance": {
         "accuracy": true,
@@ -10058,7 +11027,8 @@
         "category": "physical",
         "flags": {
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "razorleaf",
         "name": "Razor Leaf",
@@ -10075,7 +11045,8 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "razorshell",
         "name": "Razor Shell",
@@ -10122,7 +11093,7 @@
         "heal_target": "self",
         "id": "recover",
         "name": "Recover",
-        "pp": 10,
+        "pp": 5,
         "priority": 0,
         "secondary": null,
         "target": "self",
@@ -10227,7 +11198,7 @@
         "heal_target": "self",
         "id": "rest",
         "name": "Rest",
-        "pp": 10,
+        "pp": 5,
         "priority": 0,
         "secondary": null,
         "status": "slp",
@@ -10335,6 +11306,20 @@
         "secondary": null,
         "target": "normal",
         "type": "fighting"
+    },
+    "revivalblessing": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {},
+        "id": "revivalblessing",
+        "name": "Revival Blessing",
+        "noPPBoosts": true,
+        "pp": 1,
+        "priority": 0,
+        "secondary": null,
+        "target": "self",
+        "type": "normal"
     },
     "risingvoltage": {
         "accuracy": 100,
@@ -10618,7 +11603,7 @@
         "heal_target": "self",
         "id": "roost",
         "name": "Roost",
-        "pp": 10,
+        "pp": 5,
         "priority": 0,
         "secondary": null,
         "self": {
@@ -10662,6 +11647,22 @@
         "target": "normal",
         "type": "normal"
     },
+    "ruination": {
+        "accuracy": 90,
+        "basePower": 0,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "ruination",
+        "name": "Ruination",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "dark"
+    },
     "sacredfire": {
         "accuracy": 95,
         "basePower": 100,
@@ -10689,7 +11690,8 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "sacredsword",
         "name": "Sacred Sword",
@@ -10715,6 +11717,23 @@
         "target": "allySide",
         "type": "normal"
     },
+    "saltcure": {
+        "accuracy": 100,
+        "basePower": 40,
+        "category": "physical",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "saltcure",
+        "name": "Salt Cure",
+        "pp": 15,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "rock",
+        "volatileStatus": "saltcure"
+    },
     "sandattack": {
         "accuracy": 100,
         "basePower": 0,
@@ -10735,11 +11754,33 @@
         "target": "normal",
         "type": "ground"
     },
+    "sandsearstorm": {
+        "accuracy": 80,
+        "basePower": 100,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1,
+            "wind": 1
+        },
+        "id": "sandsearstorm",
+        "name": "Sandsear Storm",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 20,
+            "status": "brn"
+        },
+        "target": "allAdjacentFoes",
+        "type": "ground"
+    },
     "sandstorm": {
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "wind": 1
+        },
         "id": "sandstorm",
         "name": "Sandstorm",
         "pp": 10,
@@ -11197,6 +12238,21 @@
         "target": "self",
         "type": "normal"
     },
+    "shedtail": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {},
+        "id": "shedtail",
+        "name": "Shed Tail",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "self": {},
+        "target": "self",
+        "type": "normal",
+        "volatileStatus": "substitute"
+    },
     "sheercold": {
         "accuracy": 30,
         "basePower": 0,
@@ -11270,6 +12326,24 @@
         "target": "allAdjacentFoes",
         "type": "fire"
     },
+    "shelter": {
+        "accuracy": true,
+        "basePower": 0,
+        "boosts": {
+            "defense": 2
+        },
+        "category": "status",
+        "flags": {
+            "snatch": 1
+        },
+        "id": "shelter",
+        "name": "Shelter",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "self",
+        "type": "steel"
+    },
     "shiftgear": {
         "accuracy": true,
         "basePower": 0,
@@ -11315,7 +12389,7 @@
         },
         "id": "shoreup",
         "name": "Shore Up",
-        "pp": 10,
+        "pp": 5,
         "priority": 0,
         "secondary": null,
         "target": "self",
@@ -11339,6 +12413,20 @@
         },
         "target": "normal",
         "type": "bug"
+    },
+    "silktrap": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {},
+        "id": "silktrap",
+        "name": "Silk Trap",
+        "pp": 10,
+        "priority": 4,
+        "secondary": null,
+        "target": "self",
+        "type": "bug",
+        "volatileStatus": "silktrap"
     },
     "silverwind": {
         "accuracy": 100,
@@ -11574,7 +12662,7 @@
         "heal_target": "self",
         "id": "slackoff",
         "name": "Slack Off",
-        "pp": 10,
+        "pp": 5,
         "priority": 0,
         "secondary": null,
         "target": "self",
@@ -11605,7 +12693,8 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "slash",
         "name": "Slash",
@@ -11893,6 +12982,20 @@
         "target": "normal",
         "type": "normal"
     },
+    "snowscape": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {},
+        "id": "snowscape",
+        "name": "Snowscape",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "all",
+        "type": "ice",
+        "weather": "snow"
+    },
     "soak": {
         "accuracy": 100,
         "basePower": 0,
@@ -11926,7 +13029,7 @@
         "heal_target": "self",
         "id": "softboiled",
         "name": "Soft-Boiled",
-        "pp": 10,
+        "pp": 5,
         "priority": 0,
         "secondary": null,
         "target": "self",
@@ -11957,7 +13060,8 @@
             "charge": 1,
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "solarblade",
         "name": "Solar Blade",
@@ -12095,6 +13199,27 @@
         "target": "normal",
         "type": "psychic"
     },
+    "spicyextract": {
+        "accuracy": true,
+        "basePower": 0,
+        "boosts": {
+            "attack": 2,
+            "defense": -2
+        },
+        "category": "status",
+        "flags": {
+            "mirror": 1,
+            "protect": 1,
+            "reflectable": 1
+        },
+        "id": "spicyextract",
+        "name": "Spicy Extract",
+        "pp": 15,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "grass"
+    },
     "spiderweb": {
         "accuracy": true,
         "basePower": 0,
@@ -12162,6 +13287,28 @@
         "target": "self",
         "type": "grass",
         "volatileStatus": "spikyshield"
+    },
+    "spinout": {
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "spinout",
+        "name": "Spin Out",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "self": {
+            "boosts": {
+                "speed": -2
+            }
+        },
+        "target": "normal",
+        "type": "steel"
     },
     "spiritbreak": {
         "accuracy": 100,
@@ -12303,6 +13450,28 @@
         "target": "normal",
         "type": "normal",
         "volatileStatus": "spotlight"
+    },
+    "springtidestorm": {
+        "accuracy": 80,
+        "basePower": 100,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1,
+            "wind": 1
+        },
+        "id": "springtidestorm",
+        "name": "Springtide Storm",
+        "pp": 5,
+        "priority": 0,
+        "secondary": {
+            "boosts": {
+                "attack": -1
+            },
+            "chance": 30
+        },
+        "target": "allAdjacentFoes",
+        "type": "fairy"
     },
     "stealthrock": {
         "accuracy": true,
@@ -12487,6 +13656,26 @@
         "secondary": null,
         "target": "normal",
         "type": "ground"
+    },
+    "stoneaxe": {
+        "accuracy": 90,
+        "basePower": 65,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1,
+            "slicing": 1
+        },
+        "id": "stoneaxe",
+        "name": "Stone Axe",
+        "pp": 15,
+        "priority": 0,
+        "secondary": {},
+        "self": {},
+        "side_conditions": "stealthrock",
+        "target": "normal",
+        "type": "rock"
     },
     "stoneedge": {
         "accuracy": 80,
@@ -13115,7 +14304,8 @@
         "basePower": 0,
         "category": "status",
         "flags": {
-            "snatch": 1
+            "snatch": 1,
+            "wind": 1
         },
         "id": "tailwind",
         "name": "Tailwind",
@@ -13146,6 +14336,21 @@
         "secondary": null,
         "target": "normal",
         "type": "normal"
+    },
+    "takeheart": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "snatch": 1
+        },
+        "id": "takeheart",
+        "name": "Take Heart",
+        "pp": 15,
+        "priority": 0,
+        "secondary": null,
+        "target": "self",
+        "type": "psychic"
     },
     "tarshot": {
         "accuracy": 100,
@@ -13288,6 +14493,22 @@
         "secondary": null,
         "target": "self",
         "type": "psychic"
+    },
+    "terablast": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "terablast",
+        "name": "Tera Blast",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "normal"
     },
     "terrainpulse": {
         "accuracy": 100,
@@ -13571,6 +14792,23 @@
         "target": "normal",
         "type": "normal"
     },
+    "tidyup": {
+        "accuracy": true,
+        "basePower": 0,
+        "boosts": {
+            "attack": 1,
+            "speed": 1
+        },
+        "category": "status",
+        "flags": {},
+        "id": "tidyup",
+        "name": "Tidy Up",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "self",
+        "type": "normal"
+    },
     "topsyturvy": {
         "accuracy": true,
         "basePower": 0,
@@ -13588,6 +14826,31 @@
         "secondary": null,
         "target": "normal",
         "type": "dark"
+    },
+    "torchsong": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "special",
+        "flags": {
+            "bypasssub": 1,
+            "mirror": 1,
+            "protect": 1,
+            "sound": 1
+        },
+        "id": "torchsong",
+        "name": "Torch Song",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "self": {
+                "boosts": {
+                    "special-attack": 1
+                }
+            }
+        },
+        "target": "normal",
+        "type": "fire"
     },
     "torment": {
         "accuracy": 100,
@@ -13663,6 +14926,30 @@
         "status": "psn",
         "target": "normal",
         "type": "poison"
+    },
+    "trailblaze": {
+        "accuracy": 100,
+        "basePower": 50,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "trailblaze",
+        "name": "Trailblaze",
+        "pp": 20,
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "self": {
+                "boosts": {
+                    "speed": 1
+                }
+            }
+        },
+        "target": "normal",
+        "type": "grass"
     },
     "transform": {
         "accuracy": true,
@@ -13745,6 +15032,22 @@
         "target": "all",
         "type": "psychic"
     },
+    "triplearrows": {
+        "accuracy": 100,
+        "basePower": 90,
+        "category": "physical",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "triplearrows",
+        "name": "Triple Arrows",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "fighting"
+    },
     "tripleaxel": {
         "accuracy": 90,
         "basePower": 20,
@@ -13763,6 +15066,24 @@
         "secondary": null,
         "target": "normal",
         "type": "ice"
+    },
+    "tripledive": {
+        "accuracy": 95,
+        "basePower": 30,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "tripledive",
+        "multihit": 3,
+        "name": "Triple Dive",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "water"
     },
     "triplekick": {
         "accuracy": 90,
@@ -13823,6 +15144,23 @@
         "target": "normal",
         "type": "normal"
     },
+    "twinbeam": {
+        "accuracy": 100,
+        "basePower": 40,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "twinbeam",
+        "multihit": 2,
+        "name": "Twin Beam",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "psychic"
+    },
     "twineedle": {
         "accuracy": 100,
         "basePower": 25,
@@ -13849,7 +15187,8 @@
         "category": "special",
         "flags": {
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "wind": 1
         },
         "id": "twister",
         "name": "Twister",
@@ -13988,6 +15327,27 @@
         "secondary": null,
         "target": "normal",
         "type": "poison"
+    },
+    "victorydance": {
+        "accuracy": true,
+        "basePower": 0,
+        "boosts": {
+            "attack": 1,
+            "defense": 1,
+            "speed": 1
+        },
+        "category": "status",
+        "flags": {
+            "dance": 1,
+            "snatch": 1
+        },
+        "id": "victorydance",
+        "name": "Victory Dance",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "self",
+        "type": "fighting"
     },
     "vinewhip": {
         "accuracy": 100,
@@ -14222,6 +15582,27 @@
         "target": "allAdjacentFoes",
         "type": "water"
     },
+    "wavecrash": {
+        "accuracy": 100,
+        "basePower": 120,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "wavecrash",
+        "name": "Wave Crash",
+        "pp": 10,
+        "priority": 0,
+        "recoil": [
+            33,
+            100
+        ],
+        "secondary": null,
+        "target": "normal",
+        "type": "water"
+    },
     "weatherball": {
         "accuracy": 100,
         "basePower": 50,
@@ -14265,7 +15646,8 @@
             "bypasssub": 1,
             "drag": 1,
             "mirror": 1,
-            "reflectable": 1
+            "reflectable": 1,
+            "wind": 1
         },
         "id": "whirlwind",
         "name": "Whirlwind",
@@ -14277,7 +15659,7 @@
     },
     "wickedblow": {
         "accuracy": 100,
-        "basePower": 80,
+        "basePower": 75,
         "category": "physical",
         "flags": {
             "contact": 1,
@@ -14294,6 +15676,24 @@
         "type": "dark",
         "willCrit": true
     },
+    "wickedtorque": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "physical",
+        "flags": {
+            "protect": 1
+        },
+        "id": "wickedtorque",
+        "name": "Wicked Torque",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 10,
+            "status": "slp"
+        },
+        "target": "normal",
+        "type": "dark"
+    },
     "wideguard": {
         "accuracy": true,
         "basePower": 0,
@@ -14309,6 +15709,26 @@
         "side_conditions": "wideguard",
         "target": "allySide",
         "type": "rock"
+    },
+    "wildboltstorm": {
+        "accuracy": 80,
+        "basePower": 100,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1,
+            "wind": 1
+        },
+        "id": "wildboltstorm",
+        "name": "Wildbolt Storm",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 20,
+            "status": "par"
+        },
+        "target": "allAdjacentFoes",
+        "type": "electric"
     },
     "wildcharge": {
         "accuracy": 100,
@@ -14517,7 +15937,8 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "xscissor",
         "name": "X-Scissor",
