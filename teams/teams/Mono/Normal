@@ -1,11 +1,11 @@
-Ruffroar (Pyroar) (M) @ Life Orb  
+Ruffroar (Pyroar) @ Life Orb  
 Ability: Rivalry  
 EVs: 4 Atk / 252 SpA / 252 Spe  
 Naive Nature  
 - Dark Pulse  
+- Trailblaze  
 - Hyper Voice  
 - Flamethrower  
-- Trailblaze  
 
 Ruffclizar (Cyclizar) @ Choice Specs  
 Ability: Regenerator  
@@ -18,7 +18,7 @@ IVs: 0 Atk
 - Thunderbolt  
 - Shed Tail  
 
-Ruffo (Ditto) @ Choice Scarf  
+Ruffo (Ditto) @ Heavy-Duty Boots  
 Ability: Imposter  
 EVs: 248 HP / 8 Atk / 252 Def  
 Impish Nature  
@@ -35,21 +35,21 @@ IVs: 0 Atk
 - Stealth Rock  
 - Soft-Boiled  
 
-Ruffshold (Maushold) @ Wide Lens  
+Ruffshold (Maushold) @ Choice Band  
 Ability: Technician  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Substitute  
+- Aerial Ace  
 - Bite  
-- Population Bomb  
 - Low Kick  
+- Population Bomb  
 
-Ruffiary (Braviary) (M) @ Heavy-Duty Boots  
-Ability: Defiant  
-EVs: 252 HP / 252 Def / 4 SpD  
-Impish Nature  
-- Roost  
-- Defog  
-- U-turn  
+Ruffraptor (Staraptor) @ Choice Scarf  
+Ability: Reckless  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Double-Edge  
 - Brave Bird  
+- Close Combat  
+- U-turn  
 
