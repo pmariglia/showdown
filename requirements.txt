@@ -1,4 +1,4 @@
 requests==2.20.1
 environs==4.1.0
-websockets==10.3
+websockets==9.1
 python-dateutil==2.8.0
