@@ -1,26 +1,11 @@
 import logging
 import sys
+from environs import Env
 
-battle_bot_module = None
-websocket_uri = None
-username = None
-password = None
-bot_mode = None
-team_name = None
-pokemon_mode = None
-run_count = None
-user_to_challenge = None
-gambit_exe_path = ""
-greeting_message = 'I\'m one of the top percentage bots out there, now hold this L.'
-battle_ending_message = 'Yeah this game was a waste either way it ended smfh'
-room_name = None
+import constants
 
-use_relative_weights = False
-damage_calc_type = 'min'
-search_depth = 2
-dynamic_search_depth = False
-
-save_replay = False
+env = Env()
+env.read_env(path="env", recurse=False)
 
 
 class CustomFormatter(logging.Formatter):
@@ -43,6 +28,8 @@ def init_logging(level):
     default_handler.setFormatter(default_formatter)
     logger.addHandler(default_handler)
 
+
+init_logging(env("LOG_LEVEL", "DEBUG"))
 
 
 class _ShowdownConfig:
