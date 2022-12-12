@@ -1,10 +1,10 @@
-Rufflucha (Hawlucha) @ Power Herb  
+Rufflucha (Hawlucha) @ Heavy-Duty Boots  
 Ability: Unburden  
 Shiny: Yes  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Adamant Nature  
 - Swords Dance  
-- Sky Attack  
+- Fling  
 - Acrobatics  
 - Close Combat  
 
@@ -25,7 +25,7 @@ IVs: 0 Atk
 - Calm Mind  
 - Aura Sphere  
 - Moonblast  
-- Thunderbolt  
+- Shadow Ball  
 
 Ruff Tusk (Great Tusk) @ Leftovers  
 Ability: Protosynthesis  
@@ -34,7 +34,7 @@ Adamant Nature
 - Rapid Spin  
 - Earthquake  
 - Bulk Up  
-- Iron Head  
+- Ice Spinner  
 
 Ruffros (Tauros-Paldea-Fire) (M) @ Choice Scarf  
 Ability: Intimidate  
@@ -45,12 +45,12 @@ Jolly Nature
 - Iron Head  
 - Earthquake  
 
-Ruff Hands (Iron Hands) @ Assault Vest  
-Ability: Quark Drive  
-EVs: 252 HP / 4 Atk / 252 SpD  
-Careful Nature  
-- Drain Punch  
-- Thunder Punch  
-- Earthquake  
-- Iron Head  
+Ruffmot (Pawmot) @ Heavy-Duty Boots  
+Ability: Iron Fist  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Revival Blessing  
+- Double Shock  
+- Mach Punch  
+- Fake Out  
 
