@@ -1,6 +1,5 @@
 import logging
 import sys
-from environs import Env
 
 battle_bot_module = None
 websocket_uri = None
@@ -44,8 +43,6 @@ def init_logging(level):
     default_handler.setFormatter(default_formatter)
     logger.addHandler(default_handler)
 
-
-init_logging(env("LOG_LEVEL", "DEBUG"))
 
 
 class _ShowdownConfig:
