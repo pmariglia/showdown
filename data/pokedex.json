@@ -37666,76 +37666,8 @@
             "Field"
         ]
     },
-    "dudunsparce": {
-        "num": 917,
-        "name": "dudunsparce",
-        "baseForme": "Two-Segment",
-        "types": [
-            "normal"
-        ],
-        "baseStats": {
-            "hp": 125,
-            "attack": 100,
-            "defense": 80,
-            "special-attack": 85,
-            "special-defense": 75,
-            "speed": 55
-        },
-        "abilities": {
-            "0": "Serene Grace",
-            "1": "Run Away",
-            "H": "Rattled"
-        },
-        "heightm": 3.6,
-        "weightkg": 39.2,
-        "color": "Yellow",
-        "prevo": "Dunsparce",
-        "evoType": "levelMove",
-        "evoMove": "Hyper Drill",
-        "otherFormes": [
-            "Dudunsparce-Three-Segment"
-        ],
-        "formeOrder": [
-            "Dudunsparce",
-            "Dudunsparce-Three-Segment"
-        ],
-        "eggGroups": [
-            "Field"
-        ]
-    },
-    "dudunsparcethreesegment": {
-        "num": 917,
-        "name": "dudunsparce-three-segment",
-        "baseSpecies": "Dudunsparce",
-        "forme": "Three-Segment",
-        "types": [
-            "normal"
-        ],
-        "baseStats": {
-            "hp": 125,
-            "attack": 100,
-            "defense": 80,
-            "special-attack": 85,
-            "special-defense": 75,
-            "speed": 55
-        },
-        "abilities": {
-            "0": "Serene Grace",
-            "1": "Run Away",
-            "H": "Rattled"
-        },
-        "heightm": 4.5,
-        "weightkg": 47.4,
-        "color": "Yellow",
-        "prevo": "Dunsparce",
-        "evoType": "levelMove",
-        "evoMove": "Hyper Drill",
-        "eggGroups": [
-            "Field"
-        ]
-    },
     "tarountula": {
-        "num": 918,
+        "num": 917,
         "name": "tarountula",
         "types": [
             "bug"
@@ -37763,7 +37695,7 @@
         ]
     },
     "spidops": {
-        "num": 919,
+        "num": 918,
         "name": "spidops",
         "types": [
             "bug"
@@ -37790,7 +37722,7 @@
         ]
     },
     "nymble": {
-        "num": 920,
+        "num": 919,
         "name": "nymble",
         "types": [
             "bug"
@@ -37818,7 +37750,7 @@
         ]
     },
     "lokix": {
-        "num": 921,
+        "num": 920,
         "name": "lokix",
         "types": [
             "bug",
@@ -37845,697 +37777,99 @@
             "Bug"
         ]
     },
-    "rellor": {
-        "num": 922,
-        "name": "rellor",
+    "pawmi": {
+        "num": 921,
+        "name": "pawmi",
         "types": [
-            "bug"
+            "electric"
         ],
         "baseStats": {
-            "hp": 41,
+            "hp": 45,
             "attack": 50,
-            "defense": 60,
-            "special-attack": 31,
-            "special-defense": 58,
-            "speed": 30
+            "defense": 20,
+            "special-attack": 40,
+            "special-defense": 25,
+            "speed": 60
         },
         "abilities": {
-            "0": "Compound Eyes",
-            "H": "Shed Skin"
-        },
-        "heightm": 0.2,
-        "weightkg": 1,
-        "color": "Brown",
-        "evos": [
-            "Rabsca"
-        ],
-        "eggGroups": [
-            "Bug"
-        ]
-    },
-    "rabsca": {
-        "num": 923,
-        "name": "rabsca",
-        "types": [
-            "bug",
-            "psychic"
-        ],
-        "baseStats": {
-            "hp": 75,
-            "attack": 50,
-            "defense": 85,
-            "special-attack": 115,
-            "special-defense": 100,
-            "speed": 45
-        },
-        "abilities": {
-            "0": "Synchronize",
-            "H": "Telepathy"
+            "0": "Static",
+            "1": "Natural Cure",
+            "H": "Iron Fist"
         },
         "heightm": 0.3,
-        "weightkg": 3.5,
-        "color": "Green",
-        "prevo": "Rellor",
-        "evoType": "other",
-        "evoCondition": "walk 1000 steps in Let's Go",
-        "eggGroups": [
-            "Bug"
-        ]
-    },
-    "greavard": {
-        "num": 924,
-        "name": "greavard",
-        "types": [
-            "ghost"
-        ],
-        "baseStats": {
-            "hp": 50,
-            "attack": 61,
-            "defense": 60,
-            "special-attack": 30,
-            "special-defense": 55,
-            "speed": 34
-        },
-        "abilities": {
-            "0": "Pickup",
-            "H": "Fluffy"
-        },
-        "heightm": 0.6,
-        "weightkg": 35,
-        "color": "White",
-        "evos": [
-            "Houndstone"
-        ],
-        "eggGroups": [
-            "Field"
-        ]
-    },
-    "houndstone": {
-        "num": 925,
-        "name": "houndstone",
-        "types": [
-            "ghost"
-        ],
-        "baseStats": {
-            "hp": 72,
-            "attack": 101,
-            "defense": 100,
-            "special-attack": 50,
-            "special-defense": 97,
-            "speed": 68
-        },
-        "abilities": {
-            "0": "Sand Rush",
-            "H": "Fluffy"
-        },
-        "heightm": 2,
-        "weightkg": 15,
-        "color": "White",
-        "prevo": "Greavard",
-        "evoLevel": 30,
-        "evoCondition": "at night",
-        "eggGroups": [
-            "Field"
-        ]
-    },
-    "flittle": {
-        "num": 926,
-        "name": "flittle",
-        "types": [
-            "psychic"
-        ],
-        "baseStats": {
-            "hp": 30,
-            "attack": 35,
-            "defense": 30,
-            "special-attack": 55,
-            "special-defense": 40,
-            "speed": 75
-        },
-        "abilities": {
-            "0": "Anticipation",
-            "1": "Frisk",
-            "H": "Speed Boost"
-        },
-        "heightm": 0.2,
-        "weightkg": 1.5,
+        "weightkg": 2.5,
         "color": "Yellow",
         "evos": [
-            "Espathra"
+            "Pawmo"
         ],
         "eggGroups": [
-            "Flying"
+            "Field"
         ]
     },
-    "espathra": {
-        "num": 927,
-        "name": "espathra",
+    "pawmo": {
+        "num": 922,
+        "name": "pawmo",
         "types": [
-            "psychic"
+            "electric",
+            "fighting"
         ],
         "baseStats": {
-            "hp": 95,
-            "attack": 60,
-            "defense": 60,
-            "special-attack": 101,
+            "hp": 60,
+            "attack": 75,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 40,
+            "speed": 85
+        },
+        "abilities": {
+            "0": "Volt Absorb",
+            "1": "Natural Cure",
+            "H": "Iron Fist"
+        },
+        "heightm": 0.4,
+        "weightkg": 6.5,
+        "color": "Yellow",
+        "prevo": "Pawmi",
+        "evoLevel": 18,
+        "evos": [
+            "Pawmot"
+        ],
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "pawmot": {
+        "num": 923,
+        "name": "pawmot",
+        "types": [
+            "electric",
+            "fighting"
+        ],
+        "baseStats": {
+            "hp": 70,
+            "attack": 115,
+            "defense": 70,
+            "special-attack": 70,
             "special-defense": 60,
             "speed": 105
         },
         "abilities": {
-            "0": "Opportunist",
-            "1": "Frisk",
-            "H": "Speed Boost"
-        },
-        "heightm": 1.9,
-        "weightkg": 90,
-        "color": "Yellow",
-        "prevo": "Flittle",
-        "evoLevel": 35,
-        "eggGroups": [
-            "Flying"
-        ]
-    },
-    "farigiraf": {
-        "num": 928,
-        "name": "farigiraf",
-        "types": [
-            "normal",
-            "psychic"
-        ],
-        "baseStats": {
-            "hp": 120,
-            "attack": 90,
-            "defense": 70,
-            "special-attack": 110,
-            "special-defense": 70,
-            "speed": 60
-        },
-        "abilities": {
-            "0": "Cud Chew",
-            "1": "Armor Tail",
-            "H": "Sap Sipper"
-        },
-        "heightm": 3.2,
-        "weightkg": 160,
-        "color": "Brown",
-        "prevo": "Girafarig",
-        "evoType": "levelMove",
-        "evoMove": "Twin Beam",
-        "eggGroups": [
-            "Field"
-        ]
-    },
-    "wiglett": {
-        "num": 929,
-        "name": "wiglett",
-        "types": [
-            "water"
-        ],
-        "baseStats": {
-            "hp": 10,
-            "attack": 55,
-            "defense": 25,
-            "special-attack": 35,
-            "special-defense": 25,
-            "speed": 95
-        },
-        "abilities": {
-            "0": "Gooey",
-            "1": "Rattled",
-            "H": "Sand Veil"
-        },
-        "heightm": 1.2,
-        "weightkg": 1.8,
-        "color": "White",
-        "evos": [
-            "Wugtrio"
-        ],
-        "eggGroups": [
-            "Water 3"
-        ]
-    },
-    "wugtrio": {
-        "num": 930,
-        "name": "wugtrio",
-        "types": [
-            "water"
-        ],
-        "baseStats": {
-            "hp": 35,
-            "attack": 100,
-            "defense": 50,
-            "special-attack": 50,
-            "special-defense": 70,
-            "speed": 120
-        },
-        "abilities": {
-            "0": "Gooey",
-            "1": "Rattled",
-            "H": "Sand Veil"
-        },
-        "heightm": 1.2,
-        "weightkg": 5.4,
-        "color": "Red",
-        "prevo": "Wiglett",
-        "evoLevel": 26,
-        "eggGroups": [
-            "Water 3"
-        ]
-    },
-    "dondozo": {
-        "num": 931,
-        "name": "dondozo",
-        "types": [
-            "water"
-        ],
-        "baseStats": {
-            "hp": 150,
-            "attack": 100,
-            "defense": 115,
-            "special-attack": 65,
-            "special-defense": 65,
-            "speed": 35
-        },
-        "abilities": {
-            "0": "Unaware",
-            "1": "Oblivious",
-            "H": "Water Veil"
-        },
-        "heightm": 12,
-        "weightkg": 220,
-        "color": "Blue",
-        "eggGroups": [
-            "Water 2"
-        ]
-    },
-    "veluza": {
-        "num": 932,
-        "name": "veluza",
-        "types": [
-            "water",
-            "psychic"
-        ],
-        "baseStats": {
-            "hp": 90,
-            "attack": 102,
-            "defense": 73,
-            "special-attack": 78,
-            "special-defense": 65,
-            "speed": 70
-        },
-        "abilities": {
-            "0": "Mold Breaker",
-            "H": "Sharpness"
-        },
-        "heightm": 2.5,
-        "weightkg": 90,
-        "color": "Gray",
-        "eggGroups": [
-            "Water 2"
-        ]
-    },
-    "finizen": {
-        "num": 933,
-        "name": "finizen",
-        "types": [
-            "water"
-        ],
-        "baseStats": {
-            "hp": 70,
-            "attack": 45,
-            "defense": 40,
-            "special-attack": 45,
-            "special-defense": 40,
-            "speed": 75
-        },
-        "abilities": {
-            "0": "Water Veil"
-        },
-        "heightm": 1.3,
-        "weightkg": 60.2,
-        "color": "Blue",
-        "evos": [
-            "Palafin"
-        ],
-        "eggGroups": [
-            "Field",
-            "Water 2"
-        ]
-    },
-    "palafin": {
-        "num": 934,
-        "name": "palafin",
-        "baseForme": "Zero",
-        "types": [
-            "water"
-        ],
-        "baseStats": {
-            "hp": 100,
-            "attack": 70,
-            "defense": 72,
-            "special-attack": 53,
-            "special-defense": 62,
-            "speed": 100
-        },
-        "abilities": {
-            "0": "Zero to Hero"
-        },
-        "heightm": 1.3,
-        "weightkg": 60.2,
-        "color": "Blue",
-        "prevo": "Finizen",
-        "evoLevel": 38,
-        "otherFormes": [
-            "Palafin-Hero"
-        ],
-        "formeOrder": [
-            "Palafin",
-            "Palafin-Hero"
-        ],
-        "eggGroups": [
-            "Field",
-            "Water 2"
-        ]
-    },
-    "palafinhero": {
-        "num": 934,
-        "name": "palafin-hero",
-        "baseSpecies": "Palafin",
-        "forme": "Hero",
-        "types": [
-            "water"
-        ],
-        "baseStats": {
-            "hp": 100,
-            "attack": 160,
-            "defense": 97,
-            "special-attack": 106,
-            "special-defense": 87,
-            "speed": 100
-        },
-        "abilities": {
-            "0": "Zero to Hero"
-        },
-        "heightm": 1.8,
-        "weightkg": 97.4,
-        "color": "Blue",
-        "eggGroups": [
-            "Field",
-            "Water 2"
-        ],
-        "requiredAbility": "Zero to Hero",
-        "battleOnly": "Palafin"
-    },
-    "smoliv": {
-        "num": 935,
-        "name": "smoliv",
-        "types": [
-            "grass",
-            "normal"
-        ],
-        "baseStats": {
-            "hp": 41,
-            "attack": 35,
-            "defense": 45,
-            "special-attack": 58,
-            "special-defense": 51,
-            "speed": 30
-        },
-        "abilities": {
-            "0": "Early Bird",
-            "H": "Harvest"
-        },
-        "heightm": 0.3,
-        "weightkg": 6.5,
-        "color": "Green",
-        "evos": [
-            "Dolliv"
-        ],
-        "eggGroups": [
-            "Grass"
-        ]
-    },
-    "dolliv": {
-        "num": 936,
-        "name": "dolliv",
-        "types": [
-            "grass",
-            "normal"
-        ],
-        "baseStats": {
-            "hp": 52,
-            "attack": 53,
-            "defense": 60,
-            "special-attack": 78,
-            "special-defense": 78,
-            "speed": 33
-        },
-        "abilities": {
-            "0": "Early Bird",
-            "H": "Harvest"
-        },
-        "heightm": 0.6,
-        "weightkg": 11.9,
-        "color": "Green",
-        "prevo": "Smoliv",
-        "evoLevel": 25,
-        "evos": [
-            "Arboliva"
-        ],
-        "eggGroups": [
-            "Grass"
-        ]
-    },
-    "arboliva": {
-        "num": 937,
-        "name": "arboliva",
-        "types": [
-            "grass",
-            "normal"
-        ],
-        "baseStats": {
-            "hp": 78,
-            "attack": 69,
-            "defense": 90,
-            "special-attack": 125,
-            "special-defense": 109,
-            "speed": 39
-        },
-        "abilities": {
-            "0": "Seed Sower",
-            "H": "Harvest"
-        },
-        "heightm": 1.4,
-        "weightkg": 48.2,
-        "color": "Green",
-        "prevo": "Dolliv",
-        "evoLevel": 35,
-        "eggGroups": [
-            "Grass"
-        ]
-    },
-    "capsakid": {
-        "num": 938,
-        "name": "capsakid",
-        "types": [
-            "grass"
-        ],
-        "baseStats": {
-            "hp": 52,
-            "attack": 62,
-            "defense": 40,
-            "special-attack": 62,
-            "special-defense": 40,
-            "speed": 50
-        },
-        "abilities": {
-            "0": "Chlorophyll",
-            "1": "Insomnia",
-            "H": "Klutz"
-        },
-        "heightm": 0.3,
-        "weightkg": 3,
-        "color": "Green",
-        "evos": [
-            "Scovillain"
-        ],
-        "eggGroups": [
-            "Grass"
-        ]
-    },
-    "scovillain": {
-        "num": 939,
-        "name": "scovillain",
-        "types": [
-            "grass",
-            "fire"
-        ],
-        "baseStats": {
-            "hp": 65,
-            "attack": 108,
-            "defense": 65,
-            "special-attack": 108,
-            "special-defense": 65,
-            "speed": 75
-        },
-        "abilities": {
-            "0": "Chlorophyll",
-            "1": "Insomnia",
-            "H": "Moody"
+            "0": "Volt Absorb",
+            "1": "Natural Cure",
+            "H": "Iron Fist"
         },
         "heightm": 0.9,
-        "weightkg": 15,
-        "color": "Green",
-        "prevo": "Capsakid",
-        "evoType": "useItem",
-        "evoItem": "Fire Stone",
-        "evoLevel": 30,
-        "eggGroups": [
-            "Grass"
-        ]
-    },
-    "tadbulb": {
-        "num": 940,
-        "name": "tadbulb",
-        "types": [
-            "electric"
-        ],
-        "baseStats": {
-            "hp": 61,
-            "attack": 31,
-            "defense": 41,
-            "special-attack": 59,
-            "special-defense": 35,
-            "speed": 45
-        },
-        "abilities": {
-            "0": "Own Tempo",
-            "1": "Static",
-            "H": "Damp"
-        },
-        "heightm": 0.3,
-        "weightkg": 0.4,
+        "weightkg": 41,
         "color": "Yellow",
-        "evos": [
-            "Bellibolt"
-        ],
-        "eggGroups": [
-            "Water 1"
-        ]
-    },
-    "bellibolt": {
-        "num": 941,
-        "name": "bellibolt",
-        "types": [
-            "electric"
-        ],
-        "baseStats": {
-            "hp": 109,
-            "attack": 64,
-            "defense": 91,
-            "special-attack": 103,
-            "special-defense": 83,
-            "speed": 45
-        },
-        "abilities": {
-            "0": "Electromorphosis",
-            "1": "Static",
-            "H": "Damp"
-        },
-        "heightm": 1.2,
-        "weightkg": 113,
-        "color": "Green",
-        "prevo": "Tadbulb",
-        "evoType": "useItem",
-        "evoItem": "Thunder Stone",
-        "eggGroups": [
-            "Water 1"
-        ]
-    },
-    "varoom": {
-        "num": 942,
-        "name": "varoom",
-        "types": [
-            "steel",
-            "poison"
-        ],
-        "baseStats": {
-            "hp": 45,
-            "attack": 70,
-            "defense": 63,
-            "special-attack": 30,
-            "special-defense": 45,
-            "speed": 47
-        },
-        "abilities": {
-            "0": "Overcoat",
-            "H": "Slow Start"
-        },
-        "heightm": 1,
-        "weightkg": 35,
-        "color": "Gray",
-        "evos": [
-            "Revavroom"
-        ],
-        "eggGroups": [
-            "Mineral"
-        ]
-    },
-    "revavroom": {
-        "num": 943,
-        "name": "revavroom",
-        "types": [
-            "steel",
-            "poison"
-        ],
-        "baseStats": {
-            "hp": 80,
-            "attack": 119,
-            "defense": 90,
-            "special-attack": 54,
-            "special-defense": 67,
-            "speed": 90
-        },
-        "abilities": {
-            "0": "Overcoat",
-            "H": "Filter"
-        },
-        "heightm": 1.8,
-        "weightkg": 120,
-        "color": "Gray",
-        "prevo": "Varoom",
-        "evoLevel": 40,
-        "eggGroups": [
-            "Mineral"
-        ]
-    },
-    "orthworm": {
-        "num": 944,
-        "name": "orthworm",
-        "types": [
-            "steel"
-        ],
-        "baseStats": {
-            "hp": 70,
-            "attack": 85,
-            "defense": 145,
-            "special-attack": 60,
-            "special-defense": 55,
-            "speed": 65
-        },
-        "abilities": {
-            "0": "Earth Eater",
-            "H": "Sand Veil"
-        },
-        "heightm": 2.5,
-        "weightkg": 310,
-        "color": "Pink",
+        "prevo": "Pawmo",
+        "evoType": "other",
+        "evoCondition": "walk 1000 steps in Let's Go",
         "eggGroups": [
             "Field"
         ]
     },
     "tandemaus": {
-        "num": 945,
+        "num": 924,
         "name": "tandemaus",
         "types": [
             "normal"
@@ -38567,7 +37901,7 @@
         ]
     },
     "maushold": {
-        "num": 946,
+        "num": 925,
         "name": "maushold",
         "baseForme": "Three",
         "types": [
@@ -38605,7 +37939,7 @@
         ]
     },
     "mausholdfour": {
-        "num": 946,
+        "num": 925,
         "name": "maushold-four",
         "baseSpecies": "Maushold",
         "forme": "Four",
@@ -38636,398 +37970,153 @@
             "Fairy"
         ]
     },
-    "cetoddle": {
-        "num": 947,
-        "name": "cetoddle",
+    "fidough": {
+        "num": 926,
+        "name": "fidough",
         "types": [
-            "ice"
+            "fairy"
         ],
         "baseStats": {
-            "hp": 108,
-            "attack": 68,
-            "defense": 45,
+            "hp": 37,
+            "attack": 55,
+            "defense": 70,
             "special-attack": 30,
-            "special-defense": 40,
-            "speed": 43
-        },
-        "abilities": {
-            "0": "Thick Fat",
-            "1": "Snow Cloak",
-            "H": "Sheer Force"
-        },
-        "heightm": 1.2,
-        "weightkg": 45,
-        "color": "White",
-        "evos": [
-            "Cetitan"
-        ],
-        "eggGroups": [
-            "Field"
-        ]
-    },
-    "cetitan": {
-        "num": 948,
-        "name": "cetitan",
-        "types": [
-            "ice"
-        ],
-        "baseStats": {
-            "hp": 170,
-            "attack": 113,
-            "defense": 65,
-            "special-attack": 45,
             "special-defense": 55,
-            "speed": 73
+            "speed": 65
         },
         "abilities": {
-            "0": "Thick Fat",
-            "1": "Slush Rush",
-            "H": "Sheer Force"
-        },
-        "heightm": 4.5,
-        "weightkg": 700,
-        "color": "White",
-        "prevo": "Cetoddle",
-        "evoType": "useItem",
-        "evoItem": "Ice Stone",
-        "eggGroups": [
-            "Field"
-        ]
-    },
-    "frigibax": {
-        "num": 949,
-        "name": "frigibax",
-        "types": [
-            "dragon",
-            "ice"
-        ],
-        "baseStats": {
-            "hp": 65,
-            "attack": 75,
-            "defense": 45,
-            "special-attack": 35,
-            "special-defense": 45,
-            "speed": 55
-        },
-        "abilities": {
-            "0": "Thermal Exchange",
-            "H": "Ice Body"
-        },
-        "heightm": 0.5,
-        "weightkg": 17,
-        "color": "Gray",
-        "evos": [
-            "Arctibax"
-        ],
-        "eggGroups": [
-            "Dragon",
-            "Mineral"
-        ]
-    },
-    "arctibax": {
-        "num": 950,
-        "name": "arctibax",
-        "types": [
-            "dragon",
-            "ice"
-        ],
-        "baseStats": {
-            "hp": 90,
-            "attack": 95,
-            "defense": 66,
-            "special-attack": 45,
-            "special-defense": 65,
-            "speed": 62
-        },
-        "abilities": {
-            "0": "Thermal Exchange",
-            "H": "Ice Body"
-        },
-        "heightm": 0.8,
-        "weightkg": 30,
-        "color": "Gray",
-        "prevo": "Frigibax",
-        "evoLevel": 35,
-        "evos": [
-            "Baxcalibur"
-        ],
-        "eggGroups": [
-            "Dragon",
-            "Mineral"
-        ]
-    },
-    "baxcalibur": {
-        "num": 951,
-        "name": "baxcalibur",
-        "types": [
-            "dragon",
-            "ice"
-        ],
-        "baseStats": {
-            "hp": 115,
-            "attack": 145,
-            "defense": 92,
-            "special-attack": 75,
-            "special-defense": 86,
-            "speed": 87
-        },
-        "abilities": {
-            "0": "Thermal Exchange",
-            "H": "Ice Body"
-        },
-        "heightm": 2.1,
-        "weightkg": 210,
-        "color": "Gray",
-        "prevo": "Arctibax",
-        "evoLevel": 54,
-        "eggGroups": [
-            "Dragon",
-            "Mineral"
-        ]
-    },
-    "tatsugiri": {
-        "num": 952,
-        "name": "tatsugiri",
-        "baseForme": "Curly",
-        "types": [
-            "dragon",
-            "water"
-        ],
-        "baseStats": {
-            "hp": 68,
-            "attack": 50,
-            "defense": 60,
-            "special-attack": 120,
-            "special-defense": 95,
-            "speed": 82
-        },
-        "abilities": {
-            "0": "Commander",
-            "H": "Storm Drain"
+            "0": "Own Tempo",
+            "H": "Klutz"
         },
         "heightm": 0.3,
-        "weightkg": 8,
-        "color": "Pink",
-        "cosmeticFormes": [
-            "Tatsugiri-Droopy",
-            "Tatsugiri-Stretchy"
-        ],
-        "formeOrder": [
-            "Tatsugiri",
-            "Tatsugiri-Droopy",
-            "Tatsugiri-Stretchy"
+        "weightkg": 10.9,
+        "color": "Yellow",
+        "evos": [
+            "Dachsbun"
         ],
         "eggGroups": [
-            "Water 2"
+            "Field",
+            "Mineral"
         ]
     },
-    "cyclizar": {
-        "num": 953,
-        "name": "cyclizar",
+    "dachsbun": {
+        "num": 927,
+        "name": "dachsbun",
         "types": [
-            "dragon",
+            "fairy"
+        ],
+        "baseStats": {
+            "hp": 57,
+            "attack": 80,
+            "defense": 115,
+            "special-attack": 50,
+            "special-defense": 80,
+            "speed": 95
+        },
+        "abilities": {
+            "0": "Well-Baked Body",
+            "H": "Aroma Veil"
+        },
+        "heightm": 0.5,
+        "weightkg": 14.9,
+        "color": "Brown",
+        "prevo": "Fidough",
+        "evoLevel": 26,
+        "eggGroups": [
+            "Field",
+            "Mineral"
+        ]
+    },
+    "smoliv": {
+        "num": 928,
+        "name": "smoliv",
+        "types": [
+            "grass",
             "normal"
         ],
         "baseStats": {
-            "hp": 70,
-            "attack": 95,
-            "defense": 65,
-            "special-attack": 85,
-            "special-defense": 65,
-            "speed": 121
+            "hp": 41,
+            "attack": 35,
+            "defense": 45,
+            "special-attack": 58,
+            "special-defense": 51,
+            "speed": 30
         },
         "abilities": {
-            "0": "Shed Skin",
-            "H": "Regenerator"
-        },
-        "heightm": 1.6,
-        "weightkg": 63,
-        "color": "Green",
-        "eggGroups": [
-            "Field"
-        ]
-    },
-    "pawmi": {
-        "num": 954,
-        "name": "pawmi",
-        "types": [
-            "electric"
-        ],
-        "baseStats": {
-            "hp": 45,
-            "attack": 50,
-            "defense": 20,
-            "special-attack": 40,
-            "special-defense": 25,
-            "speed": 60
-        },
-        "abilities": {
-            "0": "Static",
-            "1": "Natural Cure",
-            "H": "Iron Fist"
+            "0": "Early Bird",
+            "H": "Harvest"
         },
         "heightm": 0.3,
-        "weightkg": 2.5,
-        "color": "Yellow",
-        "evos": [
-            "Pawmo"
-        ],
-        "eggGroups": [
-            "Field"
-        ]
-    },
-    "pawmo": {
-        "num": 955,
-        "name": "pawmo",
-        "types": [
-            "electric",
-            "fighting"
-        ],
-        "baseStats": {
-            "hp": 60,
-            "attack": 75,
-            "defense": 40,
-            "special-attack": 50,
-            "special-defense": 40,
-            "speed": 85
-        },
-        "abilities": {
-            "0": "Volt Absorb",
-            "1": "Natural Cure",
-            "H": "Iron Fist"
-        },
-        "heightm": 0.4,
         "weightkg": 6.5,
-        "color": "Yellow",
-        "prevo": "Pawmi",
-        "evoLevel": 18,
+        "color": "Green",
         "evos": [
-            "Pawmot"
+            "Dolliv"
         ],
         "eggGroups": [
-            "Field"
+            "Grass"
         ]
     },
-    "pawmot": {
-        "num": 956,
-        "name": "pawmot",
+    "dolliv": {
+        "num": 929,
+        "name": "dolliv",
         "types": [
-            "electric",
-            "fighting"
+            "grass",
+            "normal"
         ],
         "baseStats": {
-            "hp": 70,
-            "attack": 115,
-            "defense": 70,
-            "special-attack": 70,
-            "special-defense": 60,
-            "speed": 105
-        },
-        "abilities": {
-            "0": "Volt Absorb",
-            "1": "Natural Cure",
-            "H": "Iron Fist"
-        },
-        "heightm": 0.9,
-        "weightkg": 41,
-        "color": "Yellow",
-        "prevo": "Pawmo",
-        "evoType": "other",
-        "evoCondition": "walk 1000 steps in Let's Go",
-        "eggGroups": [
-            "Field"
-        ]
-    },
-    "wattrel": {
-        "num": 957,
-        "name": "wattrel",
-        "types": [
-            "electric",
-            "flying"
-        ],
-        "baseStats": {
-            "hp": 40,
-            "attack": 40,
-            "defense": 35,
-            "special-attack": 55,
-            "special-defense": 40,
-            "speed": 70
-        },
-        "abilities": {
-            "0": "Wind Power",
-            "1": "Volt Absorb",
-            "H": "Competitive"
-        },
-        "heightm": 0.4,
-        "weightkg": 3.6,
-        "color": "Black",
-        "evos": [
-            "Kilowattrel"
-        ],
-        "eggGroups": [
-            "Water 1",
-            "Flying"
-        ]
-    },
-    "kilowattrel": {
-        "num": 958,
-        "name": "kilowattrel",
-        "types": [
-            "electric",
-            "flying"
-        ],
-        "baseStats": {
-            "hp": 70,
-            "attack": 70,
+            "hp": 52,
+            "attack": 53,
             "defense": 60,
-            "special-attack": 105,
-            "special-defense": 60,
-            "speed": 125
+            "special-attack": 78,
+            "special-defense": 78,
+            "speed": 33
         },
         "abilities": {
-            "0": "Wind Power",
-            "1": "Volt Absorb",
-            "H": "Competitive"
+            "0": "Early Bird",
+            "H": "Harvest"
+        },
+        "heightm": 0.6,
+        "weightkg": 11.9,
+        "color": "Green",
+        "prevo": "Smoliv",
+        "evoLevel": 25,
+        "evos": [
+            "Arboliva"
+        ],
+        "eggGroups": [
+            "Grass"
+        ]
+    },
+    "arboliva": {
+        "num": 930,
+        "name": "arboliva",
+        "types": [
+            "grass",
+            "normal"
+        ],
+        "baseStats": {
+            "hp": 78,
+            "attack": 69,
+            "defense": 90,
+            "special-attack": 125,
+            "special-defense": 109,
+            "speed": 39
+        },
+        "abilities": {
+            "0": "Seed Sower",
+            "H": "Harvest"
         },
         "heightm": 1.4,
-        "weightkg": 38.6,
-        "color": "Yellow",
-        "prevo": "Wattrel",
-        "evoLevel": 25,
+        "weightkg": 48.2,
+        "color": "Green",
+        "prevo": "Dolliv",
+        "evoLevel": 35,
         "eggGroups": [
-            "Water 1",
-            "Flying"
-        ]
-    },
-    "bombirdier": {
-        "num": 959,
-        "name": "bombirdier",
-        "types": [
-            "flying",
-            "dark"
-        ],
-        "baseStats": {
-            "hp": 70,
-            "attack": 103,
-            "defense": 85,
-            "special-attack": 60,
-            "special-defense": 85,
-            "speed": 82
-        },
-        "abilities": {
-            "0": "Big Pecks",
-            "1": "Keen Eye",
-            "H": "Rocky Payload"
-        },
-        "heightm": 1.5,
-        "weightkg": 42.9,
-        "color": "White",
-        "eggGroups": [
-            "Flying"
+            "Grass"
         ]
     },
     "squawkabilly": {
-        "num": 960,
+        "num": 931,
         "name": "squawkabilly",
         "baseForme": "Green",
         "types": [
@@ -39066,7 +38155,7 @@
         ]
     },
     "squawkabillyblue": {
-        "num": 960,
+        "num": 931,
         "name": "squawkabilly-blue",
         "baseSpecies": "Squawkabilly",
         "forme": "Blue",
@@ -39095,7 +38184,7 @@
         ]
     },
     "squawkabillyyellow": {
-        "num": 960,
+        "num": 931,
         "name": "squawkabilly-yellow",
         "baseSpecies": "Squawkabilly",
         "forme": "Yellow",
@@ -39124,7 +38213,7 @@
         ]
     },
     "squawkabillywhite": {
-        "num": 960,
+        "num": 931,
         "name": "squawkabilly-white",
         "baseSpecies": "Squawkabilly",
         "forme": "White",
@@ -39152,61 +38241,8 @@
             "Flying"
         ]
     },
-    "flamigo": {
-        "num": 961,
-        "name": "flamigo",
-        "types": [
-            "flying",
-            "fighting"
-        ],
-        "baseStats": {
-            "hp": 82,
-            "attack": 115,
-            "defense": 74,
-            "special-attack": 75,
-            "special-defense": 64,
-            "speed": 90
-        },
-        "abilities": {
-            "0": "Scrappy",
-            "1": "Tangled Feet",
-            "H": "Costar"
-        },
-        "heightm": 1.6,
-        "weightkg": 37,
-        "color": "Pink",
-        "eggGroups": [
-            "Flying"
-        ]
-    },
-    "klawf": {
-        "num": 962,
-        "name": "klawf",
-        "types": [
-            "rock"
-        ],
-        "baseStats": {
-            "hp": 70,
-            "attack": 100,
-            "defense": 115,
-            "special-attack": 35,
-            "special-defense": 55,
-            "speed": 75
-        },
-        "abilities": {
-            "0": "Anger Shell",
-            "1": "Shell Armor",
-            "H": "Regenerator"
-        },
-        "heightm": 1.3,
-        "weightkg": 79,
-        "color": "Red",
-        "eggGroups": [
-            "Water 3"
-        ]
-    },
     "nacli": {
-        "num": 963,
+        "num": 932,
         "name": "nacli",
         "types": [
             "rock"
@@ -39235,7 +38271,7 @@
         ]
     },
     "naclstack": {
-        "num": 964,
+        "num": 933,
         "name": "naclstack",
         "types": [
             "rock"
@@ -39266,7 +38302,7 @@
         ]
     },
     "garganacl": {
-        "num": 965,
+        "num": 934,
         "name": "garganacl",
         "types": [
             "rock"
@@ -39293,65 +38329,271 @@
             "Mineral"
         ]
     },
-    "glimmet": {
-        "num": 966,
-        "name": "glimmet",
+    "charcadet": {
+        "num": 935,
+        "name": "charcadet",
         "types": [
-            "rock",
-            "poison"
+            "fire"
         ],
         "baseStats": {
-            "hp": 48,
-            "attack": 35,
-            "defense": 42,
-            "special-attack": 105,
-            "special-defense": 60,
-            "speed": 60
+            "hp": 40,
+            "attack": 50,
+            "defense": 40,
+            "special-attack": 50,
+            "special-defense": 40,
+            "speed": 35
         },
         "abilities": {
-            "0": "Toxic Debris",
-            "H": "Corrosion"
+            "0": "Flash Fire",
+            "H": "Flame Body"
         },
-        "heightm": 0.7,
-        "weightkg": 8,
-        "color": "Blue",
+        "heightm": 0.6,
+        "weightkg": 10.5,
+        "color": "Red",
         "evos": [
-            "Glimmora"
+            "Armarouge",
+            "Ceruledge"
         ],
         "eggGroups": [
-            "Mineral"
+            "Human-Like"
         ]
     },
-    "glimmora": {
-        "num": 967,
-        "name": "glimmora",
+    "armarouge": {
+        "num": 936,
+        "name": "armarouge",
         "types": [
-            "rock",
-            "poison"
+            "fire",
+            "psychic"
         ],
         "baseStats": {
-            "hp": 83,
-            "attack": 55,
-            "defense": 90,
-            "special-attack": 130,
-            "special-defense": 81,
-            "speed": 86
+            "hp": 85,
+            "attack": 60,
+            "defense": 100,
+            "special-attack": 125,
+            "special-defense": 80,
+            "speed": 75
         },
         "abilities": {
-            "0": "Toxic Debris",
-            "H": "Corrosion"
+            "0": "Flash Fire",
+            "H": "Weak Armor"
         },
         "heightm": 1.5,
-        "weightkg": 45,
-        "color": "Blue",
-        "prevo": "Glimmet",
-        "evoLevel": 35,
+        "weightkg": 85,
+        "color": "Red",
+        "prevo": "Charcadet",
+        "evoType": "useItem",
+        "evoItem": "Auspicious Armor",
         "eggGroups": [
-            "Mineral"
+            "Human-Like"
+        ]
+    },
+    "ceruledge": {
+        "num": 937,
+        "name": "ceruledge",
+        "types": [
+            "fire",
+            "ghost"
+        ],
+        "baseStats": {
+            "hp": 75,
+            "attack": 125,
+            "defense": 80,
+            "special-attack": 60,
+            "special-defense": 100,
+            "speed": 85
+        },
+        "abilities": {
+            "0": "Flash Fire",
+            "H": "Weak Armor"
+        },
+        "heightm": 1.6,
+        "weightkg": 62,
+        "color": "Blue",
+        "prevo": "Charcadet",
+        "evoType": "useItem",
+        "evoItem": "Malicious Armor",
+        "eggGroups": [
+            "Human-Like"
+        ]
+    },
+    "tadbulb": {
+        "num": 938,
+        "name": "tadbulb",
+        "types": [
+            "electric"
+        ],
+        "baseStats": {
+            "hp": 61,
+            "attack": 31,
+            "defense": 41,
+            "special-attack": 59,
+            "special-defense": 35,
+            "speed": 45
+        },
+        "abilities": {
+            "0": "Own Tempo",
+            "1": "Static",
+            "H": "Damp"
+        },
+        "heightm": 0.3,
+        "weightkg": 0.4,
+        "color": "Yellow",
+        "evos": [
+            "Bellibolt"
+        ],
+        "eggGroups": [
+            "Water 1"
+        ]
+    },
+    "bellibolt": {
+        "num": 939,
+        "name": "bellibolt",
+        "types": [
+            "electric"
+        ],
+        "baseStats": {
+            "hp": 109,
+            "attack": 64,
+            "defense": 91,
+            "special-attack": 103,
+            "special-defense": 83,
+            "speed": 45
+        },
+        "abilities": {
+            "0": "Electromorphosis",
+            "1": "Static",
+            "H": "Damp"
+        },
+        "heightm": 1.2,
+        "weightkg": 113,
+        "color": "Green",
+        "prevo": "Tadbulb",
+        "evoType": "useItem",
+        "evoItem": "Thunder Stone",
+        "eggGroups": [
+            "Water 1"
+        ]
+    },
+    "wattrel": {
+        "num": 940,
+        "name": "wattrel",
+        "types": [
+            "electric",
+            "flying"
+        ],
+        "baseStats": {
+            "hp": 40,
+            "attack": 40,
+            "defense": 35,
+            "special-attack": 55,
+            "special-defense": 40,
+            "speed": 70
+        },
+        "abilities": {
+            "0": "Wind Power",
+            "1": "Volt Absorb",
+            "H": "Competitive"
+        },
+        "heightm": 0.4,
+        "weightkg": 3.6,
+        "color": "Black",
+        "evos": [
+            "Kilowattrel"
+        ],
+        "eggGroups": [
+            "Water 1",
+            "Flying"
+        ]
+    },
+    "kilowattrel": {
+        "num": 941,
+        "name": "kilowattrel",
+        "types": [
+            "electric",
+            "flying"
+        ],
+        "baseStats": {
+            "hp": 70,
+            "attack": 70,
+            "defense": 60,
+            "special-attack": 105,
+            "special-defense": 60,
+            "speed": 125
+        },
+        "abilities": {
+            "0": "Wind Power",
+            "1": "Volt Absorb",
+            "H": "Competitive"
+        },
+        "heightm": 1.4,
+        "weightkg": 38.6,
+        "color": "Yellow",
+        "prevo": "Wattrel",
+        "evoLevel": 25,
+        "eggGroups": [
+            "Water 1",
+            "Flying"
+        ]
+    },
+    "maschiff": {
+        "num": 942,
+        "name": "maschiff",
+        "types": [
+            "dark"
+        ],
+        "baseStats": {
+            "hp": 60,
+            "attack": 78,
+            "defense": 60,
+            "special-attack": 40,
+            "special-defense": 51,
+            "speed": 51
+        },
+        "abilities": {
+            "0": "Intimidate",
+            "1": "Run Away",
+            "H": "Stakeout"
+        },
+        "heightm": 0.5,
+        "weightkg": 16,
+        "color": "Brown",
+        "evos": [
+            "Mabosstiff"
+        ],
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "mabosstiff": {
+        "num": 943,
+        "name": "mabosstiff",
+        "types": [
+            "dark"
+        ],
+        "baseStats": {
+            "hp": 80,
+            "attack": 120,
+            "defense": 90,
+            "special-attack": 60,
+            "special-defense": 70,
+            "speed": 85
+        },
+        "abilities": {
+            "0": "Intimidate",
+            "1": "Guard Dog",
+            "H": "Stakeout"
+        },
+        "heightm": 1.1,
+        "weightkg": 61,
+        "color": "Gray",
+        "prevo": "Maschiff",
+        "evoLevel": 30,
+        "eggGroups": [
+            "Field"
         ]
     },
     "shroodle": {
-        "num": 968,
+        "num": 944,
         "name": "shroodle",
         "types": [
             "poison",
@@ -39381,7 +38623,7 @@
         ]
     },
     "grafaiai": {
-        "num": 969,
+        "num": 945,
         "name": "grafaiai",
         "types": [
             "poison",
@@ -39409,122 +38651,8 @@
             "Field"
         ]
     },
-    "fidough": {
-        "num": 970,
-        "name": "fidough",
-        "types": [
-            "fairy"
-        ],
-        "baseStats": {
-            "hp": 37,
-            "attack": 55,
-            "defense": 70,
-            "special-attack": 30,
-            "special-defense": 55,
-            "speed": 65
-        },
-        "abilities": {
-            "0": "Own Tempo",
-            "H": "Klutz"
-        },
-        "heightm": 0.3,
-        "weightkg": 10.9,
-        "color": "Yellow",
-        "evos": [
-            "Dachsbun"
-        ],
-        "eggGroups": [
-            "Field",
-            "Mineral"
-        ]
-    },
-    "dachsbun": {
-        "num": 971,
-        "name": "dachsbun",
-        "types": [
-            "fairy"
-        ],
-        "baseStats": {
-            "hp": 57,
-            "attack": 80,
-            "defense": 115,
-            "special-attack": 50,
-            "special-defense": 80,
-            "speed": 95
-        },
-        "abilities": {
-            "0": "Well-Baked Body",
-            "H": "Aroma Veil"
-        },
-        "heightm": 0.5,
-        "weightkg": 14.9,
-        "color": "Brown",
-        "prevo": "Fidough",
-        "evoLevel": 26,
-        "eggGroups": [
-            "Field",
-            "Mineral"
-        ]
-    },
-    "maschiff": {
-        "num": 972,
-        "name": "maschiff",
-        "types": [
-            "dark"
-        ],
-        "baseStats": {
-            "hp": 60,
-            "attack": 78,
-            "defense": 60,
-            "special-attack": 40,
-            "special-defense": 51,
-            "speed": 51
-        },
-        "abilities": {
-            "0": "Intimidate",
-            "1": "Run Away",
-            "H": "Stakeout"
-        },
-        "heightm": 0.5,
-        "weightkg": 16,
-        "color": "Brown",
-        "evos": [
-            "Mabosstiff"
-        ],
-        "eggGroups": [
-            "Field"
-        ]
-    },
-    "mabosstiff": {
-        "num": 973,
-        "name": "mabosstiff",
-        "types": [
-            "dark"
-        ],
-        "baseStats": {
-            "hp": 80,
-            "attack": 120,
-            "defense": 90,
-            "special-attack": 60,
-            "special-defense": 70,
-            "speed": 85
-        },
-        "abilities": {
-            "0": "Intimidate",
-            "1": "Guard Dog",
-            "H": "Stakeout"
-        },
-        "heightm": 1.1,
-        "weightkg": 61,
-        "color": "Gray",
-        "prevo": "Maschiff",
-        "evoLevel": 30,
-        "eggGroups": [
-            "Field"
-        ]
-    },
     "bramblin": {
-        "num": 974,
+        "num": 946,
         "name": "bramblin",
         "types": [
             "grass",
@@ -39553,7 +38681,7 @@
         ]
     },
     "brambleghast": {
-        "num": 975,
+        "num": 947,
         "name": "brambleghast",
         "types": [
             "grass",
@@ -39581,8 +38709,1566 @@
             "Grass"
         ]
     },
-    "gimmighoul": {
+    "toedscool": {
+        "num": 948,
+        "name": "toedscool",
+        "types": [
+            "ground",
+            "grass"
+        ],
+        "baseStats": {
+            "hp": 40,
+            "attack": 40,
+            "defense": 35,
+            "special-attack": 50,
+            "special-defense": 100,
+            "speed": 70
+        },
+        "abilities": {
+            "0": "Mycelium Might"
+        },
+        "heightm": 0.9,
+        "weightkg": 33,
+        "color": "Yellow",
+        "evos": [
+            "Toedscruel"
+        ],
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "toedscruel": {
+        "num": 949,
+        "name": "toedscruel",
+        "types": [
+            "ground",
+            "grass"
+        ],
+        "baseStats": {
+            "hp": 80,
+            "attack": 70,
+            "defense": 65,
+            "special-attack": 80,
+            "special-defense": 120,
+            "speed": 100
+        },
+        "abilities": {
+            "0": "Mycelium Might"
+        },
+        "heightm": 1.9,
+        "weightkg": 58,
+        "color": "Black",
+        "prevo": "Toedscool",
+        "evoLevel": 30,
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "klawf": {
+        "num": 950,
+        "name": "klawf",
+        "types": [
+            "rock"
+        ],
+        "baseStats": {
+            "hp": 70,
+            "attack": 100,
+            "defense": 115,
+            "special-attack": 35,
+            "special-defense": 55,
+            "speed": 75
+        },
+        "abilities": {
+            "0": "Anger Shell",
+            "1": "Shell Armor",
+            "H": "Regenerator"
+        },
+        "heightm": 1.3,
+        "weightkg": 79,
+        "color": "Red",
+        "eggGroups": [
+            "Water 3"
+        ]
+    },
+    "capsakid": {
+        "num": 951,
+        "name": "capsakid",
+        "types": [
+            "grass"
+        ],
+        "baseStats": {
+            "hp": 52,
+            "attack": 62,
+            "defense": 40,
+            "special-attack": 62,
+            "special-defense": 40,
+            "speed": 50
+        },
+        "abilities": {
+            "0": "Chlorophyll",
+            "1": "Insomnia",
+            "H": "Klutz"
+        },
+        "heightm": 0.3,
+        "weightkg": 3,
+        "color": "Green",
+        "evos": [
+            "Scovillain"
+        ],
+        "eggGroups": [
+            "Grass"
+        ]
+    },
+    "scovillain": {
+        "num": 952,
+        "name": "scovillain",
+        "types": [
+            "grass",
+            "fire"
+        ],
+        "baseStats": {
+            "hp": 65,
+            "attack": 108,
+            "defense": 65,
+            "special-attack": 108,
+            "special-defense": 65,
+            "speed": 75
+        },
+        "abilities": {
+            "0": "Chlorophyll",
+            "1": "Insomnia",
+            "H": "Moody"
+        },
+        "heightm": 0.9,
+        "weightkg": 15,
+        "color": "Green",
+        "prevo": "Capsakid",
+        "evoType": "useItem",
+        "evoItem": "Fire Stone",
+        "evoLevel": 30,
+        "eggGroups": [
+            "Grass"
+        ]
+    },
+    "rellor": {
+        "num": 953,
+        "name": "rellor",
+        "types": [
+            "bug"
+        ],
+        "baseStats": {
+            "hp": 41,
+            "attack": 50,
+            "defense": 60,
+            "special-attack": 31,
+            "special-defense": 58,
+            "speed": 30
+        },
+        "abilities": {
+            "0": "Compound Eyes",
+            "H": "Shed Skin"
+        },
+        "heightm": 0.2,
+        "weightkg": 1,
+        "color": "Brown",
+        "evos": [
+            "Rabsca"
+        ],
+        "eggGroups": [
+            "Bug"
+        ]
+    },
+    "rabsca": {
+        "num": 954,
+        "name": "rabsca",
+        "types": [
+            "bug",
+            "psychic"
+        ],
+        "baseStats": {
+            "hp": 75,
+            "attack": 50,
+            "defense": 85,
+            "special-attack": 115,
+            "special-defense": 100,
+            "speed": 45
+        },
+        "abilities": {
+            "0": "Synchronize",
+            "H": "Telepathy"
+        },
+        "heightm": 0.3,
+        "weightkg": 3.5,
+        "color": "Green",
+        "prevo": "Rellor",
+        "evoType": "other",
+        "evoCondition": "walk 1000 steps in Let's Go",
+        "eggGroups": [
+            "Bug"
+        ]
+    },
+    "flittle": {
+        "num": 955,
+        "name": "flittle",
+        "types": [
+            "psychic"
+        ],
+        "baseStats": {
+            "hp": 30,
+            "attack": 35,
+            "defense": 30,
+            "special-attack": 55,
+            "special-defense": 40,
+            "speed": 75
+        },
+        "abilities": {
+            "0": "Anticipation",
+            "1": "Frisk",
+            "H": "Speed Boost"
+        },
+        "heightm": 0.2,
+        "weightkg": 1.5,
+        "color": "Yellow",
+        "evos": [
+            "Espathra"
+        ],
+        "eggGroups": [
+            "Flying"
+        ]
+    },
+    "espathra": {
+        "num": 956,
+        "name": "espathra",
+        "types": [
+            "psychic"
+        ],
+        "baseStats": {
+            "hp": 95,
+            "attack": 60,
+            "defense": 60,
+            "special-attack": 101,
+            "special-defense": 60,
+            "speed": 105
+        },
+        "abilities": {
+            "0": "Opportunist",
+            "1": "Frisk",
+            "H": "Speed Boost"
+        },
+        "heightm": 1.9,
+        "weightkg": 90,
+        "color": "Yellow",
+        "prevo": "Flittle",
+        "evoLevel": 35,
+        "eggGroups": [
+            "Flying"
+        ]
+    },
+    "tinkatink": {
+        "num": 957,
+        "name": "tinkatink",
+        "types": [
+            "fairy",
+            "steel"
+        ],
+        "gender": "F",
+        "baseStats": {
+            "hp": 50,
+            "attack": 45,
+            "defense": 45,
+            "special-attack": 35,
+            "special-defense": 64,
+            "speed": 58
+        },
+        "abilities": {
+            "0": "Mold Breaker",
+            "1": "Own Tempo",
+            "H": "Pickpocket"
+        },
+        "heightm": 0.4,
+        "weightkg": 8.9,
+        "color": "Pink",
+        "evos": [
+            "Tinkatuff"
+        ],
+        "eggGroups": [
+            "Fairy"
+        ]
+    },
+    "tinkatuff": {
+        "num": 958,
+        "name": "tinkatuff",
+        "types": [
+            "fairy",
+            "steel"
+        ],
+        "gender": "F",
+        "baseStats": {
+            "hp": 65,
+            "attack": 55,
+            "defense": 55,
+            "special-attack": 45,
+            "special-defense": 82,
+            "speed": 78
+        },
+        "abilities": {
+            "0": "Mold Breaker",
+            "1": "Own Tempo",
+            "H": "Pickpocket"
+        },
+        "heightm": 0.7,
+        "weightkg": 59.1,
+        "color": "Pink",
+        "prevo": "Tinkatink",
+        "evoLevel": 24,
+        "evos": [
+            "Tinkaton"
+        ],
+        "eggGroups": [
+            "Fairy"
+        ]
+    },
+    "tinkaton": {
+        "num": 959,
+        "name": "tinkaton",
+        "types": [
+            "fairy",
+            "steel"
+        ],
+        "gender": "F",
+        "baseStats": {
+            "hp": 85,
+            "attack": 75,
+            "defense": 77,
+            "special-attack": 70,
+            "special-defense": 105,
+            "speed": 94
+        },
+        "abilities": {
+            "0": "Mold Breaker",
+            "1": "Own Tempo",
+            "H": "Pickpocket"
+        },
+        "heightm": 0.7,
+        "weightkg": 112.8,
+        "color": "Pink",
+        "prevo": "Tinkatuff",
+        "evoLevel": 38,
+        "eggGroups": [
+            "Fairy"
+        ]
+    },
+    "wiglett": {
+        "num": 960,
+        "name": "wiglett",
+        "types": [
+            "water"
+        ],
+        "baseStats": {
+            "hp": 10,
+            "attack": 55,
+            "defense": 25,
+            "special-attack": 35,
+            "special-defense": 25,
+            "speed": 95
+        },
+        "abilities": {
+            "0": "Gooey",
+            "1": "Rattled",
+            "H": "Sand Veil"
+        },
+        "heightm": 1.2,
+        "weightkg": 1.8,
+        "color": "White",
+        "evos": [
+            "Wugtrio"
+        ],
+        "eggGroups": [
+            "Water 3"
+        ]
+    },
+    "wugtrio": {
+        "num": 961,
+        "name": "wugtrio",
+        "types": [
+            "water"
+        ],
+        "baseStats": {
+            "hp": 35,
+            "attack": 100,
+            "defense": 50,
+            "special-attack": 50,
+            "special-defense": 70,
+            "speed": 120
+        },
+        "abilities": {
+            "0": "Gooey",
+            "1": "Rattled",
+            "H": "Sand Veil"
+        },
+        "heightm": 1.2,
+        "weightkg": 5.4,
+        "color": "Red",
+        "prevo": "Wiglett",
+        "evoLevel": 26,
+        "eggGroups": [
+            "Water 3"
+        ]
+    },
+    "bombirdier": {
+        "num": 962,
+        "name": "bombirdier",
+        "types": [
+            "flying",
+            "dark"
+        ],
+        "baseStats": {
+            "hp": 70,
+            "attack": 103,
+            "defense": 85,
+            "special-attack": 60,
+            "special-defense": 85,
+            "speed": 82
+        },
+        "abilities": {
+            "0": "Big Pecks",
+            "1": "Keen Eye",
+            "H": "Rocky Payload"
+        },
+        "heightm": 1.5,
+        "weightkg": 42.9,
+        "color": "White",
+        "eggGroups": [
+            "Flying"
+        ]
+    },
+    "finizen": {
+        "num": 963,
+        "name": "finizen",
+        "types": [
+            "water"
+        ],
+        "baseStats": {
+            "hp": 70,
+            "attack": 45,
+            "defense": 40,
+            "special-attack": 45,
+            "special-defense": 40,
+            "speed": 75
+        },
+        "abilities": {
+            "0": "Water Veil"
+        },
+        "heightm": 1.3,
+        "weightkg": 60.2,
+        "color": "Blue",
+        "evos": [
+            "Palafin"
+        ],
+        "eggGroups": [
+            "Field",
+            "Water 2"
+        ]
+    },
+    "palafin": {
+        "num": 964,
+        "name": "palafin",
+        "baseForme": "Zero",
+        "types": [
+            "water"
+        ],
+        "baseStats": {
+            "hp": 100,
+            "attack": 70,
+            "defense": 72,
+            "special-attack": 53,
+            "special-defense": 62,
+            "speed": 100
+        },
+        "abilities": {
+            "0": "Zero to Hero"
+        },
+        "heightm": 1.3,
+        "weightkg": 60.2,
+        "color": "Blue",
+        "prevo": "Finizen",
+        "evoLevel": 38,
+        "otherFormes": [
+            "Palafin-Hero"
+        ],
+        "formeOrder": [
+            "Palafin",
+            "Palafin-Hero"
+        ],
+        "eggGroups": [
+            "Field",
+            "Water 2"
+        ]
+    },
+    "palafinhero": {
+        "num": 964,
+        "name": "palafin-hero",
+        "baseSpecies": "Palafin",
+        "forme": "Hero",
+        "types": [
+            "water"
+        ],
+        "baseStats": {
+            "hp": 100,
+            "attack": 160,
+            "defense": 97,
+            "special-attack": 106,
+            "special-defense": 87,
+            "speed": 100
+        },
+        "abilities": {
+            "0": "Zero to Hero"
+        },
+        "heightm": 1.8,
+        "weightkg": 97.4,
+        "color": "Blue",
+        "eggGroups": [
+            "Field",
+            "Water 2"
+        ],
+        "requiredAbility": "Zero to Hero",
+        "battleOnly": "Palafin"
+    },
+    "varoom": {
+        "num": 965,
+        "name": "varoom",
+        "types": [
+            "steel",
+            "poison"
+        ],
+        "baseStats": {
+            "hp": 45,
+            "attack": 70,
+            "defense": 63,
+            "special-attack": 30,
+            "special-defense": 45,
+            "speed": 47
+        },
+        "abilities": {
+            "0": "Overcoat",
+            "H": "Slow Start"
+        },
+        "heightm": 1,
+        "weightkg": 35,
+        "color": "Gray",
+        "evos": [
+            "Revavroom"
+        ],
+        "eggGroups": [
+            "Mineral"
+        ]
+    },
+    "revavroom": {
+        "num": 966,
+        "name": "revavroom",
+        "types": [
+            "steel",
+            "poison"
+        ],
+        "baseStats": {
+            "hp": 80,
+            "attack": 119,
+            "defense": 90,
+            "special-attack": 54,
+            "special-defense": 67,
+            "speed": 90
+        },
+        "abilities": {
+            "0": "Overcoat",
+            "H": "Filter"
+        },
+        "heightm": 1.8,
+        "weightkg": 120,
+        "color": "Gray",
+        "prevo": "Varoom",
+        "evoLevel": 40,
+        "eggGroups": [
+            "Mineral"
+        ]
+    },
+    "cyclizar": {
+        "num": 967,
+        "name": "cyclizar",
+        "types": [
+            "dragon",
+            "normal"
+        ],
+        "baseStats": {
+            "hp": 70,
+            "attack": 95,
+            "defense": 65,
+            "special-attack": 85,
+            "special-defense": 65,
+            "speed": 121
+        },
+        "abilities": {
+            "0": "Shed Skin",
+            "H": "Regenerator"
+        },
+        "heightm": 1.6,
+        "weightkg": 63,
+        "color": "Green",
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "orthworm": {
+        "num": 968,
+        "name": "orthworm",
+        "types": [
+            "steel"
+        ],
+        "baseStats": {
+            "hp": 70,
+            "attack": 85,
+            "defense": 145,
+            "special-attack": 60,
+            "special-defense": 55,
+            "speed": 65
+        },
+        "abilities": {
+            "0": "Earth Eater",
+            "H": "Sand Veil"
+        },
+        "heightm": 2.5,
+        "weightkg": 310,
+        "color": "Pink",
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "glimmet": {
+        "num": 969,
+        "name": "glimmet",
+        "types": [
+            "rock",
+            "poison"
+        ],
+        "baseStats": {
+            "hp": 48,
+            "attack": 35,
+            "defense": 42,
+            "special-attack": 105,
+            "special-defense": 60,
+            "speed": 60
+        },
+        "abilities": {
+            "0": "Toxic Debris",
+            "H": "Corrosion"
+        },
+        "heightm": 0.7,
+        "weightkg": 8,
+        "color": "Blue",
+        "evos": [
+            "Glimmora"
+        ],
+        "eggGroups": [
+            "Mineral"
+        ]
+    },
+    "glimmora": {
+        "num": 970,
+        "name": "glimmora",
+        "types": [
+            "rock",
+            "poison"
+        ],
+        "baseStats": {
+            "hp": 83,
+            "attack": 55,
+            "defense": 90,
+            "special-attack": 130,
+            "special-defense": 81,
+            "speed": 86
+        },
+        "abilities": {
+            "0": "Toxic Debris",
+            "H": "Corrosion"
+        },
+        "heightm": 1.5,
+        "weightkg": 45,
+        "color": "Blue",
+        "prevo": "Glimmet",
+        "evoLevel": 35,
+        "eggGroups": [
+            "Mineral"
+        ]
+    },
+    "greavard": {
+        "num": 971,
+        "name": "greavard",
+        "types": [
+            "ghost"
+        ],
+        "baseStats": {
+            "hp": 50,
+            "attack": 61,
+            "defense": 60,
+            "special-attack": 30,
+            "special-defense": 55,
+            "speed": 34
+        },
+        "abilities": {
+            "0": "Pickup",
+            "H": "Fluffy"
+        },
+        "heightm": 0.6,
+        "weightkg": 35,
+        "color": "White",
+        "evos": [
+            "Houndstone"
+        ],
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "houndstone": {
+        "num": 972,
+        "name": "houndstone",
+        "types": [
+            "ghost"
+        ],
+        "baseStats": {
+            "hp": 72,
+            "attack": 101,
+            "defense": 100,
+            "special-attack": 50,
+            "special-defense": 97,
+            "speed": 68
+        },
+        "abilities": {
+            "0": "Sand Rush",
+            "H": "Fluffy"
+        },
+        "heightm": 2,
+        "weightkg": 15,
+        "color": "White",
+        "prevo": "Greavard",
+        "evoLevel": 30,
+        "evoCondition": "at night",
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "flamigo": {
+        "num": 973,
+        "name": "flamigo",
+        "types": [
+            "flying",
+            "fighting"
+        ],
+        "baseStats": {
+            "hp": 82,
+            "attack": 115,
+            "defense": 74,
+            "special-attack": 75,
+            "special-defense": 64,
+            "speed": 90
+        },
+        "abilities": {
+            "0": "Scrappy",
+            "1": "Tangled Feet",
+            "H": "Costar"
+        },
+        "heightm": 1.6,
+        "weightkg": 37,
+        "color": "Pink",
+        "eggGroups": [
+            "Flying"
+        ]
+    },
+    "cetoddle": {
+        "num": 974,
+        "name": "cetoddle",
+        "types": [
+            "ice"
+        ],
+        "baseStats": {
+            "hp": 108,
+            "attack": 68,
+            "defense": 45,
+            "special-attack": 30,
+            "special-defense": 40,
+            "speed": 43
+        },
+        "abilities": {
+            "0": "Thick Fat",
+            "1": "Snow Cloak",
+            "H": "Sheer Force"
+        },
+        "heightm": 1.2,
+        "weightkg": 45,
+        "color": "White",
+        "evos": [
+            "Cetitan"
+        ],
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "cetitan": {
+        "num": 975,
+        "name": "cetitan",
+        "types": [
+            "ice"
+        ],
+        "baseStats": {
+            "hp": 170,
+            "attack": 113,
+            "defense": 65,
+            "special-attack": 45,
+            "special-defense": 55,
+            "speed": 73
+        },
+        "abilities": {
+            "0": "Thick Fat",
+            "1": "Slush Rush",
+            "H": "Sheer Force"
+        },
+        "heightm": 4.5,
+        "weightkg": 700,
+        "color": "White",
+        "prevo": "Cetoddle",
+        "evoType": "useItem",
+        "evoItem": "Ice Stone",
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "veluza": {
         "num": 976,
+        "name": "veluza",
+        "types": [
+            "water",
+            "psychic"
+        ],
+        "baseStats": {
+            "hp": 90,
+            "attack": 102,
+            "defense": 73,
+            "special-attack": 78,
+            "special-defense": 65,
+            "speed": 70
+        },
+        "abilities": {
+            "0": "Mold Breaker",
+            "H": "Sharpness"
+        },
+        "heightm": 2.5,
+        "weightkg": 90,
+        "color": "Gray",
+        "eggGroups": [
+            "Water 2"
+        ]
+    },
+    "dondozo": {
+        "num": 977,
+        "name": "dondozo",
+        "types": [
+            "water"
+        ],
+        "baseStats": {
+            "hp": 150,
+            "attack": 100,
+            "defense": 115,
+            "special-attack": 65,
+            "special-defense": 65,
+            "speed": 35
+        },
+        "abilities": {
+            "0": "Unaware",
+            "1": "Oblivious",
+            "H": "Water Veil"
+        },
+        "heightm": 12,
+        "weightkg": 220,
+        "color": "Blue",
+        "eggGroups": [
+            "Water 2"
+        ]
+    },
+    "tatsugiri": {
+        "num": 978,
+        "name": "tatsugiri",
+        "baseForme": "Curly",
+        "types": [
+            "dragon",
+            "water"
+        ],
+        "baseStats": {
+            "hp": 68,
+            "attack": 50,
+            "defense": 60,
+            "special-attack": 120,
+            "special-defense": 95,
+            "speed": 82
+        },
+        "abilities": {
+            "0": "Commander",
+            "H": "Storm Drain"
+        },
+        "heightm": 0.3,
+        "weightkg": 8,
+        "color": "Pink",
+        "cosmeticFormes": [
+            "Tatsugiri-Droopy",
+            "Tatsugiri-Stretchy"
+        ],
+        "formeOrder": [
+            "Tatsugiri",
+            "Tatsugiri-Droopy",
+            "Tatsugiri-Stretchy"
+        ],
+        "eggGroups": [
+            "Water 2"
+        ]
+    },
+    "annihilape": {
+        "num": 979,
+        "name": "annihilape",
+        "types": [
+            "fighting",
+            "ghost"
+        ],
+        "baseStats": {
+            "hp": 110,
+            "attack": 115,
+            "defense": 80,
+            "special-attack": 50,
+            "special-defense": 90,
+            "speed": 90
+        },
+        "abilities": {
+            "0": "Vital Spirit",
+            "1": "Inner Focus",
+            "H": "Defiant"
+        },
+        "heightm": 1.2,
+        "weightkg": 56,
+        "color": "Gray",
+        "prevo": "Primeape",
+        "evoType": "other",
+        "evoCondition": "Use Rage Fist 20 times and level-up",
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "clodsire": {
+        "num": 980,
+        "name": "clodsire",
+        "types": [
+            "poison",
+            "ground"
+        ],
+        "baseStats": {
+            "hp": 130,
+            "attack": 75,
+            "defense": 60,
+            "special-attack": 45,
+            "special-defense": 100,
+            "speed": 20
+        },
+        "abilities": {
+            "0": "Poison Point",
+            "1": "Water Absorb",
+            "H": "Unaware"
+        },
+        "heightm": 1.8,
+        "weightkg": 223,
+        "color": "Brown",
+        "prevo": "Wooper-Paldea",
+        "evoLevel": 20,
+        "eggGroups": [
+            "Water 1",
+            "Field"
+        ]
+    },
+    "farigiraf": {
+        "num": 981,
+        "name": "farigiraf",
+        "types": [
+            "normal",
+            "psychic"
+        ],
+        "baseStats": {
+            "hp": 120,
+            "attack": 90,
+            "defense": 70,
+            "special-attack": 110,
+            "special-defense": 70,
+            "speed": 60
+        },
+        "abilities": {
+            "0": "Cud Chew",
+            "1": "Armor Tail",
+            "H": "Sap Sipper"
+        },
+        "heightm": 3.2,
+        "weightkg": 160,
+        "color": "Brown",
+        "prevo": "Girafarig",
+        "evoType": "levelMove",
+        "evoMove": "Twin Beam",
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "dudunsparce": {
+        "num": 982,
+        "name": "dudunsparce",
+        "baseForme": "Two-Segment",
+        "types": [
+            "normal"
+        ],
+        "baseStats": {
+            "hp": 125,
+            "attack": 100,
+            "defense": 80,
+            "special-attack": 85,
+            "special-defense": 75,
+            "speed": 55
+        },
+        "abilities": {
+            "0": "Serene Grace",
+            "1": "Run Away",
+            "H": "Rattled"
+        },
+        "heightm": 3.6,
+        "weightkg": 39.2,
+        "color": "Yellow",
+        "prevo": "Dunsparce",
+        "evoType": "levelMove",
+        "evoMove": "Hyper Drill",
+        "otherFormes": [
+            "Dudunsparce-Three-Segment"
+        ],
+        "formeOrder": [
+            "Dudunsparce",
+            "Dudunsparce-Three-Segment"
+        ],
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "dudunsparcethreesegment": {
+        "num": 982,
+        "name": "dudunsparce-three-segment",
+        "baseSpecies": "Dudunsparce",
+        "forme": "Three-Segment",
+        "types": [
+            "normal"
+        ],
+        "baseStats": {
+            "hp": 125,
+            "attack": 100,
+            "defense": 80,
+            "special-attack": 85,
+            "special-defense": 75,
+            "speed": 55
+        },
+        "abilities": {
+            "0": "Serene Grace",
+            "1": "Run Away",
+            "H": "Rattled"
+        },
+        "heightm": 4.5,
+        "weightkg": 47.4,
+        "color": "Yellow",
+        "prevo": "Dunsparce",
+        "evoType": "levelMove",
+        "evoMove": "Hyper Drill",
+        "eggGroups": [
+            "Field"
+        ]
+    },
+    "kingambit": {
+        "num": 983,
+        "name": "kingambit",
+        "types": [
+            "dark",
+            "steel"
+        ],
+        "baseStats": {
+            "hp": 100,
+            "attack": 135,
+            "defense": 120,
+            "special-attack": 60,
+            "special-defense": 85,
+            "speed": 50
+        },
+        "abilities": {
+            "0": "Defiant",
+            "1": "Supreme Overlord",
+            "H": "Pressure"
+        },
+        "heightm": 2,
+        "weightkg": 120,
+        "color": "Black",
+        "prevo": "Bisharp",
+        "evoType": "other",
+        "evoCondition": "Defeat 3 Bisharp leading Pawniard and level-up",
+        "eggGroups": [
+            "Human-Like"
+        ]
+    },
+    "greattusk": {
+        "num": 984,
+        "name": "great tusk",
+        "types": [
+            "ground",
+            "fighting"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 115,
+            "attack": 131,
+            "defense": 131,
+            "special-attack": 53,
+            "special-defense": 53,
+            "speed": 87
+        },
+        "abilities": {
+            "0": "Protosynthesis"
+        },
+        "heightm": 2.2,
+        "weightkg": 320,
+        "color": "Purple",
+        "tags": [
+            "Sub-Legendary",
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "screamtail": {
+        "num": 985,
+        "name": "scream tail",
+        "types": [
+            "fairy",
+            "psychic"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 115,
+            "attack": 65,
+            "defense": 99,
+            "special-attack": 65,
+            "special-defense": 115,
+            "speed": 111
+        },
+        "abilities": {
+            "0": "Protosynthesis"
+        },
+        "heightm": 1.2,
+        "weightkg": 8,
+        "color": "Pink",
+        "tags": [
+            "Sub-Legendary",
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "brutebonnet": {
+        "num": 986,
+        "name": "brute bonnet",
+        "types": [
+            "grass",
+            "dark"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 111,
+            "attack": 127,
+            "defense": 99,
+            "special-attack": 79,
+            "special-defense": 99,
+            "speed": 55
+        },
+        "abilities": {
+            "0": "Protosynthesis"
+        },
+        "heightm": 1.2,
+        "weightkg": 21,
+        "color": "Gray",
+        "tags": [
+            "Sub-Legendary",
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "fluttermane": {
+        "num": 987,
+        "name": "flutter mane",
+        "types": [
+            "ghost",
+            "fairy"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 55,
+            "attack": 55,
+            "defense": 55,
+            "special-attack": 135,
+            "special-defense": 135,
+            "speed": 135
+        },
+        "abilities": {
+            "0": "Protosynthesis"
+        },
+        "heightm": 1.4,
+        "weightkg": 4,
+        "color": "Gray",
+        "tags": [
+            "Sub-Legendary",
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "slitherwing": {
+        "num": 988,
+        "name": "slither wing",
+        "types": [
+            "bug",
+            "fighting"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 85,
+            "attack": 135,
+            "defense": 79,
+            "special-attack": 85,
+            "special-defense": 105,
+            "speed": 81
+        },
+        "abilities": {
+            "0": "Protosynthesis"
+        },
+        "heightm": 3.2,
+        "weightkg": 92,
+        "color": "Red",
+        "tags": [
+            "Sub-Legendary",
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "sandyshocks": {
+        "num": 989,
+        "name": "sandy shocks",
+        "types": [
+            "electric",
+            "ground"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 85,
+            "attack": 81,
+            "defense": 97,
+            "special-attack": 121,
+            "special-defense": 85,
+            "speed": 101
+        },
+        "abilities": {
+            "0": "Protosynthesis"
+        },
+        "heightm": 2.3,
+        "weightkg": 60,
+        "color": "Gray",
+        "tags": [
+            "Sub-Legendary",
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "irontreads": {
+        "num": 990,
+        "name": "iron treads",
+        "types": [
+            "ground",
+            "steel"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 90,
+            "attack": 112,
+            "defense": 120,
+            "special-attack": 72,
+            "special-defense": 70,
+            "speed": 106
+        },
+        "abilities": {
+            "0": "Quark Drive"
+        },
+        "heightm": 0.9,
+        "weightkg": 240,
+        "color": "Gray",
+        "tags": [
+            "Sub-Legendary",
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "ironbundle": {
+        "num": 991,
+        "name": "iron bundle",
+        "types": [
+            "ice",
+            "water"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 56,
+            "attack": 80,
+            "defense": 114,
+            "special-attack": 124,
+            "special-defense": 60,
+            "speed": 136
+        },
+        "abilities": {
+            "0": "Quark Drive"
+        },
+        "heightm": 0.6,
+        "weightkg": 11,
+        "color": "Red",
+        "tags": [
+            "Sub-Legendary",
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "ironhands": {
+        "num": 992,
+        "name": "iron hands",
+        "types": [
+            "fighting",
+            "electric"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 154,
+            "attack": 140,
+            "defense": 108,
+            "special-attack": 50,
+            "special-defense": 68,
+            "speed": 50
+        },
+        "abilities": {
+            "0": "Quark Drive"
+        },
+        "heightm": 1.8,
+        "weightkg": 380.7,
+        "color": "Gray",
+        "tags": [
+            "Sub-Legendary",
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "ironjugulis": {
+        "num": 993,
+        "name": "iron jugulis",
+        "types": [
+            "dark",
+            "flying"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 94,
+            "attack": 80,
+            "defense": 86,
+            "special-attack": 122,
+            "special-defense": 80,
+            "speed": 108
+        },
+        "abilities": {
+            "0": "Quark Drive"
+        },
+        "heightm": 1.3,
+        "weightkg": 111,
+        "color": "Blue",
+        "tags": [
+            "Sub-Legendary",
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "ironmoth": {
+        "num": 994,
+        "name": "iron moth",
+        "types": [
+            "fire",
+            "poison"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 80,
+            "attack": 70,
+            "defense": 60,
+            "special-attack": 140,
+            "special-defense": 110,
+            "speed": 110
+        },
+        "abilities": {
+            "0": "Quark Drive"
+        },
+        "heightm": 1.2,
+        "weightkg": 36,
+        "color": "Yellow",
+        "tags": [
+            "Sub-Legendary",
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "ironthorns": {
+        "num": 995,
+        "name": "iron thorns",
+        "types": [
+            "rock",
+            "electric"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 100,
+            "attack": 134,
+            "defense": 110,
+            "special-attack": 70,
+            "special-defense": 84,
+            "speed": 72
+        },
+        "abilities": {
+            "0": "Quark Drive"
+        },
+        "heightm": 1.6,
+        "weightkg": 303,
+        "color": "Green",
+        "tags": [
+            "Sub-Legendary",
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "frigibax": {
+        "num": 996,
+        "name": "frigibax",
+        "types": [
+            "dragon",
+            "ice"
+        ],
+        "baseStats": {
+            "hp": 65,
+            "attack": 75,
+            "defense": 45,
+            "special-attack": 35,
+            "special-defense": 45,
+            "speed": 55
+        },
+        "abilities": {
+            "0": "Thermal Exchange",
+            "H": "Ice Body"
+        },
+        "heightm": 0.5,
+        "weightkg": 17,
+        "color": "Gray",
+        "evos": [
+            "Arctibax"
+        ],
+        "eggGroups": [
+            "Dragon",
+            "Mineral"
+        ]
+    },
+    "arctibax": {
+        "num": 997,
+        "name": "arctibax",
+        "types": [
+            "dragon",
+            "ice"
+        ],
+        "baseStats": {
+            "hp": 90,
+            "attack": 95,
+            "defense": 66,
+            "special-attack": 45,
+            "special-defense": 65,
+            "speed": 62
+        },
+        "abilities": {
+            "0": "Thermal Exchange",
+            "H": "Ice Body"
+        },
+        "heightm": 0.8,
+        "weightkg": 30,
+        "color": "Gray",
+        "prevo": "Frigibax",
+        "evoLevel": 35,
+        "evos": [
+            "Baxcalibur"
+        ],
+        "eggGroups": [
+            "Dragon",
+            "Mineral"
+        ]
+    },
+    "baxcalibur": {
+        "num": 998,
+        "name": "baxcalibur",
+        "types": [
+            "dragon",
+            "ice"
+        ],
+        "baseStats": {
+            "hp": 115,
+            "attack": 145,
+            "defense": 92,
+            "special-attack": 75,
+            "special-defense": 86,
+            "speed": 87
+        },
+        "abilities": {
+            "0": "Thermal Exchange",
+            "H": "Ice Body"
+        },
+        "heightm": 2.1,
+        "weightkg": 210,
+        "color": "Gray",
+        "prevo": "Arctibax",
+        "evoLevel": 54,
+        "eggGroups": [
+            "Dragon",
+            "Mineral"
+        ]
+    },
+    "gimmighoul": {
+        "num": 999,
         "name": "gimmighoul",
         "baseForme": "Chest",
         "types": [
@@ -39618,7 +40304,7 @@
         ]
     },
     "gimmighoulroaming": {
-        "num": 976,
+        "num": 999,
         "name": "gimmighoul-roaming",
         "baseSpecies": "Gimmighoul",
         "forme": "Roaming",
@@ -39648,7 +40334,7 @@
         ]
     },
     "gholdengo": {
-        "num": 977,
+        "num": 1000,
         "name": "gholdengo",
         "types": [
             "steel",
@@ -39676,188 +40362,124 @@
             "Undiscovered"
         ]
     },
-    "greattusk": {
-        "num": 978,
-        "name": "great tusk",
+    "wochien": {
+        "num": 1001,
+        "name": "wo-chien",
         "types": [
-            "ground",
-            "fighting"
+            "dark",
+            "grass"
         ],
         "gender": "N",
         "baseStats": {
-            "hp": 115,
-            "attack": 131,
-            "defense": 131,
-            "special-attack": 53,
-            "special-defense": 53,
-            "speed": 87
+            "hp": 85,
+            "attack": 85,
+            "defense": 100,
+            "special-attack": 95,
+            "special-defense": 135,
+            "speed": 70
         },
         "abilities": {
-            "0": "Protosynthesis"
+            "0": "Tablets of Ruin"
         },
-        "heightm": 2.2,
-        "weightkg": 320,
-        "color": "Purple",
+        "heightm": 1.5,
+        "weightkg": 74.2,
+        "color": "Brown",
         "tags": [
-            "Sub-Legendary",
-            "Paradox"
+            "Sub-Legendary"
         ],
         "eggGroups": [
             "Undiscovered"
         ]
     },
-    "brutebonnet": {
-        "num": 979,
-        "name": "brute bonnet",
+    "chienpao": {
+        "num": 1002,
+        "name": "chien-pao",
         "types": [
-            "grass",
-            "dark"
+            "dark",
+            "ice"
         ],
         "gender": "N",
         "baseStats": {
-            "hp": 111,
-            "attack": 127,
-            "defense": 99,
-            "special-attack": 79,
-            "special-defense": 99,
-            "speed": 55
+            "hp": 80,
+            "attack": 120,
+            "defense": 80,
+            "special-attack": 90,
+            "special-defense": 65,
+            "speed": 135
         },
         "abilities": {
-            "0": "Protosynthesis"
+            "0": "Sword of Ruin"
         },
-        "heightm": 1.2,
-        "weightkg": 21,
-        "color": "Gray",
+        "heightm": 1.9,
+        "weightkg": 152.2,
+        "color": "White",
         "tags": [
-            "Sub-Legendary",
-            "Paradox"
+            "Sub-Legendary"
         ],
         "eggGroups": [
             "Undiscovered"
         ]
     },
-    "sandyshocks": {
-        "num": 981,
-        "name": "sandy shocks",
+    "tinglu": {
+        "num": 1003,
+        "name": "ting-lu",
         "types": [
-            "electric",
+            "dark",
             "ground"
         ],
         "gender": "N",
         "baseStats": {
-            "hp": 85,
-            "attack": 81,
-            "defense": 97,
-            "special-attack": 121,
-            "special-defense": 85,
-            "speed": 101
+            "hp": 155,
+            "attack": 110,
+            "defense": 125,
+            "special-attack": 55,
+            "special-defense": 80,
+            "speed": 45
         },
         "abilities": {
-            "0": "Protosynthesis"
+            "0": "Vessel of Ruin"
         },
-        "heightm": 2.3,
-        "weightkg": 60,
-        "color": "Gray",
+        "heightm": 2.7,
+        "weightkg": 699.7,
+        "color": "Brown",
         "tags": [
-            "Sub-Legendary",
-            "Paradox"
+            "Sub-Legendary"
         ],
         "eggGroups": [
             "Undiscovered"
         ]
     },
-    "screamtail": {
-        "num": 982,
-        "name": "scream tail",
+    "chiyu": {
+        "num": 1004,
+        "name": "chi-yu",
         "types": [
-            "fairy",
-            "psychic"
-        ],
-        "gender": "N",
-        "baseStats": {
-            "hp": 115,
-            "attack": 65,
-            "defense": 99,
-            "special-attack": 65,
-            "special-defense": 115,
-            "speed": 111
-        },
-        "abilities": {
-            "0": "Protosynthesis"
-        },
-        "heightm": 1.2,
-        "weightkg": 8,
-        "color": "Pink",
-        "tags": [
-            "Sub-Legendary",
-            "Paradox"
-        ],
-        "eggGroups": [
-            "Undiscovered"
-        ]
-    },
-    "fluttermane": {
-        "num": 983,
-        "name": "flutter mane",
-        "types": [
-            "ghost",
-            "fairy"
+            "dark",
+            "fire"
         ],
         "gender": "N",
         "baseStats": {
             "hp": 55,
-            "attack": 55,
-            "defense": 55,
+            "attack": 80,
+            "defense": 80,
             "special-attack": 135,
-            "special-defense": 135,
-            "speed": 135
+            "special-defense": 120,
+            "speed": 100
         },
         "abilities": {
-            "0": "Protosynthesis"
+            "0": "Beads of Ruin"
         },
-        "heightm": 1.4,
-        "weightkg": 4,
-        "color": "Gray",
-        "tags": [
-            "Sub-Legendary",
-            "Paradox"
-        ],
-        "eggGroups": [
-            "Undiscovered"
-        ]
-    },
-    "slitherwing": {
-        "num": 984,
-        "name": "slither wing",
-        "types": [
-            "bug",
-            "fighting"
-        ],
-        "gender": "N",
-        "baseStats": {
-            "hp": 85,
-            "attack": 135,
-            "defense": 79,
-            "special-attack": 85,
-            "special-defense": 105,
-            "speed": 81
-        },
-        "abilities": {
-            "0": "Protosynthesis"
-        },
-        "heightm": 3.2,
-        "weightkg": 92,
+        "heightm": 0.4,
+        "weightkg": 4.9,
         "color": "Red",
         "tags": [
-            "Sub-Legendary",
-            "Paradox"
+            "Sub-Legendary"
         ],
         "eggGroups": [
             "Undiscovered"
         ]
     },
     "roaringmoon": {
-        "num": 985,
+        "num": 1005,
         "name": "roaring moon",
         "types": [
             "dragon",
@@ -39886,188 +40508,8 @@
             "Undiscovered"
         ]
     },
-    "irontreads": {
-        "num": 986,
-        "name": "iron treads",
-        "types": [
-            "ground",
-            "steel"
-        ],
-        "gender": "N",
-        "baseStats": {
-            "hp": 90,
-            "attack": 112,
-            "defense": 120,
-            "special-attack": 72,
-            "special-defense": 70,
-            "speed": 106
-        },
-        "abilities": {
-            "0": "Quark Drive"
-        },
-        "heightm": 0.9,
-        "weightkg": 240,
-        "color": "Gray",
-        "tags": [
-            "Sub-Legendary",
-            "Paradox"
-        ],
-        "eggGroups": [
-            "Undiscovered"
-        ]
-    },
-    "ironmoth": {
-        "num": 988,
-        "name": "iron moth",
-        "types": [
-            "fire",
-            "poison"
-        ],
-        "gender": "N",
-        "baseStats": {
-            "hp": 80,
-            "attack": 70,
-            "defense": 60,
-            "special-attack": 140,
-            "special-defense": 110,
-            "speed": 110
-        },
-        "abilities": {
-            "0": "Quark Drive"
-        },
-        "heightm": 1.2,
-        "weightkg": 36,
-        "color": "Yellow",
-        "tags": [
-            "Sub-Legendary",
-            "Paradox"
-        ],
-        "eggGroups": [
-            "Undiscovered"
-        ]
-    },
-    "ironhands": {
-        "num": 989,
-        "name": "iron hands",
-        "types": [
-            "fighting",
-            "electric"
-        ],
-        "gender": "N",
-        "baseStats": {
-            "hp": 154,
-            "attack": 140,
-            "defense": 108,
-            "special-attack": 50,
-            "special-defense": 68,
-            "speed": 50
-        },
-        "abilities": {
-            "0": "Quark Drive"
-        },
-        "heightm": 1.8,
-        "weightkg": 380.7,
-        "color": "Gray",
-        "tags": [
-            "Sub-Legendary",
-            "Paradox"
-        ],
-        "eggGroups": [
-            "Undiscovered"
-        ]
-    },
-    "ironjugulis": {
-        "num": 990,
-        "name": "iron jugulis",
-        "types": [
-            "dark",
-            "flying"
-        ],
-        "gender": "N",
-        "baseStats": {
-            "hp": 94,
-            "attack": 80,
-            "defense": 86,
-            "special-attack": 122,
-            "special-defense": 80,
-            "speed": 108
-        },
-        "abilities": {
-            "0": "Quark Drive"
-        },
-        "heightm": 1.3,
-        "weightkg": 111,
-        "color": "Blue",
-        "tags": [
-            "Sub-Legendary",
-            "Paradox"
-        ],
-        "eggGroups": [
-            "Undiscovered"
-        ]
-    },
-    "ironthorns": {
-        "num": 991,
-        "name": "iron thorns",
-        "types": [
-            "rock",
-            "electric"
-        ],
-        "gender": "N",
-        "baseStats": {
-            "hp": 100,
-            "attack": 134,
-            "defense": 110,
-            "special-attack": 70,
-            "special-defense": 84,
-            "speed": 72
-        },
-        "abilities": {
-            "0": "Quark Drive"
-        },
-        "heightm": 1.6,
-        "weightkg": 303,
-        "color": "Green",
-        "tags": [
-            "Sub-Legendary",
-            "Paradox"
-        ],
-        "eggGroups": [
-            "Undiscovered"
-        ]
-    },
-    "ironbundle": {
-        "num": 992,
-        "name": "iron bundle",
-        "types": [
-            "ice",
-            "water"
-        ],
-        "gender": "N",
-        "baseStats": {
-            "hp": 56,
-            "attack": 80,
-            "defense": 114,
-            "special-attack": 124,
-            "special-defense": 60,
-            "speed": 136
-        },
-        "abilities": {
-            "0": "Quark Drive"
-        },
-        "heightm": 0.6,
-        "weightkg": 11,
-        "color": "Red",
-        "tags": [
-            "Sub-Legendary",
-            "Paradox"
-        ],
-        "eggGroups": [
-            "Undiscovered"
-        ]
-    },
     "ironvaliant": {
-        "num": 993,
+        "num": 1006,
         "name": "iron valiant",
         "types": [
             "fairy",
@@ -40096,124 +40538,8 @@
             "Undiscovered"
         ]
     },
-    "tinglu": {
-        "num": 994,
-        "name": "ting-lu",
-        "types": [
-            "dark",
-            "ground"
-        ],
-        "gender": "N",
-        "baseStats": {
-            "hp": 155,
-            "attack": 110,
-            "defense": 125,
-            "special-attack": 55,
-            "special-defense": 80,
-            "speed": 45
-        },
-        "abilities": {
-            "0": "Vessel of Ruin"
-        },
-        "heightm": 2.7,
-        "weightkg": 699.7,
-        "color": "Brown",
-        "tags": [
-            "Sub-Legendary"
-        ],
-        "eggGroups": [
-            "Undiscovered"
-        ]
-    },
-    "chienpao": {
-        "num": 995,
-        "name": "chien-pao",
-        "types": [
-            "dark",
-            "ice"
-        ],
-        "gender": "N",
-        "baseStats": {
-            "hp": 80,
-            "attack": 120,
-            "defense": 80,
-            "special-attack": 90,
-            "special-defense": 65,
-            "speed": 135
-        },
-        "abilities": {
-            "0": "Sword of Ruin"
-        },
-        "heightm": 1.9,
-        "weightkg": 152.2,
-        "color": "White",
-        "tags": [
-            "Sub-Legendary"
-        ],
-        "eggGroups": [
-            "Undiscovered"
-        ]
-    },
-    "wochien": {
-        "num": 996,
-        "name": "wo-chien",
-        "types": [
-            "dark",
-            "grass"
-        ],
-        "gender": "N",
-        "baseStats": {
-            "hp": 85,
-            "attack": 85,
-            "defense": 100,
-            "special-attack": 95,
-            "special-defense": 135,
-            "speed": 70
-        },
-        "abilities": {
-            "0": "Tablets of Ruin"
-        },
-        "heightm": 1.5,
-        "weightkg": 74.2,
-        "color": "Brown",
-        "tags": [
-            "Sub-Legendary"
-        ],
-        "eggGroups": [
-            "Undiscovered"
-        ]
-    },
-    "chiyu": {
-        "num": 997,
-        "name": "chi-yu",
-        "types": [
-            "dark",
-            "fire"
-        ],
-        "gender": "N",
-        "baseStats": {
-            "hp": 55,
-            "attack": 80,
-            "defense": 80,
-            "special-attack": 135,
-            "special-defense": 120,
-            "speed": 100
-        },
-        "abilities": {
-            "0": "Beads of Ruin"
-        },
-        "heightm": 0.4,
-        "weightkg": 4.9,
-        "color": "Red",
-        "tags": [
-            "Sub-Legendary"
-        ],
-        "eggGroups": [
-            "Undiscovered"
-        ]
-    },
     "koraidon": {
-        "num": 998,
+        "num": 1007,
         "name": "koraidon",
         "types": [
             "fighting",
@@ -40242,7 +40568,7 @@
         ]
     },
     "miraidon": {
-        "num": 999,
+        "num": 1008,
         "name": "miraidon",
         "types": [
             "electric",
@@ -40268,332 +40594,6 @@
         ],
         "eggGroups": [
             "Undiscovered"
-        ]
-    },
-    "tinkatink": {
-        "num": 1000,
-        "name": "tinkatink",
-        "types": [
-            "fairy",
-            "steel"
-        ],
-        "gender": "F",
-        "baseStats": {
-            "hp": 50,
-            "attack": 45,
-            "defense": 45,
-            "special-attack": 35,
-            "special-defense": 64,
-            "speed": 58
-        },
-        "abilities": {
-            "0": "Mold Breaker",
-            "1": "Own Tempo",
-            "H": "Pickpocket"
-        },
-        "heightm": 0.4,
-        "weightkg": 8.9,
-        "color": "Pink",
-        "evos": [
-            "Tinkatuff"
-        ],
-        "eggGroups": [
-            "Fairy"
-        ]
-    },
-    "tinkatuff": {
-        "num": 1001,
-        "name": "tinkatuff",
-        "types": [
-            "fairy",
-            "steel"
-        ],
-        "gender": "F",
-        "baseStats": {
-            "hp": 65,
-            "attack": 55,
-            "defense": 55,
-            "special-attack": 45,
-            "special-defense": 82,
-            "speed": 78
-        },
-        "abilities": {
-            "0": "Mold Breaker",
-            "1": "Own Tempo",
-            "H": "Pickpocket"
-        },
-        "heightm": 0.7,
-        "weightkg": 59.1,
-        "color": "Pink",
-        "prevo": "Tinkatink",
-        "evoLevel": 24,
-        "evos": [
-            "Tinkaton"
-        ],
-        "eggGroups": [
-            "Fairy"
-        ]
-    },
-    "tinkaton": {
-        "num": 1002,
-        "name": "tinkaton",
-        "types": [
-            "fairy",
-            "steel"
-        ],
-        "gender": "F",
-        "baseStats": {
-            "hp": 85,
-            "attack": 75,
-            "defense": 77,
-            "special-attack": 70,
-            "special-defense": 105,
-            "speed": 94
-        },
-        "abilities": {
-            "0": "Mold Breaker",
-            "1": "Own Tempo",
-            "H": "Pickpocket"
-        },
-        "heightm": 0.7,
-        "weightkg": 112.8,
-        "color": "Pink",
-        "prevo": "Tinkatuff",
-        "evoLevel": 38,
-        "eggGroups": [
-            "Fairy"
-        ]
-    },
-    "charcadet": {
-        "num": 1003,
-        "name": "charcadet",
-        "types": [
-            "fire"
-        ],
-        "baseStats": {
-            "hp": 40,
-            "attack": 50,
-            "defense": 40,
-            "special-attack": 50,
-            "special-defense": 40,
-            "speed": 35
-        },
-        "abilities": {
-            "0": "Flash Fire",
-            "H": "Flame Body"
-        },
-        "heightm": 0.6,
-        "weightkg": 10.5,
-        "color": "Red",
-        "evos": [
-            "Armarouge",
-            "Ceruledge"
-        ],
-        "eggGroups": [
-            "Human-Like"
-        ]
-    },
-    "armarouge": {
-        "num": 1004,
-        "name": "armarouge",
-        "types": [
-            "fire",
-            "psychic"
-        ],
-        "baseStats": {
-            "hp": 85,
-            "attack": 60,
-            "defense": 100,
-            "special-attack": 125,
-            "special-defense": 80,
-            "speed": 75
-        },
-        "abilities": {
-            "0": "Flash Fire",
-            "H": "Weak Armor"
-        },
-        "heightm": 1.5,
-        "weightkg": 85,
-        "color": "Red",
-        "prevo": "Charcadet",
-        "evoType": "useItem",
-        "evoItem": "Auspicious Armor",
-        "eggGroups": [
-            "Human-Like"
-        ]
-    },
-    "ceruledge": {
-        "num": 1005,
-        "name": "ceruledge",
-        "types": [
-            "fire",
-            "ghost"
-        ],
-        "baseStats": {
-            "hp": 75,
-            "attack": 125,
-            "defense": 80,
-            "special-attack": 60,
-            "special-defense": 100,
-            "speed": 85
-        },
-        "abilities": {
-            "0": "Flash Fire",
-            "H": "Weak Armor"
-        },
-        "heightm": 1.6,
-        "weightkg": 62,
-        "color": "Blue",
-        "prevo": "Charcadet",
-        "evoType": "useItem",
-        "evoItem": "Malicious Armor",
-        "eggGroups": [
-            "Human-Like"
-        ]
-    },
-    "toedscool": {
-        "num": 1006,
-        "name": "toedscool",
-        "types": [
-            "ground",
-            "grass"
-        ],
-        "baseStats": {
-            "hp": 40,
-            "attack": 40,
-            "defense": 35,
-            "special-attack": 50,
-            "special-defense": 100,
-            "speed": 70
-        },
-        "abilities": {
-            "0": "Mycelium Might"
-        },
-        "heightm": 0.9,
-        "weightkg": 33,
-        "color": "Yellow",
-        "evos": [
-            "Toedscruel"
-        ],
-        "eggGroups": [
-            "Field"
-        ]
-    },
-    "toedscruel": {
-        "num": 1007,
-        "name": "toedscruel",
-        "types": [
-            "ground",
-            "grass"
-        ],
-        "baseStats": {
-            "hp": 80,
-            "attack": 70,
-            "defense": 65,
-            "special-attack": 80,
-            "special-defense": 120,
-            "speed": 100
-        },
-        "abilities": {
-            "0": "Mycelium Might"
-        },
-        "heightm": 1.9,
-        "weightkg": 58,
-        "color": "Black",
-        "prevo": "Toedscool",
-        "evoLevel": 30,
-        "eggGroups": [
-            "Field"
-        ]
-    },
-    "kingambit": {
-        "num": 1008,
-        "name": "kingambit",
-        "types": [
-            "dark",
-            "steel"
-        ],
-        "baseStats": {
-            "hp": 100,
-            "attack": 135,
-            "defense": 120,
-            "special-attack": 60,
-            "special-defense": 85,
-            "speed": 50
-        },
-        "abilities": {
-            "0": "Defiant",
-            "1": "Supreme Overlord",
-            "H": "Pressure"
-        },
-        "heightm": 2,
-        "weightkg": 120,
-        "color": "Black",
-        "prevo": "Bisharp",
-        "evoType": "other",
-        "evoCondition": "Defeat 3 Bisharp leading Pawniard and level-up",
-        "eggGroups": [
-            "Human-Like"
-        ]
-    },
-    "clodsire": {
-        "num": 1009,
-        "name": "clodsire",
-        "types": [
-            "poison",
-            "ground"
-        ],
-        "baseStats": {
-            "hp": 130,
-            "attack": 75,
-            "defense": 60,
-            "special-attack": 45,
-            "special-defense": 100,
-            "speed": 20
-        },
-        "abilities": {
-            "0": "Poison Point",
-            "1": "Water Absorb",
-            "H": "Unaware"
-        },
-        "heightm": 1.8,
-        "weightkg": 223,
-        "color": "Brown",
-        "prevo": "Wooper-Paldea",
-        "evoLevel": 20,
-        "eggGroups": [
-            "Water 1",
-            "Field"
-        ]
-    },
-    "annihilape": {
-        "num": 1010,
-        "name": "annihilape",
-        "types": [
-            "fighting",
-            "ghost"
-        ],
-        "baseStats": {
-            "hp": 110,
-            "attack": 115,
-            "defense": 80,
-            "special-attack": 50,
-            "special-defense": 90,
-            "speed": 90
-        },
-        "abilities": {
-            "0": "Vital Spirit",
-            "1": "Inner Focus",
-            "H": "Defiant"
-        },
-        "heightm": 1.2,
-        "weightkg": 56,
-        "color": "Gray",
-        "prevo": "Primeape",
-        "evoType": "other",
-        "evoCondition": "Use Rage Fist 20 times and level-up",
-        "eggGroups": [
-            "Field"
         ]
     },
     "missingno": {
@@ -42784,6 +42784,36 @@
         "changesFrom": "Venomicon",
         "gen": 8
     },
+    "saharascal": {
+        "num": -67,
+        "name": "saharascal",
+        "types": [
+            "ground"
+        ],
+        "baseStats": {
+            "hp": 50,
+            "attack": 80,
+            "defense": 65,
+            "special-attack": 45,
+            "special-defense": 90,
+            "speed": 70
+        },
+        "abilities": {
+            "0": "Water Absorb",
+            "1": "Pickpocket",
+            "H": "Sand Spit"
+        },
+        "heightm": 1.2,
+        "weightkg": 48,
+        "color": "Brown",
+        "evos": [
+            "Saharaja"
+        ],
+        "eggGroups": [
+            "Field"
+        ],
+        "gen": 8
+    },
     "saharaja": {
         "num": -68,
         "name": "saharaja",
@@ -42800,13 +42830,17 @@
         },
         "abilities": {
             "0": "Water Absorb",
-            "1": "Serene Grace"
+            "1": "Serene Grace",
+            "H": "Sand Spit"
         },
         "heightm": 2.3,
         "weightkg": 303.9,
         "color": "White",
+        "prevo": "Saharascal",
+        "evoType": "useItem",
+        "evoItem": "Shiny Stone",
         "eggGroups": [
-            "Undiscovered"
+            "Field"
         ],
         "gen": 8
     },
