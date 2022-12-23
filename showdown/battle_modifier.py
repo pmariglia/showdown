@@ -415,8 +415,8 @@ def terastallize(battle, split_msg):
     else:
         pkmn = battle.user.active
 
-    # Type-Change is sent explicitly by showdown and handled in `typechange()`
     pkmn.terastallized = True
+    pkmn.types = [normalize_name(split_msg[3])]
     logger.debug("Terastallized {}".format(pkmn.name))
 
 

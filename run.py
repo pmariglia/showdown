@@ -41,6 +41,7 @@ def check_dictionaries_are_unmodified(original_pokedex, original_move_json):
 
 
 async def showdown():
+    ShowdownConfig.configure()
     apply_mods(ShowdownConfig.pokemon_mode)
 
     original_pokedex = deepcopy(pokedex)

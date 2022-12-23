@@ -1291,6 +1291,12 @@ class TestStartVolatileStatus(unittest.TestCase):
 
         self.assertTrue(self.battle.opponent.active.terastallized)
 
+    def test_terastallize_sets_new_type(self):
+        split_msg = ['', '-terastallize', 'p2a: Caterpie', 'Fire']
+        terastallize(self.battle, split_msg)
+
+        self.assertEqual(["fire"], self.battle.opponent.active.types)
+
     def test_sets_ability(self):
         # |-start|p1a: Cinderace|typechange|Fighting|[from] ability: Libero
         split_msg = ['', '-start', 'p2a: Cinderace', 'typechange', 'Fighting', '[from] ability: Libero']

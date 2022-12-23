@@ -33,7 +33,20 @@ init_logging(env("LOG_LEVEL", "DEBUG"))
 
 
 class _ShowdownConfig:
-    def __init__(self):
+    battle_bot_module: str
+    websocket_uri: str
+    username: str
+    password: str
+    bot_mode: str
+    pokemon_mode: str
+    run_count: int
+    team: str
+    user_to_challenge: str
+    save_replay: bool
+    room_name: str
+    damage_calc_type: str
+
+    def configure(self):
         self.battle_bot_module = env("BATTLE_BOT")
         self.websocket_uri = env("WEBSOCKET_URI")
         self.username = env("PS_USERNAME")
