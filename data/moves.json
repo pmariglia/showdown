@@ -11079,6 +11079,19 @@
         "target": "allAdjacentFoes",
         "type": "normal"
     },
+    "recharge": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {},
+        "id": "nothing",
+        "name": "Recharge",
+        "pp": 40,
+        "priority": 0,
+        "secondary": null,
+        "target": "self",
+        "type": "normal"
+    },
     "recover": {
         "accuracy": true,
         "basePower": 0,

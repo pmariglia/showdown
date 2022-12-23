@@ -253,6 +253,25 @@ moves_dict["nothing"] = {
     "type": "normal"
 }
 
+moves_dict["recharge"] = {
+    "accuracy": True,
+    "basePower": 0,
+    "category": "status",
+    "flags": {},
+    "id": "nothing",
+    "name": "Recharge",
+    "pp": 40,
+    "priority": 0,
+    "secondary": None,
+    "target": "self",
+    "type": "normal"
+}
+
+moves_dict["tidyup"]["boosts"] = {
+    "attack": 1,
+    "speed": 1
+}
+
 del moves_dict["diamondstorm"]["self"]
 moves_dict["diamondstorm"]["secondary"] = {
     "chance": 50,
