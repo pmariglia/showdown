@@ -426,7 +426,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
             temp_instructions += instruction_generator.get_instructions_from_flinching_moves(defender, flinch_accuracy, first_move, instruction_set)
         all_instructions = temp_instructions
 
-    if constants.DRAG in attacking_move[constants.FLAGS]:
+    if constants.DRAG in attacking_move[constants.FLAGS] and attacking_move[constants.ACCURACY]:
         temp_instructions = []
         for instruction_set in all_instructions:
             temp_instructions += instruction_generator.get_instructions_from_drag(mutator, attacker, move_target, instruction_set)
