@@ -19543,6 +19543,8 @@
         "eggGroups": [
             "Undiscovered"
         ],
+        "requiredItem": "Adamant Crystal",
+        "changesFrom": "Dialga",
         "gen": 8
     },
     "palkia": {
@@ -19610,6 +19612,8 @@
         "eggGroups": [
             "Undiscovered"
         ],
+        "requiredItem": "Lustrous Globe",
+        "changesFrom": "Palkia",
         "gen": 8
     },
     "heatran": {
@@ -19734,7 +19738,7 @@
         "eggGroups": [
             "Undiscovered"
         ],
-        "requiredItem": "Griseous Orb",
+        "requiredItem": "Griseous Core",
         "changesFrom": "Giratina"
     },
     "cresselia": {
