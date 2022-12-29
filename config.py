@@ -1,5 +1,9 @@
 import logging
+import os
 import sys
+from logging.handlers import RotatingFileHandler
+from typing import Union
+
 from environs import Env
 
 import constants
@@ -15,21 +19,36 @@ class CustomFormatter(logging.Formatter):
         return "{} {}".format(record.levelname.ljust(10), record.msg)
 
 
-def init_logging(level):
+class CustomRotatingFileHandler(RotatingFileHandler):
+    def __init__(self, file_name, **kwargs):
+        self.base_dir = "logs"
+        if not os.path.exists(self.base_dir):
+            os.mkdir(self.base_dir)
+
+        super().__init__("{}/{}".format(self.base_dir, file_name), **kwargs)
+
+    def do_rollover(self, new_file_name):
+        self.baseFilename = "{}/{}".format(self.base_dir, new_file_name)
+        self.doRollover()
+
+
+def init_logging(level, log_to_file):
     websockets_logger = logging.getLogger("websockets")
     websockets_logger.setLevel(logging.INFO)
     requests_logger = logging.getLogger("urllib3")
     requests_logger.setLevel(logging.INFO)
 
+    # Gets the root logger to set handlers/formatters
     logger = logging.getLogger()
     logger.setLevel(level)
-    default_formatter = CustomFormatter()
-    default_handler = logging.StreamHandler(sys.stdout)
-    default_handler.setFormatter(default_formatter)
-    logger.addHandler(default_handler)
+    if log_to_file:
+        log_handler = CustomRotatingFileHandler("init.log")
+    else:
+        log_handler = logging.StreamHandler(sys.stdout)
 
-
-init_logging(env("LOG_LEVEL", "DEBUG"))
+    ShowdownConfig.log_handler = log_handler
+    log_handler.setFormatter(CustomFormatter())
+    logger.addHandler(log_handler)
 
 
 class _ShowdownConfig:
@@ -45,6 +64,9 @@ class _ShowdownConfig:
     save_replay: bool
     room_name: str
     damage_calc_type: str
+    log_level: str
+    log_to_file: bool
+    log_handler: Union[CustomRotatingFileHandler, logging.StreamHandler]
 
     def configure(self):
         self.battle_bot_module = env("BATTLE_BOT")
@@ -61,6 +83,9 @@ class _ShowdownConfig:
         self.save_replay = env.bool("SAVE_REPLAY", False)
         self.room_name = env("ROOM_NAME", None)
         self.damage_calc_type = env("DAMAGE_CALC_TYPE", "average")
+
+        self.log_level = env("LOG_LEVEL", "DEBUG")
+        self.log_to_file = env.bool("LOG_TO_FILE", False)
 
         self.validate_config()
 

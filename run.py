@@ -1,10 +1,12 @@
 import asyncio
 import json
+import logging
+import traceback
+from datetime import datetime
 from copy import deepcopy
 
 import constants
-from config import ShowdownConfig
-import logging
+from config import ShowdownConfig, init_logging
 
 from teams import load_team
 from showdown.run_battle import pokemon_battle
@@ -42,6 +44,10 @@ def check_dictionaries_are_unmodified(original_pokedex, original_move_json):
 
 async def showdown():
     ShowdownConfig.configure()
+    init_logging(
+        ShowdownConfig.log_level,
+        ShowdownConfig.log_to_file
+    )
     apply_mods(ShowdownConfig.pokemon_mode)
 
     original_pokedex = deepcopy(pokedex)
@@ -58,6 +64,8 @@ async def showdown():
     wins = 0
     losses = 0
     while True:
+        if ShowdownConfig.log_to_file:
+            ShowdownConfig.log_handler.do_rollover(datetime.now().strftime("%Y-%m-%dT%H:%M:%S.log"))
         team = load_team(ShowdownConfig.team)
         if ShowdownConfig.bot_mode == constants.CHALLENGE_USER:
             await ps_websocket_client.challenge_user(
@@ -91,4 +99,8 @@ async def showdown():
 
 
 if __name__ == "__main__":
-    asyncio.run(showdown())
+    try:
+        asyncio.run(showdown())
+    except Exception as e:
+        logger.error(traceback.format_exc())
+        raise
