@@ -301,7 +301,6 @@
             "pressure|rockyhelmet|careful|252,0,124,0,132,0|bodypress|defog|irondefense|roost": 1,
             "pressure|heavydutyboots|relaxed|252,0,252,0,4,0|bodypress|defog|roost|uturn": 1,
             "pressure|rockyhelmet|impish|248,72,188,0,0,0|bravebird|defog|roost|uturn": 1,
-            "pressure|shedshell|impish|252,0,168,0,88,0|": 1,
             "pressure|weaknesspolicy|adamant|188,144,0,0,0,176|agility|bulkup|powertrip|roost": 1,
             "pressure|rockyhelmet|impish|248,0,252,0,8,0|bodypress|bravebird|defog|roost": 1,
             "pressure|heavydutyboots|impish|248,8,252,0,0,0|bravebird|defog|roost|uturn": 1,
@@ -505,7 +504,6 @@
             "waterabsorb|leftovers|sassy|152,0,172,0,184,0|earthquake|recover|toxic|toxicspikes": 1,
             "waterabsorb|rockyhelmet|impish|252,0,252,0,4,0|recover|stealthrock|toxicspikes|yawn": 1,
             "unaware|blacksludge|calm|252,0,104,0,152,0|earthpower|recover|sludgebomb|stealthrock": 1,
-            "unaware|leftovers|careful|252,4,0,0,252,0|": 1,
             "waterabsorb|leftovers|impish|252,4,252,0,0,0|earthquake|recover|stealthrock|toxic": 1,
             "unaware|heavydutyboots|impish|252,0,252,0,4,0|earthquake|recover|spikes|toxic": 2,
             "unaware|blacksludge|calm|252,0,4,0,252,0|haze|recover|spikes|stealthrock": 1,
@@ -986,7 +984,6 @@
             "quarkdrive|boosterenergy|jolly|0,252,0,0,4,252|closecombat|shadowsneak|spiritbreak|swordsdance": 2,
             "quarkdrive|expertbelt|naive|0,4,0,252,0,252|closecombat|moonblast|psyshock|thunderbolt": 4,
             "quarkdrive|boosterenergy|adamant|0,252,0,0,0,252|closecombat|psychocut|shadowsneak|spiritbreak": 1,
-            "quarkdrive|boosterenergy|naive|0,4,0,252,0,252|": 1,
             "quarkdrive|choicescarf|hasty|0,4,0,252,0,252|closecombat|moonblast|psyshock|shadowball": 1,
             "quarkdrive|boosterenergy|naive|0,160,0,96,0,252|closecombat|knockoff|moonblast|zenheadbutt": 1,
             "quarkdrive|choicespecs|timid|0,0,0,252,4,252|aurasphere|moonblast|shadowball|thunderbolt": 1,
@@ -1303,7 +1300,6 @@
             "multiscale|heavydutyboots|jolly|4,252,0,0,0,252|dragondance|earthquake|firepunch|terablast": 1,
             "multiscale|heavydutyboots|jolly|0,252,0,0,4,252|dragonclaw|dragondance|earthquake|extremespeed": 1,
             "multiscale|choiceband|jolly|0,252,0,0,4,252|earthquake|extremespeed|icespinner|outrage": 2,
-            "multiscale|lumberry|jolly|0,252,4,0,0,252|": 1,
             "multiscale|heavydutyboots|modest|252,0,0,252,4,0|aquajet|dracometeor|hurricane|roost": 1,
             "multiscale|choiceband|adamant|0,252,4,0,0,252|earthquake|extremespeed|firepunch|icespinner": 1,
             "multiscale|heavydutyboots|adamant|72,252,0,0,0,184|dragondance|earthquake|extremespeed|roost": 1,
@@ -1460,7 +1456,6 @@
             "flamebody|heavydutyboots|timid|0,0,4,252,0,252|fierydance|gigadrain|quiverdance|terablast": 1,
             "flamebody|heavydutyboots|timid|96,0,0,252,0,160|fierydance|gigadrain|morningsun|quiverdance": 1,
             "flamebody|heavydutyboots|timid|248,0,108,0,0,152|fierydance|gigadrain|morningsun|quiverdance": 1,
-            "flamebody|heavydutyboots|timid|0,0,4,252,0,252|": 1,
             "flamebody|heavydutyboots|timid|0,0,0,252,4,252|bugbuzz|fireblast|gigadrain|quiverdance": 1,
             "flamebody|heavydutyboots|timid|248,0,108,0,0,152|bugbuzz|fierydance|gigadrain|quiverdance": 1,
             "flamebody|heavydutyboots|timid|0,0,0,252,4,252|flamethrower|gigadrain|psychic|quiverdance": 1,
@@ -2554,9 +2549,6 @@
             "swiftswim|lifeorb|jolly|0,252,4,0,0,252|icespinner|liquidation|stoneedge|swordsdance": 1,
             "swiftswim|whiteherb|adamant|0,252,0,0,4,252|earthquake|razorshell|shellsmash|stoneedge": 1,
             "swiftswim|whiteherb|adamant|0,252,0,0,4,252|icespinner|liquidation|shellsmash|stoneedge": 1
-        },
-        "rotomw": {
-            "levitate|choicescarf|timid|4,0,0,0,0,252|": 1
         },
         "girafarig": {
             "innerfocus|lifeorb|naive|0,0,76,196,0,236|earthquake|terablast|trailblaze|twinbeam": 1
@@ -6003,16 +5995,6 @@
                 "roaringmoon": "protosynthesis|heavydutyboots|careful|12,0,0,0,252,220|earthquake|jawlock|roost|uturn",
                 "chienpao": "swordofruin|choiceband|adamant|0,252,4,0,0,252|crunch|iceshard|iciclecrash|sacredsword",
                 "hatterene": "magicbounce|leftovers|bold|252,0,252,0,4,0|calmmind|drainingkiss|mysticalfire|psyshock"
-            }
-        ],
-        "dragonite|volcarona|corviknight|clodsire|rotomw|ironvaliant": [
-            {
-                "ironvaliant": "quarkdrive|boosterenergy|naive|0,4,0,252,0,252|",
-                "corviknight": "pressure|shedshell|impish|252,0,168,0,88,0|",
-                "rotomw": "levitate|choicescarf|timid|4,0,0,0,0,252|",
-                "dragonite": "multiscale|lumberry|jolly|0,252,4,0,0,252|",
-                "clodsire": "unaware|leftovers|careful|252,4,0,0,252,0|",
-                "volcarona": "flamebody|heavydutyboots|timid|0,0,4,252,0,252|"
             }
         ],
         "chewtle|toedscool|larvesta|gastly|tinkatink|girafarig": [

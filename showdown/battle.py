@@ -102,6 +102,9 @@ class Battle(ABC):
         self.started = True
         self.rqid = user_json[constants.RQID]
 
+    def during_team_preview(self):
+        ...
+
     def start_non_team_preview_battle(self, user_json, opponent_switch_string):
         self.user.from_json(user_json, first_turn=True)
 
@@ -537,7 +540,8 @@ class Pokemon:
         return pkmn
 
     def set_spread(self, nature, evs):
-        evs = [int(e) for e in evs.split(',')]
+        if isinstance(evs, str):
+            evs = [int(e) for e in evs.split(',')]
         hp_percent = self.hp / self.max_hp
         self.stats = calculate_stats(self.base_stats, self.level, evs=evs, nature=nature)
         self.nature = nature
