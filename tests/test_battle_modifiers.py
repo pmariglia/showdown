@@ -2173,9 +2173,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
             constants.SIDE: {
                 constants.ID: None,
                 constants.NAME: None,
-                constants.POKEMON: [
-
-                ],
+                constants.POKEMON: [],
                 constants.RQID: None
             }
         }
@@ -2564,6 +2562,22 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
         check_speed_ranges(self.battle, messages)
         self.assertEqual(float("inf"), self.battle.opponent.active.speed_range.max)
+
+    def test_move_from_magicbounce_after_switching_does_not_set_speed_range(self):
+        user_reserve_weedle = Pokemon("Weedle", 100)
+        self.battle.user.reserve = [user_reserve_weedle]
+
+        messages = [
+            '|switch|p1a: Caterpie|Caterpie, F|255/255',
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|p2a: Caterpie|[from]ability: Magic Bounce',
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        # speed ranges should be unchanged because this was a switch-in
+        self.assertEqual(float("inf"), self.battle.opponent.active.speed_range.max)
+        self.assertEqual(0, self.battle.opponent.active.speed_range.min)
 
 
 class TestGuessChoiceScarf(unittest.TestCase):
@@ -2956,6 +2970,22 @@ class TestGuessChoiceScarf(unittest.TestCase):
         check_choicescarf(self.battle, messages)
 
         self.assertEqual('choicescarf', self.battle.opponent.active.item)
+
+    def test_choicescarf_is_not_checked_when_switching_happens(self):
+        self.battle.user.active.stats[constants.SPEED] = 210
+        user_reserve_weedle = Pokemon("Weedle", 100)
+        user_reserve_weedle.stats[constants.SPEED] = 75
+        self.battle.user.reserve = [user_reserve_weedle]
+
+        messages = [
+            '|switch|p1a: Caterpie|Caterpie, F|255/255',
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|p2a: Caterpie|[from]ability: Magic Bounce',
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
 
 class TestCheckHeavyDutyBoots(unittest.TestCase):

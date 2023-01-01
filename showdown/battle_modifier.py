@@ -88,6 +88,16 @@ def is_opponent(battle,  split_msg):
     return not split_msg[2].startswith(battle.user.name)
 
 
+def get_move_information(m):
+    # Given a |move| line from the PS protocol, extract the user of the move and the move object
+    try:
+        split_move_line = m.split("|")
+        return split_move_line[2], all_move_json[normalize_name(split_move_line[3])]
+    except KeyError:
+        logger.debug("Unknown move {} - using standard 0 priority move".format(normalize_name(m.split('|')[3])))
+        return m.split('|')[2], {constants.ID: "unknown", constants.PRIORITY: 0}
+
+
 def request(battle, split_msg):
     """Update the user's team given the battle JSON in split_msg[2]
        Also updates some battle meta-data such as rqid, force_switch, and wait"""
@@ -819,16 +829,14 @@ def check_speed_ranges(battle, msg_lines):
         If there is a situation where an ability could have modified the turn order (either by
         changing a move's priority or giving a Pokemon more speed) then this check should be
         skipped. Examples are:
+            - either side switched
             - the opponent COULD have a speed-boosting weather ability AND that weather is up
             - the opponent COULD have prankster and it used a status move
             - Grassy Glide is used when Grassy Terrain is up
     """
-    def get_move_information(m):
-        try:
-            return m.split('|')[2], all_move_json[normalize_name(m.split('|')[3])]
-        except KeyError:
-            logger.debug("Unknown move {} - using standard 0 priority move".format(normalize_name(m.split('|')[3])))
-            return m.split('|')[2], {constants.ID: "unknown", constants.PRIORITY: 0}
+    # If either side switched this turn - don't do this check
+    if any(ln.startswith("|switch|") for ln in msg_lines):
+        return
 
     moves = [get_move_information(m) for m in msg_lines if m.startswith('|move|')]
     if len(moves) != 2 or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:
@@ -892,12 +900,9 @@ def check_speed_ranges(battle, msg_lines):
 
 
 def check_choicescarf(battle, msg_lines):
-    def get_move_information(m):
-        try:
-            return m.split('|')[2], all_move_json[normalize_name(m.split('|')[3])]
-        except KeyError:
-            logger.debug("Unknown move {} - using standard 0 priority move".format(normalize_name(m.split('|')[3])))
-            return m.split('|')[2], {constants.ID: "unknown", constants.PRIORITY: 0}
+    # If either side switched this turn - don't do this check
+    if any(ln.startswith("|switch|") for ln in msg_lines):
+        return
 
     moves = [get_move_information(m) for m in msg_lines if m.startswith('|move|')]
     if len(moves) != 2 or moves[0][0].startswith(battle.user.name) or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:
