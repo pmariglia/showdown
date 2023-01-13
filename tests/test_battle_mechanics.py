@@ -264,6 +264,21 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_pkmn_with_goodasgold_cannot_be_dragged(self):
+        bot_move = "whirlwind"
+        opponent_move = "splash"
+        self.state.opponent.active.ability = "goodasgold"
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1,
+                [],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_haze_removes_status_boosts(self):
         bot_move = "haze"
         opponent_move = "splash"

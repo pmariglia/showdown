@@ -22,30 +22,3 @@ with open(random_battle_set_location, 'r') as f:
 pokemon_sets = random_battle_sets
 effectiveness = {}
 team_datasets = None
-
-
-def get_team_datasets(pkmn_names):
-    sets = os.path.join(PWD, 'team_datasets.json')
-    with open(sets, 'r') as f:
-        sets_dict = json.load(f)["pokemon"]
-
-    result = {}
-    for pkmn in pkmn_names:
-        try:
-            result[pkmn] = sets_dict[pkmn]
-        except KeyError:
-            logger.warning("No pokemon information being added for {}".format(pkmn))
-
-    return result
-
-
-def get_ou_team(pkmn_names):
-    sets = os.path.join(PWD, 'team_datasets.json')
-    with open(sets, 'r') as f:
-        teams_dict = json.load(f)["teams"]
-
-    pkmn_lookup = "|".join(pkmn_names)
-    try:
-        return teams_dict[pkmn_lookup][0]
-    except KeyError:
-        return None

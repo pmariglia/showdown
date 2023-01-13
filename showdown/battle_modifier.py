@@ -77,8 +77,25 @@ def find_pokemon_in_reserves(pkmn_name, reserves):
     return None
 
 
+def find_reserve_pokemon_by_nickname(pkmn_nickname, reserves):
+    for reserve_pkmn in reserves:
+        if pkmn_nickname == reserve_pkmn.nickname:
+            return reserve_pkmn
+    return None
+
+
 def is_opponent(battle,  split_msg):
     return not split_msg[2].startswith(battle.user.name)
+
+
+def get_move_information(m):
+    # Given a |move| line from the PS protocol, extract the user of the move and the move object
+    try:
+        split_move_line = m.split("|")
+        return split_move_line[2], all_move_json[normalize_name(split_move_line[3])]
+    except KeyError:
+        logger.debug("Unknown move {} - using standard 0 priority move".format(normalize_name(m.split('|')[3])))
+        return m.split('|')[2], {constants.ID: "unknown", constants.PRIORITY: 0}
 
 
 def request(battle, split_msg):
@@ -166,12 +183,14 @@ def switch_or_drag(battle, split_msg):
 
     # check if the pokemon exists in the reserves
     # if it does not, then the newly-created pokemon is used (for formats without team preview)
-    pkmn = Pokemon.from_switch_string(split_msg[3])
-    pkmn = find_pokemon_in_reserves(pkmn.name, side.reserve)
+    nickname = split_msg[2]
+    temp_pkmn = Pokemon.from_switch_string(split_msg[3], nickname=nickname)
+    pkmn = find_pokemon_in_reserves(temp_pkmn.name, side.reserve)
 
     if pkmn is None:
-        pkmn = Pokemon.from_switch_string(split_msg[3])
+        pkmn = Pokemon.from_switch_string(split_msg[3], nickname=nickname)
     else:
+        pkmn.nickname = temp_pkmn.nickname
         side.reserve.remove(pkmn)
 
     side.last_used_move = LastUsedMove(
@@ -186,7 +205,7 @@ def switch_or_drag(battle, split_msg):
 
     side.active = pkmn
     if side.active.name in constants.UNKOWN_POKEMON_FORMES:
-        side.active = Pokemon.from_switch_string(split_msg[3])
+        side.active = Pokemon.from_switch_string(split_msg[3], nickname=nickname)
 
 
 def heal_or_damage(battle, split_msg):
@@ -194,6 +213,9 @@ def heal_or_damage(battle, split_msg):
         side = battle.opponent
         other_side = battle.user
         pkmn = battle.opponent.active
+        if len(split_msg) == 5 and split_msg[4] == "[from] move: Revival Blessing":
+            nickname = Pokemon.extract_nickname_from_pokemonshowdown_string(split_msg[2])
+            pkmn = find_reserve_pokemon_by_nickname(nickname, side.reserve)
 
         # opponent hp is given as a percentage
         if constants.FNT in split_msg[3]:
@@ -206,6 +228,9 @@ def heal_or_damage(battle, split_msg):
         side = battle.user
         other_side = battle.opponent
         pkmn = battle.user.active
+        if len(split_msg) == 5 and split_msg[4] == "[from] move: Revival Blessing":
+            nickname = Pokemon.extract_nickname_from_pokemonshowdown_string(split_msg[2])
+            pkmn = find_reserve_pokemon_by_nickname(nickname, side.reserve)
         if constants.FNT in split_msg[3]:
             pkmn.hp = 0
         else:
@@ -415,8 +440,8 @@ def terastallize(battle, split_msg):
     else:
         pkmn = battle.user.active
 
-    # Type-Change is sent explicitly by showdown and handled in `typechange()`
     pkmn.terastallized = True
+    pkmn.types = [normalize_name(split_msg[3])]
     logger.debug("Terastallized {}".format(pkmn.name))
 
 
@@ -804,16 +829,14 @@ def check_speed_ranges(battle, msg_lines):
         If there is a situation where an ability could have modified the turn order (either by
         changing a move's priority or giving a Pokemon more speed) then this check should be
         skipped. Examples are:
+            - either side switched
             - the opponent COULD have a speed-boosting weather ability AND that weather is up
             - the opponent COULD have prankster and it used a status move
             - Grassy Glide is used when Grassy Terrain is up
     """
-    def get_move_information(m):
-        try:
-            return m.split('|')[2], all_move_json[normalize_name(m.split('|')[3])]
-        except KeyError:
-            logger.debug("Unknown move {} - using standard 0 priority move".format(normalize_name(m.split('|')[3])))
-            return m.split('|')[2], {constants.ID: "unknown", constants.PRIORITY: 0}
+    # If either side switched this turn - don't do this check
+    if any(ln.startswith("|switch|") for ln in msg_lines):
+        return
 
     moves = [get_move_information(m) for m in msg_lines if m.startswith('|move|')]
     if len(moves) != 2 or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:
@@ -877,12 +900,9 @@ def check_speed_ranges(battle, msg_lines):
 
 
 def check_choicescarf(battle, msg_lines):
-    def get_move_information(m):
-        try:
-            return m.split('|')[2], all_move_json[normalize_name(m.split('|')[3])]
-        except KeyError:
-            logger.debug("Unknown move {} - using standard 0 priority move".format(normalize_name(m.split('|')[3])))
-            return m.split('|')[2], {constants.ID: "unknown", constants.PRIORITY: 0}
+    # If either side switched this turn - don't do this check
+    if any(ln.startswith("|switch|") for ln in msg_lines):
+        return
 
     moves = [get_move_information(m) for m in msg_lines if m.startswith('|move|')]
     if len(moves) != 2 or moves[0][0].startswith(battle.user.name) or moves[0][1][constants.PRIORITY] != moves[1][1][constants.PRIORITY]:

@@ -598,3 +598,75 @@ class TestInitializeBattler(unittest.TestCase):
         groudon = [p for p in self.battler.reserve if p.name == 'groudon'][0]
 
         self.assertEqual(None, groudon.item)
+
+    def test_reviving_pokemon(self):
+        request_dict = {
+          "forceSwitch": [
+            True
+          ],
+          "side": {
+            "name": "BigBlackSpinarak",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pawmot",
+                "details": "Pawmot, F",
+                "condition": "281/281",
+                "active": True,
+                "stats": {
+                  "atk": 361,
+                  "def": 176,
+                  "spa": 158,
+                  "spd": 157,
+                  "spe": 309
+                },
+                "moves": [
+                  "agility",
+                  "bodypress",
+                  "brickbreak",
+                  "revivalblessing"
+                ],
+                "baseAbility": "voltabsorb",
+                "item": "expertbelt",
+                "commanding": False,
+                "reviving": True,
+                "pokeball": "pokeball",
+                "ability": "voltabsorb"
+              },
+              {
+                "ident": "p1: Amoonguss",
+                "details": "Amoonguss, F",
+                "condition": "0 fnt",
+                "active": False,
+                "stats": {
+                  "atk": 295,
+                  "def": 176,
+                  "spa": 208,
+                  "spd": 196,
+                  "spe": 86
+                },
+                "moves": [
+                  "bodyslam",
+                  "clearsmog",
+                  "energyball",
+                  "facade"
+                ],
+                "baseAbility": "regenerator",
+                "item": "expertbelt",
+                "commanding": False,
+                "reviving": False,
+                "pokeball": "pokeball",
+                "ability": "regenerator"
+              }
+            ]
+          },
+          "noCancel": True,
+          "rqid": 10
+        }
+
+        self.battler.active = Pokemon('Pawmot', 100)
+        self.battler.from_json(request_dict)
+
+        pawmot = self.battler.active
+
+        self.assertTrue(pawmot.reviving)

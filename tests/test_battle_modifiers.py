@@ -336,6 +336,14 @@ class TestSwitchOrDrag(unittest.TestCase):
 
         self.assertEqual(0, current_active.hp)  # no regenerator heal when you are fainted
 
+    def test_nickname_attribute_is_set_when_switching(self):
+        # |switch|p2a: Sus|Amoonguss, F|100/100
+        split_msg = ['', 'switch', 'p2a: Sus', 'Amoonguss, F', '100/100']
+        switch_or_drag(self.battle, split_msg)
+
+        self.assertEqual(self.battle.opponent.active.name, "amoonguss")
+        self.assertEqual(self.battle.opponent.active.nickname, "Sus")
+
     def test_switch_resets_toxic_count_for_opponent(self):
         self.battle.opponent.side_conditions[constants.TOXIC_COUNT] = 1
         split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
@@ -655,6 +663,33 @@ class TestHealOrDamage(unittest.TestCase):
         split_msg = ['', '-heal', 'p2a: Caterpie', '50/100', '[from] ability: Volt Absorb', '[of] p1a: Caterpie']
         heal_or_damage(self.battle, split_msg)
         self.assertIsNone(self.battle.user.active.ability)
+
+    def test_healing_from_revivalblessing_for_opponent_pkmn(self):
+        amoongus_reserve = Pokemon("amoonguss", 100)
+        amoongus_reserve.nickname = "Sus"
+        amoongus_reserve.hp = 0
+        amoongus_reserve.fainted = True
+        self.battle.opponent.reserve = [
+            amoongus_reserve
+        ]
+
+        # |-heal|p1: Amoonguss|50/100|[from] move: Revival Blessing
+        split_msg = ['', '-heal', 'p2a: Sus', '50/100', '[from] move: Revival Blessing']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual(amoongus_reserve.hp, int(amoongus_reserve.max_hp / 2))
+
+    def test_healing_from_revivalblessing_for_bot_pkmn(self):
+        amoongus_reserve = Pokemon("amoonguss", 100)
+        amoongus_reserve.nickname = "Sus"
+        amoongus_reserve.hp = 0
+        amoongus_reserve.fainted = True
+        self.battle.user.reserve = [
+            amoongus_reserve
+        ]
+
+        split_msg = ['', '-heal', 'p1a: Sus', '150/301', '[from] move: Revival Blessing']
+        heal_or_damage(self.battle, split_msg)
+        self.assertEqual(amoongus_reserve.hp, int(amoongus_reserve.max_hp / 2))
 
 
 class TestActivate(unittest.TestCase):
@@ -1290,6 +1325,12 @@ class TestStartVolatileStatus(unittest.TestCase):
         terastallize(self.battle, split_msg)
 
         self.assertTrue(self.battle.opponent.active.terastallized)
+
+    def test_terastallize_sets_new_type(self):
+        split_msg = ['', '-terastallize', 'p2a: Caterpie', 'Fire']
+        terastallize(self.battle, split_msg)
+
+        self.assertEqual(["fire"], self.battle.opponent.active.types)
 
     def test_sets_ability(self):
         # |-start|p1a: Cinderace|typechange|Fighting|[from] ability: Libero
@@ -2132,9 +2173,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
             constants.SIDE: {
                 constants.ID: None,
                 constants.NAME: None,
-                constants.POKEMON: [
-
-                ],
+                constants.POKEMON: [],
                 constants.RQID: None
             }
         }
@@ -2523,6 +2562,22 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
         check_speed_ranges(self.battle, messages)
         self.assertEqual(float("inf"), self.battle.opponent.active.speed_range.max)
+
+    def test_move_from_magicbounce_after_switching_does_not_set_speed_range(self):
+        user_reserve_weedle = Pokemon("Weedle", 100)
+        self.battle.user.reserve = [user_reserve_weedle]
+
+        messages = [
+            '|switch|p1a: Caterpie|Caterpie, F|255/255',
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|p2a: Caterpie|[from]ability: Magic Bounce',
+        ]
+
+        check_speed_ranges(self.battle, messages)
+
+        # speed ranges should be unchanged because this was a switch-in
+        self.assertEqual(float("inf"), self.battle.opponent.active.speed_range.max)
+        self.assertEqual(0, self.battle.opponent.active.speed_range.min)
 
 
 class TestGuessChoiceScarf(unittest.TestCase):
@@ -2915,6 +2970,22 @@ class TestGuessChoiceScarf(unittest.TestCase):
         check_choicescarf(self.battle, messages)
 
         self.assertEqual('choicescarf', self.battle.opponent.active.item)
+
+    def test_choicescarf_is_not_checked_when_switching_happens(self):
+        self.battle.user.active.stats[constants.SPEED] = 210
+        user_reserve_weedle = Pokemon("Weedle", 100)
+        user_reserve_weedle.stats[constants.SPEED] = 75
+        self.battle.user.reserve = [user_reserve_weedle]
+
+        messages = [
+            '|switch|p1a: Caterpie|Caterpie, F|255/255',
+            '|move|p2a: Caterpie|Stealth Rock|',
+            '|move|p1a: Caterpie|Stealth Rock|p2a: Caterpie|[from]ability: Magic Bounce',
+        ]
+
+        check_choicescarf(self.battle, messages)
+
+        self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
 
 class TestCheckHeavyDutyBoots(unittest.TestCase):

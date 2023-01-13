@@ -73,6 +73,7 @@ HEAL = "heal"
 HEAL_TARGET = "heal_target"
 
 FORCE_SWITCH = 'forceSwitch'
+REVIVING = 'reviving'
 WAIT = 'wait'
 TRAPPED = "trapped"
 MAYBE_TRAPPED = "maybeTrapped"
@@ -126,6 +127,7 @@ TIE_STRING = "|tie"
 CHAT_STRING = "|c|"
 TIME_LEFT = "Time left:"
 DETAILS = "details"
+IDENT = "ident"
 
 MEGA_EVOLVE_GENERATIONS = [
     "gen6",

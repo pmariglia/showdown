@@ -125,25 +125,6 @@ async def start_random_battle(ps_websocket_client: PSWebsocketClient, pokemon_ba
     return battle
 
 
-def set_team_datasets(battle):
-    data.team_datasets = data.get_team_datasets([p.name for p in battle.opponent.reserve])
-    exact_team = data.get_ou_team([p.name for p in battle.opponent.reserve])
-    if exact_team is not None:
-        logger.info("Found an exact team")
-        for pkmn, pkmn_info in exact_team.items():
-            for pkmn_obj in battle.opponent.reserve:
-                if pkmn_obj.name == pkmn:
-                    split_info = pkmn_info.split("|")
-                    pkmn_obj.ability = split_info[0]
-                    pkmn_obj.item = split_info[1]
-                    pkmn_obj.set_spread(
-                        split_info[2],
-                        split_info[3]
-                    )
-                    for m in split_info[4:]:
-                        pkmn_obj.add_move(m)
-
-
 async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_battle_type):
     battle, opponent_id, user_json = await initialize_battle_with_tag(ps_websocket_client, set_request_json=False)
     battle.battle_type = constants.STANDARD_BATTLE
@@ -168,9 +149,7 @@ async def start_standard_battle(ps_websocket_client: PSWebsocketClient, pokemon_
                 opponent_pokemon.append(split_line[3])
 
         battle.initialize_team_preview(user_json, opponent_pokemon, pokemon_battle_type)
-
-        if ShowdownConfig.battle_bot_module == "team_datasets":
-            set_team_datasets(battle)
+        battle.during_team_preview()
 
         smogon_usage_data = get_standard_battle_sets(
             pokemon_battle_type,
