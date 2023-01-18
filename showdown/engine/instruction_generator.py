@@ -1312,7 +1312,11 @@ def can_be_volatile_statused(side, volatile_status, first_move):
 
 
 def sleep_clause_activated(side, status):
-    return status == constants.SLEEP and constants.SLEEP in [p.status for p in side.reserve.values()]
+    if status == constants.SLEEP:
+        for p in side.reserve.values():
+            if p.status == constants.SLEEP and p.hp > 0:
+                return True
+    return False
 
 
 def immune_to_status(state, defending_pkmn, attacking_pkmn, status):
