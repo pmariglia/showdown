@@ -87,13 +87,13 @@ class BattleBot(Battle):
                 for pkmn_obj in self.opponent.reserve:
                     if pkmn_obj.name == pkmn:
                         split_info = pkmn_info.split("|")
-                        pkmn_obj.ability = split_info[0]
-                        pkmn_obj.item = split_info[1]
+                        pkmn_obj.ability = split_info[1]
+                        pkmn_obj.item = split_info[2]
                         pkmn_obj.set_spread(
-                            split_info[2],
-                            split_info[3]
+                            split_info[3],
+                            split_info[4]
                         )
-                        for m in split_info[4:]:
+                        for m in split_info[5:]:
                             pkmn_obj.add_move(m)
 
     def find_best_move(self):
