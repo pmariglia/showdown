@@ -19,13 +19,14 @@ class TestTeamDatasets(TestCase):
     def test_predict_set_returns_pokemonset(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|jolly|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 1
+                "water|roughskin|rockyhelmet|jolly|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 1
             }
         }
         garchomp = Pokemon("garchomp", 100)
         predicted_garchomp_set = self.team_datasets.predict_set(garchomp)
 
         expected_set = PokemonSet(
+            "water",
             "roughskin",
             "rockyhelmet",
             "jolly",
@@ -38,15 +39,16 @@ class TestTeamDatasets(TestCase):
     def test_predict_set_returns_more_common_set(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|jolly|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 1,
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
-                "roughskin|rockyhelmet|timid|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 3,
+                "water|roughskin|rockyhelmet|jolly|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 1,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|timid|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 3,
             }
         }
         garchomp = Pokemon("garchomp", 100)
         predicted_garchomp_set = self.team_datasets.predict_set(garchomp)
 
         expected_set = PokemonSet(
+            "water",
             "roughskin",
             "rockyhelmet",
             "adamant",  # adamant is more common
@@ -59,8 +61,8 @@ class TestTeamDatasets(TestCase):
     def test_predict_set_returns_none_when_no_set_matches(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|jolly|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 1,
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|jolly|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 1,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -74,8 +76,8 @@ class TestTeamDatasets(TestCase):
     def test_predict_set_returns_set_if_moves_are_a_subset(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|jolly|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 1,
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|jolly|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 1,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -86,6 +88,7 @@ class TestTeamDatasets(TestCase):
         predicted_garchomp_set = self.team_datasets.predict_set(garchomp)
 
         expected_set = PokemonSet(
+            "water",
             "roughskin",
             "rockyhelmet",
             "adamant",
@@ -98,7 +101,7 @@ class TestTeamDatasets(TestCase):
     def test_matching_ability_returns_valid_set(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -106,6 +109,7 @@ class TestTeamDatasets(TestCase):
 
         predicted_garchomp_set = self.team_datasets.predict_set(garchomp)
         expected_set = PokemonSet(
+            "water",
             "roughskin",
             "rockyhelmet",
             "adamant",
@@ -117,7 +121,7 @@ class TestTeamDatasets(TestCase):
     def test_mismatching_ability_means_set_is_not_returned(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -129,7 +133,7 @@ class TestTeamDatasets(TestCase):
     def test_item_being_none_allows_set_to_match(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -137,6 +141,7 @@ class TestTeamDatasets(TestCase):
 
         predicted_garchomp_set = self.team_datasets.predict_set(garchomp)
         expected_set = PokemonSet(
+            "water",
             "roughskin",
             "rockyhelmet",
             "adamant",
@@ -148,7 +153,7 @@ class TestTeamDatasets(TestCase):
     def test_item_being_unknown_allows_set_to_match(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -156,6 +161,7 @@ class TestTeamDatasets(TestCase):
 
         predicted_garchomp_set = self.team_datasets.predict_set(garchomp)
         expected_set = PokemonSet(
+            "water",
             "roughskin",
             "rockyhelmet",
             "adamant",
@@ -167,7 +173,7 @@ class TestTeamDatasets(TestCase):
     def test_item_mismatching_does_not_match_set(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -179,7 +185,7 @@ class TestTeamDatasets(TestCase):
     def test_item_matching_matches_set(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -187,6 +193,7 @@ class TestTeamDatasets(TestCase):
 
         predicted_garchomp_set = self.team_datasets.predict_set(garchomp)
         expected_set = PokemonSet(
+            "water",
             "roughskin",
             "rockyhelmet",
             "adamant",
@@ -198,7 +205,7 @@ class TestTeamDatasets(TestCase):
     def test_omits_ability_mismatch_when_flag_is_unset(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -206,6 +213,7 @@ class TestTeamDatasets(TestCase):
 
         predicted_garchomp_set = self.team_datasets.predict_set(garchomp, match_ability=False)
         expected_set = PokemonSet(
+            "water",
             "roughskin",
             "rockyhelmet",
             "adamant",
@@ -217,7 +225,7 @@ class TestTeamDatasets(TestCase):
     def test_omits_item_mismatch_when_flag_is_unset(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -225,6 +233,7 @@ class TestTeamDatasets(TestCase):
 
         predicted_garchomp_set = self.team_datasets.predict_set(garchomp, match_item=False)
         expected_set = PokemonSet(
+            "water",
             "roughskin",
             "rockyhelmet",
             "adamant",
@@ -236,7 +245,7 @@ class TestTeamDatasets(TestCase):
     def test_omits_item_and_ability_mismatch_when_both_flags_are_unset(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -245,6 +254,7 @@ class TestTeamDatasets(TestCase):
 
         predicted_garchomp_set = self.team_datasets.predict_set(garchomp, match_item=False, match_ability=False)
         expected_set = PokemonSet(
+            "water",
             "roughskin",
             "rockyhelmet",
             "adamant",
@@ -256,8 +266,8 @@ class TestTeamDatasets(TestCase):
     def test_does_not_set_lifeorb_if_can_have_lifeorb_is_false(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|lifeorb|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 2,
+                "water|roughskin|lifeorb|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 2,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -269,8 +279,8 @@ class TestTeamDatasets(TestCase):
     def test_does_not_set_heavydutyboots_if_can_have_heavydutyboots_is_false(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|heavydutyboots|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 2,
+                "water|roughskin|heavydutyboots|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 2,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -282,8 +292,8 @@ class TestTeamDatasets(TestCase):
     def test_does_not_set_choice_item_if_can_have_can_have_choice_item_is_false(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|choiceband|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 2,
+                "water|roughskin|choiceband|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 2,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -295,8 +305,8 @@ class TestTeamDatasets(TestCase):
     def test_does_not_set_choice_band_if_can_not_have_band_is_true(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|choiceband|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 2,
+                "water|roughskin|choiceband|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 2,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -308,8 +318,8 @@ class TestTeamDatasets(TestCase):
     def test_min_speed_check_invalidates_a_set(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|choiceband|adamant|0,252,252,0,4,0|dragontail|earthquake|spikes|stealthrock": 5,
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 2,
+                "water|roughskin|choiceband|adamant|0,252,252,0,4,0|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 2,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -321,8 +331,8 @@ class TestTeamDatasets(TestCase):
     def test_max_speed_check_invalidates_a_set(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|choiceband|adamant|0,252,252,0,4,0|dragontail|earthquake|spikes|stealthrock": 2,
-                "roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|choiceband|adamant|0,252,252,0,4,0|dragontail|earthquake|spikes|stealthrock": 2,
+                "water|roughskin|rockyhelmet|adamant|0,0,252,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -334,8 +344,8 @@ class TestTeamDatasets(TestCase):
     def test_choicescarf_set_properly_fails_when_speed_range_is_present(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|choiceband|adamant|252,252,0,0,4,0|dragontail|earthquake|spikes|stealthrock": 2,
-                "roughskin|choicescarf|adamant|0,252,0,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|choiceband|adamant|252,252,0,0,4,0|dragontail|earthquake|spikes|stealthrock": 2,
+                "water|roughskin|choicescarf|adamant|0,252,0,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -347,8 +357,8 @@ class TestTeamDatasets(TestCase):
     def test_boosting_ability_with_speed_range(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|choiceband|adamant|252,252,0,0,4,0|dragontail|earthquake|spikes|stealthrock": 2,
-                "roughskin|choicescarf|adamant|0,252,0,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|choiceband|adamant|252,252,0,0,4,0|dragontail|earthquake|spikes|stealthrock": 2,
+                "water|roughskin|choicescarf|adamant|0,252,0,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
@@ -360,8 +370,8 @@ class TestTeamDatasets(TestCase):
     def test_pkmn_not_existing_in_datasets_returns_none(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|choiceband|adamant|252,252,0,0,4,0|dragontail|earthquake|spikes|stealthrock": 2,
-                "roughskin|choicescarf|adamant|0,252,0,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
+                "water|roughskin|choiceband|adamant|252,252,0,0,4,0|dragontail|earthquake|spikes|stealthrock": 2,
+                "water|roughskin|choicescarf|adamant|0,252,0,0,4,252|dragontail|earthquake|spikes|stealthrock": 5,
             }
         }
         cinderace = Pokemon("cinderace", 100)
@@ -372,12 +382,13 @@ class TestTeamDatasets(TestCase):
     def test_pokemon_with_less_than_four_moves_works(self):
         self.team_datasets.pokemon_sets = {
             "garchomp": {
-                "roughskin|choicescarf|adamant|0,252,0,0,4,252|dragontail|earthquake": 5,
+                "water|roughskin|choicescarf|adamant|0,252,0,0,4,252|dragontail|earthquake": 5,
             }
         }
         garchomp = Pokemon("garchomp", 100)
 
         expected_set = PokemonSet(
+            "water",
             "roughskin",
             "choicescarf",
             "adamant",
