@@ -166,13 +166,13 @@ def multiattack(attacking_side, attacking_move, defending_move, attacking_pokemo
 
 
 def ragingbull(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
-    if attacking_pokemon.id == "taurospaldea":
+    if attacking_pokemon.id == "taurospaldeacombat":
         attacking_move = attacking_move.copy()
         attacking_move[constants.TYPE] = "fighting"
-    elif attacking_pokemon.id == "taurospaldeafire":
+    elif attacking_pokemon.id == "taurospaldeablaze":
         attacking_move = attacking_move.copy()
         attacking_move[constants.TYPE] = "fire"
-    elif attacking_pokemon.id == "taurospaldeawater":
+    elif attacking_pokemon.id == "taurospaldeaaqua":
         attacking_move = attacking_move.copy()
         attacking_move[constants.TYPE] = "water"
 

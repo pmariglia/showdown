@@ -6277,25 +6277,25 @@
         "weightkg": 88.4,
         "color": "Brown",
         "otherFormes": [
-            "Tauros-Paldea",
-            "Tauros-Paldea-Fire",
-            "Tauros-Paldea-Water"
+            "Tauros-Paldea-Combat",
+            "Tauros-Paldea-Blaze",
+            "Tauros-Paldea-Aqua"
         ],
         "formeOrder": [
             "Tauros",
-            "Tauros-Paldea",
-            "Tauros-Paldea-Fire",
-            "Tauros-Paldea-Water"
+            "Tauros-Paldea-Combat",
+            "Tauros-Paldea-Blaze",
+            "Tauros-Paldea-Aqua"
         ],
         "eggGroups": [
             "Field"
         ]
     },
-    "taurospaldea": {
+    "taurospaldeacombat": {
         "num": 128,
-        "name": "tauros-paldea",
+        "name": "tauros-paldea-combat",
         "baseSpecies": "Tauros",
-        "forme": "Paldea",
+        "forme": "Paldea-Combat",
         "types": [
             "fighting"
         ],
@@ -6320,11 +6320,11 @@
             "Field"
         ]
     },
-    "taurospaldeafire": {
+    "taurospaldeablaze": {
         "num": 128,
-        "name": "tauros-paldea-fire",
+        "name": "tauros-paldea-blaze",
         "baseSpecies": "Tauros",
-        "forme": "Paldea-Fire",
+        "forme": "Paldea-Blaze",
         "types": [
             "fighting",
             "fire"
@@ -6350,11 +6350,11 @@
             "Field"
         ]
     },
-    "taurospaldeawater": {
+    "taurospaldeaaqua": {
         "num": 128,
-        "name": "tauros-paldea-water",
+        "name": "tauros-paldea-aqua",
         "baseSpecies": "Tauros",
-        "forme": "Paldea-Water",
+        "forme": "Paldea-Aqua",
         "types": [
             "fighting",
             "water"
@@ -38921,7 +38921,7 @@
             "attack": 35,
             "defense": 30,
             "special-attack": 55,
-            "special-defense": 40,
+            "special-defense": 30,
             "speed": 75
         },
         "abilities": {

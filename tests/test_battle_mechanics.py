@@ -5524,7 +5524,7 @@ class TestBattleMechanics(unittest.TestCase):
     def test_raging_bull_type_change(self):
         bot_move = "ragingbull"
         opponent_move = "splash"
-        self.state.user.active.id = "taurospaldea"
+        self.state.user.active.id = "taurospaldeacombat"
         self.state.user.active.types = ["fighting"]
         self.state.opponent.active.types = ["fighting"]
 

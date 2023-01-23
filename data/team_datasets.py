@@ -35,6 +35,7 @@ class PokemonMoveset:
 
 @dataclass(frozen=True)
 class PokemonSet:
+    tera_type: str
     ability: str
     item: str
     nature: str
@@ -118,9 +119,10 @@ class _TeamDatasets:
 
     @staticmethod
     def to_pokemon_set(pkmn_set_str: str) -> PokemonSet:
-        ability, item, nature, evs, *moves = pkmn_set_str.split("|")
+        tera_type, ability, item, nature, evs, *moves = pkmn_set_str.split("|")
         split_evs = evs.split(",")
         return PokemonSet(
+            tera_type,
             ability,
             item,
             nature,

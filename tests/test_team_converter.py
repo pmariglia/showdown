@@ -200,7 +200,7 @@ class TestSinglePokemonExportToDict(unittest.TestCase):
         )
 
         pkmn_dict = single_pokemon_export_to_dict(export_string)
-        self.expected_pkmn_dict['name'] = 'Ty Ty'
+        self.expected_pkmn_dict['name'] = 'tyranitar'
         self.expected_pkmn_dict['species'] = 'tyranitar'
 
         self.assertEqual(self.expected_pkmn_dict, pkmn_dict)
