@@ -1,33 +1,38 @@
 Ruffkoal (Torkoal) @ Heat Rock  
 Ability: Drought  
-EVs: 248 HP / 252 Def / 8 SpA  
-Bold Nature  
+Tera Type: Fire  
+EVs: 248 HP / 252 SpA / 8 SpD  
+Modest Nature  
+IVs: 0 Atk  
 - Stealth Rock  
-- Lava Plume  
-- Body Press  
-- Rapid Spin  
+- Fire Blast  
+- Earth Power  
+- Solar Beam  
 
-Ruffros (Tauros-Paldea-Fire) (M) @ Choice Scarf  
-Ability: Intimidate  
+Rufferace (Cinderace) @ Choice Scarf  
+Ability: Libero  
+Tera Type: Fire  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
-- Close Combat  
-- Earthquake  
-- Raging Bull  
-- Wild Charge  
+- High Jump Kick  
+- U-turn  
+- Pyro Ball  
+- Zen Headbutt  
 
 Ruffdirge (Skeledirge) @ Heavy-Duty Boots  
 Ability: Unaware  
+Tera Type: Fire  
 EVs: 248 HP / 8 SpA / 252 SpD  
 Calm Nature  
 IVs: 0 Atk  
 - Slack Off  
 - Torch Song  
-- Earth Power  
-- Shadow Ball  
+- Will-O-Wisp  
+- Hex  
 
 Ruffarona (Volcarona) @ Heavy-Duty Boots  
 Ability: Flame Body  
+Tera Type: Bug  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
@@ -37,7 +42,8 @@ IVs: 0 Atk
 - Psychic  
 
 Ruffonflame (Talonflame) @ Heavy-Duty Boots  
-Ability: Flame Body  
+Ability: Gale Wings  
+Tera Type: Fire  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
 - Defog  
@@ -45,13 +51,14 @@ Jolly Nature
 - Brave Bird  
 - U-turn  
 
-Ruffvillain (Scovillain) @ Life Orb  
-Ability: Chlorophyll  
+Rufftom (Rotom-Heat) @ Choice Specs  
+Ability: Levitate  
+Tera Type: Electric  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Solar Beam  
-- Flamethrower  
-- Giga Drain  
-- Growth  
+- Overheat  
+- Volt Switch  
+- Thunderbolt  
+- Shadow Ball  
 
