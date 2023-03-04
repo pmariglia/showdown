@@ -23349,12 +23349,12 @@
             "F": 0.125
         },
         "baseStats": {
-            "hp": 60,
-            "attack": 105,
+            "hp": 55,
+            "attack": 100,
             "defense": 60,
-            "special-attack": 120,
+            "special-attack": 125,
             "special-defense": 60,
-            "speed": 105
+            "speed": 110
         },
         "abilities": {
             "0": "Illusion"
@@ -36549,8 +36549,7 @@
             "speed": 72
         },
         "abilities": {
-            "0": "Inner Focus",
-            "H": "No Guard"
+            "0": "Inner Focus"
         },
         "heightm": 0.6,
         "weightkg": 12,
@@ -37021,10 +37020,10 @@
         ],
         "baseStats": {
             "hp": 70,
-            "attack": 130,
+            "attack": 135,
             "defense": 95,
             "special-attack": 45,
-            "special-defense": 75,
+            "special-defense": 70,
             "speed": 85
         },
         "abilities": {
@@ -40580,6 +40579,64 @@
         "color": "Blue",
         "tags": [
             "Restricted Legendary"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "walkingwake": {
+        "num": 1009,
+        "name": "walking wake",
+        "types": [
+            "water",
+            "dragon"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 99,
+            "attack": 83,
+            "defense": 91,
+            "special-attack": 125,
+            "special-defense": 83,
+            "speed": 109
+        },
+        "abilities": {
+            "0": "Protosynthesis"
+        },
+        "heightm": 3.5,
+        "weightkg": 280,
+        "color": "Blue",
+        "tags": [
+            "Paradox"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "ironleaves": {
+        "num": 1010,
+        "name": "iron leaves",
+        "types": [
+            "grass",
+            "psychic"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 90,
+            "attack": 130,
+            "defense": 88,
+            "special-attack": 70,
+            "special-defense": 108,
+            "speed": 104
+        },
+        "abilities": {
+            "0": "Quark Drive"
+        },
+        "heightm": 1.5,
+        "weightkg": 125,
+        "color": "Green",
+        "tags": [
+            "Paradox"
         ],
         "eggGroups": [
             "Undiscovered"
