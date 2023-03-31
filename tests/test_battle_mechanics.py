@@ -13343,6 +13343,44 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
+    def test_hydrosteam_power_boosted_in_sun(self):
+        bot_move = "hydrosteam"
+        opponent_move = "splash"
+
+        self.state.weather = constants.SUN
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 63),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
+    def test_psyblade_boosted_in_terrain(self):
+        bot_move = "psyblade"
+        opponent_move = "splash"
+
+        self.state.field = constants.ELECTRIC_TERRAIN
+
+        instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
+        expected_instructions = [
+            TransposeInstruction(
+                1.0,
+                [
+                    (constants.MUTATOR_DAMAGE, constants.OPPONENT, 74),
+                ],
+                False
+            )
+        ]
+
+        self.assertEqual(expected_instructions, instructions)
+
     def test_closecombat_kills_and_reduces_stats(self):
         bot_move = "closecombat"
         opponent_move = "tackle"

@@ -467,6 +467,13 @@ def expandingforce(attacking_side, attacking_move, defending_move, attacking_pok
     return attacking_move
 
 
+def psyblade(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    if terrain == constants.ELECTRIC_TERRAIN:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 1.5
+    return attacking_move
+
+
 def risingvoltage(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     if terrain == constants.ELECTRIC_TERRAIN:
         attacking_move = attacking_move.copy()
@@ -620,7 +627,16 @@ def doubleshock(attacking_side, attacking_move, defending_move, attacking_pokemo
     return attacking_move
 
 
+def hydrosteam(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
+    if weather == constants.SUN:
+        attacking_move = attacking_move.copy()
+        attacking_move[constants.BASE_POWER] *= 3
+    return attacking_move
+
+
 move_lookup = {
+    "hydrosteam": hydrosteam,
+    "psyblade": psyblade,
     'doubleshock': doubleshock,
     'ragingbull': ragingbull,
     'populationbomb': populationbomb,

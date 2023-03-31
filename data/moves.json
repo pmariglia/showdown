@@ -6850,6 +6850,24 @@
         "target": "normal",
         "type": "water"
     },
+    "hydrosteam": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "special",
+        "flags": {
+            "defrost": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "hydrosteam",
+        "name": "Hydro Steam",
+        "pp": 15,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "thawsTarget": true,
+        "type": "water"
+    },
     "hyperbeam": {
         "accuracy": 90,
         "basePower": 150,
@@ -9652,9 +9670,7 @@
         "basePower": 80,
         "category": "physical",
         "flags": {
-            "mirror": 1,
-            "protect": 1,
-            "pulse": 1
+            "protect": 1
         },
         "hasSheerForce": true,
         "id": "orderup",
@@ -10549,6 +10565,24 @@
             "chance": 10,
             "volatileStatus": "confusion"
         },
+        "target": "normal",
+        "type": "psychic"
+    },
+    "psyblade": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1,
+            "slicing": 1
+        },
+        "id": "psyblade",
+        "name": "Psyblade",
+        "pp": 15,
+        "priority": 0,
+        "secondary": null,
         "target": "normal",
         "type": "psychic"
     },
