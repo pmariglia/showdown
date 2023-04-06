@@ -350,7 +350,8 @@ class Battler:
 
             nickname = pkmn_dict[constants.IDENT]
             pkmn = Pokemon.from_switch_string(pkmn_dict[constants.DETAILS], nickname=nickname)
-            pkmn.ability = pkmn_dict[constants.REQUEST_DICT_ABILITY]
+            try: pkmn.ability = pkmn_dict[constants.REQUEST_DICT_ABILITY]
+            except: pkmn.ability = "noability"
             pkmn.index = index + 1
             pkmn.reviving = pkmn_dict.get(constants.REVIVING, False)
             pkmn.hp, pkmn.max_hp, pkmn.status = get_pokemon_info_from_condition(pkmn_dict[constants.CONDITION])
