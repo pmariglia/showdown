@@ -507,7 +507,14 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1
+        },
         "id": "assist",
         "name": "Assist",
         "pp": 20,
@@ -768,6 +775,7 @@
         "basePower": 80,
         "category": "special",
         "flags": {
+            "mirror": 1,
             "protect": 1
         },
         "id": "baddybad",
@@ -785,7 +793,10 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "noassist": 1
+        },
         "id": "banefulbunker",
         "name": "Baneful Bunker",
         "pp": 10,
@@ -873,6 +884,11 @@
         "category": "physical",
         "flags": {
             "bullet": 1,
+            "failcopycat": 1,
+            "failinstruct": 1,
+            "failmefirst": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "beakblast",
@@ -906,6 +922,8 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "failcopycat": 1,
+            "failmimic": 1,
             "mirror": 1,
             "protect": 1
         },
@@ -923,6 +941,8 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "failcopycat": 1,
+            "failmimic": 1,
             "mirror": 1,
             "protect": 1,
             "slicing": 1
@@ -940,6 +960,12 @@
         "basePower": 120,
         "category": "special",
         "flags": {
+            "failcopycat": 1,
+            "failinstruct": 1,
+            "failmefirst": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "belch",
@@ -980,7 +1006,9 @@
         "flags": {
             "allyanim": 1,
             "bypasssub": 1,
-            "mirror": 1
+            "failcopycat": 1,
+            "mirror": 1,
+            "noassist": 1
         },
         "id": "bestow",
         "name": "Bestow",
@@ -996,6 +1024,8 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "failinstruct": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "bide",
@@ -1134,6 +1164,13 @@
         "basePower": 80,
         "category": "physical",
         "flags": {
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmefirst": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "blazingtorque",
@@ -1381,8 +1418,11 @@
             "charge": 1,
             "contact": 1,
             "distance": 1,
+            "failinstruct": 1,
             "gravity": 1,
             "mirror": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "bounce",
@@ -1406,6 +1446,7 @@
         ],
         "flags": {
             "heal": 1,
+            "mirror": 1,
             "protect": 1
         },
         "id": "bouncybubble",
@@ -1728,6 +1769,7 @@
         "basePower": 60,
         "category": "special",
         "flags": {
+            "mirror": 1,
             "protect": 1
         },
         "id": "buzzybuzz",
@@ -1819,7 +1861,13 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1
+        },
         "id": "celebrate",
         "name": "Celebrate",
         "pp": 40,
@@ -1898,7 +1946,12 @@
         "flags": {
             "bypasssub": 1,
             "distance": 1,
+            "failcopycat": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
             "mirror": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1,
             "sound": 1
         },
@@ -1993,7 +2046,9 @@
         "flags": {
             "contact": 1,
             "drag": 1,
+            "failcopycat": 1,
             "mirror": 1,
+            "noassist": 1,
             "protect": 1
         },
         "id": "circlethrow",
@@ -2163,6 +2218,13 @@
         "basePower": 100,
         "category": "physical",
         "flags": {
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmefirst": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "combattorque",
@@ -2204,6 +2266,7 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "failmefirst": 1,
             "mirror": 1,
             "protect": 1
         },
@@ -2329,7 +2392,14 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1
+        },
         "id": "copycat",
         "name": "Copycat",
         "pp": 20,
@@ -2436,6 +2506,9 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "failcopycat": 1,
+            "failmefirst": 1,
+            "noassist": 1,
             "protect": 1
         },
         "id": "counter",
@@ -2467,7 +2540,10 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "failcopycat": 1,
+            "failmefirst": 1,
             "mirror": 1,
+            "noassist": 1,
             "protect": 1
         },
         "id": "covet",
@@ -2803,7 +2879,9 @@
         "basePower": 0,
         "category": "status",
         "flags": {
-            "bypasssub": 1
+            "bypasssub": 1,
+            "failcopycat": 1,
+            "noassist": 1
         },
         "id": "destinybond",
         "name": "Destiny Bond",
@@ -2818,7 +2896,10 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "noassist": 1
+        },
         "id": "detect",
         "name": "Detect",
         "pp": 5,
@@ -2858,8 +2939,11 @@
         "flags": {
             "charge": 1,
             "contact": 1,
+            "failinstruct": 1,
             "mirror": 1,
+            "noassist": 1,
             "nonsky": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "dig",
@@ -2951,8 +3035,11 @@
             "allyanim": 1,
             "charge": 1,
             "contact": 1,
+            "failinstruct": 1,
             "mirror": 1,
+            "noassist": 1,
             "nonsky": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "dive",
@@ -3001,7 +3088,9 @@
         "accuracy": 100,
         "basePower": 140,
         "category": "special",
-        "flags": {},
+        "flags": {
+            "futuremove": 1
+        },
         "id": "doomdesire",
         "name": "Doom Desire",
         "pp": 5,
@@ -3253,6 +3342,7 @@
         "category": "physical",
         "flags": {
             "mirror": 1,
+            "noparentalbond": 1,
             "protect": 1
         },
         "id": "dragondarts",
@@ -3359,7 +3449,9 @@
         "flags": {
             "contact": 1,
             "drag": 1,
+            "failcopycat": 1,
             "mirror": 1,
+            "noassist": 1,
             "protect": 1
         },
         "id": "dragontail",
@@ -3533,6 +3625,12 @@
         "basePower": 100,
         "category": "special",
         "flags": {
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
+            "noparentalbond": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "dynamaxcannon",
@@ -3808,6 +3906,7 @@
         "category": "status",
         "flags": {
             "bypasssub": 1,
+            "failencore": 1,
             "mirror": 1,
             "protect": 1,
             "reflectable": 1
@@ -3828,6 +3927,7 @@
         "flags": {
             "contact": 1,
             "mirror": 1,
+            "noparentalbond": 1,
             "protect": 1
         },
         "id": "endeavor",
@@ -3842,7 +3942,10 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "noassist": 1
+        },
         "id": "endure",
         "name": "Endure",
         "pp": 10,
@@ -3973,6 +4076,7 @@
         "category": "physical",
         "flags": {
             "mirror": 1,
+            "noparentalbond": 1,
             "protect": 1
         },
         "heal": [
@@ -4176,7 +4280,9 @@
         "basePower": 30,
         "category": "physical",
         "flags": {
-            "mirror": 1
+            "failcopycat": 1,
+            "mirror": 1,
+            "noassist": 1
         },
         "id": "feint",
         "name": "Feint",
@@ -4283,6 +4389,7 @@
         "basePower": 0,
         "category": "special",
         "flags": {
+            "noparentalbond": 1,
             "protect": 1
         },
         "heal": [
@@ -4364,6 +4471,7 @@
         "flags": {
             "mirror": 1,
             "nonsky": 1,
+            "pledgecombo": 1,
             "protect": 1
         },
         "id": "firepledge",
@@ -4678,6 +4786,7 @@
         "flags": {
             "allyanim": 1,
             "mirror": 1,
+            "noparentalbond": 1,
             "protect": 1
         },
         "id": "fling",
@@ -4712,6 +4821,7 @@
         "flags": {
             "contact": 1,
             "gravity": 1,
+            "mirror": 1,
             "protect": 1
         },
         "id": "floatyfall",
@@ -4783,8 +4893,11 @@
             "charge": 1,
             "contact": 1,
             "distance": 1,
+            "failinstruct": 1,
             "gravity": 1,
             "mirror": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "fly",
@@ -4859,6 +4972,11 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "failcopycat": 1,
+            "failinstruct": 1,
+            "failmefirst": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1,
             "punch": 1
         },
@@ -4874,7 +4992,10 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "noassist": 1
+        },
         "id": "followme",
         "name": "Follow Me",
         "pp": 20,
@@ -4984,7 +5105,9 @@
         "category": "physical",
         "flags": {
             "charge": 1,
+            "failinstruct": 1,
             "mirror": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "freezeshock",
@@ -5022,6 +5145,7 @@
         "basePower": 100,
         "category": "special",
         "flags": {
+            "mirror": 1,
             "protect": 1
         },
         "id": "freezyfrost",
@@ -5184,7 +5308,10 @@
         "accuracy": 100,
         "basePower": 120,
         "category": "special",
-        "flags": {},
+        "flags": {
+            "allyanim": 1,
+            "futuremove": 1
+        },
         "id": "futuresight",
         "name": "Future Sight",
         "pp": 10,
@@ -5257,7 +5384,9 @@
         "category": "status",
         "flags": {
             "charge": 1,
-            "nonsky": 1
+            "failinstruct": 1,
+            "nonsky": 1,
+            "nosleeptalk": 1
         },
         "id": "geomancy",
         "name": "Geomancy",
@@ -5405,6 +5534,7 @@
         "basePower": 80,
         "category": "special",
         "flags": {
+            "mirror": 1,
             "protect": 1
         },
         "id": "glitzyglow",
@@ -5443,6 +5573,7 @@
         "flags": {
             "mirror": 1,
             "nonsky": 1,
+            "pledgecombo": 1,
             "protect": 1
         },
         "id": "grasspledge",
@@ -5479,6 +5610,7 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "mirror": 1,
             "protect": 1
         },
         "id": "grassyglide",
@@ -6072,7 +6204,9 @@
         "basePower": 0,
         "category": "status",
         "flags": {
-            "bypasssub": 1
+            "bypasssub": 1,
+            "failcopycat": 1,
+            "noassist": 1
         },
         "id": "helpinghand",
         "name": "Helping Hand",
@@ -6688,7 +6822,12 @@
         "basePower": 0,
         "category": "status",
         "flags": {
-            "bypasssub": 1
+            "bypasssub": 1,
+            "failcopycat": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1
         },
         "id": "holdhands",
         "name": "Hold Hands",
@@ -7005,7 +7144,9 @@
         "flags": {
             "bullet": 1,
             "contact": 1,
+            "failinstruct": 1,
             "mirror": 1,
+            "noparentalbond": 1,
             "protect": 1
         },
         "id": "iceball",
@@ -7041,7 +7182,9 @@
         "category": "special",
         "flags": {
             "charge": 1,
+            "failinstruct": 1,
             "mirror": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "iceburn",
@@ -7217,6 +7360,7 @@
         "category": "status",
         "flags": {
             "bypasssub": 1,
+            "mustpressure": 1,
             "snatch": 1
         },
         "id": "imprison",
@@ -7324,6 +7468,7 @@
         "flags": {
             "allyanim": 1,
             "bypasssub": 1,
+            "failinstruct": 1,
             "protect": 1
         },
         "id": "instruct",
@@ -7545,7 +7690,11 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "failinstruct": 1,
+            "noassist": 1
+        },
         "id": "kingsshield",
         "name": "King's Shield",
         "pp": 10,
@@ -8158,6 +8307,13 @@
         "basePower": 100,
         "category": "physical",
         "flags": {
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmefirst": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "magicaltorque",
@@ -8330,6 +8486,8 @@
         "basePower": 0,
         "category": "status",
         "flags": {
+            "failcopycat": 1,
+            "noassist": 1,
             "nonsky": 1,
             "snatch": 1
         },
@@ -8382,6 +8540,13 @@
         "category": "status",
         "flags": {
             "bypasssub": 1,
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmefirst": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "mefirst",
@@ -8495,6 +8660,7 @@
         "basePower": 0,
         "category": "physical",
         "flags": {
+            "failmefirst": 1,
             "mirror": 1,
             "protect": 1
         },
@@ -8558,6 +8724,7 @@
         "basePower": 150,
         "category": "physical",
         "flags": {
+            "failinstruct": 1,
             "mirror": 1,
             "protect": 1,
             "recharge": 1
@@ -8619,7 +8786,14 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1
+        },
         "id": "metronome",
         "name": "Metronome",
         "noMetronome": [
@@ -8798,6 +8972,12 @@
         "flags": {
             "allyanim": 1,
             "bypasssub": 1,
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "mimic",
@@ -8888,6 +9068,8 @@
         "basePower": 0,
         "category": "special",
         "flags": {
+            "failmefirst": 1,
+            "noassist": 1,
             "protect": 1
         },
         "id": "mirrorcoat",
@@ -8902,7 +9084,14 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1
+        },
         "id": "mirrormove",
         "name": "Mirror Move",
         "pp": 20,
@@ -9326,7 +9515,14 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1
+        },
         "id": "naturepower",
         "name": "Nature Power",
         "pp": 20,
@@ -9510,6 +9706,13 @@
         "basePower": 100,
         "category": "physical",
         "flags": {
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmefirst": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "noxioustorque",
@@ -9569,7 +9772,9 @@
         "accuracy": 100,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failinstruct": 1
+        },
         "id": "obstruct",
         "name": "Obstruct",
         "pp": 10,
@@ -9704,6 +9909,7 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "failinstruct": 1,
             "mirror": 1,
             "protect": 1
         },
@@ -9931,6 +10137,7 @@
         "flags": {
             "contact": 1,
             "dance": 1,
+            "failinstruct": 1,
             "mirror": 1,
             "protect": 1
         },
@@ -9952,7 +10159,10 @@
         "flags": {
             "charge": 1,
             "contact": 1,
-            "mirror": 1
+            "failinstruct": 1,
+            "mirror": 1,
+            "noassist": 1,
+            "nosleeptalk": 1
         },
         "id": "phantomforce",
         "name": "Phantom Force",
@@ -9984,6 +10194,7 @@
         "basePower": 0,
         "category": "special",
         "flags": {
+            "mirror": 1,
             "protect": 1
         },
         "id": "pikapapow",
@@ -10539,7 +10750,10 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "noassist": 1
+        },
         "id": "protect",
         "name": "Protect",
         "pp": 10,
@@ -10971,6 +11185,8 @@
         "basePower": 0,
         "category": "status",
         "flags": {
+            "failcopycat": 1,
+            "noassist": 1,
             "powder": 1
         },
         "id": "ragepowder",
@@ -11102,7 +11318,9 @@
         "category": "special",
         "flags": {
             "charge": 1,
+            "failinstruct": 1,
             "mirror": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "razorwind",
@@ -11393,7 +11611,9 @@
             "allyanim": 1,
             "bypasssub": 1,
             "drag": 1,
+            "failcopycat": 1,
             "mirror": 1,
+            "noassist": 1,
             "reflectable": 1,
             "sound": 1
         },
@@ -11625,7 +11845,9 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "failinstruct": 1,
             "mirror": 1,
+            "noparentalbond": 1,
             "protect": 1
         },
         "id": "rollout",
@@ -11860,6 +12082,7 @@
         "basePower": 100,
         "category": "physical",
         "flags": {
+            "mirror": 1,
             "protect": 1,
             "reflectable": 1
         },
@@ -12119,6 +12342,7 @@
         "category": "physical",
         "flags": {
             "mirror": 1,
+            "noparentalbond": 1,
             "protect": 1
         },
         "heal": [
@@ -12201,7 +12425,10 @@
         "flags": {
             "charge": 1,
             "contact": 1,
-            "mirror": 1
+            "failinstruct": 1,
+            "mirror": 1,
+            "noassist": 1,
+            "nosleeptalk": 1
         },
         "id": "shadowforce",
         "name": "Shadow Force",
@@ -12364,6 +12591,11 @@
         "basePower": 150,
         "category": "special",
         "flags": {
+            "failcopycat": 1,
+            "failinstruct": 1,
+            "failmefirst": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "shelltrap",
@@ -12548,6 +12780,7 @@
         "flags": {
             "contact": 1,
             "defrost": 1,
+            "mirror": 1,
             "protect": 1
         },
         "id": "sizzlyslide",
@@ -12567,7 +12800,13 @@
         "category": "status",
         "flags": {
             "allyanim": 1,
-            "bypasssub": 1
+            "bypasssub": 1,
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1
         },
         "id": "sketch",
         "name": "Sketch",
@@ -12625,7 +12864,9 @@
         "flags": {
             "charge": 1,
             "contact": 1,
+            "failinstruct": 1,
             "mirror": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "skullbash",
@@ -12643,7 +12884,9 @@
         "flags": {
             "charge": 1,
             "distance": 1,
+            "failinstruct": 1,
             "mirror": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "skyattack",
@@ -12665,8 +12908,11 @@
             "charge": 1,
             "contact": 1,
             "distance": 1,
+            "failinstruct": 1,
             "gravity": 1,
             "mirror": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "skydrop",
@@ -12775,7 +13021,14 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1
+        },
         "id": "sleeptalk",
         "name": "Sleep Talk",
         "pp": 10,
@@ -12980,7 +13233,10 @@
         "basePower": 0,
         "category": "status",
         "flags": {
-            "bypasssub": 1
+            "bypasssub": 1,
+            "failcopycat": 1,
+            "mustpressure": 1,
+            "noassist": 1
         },
         "id": "snatch",
         "name": "Snatch",
@@ -13089,7 +13345,9 @@
         "category": "special",
         "flags": {
             "charge": 1,
+            "failinstruct": 1,
             "mirror": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "solarbeam",
@@ -13107,7 +13365,9 @@
         "flags": {
             "charge": 1,
             "contact": 1,
+            "failinstruct": 1,
             "mirror": 1,
+            "nosleeptalk": 1,
             "protect": 1,
             "slicing": 1
         },
@@ -13199,6 +13459,7 @@
         "basePower": 120,
         "category": "special",
         "flags": {
+            "mirror": 1,
             "protect": 1
         },
         "id": "sparklyswirl",
@@ -13310,6 +13571,7 @@
         "basePower": 0,
         "category": "status",
         "flags": {
+            "mustpressure": 1,
             "nonsky": 1,
             "reflectable": 1
         },
@@ -13326,7 +13588,10 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "failcopycat": 1,
+            "noassist": 1
+        },
         "id": "spikyshield",
         "name": "Spiky Shield",
         "pp": 10,
@@ -13449,6 +13714,7 @@
         "basePower": 90,
         "category": "special",
         "flags": {
+            "mirror": 1,
             "protect": 1
         },
         "id": "splishysplash",
@@ -13487,6 +13753,8 @@
         "category": "status",
         "flags": {
             "allyanim": 1,
+            "failcopycat": 1,
+            "noassist": 1,
             "protect": 1,
             "reflectable": 1
         },
@@ -13526,6 +13794,7 @@
         "basePower": 0,
         "category": "status",
         "flags": {
+            "mustpressure": 1,
             "reflectable": 1
         },
         "id": "stealthrock",
@@ -13855,6 +14124,13 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmefirst": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "struggle",
@@ -14204,7 +14480,9 @@
         "category": "status",
         "flags": {
             "allyanim": 1,
+            "failcopycat": 1,
             "mirror": 1,
+            "noassist": 1,
             "protect": 1
         },
         "id": "switcheroo",
@@ -14548,6 +14826,7 @@
         "category": "special",
         "flags": {
             "mirror": 1,
+            "mustpressure": 1,
             "protect": 1
         },
         "id": "terablast",
@@ -14581,7 +14860,10 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "failcopycat": 1,
+            "failmefirst": 1,
             "mirror": 1,
+            "noassist": 1,
             "protect": 1
         },
         "id": "thief",
@@ -14633,6 +14915,7 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "failinstruct": 1,
             "mirror": 1,
             "protect": 1
         },
@@ -14942,6 +15225,7 @@
         "basePower": 0,
         "category": "status",
         "flags": {
+            "mustpressure": 1,
             "nonsky": 1,
             "reflectable": 1
         },
@@ -15004,7 +15288,12 @@
         "basePower": 0,
         "category": "status",
         "flags": {
-            "allyanim": 1
+            "allyanim": 1,
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmimic": 1,
+            "noassist": 1
         },
         "id": "transform",
         "name": "Transform",
@@ -15036,7 +15325,9 @@
         "category": "status",
         "flags": {
             "allyanim": 1,
+            "failcopycat": 1,
             "mirror": 1,
+            "noassist": 1,
             "protect": 1
         },
         "id": "trick",
@@ -15255,7 +15546,9 @@
         "category": "special",
         "flags": {
             "bypasssub": 1,
+            "failinstruct": 1,
             "mirror": 1,
+            "nosleeptalk": 1,
             "protect": 1,
             "sound": 1
         },
@@ -15333,6 +15626,7 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "mirror": 1,
             "protect": 1
         },
         "id": "veeveevolley",
@@ -15548,6 +15842,7 @@
         "flags": {
             "mirror": 1,
             "nonsky": 1,
+            "pledgecombo": 1,
             "protect": 1
         },
         "id": "waterpledge",
@@ -15693,7 +15988,9 @@
             "allyanim": 1,
             "bypasssub": 1,
             "drag": 1,
+            "failcopycat": 1,
             "mirror": 1,
+            "noassist": 1,
             "reflectable": 1,
             "wind": 1
         },
@@ -15729,6 +16026,13 @@
         "basePower": 80,
         "category": "physical",
         "flags": {
+            "failcopycat": 1,
+            "failencore": 1,
+            "failinstruct": 1,
+            "failmefirst": 1,
+            "failmimic": 1,
+            "noassist": 1,
+            "nosleeptalk": 1,
             "protect": 1
         },
         "id": "wickedtorque",
@@ -16080,6 +16384,7 @@
         "category": "physical",
         "flags": {
             "contact": 1,
+            "mirror": 1,
             "protect": 1
         },
         "id": "zippyzap",
