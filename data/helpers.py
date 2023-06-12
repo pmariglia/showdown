@@ -171,13 +171,13 @@ def get_standard_battle_sets(battle_mode, pokemon_names=None):
     else:
         # use ALL data for a mode like battle-factory
         logger.debug("Making HTTP request for ALL usage stats\nplease wait...")
-        ubers_data = get_pokemon_information(get_smogon_stats_file_name("gen8ubers"), pkmn_names=pokemon_names)
-        ou_data = get_pokemon_information(get_smogon_stats_file_name("gen8ou"), pkmn_names=pokemon_names)
-        uu_data = get_pokemon_information(get_smogon_stats_file_name("gen8uu"), pkmn_names=pokemon_names)
-        ru_data = get_pokemon_information(get_smogon_stats_file_name("gen8ru"), pkmn_names=pokemon_names)
-        nu_data = get_pokemon_information(get_smogon_stats_file_name("gen8nu"), pkmn_names=pokemon_names)
-        pu_data = get_pokemon_information(get_smogon_stats_file_name("gen8pu"), pkmn_names=pokemon_names)
-        lc_data = get_pokemon_information(get_smogon_stats_file_name("gen8lc"), pkmn_names=pokemon_names)
+        ubers_data = get_pokemon_information(get_smogon_stats_file_name("gen9ubers"), pkmn_names=pokemon_names)
+        ou_data = get_pokemon_information(get_smogon_stats_file_name("gen9ou"), pkmn_names=pokemon_names)
+        uu_data = get_pokemon_information(get_smogon_stats_file_name("gen9uu"), pkmn_names=pokemon_names)
+        ru_data = get_pokemon_information(get_smogon_stats_file_name("gen9ru"), pkmn_names=pokemon_names)
+        nu_data = get_pokemon_information(get_smogon_stats_file_name("gen9nu"), pkmn_names=pokemon_names)
+        pu_data = get_pokemon_information(get_smogon_stats_file_name("gen9pu"), pkmn_names=pokemon_names)
+        lc_data = get_pokemon_information(get_smogon_stats_file_name("gen9lc"), pkmn_names=pokemon_names)
 
         smogon_usage_data = lc_data
         for pkmn_data in [pu_data, nu_data, ru_data, uu_data, ou_data, ubers_data]:
