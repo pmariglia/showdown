@@ -26439,13 +26439,43 @@
             "Water 1"
         ],
         "otherFormes": [
+            "Greninja-Bond",
             "Greninja-Ash"
         ],
         "formeOrder": [
             "Greninja",
-            "Greninja",
+            "Greninja-Bond",
             "Greninja-Ash"
         ]
+    },
+    "greninjabond": {
+        "num": 658,
+        "name": "greninja-bond",
+        "baseSpecies": "Greninja",
+        "forme": "Bond",
+        "types": [
+            "water",
+            "dark"
+        ],
+        "gender": "M",
+        "baseStats": {
+            "hp": 72,
+            "attack": 95,
+            "defense": 67,
+            "special-attack": 103,
+            "special-defense": 71,
+            "speed": 122
+        },
+        "abilities": {
+            "0": "Battle Bond"
+        },
+        "heightm": 1.5,
+        "weightkg": 40,
+        "color": "Blue",
+        "eggGroups": [
+            "Undiscovered"
+        ],
+        "gen": 7
     },
     "greninjaash": {
         "num": 658,
@@ -26475,7 +26505,7 @@
             "Undiscovered"
         ],
         "requiredAbility": "Battle Bond",
-        "battleOnly": "Greninja",
+        "battleOnly": "Greninja-Bond",
         "gen": 7
     },
     "bunnelby": {
