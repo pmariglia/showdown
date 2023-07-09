@@ -4423,7 +4423,7 @@
             "H": "Scrappy"
         },
         "heightm": 0.8,
-        "weightkg": 15,
+        "weightkg": 42,
         "color": "Brown",
         "evos": [
             "Sirfetch\u2019d"
@@ -6314,7 +6314,7 @@
             "H": "Cud Chew"
         },
         "heightm": 1.4,
-        "weightkg": 88.4,
+        "weightkg": 115,
         "color": "Black",
         "eggGroups": [
             "Field"
@@ -6344,7 +6344,7 @@
             "H": "Cud Chew"
         },
         "heightm": 1.4,
-        "weightkg": 88.4,
+        "weightkg": 85,
         "color": "Black",
         "eggGroups": [
             "Field"
@@ -6374,7 +6374,7 @@
             "H": "Cud Chew"
         },
         "heightm": 1.4,
-        "weightkg": 88.4,
+        "weightkg": 110,
         "color": "Black",
         "eggGroups": [
             "Field"
@@ -8950,7 +8950,7 @@
             "H": "Unaware"
         },
         "heightm": 0.4,
-        "weightkg": 8.5,
+        "weightkg": 11,
         "color": "Brown",
         "evos": [
             "Clodsire"
@@ -37225,8 +37225,8 @@
             "1": "Swift Swim",
             "H": "Intimidate"
         },
-        "heightm": 0.5,
-        "weightkg": 3.9,
+        "heightm": 2.5,
+        "weightkg": 60.5,
         "color": "Gray",
         "prevo": "Qwilfish-Hisui",
         "evoType": "other",
@@ -38323,7 +38323,7 @@
             "1": "Sturdy",
             "H": "Clear Body"
         },
-        "heightm": 0.5,
+        "heightm": 0.6,
         "weightkg": 105,
         "color": "Brown",
         "prevo": "Nacli",
@@ -38354,7 +38354,7 @@
             "1": "Sturdy",
             "H": "Clear Body"
         },
-        "heightm": 2.5,
+        "heightm": 2.3,
         "weightkg": 240,
         "color": "Brown",
         "prevo": "Naclstack",
@@ -42930,10 +42930,10 @@
         ],
         "baseStats": {
             "hp": 90,
-            "attack": 99,
-            "defense": 89,
+            "attack": 96,
+            "defense": 87,
             "special-attack": 99,
-            "special-defense": 97,
+            "special-defense": 89,
             "speed": 55
         },
         "abilities": {
