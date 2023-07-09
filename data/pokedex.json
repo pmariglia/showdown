@@ -4423,7 +4423,7 @@
             "H": "Scrappy"
         },
         "heightm": 0.8,
-        "weightkg": 15,
+        "weightkg": 42,
         "color": "Brown",
         "evos": [
             "Sirfetch\u2019d"
@@ -6314,7 +6314,7 @@
             "H": "Cud Chew"
         },
         "heightm": 1.4,
-        "weightkg": 88.4,
+        "weightkg": 115,
         "color": "Black",
         "eggGroups": [
             "Field"
@@ -6344,7 +6344,7 @@
             "H": "Cud Chew"
         },
         "heightm": 1.4,
-        "weightkg": 88.4,
+        "weightkg": 85,
         "color": "Black",
         "eggGroups": [
             "Field"
@@ -6374,7 +6374,7 @@
             "H": "Cud Chew"
         },
         "heightm": 1.4,
-        "weightkg": 88.4,
+        "weightkg": 110,
         "color": "Black",
         "eggGroups": [
             "Field"
@@ -8950,7 +8950,7 @@
             "H": "Unaware"
         },
         "heightm": 0.4,
-        "weightkg": 8.5,
+        "weightkg": 11,
         "color": "Brown",
         "evos": [
             "Clodsire"
@@ -26439,13 +26439,43 @@
             "Water 1"
         ],
         "otherFormes": [
+            "Greninja-Bond",
             "Greninja-Ash"
         ],
         "formeOrder": [
             "Greninja",
-            "Greninja",
+            "Greninja-Bond",
             "Greninja-Ash"
         ]
+    },
+    "greninjabond": {
+        "num": 658,
+        "name": "greninja-bond",
+        "baseSpecies": "Greninja",
+        "forme": "Bond",
+        "types": [
+            "water",
+            "dark"
+        ],
+        "gender": "M",
+        "baseStats": {
+            "hp": 72,
+            "attack": 95,
+            "defense": 67,
+            "special-attack": 103,
+            "special-defense": 71,
+            "speed": 122
+        },
+        "abilities": {
+            "0": "Battle Bond"
+        },
+        "heightm": 1.5,
+        "weightkg": 40,
+        "color": "Blue",
+        "eggGroups": [
+            "Undiscovered"
+        ],
+        "gen": 7
     },
     "greninjaash": {
         "num": 658,
@@ -26475,7 +26505,7 @@
             "Undiscovered"
         ],
         "requiredAbility": "Battle Bond",
-        "battleOnly": "Greninja",
+        "battleOnly": "Greninja-Bond",
         "gen": 7
     },
     "bunnelby": {
@@ -26809,7 +26839,8 @@
         },
         "abilities": {
             "0": "Shield Dust",
-            "1": "Compound Eyes"
+            "1": "Compound Eyes",
+            "H": "Friend Guard"
         },
         "heightm": 1.2,
         "weightkg": 17,
@@ -37194,8 +37225,8 @@
             "1": "Swift Swim",
             "H": "Intimidate"
         },
-        "heightm": 0.5,
-        "weightkg": 3.9,
+        "heightm": 2.5,
+        "weightkg": 60.5,
         "color": "Gray",
         "prevo": "Qwilfish-Hisui",
         "evoType": "other",
@@ -38292,7 +38323,7 @@
             "1": "Sturdy",
             "H": "Clear Body"
         },
-        "heightm": 0.5,
+        "heightm": 0.6,
         "weightkg": 105,
         "color": "Brown",
         "prevo": "Nacli",
@@ -38323,7 +38354,7 @@
             "1": "Sturdy",
             "H": "Clear Body"
         },
-        "heightm": 2.5,
+        "heightm": 2.3,
         "weightkg": 240,
         "color": "Brown",
         "prevo": "Naclstack",
@@ -42889,6 +42920,33 @@
             "Field"
         ],
         "gen": 8
+    },
+    "hemogoblin": {
+        "num": -71,
+        "name": "hemogoblin",
+        "types": [
+            "fairy",
+            "fire"
+        ],
+        "baseStats": {
+            "hp": 90,
+            "attack": 96,
+            "defense": 87,
+            "special-attack": 99,
+            "special-defense": 89,
+            "speed": 55
+        },
+        "abilities": {
+            "0": "Pixilate",
+            "1": "Intimidate"
+        },
+        "heightm": 1.4,
+        "weightkg": 85,
+        "color": "Pink",
+        "eggGroups": [
+            "Undiscovered"
+        ],
+        "gen": 9
     },
     "pokestarsmeargle": {
         "num": -5000,
