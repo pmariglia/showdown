@@ -1852,7 +1852,6 @@
         "pp": 15,
         "priority": 0,
         "secondary": {},
-        "self": {},
         "side_conditions": "spikes",
         "target": "normal",
         "type": "dark"
@@ -13989,7 +13988,6 @@
         "pp": 15,
         "priority": 0,
         "secondary": {},
-        "self": {},
         "side_conditions": "stealthrock",
         "target": "normal",
         "type": "rock"
