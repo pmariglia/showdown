@@ -42921,6 +42921,79 @@
         ],
         "gen": 8
     },
+    "ababo": {
+        "num": -69,
+        "name": "ababo",
+        "types": [
+            "fairy"
+        ],
+        "genderRatio": {
+            "M": 0.75,
+            "F": 0.25
+        },
+        "baseStats": {
+            "hp": 42,
+            "attack": 35,
+            "defense": 27,
+            "special-attack": 35,
+            "special-defense": 35,
+            "speed": 38
+        },
+        "abilities": {
+            "0": "Pixilate",
+            "1": "Rattled",
+            "H": "Own Tempo"
+        },
+        "heightm": 0.5,
+        "weightkg": 3.5,
+        "color": "White",
+        "evos": [
+            "Scattervein"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ],
+        "canHatch": true,
+        "gen": 9
+    },
+    "scattervein": {
+        "num": -70,
+        "name": "scattervein",
+        "types": [
+            "fairy"
+        ],
+        "genderRatio": {
+            "M": 0.75,
+            "F": 0.25
+        },
+        "baseStats": {
+            "hp": 75,
+            "attack": 74,
+            "defense": 87,
+            "special-attack": 62,
+            "special-defense": 89,
+            "speed": 63
+        },
+        "abilities": {
+            "0": "Pixilate",
+            "1": "Intimidate",
+            "H": "Own Tempo"
+        },
+        "heightm": 1.5,
+        "weightkg": 25,
+        "color": "Pink",
+        "prevo": "Ababo",
+        "evoType": "levelFriendship",
+        "evos": [
+            "Hemogoblin"
+        ],
+        "eggGroups": [
+            "Monster",
+            "Fairy"
+        ],
+        "canHatch": true,
+        "gen": 9
+    },
     "hemogoblin": {
         "num": -71,
         "name": "hemogoblin",
@@ -42928,23 +43001,32 @@
             "fairy",
             "fire"
         ],
+        "genderRatio": {
+            "M": 0.75,
+            "F": 0.25
+        },
         "baseStats": {
             "hp": 90,
             "attack": 96,
             "defense": 87,
-            "special-attack": 99,
+            "special-attack": 96,
             "special-defense": 89,
             "speed": 55
         },
         "abilities": {
             "0": "Pixilate",
-            "1": "Intimidate"
+            "1": "Intimidate",
+            "H": "Own Tempo"
         },
         "heightm": 1.4,
         "weightkg": 85,
         "color": "Pink",
+        "prevo": "Scattervein",
+        "evoType": "useItem",
+        "evoItem": "Fire Stone",
         "eggGroups": [
-            "Undiscovered"
+            "Monster",
+            "Fairy"
         ],
         "gen": 9
     },
