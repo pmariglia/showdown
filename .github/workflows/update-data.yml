@@ -38,7 +38,7 @@ jobs:
           delete-branch: true
           title: Automatic data update from smogon/pokemon-showdown
           body: |
-            Automated moves update
+            Automated data update
           assignees: ${{ github.repository_owner }}
           reviewers: ${{ github.repository_owner }}
           author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
