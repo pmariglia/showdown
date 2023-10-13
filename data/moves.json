@@ -1242,6 +1242,23 @@
         "target": "normal",
         "type": "normal"
     },
+    "bloodmoon": {
+        "accuracy": 100,
+        "basePower": 140,
+        "category": "special",
+        "flags": {
+            "cantusetwice": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "bloodmoon",
+        "name": "Blood Moon",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "normal"
+    },
     "blueflare": {
         "accuracy": 85,
         "basePower": 130,
@@ -5442,6 +5459,7 @@
         "basePower": 160,
         "category": "physical",
         "flags": {
+            "cantusetwice": 1,
             "mirror": 1,
             "protect": 1
         },
@@ -5605,7 +5623,7 @@
     },
     "grassyglide": {
         "accuracy": 100,
-        "basePower": 60,
+        "basePower": 55,
         "category": "physical",
         "flags": {
             "contact": 1,
@@ -7551,6 +7569,22 @@
         "target": "normal",
         "type": "steel"
     },
+    "ivycudgel": {
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "physical",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "ivycudgel",
+        "name": "Ivy Cudgel",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "grass"
+    },
     "jawlock": {
         "accuracy": 100,
         "basePower": 80,
@@ -7579,7 +7613,6 @@
             "protect": 1,
             "punch": 1
         },
-        "hasSheerForce": true,
         "id": "jetpunch",
         "name": "Jet Punch",
         "pp": 15,
@@ -8498,6 +8531,31 @@
         "side_conditions": "matblock",
         "target": "allySide",
         "type": "fighting"
+    },
+    "matchagotcha": {
+        "accuracy": 90,
+        "basePower": 80,
+        "category": "special",
+        "drain": [
+            1,
+            2
+        ],
+        "flags": {
+            "defrost": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "matchagotcha",
+        "name": "Matcha Gotcha",
+        "pp": 15,
+        "priority": 0,
+        "secondary": {
+            "chance": 20,
+            "status": "brn"
+        },
+        "target": "allAdjacentFoes",
+        "thawsTarget": true,
+        "type": "grass"
     },
     "meanlook": {
         "accuracy": true,
@@ -14545,6 +14603,26 @@
         "priority": 0,
         "secondary": null,
         "target": "self",
+        "type": "grass"
+    },
+    "syrupbomb": {
+        "accuracy": 85,
+        "basePower": 60,
+        "category": "special",
+        "flags": {
+            "bullet": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "syrupbomb",
+        "name": "Syrup Bomb",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "volatileStatus": "syrupbomb"
+        },
+        "target": "normal",
         "type": "grass"
     },
     "tackle": {
