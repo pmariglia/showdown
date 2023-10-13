@@ -41,7 +41,7 @@ jobs:
           python ./data/scripts/update_moves.py
       - name: Overwrite moves.json
         run: |
-          mv ./new_moves.json ./data/moves.json
+          mv ./data/new_moves.json ./data/moves.json
       - name: Create or update pull request
         uses: peter-evans/create-pull-request@v3
         with:
