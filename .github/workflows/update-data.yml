@@ -24,18 +24,6 @@ jobs:
       - name: Overwrite pokedex.json
         run: |
           mv ./pokedex_new.json ./data/pokedex.json
-      - name: Create or update pull request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          commit-message: pokedex update from smogon/pokemon-showdown
-          branch: create-pull-request/update-data
-          delete-branch: true
-          title: Automatic pokedex update from smogon/pokemon-showdown
-          body: |
-            Automated pokedex update
-          assignees: ${{ github.repository_owner }}
-          reviewers: ${{ github.repository_owner }}
-          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
       - name: Run update script moves
         run: |
           python ./data/scripts/update_moves.py
@@ -45,10 +33,10 @@ jobs:
       - name: Create or update pull request
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: moves update from smogon/pokemon-showdown
+          commit-message: Data update from smogon/pokemon-showdown
           branch: create-pull-request/update-data
           delete-branch: true
-          title: Automatic moves update from smogon/pokemon-showdown
+          title: Automatic data update from smogon/pokemon-showdown
           body: |
             Automated moves update
           assignees: ${{ github.repository_owner }}
