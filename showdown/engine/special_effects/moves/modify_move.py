@@ -369,7 +369,7 @@ def terablast(attacking_side, attacking_move, defending_move, attacking_pokemon,
         boosted_stats = attacking_pokemon.calculate_boosted_stats()
 
         if boosted_stats[constants.ATTACK] > boosted_stats[constants.SPECIAL_ATTACK]:
-            attacking_move[constants.CATEGORY] = constants.ATTACK
+            attacking_move[constants.CATEGORY] = constants.PHYSICAL
 
     return attacking_move
 
