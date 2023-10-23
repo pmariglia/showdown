@@ -171,7 +171,7 @@ async def start_battle(ps_websocket_client, pokemon_battle_type):
     else:
         battle = await start_standard_battle(ps_websocket_client, pokemon_battle_type)
 
-    await ps_websocket_client.send_message(battle.battle_tag, ["hf"])
+    await ps_websocket_client.send_message(battle.battle_tag, ["Hey! This is an AI that's learning to play the game. Have fun!"])
     await ps_websocket_client.send_message(battle.battle_tag, ['/timer on'])
 
     return battle
@@ -187,7 +187,7 @@ async def pokemon_battle(ps_websocket_client, pokemon_battle_type):
             else:
                 winner = None
             logger.debug("Winner: {}".format(winner))
-            await ps_websocket_client.send_message(battle.battle_tag, ["gg"])
+            await ps_websocket_client.send_message(battle.battle_tag, ["Good game! Please feel free to message the creator of this bot @realyze131 on discord if you have any questions. Have a good day!"])
             await ps_websocket_client.leave_battle(battle.battle_tag, save_replay=ShowdownConfig.save_replay)
             return winner
         else:

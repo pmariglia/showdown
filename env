@@ -1,10 +1,10 @@
-BATTLE_BOT=safest
+BATTLE_BOT=nash_equilibrium
 WEBSOCKET_URI=sim.smogon.com:8000
-PS_USERNAME=MyUsername
-PS_PASSWORD=MyPassword
+PS_USERNAME=Nash Ketchum AI
+PS_PASSWORD=ThisIsAnAI
 BOT_MODE=SEARCH_LADDER
-POKEMON_MODE=gen7randombattle
-RUN_COUNT=1
+POKEMON_MODE=gen9randombattle
+RUN_COUNT=5
 
 USER_TO_CHALLENGE=SomeOtherPerson
 TEAM_NAME=gen8/ou/clef_sand
