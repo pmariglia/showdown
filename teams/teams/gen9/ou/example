@@ -1,61 +1,60 @@
-Ting-Lu @ Leftovers  
-Ability: Vessel of Ruin  
+Okidogi @ Leftovers  
+Ability: Guard Dog  
 Tera Type: Water  
-EVs: 252 HP / 4 Atk / 252 SpD  
-Careful Nature  
-- Earthquake  
-- Spikes  
-- Stealth Rock  
-- Whirlwind  
-
-Pelipper @ Choice Specs  
-Ability: Drizzle  
-Tera Type: Water  
-EVs: 4 HP / 252 SpA / 252 Spe  
-Modest Nature  
-- Hurricane  
-- U-turn  
-- Surf  
-- Roost  
-
-Amoonguss @ Rocky Helmet  
-Ability: Regenerator  
-Tera Type: Water  
-EVs: 248 HP / 252 Def / 8 SpD  
-Bold Nature  
-IVs: 0 Atk  
-- Foul Play  
-- Grass Knot  
-- Sludge Bomb  
-- Spore  
-
-Dragapult @ Choice Band  
-Ability: Infiltrator  
-Tera Type: Ghost  
-EVs: 252 Atk / 4 SpA / 252 Spe  
-Hasty Nature  
-- Dragon Darts  
-- U-turn  
-- Tera Blast  
-- Sucker Punch  
-
-Iron Treads @ Air Balloon  
-Ability: Quark Drive  
-Tera Type: Ghost  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Earthquake  
-- Volt Switch  
-- Rapid Spin  
+EVs: 144 HP / 252 Atk / 112 Spe  
+Adamant Nature  
+- Bulk Up  
+- Drain Punch  
 - Knock Off  
+- Poison Jab  
 
-Iron Valiant @ Choice Scarf  
-Ability: Quark Drive  
-Tera Type: Fairy  
-EVs: 252 SpA / 4 SpD / 252 Spe  
+Ninetales-Alola @ Light Clay  
+Ability: Snow Warning  
+Tera Type: Water  
+EVs: 248 HP / 8 SpA / 252 Spe  
 Timid Nature  
 IVs: 0 Atk  
-- Moonblast  
-- Aura Sphere  
-- Thunderbolt  
-- Trick  
+- Aurora Veil  
+- Encore  
+- Freeze-Dry  
+- Hypnosis  
+
+Baxcalibur @ Loaded Dice  
+Ability: Ice Body  
+Tera Type: Fairy  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Dragon Dance  
+- Icicle Spear  
+- Scale Shot  
+- Earthquake  
+
+Manaphy @ Leftovers  
+Ability: Hydration  
+Tera Type: Fairy  
+EVs: 4 Def / 252 SpA / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Tail Glow  
+- Scald  
+- Dazzling Gleam  
+- Energy Ball  
+
+Kingambit @ Air Balloon  
+Ability: Supreme Overlord  
+Tera Type: Fire  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Adamant Nature  
+- Swords Dance  
+- Kowtow Cleave  
+- Sucker Punch  
+- Iron Head  
+
+Ditto @ Choice Scarf  
+Ability: Imposter  
+Shiny: Yes  
+Tera Type: Steel  
+EVs: 252 HP / 4 Atk / 252 Def  
+Impish Nature  
+IVs: 30 Atk  
+- Transform  
