@@ -1,11 +1,11 @@
-BATTLE_BOT=nash_equilibrium
+BATTLE_BOT=team_datasets
 WEBSOCKET_URI=sim.smogon.com:8000
 PS_USERNAME=Nash Ketchum AI
 PS_PASSWORD=ThisIsAnAI
-BOT_MODE=SEARCH_LADDER
+BOT_MODE=CHALLENGE_USER
 POKEMON_MODE=gen9randombattle
-RUN_COUNT=5
+RUN_COUNT=1
 
-USER_TO_CHALLENGE=SomeOtherPerson
-TEAM_NAME=gen8/ou/clef_sand
+USER_TO_CHALLENGE=grimcyclone
+TEAM_NAME=gen9/ou/example
 SAVE_REPLAY=False
