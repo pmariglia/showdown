@@ -168,7 +168,7 @@
             "0": "Overgrow",
             "H": "Chlorophyll"
         },
-        "heightm": 2,
+        "heightm": 24,
         "weightkg": 0,
         "color": "Green",
         "eggGroups": [
@@ -552,7 +552,7 @@
             "0": "Torrent",
             "H": "Rain Dish"
         },
-        "heightm": 1.6,
+        "heightm": 25,
         "weightkg": 0,
         "color": "Blue",
         "eggGroups": [
@@ -33278,7 +33278,7 @@
             "0": "Overgrow",
             "H": "Grassy Surge"
         },
-        "heightm": 3,
+        "heightm": 28,
         "weightkg": 0,
         "color": "Green",
         "eggGroups": [
@@ -33412,7 +33412,7 @@
             "0": "Blaze",
             "H": "Libero"
         },
-        "heightm": 3,
+        "heightm": 27,
         "weightkg": 0,
         "color": "White",
         "eggGroups": [
@@ -33546,7 +33546,7 @@
             "0": "Torrent",
             "H": "Sniper"
         },
-        "heightm": 3,
+        "heightm": 40,
         "weightkg": 0,
         "color": "Blue",
         "eggGroups": [
@@ -36700,7 +36700,7 @@
         "abilities": {
             "0": "Unseen Fist"
         },
-        "heightm": 3,
+        "heightm": 29,
         "weightkg": 0,
         "color": "Gray",
         "eggGroups": [
@@ -36732,8 +36732,8 @@
         "abilities": {
             "0": "Unseen Fist"
         },
-        "heightm": 1.9,
-        "weightkg": 105,
+        "heightm": 26,
+        "weightkg": 0,
         "color": "Gray",
         "eggGroups": [
             "Undiscovered"
