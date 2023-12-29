@@ -155,7 +155,8 @@
         "flags": {
             "distance": 1,
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "wind": 1
         },
         "id": "aeroblast",
         "name": "Aeroblast",
@@ -237,6 +238,24 @@
         },
         "target": "any",
         "type": "flying"
+    },
+    "alluringvoice": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "special",
+        "flags": {
+            "bypasssub": 1,
+            "mirror": 1,
+            "protect": 1,
+            "sound": 1
+        },
+        "id": "alluringvoice",
+        "name": "Alluring Voice",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "fairy"
     },
     "allyswitch": {
         "accuracy": true,
@@ -1086,6 +1105,7 @@
         ],
         "flags": {
             "contact": 1,
+            "heal": 1,
             "mirror": 1,
             "protect": 1,
             "slicing": 1
@@ -1746,6 +1766,23 @@
         "secondary": null,
         "target": "normal",
         "type": "grass"
+    },
+    "burningbulwark": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "failcopycat": 1,
+            "noassist": 1
+        },
+        "id": "burningbulwark",
+        "name": "Burning Bulwark",
+        "pp": 10,
+        "priority": 4,
+        "secondary": null,
+        "target": "self",
+        "type": "fire",
+        "volatileStatus": "burningbulwark"
     },
     "burningjealousy": {
         "accuracy": 100,
@@ -3315,6 +3352,23 @@
         "target": "normal",
         "type": "dragon"
     },
+    "dragoncheer": {
+        "accuracy": true,
+        "basePower": 0,
+        "category": "status",
+        "flags": {
+            "allyanim": 1,
+            "bypasssub": 1
+        },
+        "id": "dragoncheer",
+        "name": "Dragon Cheer",
+        "pp": 15,
+        "priority": 0,
+        "secondary": null,
+        "target": "adjacentAlly",
+        "type": "dragon",
+        "volatileStatus": "dragoncheer"
+    },
     "dragonclaw": {
         "accuracy": 100,
         "basePower": 80,
@@ -3858,6 +3912,24 @@
         "target": "normal",
         "type": "electric"
     },
+    "electroshot": {
+        "accuracy": 100,
+        "basePower": 130,
+        "category": "special",
+        "flags": {
+            "charge": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "hasSheerForce": true,
+        "id": "electroshot",
+        "name": "Electro Shot",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "electric"
+    },
     "electroweb": {
         "accuracy": 95,
         "basePower": 55,
@@ -4341,6 +4413,22 @@
         "secondary": null,
         "target": "normal",
         "type": "bug"
+    },
+    "ficklebeam": {
+        "accuracy": 100,
+        "basePower": 80,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "ficklebeam",
+        "name": "Fickle Beam",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "dragon"
     },
     "fierydance": {
         "accuracy": 100,
@@ -5921,6 +6009,23 @@
         "secondary": null,
         "target": "self",
         "type": "normal"
+    },
+    "hardpress": {
+        "accuracy": 100,
+        "basePower": 0,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "hardpress",
+        "name": "Hard Press",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "steel"
     },
     "haze": {
         "accuracy": true,
@@ -8281,7 +8386,7 @@
     },
     "lusterpurge": {
         "accuracy": 100,
-        "basePower": 70,
+        "basePower": 95,
         "category": "special",
         "flags": {
             "mirror": 1,
@@ -8513,6 +8618,25 @@
         "target": "allAdjacentFoes",
         "type": "steel"
     },
+    "malignantchain": {
+        "accuracy": 100,
+        "basePower": 100,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "malignantchain",
+        "name": "Malignant Chain",
+        "pp": 5,
+        "priority": 0,
+        "secondary": {
+            "chance": 50,
+            "status": "tox"
+        },
+        "target": "normal",
+        "type": "poison"
+    },
     "matblock": {
         "accuracy": true,
         "basePower": 0,
@@ -8542,6 +8666,7 @@
         ],
         "flags": {
             "defrost": 1,
+            "heal": 1,
             "mirror": 1,
             "protect": 1
         },
@@ -8980,6 +9105,7 @@
             "Surging Strikes",
             "Switcheroo",
             "Techno Blast",
+            "Tera Starstorm",
             "Thief",
             "Thousand Arrows",
             "Thousand Waves",
@@ -9000,6 +9126,23 @@
         "secondary": null,
         "target": "self",
         "type": "normal"
+    },
+    "mightycleave": {
+        "accuracy": 100,
+        "basePower": 95,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "slicing": 1
+        },
+        "id": "mightycleave",
+        "name": "Mighty Cleave",
+        "pp": 5,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "rock"
     },
     "milkdrink": {
         "accuracy": true,
@@ -9196,7 +9339,7 @@
     },
     "mistball": {
         "accuracy": 100,
-        "basePower": 70,
+        "basePower": 95,
         "category": "special",
         "flags": {
             "bullet": 1,
@@ -10896,6 +11039,27 @@
         "target": "normal",
         "type": "psychic"
     },
+    "psychicnoise": {
+        "accuracy": 100,
+        "basePower": 75,
+        "category": "special",
+        "flags": {
+            "bypasssub": 1,
+            "mirror": 1,
+            "protect": 1,
+            "sound": 1
+        },
+        "id": "psychicnoise",
+        "name": "Psychic Noise",
+        "pp": 10,
+        "priority": 0,
+        "secondary": {
+            "chance": 100,
+            "volatileStatus": "healblock"
+        },
+        "target": "normal",
+        "type": "psychic"
+    },
     "psychicterrain": {
         "accuracy": true,
         "basePower": 0,
@@ -11634,7 +11798,9 @@
         "accuracy": true,
         "basePower": 0,
         "category": "status",
-        "flags": {},
+        "flags": {
+            "heal": 1
+        },
         "id": "revivalblessing",
         "name": "Revival Blessing",
         "noPPBoosts": true,
@@ -12325,7 +12491,8 @@
         "category": "special",
         "flags": {
             "mirror": 1,
-            "protect": 1
+            "protect": 1,
+            "slicing": 1
         },
         "id": "secretsword",
         "name": "Secret Sword",
@@ -14341,6 +14508,23 @@
         "target": "normal",
         "type": "steel"
     },
+    "supercellslam": {
+        "accuracy": 95,
+        "basePower": 100,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "supercellslam",
+        "name": "Supercell Slam",
+        "pp": 15,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "electric"
+    },
     "superfang": {
         "accuracy": 90,
         "basePower": 0,
@@ -14625,6 +14809,24 @@
         "target": "normal",
         "type": "grass"
     },
+    "tachyoncutter": {
+        "accuracy": true,
+        "basePower": 50,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1,
+            "slicing": 1
+        },
+        "id": "tachyoncutter",
+        "multihit": 2,
+        "name": "Tachyon Cutter",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "steel"
+    },
     "tackle": {
         "accuracy": 100,
         "basePower": 40,
@@ -14896,6 +15098,23 @@
         "target": "self",
         "type": "psychic"
     },
+    "temperflare": {
+        "accuracy": 100,
+        "basePower": 75,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "temperflare",
+        "name": "Temper Flare",
+        "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "fire"
+    },
     "terablast": {
         "accuracy": 100,
         "basePower": 80,
@@ -14908,6 +15127,25 @@
         "id": "terablast",
         "name": "Tera Blast",
         "pp": 10,
+        "priority": 0,
+        "secondary": null,
+        "target": "normal",
+        "type": "normal"
+    },
+    "terastarstorm": {
+        "accuracy": 100,
+        "basePower": 120,
+        "category": "special",
+        "flags": {
+            "failcopycat": 1,
+            "failmimic": 1,
+            "mirror": 1,
+            "noassist": 1,
+            "protect": 1
+        },
+        "id": "terastarstorm",
+        "name": "Tera Starstorm",
+        "pp": 5,
         "priority": 0,
         "secondary": null,
         "target": "normal",
@@ -15078,6 +15316,22 @@
         "target": "normal",
         "type": "electric",
         "volatileStatus": "partiallytrapped"
+    },
+    "thunderclap": {
+        "accuracy": 100,
+        "basePower": 70,
+        "category": "special",
+        "flags": {
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "thunderclap",
+        "name": "Thunderclap",
+        "pp": 5,
+        "priority": 1,
+        "secondary": null,
+        "target": "normal",
+        "type": "electric"
     },
     "thunderfang": {
         "accuracy": 95,
@@ -15615,6 +15869,26 @@
         },
         "target": "allAdjacentFoes",
         "type": "dragon"
+    },
+    "upperhand": {
+        "accuracy": 100,
+        "basePower": 65,
+        "category": "physical",
+        "flags": {
+            "contact": 1,
+            "mirror": 1,
+            "protect": 1
+        },
+        "id": "upperhand",
+        "name": "Upper Hand",
+        "pp": 15,
+        "priority": 3,
+        "secondary": {
+            "chance": 100,
+            "volatileStatus": "flinch"
+        },
+        "target": "normal",
+        "type": "fighting"
     },
     "uproar": {
         "accuracy": 100,

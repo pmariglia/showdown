@@ -168,7 +168,7 @@
             "0": "Overgrow",
             "H": "Chlorophyll"
         },
-        "heightm": 2,
+        "heightm": 24,
         "weightkg": 0,
         "color": "Green",
         "eggGroups": [
@@ -552,7 +552,7 @@
             "0": "Torrent",
             "H": "Rain Dish"
         },
-        "heightm": 1.6,
+        "heightm": 25,
         "weightkg": 0,
         "color": "Blue",
         "eggGroups": [
@@ -33278,7 +33278,7 @@
             "0": "Overgrow",
             "H": "Grassy Surge"
         },
-        "heightm": 3,
+        "heightm": 28,
         "weightkg": 0,
         "color": "Green",
         "eggGroups": [
@@ -33412,7 +33412,7 @@
             "0": "Blaze",
             "H": "Libero"
         },
-        "heightm": 3,
+        "heightm": 27,
         "weightkg": 0,
         "color": "White",
         "eggGroups": [
@@ -33546,7 +33546,7 @@
             "0": "Torrent",
             "H": "Sniper"
         },
-        "heightm": 3,
+        "heightm": 40,
         "weightkg": 0,
         "color": "Blue",
         "eggGroups": [
@@ -36229,6 +36229,9 @@
         "heightm": 1.8,
         "weightkg": 40,
         "color": "White",
+        "evos": [
+            "Archaludon"
+        ],
         "eggGroups": [
             "Mineral",
             "Dragon"
@@ -36700,7 +36703,7 @@
         "abilities": {
             "0": "Unseen Fist"
         },
-        "heightm": 3,
+        "heightm": 29,
         "weightkg": 0,
         "color": "Gray",
         "eggGroups": [
@@ -36732,8 +36735,8 @@
         "abilities": {
             "0": "Unseen Fist"
         },
-        "heightm": 1.9,
-        "weightkg": 105,
+        "heightm": 26,
+        "weightkg": 0,
         "color": "Gray",
         "eggGroups": [
             "Undiscovered"
@@ -40734,6 +40737,9 @@
         "weightkg": 4.4,
         "color": "Green",
         "prevo": "Applin",
+        "evos": [
+            "Hydrapple"
+        ],
         "evoType": "useItem",
         "evoItem": "Syrupy Apple",
         "eggGroups": [
@@ -41225,6 +41231,300 @@
         "battleOnly": "Ogerpon-Cornerstone",
         "forceTeraType": "Rock"
     },
+    "archaludon": {
+        "num": 1018,
+        "name": "archaludon",
+        "types": [
+            "steel",
+            "dragon"
+        ],
+        "baseStats": {
+            "hp": 90,
+            "attack": 105,
+            "defense": 130,
+            "special-attack": 125,
+            "special-defense": 65,
+            "speed": 85
+        },
+        "abilities": {
+            "0": "Stamina",
+            "1": "Sturdy",
+            "H": "Stalwart"
+        },
+        "heightm": 2,
+        "weightkg": 60,
+        "color": "White",
+        "prevo": "Duraludon",
+        "evoType": "useItem",
+        "evoItem": "Metal Alloy",
+        "eggGroups": [
+            "Mineral",
+            "Dragon"
+        ]
+    },
+    "hydrapple": {
+        "num": 1019,
+        "name": "hydrapple",
+        "types": [
+            "grass",
+            "dragon"
+        ],
+        "baseStats": {
+            "hp": 106,
+            "attack": 80,
+            "defense": 110,
+            "special-attack": 120,
+            "special-defense": 80,
+            "speed": 44
+        },
+        "abilities": {
+            "0": "Supersweet Syrup",
+            "1": "Regenerator",
+            "H": "Sticky Hold"
+        },
+        "heightm": 1.8,
+        "weightkg": 93,
+        "color": "Green",
+        "prevo": "Dipplin",
+        "evoType": "levelMove",
+        "evoMove": "Dragon Cheer",
+        "eggGroups": [
+            "Grass",
+            "Dragon"
+        ]
+    },
+    "gougingfire": {
+        "num": 1020,
+        "name": "gouging fire",
+        "types": [
+            "fire",
+            "dragon"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 105,
+            "attack": 115,
+            "defense": 121,
+            "special-attack": 65,
+            "special-defense": 93,
+            "speed": 91
+        },
+        "abilities": {
+            "0": "Protosynthesis"
+        },
+        "heightm": 3.5,
+        "weightkg": 590,
+        "color": "Brown",
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "ragingbolt": {
+        "num": 1021,
+        "name": "raging bolt",
+        "types": [
+            "electric",
+            "dragon"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 125,
+            "attack": 73,
+            "defense": 91,
+            "special-attack": 137,
+            "special-defense": 89,
+            "speed": 75
+        },
+        "abilities": {
+            "0": "Protosynthesis"
+        },
+        "heightm": 5.2,
+        "weightkg": 480,
+        "color": "Yellow",
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "ironboulder": {
+        "num": 1022,
+        "name": "iron boulder",
+        "types": [
+            "rock",
+            "psychic"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 90,
+            "attack": 120,
+            "defense": 80,
+            "special-attack": 68,
+            "special-defense": 108,
+            "speed": 124
+        },
+        "abilities": {
+            "0": "Quark Drive"
+        },
+        "heightm": 1.5,
+        "weightkg": 162.5,
+        "color": "Gray",
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "ironcrown": {
+        "num": 1023,
+        "name": "iron crown",
+        "types": [
+            "steel",
+            "psychic"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 90,
+            "attack": 72,
+            "defense": 100,
+            "special-attack": 122,
+            "special-defense": 108,
+            "speed": 98
+        },
+        "abilities": {
+            "0": "Quark Drive"
+        },
+        "heightm": 1.6,
+        "weightkg": 156,
+        "color": "Blue",
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
+    "terapagos": {
+        "num": 1024,
+        "name": "terapagos",
+        "types": [
+            "normal"
+        ],
+        "baseStats": {
+            "hp": 90,
+            "attack": 65,
+            "defense": 85,
+            "special-attack": 65,
+            "special-defense": 85,
+            "speed": 60
+        },
+        "abilities": {
+            "0": "Tera Shift"
+        },
+        "heightm": 0.2,
+        "weightkg": 6.5,
+        "color": "Blue",
+        "tags": [
+            "Restricted Legendary"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ],
+        "otherFormes": [
+            "Terapagos-Terastal",
+            "Terapagos-Stellar"
+        ],
+        "formeOrder": [
+            "Terapagos",
+            "Terapagos-Terastal",
+            "Terapagos-Stellar"
+        ],
+        "forceTeraType": "Stellar"
+    },
+    "terapagosterastal": {
+        "num": 1024,
+        "name": "terapagos-terastal",
+        "baseSpecies": "Terapagos",
+        "forme": "Terastal",
+        "types": [
+            "normal"
+        ],
+        "baseStats": {
+            "hp": 95,
+            "attack": 95,
+            "defense": 110,
+            "special-attack": 105,
+            "special-defense": 110,
+            "speed": 85
+        },
+        "abilities": {
+            "0": "Tera Shell"
+        },
+        "heightm": 0.3,
+        "weightkg": 16,
+        "color": "Blue",
+        "tags": [
+            "Restricted Legendary"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ],
+        "battleOnly": "Terapagos",
+        "forceTeraType": "Stellar"
+    },
+    "terapagosstellar": {
+        "num": 1024,
+        "name": "terapagos-stellar",
+        "baseSpecies": "Terapagos",
+        "forme": "Stellar",
+        "types": [
+            "normal"
+        ],
+        "baseStats": {
+            "hp": 160,
+            "attack": 105,
+            "defense": 110,
+            "special-attack": 130,
+            "special-defense": 110,
+            "speed": 85
+        },
+        "abilities": {
+            "0": "Teraform Zero"
+        },
+        "heightm": 1.7,
+        "weightkg": 77,
+        "color": "Blue",
+        "tags": [
+            "Restricted Legendary"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ],
+        "battleOnly": "Terapagos",
+        "forceTeraType": "Stellar"
+    },
+    "pecharunt": {
+        "num": 1025,
+        "name": "pecharunt",
+        "types": [
+            "poison",
+            "ghost"
+        ],
+        "gender": "N",
+        "baseStats": {
+            "hp": 88,
+            "attack": 88,
+            "defense": 160,
+            "special-attack": 88,
+            "special-defense": 88,
+            "speed": 88
+        },
+        "abilities": {
+            "0": "Poison Puppeteer"
+        },
+        "heightm": 0.3,
+        "weightkg": 0.3,
+        "color": "Purple",
+        "tags": [
+            "Mythical"
+        ],
+        "eggGroups": [
+            "Undiscovered"
+        ]
+    },
     "missingno": {
         "num": 0,
         "name": "missingno.",
@@ -41327,9 +41627,9 @@
             "speed": 65
         },
         "abilities": {
-            "0": "Shed Skin",
-            "1": "Air Lock",
-            "H": "Triage"
+            "0": "Air Lock",
+            "1": "Triage",
+            "H": "Shed Skin"
         },
         "heightm": 1.8,
         "weightkg": 44,
@@ -43579,6 +43879,33 @@
         "eggGroups": [
             "Monster",
             "Fairy"
+        ],
+        "gen": 9
+    },
+    "cresceidon": {
+        "num": -72,
+        "name": "cresceidon",
+        "types": [
+            "water",
+            "fairy"
+        ],
+        "baseStats": {
+            "hp": 80,
+            "attack": 32,
+            "defense": 111,
+            "special-attack": 88,
+            "special-defense": 99,
+            "speed": 125
+        },
+        "abilities": {
+            "0": "Multiscale",
+            "1": "Rough Skin"
+        },
+        "heightm": 10,
+        "weightkg": 999.9,
+        "color": "Blue",
+        "eggGroups": [
+            "Undiscovered"
         ],
         "gen": 9
     },
