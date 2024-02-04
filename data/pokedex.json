@@ -43895,17 +43895,19 @@
             "defense": 111,
             "special-attack": 88,
             "special-defense": 99,
-            "speed": 125
+            "speed": 124
         },
         "abilities": {
             "0": "Multiscale",
-            "1": "Rough Skin"
+            "1": "Rough Skin",
+            "H": "Water Veil"
         },
         "heightm": 10,
         "weightkg": 999.9,
         "color": "Blue",
         "eggGroups": [
-            "Undiscovered"
+            "Amorphous",
+            "Water 3"
         ],
         "gen": 9
     },
