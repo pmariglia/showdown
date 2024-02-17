@@ -66,6 +66,7 @@ class _ShowdownConfig:
     damage_calc_type: str
     log_level: str
     log_to_file: bool
+    depth: int
     log_handler: Union[CustomRotatingFileHandler, logging.StreamHandler]
 
     def configure(self):
@@ -86,6 +87,7 @@ class _ShowdownConfig:
 
         self.log_level = env("LOG_LEVEL", "DEBUG")
         self.log_to_file = env.bool("LOG_TO_FILE", False)
+        self.depth = env.int("SEARCH_DEPTH", 2)
 
         self.validate_config()
 

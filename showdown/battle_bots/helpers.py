@@ -61,15 +61,15 @@ def pick_safest_move_from_battles(battles):
         state = b.create_state()
         mutator = StateMutator(state)
         user_options, opponent_options = b.get_all_options()
-        logger.debug("Searching through the state: {}".format(mutator.state))
-        scores = get_payoff_matrix(mutator, user_options, opponent_options, prune=True)
+        # logger.debug("Searching through the state: {}".format(mutator.state))
+        scores = get_payoff_matrix(mutator, user_options, opponent_options, depth=config.ShowdownConfig.depth, prune=True)
 
         prefixed_scores = prefix_opponent_move(scores, str(i))
         all_scores = {**all_scores, **prefixed_scores}
 
     decision, payoff = pick_safest(all_scores, remove_guaranteed=True)
     bot_choice = decision[0]
-    logger.debug("Safest: {}, {}".format(bot_choice, payoff))
+    logger.debug("Safest: {}, {}, depth={}".format(bot_choice, payoff, config.ShowdownConfig.depth))
     return bot_choice
 
 
