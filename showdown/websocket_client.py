@@ -162,20 +162,3 @@ class PSWebsocketClient:
     async def save_replay(self, battle_tag):
         message = ["/savereplay"]
         await self.send_message(battle_tag, message)
-
-        while True:
-            msg = await self.receive_message()
-            if msg.startswith("|queryresponse|savereplay|"):
-                obj = json.loads(msg.replace("|queryresponse|savereplay|", ""))
-                log = obj['log']
-                identifier = obj['id']
-                post_response = requests.post(
-                    "https://play.pokemonshowdown.com/~~showdown/action.php?act=uploadreplay",
-                    data={
-                        "log": log,
-                        "id": identifier
-                    }
-                )
-                if post_response.status_code != 200:
-                    raise SaveReplayError("POST to save replay did not return a 200: {}".format(post_response.content))
-                break
