@@ -33,7 +33,9 @@ with open("/tmp/moves.ts", "w") as f:
     f.write(data)
 
 # compile the .ts file into .js. Requires `tsc` on your system
-p = subprocess.Popen(['tsc', '/tmp/moves.ts'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+p = subprocess.Popen(
+    ["tsc", "/tmp/moves.ts"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
+)
 stdout = p.stdout.read()
 stderr = p.stderr.read()
 
@@ -47,7 +49,9 @@ with open("/tmp/moves.js", "a") as f:
 
 # run node on the .js file to get the console log we added
 # Requires `node` on your system
-p = subprocess.Popen(['node', '/tmp/moves.js'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+p = subprocess.Popen(
+    ["node", "/tmp/moves.js"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
+)
 stdout = p.stdout.read()
 stderr = p.stderr.read()
 
@@ -58,10 +62,9 @@ moves_dict = json.loads(stdout)
 # make modifications to some values for the bot
 # shallow copy the dictionary because we might delete things from it
 for k, v in moves_dict.copy().items():
-
     # the bot doesn't care about Z-Moves or Gmax moves. They're omitted entirely
     if v.get("isZ") or v.get("isMax"):
-        del[moves_dict[k]]
+        del [moves_dict[k]]
         continue
 
     # the bot needs an `id` attribute
@@ -241,16 +244,14 @@ moves_dict["nothing"] = {
     "accuracy": True,
     "basePower": 0,
     "category": "status",
-    "flags": {
-        "gravity": 1
-    },
+    "flags": {"gravity": 1},
     "id": "nothing",
     "name": "Splash",
     "pp": 40,
     "priority": 0,
     "secondary": None,
     "target": "self",
-    "type": "normal"
+    "type": "normal",
 }
 
 moves_dict["recharge"] = {
@@ -264,28 +265,18 @@ moves_dict["recharge"] = {
     "priority": 0,
     "secondary": None,
     "target": "self",
-    "type": "normal"
+    "type": "normal",
 }
 
-moves_dict["tidyup"]["boosts"] = {
-    "attack": 1,
-    "speed": 1
-}
+moves_dict["tidyup"]["boosts"] = {"attack": 1, "speed": 1}
 
 del moves_dict["diamondstorm"]["self"]
 moves_dict["diamondstorm"]["secondary"] = {
     "chance": 50,
-    "self": {
-        "boosts": {
-            "defense": 2
-        }
-    }
+    "self": {"boosts": {"defense": 2}},
 }
 
-moves_dict["partingshot"]["boosts"] = {
-    "attack": -1,
-    "special-attack": -1
-}
+moves_dict["partingshot"]["boosts"] = {"attack": -1, "special-attack": -1}
 
 del moves_dict["clangoroussoul"]["boosts"]
 del moves_dict["filletaway"]["boosts"]
@@ -302,4 +293,4 @@ moves_dict["axekick"]["crash"] = [1, 2]
 
 with open("data/new_moves.json", "w") as f:
     json.dump(moves_dict, f, indent=4, sort_keys=True)
-a=5
+a = 5

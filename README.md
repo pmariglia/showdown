@@ -1,48 +1,53 @@
-# Showdown  ![umbreon](https://play.pokemonshowdown.com/sprites/xyani/umbreon.gif)
+# Foul Play ![umbreon](https://play.pokemonshowdown.com/sprites/xyani/umbreon.gif)
 A Pokémon battle-bot that can play battles on [Pokemon Showdown](https://pokemonshowdown.com/).
 
-The bot can play single battles in generations 3 through 8.
+Foul Play can play single battles in all generations,
+though currently mega-evolutions and z-moves are not supported.
 
-![badge](https://github.com/pmariglia/showdown/actions/workflows/pythonapp.yml/badge.svg)
+![badge](https://github.com/pmariglia/foul-play/actions/workflows/pythonapp.yml/badge.svg)
 
 ## Python version
-Developed and tested using Python 3.8.
+Requires Python 3.10+.
 
 ## Getting Started
 
 ### Configuration
 Environment variables are used for configuration.
 You may either set these in your environment before running,
-or populate them in the [env](https://github.com/pmariglia/showdown/blob/master/env) file.
+or populate them in the [env](https://github.com/pmariglia/foul-play/blob/master/env) file.
 
 The configurations available are:
 
-| Config Name | Type | Required | Description |
-|---|:---:|:---:|---|
-| **`BATTLE_BOT`** | string | yes | The BattleBot module to use. More on this below in the Battle Bots section |
-| **`WEBSOCKET_URI`** | string | yes | The address to use to connect to the Pokemon Showdown websocket |
-| **`PS_USERNAME`** | string | yes | Pokemon Showdown username |
-| **`PS_PASSWORD`** | string | yes | Pokemon Showdown password  |
-| **`BOT_MODE`** | string | yes | The mode the the bot will operate in. Options are `CHALLENGE_USER`, `SEARCH_LADDER`, or `ACCEPT_CHALLENGE` |
-| **`POKEMON_MODE`** | string | yes | The type of game this bot will play: `gen8ou`, `gen7randombattle`, etc. |
-| **`USER_TO_CHALLENGE`** | string | only if `BOT_MODE` is `CHALLENGE_USER` | If `BOT_MODE` is `CHALLENGE_USER`, this is the name of the user you want your bot to challenge |
-| **`RUN_COUNT`** | int | no | The number of games the bot will play before quitting |
-| **`TEAM_NAME`** | string | no | The name of the file that contains the team you want to use. More on this below in the Specifying Teams section. |
-| **`ROOM_NAME`** | string | no | If `BOT_MODE` is `ACCEPT_CHALLENGE`, the bot will join this chatroom while waiting for a challenge. |
-| **`SAVE_REPLAY`** | boolean | no | Specifies whether or not to save replays of the battles (`True` / `False`) |
-| **`LOG_LEVEL`** | string | no | The Python logging level (`DEBUG`, `INFO`, etc.) |
+| Config Name             |  Type   |                Required                | Description                                                                                                                                                  |
+|-------------------------|:-------:|:--------------------------------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`BATTLE_BOT`**        | string  |                  yes                   | The BattleBot to use. More on this below in the Battle Bots section                                                                                          |
+| **`WEBSOCKET_URI`**     | string  |                  yes                   | The address to use to connect to the Pokemon Showdown websocket                                                                                              |
+| **`PS_USERNAME`**       | string  |                  yes                   | Pokemon Showdown username                                                                                                                                    |
+| **`PS_PASSWORD`**       | string  |                  yes                   | Pokemon Showdown password                                                                                                                                    |
+| **`BOT_MODE`**          | string  |                  yes                   | What to do after logging-in. Options are: <br/>- `CHALLENGE_USER`<br/>- `SEARCH_LADDER` <br/>- `ACCEPT_CHALLENGE`                                            |
+| **`POKEMON_MODE`**      | string  |                  yes                   | The type of game this bot will play: `gen8ou`, `gen7randombattle`, etc.                                                                                      |
+| **`USER_TO_CHALLENGE`** | string  | only if `BOT_MODE` is `CHALLENGE_USER` | If `BOT_MODE` is `CHALLENGE_USER`, this is the name of the user to challenge                                                                                 |
+| **`RUN_COUNT`**         |   int   |                   no                   | The number of games to play before quitting                                                                                                                  |
+| **`SEARCH_TIME_MS`**    |   int   |                   no                   | The amount of time to spend looking for a move in milliseconds. This applies to monte-carlo search, as well as expectiminimax when using iterative-deepening |
+| **`TEAM_NAME`**         | string  |                   no                   | The name of the file that contains the team you want to use. More on this below in the Specifying Teams section.                                             |
+| **`ROOM_NAME`**         | string  |                   no                   | If `BOT_MODE` is `ACCEPT_CHALLENGE`, join this chatroom while waiting for a challenge.                                                                       |
+| **`SAVE_REPLAY`**       | boolean |                   no                   | Whether or not to save replays of the battles (`True` / `False`)                                                                                             |
+| **`LOG_LEVEL`**         | string  |                   no                   | The Python logging level for stdout logs (`DEBUG`, `INFO`, etc.)                                                                                             |
+| **`LOG_TO_FILE`**       | string  |                   no                   | If `True` then `DEBUG` logs are written to a file in `./logs` regardless of what `LOG_LEVEL` is set to. A new file is created per battle                     |
 
-### Running without Docker
+### Running Locally
 
 **1. Clone**
 
-Clone the repository with `git clone https://github.com/pmariglia/showdown.git`
+Clone the repository with `git clone https://github.com/pmariglia/foul-play.git`
 
 **2. Install Requirements**
 
 Install the requirements with `pip install -r requirements.txt`.
 
-**3. Configure your [env](https://github.com/pmariglia/showdown/blob/master/env) file**
+Note: Requires Rust to be installed on your machine to build the engine.
+
+**3. Configure your [env](https://github.com/pmariglia/foul-play/blob/master/env) file**
 
 Here is a sample:
 ```
@@ -60,78 +65,52 @@ RUN_COUNT=1
 Run with `python run.py`
 
 ### Running with Docker
-This requires Docker 17.06 or higher.
 
 **1. Clone the repository**
 
-`git clone https://github.com/pmariglia/showdown.git`
+`git clone https://github.com/pmariglia/foul-play.git`
 
 **2. Build the Docker image**
 
-`docker build . -t showdown`
+Use the `Makefile` to build a Docker image
+```shell
+make docker
+```
+
+or for a specific generation:
+```shell
+make docker GEN=gen5
+```
 
 **3. Run with an environment variable file**
+`docker run --env-file env foul-play:latest`
 
-`docker run --env-file env showdown`
+## Engine
+
+This project uses [poke-engine](https://github.com/pmariglia/poke-engine) to search through battles.
+See [the engine docs](https://poke-engine.readthedocs.io/en/latest/) for more information.
 
 ## Battle Bots
 
-This project has a few different battle bot implementations.
-Each of these battle bots use a different method to determine which move to use.
+The Battle Bot decides which algorithm to use to pick a move
 
-### Safest
-use `BATTLE_BOT=safest`
+### Monte-Carlo Tree Search
+use `BATTLE_BOT=mcts`
 
-The bot searches through the game-tree for two turns and selects the move that minimizes the possible loss for a turn.
+Uses poke-engine to perform a
+[monte-carlo tree search](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search) to determine the best move to make.
 
-For decisions with random outcomes a weighted average is taken for all possible end states.
-For example: If using draco meteor versus some arbitrary other move results in a score of 1000 if it hits (90%) and a score of 900 if it misses (10%), the overall score for using
-draco meteor is (0.9 * 1000) + (0.1 * 900) = 990.
+### Expectiminimax
+use `BATTLE_BOT=minimax`
 
-This is equivalent to the [Expectiminimax](https://en.wikipedia.org/wiki/Expectiminimax) strategy.
-
-This decision type is deterministic - the bot will always make the same move given the same situation again.
-
-### Nash-Equilibrium (experimental)
-use `BATTLE_BOT=nash_equilibrium`
-
-Using the information it has, plus some assumptions about the opponent, the bot will attempt to calculate the [Nash-Equilibrium](https://en.wikipedia.org/wiki/Nash_equilibrium) with the highest payoff
-and select a move from that distribution.
-
-The Nash Equilibrium is calculated using command-line tools provided by the [Gambit](http://www.gambit-project.org/) project.
-This decision method should only be used when running with Docker and will fail otherwise.
-
-This decision method is **not** deterministic. The bot **may** make a different move if presented with the same situation again.
-
-### Team Datasets (experimental)
-
-use `BATTLE_BOT=team_datasets`
-
-Using a file of sets & teams, this battle-bot is meant to have a better
-understanding of Pokeon sets that may appear.
-Populate this dataset by editing `data/team_datasets.json`.
-
-Still uses the `safest` decision making method for picking a move, but in theory the knowledge of sets should
-result in better decision making.
-
-### Most Damage
-use `BATTLE_BOT=most_damage`
-
-Selects the move that will do the most damage to the opponent
-
-Does not switch
-
-## Write your own bot
-Create a package in [showdown/battle_bots](https://github.com/pmariglia/showdown/tree/master/showdown/battle_bots) with
-a module named `main.py`. In this module, create a class named `BattleBot`, override the Battle class,
-and implement your own `find_best_move` function.
-
-Set the `BATTLE_BOT` environment variable to the name of your package and your function will be called each time PokemonShowdown prompts the bot for a move
+Uses poke-engine to perform an
+[expectiminimax search](https://en.wikipedia.org/wiki/Expectiminimax) and picks the move that minimizes the loss
+for the turn.
 
 ## The Battle Engine
-The bots in the project all use a Pokemon battle engine to determine all possible transpositions that may occur from a pair of moves.
+This project uses [poke-engine](https://github.com/pmariglia/poke-engine) to simulate battles.
 
-For more information, see [ENGINE.md](https://github.com/pmariglia/showdown/blob/master/ENGINE.md) 
+The engine must be built from source if installing locally so you must have rust installed on your machine.
 
 ## Specifying Teams
 You can specify teams by setting the `TEAM_NAME` environment variable.
