@@ -7,4 +7,7 @@ creds
 *.xlsx
 *.txt
 suspect_decisions.py
-teams/teams
+.venv
+build
+dist
+pokemon_sim.egg-info
