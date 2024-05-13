@@ -5,7 +5,7 @@ from sim.config import ShowdownConfig
 from sim.data import all_move_json
 
 from . import instruction_generator
-from .damage_calculator import _calculate_damage
+from .damage_calculator import _calculate_damage, CalcType
 from .objects import TransposeInstruction
 from .special_effects.abilities.modify_attack_against import ability_modify_attack_against
 from .special_effects.abilities.modify_attack_being_used import ability_modify_attack_being_used
@@ -486,7 +486,8 @@ def end_of_turn_triggered(user_move, opponent_move):
 
 
 def get_all_state_instructions(mutator, user_move_string, opponent_move_string, calc_type=None):
-    calc_type = ShowdownConfig.damage_calc_type if calc_type is None else calc_type
+    #calc_type = ShowdownConfig.damage_calc_type if calc_type is None else calc_type
+    calc_type = CalcType.average
     user_move = lookup_move(user_move_string)
     opponent_move = lookup_move(opponent_move_string)
 
@@ -501,8 +502,8 @@ def get_all_state_instructions(mutator, user_move_string, opponent_move_string, 
     instructions = get_state_instructions_from_move(mutator, first_move, second_move, first_player,
                                                     second_player, True, instructions, calc_type)
     for instruction in instructions:
-        all_instructions += get_state_instructions_from_move(mutator, second_move, first_player, second_player,
-                                                             second_player, False, instruction, calc_type)
+        all_instructions += get_state_instructions_from_move(mutator, second_move, first_move, second_player,
+                                                             first_player, False, instruction, calc_type)
 
     if end_of_turn_triggered(user_move_string, opponent_move_string):
         temp_instructions = []

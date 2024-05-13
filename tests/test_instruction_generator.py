@@ -1,12 +1,12 @@
 import unittest
-import constants
-from showdown.engine import instruction_generator
-from showdown.battle import Pokemon as StatePokemon
-from showdown.engine.objects import StateMutator
-from showdown.engine.objects import State
-from showdown.engine.objects import Side
-from showdown.engine.objects import Pokemon
-from showdown.engine.objects import TransposeInstruction
+import sim.constants as constants
+from sim.showdown.engine import instruction_generator
+from sim.showdown.battle import Pokemon as StatePokemon
+from sim.showdown.engine.objects import StateMutator
+from sim.showdown.engine.objects import State
+from sim.showdown.engine.objects import Side
+from sim.showdown.engine.objects import Pokemon
+from sim.showdown.engine.objects import TransposeInstruction
 from collections import defaultdict
 
 

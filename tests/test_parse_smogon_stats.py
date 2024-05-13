@@ -2,7 +2,7 @@ import unittest
 from unittest import mock
 from datetime import date
 
-from data.parse_smogon_stats import get_smogon_stats_file_name
+from sim.data.parse_smogon_stats import get_smogon_stats_file_name
 
 
 class TestGetSmogonStatsFileName(unittest.TestCase):

@@ -3,22 +3,12 @@ from enum import Enum, auto
 import numpy as np
 
 import sim.constants as constants
+from sim.constants import CalcType
 from sim.data import all_move_json
 from sim.data import pokedex
 
 
 rng = np.random.default_rng()
-
-
-class CalcType(Enum):
-    average = auto()
-    min = auto()
-    max = auto()
-    min_max = auto()
-    min_max_average = auto()
-    all = auto()
-    random = auto()
-
 
 pokemon_type_indicies = {
     'normal': 0,
@@ -428,7 +418,7 @@ def calculate_damage(state, attacking_side_string, attacking_move, defending_mov
     return _calculate_damage(attacking_side.active, defending_side.active, attacking_move_dict, conditions=conditions, calc_type=calc_type)
 
 
-def calculate_futuresight_damage(state, attacking_side_string, future_sight_user, calc_type='average'):
+def calculate_futuresight_damage(state, attacking_side_string, future_sight_user, calc_type=CalcType.average):
     if attacking_side_string == constants.USER:
         attacking_side = state.user
         defending_side = state.opponent

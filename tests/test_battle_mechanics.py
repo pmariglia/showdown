@@ -3,29 +3,29 @@ TestBattleMechanics is the main Pokemon engine test class
 All battle mechanics are tested in this TestCase
 """
 
-
 import unittest
 from unittest import mock
 
-from config import ShowdownConfig
-import constants
+from sim.config import ShowdownConfig
+import sim.constants as constants
+from sim.constants import CalcType
 from collections import defaultdict
 from copy import deepcopy
-from showdown.engine.objects import TransposeInstruction
-from showdown.engine.find_state_instructions import get_all_state_instructions
-from showdown.engine.find_state_instructions import remove_duplicate_instructions
-from showdown.engine.find_state_instructions import lookup_move
-from showdown.engine.find_state_instructions import user_moves_first
-from showdown.engine.objects import State
-from showdown.engine.objects import Pokemon
-from showdown.engine.objects import Side
-from showdown.battle import Pokemon as StatePokemon
-from showdown.engine.objects import StateMutator
+from sim.showdown.engine.objects import TransposeInstruction
+from sim.showdown.engine.find_state_instructions import get_all_state_instructions
+from sim.showdown.engine.find_state_instructions import remove_duplicate_instructions
+from sim.showdown.engine.find_state_instructions import lookup_move
+from sim.showdown.engine.find_state_instructions import user_moves_first
+from sim.showdown.engine.objects import State
+from sim.showdown.engine.objects import Pokemon
+from sim.showdown.engine.objects import Side
+from sim.showdown.battle import Pokemon as StatePokemon
+from sim.showdown.engine.objects import StateMutator
 
 
 class TestBattleMechanics(unittest.TestCase):
     def setUp(self):
-        ShowdownConfig.damage_calc_type = "average"  # some tests may override this
+        ShowdownConfig.damage_calc_type = CalcType.average  # some tests may override this
         self.state = State(
                         Side(
                             Pokemon.from_state_pokemon_dict(StatePokemon("raichu", 73).to_dict()),
@@ -6119,7 +6119,7 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    @mock.patch('showdown.engine.special_effects.moves.modify_move.pokedex')
+    @mock.patch('sim.showdown.engine.special_effects.moves.modify_move.pokedex')
     def test_heavyslam_damage_for_10_times_the_weight(self, pokedex_mock):
         # 10x the weight should result in 120 base-power
         fake_pokedex = {
@@ -6152,7 +6152,7 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    @mock.patch('showdown.engine.special_effects.moves.modify_move.pokedex')
+    @mock.patch('sim.showdown.engine.special_effects.moves.modify_move.pokedex')
     def test_heavyslam_damage_for_4_times_the_weight(self, pokedex_mock):
         # 4x the weight should result in 100 base-power
         fake_pokedex = {
@@ -6185,7 +6185,7 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    @mock.patch('showdown.engine.special_effects.moves.modify_move.pokedex')
+    @mock.patch('sim.showdown.engine.special_effects.moves.modify_move.pokedex')
     def test_heavyslam_damage_for_the_same_weight(self, pokedex_mock):
         # equal weight should result in 40 base-power
         fake_pokedex = {
@@ -6218,7 +6218,7 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    @mock.patch('showdown.engine.special_effects.moves.modify_move.pokedex')
+    @mock.patch('sim.showdown.engine.special_effects.moves.modify_move.pokedex')
     def test_heatcrash_damage_for_the_same_weight(self, pokedex_mock):
         # 10x equal weight should result in 120 base-power
         fake_pokedex = {
@@ -6251,7 +6251,7 @@ class TestBattleMechanics(unittest.TestCase):
 
         self.assertEqual(expected_instructions, instructions)
 
-    @mock.patch('showdown.engine.special_effects.moves.modify_move.pokedex')
+    @mock.patch('sim.showdown.engine.special_effects.moves.modify_move.pokedex')
     def test_heatcrash_into_flashfire(self, pokedex_mock):
         # the defender has flashfire so no damage should be done, even with 10x the weight
         fake_pokedex = {
@@ -12573,7 +12573,7 @@ class TestBattleMechanics(unittest.TestCase):
         self.assertEqual(expected_instructions, instructions)
 
     def test_thunder_produces_all_states_with_damage_rolls_accounted_for(self):
-        ShowdownConfig.damage_calc_type = "min_max_average"
+        ShowdownConfig.damage_calc_type = CalcType.min_max_average
         bot_move = "thunder"
         opponent_move = "splash"
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)

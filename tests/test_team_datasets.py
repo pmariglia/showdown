@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-import constants
-from data.team_datasets import _TeamDatasets, PokemonSet, PokemonMoveset
-from showdown.battle import Pokemon, Move, StatRange
+import sim.constants as constants
+from sim.data.team_datasets import _TeamDatasets, PokemonSet, PokemonMoveset
+from sim.showdown.battle import Pokemon, Move, StatRange
 
 
 class TestTeamDatasets(TestCase):

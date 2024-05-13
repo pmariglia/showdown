@@ -1,14 +1,14 @@
 import unittest
 from collections import defaultdict
 
-import constants
-from showdown.engine.damage_calculator import _calculate_damage
-from showdown.engine.damage_calculator import calculate_damage
-from showdown.engine.objects import State
-from showdown.engine.objects import Side
-from showdown.engine.objects import Pokemon
+import sim.constants as constants
+from sim.showdown.engine.damage_calculator import _calculate_damage
+from sim.showdown.engine.damage_calculator import calculate_damage
+from sim.showdown.engine.objects import State
+from sim.showdown.engine.objects import Side
+from sim.showdown.engine.objects import Pokemon
 
-from showdown.battle import Pokemon as StatePokemon
+from sim.showdown.battle import Pokemon as StatePokemon
 
 
 class TestCalculateDamageAmount(unittest.TestCase):

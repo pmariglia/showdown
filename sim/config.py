@@ -63,7 +63,7 @@ class _ShowdownConfig:
     user_to_challenge: str
     save_replay: bool
     room_name: str
-    damage_calc_type: str
+    damage_calc_type: 'CalcType'
     log_level: str
     log_to_file: bool
     log_handler: Union[CustomRotatingFileHandler, logging.StreamHandler]
@@ -83,7 +83,6 @@ class _ShowdownConfig:
         self.save_replay = env.bool("SAVE_REPLAY", False)
         self.room_name = env("ROOM_NAME", None)
         self.damage_calc_type = env("DAMAGE_CALC_TYPE", "average")
-
         self.log_level = env("LOG_LEVEL", "DEBUG")
         self.log_to_file = env.bool("LOG_TO_FILE", False)
 

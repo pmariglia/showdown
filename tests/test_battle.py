@@ -580,11 +580,11 @@ class TestGetPossibleItems(unittest.TestCase):
 
 class TestConvertToMega(unittest.TestCase):
     def setUp(self):
-        self.get_mega_name_patch = mock.patch('showdown.battle.get_mega_pkmn_name')
+        self.get_mega_name_patch = mock.patch('sim.showdown.battle.get_mega_pkmn_name')
         self.addCleanup(self.get_mega_name_patch.stop)
         self.get_mega_name_mock = self.get_mega_name_patch.start()
 
-        self.pkmn_sets_patch = mock.patch('showdown.battle.data')
+        self.pkmn_sets_patch = mock.patch('sim.showdown.battle.data')
         self.addCleanup(self.pkmn_sets_patch.stop)
         self.pkmn_sets_mock = self.pkmn_sets_patch.start()
 

@@ -1,4 +1,14 @@
-from enum import Enum
+from enum import Enum, auto
+
+
+class CalcType(Enum):
+    average = auto()
+    min = auto()
+    max = auto()
+    min_max = auto()
+    min_max_average = auto()
+    all = auto()
+    random = auto()
 
 CHALLENGE_USER = "CHALLENGE_USER"
 ACCEPT_CHALLENGE = "ACCEPT_CHALLENGE"

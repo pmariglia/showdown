@@ -53,9 +53,6 @@ accuracy_multiplier_lookup = {
 }
 
 
-
-
-
 def get_instructions_from_move_special_effect(mutator, attacking_side, attacking_pokemon, defending_pokemon, move_name, instructions):
     if instructions.frozen:
         return [instructions]
@@ -922,7 +919,7 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
     for attacker in sides:
         side = get_side_from_state(mutator.state, attacker)
         if side.future_sight[0] == 1:
-            from showdown.engine.damage_calculator import calculate_futuresight_damage
+            from sim.showdown.engine.damage_calculator import calculate_futuresight_damage
             damage_dealt = calculate_futuresight_damage(
                 mutator.state,
                 attacker,

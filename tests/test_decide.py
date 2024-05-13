@@ -1,8 +1,8 @@
 import unittest
 from unittest import mock
 
-from showdown.engine.select_best_move import pick_safest
-from showdown.battle_bots.nash_equilibrium.main import get_weighted_choices_from_multiple_score_lookups
+from sim.showdown.engine.select_best_move import pick_safest
+from sim.showdown.battle_bots.nash_equilibrium.main import get_weighted_choices_from_multiple_score_lookups
 
 
 class TestPickSafest(unittest.TestCase):

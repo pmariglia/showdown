@@ -2,47 +2,47 @@ import unittest
 import json
 from collections import defaultdict
 
-import constants
-from showdown.engine.helpers import calculate_stats
+import sim.constants as constants
+from sim.helpers import calculate_stats
 
-from showdown.battle import Battle
-from showdown.battle import Pokemon
-from showdown.battle import Move
-from showdown.battle import LastUsedMove
-from showdown.battle import DamageDealt
+from sim.showdown.battle import Battle
+from sim.showdown.battle import Pokemon
+from sim.showdown.battle import Move
+from sim.showdown.battle import LastUsedMove
+from sim.showdown.battle import DamageDealt
 
-from showdown.battle_modifier import request
-from showdown.battle_modifier import terastallize
-from showdown.battle_modifier import activate
-from showdown.battle_modifier import prepare
-from showdown.battle_modifier import switch_or_drag
-from showdown.battle_modifier import clearallboost
-from showdown.battle_modifier import heal_or_damage
-from showdown.battle_modifier import swapsideconditions
-from showdown.battle_modifier import move
-from showdown.battle_modifier import boost
-from showdown.battle_modifier import unboost
-from showdown.battle_modifier import status
-from showdown.battle_modifier import weather
-from showdown.battle_modifier import curestatus
-from showdown.battle_modifier import start_volatile_status
-from showdown.battle_modifier import end_volatile_status
-from showdown.battle_modifier import set_ability
-from showdown.battle_modifier import set_opponent_ability_from_ability_tag
-from showdown.battle_modifier import form_change
-from showdown.battle_modifier import zpower
-from showdown.battle_modifier import clearnegativeboost
-from showdown.battle_modifier import check_speed_ranges
-from showdown.battle_modifier import check_choicescarf
-from showdown.battle_modifier import check_heavydutyboots
-from showdown.battle_modifier import get_damage_dealt
-from showdown.battle_modifier import singleturn
-from showdown.battle_modifier import transform
-from showdown.battle_modifier import update_battle
-from showdown.battle_modifier import upkeep
-from showdown.battle_modifier import inactive
+from sim.showdown.battle_modifier import request
+from sim.showdown.battle_modifier import terastallize
+from sim.showdown.battle_modifier import activate
+from sim.showdown.battle_modifier import prepare
+from sim.showdown.battle_modifier import switch_or_drag
+from sim.showdown.battle_modifier import clearallboost
+from sim.showdown.battle_modifier import heal_or_damage
+from sim.showdown.battle_modifier import swapsideconditions
+from sim.showdown.battle_modifier import move
+from sim.showdown.battle_modifier import boost
+from sim.showdown.battle_modifier import unboost
+from sim.showdown.battle_modifier import status
+from sim.showdown.battle_modifier import weather
+from sim.showdown.battle_modifier import curestatus
+from sim.showdown.battle_modifier import start_volatile_status
+from sim.showdown.battle_modifier import end_volatile_status
+from sim.showdown.battle_modifier import set_ability
+from sim.showdown.battle_modifier import set_opponent_ability_from_ability_tag
+from sim.showdown.battle_modifier import form_change
+from sim.showdown.battle_modifier import zpower
+from sim.showdown.battle_modifier import clearnegativeboost
+from sim.showdown.battle_modifier import check_speed_ranges
+from sim.showdown.battle_modifier import check_choicescarf
+from sim.showdown.battle_modifier import check_heavydutyboots
+from sim.showdown.battle_modifier import get_damage_dealt
+from sim.showdown.battle_modifier import singleturn
+from sim.showdown.battle_modifier import transform
+from sim.showdown.battle_modifier import update_battle
+from sim.showdown.battle_modifier import upkeep
+from sim.showdown.battle_modifier import inactive
 
-from showdown.engine.objects import boost_multiplier_lookup
+from sim.showdown.engine.objects import boost_multiplier_lookup
 
 
 # so we can instantiate a Battle object for testing

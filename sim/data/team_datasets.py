@@ -7,10 +7,10 @@ from typing import Tuple
 from typing import Optional
 
 import sim.constants as constants
-from showdown.engine.helpers import calculate_stats
+from sim.helpers import calculate_stats
 
 if typing.TYPE_CHECKING:
-    from showdown.battle import Pokemon
+    from sim.showdown.battle import Pokemon
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +21,7 @@ PWD = os.path.dirname(os.path.abspath(__file__))
 class PokemonMoveset:
     moves: Tuple[str, ...]
 
-    def pkmn_can_have_moves(self, pkmn: Pokemon) -> bool:
+    def pkmn_can_have_moves(self, pkmn: 'Pokemon') -> bool:
         for mv in pkmn.moves:
             if mv.name not in self.moves:
                 return False
@@ -40,7 +40,7 @@ class PokemonSet:
     evs: Tuple[int, int, int, int, int, int]
     moves: PokemonMoveset
 
-    def item_check(self, pkmn: Pokemon) -> bool:
+    def item_check(self, pkmn: 'Pokemon') -> bool:
         if self.item == "lifeorb" and not pkmn.can_have_life_orb:
             return False
         elif self.item == "heavydutyboots" and not pkmn.can_have_heavydutyboots:
@@ -56,7 +56,7 @@ class PokemonSet:
         else:
             return self.item == pkmn.item or pkmn.item is None or pkmn.item == constants.UNKNOWN_ITEM
 
-    def speed_check(self, pkmn: Pokemon):
+    def speed_check(self, pkmn: 'Pokemon'):
         """
         The only non-observable speed modifier that should allow a
         Pokemon's speed_range to be set is choicescarf
@@ -68,7 +68,7 @@ class PokemonSet:
 
         return pkmn.speed_range.min <= speed <= pkmn.speed_range.max
 
-    def pkmn_can_contain_set(self, pkmn: Pokemon, match_ability=True, match_item=True, speed_check=True) -> bool:
+    def pkmn_can_contain_set(self, pkmn: 'Pokemon', match_ability=True, match_item=True, speed_check=True) -> bool:
         ability_check = not match_ability or (
             self.ability == pkmn.ability or pkmn.ability is None
         )
@@ -135,7 +135,7 @@ class _TeamDatasets:
             PokemonMoveset(tuple(moves))
         )
 
-    def predict_set(self, pkmn: Pokemon, match_ability=True, match_item=True) -> Optional[PokemonSet]:
+    def predict_set(self, pkmn: 'Pokemon', match_ability=True, match_item=True) -> Optional[PokemonSet]:
         """
         Finds the most likely PokemonSet that this Pokemon can have from self.team_datasets
 

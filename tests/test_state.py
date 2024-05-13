@@ -1,9 +1,9 @@
 import unittest
 
-import constants
-from showdown.engine.objects import State
-from showdown.battle import Pokemon as StatePokemon
-from showdown.engine.objects import Pokemon
+import sim.constants as constants
+from sim.showdown.engine.objects import State
+from sim.showdown.battle import Pokemon as StatePokemon
+from sim.showdown.engine.objects import Pokemon
 
 
 class TestPokemonInit(unittest.TestCase):
