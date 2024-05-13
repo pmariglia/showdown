@@ -10,6 +10,7 @@ import sim.constants as constants
 import logging
 from sim.config import ShowdownConfig
 
+import sim.data as data
 from sim.data import all_move_json
 from sim.data import pokedex
 from sim.data.parse_smogon_stats import MOVES_STRING
@@ -449,7 +450,7 @@ class Battler:
 
 class Pokemon:
 
-    def __init__(self, name: str, level: int, nature="serious", evs=(85,) * 6):
+    def __init__(self, name: str, level: int, nature="serious", evs=(85,) * 6, ivs=(31,) * 6):
         self.name = normalize_name(name)
         self.nickname = None
         self.base_name = self.name
@@ -466,7 +467,7 @@ class Pokemon:
             logger.info("Using {} instead".format(self.name))
             self.base_stats = pokedex[self.name][constants.BASESTATS]
 
-        self.stats = calculate_stats(self.base_stats, self.level, nature=nature, evs=evs)
+        self.stats = calculate_stats(self.base_stats, self.level, nature=nature, evs=evs, ivs=ivs)
 
         self.max_hp = self.stats.pop(constants.HITPOINTS)
         self.hp = self.max_hp

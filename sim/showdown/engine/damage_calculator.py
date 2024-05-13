@@ -1,8 +1,23 @@
 from copy import copy, deepcopy
+from enum import Enum, auto
+import numpy as np
 
 import sim.constants as constants
 from sim.data import all_move_json
 from sim.data import pokedex
+
+
+rng = np.random.default_rng()
+
+
+class CalcType(Enum):
+    average = auto()
+    min = auto()
+    max = auto()
+    min_max = auto()
+    min_max_average = auto()
+    all = auto()
+    random = auto()
 
 
 pokemon_type_indicies = {
@@ -66,13 +81,12 @@ SPECIAL_LOGIC_MOVES = {
 TERRAIN_DAMAGE_BOOST = 1.3
 
 
-def _calculate_damage(attacker, defender, move, conditions=None, calc_type='average'):
+def _calculate_damage(attacker, defender, move, conditions=None, calc_type=CalcType.average):
     # This function assumes the `move` dictionary has already been updated to account for move/item/ability special-effects
     # You may want to use `calculate_damage`
 
-    acceptable_calc_types = ['average', 'min', 'max', 'min_max', 'min_max_average', 'all']
-    if calc_type not in acceptable_calc_types:
-        raise ValueError("{} is not one of {}".format(calc_type, acceptable_calc_types))
+    if not isinstance(calc_type, CalcType):
+        raise ValueError(f"{calc_type} is not of type CalcType")
 
     attacking_move = get_move(move)
     if attacking_move is None:
@@ -150,7 +164,7 @@ def _calculate_damage(attacker, defender, move, conditions=None, calc_type='aver
 
     damage_rolls = get_damage_rolls(damage, calc_type)
 
-    return list(set(damage_rolls))
+    return list(damage_rolls)
 
 
 def is_super_effective(move_type, defending_pokemon_types):
@@ -189,45 +203,28 @@ def get_move(move):
     else:
         return None
 
+full_rolls = np.linspace(0.85, 1, 16)
 
 def get_damage_rolls(damage, calc_type):
-    if calc_type == 'average':
-        damage *= 0.925
-        return [int(damage)]
-    elif calc_type == 'min':
-        return [int(damage * 0.85)]
-    elif calc_type == 'max':
-        return [int(damage)]
-    elif calc_type == 'min_max':
-        return [
-            int(damage * 0.85),
-            int(damage)
-        ]
-    elif calc_type == 'min_max_average':
-        return [
-            int(damage * 0.85),
-            int(damage * 0.925),
-            int(damage)
-        ]
-    elif calc_type == 'all':
-        return [
-            int(damage * 0.85),
-            int(damage * 0.86),
-            int(damage * 0.87),
-            int(damage * 0.88),
-            int(damage * 0.89),
-            int(damage * 0.90),
-            int(damage * 0.91),
-            int(damage * 0.92),
-            int(damage * 0.93),
-            int(damage * 0.94),
-            int(damage * 0.95),
-            int(damage * 0.96),
-            int(damage * 0.97),
-            int(damage * 0.98),
-            int(damage * 0.99),
-            int(damage)
-        ]
+    match calc_type:
+        case CalcType.average:
+            rolls = [0.925 * damage]
+        case CalcType.min:
+            rolls = [0.85 * damage]
+        case CalcType.max:
+            rolls = [damage]
+        case CalcType.min_max:
+            rolls = [0.85 * damage, damage]
+        case CalcType.min_max_average:
+            rolls = [0.85 * damage, 0.925 * damage, damage]
+
+        case CalcType.all:
+            rolls = full_rolls * damage
+        case CalcType.random:
+            rolls = [damage * rng.choice(full_rolls)]
+        case _:
+            return None
+    return (int(roll) for roll in rolls)
 
 
 def type_effectiveness_modifier(attacking_move_type, defending_types):
@@ -382,10 +379,10 @@ def volatile_status_modifier(attacking_move, attacker, defender):
     return modifier
 
 
-def calculate_damage(state, attacking_side_string, attacking_move, defending_move, calc_type='average'):
+def calculate_damage(state, attacking_side_string, attacking_move, defending_move, calc_type=CalcType.average):
     # a wrapper for `_calculate_damage` that takes into account move/item/ability special-effects
-    from showdown.engine.find_state_instructions import update_attacking_move
-    from showdown.engine.find_state_instructions import user_moves_first
+    from sim.showdown.engine.find_state_instructions import update_attacking_move
+    from sim.showdown.engine.find_state_instructions import user_moves_first
 
     attacking_move_dict = get_move(attacking_move)
     if defending_move.startswith(constants.SWITCH_STRING + " "):

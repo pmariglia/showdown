@@ -5,8 +5,8 @@ from dateutil import relativedelta
 
 import requests
 
-from showdown.engine.helpers import spreads_are_alike
-from showdown.engine.helpers import normalize_name
+from sim.helpers import spreads_are_alike
+from sim.helpers import normalize_name
 
 logger = logging.getLogger(__name__)
 

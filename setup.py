@@ -18,11 +18,11 @@ URL = "https://github.com/pmariglia/showdown"
 EMAIL = "test@example.com"
 AUTHOR = "pmariglia"
 REQUIRES_PYTHON = '>=3.9.0'
-VERSION = '0.0.2'
+VERSION = '0.0.4'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-    "numpy", "nashpy", "pandas", "python-dateutil"
+    "numpy", "nashpy", "pandas", "python-dateutil", "websockets", "environs"
 ]
 
 # What packages are optional?

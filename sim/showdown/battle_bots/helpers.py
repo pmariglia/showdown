@@ -2,9 +2,9 @@ import logging
 
 import sim.constants as constants
 
-from showdown.engine.objects import StateMutator
-from showdown.engine.select_best_move import pick_safest
-from showdown.engine.select_best_move import get_payoff_matrix
+from sim.showdown.engine.objects import StateMutator
+from sim.showdown.engine.select_best_move import pick_safest
+from sim.showdown.engine.select_best_move import get_payoff_matrix
 
 
 logger = logging.getLogger(__name__)

@@ -3,6 +3,9 @@ from copy import copy
 
 import sim.constants as constants
 from sim.data import all_move_json
+from sim.helpers import calculate_stats
+from sim import pokedex
+
 
 
 boost_multiplier_lookup = {
@@ -25,7 +28,7 @@ boost_multiplier_lookup = {
 class State(object):
     __slots__ = ('user', 'opponent', 'weather', 'field', 'trick_room')
 
-    def __init__(self, user, opponent, weather, field, trick_room):
+    def __init__(self, user, opponent, weather=None, field=None, trick_room=False):
         self.user = user
         self.opponent = opponent
         self.weather = weather
@@ -132,11 +135,11 @@ class State(object):
 class Side(object):
     __slots__ = ('active', 'reserve', 'wish', 'side_conditions', 'future_sight')
 
-    def __init__(self, active, reserve, wish, side_conditions, future_sight):
+    def __init__(self, active, reserve, wish=(0,0), side_conditions=None, future_sight=(0,0)):
         self.active = active
         self.reserve = reserve
         self.wish = wish
-        self.side_conditions = side_conditions
+        self.side_conditions = dict() if side_conditions is None else side_conditions
         self.future_sight = future_sight
 
     def get_switches(self):
@@ -186,21 +189,15 @@ class Pokemon(object):
         'level',
         'types',
         'hp',
-        'maxhp',
+        'max_hp',
+        'nature',
         'ability',
         'item',
-        'attack',
-        'defense',
-        'special_attack',
-        'special_defense',
-        'speed',
+        'stats',
         'nature',
         'evs',
-        'attack_boost',
-        'defense_boost',
-        'special_attack_boost',
-        'special_defense_boost',
-        'speed_boost',
+        'ivs',
+        'stat_boosts',
         'accuracy_boost',
         'evasion_boost',
         'status',
@@ -214,25 +211,12 @@ class Pokemon(object):
         self,
         identifier,
         level,
-        types,
-        hp,
-        maxhp,
         ability,
         item,
-        attack,
-        defense,
-        special_attack,
-        special_defense,
-        speed,
         nature="serious",
         evs=(85,) * 6,
-        attack_boost=0,
-        defense_boost=0,
-        special_attack_boost=0,
-        special_defense_boost=0,
-        speed_boost=0,
-        accuracy_boost=0,
-        evasion_boost=0,
+        ivs=(31,) * 6,
+        stat_boosts=None,
         status=None,
         terastallized=False,
         volatile_status=None,
@@ -240,25 +224,21 @@ class Pokemon(object):
     ):
         self.id = identifier
         self.level = level
-        self.types = types
-        self.hp = hp
-        self.maxhp = maxhp
+        self.types = pokedex[self.id][constants.TYPES]
         self.ability = ability
         self.item = item
-        self.attack = attack
-        self.defense = defense
-        self.special_attack = special_attack
-        self.special_defense = special_defense
-        self.speed = speed
+        base_stats = pokedex[self.id][constants.BASESTATS]
+        self.ivs = tuple(ivs.values()) if isinstance(ivs, dict) else ivs
+        self.evs = tuple(evs.values()) if isinstance(evs, dict) else evs
+        self.stats = calculate_stats(base_stats, self.level, nature=nature, evs=self.evs, ivs=self.ivs)
+
+        self.max_hp = self.stats.pop(constants.HITPOINTS)
+        self.hp = self.max_hp
+        if self.id == 'shedinja':
+            self.hp = 1
+            self.max_hp = 1
         self.nature = nature
-        self.evs = evs
-        self.attack_boost = attack_boost
-        self.defense_boost = defense_boost
-        self.special_attack_boost = special_attack_boost
-        self.special_defense_boost = special_defense_boost
-        self.speed_boost = speed_boost
-        self.accuracy_boost = accuracy_boost
-        self.evasion_boost = evasion_boost
+        self.stat_boosts = {stat: 0 for stat in constants.STAT_STRINGS_ALL}
         self.status = status
         self.terastallized = terastallized
         self.volatile_status = volatile_status or set()
@@ -268,13 +248,33 @@ class Pokemon(object):
         # it is calculated here to save time during evaluation
         self.burn_multiplier = self.calculate_burn_multiplier()
 
+    @property
+    def attack(self):
+        return self.stats[constants.ATTACK]
+
+    @property
+    def defense(self):
+        return self.stats[constants.DEFENSE]
+
+    @property
+    def special_attack(self):
+        return self.stats[constants.SPECIAL_ATTACK]
+
+    @property
+    def special_defense(self):
+        return self.stats[constants.SPECIAL_DEFENSE]
+
+    @property
+    def speed(self):
+        return self.stats[constants.SPEED]
+
     def calculate_burn_multiplier(self):
         # this will result in a positive evaluation for a burned pokemon
         if self.ability in ['guts', 'marvelscale', 'quickfeet']:
             return -2
 
         # +1 to the multiplier for each physical move
-        burn_multiplier = len([m for m in self.moves if all_move_json[m[constants.ID]][
+        burn_multiplier = len([m for m in self.moves if all_move_json[m][
             constants.CATEGORY] == constants.PHYSICAL])
 
         # evaluation could use more than 4 moves for opponent's pokemon - dont go over 4
@@ -287,30 +287,10 @@ class Pokemon(object):
         return burn_multiplier
 
     def get_highest_stat(self):
-        return max({
-           constants.ATTACK: self.attack,
-           constants.DEFENSE: self.defense,
-           constants.SPECIAL_ATTACK: self.special_attack,
-           constants.SPECIAL_DEFENSE: self.special_defense,
-           constants.SPEED: self.speed,
-       }.items(), key=lambda x: x[1])[0]
+        return max(self.stats, key=lambda x: x[1])[0]
 
     def get_boost_from_boost_string(self, boost_string):
-        if boost_string == constants.ATTACK:
-            return self.attack_boost
-        elif boost_string == constants.DEFENSE:
-            return self.defense_boost
-        elif boost_string == constants.SPECIAL_ATTACK:
-            return self.special_attack_boost
-        elif boost_string == constants.SPECIAL_DEFENSE:
-            return self.special_defense_boost
-        elif boost_string == constants.SPEED:
-            return self.speed_boost
-        elif boost_string == constants.ACCURACY:
-            return self.accuracy_boost
-        elif boost_string == constants.EVASION:
-            return self.evasion_boost
-        raise ValueError("{} is not a valid boost".format(boost_string))
+        return self.stat_boosts.get(boost_string, 0)
 
     def forced_move(self):
         if "phantomforce" in self.volatile_status:
@@ -329,7 +309,7 @@ class Pokemon(object):
             return None
 
     def item_can_be_removed(self):
-        if (
+        return not (
             self.item is None or
             self.ability == 'stickyhold' or
             'substitute' in self.volatile_status or
@@ -339,13 +319,10 @@ class Pokemon(object):
             self.id.startswith("arceus") and self.item.endswith("plate") or
             self.id.startswith("silvally") and self.item.endswith("memory") or
             # any(self.id.startswith(i) and self.id != i for i in constants.UNKOWN_POKEMON_FORMES) or
-            self.item.endswith('iumz')
-        ):
-            return False
+            self.item.endswith('iumz'))
 
-        return True
 
-    @classmethod
+    """@classmethod
     def from_state_pokemon_dict(cls, d):
         return Pokemon(
             d[constants.ID],
@@ -373,52 +350,34 @@ class Pokemon(object):
             d[constants.TERASTALLIZED],
             d[constants.VOLATILE_STATUS],
             d[constants.MOVES]
-        )
+        )"""
 
     @classmethod
     def from_dict(cls, d):
         return Pokemon(
-            d[constants.ID],
-            d[constants.LEVEL],
-            d[constants.TYPES],
-            d[constants.HITPOINTS],
-            d[constants.MAXHP],
-            d[constants.ABILITY],
-            d[constants.ITEM],
-            d[constants.ATTACK],
-            d[constants.DEFENSE],
-            d[constants.SPECIAL_ATTACK],
-            d[constants.SPECIAL_DEFENSE],
-            d[constants.SPEED],
-            d[constants.NATURE],
-            d[constants.EVS],
-            d[constants.ATTACK_BOOST],
-            d[constants.DEFENSE_BOOST],
-            d[constants.SPECIAL_ATTACK_BOOST],
-            d[constants.SPECIAL_DEFENSE_BOOST],
-            d[constants.SPEED_BOOST],
-            d.get(constants.ACCURACY_BOOST, 0),
-            d.get(constants.EVASION_BOOST, 0),
-            d[constants.STATUS],
-            d[constants.TERASTALLIZED],
-            set(d[constants.VOLATILE_STATUS]),
-            d[constants.MOVES]
+            identifier=d.get(constants.ID, False) or d[constants.NAME],
+            level=d[constants.LEVEL],
+            ability=d[constants.ABILITY],
+            nature=d[constants.NATURE],
+            evs=d[constants.EVS],
+            ivs=d.get(constants.IVS, (31,) * 6),
+            stat_boosts={stat: 0 for stat in constants.STAT_STRINGS_ALL},
+            status=d.get(constants.STATUS, 0) or None,
+            terastallized=d.get(constants.TERASTALLIZED, 0) or None,
+            volatile_status=set(d.get(constants.VOLATILE_STATUS, set())),
+            moves=d[constants.MOVES],
+            item=d[constants.ITEM]
         )
 
     def calculate_boosted_stats(self):
-        return {
-            constants.ATTACK: boost_multiplier_lookup[self.attack_boost] * self.attack,
-            constants.DEFENSE: boost_multiplier_lookup[self.defense_boost] * self.defense,
-            constants.SPECIAL_ATTACK: boost_multiplier_lookup[self.special_attack_boost] * self.special_attack,
-            constants.SPECIAL_DEFENSE: boost_multiplier_lookup[self.special_defense_boost] * self.special_defense,
-            constants.SPEED: boost_multiplier_lookup[self.speed_boost] * self.speed,
-        }
+        return {stat: boost_multiplier_lookup[stat] * self.stats[stat] for stat in constants.STAT_STRINGS}
 
     def is_grounded(self):
         if 'flying' in self.types or self.ability == 'levitate' or self.item == 'airballoon':
             return False
         return True
 
+    # TODO: make this not ugly cause goddamn
     def __repr__(self):
         return str(
             {
@@ -426,29 +385,18 @@ class Pokemon(object):
                 constants.LEVEL: self.level,
                 constants.TYPES: self.types,
                 constants.HITPOINTS: self.hp,
-                constants.MAXHP: self.maxhp,
+                constants.MAXHP: self.max_hp,
                 constants.ABILITY: self.ability,
                 constants.ITEM: self.item,
-                constants.ATTACK: self.attack,
-                constants.DEFENSE: self.defense,
-                constants.SPECIAL_ATTACK: self.special_attack,
-                constants.SPECIAL_DEFENSE: self.special_defense,
-                constants.SPEED: self.speed,
+                constants.STAT_STRINGS: self.stats,
                 constants.NATURE: self.nature,
                 constants.EVS: self.evs,
-                constants.ATTACK_BOOST: self.attack_boost,
-                constants.DEFENSE_BOOST: self.defense_boost,
-                constants.SPECIAL_ATTACK_BOOST: self.special_attack_boost,
-                constants.SPECIAL_DEFENSE_BOOST: self.special_defense_boost,
-                constants.SPEED_BOOST: self.speed_boost,
-                constants.ACCURACY_BOOST: self.accuracy_boost,
-                constants.EVASION_BOOST: self.evasion_boost,
+                constants.STAT_BOOST_STRINGS_ALL: self.stat_boosts,
                 constants.STATUS: self.status,
                 constants.TERASTALLIZED: self.terastallized,
                 constants.VOLATILE_STATUS: list(self.volatile_status),
                 constants.MOVES: self.moves
-            }
-        )
+            })
 
 
 class TransposeInstruction:

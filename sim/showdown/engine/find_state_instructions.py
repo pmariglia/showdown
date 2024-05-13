@@ -213,10 +213,18 @@ def update_attacking_move(attacking_side, attacking_pokemon, defending_pokemon, 
 
 
 def cannot_use_move(attacking_pokemon, attacking_move):
-    return constants.TAUNT in attacking_pokemon.volatile_status and attacking_move[constants.CATEGORY] not in constants.DAMAGING_CATEGORIES
+    return (constants.TAUNT in attacking_pokemon.volatile_status and
+            attacking_move[constants.CATEGORY] not in constants.DAMAGING_CATEGORIES)
 
 
-def get_state_instructions_from_move(mutator, attacking_move, defending_move, attacker, defender, first_move, instructions):
+def get_state_instructions_from_move(mutator,
+                                     attacking_move,
+                                     defending_move,
+                                     attacker,
+                                     defender,
+                                     first_move,
+                                     instructions,
+                                     calc_type):
     instructions.frozen = False
 
     if constants.SWITCH_STRING in attacking_move:
@@ -308,7 +316,7 @@ def get_state_instructions_from_move(mutator, attacking_move, defending_move, at
             defending_pokemon,
             attacking_move,
             conditions=conditions,
-            calc_type=ShowdownConfig.damage_calc_type
+            calc_type=calc_type
         )
 
         attacking_move_secondary = attacking_move[constants.SECONDARY]
@@ -477,7 +485,8 @@ def end_of_turn_triggered(user_move, opponent_move):
     return True
 
 
-def get_all_state_instructions(mutator, user_move_string, opponent_move_string):
+def get_all_state_instructions(mutator, user_move_string, opponent_move_string, calc_type=None):
+    calc_type = ShowdownConfig.damage_calc_type if calc_type is None else calc_type
     user_move = lookup_move(user_move_string)
     opponent_move = lookup_move(opponent_move_string)
 
@@ -486,19 +495,20 @@ def get_all_state_instructions(mutator, user_move_string, opponent_move_string):
     instructions = TransposeInstruction(1.0, [], False)
 
     all_instructions = []
-    if bot_moves_first:
-        instructions = get_state_instructions_from_move(mutator, user_move, opponent_move, constants.USER, constants.OPPONENT, True, instructions)
-        for instruction in instructions:
-            all_instructions += get_state_instructions_from_move(mutator, opponent_move, user_move, constants.OPPONENT, constants.USER, False, instruction)
-    else:
-        instructions = get_state_instructions_from_move(mutator, opponent_move, user_move, constants.OPPONENT, constants.USER, True, instructions)
-        for instruction in instructions:
-            all_instructions += get_state_instructions_from_move(mutator, user_move, opponent_move, constants.USER, constants.OPPONENT, False, instruction)
+    first_move, second_move = (user_move, opponent_move) if bot_moves_first else (opponent_move, user_move)
+    first_player, second_player = (constants.USER, constants.OPPONENT) if bot_moves_first else \
+        (constants.OPPONENT, constants.USER)
+    instructions = get_state_instructions_from_move(mutator, first_move, second_move, first_player,
+                                                    second_player, True, instructions, calc_type)
+    for instruction in instructions:
+        all_instructions += get_state_instructions_from_move(mutator, second_move, first_player, second_player,
+                                                             second_player, False, instruction, calc_type)
 
     if end_of_turn_triggered(user_move_string, opponent_move_string):
         temp_instructions = []
         for instruction_set in all_instructions:
-            temp_instructions += instruction_generator.get_end_of_turn_instructions(mutator, instruction_set, user_move, opponent_move, bot_moves_first)
+            temp_instructions += instruction_generator.get_end_of_turn_instructions(mutator, instruction_set, user_move,
+                                                                                    opponent_move, bot_moves_first)
         all_instructions = temp_instructions
 
     all_instructions = remove_duplicate_instructions(all_instructions)

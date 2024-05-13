@@ -1,5 +1,6 @@
 import math
 import sim.constants as constants
+import re
 
 from sim.data import all_move_json
 
@@ -103,19 +104,11 @@ def get_pokemon_info_from_condition(condition_string: str):
         return hp, maxhp, None
 
 
+regex = re.compile('[^a-z]')
+
+
 def normalize_name(name):
-    return name\
-        .replace(" ", "")\
-        .replace("-", "")\
-        .replace(".", "")\
-        .replace("\'", "")\
-        .replace("%", "")\
-        .replace("*", "")\
-        .replace(":", "")\
-        .strip()\
-        .lower()\
-        .encode('ascii', 'ignore')\
-        .decode('utf-8')
+    return regex.sub('', name.casefold())
 
 
 def set_makes_sense(nature, spread, item, ability, moves):
@@ -172,42 +165,13 @@ def calculate_stats(base_stats, level, ivs=(31,) * 6, evs=(85,) * 6, nature='ser
         evs[0],
         level
     ) + level + 10
-
-    new_stats[constants.ATTACK] = common_pkmn_stat_calc(
-        base_stats[constants.ATTACK],
-        ivs[1],
-        evs[1],
-        level
-    ) + 5
-
-    new_stats[constants.DEFENSE] = common_pkmn_stat_calc(
-        base_stats[constants.DEFENSE],
-        ivs[2],
-        evs[2],
-        level
-    ) + 5
-
-    new_stats[constants.SPECIAL_ATTACK] = common_pkmn_stat_calc(
-        base_stats[constants.SPECIAL_ATTACK],
-        ivs[3],
-        evs[3],
-        level
-    ) + 5
-
-    new_stats[constants.SPECIAL_DEFENSE] = common_pkmn_stat_calc(
-        base_stats[constants.SPECIAL_DEFENSE],
-        ivs[4],
-        evs[4],
-        level
-    ) + 5
-
-    new_stats[constants.SPEED] = common_pkmn_stat_calc(
-        base_stats[constants.SPEED],
-        ivs[5],
-        evs[5],
-        level
-    ) + 5
-
+    for i, stat in enumerate(constants.STAT_STRINGS):
+        new_stats[stat] = common_pkmn_stat_calc(
+            base_stats[stat],
+            ivs[i+1],
+            evs[i+1],
+            level
+        ) + 5
     new_stats = update_stats_from_nature(new_stats, nature)
     new_stats = {k: int(v) for k, v in new_stats.items()}
     return new_stats

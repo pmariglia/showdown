@@ -1,13 +1,13 @@
 import unittest
 from unittest import mock
 
-import constants
+import sim.constants as constants
 
-from showdown.battle import LastUsedMove
-from showdown.battle import Battle
-from showdown.battle import Battler
-from showdown.battle import Pokemon
-from showdown.battle import Move
+from sim.showdown.battle import LastUsedMove
+from sim.showdown.battle import Battle
+from sim.showdown.battle import Battler
+from sim.showdown.battle import Pokemon
+from sim.showdown.battle import Move
 
 
 # so we can instantiate a Battle object for testing
