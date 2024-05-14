@@ -4,6 +4,7 @@ from copy import deepcopy
 import logging
 
 import sim.constants as constants
+from sim.constants import CalcType
 from sim.data import all_move_json
 from sim.data import pokedex
 from sim.showdown.battle import Pokemon
@@ -369,10 +370,11 @@ def boost(battle, split_msg):
     else:
         pkmn = battle.user.active
 
-    stat = constants.STAT_ABBREVIATION_LOOKUPS[split_msg[3].strip()]
+    stat = constants.STAT_ABBRV_LOOKUP[split_msg[3].strip()]
     amount = int(split_msg[4].strip())
 
-    pkmn.boosts[stat] = min(pkmn.boosts[stat] + amount, constants.MAX_BOOSTS)
+    pkmn.boosts[stat] += amount
+    pkmn.boosts.clamp()
 
 
 def unboost(battle, split_msg):
@@ -859,9 +861,9 @@ def check_speed_ranges(battle, msg_lines):
     battle_copy.user.from_json(battle_copy.request_json)
 
     speed_threshold = int(
-        boost_multiplier_lookup[battle_copy.user.active.boosts[constants.SPEED]] *
-        battle_copy.user.active.stats[constants.SPEED] /
-        boost_multiplier_lookup[battle_copy.opponent.active.boosts[constants.SPEED]]
+        boost_multiplier_lookup[battle_copy.user.active.boosts[constants.StatEnum.SPEED]] *
+        battle_copy.user.active.stats[constants.StatEnum.SPEED] /
+        boost_multiplier_lookup[battle_copy.opponent.active.boosts[constants.StatEnum.SPEED]]
     )
 
     if battle.opponent.side_conditions[constants.TAILWIND]:
@@ -984,7 +986,7 @@ def check_choice_band_or_specs(battle, damage_dealt):
         battle.opponent.active.item != constants.UNKNOWN_ITEM or
         damage_dealt.crit or
         damage_dealt.move in constants.WEIGHT_BASED_MOVES or
-        damage_dealt.move in constants.SPEED_BASED_MOVES or
+        damage_dealt.move in constants.StatEnum.SPEED_BASED_MOVES or
         not battle.opponent.active.can_have_choice_item
     ):
         return
@@ -1023,7 +1025,8 @@ def check_choice_band_or_specs(battle, damage_dealt):
 
             state = b.create_state()
 
-            damage = calculate_damage(state, constants.OPPONENT, damage_dealt.move, battle.user.last_used_move.move, calc_type='max')[0]
+            damage = calculate_damage(state, constants.OPPONENT, damage_dealt.move,
+                                      battle.user.last_used_move.move, calc_type=CalcType.max)[0]
             max_damage_without_choice_item = max(max_damage_without_choice_item, damage)
 
         # also find the min damage roll possible for the choice-item
@@ -1033,7 +1036,8 @@ def check_choice_band_or_specs(battle, damage_dealt):
 
         state = b.create_state()
 
-        damage = calculate_damage(state, constants.OPPONENT, damage_dealt.move, battle.user.last_used_move.move, calc_type='min')[0]
+        damage = calculate_damage(state, constants.OPPONENT, damage_dealt.move,
+                                  battle.user.last_used_move.move, calc_type=CalcType.min)[0]
         min_damage_with_choice_item = min(min_damage_with_choice_item, damage)
 
     # dont infer if we did not find a damage amount

@@ -16,7 +16,7 @@ def speedboost(state, attacking_side, attacking_pokemon, defending_side, defendi
         return (
             constants.MUTATOR_BOOST,
             attacking_side,
-            constants.SPEED,
+            constants.StatEnum.SPEED,
             1
         )
 

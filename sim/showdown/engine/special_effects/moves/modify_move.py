@@ -56,8 +56,8 @@ def barbbarrage(attacking_side, attacking_move, defending_move, attacking_pokemo
 
 def foulplay(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
-    attacking_move[constants.BASE_POWER] *= defending_pokemon.calculate_boosted_stats()[constants.ATTACK] / \
-                                            attacking_pokemon.calculate_boosted_stats()[constants.ATTACK]
+    attacking_move[constants.BASE_POWER] *= defending_pokemon.calculate_boosted_stats()[constants.StatEnum.ATTACK] / \
+                                            attacking_pokemon.calculate_boosted_stats()[constants.StatEnum.ATTACK]
     return attacking_move
 
 
@@ -74,8 +74,8 @@ def storedpower(attacking_side, attacking_move, defending_move, attacking_pokemo
 def psyshock(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     defending_stats = defending_pokemon.calculate_boosted_stats()
     attacking_move = attacking_move.copy()
-    attacking_move[constants.BASE_POWER] *= (defending_stats[constants.SPECIAL_DEFENSE] / defending_stats[
-        constants.DEFENSE])
+    attacking_move[constants.BASE_POWER] *= (defending_stats[constants.StatEnum.SPECIAL_DEFENSE] / defending_stats[
+        constants.StatEnum.DEFENSE])
     return attacking_move
 
 
@@ -96,15 +96,15 @@ def avalanche(attacking_side, attacking_move, defending_move, attacking_pokemon,
 def gyroball(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     # power = (25 × TargetSpeed ÷ UserSpeed) + 1
     attacking_move = attacking_move.copy()
-    attacker_speed = attacking_pokemon.calculate_boosted_stats()[constants.SPEED]
-    defender_speed = defending_pokemon.calculate_boosted_stats()[constants.SPEED]
+    attacker_speed = attacking_pokemon.calculate_boosted_stats()[constants.StatEnum.SPEED]
+    defender_speed = defending_pokemon.calculate_boosted_stats()[constants.StatEnum.SPEED]
     attacking_move[constants.BASE_POWER] = min(150, (25 * defender_speed / attacker_speed) + 1)
     return attacking_move
 
 
 def electroball(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
-    speed_ratio = defending_pokemon.calculate_boosted_stats()[constants.SPEED] / attacking_pokemon.calculate_boosted_stats()[
-        constants.SPEED]
+    speed_ratio = defending_pokemon.calculate_boosted_stats()[constants.StatEnum.SPEED] / attacking_pokemon.calculate_boosted_stats()[
+        constants.StatEnum.SPEED]
 
     attacking_move = attacking_move.copy()
     if speed_ratio < 0.25:
@@ -235,10 +235,10 @@ def toxic(attacking_side, attacking_move, defending_move, attacking_pokemon, def
 def strengthsap(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     attacking_move[constants.BOOSTS] = {
-        constants.ATTACK: -1
+        constants.StatEnum.ATTACK: -1
     }
     attacking_move[constants.HEAL] = [
-        defending_pokemon.calculate_boosted_stats()[constants.ATTACK],
+        defending_pokemon.calculate_boosted_stats()[constants.StatEnum.ATTACK],
         attacking_pokemon.maxhp
     ]
     attacking_move[constants.HEAL_TARGET] = constants.SELF
@@ -341,11 +341,11 @@ def clangoroussoul(attacking_side, attacking_move, defending_move, attacking_pok
         attacking_move[constants.HEAL_TARGET] = constants.SELF
         attacking_move[constants.HEAL] = [-1, 3]
         attacking_move[constants.BOOSTS] = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 1,
-            constants.SPECIAL_ATTACK: 1,
-            constants.SPECIAL_DEFENSE: 1,
-            constants.SPEED: 1
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.DEFENSE: 1,
+            constants.StatEnum.SPECIAL_ATTACK: 1,
+            constants.StatEnum.SPECIAL_DEFENSE: 1,
+            constants.StatEnum.SPEED: 1
           }
     return attacking_move
 
@@ -356,9 +356,9 @@ def filletaway(attacking_side, attacking_move, defending_move, attacking_pokemon
         attacking_move[constants.HEAL_TARGET] = constants.SELF
         attacking_move[constants.HEAL] = [-1, 2]
         attacking_move[constants.BOOSTS] = {
-            constants.ATTACK: 2,
-            constants.SPECIAL_ATTACK: 2,
-            constants.SPEED: 2
+            constants.StatEnum.ATTACK: 2,
+            constants.StatEnum.SPECIAL_ATTACK: 2,
+            constants.StatEnum.SPEED: 2
           }
     return attacking_move
 
@@ -370,7 +370,7 @@ def terablast(attacking_side, attacking_move, defending_move, attacking_pokemon,
 
         boosted_stats = attacking_pokemon.calculate_boosted_stats()
 
-        if boosted_stats[constants.ATTACK] > boosted_stats[constants.SPECIAL_ATTACK]:
+        if boosted_stats[constants.StatEnum.ATTACK] > boosted_stats[constants.StatEnum.SPECIAL_ATTACK]:
             attacking_move[constants.CATEGORY] = constants.PHYSICAL
 
     return attacking_move
@@ -379,7 +379,7 @@ def terablast(attacking_side, attacking_move, defending_move, attacking_pokemon,
 def bodypress(attacking_side, attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather, terrain):
     attacking_move = attacking_move.copy()
     boosted_stats = attacking_pokemon.calculate_boosted_stats()
-    attacking_move[constants.BASE_POWER] *= (boosted_stats[constants.DEFENSE] / boosted_stats[constants.ATTACK])
+    attacking_move[constants.BASE_POWER] *= (boosted_stats[constants.StatEnum.DEFENSE] / boosted_stats[constants.StatEnum.ATTACK])
     return attacking_move
 
 
@@ -456,8 +456,8 @@ def growth(attacking_side, attacking_move, defending_move, attacking_pokemon, de
     if weather == constants.SUN:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BOOSTS] = {
-            constants.ATTACK: 2,
-            constants.SPECIAL_ATTACK: 2,
+            constants.StatEnum.ATTACK: 2,
+            constants.StatEnum.SPECIAL_ATTACK: 2,
         }
     return attacking_move
 

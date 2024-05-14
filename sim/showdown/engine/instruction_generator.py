@@ -1,8 +1,11 @@
 from copy import copy
 
+import numpy as np
+
 import sim.constants as constants
 import logging
 
+import sim.helpers
 from .damage_calculator import type_effectiveness_modifier
 from .special_effects.abilities.on_switch_in import ability_on_switch_in
 from .special_effects.items.on_switch_in import item_on_switch_in
@@ -190,7 +193,7 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
             sticky_web_instruction = (
                 constants.MUTATOR_UNBOOST,
                 attacker,
-                constants.SPEED,
+                constants.StatEnum.SPEED,
                 1
             )
             mutator.apply_one(sticky_web_instruction)
@@ -475,7 +478,7 @@ def get_instructions_from_damage(mutator, defender, damage, accuracy, attacking_
             blunder_policy_increase_speed_instruction = (
                 constants.MUTATOR_BOOST,
                 attacker,
-                constants.SPEED,
+                constants.StatEnum.SPEED,
                 2
             )
             move_missed_instruction.add_instruction(blunder_policy_increase_speed_instruction)
@@ -532,6 +535,16 @@ def get_instructions_from_defenders_ability_after_move(mutator, move, ability_na
             attacker_string,
             constants.BURN,
             30,
+            instruction
+        )
+    elif ability_name == "tanglinghair" and constants.CONTACT in move[constants.FLAGS]:
+        boost = sim.helpers.Boosts(None)
+        boost.stats[sim.constants.StatEnum.SPEED] = -1
+        return get_instructions_from_boosts(
+            mutator,
+            attacker_string,
+            boost,
+            100,
             instruction
         )
 
@@ -731,7 +744,7 @@ def get_instructions_from_status_effects(mutator, defender, status, accuracy, in
             blunder_policy_increase_speed_instruction = (
                 constants.MUTATOR_BOOST,
                 opposite_side[defender],
-                constants.SPEED,
+                constants.StatEnum.SPEED,
                 2
             )
             move_missed_instruction.add_instruction(blunder_policy_increase_speed_instruction)
@@ -766,34 +779,19 @@ def get_instructions_from_boosts(mutator, side_string, boosts, accuracy, instruc
     instruction_additions = []
     move_missed_instruction = copy(instruction)
     if percent_hit > 0:
-        for k, v in boosts.items():
-            pkmn_boost = side.active.get_boost_from_boost_string(k)
-            if v > 0:
-                new_boost = pkmn_boost + v
-                if new_boost > constants.MAX_BOOSTS:
-                    new_boost = constants.MAX_BOOSTS
-                boost_instruction = (
-                    constants.MUTATOR_BOOST,
-                    side_string,
-                    k,
-                    new_boost - pkmn_boost
-                )
-                instruction_additions.append(boost_instruction)
-            elif (
-                    side.active.ability not in constants.IMMUNE_TO_STAT_LOWERING_ABILITIES and
-                    side.active.item not in constants.IMMUNE_TO_STAT_LOWERING_ITEMS
-            ):
-                new_boost = pkmn_boost + v
-                if new_boost < -1 * constants.MAX_BOOSTS:
-                    new_boost = -1 * constants.MAX_BOOSTS
-                boost_instruction = (
-                    constants.MUTATOR_BOOST,
-                    side_string,
-                    k,
-                    new_boost - pkmn_boost
-                )
-                instruction_additions.append(boost_instruction)
-
+        # this is kinda sus but its mostly the same
+        # TODO: keep track of the boosts that are nonzero, pass those to instructions somehow, and only show those
+        pkmn_boosts = side.active.stat_boosts
+        non_zero_boosts = np.nonzero(boosts.stats)[0]
+        if not (side.active.ability not in constants.IMMUNE_TO_STAT_LOWERING_ABILITIES and
+                    side.active.item not in constants.IMMUNE_TO_STAT_LOWERING_ITEMS):
+            boosts.stats = np.fmax(0, boosts.stats)
+        new_boost = pkmn_boosts + boosts
+        for idx in non_zero_boosts:
+            boost_instruction = (
+                constants.MUTATOR_BOOST,
+                side_string, constants.StatEnum(idx), new_boost.stats[idx]-pkmn_boosts[idx])
+            instruction_additions.append(boost_instruction)
         instruction.update_percentage(percent_hit)
         instructions.append(instruction)
 
@@ -1246,7 +1244,7 @@ def remove_volatile_status_and_boosts_instructions(side, side_string):
             (
                 constants.MUTATOR_UNBOOST,
                 side_string,
-                constants.ATTACK,
+                constants.StatEnum.ATTACK,
                 side.active.attack_boost
             ))
     if side.active.defense_boost:
@@ -1254,7 +1252,7 @@ def remove_volatile_status_and_boosts_instructions(side, side_string):
             (
                 constants.MUTATOR_UNBOOST,
                 side_string,
-                constants.DEFENSE,
+                constants.StatEnum.DEFENSE,
                 side.active.defense_boost
             ))
     if side.active.special_attack_boost:
@@ -1262,7 +1260,7 @@ def remove_volatile_status_and_boosts_instructions(side, side_string):
             (
                 constants.MUTATOR_UNBOOST,
                 side_string,
-                constants.SPECIAL_ATTACK,
+                constants.StatEnum.SPECIAL_ATTACK,
                 side.active.special_attack_boost
             ))
     if side.active.special_defense_boost:
@@ -1270,7 +1268,7 @@ def remove_volatile_status_and_boosts_instructions(side, side_string):
             (
                 constants.MUTATOR_UNBOOST,
                 side_string,
-                constants.SPECIAL_DEFENSE,
+                constants.StatEnum.SPECIAL_DEFENSE,
                 side.active.special_defense_boost
             ))
     if side.active.speed_boost:
@@ -1278,7 +1276,7 @@ def remove_volatile_status_and_boosts_instructions(side, side_string):
             (
                 constants.MUTATOR_UNBOOST,
                 side_string,
-                constants.SPEED,
+                constants.StatEnum.SPEED,
                 side.active.speed_boost
             ))
 

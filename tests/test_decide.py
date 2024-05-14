@@ -58,7 +58,7 @@ class TestPickSafest(unittest.TestCase):
 
 class TestGetWeightedChoices(unittest.TestCase):
     def setUp(self):
-        self.find_nash_equilibrium_patch = mock.patch('showdown.battle_bots.nash_equilibrium.main.find_nash_equilibrium')
+        self.find_nash_equilibrium_patch = mock.patch('sim.showdown.battle_bots.nash_equilibrium.main.find_nash_equilibrium')
         self.addCleanup(self.find_nash_equilibrium_patch.stop)
         self.find_nash_mock = self.find_nash_equilibrium_patch.start()
 

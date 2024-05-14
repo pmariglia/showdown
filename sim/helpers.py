@@ -1,4 +1,8 @@
 import math
+from dataclasses import dataclass
+
+import numpy as np
+
 import sim.constants as constants
 import re
 
@@ -7,86 +11,239 @@ from sim.data import all_move_json
 
 natures = {
     'lonely': {
-        'plus': constants.ATTACK,
-        'minus': constants.DEFENSE
+        'plus': constants.StatEnum.ATTACK,
+        'minus': constants.StatEnum.DEFENSE
     },
     'adamant': {
-        'plus': constants.ATTACK,
-        'minus': constants.SPECIAL_ATTACK
+        'plus': constants.StatEnum.ATTACK,
+        'minus': constants.StatEnum.SPECIAL_ATTACK
     },
     'naughty': {
-        'plus': constants.ATTACK,
-        'minus': constants.SPECIAL_DEFENSE
+        'plus': constants.StatEnum.ATTACK,
+        'minus': constants.StatEnum.SPECIAL_DEFENSE
     },
     'brave': {
-        'plus': constants.ATTACK,
-        'minus': constants.SPEED
+        'plus': constants.StatEnum.ATTACK,
+        'minus': constants.StatEnum.SPEED
     },
     'bold': {
-        'plus': constants.DEFENSE,
-        'minus': constants.ATTACK
+        'plus': constants.StatEnum.DEFENSE,
+        'minus': constants.StatEnum.ATTACK
     },
     'impish': {
-        'plus': constants.DEFENSE,
-        'minus': constants.SPECIAL_ATTACK
+        'plus': constants.StatEnum.DEFENSE,
+        'minus': constants.StatEnum.SPECIAL_ATTACK
     },
     'lax': {
-        'plus': constants.DEFENSE,
-        'minus': constants.SPECIAL_DEFENSE
+        'plus': constants.StatEnum.DEFENSE,
+        'minus': constants.StatEnum.SPECIAL_DEFENSE
     },
     'relaxed': {
-        'plus': constants.DEFENSE,
-        'minus': constants.SPEED
+        'plus': constants.StatEnum.DEFENSE,
+        'minus': constants.StatEnum.SPEED
     },
     'modest': {
-        'plus': constants.SPECIAL_ATTACK,
-        'minus': constants.ATTACK
+        'plus': constants.StatEnum.SPECIAL_ATTACK,
+        'minus': constants.StatEnum.ATTACK
     },
     'mild': {
-        'plus': constants.SPECIAL_ATTACK,
-        'minus': constants.DEFENSE
+        'plus': constants.StatEnum.SPECIAL_ATTACK,
+        'minus': constants.StatEnum.DEFENSE
     },
     'rash': {
-        'plus': constants.SPECIAL_ATTACK,
-        'minus': constants.SPECIAL_DEFENSE
+        'plus': constants.StatEnum.SPECIAL_ATTACK,
+        'minus': constants.StatEnum.SPECIAL_DEFENSE
     },
     'quiet': {
-        'plus': constants.SPECIAL_ATTACK,
-        'minus': constants.SPEED
+        'plus': constants.StatEnum.SPECIAL_ATTACK,
+        'minus': constants.StatEnum.SPEED
     },
     'calm': {
-        'plus': constants.SPECIAL_DEFENSE,
-        'minus': constants.ATTACK
+        'plus': constants.StatEnum.SPECIAL_DEFENSE,
+        'minus': constants.StatEnum.ATTACK
     },
     'gentle': {
-        'plus': constants.SPECIAL_DEFENSE,
-        'minus': constants.DEFENSE
+        'plus': constants.StatEnum.SPECIAL_DEFENSE,
+        'minus': constants.StatEnum.DEFENSE
     },
     'careful': {
-        'plus': constants.SPECIAL_DEFENSE,
-        'minus': constants.SPECIAL_ATTACK
+        'plus': constants.StatEnum.SPECIAL_DEFENSE,
+        'minus': constants.StatEnum.SPECIAL_ATTACK
     },
     'sassy': {
-        'plus': constants.SPECIAL_DEFENSE,
-        'minus': constants.SPEED
+        'plus': constants.StatEnum.SPECIAL_DEFENSE,
+        'minus': constants.StatEnum.SPEED
     },
     'timid': {
-        'plus': constants.SPEED,
-        'minus': constants.ATTACK
+        'plus': constants.StatEnum.SPEED,
+        'minus': constants.StatEnum.ATTACK
     },
     'hasty': {
-        'plus': constants.SPEED,
-        'minus': constants.DEFENSE
+        'plus': constants.StatEnum.SPEED,
+        'minus': constants.StatEnum.DEFENSE
     },
     'jolly': {
-        'plus': constants.SPEED,
-        'minus': constants.SPECIAL_ATTACK
+        'plus': constants.StatEnum.SPEED,
+        'minus': constants.StatEnum.SPECIAL_ATTACK
     },
     'naive': {
-        'plus': constants.SPEED,
-        'minus': constants.SPECIAL_DEFENSE
+        'plus': constants.StatEnum.SPEED,
+        'minus': constants.StatEnum.SPECIAL_DEFENSE
     },
 }
+
+
+class StatTable:
+    __slots__ = ('stats', 'index')
+    lb = 0
+    ub = 8
+    dtype = float
+    min_value = 0
+    max_value = np.inf
+    default_val = None
+
+    def __init__(self, stats):
+        self.index = self.lb
+        if stats is None:
+            self.stats = np.zeros(8)
+            return
+        if isinstance(stats, StatTable):
+            self.stats = stats.stats
+        else:
+            self.stats = np.zeros(len(constants.StatEnum), dtype=self.dtype)
+            self.stats[self.lb:self.ub] = stats
+
+    def __getitem__(self, key: constants.StatEnum):
+        return self.stats[key]
+
+    def __setitem__(self, key: constants.StatEnum, value):
+        self.stats[key] = value
+
+    def __mul__(self, other):
+        if isinstance(other, StatTable):
+            temp = StatTable(self.stats * other.stats)
+            temp.clamp()
+            return temp
+
+    def __add__(self, other):
+        if isinstance(other, StatTable):
+            test = type(self)(None)
+            test.stats = self.stats + other.stats
+            test.clamp()
+            return test
+
+    def __neg__(self):
+        to_return = type(self)(None)
+        to_return.stats = -self.stats
+        return to_return
+
+    def __sub__(self, other):
+        if isinstance(other, StatTable):
+            return self + (-other)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index < self.ub:
+            return_pair = constants.StatEnum(self.index), self.stats[self.index]
+            self.index += 1
+            return return_pair
+        else:
+            self.index = self.lb
+            raise StopIteration
+
+    def clamp(self):
+        self.stats = np.fmax(self.min_value, np.fmin(self.stats, self.max_value))
+
+    def to_dict(self):
+        return {k: v for k,v in self if v != self.default_val}
+
+    def __eq__(self, other):
+        if isinstance(other, StatTable):
+            return (self.stats == other.stats).all()
+
+    @classmethod
+    def from_dict(cls, temp):
+        to_return = cls(None)
+        if temp is None:
+            return to_return
+        for k, v in temp.items():
+            if not isinstance(k, constants.StatEnum):
+                k = constants.STAT_LOOKUP[k]
+            to_return[k] = v
+        return to_return
+
+
+class EVS(StatTable):
+    lb = 0
+    ub = 6
+    dtype = int
+    max_value = 255
+    min_value = 0
+    default_val = 85
+
+    def __init__(self, stats=(85,) * 6):
+        super().__init__(stats)
+
+    def __add__(self, other):
+        to_return = super().__add__(other)
+        to_return.stats = np.fmax(self.min_value, np.fmin(to_return.stats, self.max_value))
+
+
+
+class IVS(StatTable):
+    ub = 6
+    lb = 0
+    dtype = int
+    max_value = 31
+    min_value = 0
+    default_val = 31
+
+    def __init__(self, stats=(31,) * 6):
+        super().__init__(stats)
+
+
+class BaseStats(StatTable):
+    ub = 6
+    lb = 0
+    default_val = 100
+    dtype = int
+
+    def __init__(self, stats=(100,) * 6):
+        super().__init__(stats)
+
+
+class Boosts(StatTable):
+    ub = 8
+    lb = 1
+    dtype = int
+    max_value = 6
+    min_value = -6
+    default_val = 0
+
+    def __init__(self, stats=(0,)*7):
+        super().__init__(stats)
+
+    def clear(self):
+        self.stats = np.zeros(8)
+
+
+class Stats(StatTable):
+    ub = 6
+    lb = 0
+
+    def __init__(self, base_stats, evs, ivs, nature, level):
+        super().__init__(None)
+        self.stats = calculate_stats(base_stats, level, ivs, evs, nature)
+
+
+@dataclass
+class Move:
+    id: str
+    current_pp: int
+    max_pp: int
+    disabled: bool
 
 
 def get_pokemon_info_from_condition(condition_string: str):
@@ -104,7 +261,7 @@ def get_pokemon_info_from_condition(condition_string: str):
         return hp, maxhp, None
 
 
-regex = re.compile('[^a-z]')
+regex = re.compile('[^a-z?]')
 
 
 def normalize_name(name):
@@ -141,7 +298,7 @@ def remove_duplicate_spreads(list_of_spreads):
     return new_spreads
 
 
-def update_stats_from_nature(stats, nature):
+def update_stats_from_nature(stats: constants.StatEnum, nature):
     new_stats = stats.copy()
     try:
         new_stats[natures[nature]['plus']] *= 1.1
@@ -156,22 +313,13 @@ def common_pkmn_stat_calc(stat: int, iv: int, ev: int, level: int):
     return math.floor(((2 * stat + iv + math.floor(ev / 4)) * level) / 100)
 
 
-def calculate_stats(base_stats, level, ivs=(31,) * 6, evs=(85,) * 6, nature='serious'):
-    new_stats = dict()
+def common_pkmn_stat_calc_np(stat, iv, ev, level):
+    return np.floor(((2 * stat.stats + iv.stats + np.floor(ev.stats / 4)) * level) / 100)
 
-    new_stats[constants.HITPOINTS] = common_pkmn_stat_calc(
-        base_stats[constants.HITPOINTS],
-        ivs[0],
-        evs[0],
-        level
-    ) + level + 10
-    for i, stat in enumerate(constants.STAT_STRINGS):
-        new_stats[stat] = common_pkmn_stat_calc(
-            base_stats[stat],
-            ivs[i+1],
-            evs[i+1],
-            level
-        ) + 5
+
+def calculate_stats(base_stats, level, ivs, evs, nature='serious'):
+    new_stats = common_pkmn_stat_calc_np(base_stats, ivs, evs, level)
+    new_stats[0] += level + 10
+    new_stats[1:6] += 5
     new_stats = update_stats_from_nature(new_stats, nature)
-    new_stats = {k: int(v) for k, v in new_stats.items()}
     return new_stats

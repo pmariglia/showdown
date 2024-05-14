@@ -1,6 +1,7 @@
 from copy import copy
 
 import sim.constants as constants
+import sim.helpers
 from sim.config import ShowdownConfig
 from sim.data import all_move_json
 
@@ -29,7 +30,7 @@ def lookup_move(move_name):
 
 
 def get_effective_speed(state, side):
-    boosted_speed = side.active.calculate_boosted_stats()[constants.SPEED]
+    boosted_speed = side.active.calculate_boosted_stats()[constants.StatEnum.SPEED]
 
     if state.weather == constants.SUN and side.active.ability == 'chlorophyll':
         boosted_speed *= 2
@@ -202,7 +203,7 @@ def update_attacking_move(attacking_side, attacking_pokemon, defending_pokemon, 
             constants.FLAGS]:
             attacking_move[constants.ACCURACY] = True
             attacking_move[constants.CATEGORY] = constants.STATUS
-            attacking_move[constants.BOOSTS] = {constants.SPEED: -1}
+            attacking_move[constants.BOOSTS] = {constants.StatEnum.SPEED: -1}
             attacking_move[constants.TARGET] = constants.SELF
             if constants.CRASH in attacking_move:
                 attacking_move[constants.HEAL_TARGET] = constants.SELF
@@ -335,12 +336,14 @@ def get_state_instructions_from_move(mutator,
             elif attacking_move_secondary.get(constants.SELF) is not None:
                 if constants.BOOSTS in attacking_move_secondary[constants.SELF]:
                     boosts = attacking_move_secondary[constants.SELF][constants.BOOSTS]
+                    boosts = sim.helpers.Boosts.from_dict(boosts)
                     boosts_target = attacker
                     boosts_chance = attacking_move_secondary[constants.CHANCE]
 
             # boosts from secondary, but to the defender (crunch)
             elif attacking_move_secondary and attacking_move_secondary.get(constants.BOOSTS) is not None:
                 boosts = attacking_move_secondary[constants.BOOSTS]
+                boosts = sim.helpers.Boosts.from_dict(boosts)
                 boosts_target = defender
                 boosts_chance = attacking_move_secondary[constants.CHANCE]
 
@@ -348,12 +351,14 @@ def get_state_instructions_from_move(mutator,
         elif attacking_move_self:
             if constants.BOOSTS in attacking_move_self:
                 boosts = attacking_move_self[constants.BOOSTS]
+                boosts = sim.helpers.Boosts.from_dict(boosts)
                 boosts_target = attacker
                 boosts_chance = 100
 
         # guaranteed boosts from a damaging move (none in the moves JSON but items/abilities can cause this)
         elif constants.BOOSTS in attacking_move:
             boosts = attacking_move[constants.BOOSTS]
+            boosts = sim.helpers.Boosts.from_dict(boosts)
             boosts_target = attacker if attacking_move[constants.TARGET] in constants.MOVE_TARGET_SELF else defender
             boosts_chance = 100
 
@@ -365,9 +370,9 @@ def get_state_instructions_from_move(mutator,
         # boosts from moves that only boost (dragon dance)
         if attacking_move.get(constants.BOOSTS) is not None:
             boosts = attacking_move[constants.BOOSTS]
+            boosts = sim.helpers.Boosts.from_dict(boosts)
             boosts_target = attacker if attacking_move[constants.TARGET] in constants.MOVE_TARGET_SELF else defender
             boosts_chance = attacking_move[constants.ACCURACY]
-
     mutator.reverse(instructions.instructions)
 
     all_instructions = instruction_generator.get_instructions_from_statuses_that_freeze_the_state(mutator, attacker, defender, attacking_move, defending_move, instructions)
@@ -486,8 +491,7 @@ def end_of_turn_triggered(user_move, opponent_move):
 
 
 def get_all_state_instructions(mutator, user_move_string, opponent_move_string, calc_type=None):
-    #calc_type = ShowdownConfig.damage_calc_type if calc_type is None else calc_type
-    calc_type = CalcType.average
+    calc_type = ShowdownConfig.damage_calc_type if calc_type is None else calc_type
     user_move = lookup_move(user_move_string)
     opponent_move = lookup_move(opponent_move_string)
 
@@ -515,3 +519,17 @@ def get_all_state_instructions(mutator, user_move_string, opponent_move_string, 
     all_instructions = remove_duplicate_instructions(all_instructions)
 
     return all_instructions
+
+
+def compare_boosts(b1, b2):
+    return b1[1] == b2[1] and b1[2] == b2[2]
+
+
+"""def aggregate_boosts(instruction_list):
+    for instruction in instruction_list:
+        size = len(instruction_list)
+        boosts = sim.helpers.Boosts()
+        for i in range(size):
+            if instruction[i][0] == "boost":
+                boosts[instruction[i][2]]"""
+

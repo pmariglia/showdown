@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-import sim.constants
+import sim.constants as constants
 from sim.showdown.engine.special_effects.items.modify_attack_being_used import item_modify_attack_being_used
 from sim.showdown.engine.special_effects.items.modify_attack_against import item_modify_attack_against
 

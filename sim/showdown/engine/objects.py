@@ -1,7 +1,10 @@
 from collections import defaultdict
 from copy import copy
+import numpy as np
 
 import sim.constants as constants
+import sim.helpers
+from sim.helpers import Stats, Boosts, EVS, IVS
 from sim.data import all_move_json
 from sim.helpers import calculate_stats
 from sim import pokedex
@@ -23,7 +26,7 @@ boost_multiplier_lookup = {
     5: 7/2,
     6: 8/2
 }
-
+boost_multiplier_np = np.array([2/8,2/7,2/6,2/5,2/4,2/3/2,2/2,3/2,4/2,5/2,6/2,7/2,8/2])
 
 class State:
     __slots__ = ('user', 'opponent', 'weather', 'field', 'trick_room')
@@ -194,6 +197,10 @@ class Side:
             constants.FUTURE_SIGHT: self.future_sight
         })
 
+def move_helper_hack(move):
+    if isinstance(move, str):
+        return {'id': move, 'disabled': False, 'current_pp': int(1.6 * all_move_json[move]['pp'])}
+    return move
 
 class Pokemon:
     __slots__ = (
@@ -218,45 +225,41 @@ class Pokemon:
     )
 
     def __init__(
-        self,
-        identifier,
-        level,
-        ability,
-        item,
-        nature="serious",
-        evs=(85,) * 6,
-        ivs=(31,) * 6,
-        stat_boosts=None,
-        status=None,
-        terastallized=False,
-        volatile_status=None,
-        moves=None
+            self,
+            identifier,
+            level,
+            ability,
+            item,
+            evs,
+            ivs,
+            nature="serious",
+            stat_boosts=(0,) * 7,
+            status=None,
+            terastallized=False,
+            volatile_status=None,
+            moves=None
     ):
         self.id = identifier
         self.level = level
         self.types = pokedex[self.id][constants.TYPES]
         self.ability = ability
         self.item = item
-        base_stats = pokedex[self.id][constants.BASESTATS]
-        self.ivs = tuple(ivs.values()) if isinstance(ivs, dict) else ivs
-        self.evs = tuple(evs.values()) if isinstance(evs, dict) else evs
-        self.stats = calculate_stats(base_stats, self.level, nature=nature, evs=self.evs, ivs=self.ivs)
-
-        self.max_hp = self.stats.pop(constants.HITPOINTS)
+        base_stats = sim.helpers.BaseStats.from_dict(pokedex[self.id][constants.BASESTATS])
+        self.ivs = ivs
+        self.evs = evs
+        self.stats = Stats(base_stats, evs, ivs, nature, level)
+        self.max_hp = self.stats[constants.StatEnum.HITPOINTS]
         self.hp = self.max_hp
         if self.id == 'shedinja':
-            self.hp = 1
+            self.stats[constants.StatEnum.HITPOINTS] = 1
             self.max_hp = 1
         self.nature = nature
-        if stat_boosts is None:
-            self.stat_boosts = {stat: 0 for stat in constants.STAT_STRINGS_ALL}
-        else:
-            self.stat_boosts = {stat: stat_boosts.get(stat, 0) for stat in constants.STAT_STRINGS_ALL}
+        self.stat_boosts = Boosts(stat_boosts)
         self.status = status
         self.terastallized = terastallized
         self.volatile_status = volatile_status or set()
         #assert 4 >= len(moves) > 0
-        self.moves = [{'id': move, 'disabled': False, 'current_pp': int(1.6 * all_move_json[move]['pp'])} for move in moves]
+        self.moves = moves
 
         # evaluation relies on a multiplier for the burn status
         # it is calculated here to save time during evaluation
@@ -273,99 +276,99 @@ class Pokemon:
 
     @property
     def attack(self):
-        return self.stats[constants.ATTACK]
+        return self.stats[constants.StatEnum.ATTACK]
 
     @attack.setter
     def attack(self, value):
-        self.stats[constants.ATTACK] = value
+        self.stats[constants.StatEnum.ATTACK] = value
 
     @property
     def defense(self):
-        return self.stats[constants.DEFENSE]
+        return self.stats[constants.StatEnum.DEFENSE]
 
     @defense.setter
     def defense(self, value):
-        self.stats[constants.DEFENSE] = value
+        self.stats[constants.StatEnum.DEFENSE] = value
 
     @property
     def special_attack(self):
-        return self.stats[constants.SPECIAL_ATTACK]
+        return self.stats[constants.StatEnum.SPECIAL_ATTACK]
 
     @special_attack.setter
     def special_attack(self, value):
-        self.stats[constants.SPECIAL_ATTACK] = value
+        self.stats[constants.StatEnum.SPECIAL_ATTACK] = value
 
     @property
     def special_defense(self):
-        return self.stats[constants.SPECIAL_DEFENSE]
+        return self.stats[constants.StatEnum.SPECIAL_DEFENSE]
 
     @special_defense.setter
     def special_defense(self, value):
-        self.stats[constants.SPECIAL_DEFENSE] = value
+        self.stats[constants.StatEnum.SPECIAL_DEFENSE] = value
 
     @property
     def speed(self):
-        return self.stats[constants.SPEED]
+        return self.stats[constants.StatEnum.SPEED]
 
     @speed.setter
     def speed(self, value):
-        self.stats[constants.SPEED] = value
+        self.stats[constants.StatEnum.SPEED] = value
 
     @property
     def attack_boost(self):
-        return self.stat_boosts[constants.ATTACK]
+        return self.stat_boosts[constants.StatEnum.ATTACK]
 
     @attack_boost.setter
     def attack_boost(self, value):
-        self.stat_boosts[constants.ATTACK] = value
+        self.stat_boosts[constants.StatEnum.ATTACK] = value
 
     @property
     def defense_boost(self):
-        return self.stat_boosts[constants.DEFENSE]
+        return self.stat_boosts[constants.StatEnum.DEFENSE]
 
     @defense_boost.setter
     def defense_boost(self, value):
-        self.stat_boosts[constants.DEFENSE] = value
+        self.stat_boosts[constants.StatEnum.DEFENSE] = value
 
     @property
     def special_attack_boost(self):
-        return self.stat_boosts[constants.SPECIAL_ATTACK]
+        return self.stat_boosts[constants.StatEnum.SPECIAL_ATTACK]
 
     @special_attack_boost.setter
     def special_attack_boost(self, value):
-        self.stat_boosts[constants.SPECIAL_ATTACK] = value
+        self.stat_boosts[constants.StatEnum.SPECIAL_ATTACK] = value
 
     @property
     def special_defense_boost(self):
-        return self.stat_boosts[constants.SPECIAL_DEFENSE]
+        return self.stat_boosts[constants.StatEnum.SPECIAL_DEFENSE]
 
     @special_defense_boost.setter
     def special_defense_boost(self, value):
-        self.stat_boosts[constants.SPECIAL_DEFENSE] = value
+        self.stat_boosts[constants.StatEnum.SPECIAL_DEFENSE] = value
 
     @property
     def speed_boost(self):
-        return self.stat_boosts[constants.SPEED]
+        return self.stat_boosts[constants.StatEnum.SPEED]
 
     @speed_boost.setter
     def speed_boost(self, value):
-        self.stat_boosts[constants.SPEED] = value
+        self.stat_boosts[constants.StatEnum.SPEED] = value
 
     @property
     def accuracy_boost(self):
-        return self.stat_boosts[constants.ACCURACY]
+        return self.stat_boosts[constants.StatEnum.ACCURACY]
 
     @accuracy_boost.setter
     def accuracy_boost(self, value):
-        self.stat_boosts[constants.ACCURACY] = value
+        self.stat_boosts[constants.StatEnum.ACCURACY] = value
 
     @property
     def evasion_boost(self):
-        return self.stat_boosts[constants.EVASION]
+        return self.stat_boosts[constants.StatEnum.EVASION]
 
     @evasion_boost.setter
     def evasion_boost(self, value):
-        self.stat_boosts[constants.EVASION] = value
+        self.stat_boosts[constants.StatEnum.EVASION] = value
 
     def calculate_burn_multiplier(self):
         # this will result in a positive evaluation for a burned pokemon
@@ -386,10 +389,10 @@ class Pokemon:
         return burn_multiplier
 
     def get_highest_stat(self):
-        return max(self.stats, key=lambda x: x[1])
+        return constants.StatEnum(np.argmax(self.stats.stats))
 
     def get_boost_from_boost_string(self, boost_string):
-        return self.stat_boosts.get(boost_string, 0)
+        return self.stat_boosts[boost_string]
 
     def forced_move(self):
         if "phantomforce" in self.volatile_status:
@@ -420,7 +423,6 @@ class Pokemon:
             # any(self.id.startswith(i) and self.id != i for i in constants.UNKOWN_POKEMON_FORMES) or
             self.item.endswith('iumz'))
 
-
     @classmethod
     def from_state_pokemon_dict(cls, d):
         return Pokemon(
@@ -430,7 +432,7 @@ class Pokemon:
             item=d[constants.ITEM],
             nature=d[constants.NATURE],
             evs=d[constants.EVS],
-            ivs=d.get(constants.IVS, (31,)*6),
+            ivs=d[constants.IVS],
             stat_boosts=d[constants.BOOSTS],
             status=d[constants.STATUS],
             terastallized=d[constants.TERASTALLIZED],
@@ -440,23 +442,33 @@ class Pokemon:
 
     @classmethod
     def from_dict(cls, d):
+        evs = sim.helpers.EVS(d.get(constants.EVS, (85,) * 6))
+        ivs = sim.helpers.IVS(d.get(constants.EVS, (31,) * 6))
+        boosts = sim.helpers.Boosts()
+        moves = []
+        for move in d[constants.MOVES]:
+            if isinstance(move, str):
+                pp = int(all_move_json[move]['max_pp'] * 1.6)
+                moves.append(sim.helpers.Move(move, pp, pp, False))
+            else:
+                moves.append(move)
         return Pokemon(
             identifier=d.get(constants.ID, False) or d[constants.NAME],
             level=d[constants.LEVEL],
             ability=d[constants.ABILITY],
             nature=d[constants.NATURE],
-            evs=d[constants.EVS],
-            ivs=d.get(constants.IVS, (31,) * 6),
-            stat_boosts={stat: 0 for stat in constants.STAT_STRINGS_ALL},
+            evs=evs,
+            ivs=ivs,
+            stat_boosts=boosts,
             status=d.get(constants.STATUS, 0) or None,
             terastallized=d.get(constants.TERASTALLIZED, 0) or None,
             volatile_status=set(d.get(constants.VOLATILE_STATUS, set())),
-            moves=d[constants.MOVES],
+            moves=moves,
             item=d[constants.ITEM]
         )
 
     def calculate_boosted_stats(self):
-        return {stat: boost_multiplier_lookup[self.stat_boosts[stat]] * self.stats[stat] for stat in constants.STAT_STRINGS}
+        return boost_multiplier_np[self.stat_boosts.stats+6] * self.stats.stats
 
     def is_grounded(self):
         if 'flying' in self.types or self.ability == 'levitate' or self.item == 'airballoon':
@@ -525,7 +537,9 @@ class StateMutator:
             constants.MUTATOR_DAMAGE: self.damage,
             constants.MUTATOR_HEAL: self.heal,
             constants.MUTATOR_BOOST: self.boost,
+            constants.MUTATOR_BOOST_MULTIPLE: self.boosts_multiple,
             constants.MUTATOR_UNBOOST: self.unboost,
+            constants.MUTATOR_UNBOOST_MULTIPLE: self.boosts_multiple,
             constants.MUTATOR_APPLY_STATUS: self.apply_status,
             constants.MUTATOR_REMOVE_STATUS: self.remove_status,
             constants.MUTATOR_SIDE_START: self.side_start,
@@ -551,7 +565,9 @@ class StateMutator:
             constants.MUTATOR_DAMAGE: self.heal,
             constants.MUTATOR_HEAL: self.damage,
             constants.MUTATOR_BOOST: self.unboost,
+            constants.MUTATOR_BOOST_MULTIPLE: self.unboosts_multiple,
             constants.MUTATOR_UNBOOST: self.boost,
+            constants.MUTATOR_UNBOOST_MULTIPLE: self.boosts_multiple,
             constants.MUTATOR_APPLY_STATUS: self.remove_status,
             constants.MUTATOR_REMOVE_STATUS: self.apply_status,
             constants.MUTATOR_SIDE_START: self.reverse_side_start,
@@ -635,11 +651,21 @@ class StateMutator:
 
     def boost(self, side, stat, amount):
         side = self.get_side(side)
-        side.active.stat_boosts[stat] += amount
+        side.active.stat_boosts[stat] += int(amount)
         side.active.stat_boosts[stat] = max(-6, min(side.active.stat_boosts[stat], 6))
+
+    def boosts_multiple(self, side, boosts, non_zero_idxs):
+        for idx in non_zero_idxs:
+            v = boosts[idx]
+            self.boost(side, idx, v)
 
     def unboost(self, side, stat, amount):
         self.boost(side, stat, -1*amount)
+
+    def unboosts_multiple(self, side, boosts, non_zero_idxs):
+        for idx in non_zero_idxs:
+            v = boosts[idx]
+            self.unboost(side, idx, v)
 
     def apply_status(self, side, status):
         side = self.get_side(side)
@@ -753,9 +779,9 @@ class StateMutator:
         # is must be here for reversing purposes
         side = self.get_side(side)
         side.active.max_hp = new_stats[0]
-        side.active.stats = new_stats[1:]
+        side.active.stats = new_stats
     def reverse_change_stats(self, side, _, old_stats):
         # the second parameter are the new stats
         side = self.get_side(side)
         side.active.maxhp = old_stats[0]
-        side.active.stats = old_stats[1:]
+        side.active.stats = old_stats

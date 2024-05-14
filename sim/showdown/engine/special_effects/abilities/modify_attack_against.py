@@ -19,7 +19,7 @@ def lightningrod(attacking_move, attacking_pokemon, defending_pokemon):
         attacking_move[constants.TARGET] = constants.NORMAL
         attacking_move[constants.CATEGORY] = constants.STATUS
         attacking_move[constants.BOOSTS] = {
-            constants.SPECIAL_ATTACK: 1
+            constants.StatEnum.SPECIAL_ATTACK: 1
         }
     return attacking_move
 
@@ -32,7 +32,7 @@ def stormdrain(attacking_move, attacking_pokemon, defending_pokemon):
         attacking_move[constants.TARGET] = constants.NORMAL
         attacking_move[constants.CATEGORY] = constants.STATUS
         attacking_move[constants.BOOSTS] = {
-            constants.SPECIAL_ATTACK: 1
+            constants.StatEnum.SPECIAL_ATTACK: 1
         }
     return attacking_move
 
@@ -91,7 +91,7 @@ def thermalexchange(attacking_move, attacking_pokemon, defending_pokemon):
         attacking_move = attacking_move.copy()
         attacking_move[constants.SECONDARY] = {
             constants.CHANCE: 100,
-            constants.BOOSTS: {constants.ATTACK: 1}
+            constants.BOOSTS: {constants.StatEnum.ATTACK: 1}
         }
     return attacking_move
 
@@ -104,7 +104,7 @@ def motordrive(attacking_move, attacking_pokemon, defending_pokemon):
         attacking_move[constants.TARGET] = constants.NORMAL
         attacking_move[constants.CATEGORY] = constants.STATUS
         attacking_move[constants.BOOSTS] = {
-            constants.SPEED: 1
+            constants.StatEnum.SPEED: 1
         }
     return attacking_move
 
@@ -118,7 +118,7 @@ def sapsipper(attacking_move, attacking_pokemon, defending_pokemon):
         attacking_move[constants.TARGET] = constants.NORMAL
         attacking_move[constants.CATEGORY] = constants.STATUS
         attacking_move[constants.BOOSTS] = {
-            constants.ATTACK: 1
+            constants.StatEnum.ATTACK: 1
         }
     return attacking_move
 
@@ -184,7 +184,7 @@ def wellbakedbody(attacking_move, attacking_pokemon, defending_pokemon):
         attacking_move[constants.STATUS] = None
         attacking_move[constants.SECONDARY] = None
         attacking_move[constants.CATEGORY] = constants.STATUS
-        attacking_move[constants.BOOSTS] = {constants.DEFENSE: 2}
+        attacking_move[constants.BOOSTS] = {constants.StatEnum.DEFENSE: 2}
     return attacking_move
 
 
@@ -211,10 +211,10 @@ def windrider(attacking_move, attacking_pokemon, defending_pokemon):
         else:
             attacking_move[constants.BOOSTS] = dict()
 
-        if constants.ATTACK in attacking_move[constants.BOOSTS]:
-            attacking_move[constants.BOOSTS][constants.ATTACK] += 1
+        if constants.StatEnum.ATTACK in attacking_move[constants.BOOSTS]:
+            attacking_move[constants.BOOSTS][constants.StatEnum.ATTACK] += 1
         else:
-            attacking_move[constants.BOOSTS][constants.ATTACK] = 1
+            attacking_move[constants.BOOSTS][constants.StatEnum.ATTACK] = 1
 
     return attacking_move
 
@@ -270,7 +270,7 @@ def wonderguard(attacking_move, attacking_pokemon, defending_pokemon):
 def stamina(attacking_move, attacking_pokemon, defending_pokemon):
     if attacking_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
         attacking_move = attacking_move.copy()
-        attacking_move[constants.BOOSTS] = {constants.DEFENSE: 1}
+        attacking_move[constants.BOOSTS] = {constants.StatEnum.DEFENSE: 1}
 
     return attacking_move
 
@@ -304,10 +304,10 @@ def tanglinghair(attacking_move, attacking_pokemon, defending_pokemon):
         else:
             attacking_move[constants.SELF][constants.BOOSTS] = dict()
 
-        if constants.SPEED in attacking_move[constants.SELF][constants.BOOSTS]:
-            attacking_move[constants.SELF][constants.BOOSTS][constants.SPEED] -= 1
+        if constants.StatEnum.SPEED in attacking_move[constants.SELF][constants.BOOSTS]:
+            attacking_move[constants.SELF][constants.BOOSTS][constants.StatEnum.SPEED] -= 1
         else:
-            attacking_move[constants.SELF][constants.BOOSTS][constants.SPEED] = -1
+            attacking_move[constants.SELF][constants.BOOSTS][constants.StatEnum.SPEED] = -1
 
     return attacking_move
 
@@ -324,10 +324,10 @@ def cottondown(attacking_move, attacking_pokemon, defending_pokemon):
     else:
         attacking_move[constants.SELF][constants.BOOSTS] = dict()
 
-    if constants.SPEED in attacking_move[constants.SELF][constants.BOOSTS]:
-        attacking_move[constants.SELF][constants.BOOSTS][constants.SPEED] -= 1
+    if constants.StatEnum.SPEED in attacking_move[constants.SELF][constants.BOOSTS]:
+        attacking_move[constants.SELF][constants.BOOSTS][constants.StatEnum.SPEED] -= 1
     else:
-        attacking_move[constants.SELF][constants.BOOSTS][constants.SPEED] = -1
+        attacking_move[constants.SELF][constants.BOOSTS][constants.StatEnum.SPEED] = -1
 
     return attacking_move
 
@@ -344,7 +344,7 @@ def justified(attacking_move, attacking_pokemon, defending_pokemon):
     if attacking_move[constants.TYPE] == 'dark' and attacking_move[constants.CATEGORY] in constants.DAMAGING_CATEGORIES:
         attacking_move = attacking_move.copy()
         attacking_move[constants.BOOSTS] = {  # damaging moves dont have boosts so dont bother copying
-            constants.ATTACK: 1
+            constants.StatEnum.ATTACK: 1
         }
 
     return attacking_move
@@ -365,10 +365,10 @@ def competitive(attacking_move, attacking_pokemon, defending_pokemon):
             attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
             for boost in attacking_move[constants.BOOSTS].copy():
                 if attacking_move[constants.BOOSTS][boost] < 0:
-                    if constants.SPECIAL_ATTACK not in attacking_move[constants.BOOSTS]:
-                        attacking_move[constants.BOOSTS][constants.SPECIAL_ATTACK] = 2
+                    if constants.StatEnum.SPECIAL_ATTACK not in attacking_move[constants.BOOSTS]:
+                        attacking_move[constants.BOOSTS][constants.StatEnum.SPECIAL_ATTACK] = 2
                     else:
-                        attacking_move[constants.BOOSTS][constants.SPECIAL_ATTACK] += 2
+                        attacking_move[constants.BOOSTS][constants.StatEnum.SPECIAL_ATTACK] += 2
 
         elif attacking_move[constants.SECONDARY] and constants.BOOSTS in attacking_move[constants.SECONDARY]:
             attacking_move[constants.SECONDARY] = attacking_move[constants.SECONDARY].copy()
@@ -376,10 +376,10 @@ def competitive(attacking_move, attacking_pokemon, defending_pokemon):
                 constants.BOOSTS].copy()
             for boost in attacking_move[constants.SECONDARY][constants.BOOSTS].copy():
                 if attacking_move[constants.SECONDARY][constants.BOOSTS][boost] < 0:
-                    if constants.SPECIAL_ATTACK not in attacking_move[constants.SECONDARY][constants.BOOSTS]:
-                        attacking_move[constants.SECONDARY][constants.BOOSTS][constants.SPECIAL_ATTACK] = 2
+                    if constants.StatEnum.SPECIAL_ATTACK not in attacking_move[constants.SECONDARY][constants.BOOSTS]:
+                        attacking_move[constants.SECONDARY][constants.BOOSTS][constants.StatEnum.SPECIAL_ATTACK] = 2
                     else:
-                        attacking_move[constants.SECONDARY][constants.BOOSTS][constants.SPECIAL_ATTACK] += 2
+                        attacking_move[constants.SECONDARY][constants.BOOSTS][constants.StatEnum.SPECIAL_ATTACK] += 2
 
     return attacking_move
 
@@ -391,10 +391,10 @@ def defiant(attacking_move, attacking_pokemon, defending_pokemon):
             attacking_move[constants.BOOSTS] = attacking_move[constants.BOOSTS].copy()
             for boost in attacking_move[constants.BOOSTS].copy():
                 if attacking_move[constants.BOOSTS][boost] < 0:
-                    if constants.ATTACK not in attacking_move[constants.BOOSTS]:
-                        attacking_move[constants.BOOSTS][constants.ATTACK] = 2
+                    if constants.StatEnum.ATTACK not in attacking_move[constants.BOOSTS]:
+                        attacking_move[constants.BOOSTS][constants.StatEnum.ATTACK] = 2
                     else:
-                        attacking_move[constants.BOOSTS][constants.ATTACK] += 2
+                        attacking_move[constants.BOOSTS][constants.StatEnum.ATTACK] += 2
 
         elif attacking_move[constants.SECONDARY] and constants.BOOSTS in attacking_move[constants.SECONDARY]:
             attacking_move[constants.SECONDARY] = attacking_move[constants.SECONDARY].copy()
@@ -402,10 +402,10 @@ def defiant(attacking_move, attacking_pokemon, defending_pokemon):
                 constants.BOOSTS].copy()
             for boost in attacking_move[constants.SECONDARY][constants.BOOSTS].copy():
                 if attacking_move[constants.SECONDARY][constants.BOOSTS][boost] < 0:
-                    if constants.ATTACK not in attacking_move[constants.SECONDARY][constants.BOOSTS]:
-                        attacking_move[constants.SECONDARY][constants.BOOSTS][constants.ATTACK] = 2
+                    if constants.StatEnum.ATTACK not in attacking_move[constants.SECONDARY][constants.BOOSTS]:
+                        attacking_move[constants.SECONDARY][constants.BOOSTS][constants.StatEnum.ATTACK] = 2
                     else:
-                        attacking_move[constants.SECONDARY][constants.BOOSTS][constants.ATTACK] += 2
+                        attacking_move[constants.SECONDARY][constants.BOOSTS][constants.StatEnum.ATTACK] += 2
     return attacking_move
 
 
@@ -417,15 +417,15 @@ def weakarmor(attacking_move, attacking_pokemon, defending_pokemon):
         else:
             attacking_move[constants.BOOSTS] = dict()
 
-        if constants.DEFENSE in attacking_move[constants.BOOSTS]:
-            attacking_move[constants.BOOSTS][constants.DEFENSE] -= 1
+        if constants.StatEnum.DEFENSE in attacking_move[constants.BOOSTS]:
+            attacking_move[constants.BOOSTS][constants.StatEnum.DEFENSE] -= 1
         else:
-            attacking_move[constants.BOOSTS][constants.DEFENSE] = -1
+            attacking_move[constants.BOOSTS][constants.StatEnum.DEFENSE] = -1
 
-        if constants.SPEED in attacking_move[constants.BOOSTS]:
-            attacking_move[constants.BOOSTS][constants.SPEED] += 2
+        if constants.StatEnum.SPEED in attacking_move[constants.BOOSTS]:
+            attacking_move[constants.BOOSTS][constants.StatEnum.SPEED] += 2
         else:
-            attacking_move[constants.BOOSTS][constants.SPEED] = 2
+            attacking_move[constants.BOOSTS][constants.StatEnum.SPEED] = 2
 
     return attacking_move
 
@@ -499,10 +499,10 @@ def steamengine(attacking_move, attacking_pokemon, defending_pokemon):
         else:
             attacking_move[constants.BOOSTS] = dict()
 
-        if constants.SPEED in attacking_move[constants.BOOSTS]:
-            attacking_move[constants.BOOSTS][constants.SPEED] += 6
+        if constants.StatEnum.SPEED in attacking_move[constants.BOOSTS]:
+            attacking_move[constants.BOOSTS][constants.StatEnum.SPEED] += 6
         else:
-            attacking_move[constants.BOOSTS][constants.SPEED] = 6
+            attacking_move[constants.BOOSTS][constants.StatEnum.SPEED] = 6
 
     return attacking_move
 

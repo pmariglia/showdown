@@ -1,4 +1,4 @@
-from enum import Enum, auto
+from enum import Enum, auto, IntEnum
 
 
 class CalcType(Enum):
@@ -59,7 +59,9 @@ MUTATOR_REMOVE_VOLATILE_STATUS = "remove_volatile_status"
 MUTATOR_DAMAGE = "damage"
 MUTATOR_HEAL = "heal"
 MUTATOR_BOOST = "boost"
+MUTATOR_BOOST_MULTIPLE ="boosts"
 MUTATOR_UNBOOST = "unboost"
+MUTATOR_UNBOOST_MULTIPLE = "unboosts"
 MUTATOR_APPLY_STATUS = "apply_status"
 MUTATOR_REMOVE_STATUS = "remove_status"
 MUTATOR_SIDE_START = "side_start"
@@ -168,6 +170,20 @@ MAXHP = "maxhp"
 BOOSTS = "boosts"
 TARGET = "target"
 
+
+class StatEnum(IntEnum):
+    HITPOINTS = 0
+    ATTACK = 1
+    DEFENSE = 2
+    SPECIAL_ATTACK = 3
+    SPECIAL_DEFENSE = 4
+    SPEED = 5
+    ACCURACY = 6
+    EVASION = 7
+
+
+
+# TODO: these are deprecated
 HITPOINTS = "hp"
 ATTACK = "attack"
 DEFENSE = "defense"
@@ -176,6 +192,28 @@ SPECIAL_DEFENSE = "special-defense"
 SPEED = "speed"
 ACCURACY = "accuracy"
 EVASION = "evasion"
+
+STAT_LOOKUP = STAT_ABBREVIATION_REVERSE_LOOKUPS = {
+    HITPOINTS: StatEnum.HITPOINTS,
+    ATTACK: StatEnum.ATTACK,
+    DEFENSE: StatEnum.DEFENSE,
+    SPECIAL_ATTACK: StatEnum.SPECIAL_ATTACK,
+    SPECIAL_DEFENSE: StatEnum.SPECIAL_DEFENSE,
+    SPEED: StatEnum.SPEED,
+    ACCURACY: StatEnum.ACCURACY,
+    EVASION: StatEnum.EVASION
+}
+
+STAT_ABBRV_LOOKUP = {
+    'hp': StatEnum.HITPOINTS,
+    'atk': StatEnum.ATTACK,
+    'def': StatEnum.DEFENSE,
+    'spa': StatEnum.SPECIAL_ATTACK,
+    'spd': StatEnum.SPECIAL_DEFENSE,
+    'spe': StatEnum.SPEED,
+    'accuracy': StatEnum.ACCURACY,
+    'evasion': StatEnum.EVASION
+}
 
 ATTACK_BOOST = "attack_boost"
 DEFENSE_BOOST = "defense_boost"
@@ -200,15 +238,6 @@ STAT_ABBREVIATION_LOOKUPS = {
     "evasion": EVASION
 }
 
-STAT_ABBREVIATION_REVERSE_LOOKUPS = {
-    ATTACK: "atk",
-    DEFENSE: "def",
-    SPECIAL_ATTACK: "spa",
-    SPECIAL_DEFENSE: "spd",
-    SPEED: "spe",
-    ACCURACY: "accuracy",
-    EVASION: "evasion"
-}
 
 STAT_STRINGS = (ATTACK, DEFENSE, SPECIAL_ATTACK, SPECIAL_DEFENSE, SPEED)
 STAT_STRINGS_ALL = (ATTACK, DEFENSE, SPECIAL_ATTACK, SPECIAL_DEFENSE, SPEED, EVASION, ACCURACY)
@@ -299,7 +328,8 @@ BOOST_RESET_MOVES = {
 
 ABILITY_AFTER_MOVE = {
     "static",
-    "flamebody"
+    "flamebody",
+    "tanglinghair"
 }
 
 WEIGHT_BASED_MOVES = {

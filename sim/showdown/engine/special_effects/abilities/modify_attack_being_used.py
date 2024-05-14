@@ -388,7 +388,7 @@ def dragonsmaw(attacking_move, defending_move, attacking_pokemon, defending_poke
 def windrider(attacking_move, defending_move, attacking_pokemon, defending_pokemon, first_move, weather):
     if attacking_move[constants.ID] == 'tailwind':
         attacking_move = attacking_move.copy()
-        attacking_move[constants.BOOSTS] = {constants.ATTACK: 1}
+        attacking_move[constants.BOOSTS] = {constants.StatEnum.ATTACK: 1}
     return attacking_move
 
 

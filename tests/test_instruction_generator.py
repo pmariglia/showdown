@@ -1,5 +1,6 @@
 import unittest
 import sim.constants as constants
+import sim.helpers
 from sim.showdown.engine import instruction_generator
 from sim.showdown.battle import Pokemon as StatePokemon
 from sim.showdown.engine.objects import StateMutator
@@ -1075,6 +1076,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
 
     def test_no_boosts_results_in_one_unchanged_state(self):
         boosts = {}
+        boosts = sim.helpers.Boosts.from_dict(boosts)
         accuracy = True
         side = constants.USER
 
@@ -1090,8 +1092,9 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
     def test_boosts_cannot_exceed_max_boosts(self):
         self.state.user.active.attack_boost = 6
         boosts = {
-            constants.ATTACK: 1
+            constants.StatEnum.ATTACK: 1
         }
+        boosts = sim.helpers.Boosts.from_dict(boosts)
         accuracy = True
         side = constants.USER
 
@@ -1101,7 +1104,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         boost_instruction = (
             constants.MUTATOR_BOOST,
             side,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             0
         )
 
@@ -1114,8 +1117,9 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
     def test_boosts_cannot_go_below_min_boosts(self):
         self.state.user.active.attack_boost = -1 * constants.MAX_BOOSTS
         boosts = {
-            constants.ATTACK: -1
+            constants.StatEnum.ATTACK: -1
         }
+        boosts = sim.helpers.Boosts.from_dict(boosts)
         accuracy = True
         side = constants.USER
 
@@ -1125,7 +1129,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         boost_instruction = (
             constants.MUTATOR_BOOST,
             side,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             0
         )
 
@@ -1140,14 +1144,15 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         self.previous_instruction = TransposeInstruction(
             1,
             [
-                (constants.MUTATOR_UNBOOST, constants.USER, constants.ATTACK, 5)
+                (constants.MUTATOR_UNBOOST, constants.USER, constants.StatEnum.ATTACK, 5)
             ],
             False
         )
 
         boosts = {
-            constants.ATTACK: -2
+            constants.StatEnum.ATTACK: -2
         }
+        boosts = sim.helpers.Boosts.from_dict(boosts)
         accuracy = True
         side = constants.USER
 
@@ -1157,7 +1162,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         boost_instruction = (
             constants.MUTATOR_BOOST,
             side,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             -1
         )
 
@@ -1180,14 +1185,15 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         self.previous_instruction = TransposeInstruction(
             1,
             [
-                (constants.MUTATOR_UNBOOST, constants.USER, constants.ATTACK, 5)
+                (constants.MUTATOR_UNBOOST, constants.USER, constants.StatEnum.ATTACK, 5)
             ],
             False
         )
 
         boosts = {
-            constants.ATTACK: -2
+            constants.StatEnum.ATTACK: -2
         }
+        boosts = sim.helpers.Boosts.from_dict(boosts)
         accuracy = 60
         side = constants.USER
 
@@ -1197,7 +1203,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         boost_instruction = (
             constants.MUTATOR_BOOST,
             side,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             -1
         )
 
@@ -1225,8 +1231,9 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
 
     def test_guaranteed_atk_boost_returns_one_state(self):
         boosts = {
-            constants.ATTACK: 1
+            constants.StatEnum.ATTACK: 1
         }
+        boosts = sim.helpers.Boosts.from_dict(boosts)
         accuracy = True
         side = constants.USER
 
@@ -1236,7 +1243,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         boost_instruction = (
             constants.MUTATOR_BOOST,
             side,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             1
         )
 
@@ -1248,8 +1255,9 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
 
     def test_50_percent_boost_returns_two_states(self):
         boosts = {
-            constants.ATTACK: 1
+            constants.StatEnum.ATTACK: 1
         }
+        boosts = sim.helpers.Boosts.from_dict(boosts)
         accuracy = 50
         side = constants.USER
 
@@ -1259,7 +1267,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         boost_instruction = (
             constants.MUTATOR_BOOST,
             side,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             1
         )
 
@@ -1273,8 +1281,9 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
     def test_guaranteed_atk_boost_returns_one_state_when_attack_boost_already_existed(self):
         self.state.user.active.attack_boost = 1
         boosts = {
-            constants.ATTACK: 1
+            constants.StatEnum.ATTACK: 1
         }
+        boosts = sim.helpers.Boosts.from_dict(boosts)
         accuracy = True
         side = constants.USER
 
@@ -1284,7 +1293,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         boost_instruction = (
             constants.MUTATOR_BOOST,
             side,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             1
         )
 
@@ -1296,8 +1305,9 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
 
     def test_pre_existing_boost_does_not_affect_new_boost(self):
         boosts = {
-            constants.ATTACK: 1
+            constants.StatEnum.ATTACK: 1
         }
+        boosts = sim.helpers.Boosts.from_dict(boosts)
         accuracy = True
         side = constants.USER
 
@@ -1308,7 +1318,7 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         boost_instruction = (
             constants.MUTATOR_BOOST,
             side,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             1
         )
 
@@ -1320,9 +1330,10 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
 
     def test_multiple_new_boosts_with_multiple_pre_existing_boosts(self):
         boosts = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 1
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.DEFENSE: 1
         }
+        boosts = sim.helpers.Boosts.from_dict(boosts)
         accuracy = True
         side = constants.USER
 
@@ -1334,13 +1345,13 @@ class TestGetInstructionsFromBoosts(unittest.TestCase):
         attack_boost_instruction = (
             constants.MUTATOR_BOOST,
             side,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             1
         )
         defense_boost_instruction = (
             constants.MUTATOR_BOOST,
             side,
-            constants.DEFENSE,
+            constants.StatEnum.DEFENSE,
             1
         )
 
@@ -1595,7 +1606,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
                 (
                     constants.MUTATOR_BOOST,
                     attacker,
-                    constants.DEFENSE,
+                    constants.StatEnum.DEFENSE,
                     1
                 ),
                 (
@@ -1658,7 +1669,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
                 (
                     constants.MUTATOR_BOOST,
                     attacker,
-                    constants.SPECIAL_DEFENSE,
+                    constants.StatEnum.SPECIAL_DEFENSE,
                     1
                 ),
                 (
@@ -1688,13 +1699,13 @@ class TestGetStateFromSwitch(unittest.TestCase):
                 (
                     constants.MUTATOR_UNBOOST,
                     attacker,
-                    constants.ATTACK,
+                    constants.StatEnum.ATTACK,
                     3
                 ),
                 (
                     constants.MUTATOR_UNBOOST,
                     attacker,
-                    constants.DEFENSE,
+                    constants.StatEnum.DEFENSE,
                     2
                 ),
                 (
@@ -1935,7 +1946,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
                 (
                     constants.MUTATOR_UNBOOST,
                     attacker,
-                    constants.SPEED,
+                    constants.StatEnum.SPEED,
                     1
                 ),
             ],
@@ -2299,7 +2310,7 @@ class TestGetStateFromSwitch(unittest.TestCase):
                 (
                     constants.MUTATOR_UNBOOST,
                     constants.OPPONENT,
-                    constants.ATTACK,
+                    constants.StatEnum.ATTACK,
                     1
                 ),
             ],

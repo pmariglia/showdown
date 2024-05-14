@@ -84,11 +84,11 @@ def _calculate_damage(attacker, defender, move, conditions=None, calc_type=CalcT
 
     attacking_type = attacking_move.get(constants.CATEGORY)
     if attacking_type == constants.PHYSICAL:
-        attack = constants.ATTACK
-        defense = constants.DEFENSE
+        attack = constants.StatEnum.ATTACK
+        defense = constants.StatEnum.DEFENSE
     elif attacking_type == constants.SPECIAL:
-        attack = constants.SPECIAL_ATTACK
-        defense = constants.SPECIAL_DEFENSE
+        attack = constants.StatEnum.SPECIAL_ATTACK
+        defense = constants.StatEnum.SPECIAL_DEFENSE
     else:
         return None
 
@@ -107,14 +107,14 @@ def _calculate_damage(attacker, defender, move, conditions=None, calc_type=CalcT
     defending_stats = defender.calculate_boosted_stats()
 
     if attacker.ability == 'unaware':
-        if defense == constants.DEFENSE:
+        if defense == constants.StatEnum.SPECIAL_DEFENSE:
             defending_stats[defense] = defender.defense
-        elif defense == constants.SPECIAL_DEFENSE:
+        elif defense == constants.StatEnum.SPECIAL_DEFENSE:
             defending_stats[defense] = defender.special_defense
     if defender.ability == 'unaware':
-        if attack == constants.ATTACK:
+        if attack == constants.StatEnum.ATTACK:
             attacking_stats[attack] = attacker.attack
-        elif defense == constants.SPECIAL_ATTACK:
+        elif defense == constants.StatEnum.SPECIAL_ATTACK:
             attacking_stats[attack] = attacker.special_attack
 
     defending_types = defender.types
@@ -132,20 +132,20 @@ def _calculate_damage(attacker, defender, move, conditions=None, calc_type=CalcT
     # ice types get 1.5x DEF in snow
     try:
         if conditions[constants.WEATHER] == constants.SAND and 'rock' in defender.types:
-            defending_stats[constants.SPECIAL_DEFENSE] = int(defending_stats[constants.SPECIAL_DEFENSE] * 1.5)
+            defending_stats[constants.StatEnum.SPECIAL_DEFENSE] = int(defending_stats[constants.StatEnum.SPECIAL_DEFENSE] * 1.5)
         elif conditions[constants.WEATHER] == constants.SNOW and 'ice' in defender.types:
-            defending_stats[constants.DEFENSE] = int(defending_stats[constants.DEFENSE] * 1.5)
+            defending_stats[constants.StatEnum.SPECIAL_DEFENSE] = int(defending_stats[constants.StatEnum.SPECIAL_DEFENSE] * 1.5)
     except KeyError:
         pass
 
     if defender.ability == "tabletsofruin":
-        attacking_stats[constants.ATTACK] *= 0.75
+        attacking_stats[constants.StatEnum.ATTACK] *= 0.75
     elif defender.ability == "vesselofruin":
-        attacking_stats[constants.SPECIAL_ATTACK] *= 0.75
+        attacking_stats[constants.StatEnum.SPECIAL_ATTACK] *= 0.75
     if attacker.ability == "swordofruin":
-        defending_stats[constants.DEFENSE] *= 0.75
+        defending_stats[constants.StatEnum.SPECIAL_DEFENSE] *= 0.75
     elif attacker.ability == "beadsofruin":
-        defending_stats[constants.SPECIAL_DEFENSE] *= 0.75
+        defending_stats[constants.StatEnum.SPECIAL_DEFENSE] *= 0.75
 
     damage = int(int((2 * attacker.level) / 5) + 2) * attacking_move[constants.BASE_POWER]
     damage = int(damage * attacking_stats[attack] / defending_stats[defense])

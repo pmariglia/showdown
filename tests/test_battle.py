@@ -615,9 +615,9 @@ class TestConvertToMega(unittest.TestCase):
         self.get_mega_name_mock.return_value = 'venusaurmega'
 
         pkmn = Pokemon('venusaur', 100)
-        pkmn.boosts[constants.ATTACK] = 1
+        pkmn.boosts[constants.StatEnum.ATTACK] = 1
         pkmn.try_convert_to_mega()
-        self.assertEqual(1, pkmn.boosts[constants.ATTACK])
+        self.assertEqual(1, pkmn.boosts[constants.StatEnum.ATTACK])
 
     def test_preserves_previous_moves(self):
         self.get_mega_name_mock.return_value = 'venusaurmega'

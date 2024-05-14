@@ -7,7 +7,7 @@ from sim.data.parse_smogon_stats import get_smogon_stats_file_name
 
 class TestGetSmogonStatsFileName(unittest.TestCase):
     def setUp(self):
-        self.datetime_patch = mock.patch('data.parse_smogon_stats.datetime')
+        self.datetime_patch = mock.patch('sim.data.parse_smogon_stats.datetime')
         self.addCleanup(self.datetime_patch.stop)
         self.datetime_mock = self.datetime_patch.start()
 

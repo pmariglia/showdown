@@ -2,6 +2,7 @@ import unittest
 from collections import defaultdict
 
 import sim.constants as constants
+from sim.constants import CalcType
 from sim.showdown.engine.damage_calculator import _calculate_damage
 from sim.showdown.engine.damage_calculator import calculate_damage
 from sim.showdown.engine.objects import State
@@ -19,38 +20,38 @@ class TestCalculateDamageAmount(unittest.TestCase):
     def test_fire_blast_from_charizard_to_venusaur_without_modifiers(self):
         move = 'fireblast'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type=CalcType.max)
         self.assertEqual([300], dmg)
 
     def test_flashfire_increases_fire_move_damage(self):
         move = 'fireblast'
         self.charizard.volatile_status.add('flashfire')
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type=CalcType.max)
         self.assertEqual([450], dmg)
 
     def test_stab_without_weakness_calculates_properly(self):
         move = 'sludgebomb'
 
-        dmg = _calculate_damage(self.venusaur, self.charizard, move, calc_type='max')
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, calc_type=CalcType.max)
         self.assertEqual([130], dmg)
 
     def test_4x_weakness_calculates_properly(self):
         move = 'rockslide'
 
-        dmg = _calculate_damage(self.venusaur, self.charizard, move, calc_type='max')
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, calc_type=CalcType.max)
         self.assertEqual([268], dmg)
 
     def test_4x_resistance_calculates_properly(self):
         move = 'gigadrain'
 
-        dmg = _calculate_damage(self.venusaur, self.charizard, move, calc_type='max')
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, calc_type=CalcType.max)
         self.assertEqual([27], dmg)
 
     def test_immunity_calculates_properly(self):
         move = 'earthquake'
 
-        dmg = _calculate_damage(self.venusaur, self.charizard, move, calc_type='max')
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, calc_type=CalcType.max)
         self.assertEqual([0], dmg)
 
     def test_burn_modifier_properly_halves_physical_damage(self):
@@ -58,7 +59,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         self.venusaur.status = constants.BURN
 
-        dmg = _calculate_damage(self.venusaur, self.charizard, move, calc_type='max')
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, calc_type=CalcType.max)
         self.assertEqual([134], dmg)
 
     def test_burn_does_not_modify_special_move(self):
@@ -66,7 +67,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         self.venusaur.status  = constants.BURN
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type=CalcType.max)
         self.assertEqual([300], dmg)
 
     def test_sun_stab_and_2x_weakness(self):
@@ -77,7 +78,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'fireblast'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type=CalcType.max)
         self.assertEqual([450], dmg)
 
     def test_sun_weakens_water_moves(self):
@@ -88,7 +89,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'surf'
 
-        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type=CalcType.max)
         self.assertEqual([87], dmg)
 
     def test_sand_increases_rock_spdef(self):
@@ -101,7 +102,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'fireblast'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type=CalcType.max)
         self.assertEqual([51], dmg)
 
     def test_sand_does_not_double_ground_spdef(self):
@@ -114,7 +115,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'fireblast'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type=CalcType.max)
         self.assertEqual([75], dmg)
 
     def test_electric_terrain_increases_electric_damage_for_grounded_pokemon(self):
@@ -126,7 +127,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'thunderbolt'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type=CalcType.max)
 
         # normally this is 41
         self.assertEqual([53], dmg)
@@ -140,7 +141,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'psychic'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type=CalcType.max)
 
         # normally this is 164
         self.assertEqual([213], dmg)
@@ -154,7 +155,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'psychic'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type=CalcType.max)
 
         self.assertEqual([164], dmg)
 
@@ -167,7 +168,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'gigadrain'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type=CalcType.max)
 
         # normally this is 17
         self.assertEqual([22], dmg)
@@ -181,7 +182,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'outrage'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type=CalcType.max)
 
         # normally this is 103
         self.assertEqual([51], dmg)
@@ -195,7 +196,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'machpunch'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type=CalcType.max)
 
         self.assertEqual([0], dmg)
 
@@ -206,7 +207,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'machpunch'
 
-        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type=CalcType.max)
 
         self.assertNotEqual([0], dmg)
 
@@ -218,7 +219,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'surf'
 
-        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type=CalcType.max)
         self.assertEqual([261], dmg)
 
     def test_rain_properly_reduces_fire_damage(self):
@@ -229,7 +230,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'fireblast'
 
-        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type=CalcType.max)
         self.assertEqual([26], dmg)
 
     def test_reflect_properly_halves_damage(self):
@@ -240,7 +241,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'rockslide'
 
-        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.venusaur, self.charizard, move, conditions, calc_type=CalcType.max)
         self.assertEqual([134], dmg)
 
     def test_light_screen_properly_halves_damage(self):
@@ -251,7 +252,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'psychic'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type=CalcType.max)
         self.assertEqual([82], dmg)
 
     def test_aurora_veil_properly_halves_damage(self):
@@ -262,7 +263,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'fireblast'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, conditions, calc_type=CalcType.max)
         self.assertEqual([150], dmg)
 
     def test_boosts_properly_affect_damage_calculation(self):
@@ -270,35 +271,35 @@ class TestCalculateDamageAmount(unittest.TestCase):
 
         move = 'fireblast'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type=CalcType.max)
         self.assertEqual([597], dmg)
 
     def test_move_versus_partially_typeless_pokemon(self):
         self.venusaur.types = ["typeless", "grass"]
         move = 'fireblast'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type=CalcType.max)
         self.assertEqual([300], dmg)
 
     def test_move_versus_partially_typeless_pokemon_with_question_mark_type(self):
         self.venusaur.types = ["???", "grass"]
         move = 'fireblast'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type=CalcType.max)
         self.assertEqual([300], dmg)
 
     def test_move_versus_completely_typeless_pokemon(self):
         self.venusaur.types = ["typeless"]
         move = 'fireblast'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type=CalcType.max)
         self.assertEqual([150], dmg)
 
     def test_move_versus_completely_typeless_pokemon_with_question_mark_type(self):
         self.venusaur.types = ["???"]
         move = 'fireblast'
 
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type=CalcType.max)
         self.assertEqual([150], dmg)
 
     def test_terastallized_pokemon_gets_2x_stab_when_terratype_in_original_types(self):
@@ -307,7 +308,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
         move = 'fireblast'
 
         # typical max damage is 300 with normal STAB
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type=CalcType.max)
         self.assertEqual([400], dmg)
 
     def test_terastallized_pokemon_gets_normal_stab_when_terratype_not_in_original_types(self):
@@ -316,7 +317,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
         move = 'watergun'
 
         # watergun would do 18 damage from charizard -> venusaur normally, and 27 with STAB
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type=CalcType.max)
         self.assertEqual([27], dmg)
 
     def test_terastallized_pokemon_gets_normal_stab_with_original_types(self):
@@ -325,7 +326,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
         move = 'fireblast'
 
         # 1.5x STAB should give 300 damage from charizard -> venusaur
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type=CalcType.max)
         self.assertEqual([300], dmg)
 
     def test_terastallized_pokemon_does_not_get_stab_on_nonterra_type(self):
@@ -334,7 +335,7 @@ class TestCalculateDamageAmount(unittest.TestCase):
         move = 'watergun'
 
         # non-stab watergun should do 18 dmg
-        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type='max')
+        dmg = _calculate_damage(self.charizard, self.venusaur, move, calc_type=CalcType.max)
         self.assertEqual([18], dmg)
 
 

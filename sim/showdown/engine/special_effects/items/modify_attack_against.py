@@ -36,8 +36,8 @@ def weaknesspolicy(attacking_move, attacking_pokemon, defending_pokemon):
                                                                                                       constants.TYPE], defending_pokemon.types):
         attacking_move = attacking_move.copy()
         attacking_move[constants.BOOSTS] = {
-            constants.ATTACK: 2,
-            constants.SPECIAL_ATTACK: 2,
+            constants.StatEnum.ATTACK: 2,
+            constants.StatEnum.SPECIAL_ATTACK: 2,
         }
     return attacking_move
 

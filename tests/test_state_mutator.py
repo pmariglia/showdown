@@ -187,7 +187,7 @@ class TestStatemutator(unittest.TestCase):
         instruction = (
             constants.MUTATOR_BOOST,
             constants.USER,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             1
         )
 
@@ -201,7 +201,7 @@ class TestStatemutator(unittest.TestCase):
         instruction = (
             constants.MUTATOR_BOOST,
             constants.USER,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             1
         )
 
@@ -217,7 +217,7 @@ class TestStatemutator(unittest.TestCase):
         instruction = (
             constants.MUTATOR_BOOST,
             constants.USER,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             2
         )
 
@@ -230,7 +230,7 @@ class TestStatemutator(unittest.TestCase):
         instruction = (
             constants.MUTATOR_UNBOOST,
             constants.USER,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             1
         )
 
@@ -244,7 +244,7 @@ class TestStatemutator(unittest.TestCase):
         instruction = (
             constants.MUTATOR_UNBOOST,
             constants.USER,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             1
         )
 

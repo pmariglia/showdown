@@ -4,7 +4,7 @@ import sim.constants as constants
 def grassyseed(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
     if state.field == constants.GRASSY_TERRAIN and attacking_pokemon.defense_boost < 6:
         return [
-            (constants.MUTATOR_BOOST, attacking_side, constants.DEFENSE, 1),
+            (constants.MUTATOR_BOOST, attacking_side, constants.StatEnum.DEFENSE, 1),
             (constants.MUTATOR_CHANGE_ITEM, attacking_side, None, attacking_pokemon.item)
         ]
 
@@ -12,7 +12,7 @@ def grassyseed(state, attacking_side, attacking_pokemon, defending_side, defendi
 def mistyseed(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
     if state.field == constants.MISTY_TERRAIN and attacking_pokemon.special_defense_boost < 6:
         return [
-            (constants.MUTATOR_BOOST, attacking_side, constants.SPECIAL_DEFENSE, 1),
+            (constants.MUTATOR_BOOST, attacking_side, constants.StatEnum.SPECIAL_DEFENSE, 1),
             (constants.MUTATOR_CHANGE_ITEM, attacking_side, None, attacking_pokemon.item)
         ]
 
@@ -20,7 +20,7 @@ def mistyseed(state, attacking_side, attacking_pokemon, defending_side, defendin
 def psychicseed(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
     if state.field == constants.PSYCHIC_TERRAIN and attacking_pokemon.special_defense_boost < 6:
         return [
-            (constants.MUTATOR_BOOST, attacking_side, constants.SPECIAL_DEFENSE, 1),
+            (constants.MUTATOR_BOOST, attacking_side, constants.StatEnum.SPECIAL_DEFENSE, 1),
             (constants.MUTATOR_CHANGE_ITEM, attacking_side, None, attacking_pokemon.item)
         ]
 
@@ -28,7 +28,7 @@ def psychicseed(state, attacking_side, attacking_pokemon, defending_side, defend
 def electricseed(state, attacking_side, attacking_pokemon, defending_side, defending_pokemon):
     if state.field == constants.ELECTRIC_TERRAIN and attacking_pokemon.defense_boost < 6:
         return [
-            (constants.MUTATOR_BOOST, attacking_side, constants.DEFENSE, 1),
+            (constants.MUTATOR_BOOST, attacking_side, constants.StatEnum.DEFENSE, 1),
             (constants.MUTATOR_CHANGE_ITEM, attacking_side, None, attacking_pokemon.item)
         ]
 
@@ -37,7 +37,8 @@ def boosterenergy(state, attacking_side, attacking_pokemon, defending_side, defe
     if attacking_pokemon.ability in ["quarkdrive", "protosynthesis"]:
         highest_stat = attacking_pokemon.get_highest_stat()
         return [
-            (constants.MUTATOR_APPLY_VOLATILE_STATUS, attacking_side, attacking_pokemon.ability + constants.STAT_ABBREVIATION_REVERSE_LOOKUPS[highest_stat]),
+            (constants.MUTATOR_APPLY_VOLATILE_STATUS, attacking_side,
+             attacking_pokemon.ability + constants.StatEnum(highest_stat)),
             (constants.MUTATOR_CHANGE_ITEM, attacking_side, None, attacking_pokemon.item)
         ]
 

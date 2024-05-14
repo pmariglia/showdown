@@ -7,13 +7,13 @@ class Scoring:
     POKEMON_HP = 100  # 100 points for 100% hp, 0 points for 0% hp. This is in addition to being alive
     POKEMON_HIDDEN = 10
     POKEMON_BOOSTS = {
-        constants.ATTACK: 15,
-        constants.DEFENSE: 15,
-        constants.SPECIAL_ATTACK: 15,
-        constants.SPECIAL_DEFENSE: 15,
-        constants.SPEED: 25,
-        constants.ACCURACY: 3,
-        constants.EVASION: 3
+        constants.StatEnum.ATTACK: 15,
+        constants.StatEnum.DEFENSE: 15,
+        constants.StatEnum.SPECIAL_ATTACK: 15,
+        constants.StatEnum.SPECIAL_DEFENSE: 15,
+        constants.StatEnum.SPEED: 25,
+        constants.StatEnum.ACCURACY: 3,
+        constants.StatEnum.EVASION: 3
     }
 
     POKEMON_BOOST_DIMINISHING_RETURNS = {
@@ -78,15 +78,15 @@ def evaluate_pokemon(pkmn):
     score += Scoring.POKEMON_HP * (float(pkmn.hp) / pkmn.maxhp)
 
     # boosts have diminishing returns
-    score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.attack_boost] * Scoring.POKEMON_BOOSTS[constants.ATTACK]
-    score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.defense_boost] * Scoring.POKEMON_BOOSTS[constants.DEFENSE]
+    score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.attack_boost] * Scoring.POKEMON_BOOSTS[constants.StatEnum.ATTACK]
+    score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.defense_boost] * Scoring.POKEMON_BOOSTS[constants.StatEnum.DEFENSE]
     score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.special_attack_boost] * Scoring.POKEMON_BOOSTS[
-        constants.SPECIAL_ATTACK]
+        constants.StatEnum.SPECIAL_ATTACK]
     score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.special_defense_boost] * Scoring.POKEMON_BOOSTS[
-        constants.SPECIAL_DEFENSE]
-    score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.speed_boost] * Scoring.POKEMON_BOOSTS[constants.SPEED]
-    score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.accuracy_boost] * Scoring.POKEMON_BOOSTS[constants.ACCURACY]
-    score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.evasion_boost] * Scoring.POKEMON_BOOSTS[constants.EVASION]
+        constants.StatEnum.SPECIAL_DEFENSE]
+    score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.speed_boost] * Scoring.POKEMON_BOOSTS[constants.StatEnum.SPEED]
+    score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.accuracy_boost] * Scoring.POKEMON_BOOSTS[constants.StatEnum.ACCURACY]
+    score += Scoring.POKEMON_BOOST_DIMINISHING_RETURNS[pkmn.evasion_boost] * Scoring.POKEMON_BOOSTS[constants.StatEnum.EVASION]
 
     try:
         score += Scoring.POKEMON_STATIC_STATUSES[pkmn.status]

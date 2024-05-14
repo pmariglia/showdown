@@ -104,7 +104,7 @@ def intimidate(state, attacking_side, attacking_pokemon, defending_side, defendi
         return [(
             constants.MUTATOR_BOOST,
             defending_side,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             min(6-defending_pokemon.attack_boost, 1) #stop boosting when it reaches 6
         )]
 
@@ -113,12 +113,12 @@ def intimidate(state, attacking_side, attacking_pokemon, defending_side, defendi
         return [(
             constants.MUTATOR_UNBOOST,
             defending_side,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             1
         ), (
             constants.MUTATOR_BOOST,
             defending_side,
-            constants.SPEED,
+            constants.StatEnum.SPEED,
             min(6-defending_pokemon.speed_boost, 1) #stop boosting when it reaches 6
         )]
 
@@ -126,12 +126,12 @@ def intimidate(state, attacking_side, attacking_pokemon, defending_side, defendi
         return [(
             constants.MUTATOR_UNBOOST,
             defending_side,
-            constants.ATTACK,
+            constants.StatEnum.ATTACK,
             1
         ), (
             constants.MUTATOR_BOOST,
             defending_side,
-            constants.SPECIAL_ATTACK,
+            constants.StatEnum.SPECIAL_ATTACK,
             min(6-defending_pokemon.special_attack_boost, 2) #stop boosting when it reaches 6
         )]
 
@@ -141,7 +141,7 @@ def intimidate(state, attacking_side, attacking_pokemon, defending_side, defendi
     return [(
         constants.MUTATOR_UNBOOST,
         defending_side,
-        constants.ATTACK,
+        constants.StatEnum.ATTACK,
         min(1, 6+defending_pokemon.attack_boost)
     )]
 
@@ -150,7 +150,7 @@ def dauntlessshield(state, attacking_side, attacking_pokemon, defending_side, de
     return [(
         constants.MUTATOR_BOOST,
         attacking_side,
-        constants.DEFENSE,
+        constants.StatEnum.DEFENSE,
         1
     )]
 
@@ -159,7 +159,7 @@ def intrepidsword(state, attacking_side, attacking_pokemon, defending_side, defe
     return [(
         constants.MUTATOR_BOOST,
         attacking_side,
-        constants.ATTACK,
+        constants.StatEnum.ATTACK,
         1
     )]
 

@@ -16,7 +16,8 @@ def stancechange(state, attacking_side, attacking_move, attacking_pokemon, defen
             pokedex[change_stats_into][constants.BASESTATS],
             attacking_pokemon.level,
             nature=attacking_pokemon.nature,
-            evs=attacking_pokemon.evs
+            evs=attacking_pokemon.evs,
+            ivs=attacking_pokemon.ivs
         )
 
         return [
@@ -25,10 +26,10 @@ def stancechange(state, attacking_side, attacking_move, attacking_pokemon, defen
                 attacking_side,
                 (
                     attacking_pokemon.maxhp,
-                    new_stats[constants.ATTACK],
-                    new_stats[constants.DEFENSE],
-                    new_stats[constants.SPECIAL_ATTACK],
-                    new_stats[constants.SPECIAL_DEFENSE],
+                    new_stats[constants.StatEnum.ATTACK],
+                    new_stats[constants.StatEnum.DEFENSE],
+                    new_stats[constants.StatEnum.SPECIAL_ATTACK],
+                    new_stats[constants.StatEnum.SPECIAL_DEFENSE],
                     attacking_pokemon.speed
                 ),
                 (

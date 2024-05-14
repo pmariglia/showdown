@@ -103,8 +103,8 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 101),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.DEFENSE, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.DEFENSE, -1),
                 ],
                 False
             )
@@ -208,7 +208,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.2,
                 [
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
                 ],
                 False
@@ -216,7 +216,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.2,
                 [
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff'),
                 ],
                 False
@@ -224,7 +224,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.2,
                 [
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini'),
                 ],
                 False
@@ -232,7 +232,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.2,
                 [
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex'),
                 ],
                 False
@@ -240,7 +240,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.2,
                 [
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong'),
                 ],
                 False
@@ -288,7 +288,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3)
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3)
                 ],
                 False
             )
@@ -306,8 +306,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_UNBOOST, constants.USER, constants.ATTACK, 3),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3)
+                    (constants.MUTATOR_UNBOOST, constants.USER, constants.StatEnum.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3)
                 ],
                 False
             )
@@ -327,9 +327,9 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
-                    (constants.MUTATOR_UNBOOST, constants.USER, constants.ATTACK, 3),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5)
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.USER, constants.StatEnum.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 5)
                 ],
                 False
             )
@@ -347,7 +347,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1.0,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 55),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3)
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3)
                 ],
                 False
             )
@@ -430,7 +430,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1.0,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 68),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 1),
                 ],
                 False
             )
@@ -448,7 +448,7 @@ class TestBattleMechanics(unittest.TestCase):
                 0.9,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 69),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, 2)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_ATTACK, 2)
                 ],
                 False
             ),
@@ -754,7 +754,7 @@ class TestBattleMechanics(unittest.TestCase):
                 0.18000000000000002,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 112),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, -1)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, -1)
                 ],
                 False
             ),
@@ -783,8 +783,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, -1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, -1)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, -1)
                 ],
                 False
             )
@@ -803,7 +803,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, -1),
                     (constants.MUTATOR_HEAL, constants.USER, 100)
                 ],
                 False
@@ -823,7 +823,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, -1),
                     (constants.MUTATOR_HEAL, constants.USER, 50)
                 ],
                 False
@@ -844,7 +844,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, -1),
                     (constants.MUTATOR_HEAL, constants.USER, 200)
                 ],
                 False
@@ -1177,7 +1177,7 @@ class TestBattleMechanics(unittest.TestCase):
                 0.3,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 50),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 1)
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_ATTACK, 1)
                 ],
                 False
             ),
@@ -1239,9 +1239,9 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 2),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, 2),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 2)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 2)
                 ],
                 False
             )
@@ -1916,7 +1916,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                         (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
                         (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'gyarados'),
-                        (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 1),
+                        (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1),
                         (constants.MUTATOR_DAMAGE, constants.USER, 16)
                 ],
                 False
@@ -1965,7 +1965,7 @@ class TestBattleMechanics(unittest.TestCase):
                         (constants.MUTATOR_DAMAGE, constants.USER, 35),
                         (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
                         (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'gyarados'),
-                        (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 1)
+                        (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1)
                 ],
                 False
             )
@@ -1987,7 +1987,7 @@ class TestBattleMechanics(unittest.TestCase):
                         (constants.MUTATOR_DAMAGE, constants.USER, 35),
                         (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
                         (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'gyarados'),
-                        (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 1)
+                        (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1)
                 ],
                 False
             )
@@ -2107,7 +2107,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_ATTACK, 1),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
                 ],
                 False
@@ -2180,8 +2180,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, -1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_ATTACK, -1),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong'),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 6)
                 ],
@@ -2218,7 +2218,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 6),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 6),
                     (constants.MUTATOR_HEAL, constants.USER, -1 * self.state.user.active.maxhp / 2)
 
                 ],
@@ -2237,7 +2237,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 6),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 6),
                     (constants.MUTATOR_HEAL, constants.USER, -1)
 
                 ],
@@ -2327,7 +2327,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 74),
                     (constants.MUTATOR_APPLY_STATUS, constants.USER, constants.BURN),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
                     (constants.MUTATOR_DAMAGE, constants.USER, 13),  # burn damage
                 ],
@@ -2338,7 +2338,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 74),
                     (constants.MUTATOR_APPLY_STATUS, constants.USER, constants.BURN),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff'),
                     (constants.MUTATOR_DAMAGE, constants.USER, 13),  # burn damage
                 ],
@@ -2349,7 +2349,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 74),
                     (constants.MUTATOR_APPLY_STATUS, constants.USER, constants.BURN),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini'),
                     (constants.MUTATOR_DAMAGE, constants.USER, 13),  # burn damage
                 ],
@@ -2360,7 +2360,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 74),
                     (constants.MUTATOR_APPLY_STATUS, constants.USER, constants.BURN),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex'),
                     (constants.MUTATOR_DAMAGE, constants.USER, 13),  # burn damage
                 ],
@@ -2371,7 +2371,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 74),
                     (constants.MUTATOR_APPLY_STATUS, constants.USER, constants.BURN),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong'),
                     (constants.MUTATOR_DAMAGE, constants.USER, 13),  # burn damage
                 ],
@@ -2381,7 +2381,7 @@ class TestBattleMechanics(unittest.TestCase):
                 0.18000000000000002,
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 74),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal'),
                 ],
                 False
@@ -2390,7 +2390,7 @@ class TestBattleMechanics(unittest.TestCase):
                 0.18000000000000002,
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 74),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff'),
                 ],
                 False
@@ -2399,7 +2399,7 @@ class TestBattleMechanics(unittest.TestCase):
                 0.18000000000000002,
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 74),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini'),
                 ],
                 False
@@ -2408,7 +2408,7 @@ class TestBattleMechanics(unittest.TestCase):
                 0.18000000000000002,
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 74),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex'),
                 ],
                 False
@@ -2417,7 +2417,7 @@ class TestBattleMechanics(unittest.TestCase):
                 0.18000000000000002,
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 74),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong'),
                 ],
                 False
@@ -2434,8 +2434,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.2,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal')
                 ],
                 False
@@ -2443,8 +2443,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.2,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
                 ],
                 False
@@ -2452,8 +2452,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.2,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini')
                 ],
                 False
@@ -2461,8 +2461,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.2,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex')
                 ],
                 False
@@ -2470,8 +2470,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.2,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong')
                 ],
                 False
@@ -2488,7 +2488,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ACCURACY, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ACCURACY, -1),
                 ],
                 False
             )
@@ -2505,7 +2505,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ACCURACY, 0)
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ACCURACY, 0)
                 ],
                 False
             )
@@ -2522,7 +2522,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 0)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 0)
                 ],
                 False
             )
@@ -2540,7 +2540,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.75,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ACCURACY, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ACCURACY, -1),
                     (constants.MUTATOR_DAMAGE, constants.USER, 35)
                 ],
                 False
@@ -2548,7 +2548,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.25,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ACCURACY, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ACCURACY, -1),
                 ],
                 True
             )
@@ -2567,7 +2567,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ACCURACY, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ACCURACY, 1),
                     (constants.MUTATOR_DAMAGE, constants.USER, 35)
                 ],
                 False
@@ -2584,7 +2584,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.EVASION, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.EVASION, 1),
                 ],
                 False
             )
@@ -2602,7 +2602,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.75,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.EVASION, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.EVASION, 1),
                     (constants.MUTATOR_DAMAGE, constants.USER, 35)
                 ],
                 False
@@ -2610,7 +2610,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.25,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.EVASION, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.EVASION, 1),
                 ],
                 True
             )
@@ -2629,7 +2629,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.EVASION, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.EVASION, -1),
                     (constants.MUTATOR_DAMAGE, constants.USER, 35)
                 ],
                 False
@@ -2723,7 +2723,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.USER, constants.SUBSTITUTE),
                     (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'starmie'),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 5),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal')
                 ],
                 False
@@ -2733,7 +2733,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.USER, constants.SUBSTITUTE),
                     (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'starmie'),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 5),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
                 ],
                 False
@@ -2743,7 +2743,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.USER, constants.SUBSTITUTE),
                     (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'starmie'),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 5),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini')
                 ],
                 False
@@ -2753,7 +2753,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.USER, constants.SUBSTITUTE),
                     (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'starmie'),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 5),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex')
                 ],
                 False
@@ -2763,7 +2763,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.USER, constants.SUBSTITUTE),
                     (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'starmie'),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 5),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 5),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong')
                 ],
                 False
@@ -2784,7 +2784,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 127),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal')
                 ],
                 False
@@ -2794,7 +2794,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 127),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'slurpuff')
                 ],
                 False
@@ -2804,7 +2804,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 127),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'victini')
                 ],
                 False
@@ -2814,7 +2814,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 127),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'toxapex')
                 ],
                 False
@@ -2824,7 +2824,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 127),
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 37),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 3),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'bronzong')
                 ],
                 False
@@ -3140,7 +3140,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.19999999999999996,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 2),
                 ],
                 False
             )
@@ -3165,7 +3165,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 0.15000000000000002,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 2),
                 ],
                 False
             )
@@ -3256,7 +3256,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2)
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2)
                 ],
                 False
             )
@@ -3601,11 +3601,11 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, 'noretreat'),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.DEFENSE, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_DEFENSE, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 1),
                 ],
                 False
             )
@@ -3637,7 +3637,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.OPPONENT, 'tarshot'),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPEED, -1),
                 ],
                 False
             )
@@ -3924,7 +3924,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 1)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 1)
                 ],
                 False
             )
@@ -3940,11 +3940,11 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.DEFENSE, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_DEFENSE, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 1),
                     (constants.MUTATOR_HEAL, constants.USER, -69.33333333333333)
                 ],
                 False
@@ -3977,8 +3977,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 2),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 1)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 1)
                 ],
                 False
             )
@@ -3995,9 +3995,9 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 1),
                 ],
                 False
             )
@@ -4014,8 +4014,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 1),
                 ],
                 False
             )
@@ -4480,7 +4480,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 6),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPEED, 6),
                 ],
                 False
             )
@@ -4499,7 +4499,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPEED, 2),
                 ],
                 False
             )
@@ -5106,8 +5106,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 2),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_ATTACK, 2),
                 ],
                 False
             )
@@ -5356,7 +5356,7 @@ class TestBattleMechanics(unittest.TestCase):
                     (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.SPIKES, 1),
                     (constants.MUTATOR_DAMAGE, constants.USER, 43),
                     (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.SPIKES, 1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 1)
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPEED, 1)
                 ],
                 False
             )
@@ -5394,8 +5394,8 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.SPIKES, 1),
                     (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.SPIKES, 1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPEED, 1),
                 ],
                 False
             )
@@ -5435,7 +5435,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_SIDE_START, constants.OPPONENT, constants.SPIKES, 1),
                     (constants.MUTATOR_SIDE_END, constants.OPPONENT, constants.SPIKES, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.EVASION, -1)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.EVASION, -1)
                 ],
                 False
             )
@@ -5454,7 +5454,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_FIELD_END, constants.ELECTRIC_TERRAIN),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.EVASION, -1)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.EVASION, -1)
                 ],
                 False
             )
@@ -5554,7 +5554,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_FIELD_END, constants.ELECTRIC_TERRAIN),
                     (constants.MUTATOR_SIDE_END, constants.USER, constants.SPIKES, 2),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.EVASION, -1)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.EVASION, -1)
                 ],
                 False
             )
@@ -5600,7 +5600,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.DEFENSE, 1),
                 ],
                 False
             )
@@ -5619,7 +5619,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, -2),
                 ],
                 False
             )
@@ -6752,7 +6752,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_HEAL, constants.USER, 13),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 1)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 1)
                 ],
                 False
             )
@@ -7141,7 +7141,7 @@ class TestBattleMechanics(unittest.TestCase):
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 82),
                     (constants.MUTATOR_CHANGE_ITEM, constants.USER, None, constants.UNKNOWN_ITEM),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 1),
                 ],
                 False
             )
@@ -7165,7 +7165,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1),
                 ],
                 False
             )
@@ -7212,7 +7212,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1),
                 ],
                 False
             )
@@ -7260,7 +7260,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPEED, 1),
                 ],
                 False
             )
@@ -7284,7 +7284,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.USER, 1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_DEFENSE, 1),
                 ],
                 False
             )
@@ -7302,8 +7302,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, -1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_ATTACK, -1),
                     (constants.MUTATOR_SWITCH, constants.OPPONENT, 'aromatisse', 'yveltal')
                 ],
                 False
@@ -7655,8 +7655,8 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.DEFENSE, -1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.DEFENSE, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPEED, 2),
                 ],
                 False
             )
@@ -7675,8 +7675,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_DEFENSE, 1),
                 ],
                 False
             )
@@ -7696,10 +7696,10 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.DEFENSE, -1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 2),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.DEFENSE, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPEED, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_DEFENSE, 1),
                 ],
                 False
             )
@@ -7863,8 +7863,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_ATTACK, 1),
                     (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'xatu')
                 ],
                 False
@@ -7883,8 +7883,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_DEFENSE, 1),
                 ],
                 False
             )
@@ -7902,8 +7902,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.EVASION, -1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.EVASION, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_ATTACK, 2),
                 ],
                 False
             )
@@ -7921,8 +7921,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.EVASION, -1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.EVASION, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
                 ],
                 False
             )
@@ -7940,8 +7940,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_DEFENSE, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_DEFENSE, 1),
                 ],
                 False
             )
@@ -7959,8 +7959,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 3),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 3),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_ATTACK, -1),
                     (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'xatu')
                 ],
                 False
@@ -7979,8 +7979,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, -2),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 0),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, -2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_ATTACK, 0),
                     (constants.MUTATOR_HEAL, constants.USER, -208)
                 ],
                 False
@@ -7999,8 +7999,8 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, -2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_ATTACK, -2),
                     (constants.MUTATOR_HEAL, constants.USER, -208)
                 ],
                 False
@@ -8020,7 +8020,7 @@ class TestBattleMechanics(unittest.TestCase):
                 0.3,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 50),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_ATTACK, 1),
                 ],
                 False
             ),
@@ -8046,8 +8046,8 @@ class TestBattleMechanics(unittest.TestCase):
                 0.3,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 50),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, -1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_ATTACK, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
                 ],
                 False
             ),
@@ -8074,8 +8074,8 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'xatu'),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 2),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_ATTACK, 2),
                 ],
                 False
             )
@@ -8178,8 +8178,8 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'xatu'),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 1),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 1),
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPEED, 1),
                 ],
                 False
             )
@@ -8199,7 +8199,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'xatu'),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1),
                 ],
                 False
             )
@@ -8219,7 +8219,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'xatu'),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1),
                 ],
                 False
             )
@@ -8771,7 +8771,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1)
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1)
 
                 ],
                 False
@@ -8789,7 +8789,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1)
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1)
 
                 ],
                 False
@@ -8861,7 +8861,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, 1)
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPEED, 1)
 
                 ],
                 False
@@ -8901,7 +8901,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 1)
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_ATTACK, 1)
 
                 ],
                 False
@@ -9030,7 +9030,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 51),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 1),
                 ],
                 False
             ),
@@ -9103,7 +9103,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1)
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1)
                 ],
                 False
             ),
@@ -9122,7 +9122,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SIDE_START, constants.USER, constants.TAILWIND, 1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 1)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 1)
                 ],
                 False
             ),
@@ -9465,7 +9465,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, -1),
                 ],
                 False
             )
@@ -9484,7 +9484,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 25),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, -1),
                 ],
                 False
             )
@@ -9503,7 +9503,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 48),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, -1),
                 ],
                 False
             )
@@ -9522,9 +9522,9 @@ class TestBattleMechanics(unittest.TestCase):
                 0.95,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 111),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.DEFENSE, -1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_DEFENSE, -1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, -2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.DEFENSE, -1.0),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_DEFENSE, -1.0),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, -2.0),
                 ],
                 False
             ),
@@ -9621,7 +9621,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SWITCH, 'user', self.state.user.active.id, 'xatu'),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.DEFENSE, 1)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.DEFENSE, 1)
                 ],
                 False
             )
@@ -9639,7 +9639,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SWITCH, 'user', self.state.user.active.id, 'xatu'),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 1)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 1)
                 ],
                 False
             )
@@ -9657,7 +9657,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SWITCH, 'user', self.state.user.active.id, 'xatu'),
-                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.ATTACK, 1)
+                    (constants.MUTATOR_UNBOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1)
                 ],
                 False
             )
@@ -9747,7 +9747,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 22),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 1)
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 1)
                 ],
                 False
             )
@@ -9900,9 +9900,9 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1,
                 [
-                    (constants.MUTATOR_BOOST, constants.USER, constants.ATTACK, 2),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_ATTACK, 2),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 2),
                     (constants.MUTATOR_HEAL, constants.USER, -104)
                 ],
                 False
@@ -9937,8 +9937,8 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 51),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.ATTACK, 2),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPECIAL_ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.ATTACK, 2),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPECIAL_ATTACK, 2),
                 ],
                 False
             )
@@ -10229,7 +10229,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_SWITCH, constants.USER, 'raichu', 'starmie'),
-                    (constants.MUTATOR_UNBOOST, constants.USER, constants.SPEED, 1)
+                    (constants.MUTATOR_UNBOOST, constants.USER, constants.StatEnum.SPEED, 1)
                 ],
                 False
             )
@@ -11309,7 +11309,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.SILK_TRAP),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPEED, -1),
                     (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.USER, constants.SILK_TRAP),
                     (constants.MUTATOR_SIDE_START, constants.USER, constants.PROTECT, 1)
                 ],
@@ -11346,7 +11346,7 @@ class TestBattleMechanics(unittest.TestCase):
                 1,
                 [
                     (constants.MUTATOR_APPLY_VOLATILE_STATUS, constants.USER, constants.SILK_TRAP),
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.SPEED, -1),
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.SPEED, -1),
                     (constants.MUTATOR_HEAL, constants.OPPONENT, -148),
                     (constants.MUTATOR_REMOVE_VOLATILE_STATUS, constants.USER, constants.SILK_TRAP),
                     (constants.MUTATOR_SIDE_START, constants.USER, constants.PROTECT, 1)
@@ -12436,8 +12436,8 @@ class TestBattleMechanics(unittest.TestCase):
                 0.9,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 49),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.DEFENSE, -1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPEED, 1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.DEFENSE, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPEED, 1),
                 ],
                 False
             ),
@@ -13393,8 +13393,8 @@ class TestBattleMechanics(unittest.TestCase):
                 1.0,
                 [
                     (constants.MUTATOR_DAMAGE, constants.OPPONENT, 4.84),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.DEFENSE, -1),
-                    (constants.MUTATOR_BOOST, constants.USER, constants.SPECIAL_DEFENSE, -1)
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.DEFENSE, -1),
+                    (constants.MUTATOR_BOOST, constants.USER, constants.StatEnum.SPECIAL_DEFENSE, -1)
                 ],
                 False
             )
@@ -13471,7 +13471,7 @@ class TestBattleMechanics(unittest.TestCase):
             TransposeInstruction(
                 1.0,
                 [
-                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.DEFENSE, 2)
+                    (constants.MUTATOR_BOOST, constants.OPPONENT, constants.StatEnum.DEFENSE, 2)
                 ],
                 False
             )

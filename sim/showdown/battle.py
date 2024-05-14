@@ -5,9 +5,12 @@ from copy import copy
 from copy import deepcopy
 from abc import ABC
 from abc import abstractmethod
+import numpy as np
 
 import sim.constants as constants
 import logging
+
+import sim.helpers
 from sim.config import ShowdownConfig
 
 import sim.data as data
@@ -357,7 +360,7 @@ class Battler:
             pkmn.reviving = pkmn_dict.get(constants.REVIVING, False)
             pkmn.hp, pkmn.max_hp, pkmn.status = get_pokemon_info_from_condition(pkmn_dict[constants.CONDITION])
             for stat, number in pkmn_dict[constants.STATS].items():
-                pkmn.stats[constants.STAT_ABBREVIATION_LOOKUPS[stat]] = number
+                pkmn.stats[constants.STAT_ABBRV_LOOKUP[stat]] = number
 
             pkmn.item = pkmn_dict[constants.ITEM] if pkmn_dict[constants.ITEM] else None
 
@@ -456,20 +459,21 @@ class Pokemon:
         self.base_name = self.name
         self.level = level
         self.nature = nature
-        self.evs = evs
+        self.evs = sim.helpers.EVS(evs)
+        self.ivs = sim.helpers.IVS(ivs)
         self.speed_range = StatRange(min=0, max=float("inf"))
 
-        try:
-            self.base_stats = pokedex[self.name][constants.BASESTATS]
-        except KeyError:
+        if self.name not in pokedex:
             logger.info("Could not pokedex entry for {}".format(self.name))
             self.name = [k for k in pokedex if self.name.startswith(k)][0]
             logger.info("Using {} instead".format(self.name))
-            self.base_stats = pokedex[self.name][constants.BASESTATS]
 
-        self.stats = calculate_stats(self.base_stats, self.level, nature=nature, evs=evs, ivs=ivs)
+        temp = pokedex[self.name][constants.BASESTATS]
+        self.base_stats = sim.helpers.BaseStats.from_dict(temp)
 
-        self.max_hp = self.stats.pop(constants.HITPOINTS)
+        self.stats = sim.helpers.Stats(self.base_stats, self.evs, self.ivs, nature, level)
+
+        self.max_hp = self.stats[constants.StatEnum.HITPOINTS]
         self.hp = self.max_hp
         if self.name == 'shedinja':
             self.max_hp = 1
@@ -485,7 +489,7 @@ class Pokemon:
         self.moves = []
         self.status = None
         self.volatile_statuses = []
-        self.boosts = defaultdict(lambda: 0)
+        self.boosts = sim.helpers.Boosts(np.zeros(7))
         self.can_mega_evo = False
         self.can_ultra_burst = False
         self.can_dynamax = False
@@ -709,6 +713,7 @@ class Pokemon:
             constants.STATS: self.stats,
             constants.NATURE: self.nature,
             constants.EVS: self.evs,
+            constants.IVS: self.ivs,
             constants.BOOSTS: self.boosts,
             constants.STATUS: self.status,
             constants.TERASTALLIZED: self.terastallized,
