@@ -471,7 +471,11 @@ class Pokemon:
         temp = pokedex[self.name][constants.BASESTATS]
         self.base_stats = sim.helpers.BaseStats.from_dict(temp)
 
-        self.stats = sim.helpers.Stats(self.base_stats, self.evs, self.ivs, nature, level)
+        self.stats = sim.helpers.Stats.create_stats(self.base_stats,
+                                                    self.evs,
+                                                    self.ivs,
+                                                    nature,
+                                                    level)
 
         self.max_hp = self.stats[constants.StatEnum.HITPOINTS]
         self.hp = self.max_hp
@@ -489,7 +493,7 @@ class Pokemon:
         self.moves = []
         self.status = None
         self.volatile_statuses = []
-        self.boosts = sim.helpers.Boosts(np.zeros(7))
+        self.boosts = sim.helpers.Boosts()
         self.can_mega_evo = False
         self.can_ultra_burst = False
         self.can_dynamax = False
@@ -548,11 +552,14 @@ class Pokemon:
     def set_spread(self, nature, evs):
         if isinstance(evs, str):
             evs = [int(e) for e in evs.split(',')]
+            evs = sim.helpers.EVS(evs)
+        # TODO: this is a hack
+        ivs = sim.helpers.IVS()
         hp_percent = self.hp / self.max_hp
-        self.stats = calculate_stats(self.base_stats, self.level, evs=evs, nature=nature)
+        self.stats = calculate_stats(self.base_stats, self.level, evs=evs, nature=nature, ivs=ivs)
         self.nature = nature
         self.evs = evs
-        self.max_hp = self.stats.pop(constants.HITPOINTS)
+        self.max_hp = self.stats[0]
         self.hp = round(self.max_hp * hp_percent)
 
     def add_move(self, move_name: str):

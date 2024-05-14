@@ -38,7 +38,7 @@ def boosterenergy(state, attacking_side, attacking_pokemon, defending_side, defe
         highest_stat = attacking_pokemon.get_highest_stat()
         return [
             (constants.MUTATOR_APPLY_VOLATILE_STATUS, attacking_side,
-             attacking_pokemon.ability + constants.StatEnum(highest_stat)),
+            attacking_pokemon.ability + constants.STAT_ABBRV_REVERSE_LOOKUP[highest_stat]),
             (constants.MUTATOR_CHANGE_ITEM, attacking_side, None, attacking_pokemon.item)
         ]
 

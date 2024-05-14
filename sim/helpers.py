@@ -6,6 +6,7 @@ import numpy as np
 import sim.constants as constants
 import re
 
+import sim.helpers
 from sim.data import all_move_json
 
 
@@ -157,11 +158,12 @@ class StatTable:
         self.stats = np.fmax(self.min_value, np.fmin(self.stats, self.max_value))
 
     def to_dict(self):
-        return {k: v for k,v in self if v != self.default_val}
+        return {k: v for k, v in self if v != self.default_val}
 
     def __eq__(self, other):
         if isinstance(other, StatTable):
             return (self.stats == other.stats).all()
+        return False
 
     @classmethod
     def from_dict(cls, temp):
@@ -233,9 +235,21 @@ class Stats(StatTable):
     ub = 6
     lb = 0
 
-    def __init__(self, base_stats, evs, ivs, nature, level):
-        super().__init__(None)
-        self.stats = calculate_stats(base_stats, level, ivs, evs, nature)
+    def __init__(self, stats):
+        super().__init__(stats)
+
+    @classmethod
+    def create_stats(cls, base_stats, evs, ivs, nature, level):
+        stats = calculate_stats(base_stats, level, ivs, evs, nature)
+        return Stats(stats[0:6])
+
+    def __eq__(self, other):
+        if isinstance(other, Stats):
+            return (self.stats[1:6] == other.stats[1:6]).all()
+
+    def clamp(self):
+        super().clamp()
+        self.stats = np.floor(self.stats)
 
 
 @dataclass
@@ -298,15 +312,15 @@ def remove_duplicate_spreads(list_of_spreads):
     return new_spreads
 
 
-def update_stats_from_nature(stats: constants.StatEnum, nature):
-    new_stats = stats.copy()
+def update_stats_from_nature(stats, nature):
     try:
-        new_stats[natures[nature]['plus']] *= 1.1
-        new_stats[natures[nature]['minus']] /= 1.1
+        stats[natures[nature]['plus']] *= 1.1
+        stats[natures[nature]['minus']] /= 1.1
+        stats = np.floor(stats)
     except KeyError:
         pass
 
-    return new_stats
+    return stats
 
 
 def common_pkmn_stat_calc(stat: int, iv: int, ev: int, level: int):
@@ -322,4 +336,4 @@ def calculate_stats(base_stats, level, ivs, evs, nature='serious'):
     new_stats[0] += level + 10
     new_stats[1:6] += 5
     new_stats = update_stats_from_nature(new_stats, nature)
-    return new_stats
+    return sim.helpers.Stats(new_stats[:6])

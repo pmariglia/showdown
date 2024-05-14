@@ -445,7 +445,7 @@ class TestSwitchOrDrag(unittest.TestCase):
         split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
         switch_or_drag(self.battle, split_msg)
 
-        self.assertEqual({}, self.opponent_active.boosts)
+        self.assertEqual(sim.helpers.Boosts(), self.opponent_active.boosts)
 
     def test_existing_boosts_on_bots_active_pokemon_are_cleared_when_switching(self):
         pkmn = self.battle.user.active
@@ -454,7 +454,7 @@ class TestSwitchOrDrag(unittest.TestCase):
         split_msg = ['', 'switch', 'p1a: pidgey', 'Pidgey, L100, M', '100/100']
         switch_or_drag(self.battle, split_msg)
 
-        self.assertEqual({}, pkmn.boosts)
+        self.assertEqual(sim.helpers.Boosts(), pkmn.boosts)
 
     def test_switching_into_the_same_pokemon_does_not_put_that_pokemon_in_the_reserves(self):
         # this is specifically for Zororak
@@ -504,9 +504,10 @@ class TestSwitchOrDrag(unittest.TestCase):
             constants.StatEnum.ATTACK: 1,
             constants.StatEnum.DEFENSE: 2,
             constants.StatEnum.SPECIAL_ATTACK: 3,
-            constants.StatEnum.StatEnum.SPECIAL_DEFENSE: 4,
+            constants.StatEnum.SPECIAL_DEFENSE: 4,
             constants.StatEnum.SPEED: 5,
         }
+        ditto.stats = sim.helpers.Stats.from_dict(ditto.stats)
         ditto.volatile_statuses.append(constants.TRANSFORM)
         self.battle.opponent.active = ditto
 
@@ -516,7 +517,7 @@ class TestSwitchOrDrag(unittest.TestCase):
         if self.battle.opponent.reserve[0] != ditto:
             self.fail("Ditto was not moved to reserves")
 
-        expected_stats = calculate_stats(ditto.base_stats, ditto.level)
+        expected_stats = calculate_stats(ditto.base_stats, ditto.level, ditto.ivs, ditto.evs)
 
         self.assertEqual(expected_stats, ditto.stats)
 
@@ -775,6 +776,7 @@ class TestClearAllBoosts(unittest.TestCase):
             constants.StatEnum.ATTACK: 1,
             constants.StatEnum.DEFENSE: 1
         }
+        self.battle.user.active.boosts = sim.helpers.Boosts.from_dict(self.battle.user.active.boosts)
         clearallboost(self.battle, split_msg)
         self.assertEqual(0, self.battle.user.active.boosts[constants.StatEnum.ATTACK])
         self.assertEqual(0, self.battle.user.active.boosts[constants.StatEnum.DEFENSE])
@@ -785,6 +787,8 @@ class TestClearAllBoosts(unittest.TestCase):
             constants.StatEnum.ATTACK: 1,
             constants.StatEnum.DEFENSE: 1
         }
+        self.battle.opponent.active.boosts = sim.helpers.Boosts.from_dict(self.battle.opponent.active.boosts)
+
         clearallboost(self.battle, split_msg)
         self.assertEqual(0, self.battle.opponent.active.boosts[constants.StatEnum.ATTACK])
         self.assertEqual(0, self.battle.opponent.active.boosts[constants.StatEnum.DEFENSE])
@@ -799,6 +803,9 @@ class TestClearAllBoosts(unittest.TestCase):
             constants.StatEnum.ATTACK: 1,
             constants.StatEnum.DEFENSE: 1
         }
+        self.battle.opponent.active.boosts = sim.helpers.Boosts.from_dict(self.battle.opponent.active.boosts)
+        self.battle.user.active.boosts = sim.helpers.Boosts.from_dict(self.battle.user.active.boosts)
+
         clearallboost(self.battle, split_msg)
         self.assertEqual(0, self.battle.user.active.boosts[constants.StatEnum.ATTACK])
         self.assertEqual(0, self.battle.user.active.boosts[constants.StatEnum.DEFENSE])
@@ -1066,7 +1073,7 @@ class TestBoostAndUnboost(unittest.TestCase):
         expected_boosts = {
             constants.StatEnum.ATTACK: 1
         }
-
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
         self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
 
     def test_unboost_works_properly_on_opponent(self):
@@ -1076,7 +1083,7 @@ class TestBoostAndUnboost(unittest.TestCase):
         expected_boosts = {
             constants.StatEnum.ATTACK: -1
         }
-
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
         self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
 
     def test_unboost_does_not_lower_below_negative_6(self):
@@ -1087,8 +1094,8 @@ class TestBoostAndUnboost(unittest.TestCase):
         expected_boosts = {
             constants.StatEnum.ATTACK: -6
         }
-
-        self.assertEqual(expected_boosts, self.battle.opponent.active.boost.to_dict())
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
+        self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
 
     def test_unboost_lowers_one_when_it_hits_the_limit(self):
         self.battle.opponent.active.boosts[constants.StatEnum.ATTACK] = -5
@@ -1130,7 +1137,7 @@ class TestBoostAndUnboost(unittest.TestCase):
         expected_boosts = {
             constants.StatEnum.ATTACK: -1
         }
-
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
         self.assertEqual(expected_boosts, self.battle.user.active.boosts)
 
     def test_user_boosts_updates_properly(self):
@@ -1140,7 +1147,7 @@ class TestBoostAndUnboost(unittest.TestCase):
         expected_boosts = {
             constants.StatEnum.ATTACK: 1
         }
-
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
         self.assertEqual(expected_boosts, self.battle.user.active.boosts)
 
     def test_multiple_boost_properly_updates(self):
@@ -1151,6 +1158,7 @@ class TestBoostAndUnboost(unittest.TestCase):
         expected_boosts = {
             constants.StatEnum.ATTACK: 2
         }
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
 
         self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
 
@@ -1660,6 +1668,8 @@ class TestClearNegativeBoost(unittest.TestCase):
         self.battle.opponent.active.boosts = {
             constants.StatEnum.ATTACK: -1
         }
+        self.battle.opponent.active.boosts = sim.helpers.Boosts.from_dict(self.battle.opponent.active.boosts)
+
         split_msg = ['-clearnegativeboost', 'p2a: caterpie', '[silent]']
         clearnegativeboost(self.battle, split_msg)
 
@@ -1670,6 +1680,8 @@ class TestClearNegativeBoost(unittest.TestCase):
             constants.StatEnum.ATTACK: -1,
             constants.StatEnum.SPEED: -1
         }
+        self.battle.opponent.active.boosts = sim.helpers.Boosts.from_dict(self.battle.opponent.active.boosts)
+
         split_msg = ['-clearnegativeboost', 'p2a: caterpie', '[silent]']
         clearnegativeboost(self.battle, split_msg)
 
@@ -1680,6 +1692,7 @@ class TestClearNegativeBoost(unittest.TestCase):
         self.battle.opponent.active.boosts = {
             constants.StatEnum.ATTACK: 1
         }
+        self.battle.opponent.active.boosts = sim.helpers.Boosts.from_dict(self.battle.opponent.active.boosts)
         split_msg = ['-clearnegativeboost', 'p2a: caterpie', '[silent]']
         clearnegativeboost(self.battle, split_msg)
 
@@ -1693,6 +1706,8 @@ class TestClearNegativeBoost(unittest.TestCase):
             constants.StatEnum.DEFENSE: -1,
             constants.StatEnum.SPECIAL_DEFENSE: -1
         }
+        self.battle.opponent.active.boosts = sim.helpers.Boosts.from_dict(self.battle.opponent.active.boosts)
+
         split_msg = ['-clearnegativeboost', 'p2a: caterpie', '[silent]']
         clearnegativeboost(self.battle, split_msg)
 
@@ -1703,6 +1718,7 @@ class TestClearNegativeBoost(unittest.TestCase):
             constants.StatEnum.DEFENSE: 0,
             constants.StatEnum.SPECIAL_DEFENSE: 0
         }
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
 
         self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
 
@@ -1934,6 +1950,8 @@ class TestTransform(unittest.TestCase):
             constants.StatEnum.SPECIAL_DEFENSE: 4,
             constants.StatEnum.SPEED: 5,
         }
+        expected_stats = sim.helpers.Stats.from_dict(expected_stats)
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
 
         expected_ability = 'blaze'
         expected_moves = [
@@ -1992,7 +2010,8 @@ class TestTransform(unittest.TestCase):
         expected_types = [
             'fire'
         ]
-
+        expected_stats = sim.helpers.Stats.from_dict(expected_stats)
+        expected_boosts = sim.helpers.Stats.from_dict(expected_boosts)
         # the charmander is active when the switch occurs
         # the charmander pokemon from the request json should be used for stats
         self.battle.user.active = Pokemon('Charmander', 100)

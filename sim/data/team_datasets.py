@@ -5,9 +5,12 @@ import logging
 import typing
 from typing import Tuple
 from typing import Optional
+import importlib.resources as impresources
 
 import sim.constants as constants
 from sim.helpers import calculate_stats
+import sim.helpers as helpers
+from sim import resources
 
 if typing.TYPE_CHECKING:
     from sim.showdown.battle import Pokemon
@@ -15,6 +18,7 @@ if typing.TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 PWD = os.path.dirname(os.path.abspath(__file__))
+path = impresources.files(resources)
 
 
 @dataclass(frozen=True)
@@ -37,7 +41,8 @@ class PokemonSet:
     ability: str
     item: str
     nature: str
-    evs: Tuple[int, int, int, int, int, int]
+    evs: helpers.EVS
+    ivs: helpers.IVS
     moves: PokemonMoveset
 
     def item_check(self, pkmn: 'Pokemon') -> bool:
@@ -61,8 +66,8 @@ class PokemonSet:
         The only non-observable speed modifier that should allow a
         Pokemon's speed_range to be set is choicescarf
         """
-        stats = calculate_stats(pkmn.base_stats, pkmn.level, evs=self.evs, nature=self.nature)
-        speed = stats[constants.SPEED]
+        stats = calculate_stats(pkmn.base_stats, pkmn.level, evs=self.evs, nature=self.nature, ivs=self.ivs)
+        speed = stats[constants.StatEnum.SPEED]
         if self.item == "choicescarf":
             speed = int(speed * 1.5)
 
@@ -93,8 +98,8 @@ class _TeamDatasets:
         self.append_to_team_datasets(pkmn_names)
 
     def append_to_team_datasets(self, pkmn_names):
-        sets = os.path.join(PWD, 'team_datasets.json')
-        with open(sets, 'r') as f:
+        sets = path / 'team_datasets.json'
+        with sets.open() as f:
             sets_dict = json.load(f)["pokemon"]
 
         for pkmn in pkmn_names:
@@ -105,8 +110,8 @@ class _TeamDatasets:
 
     @staticmethod
     def get_exact_team(pkmn_names):
-        sets = os.path.join(PWD, 'team_datasets.json')
-        with open(sets, 'r') as f:
+        sets = path / 'team_datasets.json'
+        with sets.open() as f:
             teams_dict = json.load(f)["teams"]
 
         pkmn_lookup = "|".join(pkmn_names)
@@ -119,19 +124,15 @@ class _TeamDatasets:
     def to_pokemon_set(pkmn_set_str: str) -> PokemonSet:
         tera_type, ability, item, nature, evs, *moves = pkmn_set_str.split("|")
         split_evs = evs.split(",")
+        evs = helpers.EVS(split_evs)
+        ivs = helpers.IVS()
         return PokemonSet(
             tera_type,
             ability,
             item,
             nature,
-            (
-                int(split_evs[0]),
-                int(split_evs[1]),
-                int(split_evs[2]),
-                int(split_evs[3]),
-                int(split_evs[4]),
-                int(split_evs[5]),
-            ),
+            evs,
+            ivs,
             PokemonMoveset(tuple(moves))
         )
 

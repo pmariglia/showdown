@@ -107,7 +107,7 @@ def _calculate_damage(attacker, defender, move, conditions=None, calc_type=CalcT
     defending_stats = defender.calculate_boosted_stats()
 
     if attacker.ability == 'unaware':
-        if defense == constants.StatEnum.SPECIAL_DEFENSE:
+        if defense == constants.StatEnum.DEFENSE:
             defending_stats[defense] = defender.defense
         elif defense == constants.StatEnum.SPECIAL_DEFENSE:
             defending_stats[defense] = defender.special_defense
@@ -143,7 +143,7 @@ def _calculate_damage(attacker, defender, move, conditions=None, calc_type=CalcT
     elif defender.ability == "vesselofruin":
         attacking_stats[constants.StatEnum.SPECIAL_ATTACK] *= 0.75
     if attacker.ability == "swordofruin":
-        defending_stats[constants.StatEnum.SPECIAL_DEFENSE] *= 0.75
+        defending_stats[constants.StatEnum.DEFENSE] *= 0.75
     elif attacker.ability == "beadsofruin":
         defending_stats[constants.StatEnum.SPECIAL_DEFENSE] *= 0.75
 

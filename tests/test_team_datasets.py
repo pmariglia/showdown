@@ -1,5 +1,7 @@
 from unittest import TestCase
 
+import sim
+import sim.helpers
 import sim.constants as constants
 from sim.data.team_datasets import _TeamDatasets, PokemonSet, PokemonMoveset
 from sim.showdown.battle import Pokemon, Move, StatRange
@@ -30,7 +32,8 @@ class TestTeamDatasets(TestCase):
             "roughskin",
             "rockyhelmet",
             "jolly",
-            (0, 0, 252, 0, 4, 252),
+            sim.helpers.EVS((0, 0, 252, 0, 4, 252)),
+            sim.helpers.IVS(),
             PokemonMoveset(("dragontail", "earthquake", "spikes", "stealthrock"))
         )
 
@@ -52,7 +55,8 @@ class TestTeamDatasets(TestCase):
             "roughskin",
             "rockyhelmet",
             "adamant",  # adamant is more common
-            (0, 0, 252, 0, 4, 252),
+            sim.helpers.EVS((0, 0, 252, 0, 4, 252)),
+            sim.helpers.IVS(),
             PokemonMoveset(("dragontail", "earthquake", "spikes", "stealthrock"))
         )
 
@@ -92,7 +96,8 @@ class TestTeamDatasets(TestCase):
             "roughskin",
             "rockyhelmet",
             "adamant",
-            (0, 0, 252, 0, 4, 252),
+            sim.helpers.EVS((0, 0, 252, 0, 4, 252)),
+            sim.helpers.IVS(),
             PokemonMoveset(("dragontail", "earthquake", "spikes", "stealthrock"))
         )
 
@@ -113,7 +118,8 @@ class TestTeamDatasets(TestCase):
             "roughskin",
             "rockyhelmet",
             "adamant",
-            (0, 0, 252, 0, 4, 252),
+            sim.helpers.EVS((0, 0, 252, 0, 4, 252)),
+            sim.helpers.IVS(),
             PokemonMoveset(("dragontail", "earthquake", "spikes", "stealthrock"))
         )
         self.assertEqual(expected_set, predicted_garchomp_set)
@@ -145,7 +151,8 @@ class TestTeamDatasets(TestCase):
             "roughskin",
             "rockyhelmet",
             "adamant",
-            (0, 0, 252, 0, 4, 252),
+            sim.helpers.EVS((0, 0, 252, 0, 4, 252)),
+            sim.helpers.IVS(),
             PokemonMoveset(("dragontail", "earthquake", "spikes", "stealthrock"))
         )
         self.assertEqual(expected_set, predicted_garchomp_set)
@@ -165,7 +172,8 @@ class TestTeamDatasets(TestCase):
             "roughskin",
             "rockyhelmet",
             "adamant",
-            (0, 0, 252, 0, 4, 252),
+            sim.helpers.EVS((0, 0, 252, 0, 4, 252)),
+            sim.helpers.IVS(),
             PokemonMoveset(("dragontail", "earthquake", "spikes", "stealthrock"))
         )
         self.assertEqual(expected_set, predicted_garchomp_set)
@@ -197,7 +205,8 @@ class TestTeamDatasets(TestCase):
             "roughskin",
             "rockyhelmet",
             "adamant",
-            (0, 0, 252, 0, 4, 252),
+            sim.helpers.EVS((0, 0, 252, 0, 4, 252)),
+            sim.helpers.IVS(),
             PokemonMoveset(("dragontail", "earthquake", "spikes", "stealthrock"))
         )
         self.assertEqual(expected_set, predicted_garchomp_set)
@@ -217,7 +226,8 @@ class TestTeamDatasets(TestCase):
             "roughskin",
             "rockyhelmet",
             "adamant",
-            (0, 0, 252, 0, 4, 252),
+            sim.helpers.EVS((0, 0, 252, 0, 4, 252)),
+            sim.helpers.IVS(),
             PokemonMoveset(("dragontail", "earthquake", "spikes", "stealthrock"))
         )
         self.assertEqual(expected_set, predicted_garchomp_set)
@@ -237,7 +247,8 @@ class TestTeamDatasets(TestCase):
             "roughskin",
             "rockyhelmet",
             "adamant",
-            (0, 0, 252, 0, 4, 252),
+            sim.helpers.EVS((0, 0, 252, 0, 4, 252)),
+            sim.helpers.IVS(),
             PokemonMoveset(("dragontail", "earthquake", "spikes", "stealthrock"))
         )
         self.assertEqual(expected_set, predicted_garchomp_set)
@@ -258,7 +269,8 @@ class TestTeamDatasets(TestCase):
             "roughskin",
             "rockyhelmet",
             "adamant",
-            (0, 0, 252, 0, 4, 252),
+            sim.helpers.EVS((0, 0, 252, 0, 4, 252)),
+            sim.helpers.IVS(),
             PokemonMoveset(("dragontail", "earthquake", "spikes", "stealthrock"))
         )
         self.assertEqual(expected_set, predicted_garchomp_set)
@@ -392,7 +404,8 @@ class TestTeamDatasets(TestCase):
             "roughskin",
             "choicescarf",
             "adamant",
-            (0, 252, 0, 0, 4, 252),
+            sim.helpers.EVS((0, 0, 252, 0, 4, 252)),
+            sim.helpers.IVS(),
             PokemonMoveset(("dragontail", "earthquake"))
         )
 

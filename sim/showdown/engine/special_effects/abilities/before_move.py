@@ -1,3 +1,4 @@
+import sim.helpers
 from sim.data import pokedex
 import sim.constants as constants
 from sim.helpers import calculate_stats
@@ -11,9 +12,10 @@ def stancechange(state, attacking_side, attacking_move, attacking_pokemon, defen
             change_stats_into = 'aegislash'
         else:
             return None
-
+        temp = pokedex[change_stats_into][constants.BASESTATS]
+        temp = sim.helpers.BaseStats.from_dict(temp)
         new_stats = calculate_stats(
-            pokedex[change_stats_into][constants.BASESTATS],
+            temp,
             attacking_pokemon.level,
             nature=attacking_pokemon.nature,
             evs=attacking_pokemon.evs,

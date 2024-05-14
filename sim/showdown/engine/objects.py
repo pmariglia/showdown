@@ -247,7 +247,7 @@ class Pokemon:
         base_stats = sim.helpers.BaseStats.from_dict(pokedex[self.id][constants.BASESTATS])
         self.ivs = ivs
         self.evs = evs
-        self.stats = Stats(base_stats, evs, ivs, nature, level)
+        self.stats = Stats.create_stats(base_stats, evs, ivs, nature, level)
         self.max_hp = self.stats[constants.StatEnum.HITPOINTS]
         self.hp = self.max_hp
         if self.id == 'shedinja':
@@ -388,8 +388,10 @@ class Pokemon:
 
         return burn_multiplier
 
-    def get_highest_stat(self):
-        return constants.StatEnum(np.argmax(self.stats.stats))
+    def get_highest_stat(self, exclude_hp=True):
+        if exclude_hp:
+            return constants.StatEnum(np.argmax(self.stats.stats[1: 6])+1)
+        return constants.StatEnum(np.argmax(self.stats.stats[: 6]))
 
     def get_boost_from_boost_string(self, boost_string):
         return self.stat_boosts[boost_string]

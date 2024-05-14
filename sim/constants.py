@@ -214,6 +214,7 @@ STAT_ABBRV_LOOKUP = {
     'accuracy': StatEnum.ACCURACY,
     'evasion': StatEnum.EVASION
 }
+STAT_ABBRV_REVERSE_LOOKUP = dict((v,k) for k,v in STAT_ABBRV_LOOKUP.items())
 
 ATTACK_BOOST = "attack_boost"
 DEFENSE_BOOST = "defense_boost"

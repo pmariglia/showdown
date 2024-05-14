@@ -6,6 +6,7 @@ All battle mechanics are tested in this TestCase
 import unittest
 from unittest import mock
 
+import sim.helpers
 from sim.config import ShowdownConfig
 import sim.constants as constants
 from sim.constants import CalcType
@@ -12304,7 +12305,7 @@ class TestBattleMechanics(unittest.TestCase):
         self.state.user.active.ability = 'stancechange'
         self.state.user.active.level = 100
         self.state.user.active.nature = 'modest'
-        self.state.user.active.evs = (0, 0, 0, 252, 4, 252)
+        self.state.user.active.evs = sim.helpers.EVS((0, 0, 0, 252, 4, 252))
         self.state.opponent.active.types = ['normal']
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
 
@@ -12368,7 +12369,7 @@ class TestBattleMechanics(unittest.TestCase):
         self.state.user.active.ability = 'stancechange'
         self.state.user.active.level = 100
         self.state.user.active.nature = 'modest'
-        self.state.user.active.evs = (0, 0, 0, 252, 4, 252)
+        self.state.user.active.evs = sim.helpers.EVS((0, 0, 0, 252, 4, 252))
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)
 
         # modest + max SPA aegislash shield should have its stats change into these:
@@ -13006,7 +13007,7 @@ class TestBattleMechanics(unittest.TestCase):
         self.assertEqual(expected_instructions, instructions)
 
     def test_attack_into_healing_with_multiple_attack_damage_rolls(self):
-        ShowdownConfig.damage_calc_type = "min_max_average"
+        ShowdownConfig.damage_calc_type = CalcType.min_max_average
         bot_move = "tackle"
         opponent_move = "recover"
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)

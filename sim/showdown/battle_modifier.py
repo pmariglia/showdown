@@ -158,7 +158,11 @@ def switch_or_drag(battle, split_msg):
         # if the target was transformed, reset its transformed attributes
         if constants.TRANSFORM in side.active.volatile_statuses:
             logger.debug("{} was transformed. Resetting its transformed attributes".format(side.active.name))
-            side.active.stats = calculate_stats(side.active.base_stats, side.active.level)
+            side.active.stats = calculate_stats(
+                side.active.base_stats,
+                side.active.level,
+                side.active.ivs,
+                side.active.evs)
             side.active.ability = None
             side.active.moves = []
             side.active.types = pokedex[side.active.name][constants.TYPES]
@@ -378,15 +382,14 @@ def boost(battle, split_msg):
 
 
 def unboost(battle, split_msg):
-    if is_opponent(battle, split_msg):
-        pkmn = battle.opponent.active
-    else:
-        pkmn = battle.user.active
+    pkmn = battle.opponent.active if is_opponent(battle, split_msg) else battle.user.active
 
-    stat = constants.STAT_ABBREVIATION_LOOKUPS[split_msg[3].strip()]
+
+    stat = constants.STAT_ABBRV_LOOKUP[split_msg[3].strip()]
     amount = int(split_msg[4].strip())
 
-    pkmn.boosts[stat] = max(pkmn.boosts[stat] - amount, -1 * constants.MAX_BOOSTS)
+    pkmn.boosts[stat] = pkmn.boosts[stat] - amount
+    pkmn.boosts.clamp()
 
 
 def status(battle, split_msg):
@@ -703,29 +706,20 @@ def zpower(battle, split_msg):
 
 
 def clearnegativeboost(battle, split_msg):
-    if is_opponent(battle, split_msg):
-        pkmn = battle.opponent.active
-    else:
-        pkmn = battle.user.active
-
-    for stat, value in pkmn.boosts.items():
+    pkmn = battle.opponent.active if is_opponent(battle, split_msg) else battle.user.active
+    for stat, value in pkmn.boosts:
         if value < 0:
-            logger.debug("Setting {}'s {} stat to 0".format(pkmn.name, stat))
+            logger.debug(f"Setting {pkmn.name}'s {stat} stat to 0")
             pkmn.boosts[stat] = 0
 
 
 def clearallboost(battle, _):
-    pkmn = battle.user.active
-    for stat, value in pkmn.boosts.items():
-        if value != 0:
-            logger.debug("Setting {}'s {} stat to 0".format(pkmn.name, stat))
-            pkmn.boosts[stat] = 0
-
-    pkmn = battle.opponent.active
-    for stat, value in pkmn.boosts.items():
-        if value != 0:
-            logger.debug("Setting {}'s {} stat to 0".format(pkmn.name, stat))
-            pkmn.boosts[stat] = 0
+    pkmns = [battle.user.active, battle.opponent.active]
+    for pkmn in pkmns:
+        for stat, value in pkmn.boosts:
+            if value != 0:
+                logger.debug(f"Setting {pkmn.name}'s {stat} stat to 0")
+                pkmn.boosts[stat] = 0
 
 
 def singleturn(battle, split_msg):
@@ -986,7 +980,7 @@ def check_choice_band_or_specs(battle, damage_dealt):
         battle.opponent.active.item != constants.UNKNOWN_ITEM or
         damage_dealt.crit or
         damage_dealt.move in constants.WEIGHT_BASED_MOVES or
-        damage_dealt.move in constants.StatEnum.SPEED_BASED_MOVES or
+        damage_dealt.move in constants.SPEED_BASED_MOVES or
         not battle.opponent.active.can_have_choice_item
     ):
         return
