@@ -525,6 +525,7 @@ class StateMutator:
             constants.MUTATOR_APPLY_VOLATILE_STATUS: self.apply_volatile_status,
             constants.MUTATOR_REMOVE_VOLATILE_STATUS: self.remove_volatile_status,
             constants.MUTATOR_SUBSTITUTE: self.create_substitute,
+            constants.MUTATOR_REMOVE_SUBSTITUTE: self.remove_substitute,
             constants.MUTATOR_DAMAGE_SUBSTITUTE: self.damage_substitute,
             constants.MUTATOR_DAMAGE: self.damage,
             constants.MUTATOR_HEAL: self.heal,
@@ -532,6 +533,7 @@ class StateMutator:
             constants.MUTATOR_BOOST_MULTIPLE: self.boosts_multiple,
             constants.MUTATOR_UNBOOST: self.unboost,
             constants.MUTATOR_UNBOOST_MULTIPLE: self.boosts_multiple,
+            constants.MUTATOR_RESET_BOOSTS: self.reset_boosts,
             constants.MUTATOR_APPLY_STATUS: self.apply_status,
             constants.MUTATOR_REMOVE_STATUS: self.remove_status,
             constants.MUTATOR_SIDE_START: self.side_start,
@@ -556,6 +558,7 @@ class StateMutator:
             constants.MUTATOR_APPLY_VOLATILE_STATUS: self.remove_volatile_status,
             constants.MUTATOR_REMOVE_VOLATILE_STATUS: self.apply_volatile_status,
             constants.MUTATOR_SUBSTITUTE: self.remove_substitute,
+            constants.MUTATOR_REMOVE_SUBSTITUTE: self.create_substitute,
             constants.MUTATOR_DAMAGE_SUBSTITUTE: self.un_damage_substitute,
             constants.MUTATOR_DAMAGE: self.heal,
             constants.MUTATOR_HEAL: self.damage,
@@ -563,6 +566,7 @@ class StateMutator:
             constants.MUTATOR_BOOST_MULTIPLE: self.unboosts_multiple,
             constants.MUTATOR_UNBOOST: self.boost,
             constants.MUTATOR_UNBOOST_MULTIPLE: self.boosts_multiple,
+            constants.MUTATOR_RESET_BOOSTS: self.unreset_boosts,
             constants.MUTATOR_APPLY_STATUS: self.remove_status,
             constants.MUTATOR_REMOVE_STATUS: self.apply_status,
             constants.MUTATOR_SIDE_START: self.reverse_side_start,
@@ -684,7 +688,7 @@ class StateMutator:
     def boost(self, side, stat, amount):
         side = self.get_side(side)
         side.active.stat_boosts[stat] += int(amount)
-        side.active.stat_boosts[stat] = max(-6, min(side.active.stat_boosts[stat], 6))
+        side.active.stat_boosts.clamp()
 
     def boosts_multiple(self, side, boosts, non_zero_idxs):
         for idx in non_zero_idxs:
@@ -702,6 +706,14 @@ class StateMutator:
     def apply_status(self, side, status):
         side = self.get_side(side)
         side.active.status = status
+
+    def reset_boosts(self, side, _):
+        side = self.get_side(side)
+        side.stat_boosts.stats = 0
+
+    def unreset_boosts(self, side, value):
+        side = self.get_side(side)
+        side.stat_boosts.stats = value
 
     def remove_status(self, side, _):
         # the second parameter of this function is the status being removed

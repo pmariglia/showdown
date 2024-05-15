@@ -127,7 +127,7 @@ def get_instructions_from_volatile_statuses(mutator, volatile_status, attacker, 
 
 def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instructions):
     if attacker not in opposite_side:
-        raise ValueError("attacker parameter must be one of: {}".format(', '.join(opposite_side)))
+        raise ValueError(f"attacker parameter must be one of: {', '.join(opposite_side)}")
 
     attacking_side = get_side_from_state(mutator.state, attacker)
     defending_side = get_side_from_state(mutator.state, opposite_side[attacker])
@@ -1240,13 +1240,22 @@ def get_instructions_from_boost_reset_moves(mutator, attacking_move, attacking_s
 def remove_volatile_status_and_boosts_instructions(side, side_string):
     instruction_additions = []
     for v_status in side.active.volatile_status:
-        instruction_additions.append(
-            (
-                constants.MUTATOR_REMOVE_VOLATILE_STATUS,
-                side_string,
-                v_status
+        if v_status == constants.SUBSTITUTE:
+            instruction_additions.append(
+                (
+                    constants.MUTATOR_REMOVE_SUBSTITUTE,
+                    side_string,
+                    side.substitute_hp
+                )
             )
-        )
+        else:
+            instruction_additions.append(
+                (
+                    constants.MUTATOR_REMOVE_VOLATILE_STATUS,
+                    side_string,
+                    v_status
+                )
+            )
     if side.side_conditions[constants.TOXIC_COUNT]:
         instruction_additions.append(
             (
@@ -1255,46 +1264,8 @@ def remove_volatile_status_and_boosts_instructions(side, side_string):
                 constants.TOXIC_COUNT,
                 side.side_conditions[constants.TOXIC_COUNT]
             ))
-    if side.active.attack_boost:
-        instruction_additions.append(
-            (
-                constants.MUTATOR_UNBOOST,
-                side_string,
-                constants.StatEnum.ATTACK,
-                side.active.attack_boost
-            ))
-    if side.active.defense_boost:
-        instruction_additions.append(
-            (
-                constants.MUTATOR_UNBOOST,
-                side_string,
-                constants.StatEnum.DEFENSE,
-                side.active.defense_boost
-            ))
-    if side.active.special_attack_boost:
-        instruction_additions.append(
-            (
-                constants.MUTATOR_UNBOOST,
-                side_string,
-                constants.StatEnum.SPECIAL_ATTACK,
-                side.active.special_attack_boost
-            ))
-    if side.active.special_defense_boost:
-        instruction_additions.append(
-            (
-                constants.MUTATOR_UNBOOST,
-                side_string,
-                constants.StatEnum.SPECIAL_DEFENSE,
-                side.active.special_defense_boost
-            ))
-    if side.active.speed_boost:
-        instruction_additions.append(
-            (
-                constants.MUTATOR_UNBOOST,
-                side_string,
-                constants.StatEnum.SPEED,
-                side.active.speed_boost
-            ))
+    instruction_additions.append(
+        (constants.MUTATOR_RESET_BOOSTS, side_string, side.stat_boosts.stats))
 
     return instruction_additions
 
