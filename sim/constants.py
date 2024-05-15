@@ -80,6 +80,7 @@ MUTATOR_TOGGLE_TRICKROOM = "toggle_trickroom"
 MUTATOR_CHANGE_TYPE = "change_type"
 MUTATOR_CHANGE_ITEM = "change_item"
 MUTATOR_CHANGE_STATS = "change_stats"
+MUTATOR_REMOVE_PP = "remove_pp"
 
 
 DAMAGE = 'damage'
@@ -214,6 +215,8 @@ STAT_ABBRV_LOOKUP = {
     'accuracy': StatEnum.ACCURACY,
     'evasion': StatEnum.EVASION
 }
+
+STAT_AND_ABBR_LOOKUP = STAT_LOOKUP | STAT_ABBRV_LOOKUP
 STAT_ABBRV_REVERSE_LOOKUP = dict((v,k) for k,v in STAT_ABBRV_LOOKUP.items())
 
 ATTACK_BOOST = "attack_boost"

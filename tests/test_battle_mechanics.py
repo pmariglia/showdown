@@ -7,6 +7,7 @@ import unittest
 from unittest import mock
 
 import sim.helpers
+from sim.helpers import Move
 from sim.config import ShowdownConfig
 import sim.constants as constants
 from sim.constants import CalcType
@@ -10130,9 +10131,9 @@ class TestBattleMechanics(unittest.TestCase):
         bot_move = "roost"
         opponent_move = "tackle"
         self.state.user.active.moves = [
-            {constants.ID: "tackle", constants.DISABLED: False, constants.CURRENT_PP: 10},
-            {constants.ID: "stringshot", constants.DISABLED: False, constants.CURRENT_PP: 10},
-            {constants.ID: "roost", constants.DISABLED: False, constants.CURRENT_PP: 10},
+            Move('tackle', 10, 10, False),
+            Move('stringshot', 10, 10, False),
+            Move('roost', 10, 10, False),
         ]
         self.state.user.active.item = 'choicescarf'
         instructions = get_all_state_instructions(self.mutator, bot_move, opponent_move)

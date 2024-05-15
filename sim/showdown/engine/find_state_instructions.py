@@ -18,6 +18,7 @@ from .switch_out_moves import switch_out_move_triggered
 from .switch_out_moves import get_best_switch_pokemon
 
 
+
 def lookup_move(move_name):
     if move_name.startswith(constants.SWITCH_STRING + " "):
         split_move = move_name.split(" ")

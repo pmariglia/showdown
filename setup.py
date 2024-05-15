@@ -105,7 +105,7 @@ setup(
     url=URL,
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     #package_dir={"sim": "sim", ""},
-    package_data={"sim": ["sim/resources/*.json", "teams/teams/gen*/*", "resources/*.json"]},
+    package_data={"sim": ["sim/resources/*.json", "teams/teams/gen*/*", "resources/*.json"], "": ["env"]},
     # If your package is a single module, use this instead of 'packages':
     # py_modules=['mypackage'],
 

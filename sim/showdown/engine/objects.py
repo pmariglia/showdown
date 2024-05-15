@@ -4,7 +4,7 @@ import numpy as np
 
 import sim.constants as constants
 import sim.helpers
-from sim.helpers import Stats, Boosts, EVS, IVS
+from sim.helpers import Stats, Boosts, EVS, IVS, Move
 from sim.data import all_move_json
 from sim.helpers import calculate_stats
 from sim import pokedex
@@ -38,39 +38,23 @@ class State:
         self.field = field
         self.trick_room = trick_room
 
-    def get_self_options(self, force_switch):
-        forced_move = self.user.active.forced_move()
+    def get_side_options(self, force_switch, side, opposite):
+        active_mon = side.active
+        forced_move = active_mon.forced_move()
         if forced_move:
             return [forced_move]
 
         if force_switch:
             possible_moves = []
         else:
-            possible_moves = [m[constants.ID] for m in self.user.active.moves if not m[constants.DISABLED]]
+            possible_moves = [m.id for m in active_mon.moves if not m.disabled and m.current_pp > 0]
 
-        if self.user.trapped(self.opponent.active):
+        if side.trapped(opposite.active):
             possible_switches = []
         else:
-            possible_switches = self.user.get_switches()
+            possible_switches = side.get_switches()
 
-        return possible_moves + possible_switches
-
-    def get_opponent_options(self):
-        forced_move = self.opponent.active.forced_move()
-        if forced_move:
-            return [forced_move]
-
-        if self.opponent.active.hp <= 0:
-            possible_moves = []
-        else:
-            possible_moves = [m[constants.ID] for m in self.opponent.active.moves if not m[constants.DISABLED]]
-
-        if self.opponent.trapped(self.user.active):
-            possible_switches = []
-        else:
-            possible_switches = self.opponent.get_switches()
-
-        return possible_moves + possible_switches
+        return possible_moves + possible_switches or [constants.DO_NOTHING_MOVE]
 
     def get_all_options(self):
         force_switch = self.user.active.hp <= 0
@@ -78,25 +62,19 @@ class State:
 
         # double faint or team preview
         if force_switch and wait:
-            user_options = self.get_self_options(force_switch) or [constants.DO_NOTHING_MOVE]
-            opponent_options = self.get_opponent_options() or [constants.DO_NOTHING_MOVE]
+            user_options = self.get_side_options(force_switch, self.user, self.opponent)
+            opponent_options = self.get_side_options(wait, self.opponent, self.user)
             return user_options, opponent_options
 
         if force_switch:
             opponent_options = [constants.DO_NOTHING_MOVE]
         else:
-            opponent_options = self.get_opponent_options()
+            opponent_options = self.get_side_options(wait, self.opponent, self.user)
 
         if wait:
             user_options = [constants.DO_NOTHING_MOVE]
         else:
-            user_options = self.get_self_options(force_switch)
-
-        if not user_options:
-            user_options = [constants.DO_NOTHING_MOVE]
-
-        if not opponent_options:
-            opponent_options = [constants.DO_NOTHING_MOVE]
+            user_options = self.get_side_options(force_switch, self.user, self.opponent)
 
         return user_options, opponent_options
 
@@ -239,31 +217,32 @@ class Pokemon:
             volatile_status=None,
             moves=None
     ):
-        self.id = identifier
-        self.level = level
-        self.types = pokedex[self.id][constants.TYPES]
-        self.ability = ability
-        self.item = item
+        self.id: str = identifier
+        self.level: int = level
+        self.types: [str] = pokedex[self.id][constants.TYPES]
+        self.ability: str = ability
+        self.item: str = item
         base_stats = sim.helpers.BaseStats.from_dict(pokedex[self.id][constants.BASESTATS])
-        self.ivs = ivs
-        self.evs = evs
-        self.stats = Stats.create_stats(base_stats, evs, ivs, nature, level)
-        self.max_hp = self.stats[constants.StatEnum.HITPOINTS]
-        self.hp = self.max_hp
+        self.ivs: IVS = ivs
+        self.evs: EVS = evs
+        self.stats: Stats = Stats.create_stats(base_stats, evs, ivs, nature, level)
+        self.max_hp: int = self.stats[constants.StatEnum.HITPOINTS]
+        self.hp: int = self.max_hp
         if self.id == 'shedinja':
             self.stats[constants.StatEnum.HITPOINTS] = 1
             self.max_hp = 1
-        self.nature = nature
-        self.stat_boosts = Boosts(stat_boosts)
+        self.nature: str = nature
+        self.stat_boosts: Boosts = Boosts(stat_boosts)
         self.status = status
-        self.terastallized = terastallized
-        self.volatile_status = volatile_status or set()
+        self.terastallized: bool = terastallized
+        self.volatile_status: set = volatile_status or set()
         #assert 4 >= len(moves) > 0
-        self.moves = moves
+        self.moves: [Move] = moves
 
         # evaluation relies on a multiplier for the burn status
         # it is calculated here to save time during evaluation
-        self.burn_multiplier = self.calculate_burn_multiplier()
+        self.burn_multiplier = 1
+        #self.burn_multiplier = self.calculate_burn_multiplier()
 
     # TODO: these properties should all be deprecated and future code should use dict access
     @property
@@ -444,16 +423,22 @@ class Pokemon:
 
     @classmethod
     def from_dict(cls, d):
-        evs = sim.helpers.EVS(d.get(constants.EVS, (85,) * 6))
-        ivs = sim.helpers.IVS(d.get(constants.EVS, (31,) * 6))
+        if constants.EVS in d:
+            evs = EVS.from_dict(d[constants.EVS])
+        else:
+            evs = EVS()
+        if constants.IVS in d:
+            ivs = IVS.from_dict(d[constants.IVS])
+        else:
+            ivs = IVS()
         boosts = sim.helpers.Boosts()
         moves = []
         for move in d[constants.MOVES]:
             if isinstance(move, str):
-                pp = int(all_move_json[move]['max_pp'] * 1.6)
+                pp = int(all_move_json[move][constants.PP] * 1.6)
                 moves.append(sim.helpers.Move(move, pp, pp, False))
             else:
-                moves.append(move)
+                moves.append(Move.from_dict(move))
         return Pokemon(
             identifier=d.get(constants.ID, False) or d[constants.NAME],
             level=d[constants.LEVEL],
@@ -488,10 +473,10 @@ class Pokemon:
                 constants.MAXHP: self.max_hp,
                 constants.ABILITY: self.ability,
                 constants.ITEM: self.item,
-                constants.STAT_STRINGS: self.stats,
+                constants.STATS: self.stats,
                 constants.NATURE: self.nature,
                 constants.EVS: self.evs,
-                constants.STAT_BOOST_STRINGS_ALL: self.stat_boosts,
+                'stat boosts': self.stat_boosts,
                 constants.STATUS: self.status,
                 constants.TERASTALLIZED: self.terastallized,
                 constants.VOLATILE_STATUS: list(self.volatile_status),
@@ -558,7 +543,8 @@ class StateMutator:
             constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom,
             constants.MUTATOR_CHANGE_TYPE: self.change_types,
             constants.MUTATOR_CHANGE_ITEM: self.change_item,
-            constants.MUTATOR_CHANGE_STATS: self.change_stats
+            constants.MUTATOR_CHANGE_STATS: self.change_stats,
+            constants.MUTATOR_REMOVE_PP: self.remove_pp,
         }
         self.reverse_instructions = {
             constants.MUTATOR_SWITCH: self.reverse_switch,
@@ -586,7 +572,8 @@ class StateMutator:
             constants.MUTATOR_TOGGLE_TRICKROOM: self.toggle_trickroom,
             constants.MUTATOR_CHANGE_TYPE: self.reverse_change_types,
             constants.MUTATOR_CHANGE_ITEM: self.reverse_change_item,
-            constants.MUTATOR_CHANGE_STATS: self.reverse_change_stats
+            constants.MUTATOR_CHANGE_STATS: self.reverse_change_stats,
+            constants.MUTATOR_REMOVE_PP: self.reverse_remove_pp,
         }
 
     def apply_one(self, instruction):
@@ -603,26 +590,40 @@ class StateMutator:
             method = self.reverse_instructions[instruction[0]]
             method(*instruction[1:])
 
+    def remove_pp(self, side, move_name, amount):
+        side = self.get_side(side)
+        for move in side.active.moves:
+            if move.id == move_name:
+                move.current_pp = max(0, move.current_pp - amount)
+                return
+
+    def reverse_remove_pp(self, side, move_name, amount):
+        side = self.get_side(side)
+        for move in side.active.moves:
+            if move.id == move_name:
+                move.current_pp = min(move.max_pp, move.current_pp + amount)
+                return
+
     def get_side(self, side):
         return getattr(self.state, side)
 
     def disable_move(self, side, move_name):
         side = self.get_side(side)
         try:
-            move = next(filter(lambda x: x[constants.ID] == move_name, side.active.moves))
+            move = next(filter(lambda x: x.id == move_name, side.active.moves))
         except StopIteration:
-            raise ValueError("{} not in pokemon's moves: {}".format(move_name, side.active.moves))
+            raise ValueError(f"{move_name} not in pokemon's moves: {side.active.moves}")
 
-        move[constants.DISABLED] = True
+        move.disabled = True
 
     def enable_move(self, side, move_name):
         side = self.get_side(side)
         try:
-            move = next(filter(lambda x: x[constants.ID] == move_name, side.active.moves))
+            move = next(filter(lambda x: x.id == move_name, side.active.moves))
         except StopIteration:
-            raise ValueError("{} not in pokemon's moves: {}".format(move_name, side.active.moves))
+            raise ValueError(f"{move_name} not in pokemon's moves: {side.active.moves}")
 
-        move[constants.DISABLED] = False
+        move.disabled = False
 
     def switch(self, side, _, switch_pokemon_name):
         # the second parameter to this function is the current active pokemon

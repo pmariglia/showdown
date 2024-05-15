@@ -98,3 +98,4 @@ class _ShowdownConfig:
 
 
 ShowdownConfig = _ShowdownConfig()
+ShowdownConfig.damage_calc_type = constants.CalcType.min_max

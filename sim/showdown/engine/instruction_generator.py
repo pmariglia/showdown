@@ -126,11 +126,11 @@ def get_instructions_from_switch(mutator, attacker, switch_pokemon_name, instruc
     instruction_additions = remove_volatile_status_and_boosts_instructions(attacking_side, attacker)
     mutator.apply(instruction_additions)
 
-    for move in filter(lambda x: x[constants.DISABLED] is True and x[constants.CURRENT_PP], attacking_side.active.moves):
+    for move in filter(lambda x: x.disabled is True and x.current_pp, attacking_side.active.moves):
         remove_disabled_instruction = (
             constants.MUTATOR_ENABLE_MOVE,
             attacker,
-            move[constants.ID]
+            move.id
         )
         mutator.apply_one(remove_disabled_instruction)
         instruction_additions.append(remove_disabled_instruction)
@@ -887,6 +887,17 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
 
     mutator.apply(instruction.instructions)
 
+    # decrease pp
+    for attacker in sides:
+        side = get_side_from_state(mutator.state, attacker)
+        pkmn = side.active
+        move = bot_move if attacker == constants.USER else opponent_move
+        if (constants.SWITCH_STRING not in move and
+            constants.DO_NOTHING_MOVE != (move_used := move[constants.ID])):
+            pp_instruction = (constants.MUTATOR_REMOVE_PP, attacker, move_used, 1)
+            instruction.add_instruction(pp_instruction)
+
+
     # weather damage - sand and hail
     for attacker in sides:
         side = get_side_from_state(mutator.state, attacker)
@@ -1155,11 +1166,11 @@ def get_end_of_turn_instructions(mutator, instruction, bot_move, opponent_move, 
             (pkmn.item in constants.CHOICE_ITEMS or locking_move or pkmn.ability == 'gorillatactics')
         ):
             move_used = move[constants.ID]
-            for m in filter(lambda x: x[constants.ID] != move_used and not x[constants.DISABLED], pkmn.moves):
+            for m in filter(lambda x: x.id != move_used and not x.disabled, pkmn.moves):
                 disable_instruction = (
                     constants.MUTATOR_DISABLE_MOVE,
                     attacker,
-                    m[constants.ID]
+                    m.id
                 )
                 mutator.apply_one(disable_instruction)
                 instruction.add_instruction(disable_instruction)

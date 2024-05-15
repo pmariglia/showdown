@@ -154,6 +154,10 @@ class StatTable:
             self.index = self.lb
             raise StopIteration
 
+    def __repr__(self):
+        return str({constants.StatEnum(i).name: self.stats[i] for i in range(self.lb, self.ub)
+                    if self.stats[i] != self.default_val})
+
     def clamp(self):
         self.stats = np.fmax(self.min_value, np.fmin(self.stats, self.max_value))
 
@@ -168,11 +172,14 @@ class StatTable:
     @classmethod
     def from_dict(cls, temp):
         to_return = cls(None)
+        if isinstance(temp, tuple | list):
+            to_return[cls.lb:cls.ub] = temp
+            return to_return
         if temp is None:
             return to_return
         for k, v in temp.items():
             if not isinstance(k, constants.StatEnum):
-                k = constants.STAT_LOOKUP[k]
+                k = constants.STAT_AND_ABBR_LOOKUP[k]
             to_return[k] = v
         return to_return
 
@@ -258,6 +265,20 @@ class Move:
     current_pp: int
     max_pp: int
     disabled: bool
+
+    @classmethod
+    def from_dict(cls, data):
+        to_return = Move('', 0, 0, False)
+        to_return.id = data[constants.ID]
+        to_return.max_pp = data.get(constants.PP, int(1.6 * all_move_json[to_return.id][constants.PP]))
+        to_return.current_pp = data.get(constants.CURRENT_PP, to_return.max_pp)
+        to_return.disabled = data.get(constants.DISABLED, False)
+        return to_return
+
+    def __eq__(self, other):
+        if isinstance(other, str):
+            return other == self.id
+        return self.id == other.id
 
 
 def get_pokemon_info_from_condition(condition_string: str):
