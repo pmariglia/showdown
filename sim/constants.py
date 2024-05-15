@@ -81,6 +81,8 @@ MUTATOR_CHANGE_TYPE = "change_type"
 MUTATOR_CHANGE_ITEM = "change_item"
 MUTATOR_CHANGE_STATS = "change_stats"
 MUTATOR_REMOVE_PP = "remove_pp"
+MUTATOR_SUBSTITUTE = "sub"
+MUTATOR_DAMAGE_SUBSTITUTE = "sub"
 
 
 DAMAGE = 'damage'

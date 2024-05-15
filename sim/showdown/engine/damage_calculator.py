@@ -10,7 +10,7 @@ from sim.data import pokedex
 
 rng = np.random.default_rng()
 
-pokemon_type_indicies = {
+pokemon_type_indices = {
     'normal': 0,
     'fire': 1,
     'water': 2,
@@ -219,9 +219,9 @@ def get_damage_rolls(damage, calc_type):
 
 def type_effectiveness_modifier(attacking_move_type, defending_types):
     modifier = 1
-    attacking_type_index = pokemon_type_indicies[attacking_move_type]
+    attacking_type_index = pokemon_type_indices[attacking_move_type]
     for pkmn_type in defending_types:
-        defending_type_index = pokemon_type_indicies[pkmn_type]
+        defending_type_index = pokemon_type_indices[pkmn_type]
         modifier *= damage_multipication_array[attacking_type_index][defending_type_index]
 
     return modifier

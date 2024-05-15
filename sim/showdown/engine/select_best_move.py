@@ -57,11 +57,11 @@ def pick_safest(score_lookup, remove_guaranteed=False):
 
 
 def move_item_to_front_of_list(l, item):
-    all_indicies = list(range(len(l)))
+    all_indices = list(range(len(l)))
     this_index = l.index(item)
-    all_indicies.remove(this_index)
-    all_indicies.insert(0, this_index)
-    return [l[i] for i in all_indicies]
+    all_indices.remove(this_index)
+    all_indices.insert(0, this_index)
+    return [l[i] for i in all_indices]
 
 
 def get_payoff_matrix(mutator, user_options, opponent_options, depth=2, prune=True):

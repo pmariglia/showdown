@@ -200,7 +200,6 @@ class EVS(StatTable):
         to_return.stats = np.fmax(self.min_value, np.fmin(to_return.stats, self.max_value))
 
 
-
 class IVS(StatTable):
     ub = 6
     lb = 0

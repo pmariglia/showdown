@@ -191,6 +191,7 @@ class Pokemon:
         'ability',
         'item',
         'stats',
+        'base_stats',
         'nature',
         'evs',
         'ivs',
@@ -199,7 +200,8 @@ class Pokemon:
         'volatile_status',
         'moves',
         'terastallized',
-        'burn_multiplier'
+        'burn_multiplier',
+        'substitute_hp'
     )
 
     def __init__(
@@ -222,10 +224,10 @@ class Pokemon:
         self.types: [str] = pokedex[self.id][constants.TYPES]
         self.ability: str = ability
         self.item: str = item
-        base_stats = sim.helpers.BaseStats.from_dict(pokedex[self.id][constants.BASESTATS])
+        self.base_stats = sim.helpers.BaseStats.from_dict(pokedex[self.id][constants.BASESTATS])
         self.ivs: IVS = ivs
         self.evs: EVS = evs
-        self.stats: Stats = Stats.create_stats(base_stats, evs, ivs, nature, level)
+        self.stats: Stats = Stats.create_stats(self.base_stats, evs, ivs, nature, level)
         self.max_hp: int = self.stats[constants.StatEnum.HITPOINTS]
         self.hp: int = self.max_hp
         if self.id == 'shedinja':
@@ -236,6 +238,7 @@ class Pokemon:
         self.status = status
         self.terastallized: bool = terastallized
         self.volatile_status: set = volatile_status or set()
+        self.substitute_hp = 0
         #assert 4 >= len(moves) > 0
         self.moves: [Move] = moves
 
@@ -521,6 +524,8 @@ class StateMutator:
             constants.MUTATOR_SWITCH: self.switch,
             constants.MUTATOR_APPLY_VOLATILE_STATUS: self.apply_volatile_status,
             constants.MUTATOR_REMOVE_VOLATILE_STATUS: self.remove_volatile_status,
+            constants.MUTATOR_SUBSTITUTE: self.create_substitute,
+            constants.MUTATOR_DAMAGE_SUBSTITUTE: self.damage_substitute,
             constants.MUTATOR_DAMAGE: self.damage,
             constants.MUTATOR_HEAL: self.heal,
             constants.MUTATOR_BOOST: self.boost,
@@ -550,6 +555,8 @@ class StateMutator:
             constants.MUTATOR_SWITCH: self.reverse_switch,
             constants.MUTATOR_APPLY_VOLATILE_STATUS: self.remove_volatile_status,
             constants.MUTATOR_REMOVE_VOLATILE_STATUS: self.apply_volatile_status,
+            constants.MUTATOR_SUBSTITUTE: self.remove_substitute,
+            constants.MUTATOR_DAMAGE_SUBSTITUTE: self.un_damage_substitute,
             constants.MUTATOR_DAMAGE: self.heal,
             constants.MUTATOR_HEAL: self.damage,
             constants.MUTATOR_BOOST: self.unboost,
@@ -639,6 +646,28 @@ class StateMutator:
     def apply_volatile_status(self, side, volatile_status):
         side = self.get_side(side)
         side.active.volatile_status.add(volatile_status)
+
+    def create_substitute(self, side, hp):
+        side = self.get_side(side)
+        side.active.volatile_status.add(constants.SUBSTITUTE)
+        side.active.substitute_hp = hp
+
+    def remove_substitute(self, side, _):
+        side = self.get_side(side)
+        side.active.volatile_status.remove(constants.SUBSTITUTE)
+
+    def damage_substitute(self, side, hp):
+        side = self.get_side(side)
+        side.active.substitute_hp = max(0, side.active.substitute_hp - hp)
+        if side.active.substitute_hp == 0:
+            side.active.volatile_status.remove(constants.SUBSTITUTE)
+
+    def un_damage_substitute(self, side, hp):
+        side = self.get_side(side)
+        if constants.SUBSTITUTE not in side.active.volatile_status:
+            side.active.volatile_status.add(constants.SUBSTITUTE)
+            side.active.substitute_hp = 0
+        side.active.substitute_hp += hp
 
     def remove_volatile_status(self, side, volatile_status):
         side = self.get_side(side)

@@ -95,21 +95,30 @@ def get_instructions_from_volatile_statuses(mutator, volatile_status, attacker, 
         return [instruction]
 
     if can_be_volatile_statused(side, volatile_status, first_move) and volatile_status not in side.active.volatile_status:
-        apply_status_instruction = (
-            constants.MUTATOR_APPLY_VOLATILE_STATUS,
-            affected_side,
-            volatile_status
-        )
-        mutator.reverse(instruction.instructions)
-        instruction.add_instruction(apply_status_instruction)
         if volatile_status == constants.SUBSTITUTE:
+            hp = np.floor(side.active.maxhp * 0.25)
             instruction.add_instruction(
                 (
                     constants.MUTATOR_DAMAGE,
                     affected_side,
-                    side.active.maxhp * 0.25
+                    hp
                 )
             )
+            instruction.add_instruction(
+                (
+                    constants.MUTATOR_APPLY_STATUS,
+                    affected_side,
+                    hp
+                )
+            )
+        else:
+            apply_status_instruction = (
+                constants.MUTATOR_APPLY_VOLATILE_STATUS,
+                affected_side,
+                volatile_status
+            )
+            mutator.reverse(instruction.instructions)
+            instruction.add_instruction(apply_status_instruction)
     else:
         mutator.reverse(instruction.instructions)
 
@@ -387,18 +396,14 @@ def get_instructions_from_damage(mutator, defender, damage, accuracy, attacking_
     hit_sub = False
     if percent_hit > 0:
         if constants.SUBSTITUTE in damage_side.active.volatile_status and constants.SOUND not in move_flags and attacker_side.active.ability != 'infiltrator':
-            hit_sub = True
-            if damage >= damage_side.active.maxhp * 0.25:
-                actual_damage = damage_side.active.maxhp * 0.25
-                instruction_additions.append(
-                    (
-                        constants.MUTATOR_REMOVE_VOLATILE_STATUS,
-                        defender,
-                        constants.SUBSTITUTE
-                    )
+            actual_damage = max(damage, damage_side.active.substitute_hp)
+            instruction_additions.append(
+                (
+                    constants.MUTATOR_DAMAGE_SUBSTITUTE,
+                    defender,
+                    actual_damage
                 )
-            else:
-                actual_damage = damage
+            )
         else:
             # dont drop hp below 0 (min() statement), and dont overheal (max() statement)
             actual_damage = max(min(damage, damage_side.active.hp), -1*(damage_side.active.maxhp - damage_side.active.hp))
