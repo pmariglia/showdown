@@ -2,47 +2,48 @@ import unittest
 import json
 from collections import defaultdict
 
-import constants
-from showdown.engine.helpers import calculate_stats
+import sim.constants as constants
+import sim.helpers
+from sim.helpers import calculate_stats
 
-from showdown.battle import Battle
-from showdown.battle import Pokemon
-from showdown.battle import Move
-from showdown.battle import LastUsedMove
-from showdown.battle import DamageDealt
+from sim.showdown.battle import Battle
+from sim.showdown.battle import Pokemon
+from sim.showdown.battle import Move
+from sim.showdown.battle import LastUsedMove
+from sim.showdown.battle import DamageDealt
 
-from showdown.battle_modifier import request
-from showdown.battle_modifier import terastallize
-from showdown.battle_modifier import activate
-from showdown.battle_modifier import prepare
-from showdown.battle_modifier import switch_or_drag
-from showdown.battle_modifier import clearallboost
-from showdown.battle_modifier import heal_or_damage
-from showdown.battle_modifier import swapsideconditions
-from showdown.battle_modifier import move
-from showdown.battle_modifier import boost
-from showdown.battle_modifier import unboost
-from showdown.battle_modifier import status
-from showdown.battle_modifier import weather
-from showdown.battle_modifier import curestatus
-from showdown.battle_modifier import start_volatile_status
-from showdown.battle_modifier import end_volatile_status
-from showdown.battle_modifier import set_ability
-from showdown.battle_modifier import set_opponent_ability_from_ability_tag
-from showdown.battle_modifier import form_change
-from showdown.battle_modifier import zpower
-from showdown.battle_modifier import clearnegativeboost
-from showdown.battle_modifier import check_speed_ranges
-from showdown.battle_modifier import check_choicescarf
-from showdown.battle_modifier import check_heavydutyboots
-from showdown.battle_modifier import get_damage_dealt
-from showdown.battle_modifier import singleturn
-from showdown.battle_modifier import transform
-from showdown.battle_modifier import update_battle
-from showdown.battle_modifier import upkeep
-from showdown.battle_modifier import inactive
+from sim.showdown.battle_modifier import request
+from sim.showdown.battle_modifier import terastallize
+from sim.showdown.battle_modifier import activate
+from sim.showdown.battle_modifier import prepare
+from sim.showdown.battle_modifier import switch_or_drag
+from sim.showdown.battle_modifier import clearallboost
+from sim.showdown.battle_modifier import heal_or_damage
+from sim.showdown.battle_modifier import swapsideconditions
+from sim.showdown.battle_modifier import move
+from sim.showdown.battle_modifier import boost
+from sim.showdown.battle_modifier import unboost
+from sim.showdown.battle_modifier import status
+from sim.showdown.battle_modifier import weather
+from sim.showdown.battle_modifier import curestatus
+from sim.showdown.battle_modifier import start_volatile_status
+from sim.showdown.battle_modifier import end_volatile_status
+from sim.showdown.battle_modifier import set_ability
+from sim.showdown.battle_modifier import set_opponent_ability_from_ability_tag
+from sim.showdown.battle_modifier import form_change
+from sim.showdown.battle_modifier import zpower
+from sim.showdown.battle_modifier import clearnegativeboost
+from sim.showdown.battle_modifier import check_speed_ranges
+from sim.showdown.battle_modifier import check_choicescarf
+from sim.showdown.battle_modifier import check_heavydutyboots
+from sim.showdown.battle_modifier import get_damage_dealt
+from sim.showdown.battle_modifier import singleturn
+from sim.showdown.battle_modifier import transform
+from sim.showdown.battle_modifier import update_battle
+from sim.showdown.battle_modifier import upkeep
+from sim.showdown.battle_modifier import inactive
 
-from showdown.engine.objects import boost_multiplier_lookup
+from sim.showdown.engine.objects import boost_multiplier_lookup
 
 
 # so we can instantiate a Battle object for testing
@@ -439,21 +440,21 @@ class TestSwitchOrDrag(unittest.TestCase):
         self.assertEqual(expected_pokemon, self.battle.opponent.active)
 
     def test_existing_boosts_on_opponents_active_pokemon_are_cleared_when_switching(self):
-        self.opponent_active.boosts[constants.ATTACK] = 1
-        self.opponent_active.boosts[constants.SPEED] = 1
+        self.opponent_active.boosts[constants.StatEnum.ATTACK] = 1
+        self.opponent_active.boosts[constants.StatEnum.SPEED] = 1
         split_msg = ['', 'switch', 'p2a: weedle', 'Weedle, L100, M', '100/100']
         switch_or_drag(self.battle, split_msg)
 
-        self.assertEqual({}, self.opponent_active.boosts)
+        self.assertEqual(sim.helpers.Boosts(), self.opponent_active.boosts)
 
     def test_existing_boosts_on_bots_active_pokemon_are_cleared_when_switching(self):
         pkmn = self.battle.user.active
-        pkmn.boosts[constants.ATTACK] = 1
-        pkmn.boosts[constants.SPEED] = 1
+        pkmn.boosts[constants.StatEnum.ATTACK] = 1
+        pkmn.boosts[constants.StatEnum.SPEED] = 1
         split_msg = ['', 'switch', 'p1a: pidgey', 'Pidgey, L100, M', '100/100']
         switch_or_drag(self.battle, split_msg)
 
-        self.assertEqual({}, pkmn.boosts)
+        self.assertEqual(sim.helpers.Boosts(), pkmn.boosts)
 
     def test_switching_into_the_same_pokemon_does_not_put_that_pokemon_in_the_reserves(self):
         # this is specifically for Zororak
@@ -500,12 +501,13 @@ class TestSwitchOrDrag(unittest.TestCase):
     def test_ditto_switching_resets_stats(self):
         ditto = Pokemon('ditto', 100)
         ditto.stats = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 2,
-            constants.SPECIAL_ATTACK: 3,
-            constants.SPECIAL_DEFENSE: 4,
-            constants.SPEED: 5,
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.DEFENSE: 2,
+            constants.StatEnum.SPECIAL_ATTACK: 3,
+            constants.StatEnum.SPECIAL_DEFENSE: 4,
+            constants.StatEnum.SPEED: 5,
         }
+        ditto.stats = sim.helpers.Stats.from_dict(ditto.stats)
         ditto.volatile_statuses.append(constants.TRANSFORM)
         self.battle.opponent.active = ditto
 
@@ -515,18 +517,18 @@ class TestSwitchOrDrag(unittest.TestCase):
         if self.battle.opponent.reserve[0] != ditto:
             self.fail("Ditto was not moved to reserves")
 
-        expected_stats = calculate_stats(ditto.base_stats, ditto.level)
+        expected_stats = calculate_stats(ditto.base_stats, ditto.level, ditto.ivs, ditto.evs)
 
         self.assertEqual(expected_stats, ditto.stats)
 
     def test_ditto_switching_resets_boosts(self):
         ditto = Pokemon('ditto', 100)
         ditto.boosts = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 2,
-            constants.SPECIAL_ATTACK: 3,
-            constants.SPECIAL_DEFENSE: 4,
-            constants.SPEED: 5,
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.DEFENSE: 2,
+            constants.StatEnum.SPECIAL_ATTACK: 3,
+            constants.StatEnum.SPECIAL_DEFENSE: 4,
+            constants.StatEnum.SPEED: 5,
         }
         ditto.volatile_statuses.append(constants.TRANSFORM)
         self.battle.opponent.active = ditto
@@ -771,38 +773,44 @@ class TestClearAllBoosts(unittest.TestCase):
     def test_clears_bots_boosts(self):
         split_msg = ['', '-clearallboost']
         self.battle.user.active.boosts = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 1
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.DEFENSE: 1
         }
+        self.battle.user.active.boosts = sim.helpers.Boosts.from_dict(self.battle.user.active.boosts)
         clearallboost(self.battle, split_msg)
-        self.assertEqual(0, self.battle.user.active.boosts[constants.ATTACK])
-        self.assertEqual(0, self.battle.user.active.boosts[constants.DEFENSE])
+        self.assertEqual(0, self.battle.user.active.boosts[constants.StatEnum.ATTACK])
+        self.assertEqual(0, self.battle.user.active.boosts[constants.StatEnum.DEFENSE])
 
     def test_clears_opponents_boosts(self):
         split_msg = ['', '-clearallboost']
         self.battle.opponent.active.boosts = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 1
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.DEFENSE: 1
         }
+        self.battle.opponent.active.boosts = sim.helpers.Boosts.from_dict(self.battle.opponent.active.boosts)
+
         clearallboost(self.battle, split_msg)
-        self.assertEqual(0, self.battle.opponent.active.boosts[constants.ATTACK])
-        self.assertEqual(0, self.battle.opponent.active.boosts[constants.DEFENSE])
+        self.assertEqual(0, self.battle.opponent.active.boosts[constants.StatEnum.ATTACK])
+        self.assertEqual(0, self.battle.opponent.active.boosts[constants.StatEnum.DEFENSE])
 
     def test_clears_opponents_and_botsboosts(self):
         split_msg = ['', '-clearallboost']
         self.battle.user.active.boosts = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 1
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.DEFENSE: 1
         }
         self.battle.opponent.active.boosts = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 1
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.DEFENSE: 1
         }
+        self.battle.opponent.active.boosts = sim.helpers.Boosts.from_dict(self.battle.opponent.active.boosts)
+        self.battle.user.active.boosts = sim.helpers.Boosts.from_dict(self.battle.user.active.boosts)
+
         clearallboost(self.battle, split_msg)
-        self.assertEqual(0, self.battle.user.active.boosts[constants.ATTACK])
-        self.assertEqual(0, self.battle.user.active.boosts[constants.DEFENSE])
-        self.assertEqual(0, self.battle.opponent.active.boosts[constants.ATTACK])
-        self.assertEqual(0, self.battle.opponent.active.boosts[constants.DEFENSE])
+        self.assertEqual(0, self.battle.user.active.boosts[constants.StatEnum.ATTACK])
+        self.assertEqual(0, self.battle.user.active.boosts[constants.StatEnum.DEFENSE])
+        self.assertEqual(0, self.battle.opponent.active.boosts[constants.StatEnum.ATTACK])
+        self.assertEqual(0, self.battle.opponent.active.boosts[constants.StatEnum.DEFENSE])
 
 
 class TestMove(unittest.TestCase):
@@ -1063,9 +1071,9 @@ class TestBoostAndUnboost(unittest.TestCase):
         boost(self.battle, split_msg)
 
         expected_boosts = {
-            constants.ATTACK: 1
+            constants.StatEnum.ATTACK: 1
         }
-
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
         self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
 
     def test_unboost_works_properly_on_opponent(self):
@@ -1073,63 +1081,63 @@ class TestBoostAndUnboost(unittest.TestCase):
         unboost(self.battle, split_msg)
 
         expected_boosts = {
-            constants.ATTACK: -1
+            constants.StatEnum.ATTACK: -1
         }
-
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
         self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
 
     def test_unboost_does_not_lower_below_negative_6(self):
-        self.battle.opponent.active.boosts[constants.ATTACK] = -6
+        self.battle.opponent.active.boosts[constants.StatEnum.ATTACK] = -6
         split_msg = ['', 'unboost', 'p2a: Weedle', 'atk', '2']
         unboost(self.battle, split_msg)
 
         expected_boosts = {
-            constants.ATTACK: -6
+            constants.StatEnum.ATTACK: -6
         }
-
-        self.assertEqual(expected_boosts, dict(self.battle.opponent.active.boosts))
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
+        self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
 
     def test_unboost_lowers_one_when_it_hits_the_limit(self):
-        self.battle.opponent.active.boosts[constants.ATTACK] = -5
+        self.battle.opponent.active.boosts[constants.StatEnum.ATTACK] = -5
         split_msg = ['', 'unboost', 'p2a: Weedle', 'atk', '2']
         unboost(self.battle, split_msg)
 
         expected_boosts = {
-            constants.ATTACK: -6
+            constants.StatEnum.ATTACK: -6
         }
 
-        self.assertEqual(expected_boosts, dict(self.battle.opponent.active.boosts))
+        self.assertEqual(expected_boosts, self.battle.opponent.active.boosts.to_dict())
 
     def test_boost_does_not_lower_below_negative_6(self):
-        self.battle.opponent.active.boosts[constants.ATTACK] = 6
+        self.battle.opponent.active.boosts[constants.StatEnum.ATTACK] = 6
         split_msg = ['', 'boost', 'p2a: Weedle', 'atk', '2']
         boost(self.battle, split_msg)
 
         expected_boosts = {
-            constants.ATTACK: 6
+            constants.StatEnum.ATTACK: 6
         }
 
-        self.assertEqual(expected_boosts, dict(self.battle.opponent.active.boosts))
+        self.assertEqual(expected_boosts, self.battle.opponent.active.boosts.to_dict())
 
     def test_boost_lowers_one_when_it_hits_the_limit(self):
-        self.battle.opponent.active.boosts[constants.ATTACK] = 5
+        self.battle.opponent.active.boosts[constants.StatEnum.ATTACK] = 5
         split_msg = ['', 'boost', 'p2a: Weedle', 'atk', '2']
         boost(self.battle, split_msg)
 
         expected_boosts = {
-            constants.ATTACK: 6
+            constants.StatEnum.ATTACK: 6
         }
 
-        self.assertEqual(expected_boosts, dict(self.battle.opponent.active.boosts))
+        self.assertEqual(expected_boosts, self.battle.opponent.active.boosts.to_dict())
 
     def test_unboost_works_properly_on_user(self):
         split_msg = ['', 'boost', 'p1a: Caterpie', 'atk', '1']
         unboost(self.battle, split_msg)
 
         expected_boosts = {
-            constants.ATTACK: -1
+            constants.StatEnum.ATTACK: -1
         }
-
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
         self.assertEqual(expected_boosts, self.battle.user.active.boosts)
 
     def test_user_boosts_updates_properly(self):
@@ -1137,9 +1145,9 @@ class TestBoostAndUnboost(unittest.TestCase):
         boost(self.battle, split_msg)
 
         expected_boosts = {
-            constants.ATTACK: 1
+            constants.StatEnum.ATTACK: 1
         }
-
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
         self.assertEqual(expected_boosts, self.battle.user.active.boosts)
 
     def test_multiple_boost_properly_updates(self):
@@ -1148,8 +1156,9 @@ class TestBoostAndUnboost(unittest.TestCase):
         boost(self.battle, split_msg)
 
         expected_boosts = {
-            constants.ATTACK: 2
+            constants.StatEnum.ATTACK: 2
         }
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
 
         self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
 
@@ -1569,12 +1578,12 @@ class TestFormChange(unittest.TestCase):
     def test_preserves_boosts(self):
         self.battle.opponent.active = Pokemon('meloetta', 100)
         self.battle.opponent.active.boosts = {
-            constants.ATTACK: 2
+            constants.StatEnum.ATTACK: 2
         }
         split_msg = ['', '-formechange', 'p2a: Meloetta', 'Meloetta - Pirouette', '[msg]']
         form_change(self.battle, split_msg)
 
-        self.assertEqual(2, self.battle.opponent.active.boosts[constants.ATTACK])
+        self.assertEqual(2, self.battle.opponent.active.boosts[constants.StatEnum.ATTACK])
 
     def test_preserves_status(self):
         self.battle.opponent.active = Pokemon('meloetta', 100)
@@ -1657,51 +1666,59 @@ class TestClearNegativeBoost(unittest.TestCase):
 
     def test_clears_negative_boosts(self):
         self.battle.opponent.active.boosts = {
-            constants.ATTACK: -1
+            constants.StatEnum.ATTACK: -1
         }
+        self.battle.opponent.active.boosts = sim.helpers.Boosts.from_dict(self.battle.opponent.active.boosts)
+
         split_msg = ['-clearnegativeboost', 'p2a: caterpie', '[silent]']
         clearnegativeboost(self.battle, split_msg)
 
-        self.assertEqual(0, self.battle.opponent.active.boosts[constants.ATTACK])
+        self.assertEqual(0, self.battle.opponent.active.boosts[constants.StatEnum.ATTACK])
 
     def test_clears_multiple_negative_boosts(self):
         self.battle.opponent.active.boosts = {
-            constants.ATTACK: -1,
-            constants.SPEED: -1
+            constants.StatEnum.ATTACK: -1,
+            constants.StatEnum.SPEED: -1
         }
+        self.battle.opponent.active.boosts = sim.helpers.Boosts.from_dict(self.battle.opponent.active.boosts)
+
         split_msg = ['-clearnegativeboost', 'p2a: caterpie', '[silent]']
         clearnegativeboost(self.battle, split_msg)
 
-        self.assertEqual(0, self.battle.opponent.active.boosts[constants.ATTACK])
-        self.assertEqual(0, self.battle.opponent.active.boosts[constants.SPEED])
+        self.assertEqual(0, self.battle.opponent.active.boosts[constants.StatEnum.ATTACK])
+        self.assertEqual(0, self.battle.opponent.active.boosts[constants.StatEnum.SPEED])
 
     def test_does_not_clear_positive_boost(self):
         self.battle.opponent.active.boosts = {
-            constants.ATTACK: 1
+            constants.StatEnum.ATTACK: 1
         }
+        self.battle.opponent.active.boosts = sim.helpers.Boosts.from_dict(self.battle.opponent.active.boosts)
         split_msg = ['-clearnegativeboost', 'p2a: caterpie', '[silent]']
         clearnegativeboost(self.battle, split_msg)
 
-        self.assertEqual(1, self.battle.opponent.active.boosts[constants.ATTACK])
+        self.assertEqual(1, self.battle.opponent.active.boosts[constants.StatEnum.ATTACK])
 
     def test_clears_only_negative_boosts(self):
         self.battle.opponent.active.boosts = {
-            constants.ATTACK: 1,
-            constants.SPECIAL_ATTACK: 1,
-            constants.SPEED: 1,
-            constants.DEFENSE: -1,
-            constants.SPECIAL_DEFENSE: -1
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.SPECIAL_ATTACK: 1,
+            constants.StatEnum.SPEED: 1,
+            constants.StatEnum.DEFENSE: -1,
+            constants.StatEnum.SPECIAL_DEFENSE: -1
         }
+        self.battle.opponent.active.boosts = sim.helpers.Boosts.from_dict(self.battle.opponent.active.boosts)
+
         split_msg = ['-clearnegativeboost', 'p2a: caterpie', '[silent]']
         clearnegativeboost(self.battle, split_msg)
 
         expected_boosts = {
-            constants.ATTACK: 1,
-            constants.SPECIAL_ATTACK: 1,
-            constants.SPEED: 1,
-            constants.DEFENSE: 0,
-            constants.SPECIAL_DEFENSE: 0
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.SPECIAL_ATTACK: 1,
+            constants.StatEnum.SPEED: 1,
+            constants.StatEnum.DEFENSE: 0,
+            constants.StatEnum.SPECIAL_DEFENSE: 0
         }
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
 
         self.assertEqual(expected_boosts, self.battle.opponent.active.boosts)
 
@@ -1919,20 +1936,22 @@ class TestTransform(unittest.TestCase):
         split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Charmander', '[from] ability: Imposter']
 
         expected_stats = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 2,
-            constants.SPECIAL_ATTACK: 3,
-            constants.SPECIAL_DEFENSE: 4,
-            constants.SPEED: 5
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.DEFENSE: 2,
+            constants.StatEnum.SPECIAL_ATTACK: 3,
+            constants.StatEnum.SPECIAL_DEFENSE: 4,
+            constants.StatEnum.SPEED: 5
         }
 
         expected_boosts = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 2,
-            constants.SPECIAL_ATTACK: 3,
-            constants.SPECIAL_DEFENSE: 4,
-            constants.SPEED: 5,
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.DEFENSE: 2,
+            constants.StatEnum.SPECIAL_ATTACK: 3,
+            constants.StatEnum.SPECIAL_DEFENSE: 4,
+            constants.StatEnum.SPEED: 5,
         }
+        expected_stats = sim.helpers.Stats.from_dict(expected_stats)
+        expected_boosts = sim.helpers.Boosts.from_dict(expected_boosts)
 
         expected_ability = 'blaze'
         expected_moves = [
@@ -1966,19 +1985,19 @@ class TestTransform(unittest.TestCase):
         split_msg = ['', '-transform', 'p2a: SomeNickname', 'p1a: SomeOtherNickname', '[from] ability: Imposter']
 
         expected_stats = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 2,
-            constants.SPECIAL_ATTACK: 3,
-            constants.SPECIAL_DEFENSE: 4,
-            constants.SPEED: 5
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.DEFENSE: 2,
+            constants.StatEnum.SPECIAL_ATTACK: 3,
+            constants.StatEnum.SPECIAL_DEFENSE: 4,
+            constants.StatEnum.SPEED: 5
         }
 
         expected_boosts = {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 2,
-            constants.SPECIAL_ATTACK: 3,
-            constants.SPECIAL_DEFENSE: 4,
-            constants.SPEED: 5,
+            constants.StatEnum.ATTACK: 1,
+            constants.StatEnum.DEFENSE: 2,
+            constants.StatEnum.SPECIAL_ATTACK: 3,
+            constants.StatEnum.SPECIAL_DEFENSE: 4,
+            constants.StatEnum.SPEED: 5,
         }
 
         expected_ability = 'blaze'
@@ -1991,7 +2010,8 @@ class TestTransform(unittest.TestCase):
         expected_types = [
             'fire'
         ]
-
+        expected_stats = sim.helpers.Stats.from_dict(expected_stats)
+        expected_boosts = sim.helpers.Stats.from_dict(expected_boosts)
         # the charmander is active when the switch occurs
         # the charmander pokemon from the request json should be used for stats
         self.battle.user.active = Pokemon('Charmander', 100)
@@ -2016,16 +2036,17 @@ class TestTransform(unittest.TestCase):
             self.fail("Stats were equal before transform")
 
         expected_stats = {
-            constants.ATTACK: 103,
-            constants.DEFENSE: 214,
-            constants.SPECIAL_ATTACK: 118,
-            constants.SPECIAL_DEFENSE: 132,
-            constants.SPEED: 132
+            constants.StatEnum.ATTACK: 103,
+            constants.StatEnum.DEFENSE: 214,
+            constants.StatEnum.SPECIAL_ATTACK: 118,
+            constants.StatEnum.SPECIAL_DEFENSE: 132,
+            constants.StatEnum.SPEED: 132
         }
 
         transform(self.battle, split_msg)
-
-        self.assertEqual(expected_stats, self.battle.opponent.active.stats)
+        d = self.battle.opponent.active.stats.to_dict()
+        del d[sim.constants.StatEnum.HITPOINTS]
+        self.assertEqual(expected_stats, d)
 
     def test_transform_sets_ability_to_opposing_pokemons_ability(self):
         self.battle.user.active.ability = self.user_active_ability
@@ -2065,14 +2086,8 @@ class TestTransform(unittest.TestCase):
         self.assertEqual(self.battle.user.active.types, self.battle.opponent.active.types)
 
     def test_transform_sets_boosts_to_opposing_pokemons_boosts(self):
-        self.battle.user.active.boosts = defaultdict(lambda: 0, {
-            constants.ATTACK: 1,
-            constants.DEFENSE: 2,
-            constants.SPECIAL_ATTACK: 3,
-            constants.SPECIAL_DEFENSE: 4,
-            constants.SPEED: 5,
-        })
-        self.battle.opponent.active.boosts = {}
+        self.battle.user.active.boosts = sim.helpers.Boosts([1,2,3,4,5,0,0])
+        self.battle.opponent.active.boosts = sim.helpers.Boosts()
 
         split_msg = ['', '-transform', 'p2a: Ditto', 'p1a: Weedle', '[from] ability: Imposter']
 
@@ -2180,7 +2195,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
     def test_sets_minspeed_when_opponent_goes_first(self):
         # opponent should have min speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2189,11 +2204,11 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
         check_speed_ranges(self.battle, messages)
 
-        self.assertEqual(self.battle.user.active.stats[constants.SPEED], self.battle.opponent.active.speed_range.min)
+        self.assertEqual(self.battle.user.active.stats[constants.StatEnum.SPEED], self.battle.opponent.active.speed_range.min)
 
     def test_sets_maxspeed_when_opponent_goes_first_in_trickroom(self):
         # opponent should have min speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
         self.battle.trick_room = True
 
         messages = [
@@ -2203,11 +2218,11 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
         check_speed_ranges(self.battle, messages)
 
-        self.assertEqual(self.battle.user.active.stats[constants.SPEED], self.battle.opponent.active.speed_range.max)
+        self.assertEqual(self.battle.user.active.stats[constants.StatEnum.SPEED], self.battle.opponent.active.speed_range.max)
 
     def test_nothing_happens_with_priority_move_in_trickroom(self):
         # opponent should have min speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
         self.battle.trick_room = True
 
         messages = [
@@ -2222,7 +2237,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
     def test_accounts_for_paralysis_when_calculating_speed_range(self):
         # opponent should have min speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
         self.battle.opponent.active.status = constants.PARALYZED
 
         messages = [
@@ -2233,13 +2248,13 @@ class TestCheckSpeedRanges(unittest.TestCase):
         check_speed_ranges(self.battle, messages)
 
         # bot_speed * 2 should be the minspeed it has b/c it went first with paralysis
-        expected_min_speed = int(self.battle.user.active.stats[constants.SPEED] * 2)
+        expected_min_speed = int(self.battle.user.active.stats[constants.StatEnum.SPEED] * 2)
 
         self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
 
     def test_accounts_for_paralysis_on_bots_side_when_calculating_speed_range(self):
         # opponent should have min speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
         self.battle.user.active.status = constants.PARALYZED
 
         messages = [
@@ -2250,13 +2265,13 @@ class TestCheckSpeedRanges(unittest.TestCase):
         check_speed_ranges(self.battle, messages)
 
         # bot_speed / 2 should be the minspeed it has b/c it went first with paralysis
-        expected_min_speed = int(self.battle.user.active.stats[constants.SPEED] / 2)
+        expected_min_speed = int(self.battle.user.active.stats[constants.StatEnum.SPEED] / 2)
 
         self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
 
     def test_accounts_for_tailwind_on_opponent_side_when_calculating_speed_ranges(self):
         # opponent should have min speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 300
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 300
         self.battle.opponent.side_conditions[constants.TAILWIND] = 1
 
         messages = [
@@ -2267,13 +2282,13 @@ class TestCheckSpeedRanges(unittest.TestCase):
         check_speed_ranges(self.battle, messages)
 
         # bot_speed / 2 should be the minspeed it has b/c it went first with tailwind up
-        expected_min_speed = int(self.battle.user.active.stats[constants.SPEED] / 2)
+        expected_min_speed = int(self.battle.user.active.stats[constants.StatEnum.SPEED] / 2)
 
         self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
 
     def test_accounts_for_tailwind_on_bot_side_when_calculating_speed_ranges(self):
         # opponent should have min speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 300
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 300
         self.battle.user.side_conditions[constants.TAILWIND] = 1
 
         messages = [
@@ -2284,13 +2299,13 @@ class TestCheckSpeedRanges(unittest.TestCase):
         check_speed_ranges(self.battle, messages)
 
         # bot_speed * 2 should be the minspeed it has b/c it went first with tailwind up
-        expected_min_speed = int(self.battle.user.active.stats[constants.SPEED] * 2)
+        expected_min_speed = int(self.battle.user.active.stats[constants.StatEnum.SPEED] * 2)
 
         self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
 
     def test_accounts_for_tailwind_on_both_side_when_calculating_speed_ranges(self):
         # opponent should have min speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 300
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 300
         self.battle.user.side_conditions[constants.TAILWIND] = 1
         self.battle.opponent.side_conditions[constants.TAILWIND] = 1
 
@@ -2302,7 +2317,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
         check_speed_ranges(self.battle, messages)
 
         # bot_speed / 2 should be the minspeed it has b/c it went first with tailwind up
-        expected_min_speed = int(self.battle.user.active.stats[constants.SPEED] / 2)
+        expected_min_speed = int(self.battle.user.active.stats[constants.StatEnum.SPEED] / 2)
 
         # bot_speed * 2 should be the minspeed it has b/c it went first with tailwind up
         expected_min_speed = int(expected_min_speed * 2)
@@ -2311,7 +2326,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
     def test_does_not_set_minspeed_when_opponent_could_have_unburden_activated(self):
         # opponent should have min speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
         self.battle.opponent.active.item = None
         self.battle.opponent.active.name = "hawlucha"  # can possibly have unburden
 
@@ -2326,7 +2341,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
     def test_sets_maxspeed_when_bot_goes_first(self):
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
 
         messages = [
             '|move|p1a: Caterpie|Stealth Rock|',
@@ -2335,11 +2350,11 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
         check_speed_ranges(self.battle, messages)
 
-        self.assertEqual(self.battle.user.active.stats[constants.SPEED], self.battle.opponent.active.speed_range.max)
+        self.assertEqual(self.battle.user.active.stats[constants.StatEnum.SPEED], self.battle.opponent.active.speed_range.max)
 
     def test_minspeed_is_not_set_when_rain_is_up_and_opponent_can_have_swiftswim(self):
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
         self.battle.weather = constants.RAIN
         self.battle.opponent.active.name = "seismitoad"
 
@@ -2354,7 +2369,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
     def test_minspeed_is_set_when_only_rain_is_up(self):
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
         self.battle.weather = constants.RAIN
 
         messages = [
@@ -2364,11 +2379,11 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
         check_speed_ranges(self.battle, messages)
 
-        self.assertEqual(self.battle.user.active.stats[constants.SPEED], self.battle.opponent.active.speed_range.min)
+        self.assertEqual(self.battle.user.active.stats[constants.StatEnum.SPEED], self.battle.opponent.active.speed_range.min)
 
     def test_minspeed_is_set_when_rain_is_not_up_but_opponent_could_have_swiftswim(self):
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
         self.battle.opponent.active.name = "seismitoad"
 
         messages = [
@@ -2378,11 +2393,11 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
         check_speed_ranges(self.battle, messages)
 
-        self.assertEqual(self.battle.user.active.stats[constants.SPEED], self.battle.opponent.active.speed_range.min)
+        self.assertEqual(self.battle.user.active.stats[constants.StatEnum.SPEED], self.battle.opponent.active.speed_range.min)
 
     def test_minspeed_is_not_set_when_opponent_has_choicescarf(self):
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
         self.battle.opponent.active.item = "choicescarf"
 
         messages = [
@@ -2396,7 +2411,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
     def test_minspeed_is_correctly_set_when_bot_has_choicescarf(self):
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
         self.battle.user.active.item = "choicescarf"
 
         messages = [
@@ -2406,14 +2421,14 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
         check_speed_ranges(self.battle, messages)
 
-        self.assertEqual(self.battle.user.active.stats[constants.SPEED]*1.5, self.battle.opponent.active.speed_range.max)
+        self.assertEqual(self.battle.user.active.stats[constants.StatEnum.SPEED]*1.5, self.battle.opponent.active.speed_range.max)
 
     def test_minspeed_is_correctly_set_when_bot_has_choicescarf_and_opponent_is_boosted(self):
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 317
-        self.battle.opponent.active.stats[constants.SPEED] = 383
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 317
+        self.battle.opponent.active.stats[constants.StatEnum.SPEED] = 383
         self.battle.user.active.item = "choicescarf"
-        self.battle.opponent.active.boosts[constants.SPEED] = 1
+        self.battle.opponent.active.boosts[constants.StatEnum.SPEED] = 1
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2425,15 +2440,15 @@ class TestCheckSpeedRanges(unittest.TestCase):
         # this is meant to show the rounding inherent with way pokemon floors values
         # floor(317 / 1.5) = 211
         # floor(211*1.5) = 316
-        expected_speed = int(self.battle.user.active.stats[constants.SPEED]/1.5)
+        expected_speed = int(self.battle.user.active.stats[constants.StatEnum.SPEED]/1.5)
         expected_speed = int(expected_speed * 1.5)
 
         self.assertEqual(expected_speed, self.battle.opponent.active.speed_range.min)
 
     def test_minspeed_interaction_with_boosted_speed(self):
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
-        self.battle.opponent.active.boosts[constants.SPEED] = 1
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
+        self.battle.opponent.active.boosts[constants.StatEnum.SPEED] = 1
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2445,15 +2460,15 @@ class TestCheckSpeedRanges(unittest.TestCase):
         # the minspeed should take into account the fact that the opponent has a boost
         # therefore, the minimum (unboosted) speed must be divided by the boost multiplier
         expected_min_speed = int(
-            150 / boost_multiplier_lookup[self.battle.opponent.active.boosts[constants.SPEED]]
+            150 / boost_multiplier_lookup[self.battle.opponent.active.boosts[constants.StatEnum.SPEED]]
         )
 
         self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
 
     def test_minspeed_interaction_with_bots_boosted_speed(self):
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
-        self.battle.user.active.boosts[constants.SPEED] = 1
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
+        self.battle.user.active.boosts[constants.StatEnum.SPEED] = 1
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2465,16 +2480,16 @@ class TestCheckSpeedRanges(unittest.TestCase):
         # the minspeed should take into account the fact that the opponent has a boost
         # therefore, the minimum (unboosted) speed must be divided by the boost multiplier
         expected_min_speed = int(
-            150 * boost_multiplier_lookup[self.battle.user.active.boosts[constants.SPEED]] / boost_multiplier_lookup[self.battle.opponent.active.boosts[constants.SPEED]]
+            150 * boost_multiplier_lookup[self.battle.user.active.boosts[constants.StatEnum.SPEED]] / boost_multiplier_lookup[self.battle.opponent.active.boosts[constants.StatEnum.SPEED]]
         )
 
         self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
 
     def test_minspeed_interaction_with_bot_and_opponents_boosted_speed(self):
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
-        self.battle.user.active.boosts[constants.SPEED] = 1
-        self.battle.opponent.active.boosts[constants.SPEED] = 3
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
+        self.battle.user.active.boosts[constants.StatEnum.SPEED] = 1
+        self.battle.opponent.active.boosts[constants.StatEnum.SPEED] = 3
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2486,14 +2501,14 @@ class TestCheckSpeedRanges(unittest.TestCase):
         # the minspeed should take into account the fact that the opponent has a boost
         # therefore, the minimum (unboosted) speed must be divided by the boost multiplier
         expected_min_speed = int(
-            150 * boost_multiplier_lookup[self.battle.user.active.boosts[constants.SPEED]] / boost_multiplier_lookup[self.battle.opponent.active.boosts[constants.SPEED]]
+            150 * boost_multiplier_lookup[self.battle.user.active.boosts[constants.StatEnum.SPEED]] / boost_multiplier_lookup[self.battle.opponent.active.boosts[constants.StatEnum.SPEED]]
         )
 
         self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
 
     def test_opponents_unknown_move_is_used_as_a_zero_priority_move(self):
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
 
         messages = [
             '|move|p2a: Caterpie|unknown-move|',
@@ -2506,7 +2521,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
 
     def test_bots_unknown_move_is_used_as_a_zero_priority_move(self):
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
 
         messages = [
             '|move|p1a: Caterpie|unknown-move|',
@@ -2528,7 +2543,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
         #   the final speed
 
         # opponent should have max speed equal to the bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2540,7 +2555,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
         self.assertEqual(expected_min_speed, self.battle.opponent.active.speed_range.min)
 
     def test_opponent_using_grassyglide_in_grassy_terrain_does_not_cause_minspeed_to_be_set(self):
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
         self.battle.field = constants.GRASSY_TERRAIN
 
         messages = [
@@ -2552,7 +2567,7 @@ class TestCheckSpeedRanges(unittest.TestCase):
         self.assertEqual(0, self.battle.opponent.active.speed_range.min)
 
     def test_bot_using_grassyglide_in_grassy_terrain_does_not_cause_maxspeed_to_be_set(self):
-        self.battle.user.active.stats[constants.SPEED] = 150
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 150
         self.battle.field = constants.GRASSY_TERRAIN
 
         messages = [
@@ -2610,7 +2625,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         }
 
     def test_guesses_choicescarf_when_opponent_should_always_be_slower(self):
-        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2623,7 +2638,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
     def test_guesses_choicescarf_from_update_battle(self):
         # the spread from the battle object mean that this speed is not the actual bot's speed
-        self.battle.user.active.stats[constants.SPEED] = 147
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 147
 
         self.battle.request_json = {
             constants.SIDE: {
@@ -2665,7 +2680,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
     def test_does_not_guess_choicescarf_when_opponent_could_have_prankster(self):
         self.battle.opponent.active.name = 'grimmsnarl'  # grimmsnarl could have prankster - it's non-damaging moves get +1 priority
-        self.battle.user.active.stats[constants.SPEED] = 245  # opponent's speed should not be greater than 240 (max speed grimmsnarl)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 245  # opponent's speed should not be greater than 240 (max speed grimmsnarl)
 
         messages = [
             '|move|p2a: Grimmsnarl|Stealth Rock|',
@@ -2677,8 +2692,8 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
     def test_does_not_guess_choicescarf_when_opponent_is_speed_boosted(self):
-        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
-        self.battle.opponent.active.boosts[constants.SPEED] = 1
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.opponent.active.boosts[constants.StatEnum.SPEED] = 1
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2690,7 +2705,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
     def test_does_not_guess_choicescarf_when_opponent_uses_grassyglide_in_grassy_terrain(self):
-        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
         self.battle.field = constants.GRASSY_TERRAIN
 
         messages = [
@@ -2703,8 +2718,8 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
     def test_does_not_guess_choicescarf_when_bot_is_speed_unboosted(self):
-        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
-        self.battle.user.active.boosts[constants.SPEED] = -1
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.user.active.boosts[constants.StatEnum.SPEED] = -1
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2717,7 +2732,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
     def test_does_not_guess_scarf_in_trickroom(self):
         self.battle.trick_room = True
-        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2730,7 +2745,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
     def test_does_not_guess_scarf_under_trickroom_when_opponent_could_be_slower(self):
         self.battle.trick_room = True
-        self.battle.user.active.stats[constants.SPEED] = 205  # opponent caterpie speed is 113 - 207
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 205  # opponent caterpie speed is 113 - 207
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2743,7 +2758,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
     def test_guesses_scarf_in_trickroom_when_opponent_cannot_be_slower(self):
         self.battle.trick_room = True
-        self.battle.user.active.stats[constants.SPEED] = 110  # opponent caterpie speed is 113 - 207
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 110  # opponent caterpie speed is 113 - 207
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2755,7 +2770,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual('choicescarf', self.battle.opponent.active.item)
 
     def test_unknown_moves_defaults_to_0_priority(self):
-        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
 
         messages = [
             '|move|p2a: Caterpie|unknown-move|',
@@ -2767,7 +2782,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual('choicescarf', self.battle.opponent.active.item)
 
     def test_priority_move_with_unknown_move_does_not_cause_guess(self):
-        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
 
         messages = [
             '|move|p2a: Caterpie|Quick Attack|',
@@ -2779,7 +2794,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
     def test_does_not_guess_item_when_bot_moves_first(self):
-        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
 
         messages = [
             '|move|p1a: Caterpie|Stealth Rock|',
@@ -2791,7 +2806,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
     def test_does_not_guess_item_when_moves_are_different_priority(self):
-        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
 
         messages = [
             '|move|p2a: Caterpie|Quick Attack|',
@@ -2803,7 +2818,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual(constants.UNKNOWN_ITEM, self.battle.opponent.active.item)
 
     def test_does_not_guess_item_when_opponent_can_be_faster(self):
-        self.battle.user.active.stats[constants.SPEED] = 200  # opponent's speed can be 207 (max speed caterpie)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 200  # opponent's speed can be 207 (max speed caterpie)
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2817,7 +2832,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
     def test_swiftswim_causing_opponent_to_be_faster_results_in_not_guessing_choicescarf(self):
         self.battle.opponent.active.ability = 'swiftswim'
         self.battle.weather = constants.RAIN
-        self.battle.user.active.stats[constants.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim)
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2831,7 +2846,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
     def test_pokemon_possibly_having_swiftswim_in_rain_does_not_result_in_a_choicescarf_guess(self):
         self.battle.opponent.active.name = 'seismitoad'  # can have swiftswim
         self.battle.weather = constants.RAIN
-        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed can be 414 (max speed caterpie plus swiftswim)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210  # opponent's speed can be 414 (max speed caterpie plus swiftswim)
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2846,7 +2861,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.battle.opponent.active.name = 'seismitoad'  # set ID so lookup says it has swiftswim
         self.battle.opponent.active.ability = 'waterabsorb'  # but ability has been revealed so if it is faster a choice item should be inferred
         self.battle.weather = constants.RAIN
-        self.battle.user.active.stats[constants.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim). Yes it is still a caterpie
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim). Yes it is still a caterpie
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2860,7 +2875,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
     def test_possible_surgesurfer_does_not_result_in_scarf_inferral(self):
         self.battle.opponent.active.name = 'raichualola'  # set ID so lookup says it has surgesurfer
         self.battle.field = constants.ELECTRIC_TERRAIN
-        self.battle.user.active.stats[constants.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim). Yes it is still a caterpie
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim). Yes it is still a caterpie
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2875,7 +2890,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.battle.opponent.active.name = 'raichualola'  # set ID so lookup says it has surgesurfer
         self.battle.opponent.active.ability = "some_weird_ability"
         self.battle.field = constants.ELECTRIC_TERRAIN
-        self.battle.user.active.stats[constants.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim). Yes it is still a caterpie
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 300  # opponent's speed can be 414 (max speed caterpie plus swiftswim). Yes it is still a caterpie
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2889,7 +2904,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
     def test_pokemon_with_possible_quickfeet_does_not_have_choice_scarf_inferred(self):
         self.battle.opponent.active.name = 'ursaring'  # set ID so lookup says it has quickfeet
         self.battle.opponent.active.status = constants.PARALYZED
-        self.battle.user.active.stats[constants.SPEED] = 210
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2904,7 +2919,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.battle.opponent.active.name = 'ursaring'  # set ID so lookup says it has quickfeet
         self.battle.opponent.active.ability = 'some_other_ability'  # ability cant be quickfeet
         self.battle.opponent.active.status = constants.PARALYZED
-        self.battle.user.active.stats[constants.SPEED] = 210
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2916,7 +2931,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual("choicescarf", self.battle.opponent.active.item)
 
     def test_only_one_move_causes_no_item_to_be_guessed(self):
-        self.battle.user.active.stats[constants.SPEED] = 210
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2928,7 +2943,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
     def test_does_not_guess_choicescarf_when_item_is_none(self):
         self.battle.opponent.active.item = None
-        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2941,7 +2956,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
     def test_does_not_guess_choicescarf_when_item_is_known(self):
         self.battle.opponent.active.item = 'leftovers'
-        self.battle.user.active.stats[constants.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210  # opponent's speed should not be greater than 207 (max speed caterpie)
 
         messages = [
             '|move|p2a: Caterpie|Stealth Rock|',
@@ -2957,7 +2972,7 @@ class TestGuessChoiceScarf(unittest.TestCase):
 
         # opponent's speed should be 193 WITHOUT a choicescarf
         # HOWEVER, max-speed should still outspeed this value
-        self.battle.user.active.stats[constants.SPEED] = 195
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 195
 
         self.opponent_active = Pokemon('floetteeternal', 80)  # randombattle level for Floette-E
         self.battle.opponent.active = self.opponent_active
@@ -2972,9 +2987,9 @@ class TestGuessChoiceScarf(unittest.TestCase):
         self.assertEqual('choicescarf', self.battle.opponent.active.item)
 
     def test_choicescarf_is_not_checked_when_switching_happens(self):
-        self.battle.user.active.stats[constants.SPEED] = 210
+        self.battle.user.active.stats[constants.StatEnum.SPEED] = 210
         user_reserve_weedle = Pokemon("Weedle", 100)
-        user_reserve_weedle.stats[constants.SPEED] = 75
+        user_reserve_weedle.stats[constants.StatEnum.SPEED] = 75
         self.battle.user.reserve = [user_reserve_weedle]
 
         messages = [

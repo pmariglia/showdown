@@ -1,13 +1,13 @@
 import unittest
 from unittest import mock
 
-import constants
+import sim.constants as constants
 
-from showdown.battle import LastUsedMove
-from showdown.battle import Battle
-from showdown.battle import Battler
-from showdown.battle import Pokemon
-from showdown.battle import Move
+from sim.showdown.battle import LastUsedMove
+from sim.showdown.battle import Battle
+from sim.showdown.battle import Battler
+from sim.showdown.battle import Pokemon
+from sim.showdown.battle import Move
 
 
 # so we can instantiate a Battle object for testing
@@ -580,11 +580,11 @@ class TestGetPossibleItems(unittest.TestCase):
 
 class TestConvertToMega(unittest.TestCase):
     def setUp(self):
-        self.get_mega_name_patch = mock.patch('showdown.battle.get_mega_pkmn_name')
+        self.get_mega_name_patch = mock.patch('sim.showdown.battle.get_mega_pkmn_name')
         self.addCleanup(self.get_mega_name_patch.stop)
         self.get_mega_name_mock = self.get_mega_name_patch.start()
 
-        self.pkmn_sets_patch = mock.patch('showdown.battle.data')
+        self.pkmn_sets_patch = mock.patch('sim.showdown.battle.data')
         self.addCleanup(self.pkmn_sets_patch.stop)
         self.pkmn_sets_mock = self.pkmn_sets_patch.start()
 
@@ -615,9 +615,9 @@ class TestConvertToMega(unittest.TestCase):
         self.get_mega_name_mock.return_value = 'venusaurmega'
 
         pkmn = Pokemon('venusaur', 100)
-        pkmn.boosts[constants.ATTACK] = 1
+        pkmn.boosts[constants.StatEnum.ATTACK] = 1
         pkmn.try_convert_to_mega()
-        self.assertEqual(1, pkmn.boosts[constants.ATTACK])
+        self.assertEqual(1, pkmn.boosts[constants.StatEnum.ATTACK])
 
     def test_preserves_previous_moves(self):
         self.get_mega_name_mock.return_value = 'venusaurmega'

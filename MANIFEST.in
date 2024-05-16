@@ -1,0 +1,4 @@
+include README.md LICENSE
+
+graft sim/resources
+graft sim/teams/teams

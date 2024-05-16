@@ -1,7 +1,7 @@
 import unittest
-from data import all_move_json
-import constants
-from showdown.engine.special_effects.moves.modify_move import modify_attack_being_used
+from sim.data import all_move_json
+import sim.constants as constants
+from sim.showdown.engine.special_effects.moves.modify_move import modify_attack_being_used
 
 
 class TestSuckerPunch(unittest.TestCase):

@@ -1,4 +1,4 @@
-BATTLE_BOT=safest
+BATTLE_BOT=team_datasets
 WEBSOCKET_URI=sim.smogon.com:8000
 PS_USERNAME=MyUsername
 PS_PASSWORD=MyPassword

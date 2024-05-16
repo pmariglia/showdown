@@ -1,12 +1,12 @@
 import unittest
 
-from showdown.battle import Move
-from showdown.engine.helpers import get_pokemon_info_from_condition
-from showdown.engine.helpers import normalize_name
-from showdown.engine.helpers import set_makes_sense
-from showdown.engine.helpers import spreads_are_alike
-from showdown.engine.helpers import remove_duplicate_spreads
-from showdown.engine.objects import State
+from sim.showdown.battle import Move
+from sim.helpers import get_pokemon_info_from_condition
+from sim.helpers import normalize_name
+from sim.helpers import set_makes_sense
+from sim.helpers import spreads_are_alike
+from sim.helpers import remove_duplicate_spreads
+from sim.showdown.engine.objects import State
 
 
 class TestBattleIsOver(unittest.TestCase):
