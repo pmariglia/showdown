@@ -1265,7 +1265,7 @@ def remove_volatile_status_and_boosts_instructions(side, side_string):
                 side.side_conditions[constants.TOXIC_COUNT]
             ))
     instruction_additions.append(
-        (constants.MUTATOR_RESET_BOOSTS, side_string, side.stat_boosts.stats))
+        (constants.MUTATOR_RESET_BOOSTS, side_string, side.active.stat_boosts.stats))
 
     return instruction_additions
 

@@ -49,7 +49,7 @@ class State:
         else:
             possible_moves = [m.id for m in active_mon.moves if not m.disabled and m.current_pp > 0]
 
-        if side.trapped(opposite.active):
+        if side.trapped(opposite.active) and side.active.hp != 0:
             possible_switches = []
         else:
             possible_switches = side.get_switches()
@@ -143,6 +143,7 @@ class Side:
         return switches
 
     def trapped(self, opponent_active):
+
         if self.active.item == 'shedshell' or 'ghost' in self.active.types:
             return False
         elif constants.PARTIALLY_TRAPPED in self.active.volatile_status:
@@ -709,11 +710,11 @@ class StateMutator:
 
     def reset_boosts(self, side, _):
         side = self.get_side(side)
-        side.stat_boosts.stats = 0
+        side.active.stat_boosts.stats = np.zeros(8, dtype=int)
 
     def unreset_boosts(self, side, value):
         side = self.get_side(side)
-        side.stat_boosts.stats = value
+        side.active.stat_boosts.stats = value
 
     def remove_status(self, side, _):
         # the second parameter of this function is the status being removed
