@@ -31,7 +31,7 @@ class PSWebsocketClient:
         self = PSWebsocketClient()
         self.username = username
         self.password = password
-        self.address = "ws://{}/showdown/websocket".format(address)
+        self.address = address
         self.websocket = await websockets.connect(self.address)
         self.login_uri = "https://play.pokemonshowdown.com/action.php"
         return self
