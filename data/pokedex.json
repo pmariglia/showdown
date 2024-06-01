@@ -43919,6 +43919,32 @@
         ],
         "gen": 9
     },
+    "chuggalong": {
+        "num": -75,
+        "name": "chuggalong",
+        "types": [
+            "dragon",
+            "poison"
+        ],
+        "baseStats": {
+            "hp": 45,
+            "attack": 43,
+            "defense": 117,
+            "special-attack": 120,
+            "special-defense": 110,
+            "speed": 115
+        },
+        "abilities": {
+            "0": "Armor Tail"
+        },
+        "heightm": 6.2,
+        "weightkg": 201.6,
+        "color": "Black",
+        "eggGroups": [
+            "Undiscovered"
+        ],
+        "gen": 9
+    },
     "pokestarsmeargle": {
         "num": -5000,
         "name": "pokestar smeargle",
