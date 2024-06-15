@@ -115,7 +115,7 @@ class PSWebsocketClient:
         logger.debug("Challenging {}...".format(user_to_challenge))
         if time.time() - self.last_challenge_time < ShowdownConfig.cooldown_time:
             logger.info("Sleeping for {0} seconds because last challenge was less than {0} seconds ago".format(ShowdownConfig.cooldown_time))
-            await asyncio.sleep(10)
+            await asyncio.sleep(ShowdownConfig.cooldown_time)
         await self.update_team(battle_format, team)
         message = ["/challenge {},{}".format(user_to_challenge, battle_format)]
         await self.send_message('', message)
