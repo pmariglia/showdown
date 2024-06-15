@@ -484,7 +484,7 @@ class TestGetPossibleItems(unittest.TestCase):
 
         self.assertEqual(expected_items, possible_items)
 
-    def test_does_not_guess_assultvest_when_can_have_assultvest_flag_is_false(self):
+    def test_does_not_guess_assaultvest_when_can_have_assaultvest_flag_is_false(self):
         p = Pokemon('pikachu', 100)
         p.item = constants.UNKNOWN_ITEM
         p.can_have_assaultvest = False
@@ -502,7 +502,7 @@ class TestGetPossibleItems(unittest.TestCase):
 
         self.assertEqual(expected_items, possible_items)
 
-    def test_guesses_assultvest_when_can_have_assultvest_flag_is_true(self):
+    def test_guesses_assaultvest_when_can_have_assaultvest_flag_is_true(self):
         p = Pokemon('pikachu', 100)
         p.item = constants.UNKNOWN_ITEM
         p.can_have_assaultvest = True
