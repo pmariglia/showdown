@@ -16,7 +16,6 @@ class BattleBot(Battle):
         moves = []
         switches = []
 
-        print(my_options)
         for option in my_options:
             if option.startswith(constants.SWITCH_STRING + " "):
                 switches.append(option)
