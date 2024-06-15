@@ -88,7 +88,7 @@ class _ShowdownConfig:
         self.log_level = env("LOG_LEVEL", "DEBUG")
         self.log_to_file = env.bool("LOG_TO_FILE", False)
 
-        self.cooldown_time = env.int("COOLDOWN_TIME", 15)
+        self.cooldown_time = env.int("COOLDOWN_TIME", 10)
 
         self.validate_config()
 
