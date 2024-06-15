@@ -105,9 +105,6 @@ async def read_messages_until_first_pokemon_is_seen(ps_websocket_client, battle,
                 if opponent_id in line and constants.SWITCH_STRING in line:
                     battle.start_non_team_preview_battle(user_json, line)
 
-                elif battle.started:
-                    await async_update_battle(battle, line)
-
             # first move needs to be picked here
             best_move = await async_pick_move(battle)
             await ps_websocket_client.send_message(battle.battle_tag, best_move)
