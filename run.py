@@ -65,7 +65,7 @@ async def showdown():
     losses = 0
     while True:
         if ShowdownConfig.log_to_file:
-            ShowdownConfig.log_handler.do_rollover(datetime.now().strftime("%Y-%m-%dT%H:%M:%S.log"))
+            ShowdownConfig.log_handler.do_rollover(datetime.now().strftime("%Y-%m-%dT%H.%M.%S.log"))
         team = load_team(ShowdownConfig.team)
         if ShowdownConfig.bot_mode == constants.CHALLENGE_USER:
             await ps_websocket_client.challenge_user(
