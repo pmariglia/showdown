@@ -42,7 +42,7 @@ def init_logging(level, log_to_file):
     logger = logging.getLogger()
     logger.setLevel(level)
     if log_to_file:
-        log_handler = CustomRotatingFileHandler("init.log")
+        log_handler = CustomRotatingFileHandler("init.log", mode="w", encoding="utf-8")
     else:
         log_handler = logging.StreamHandler(sys.stdout)
 
