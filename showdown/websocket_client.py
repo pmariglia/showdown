@@ -5,6 +5,8 @@ import json
 import time
 
 import logging
+from config import ShowdownConfig
+
 logger = logging.getLogger(__name__)
 
 
@@ -42,7 +44,7 @@ class PSWebsocketClient:
         logger.debug("Joined room '{}'".format(room_name))
 
     async def receive_message(self):
-        message = await self.websocket.recv()
+        message = (await self.websocket.recv())
         logger.debug("Received message from websocket: {}".format(message))
         return message
 
@@ -111,8 +113,8 @@ class PSWebsocketClient:
 
     async def challenge_user(self, user_to_challenge, battle_format, team):
         logger.debug("Challenging {}...".format(user_to_challenge))
-        if time.time() - self.last_challenge_time < 10:
-            logger.info("Sleeping for 10 seconds because last challenge was less than 10 seconds ago")
+        if time.time() - self.last_challenge_time < ShowdownConfig.cooldown_time:
+            logger.info("Sleeping for {0} seconds because last challenge was less than {0} seconds ago".format(ShowdownConfig.cooldown_time))
             await asyncio.sleep(10)
         await self.update_team(battle_format, team)
         message = ["/challenge {},{}".format(user_to_challenge, battle_format)]

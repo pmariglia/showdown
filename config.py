@@ -67,6 +67,7 @@ class _ShowdownConfig:
     log_level: str
     log_to_file: bool
     log_handler: Union[CustomRotatingFileHandler, logging.StreamHandler]
+    cooldown_time: int
 
     def configure(self):
         self.battle_bot_module = env("BATTLE_BOT")
@@ -86,6 +87,8 @@ class _ShowdownConfig:
 
         self.log_level = env("LOG_LEVEL", "DEBUG")
         self.log_to_file = env.bool("LOG_TO_FILE", False)
+
+        self.cooldown_time = env.bool("COOLDOWN_TIME", 15)
 
         self.validate_config()
 
