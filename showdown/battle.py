@@ -336,13 +336,14 @@ class Battler:
                 self.active.terastallized,
                 self.active.types
             )
-
-        try:
-            trapped = user_json[constants.ACTIVE][0].get(constants.TRAPPED, False)
-            maybe_trapped = user_json[constants.ACTIVE][0].get(constants.MAYBE_TRAPPED, False)
-            self.trapped = trapped or maybe_trapped
-        except KeyError:
-            self.trapped = False
+            
+        if constants.ACTIVE not in user_json:
+            try:
+                trapped = user_json[constants.ACTIVE][0].get(constants.TRAPPED, False)
+                maybe_trapped = user_json[constants.ACTIVE][0].get(constants.MAYBE_TRAPPED, False)
+                self.trapped = trapped or maybe_trapped
+            except KeyError:
+                self.trapped = False
 
         self.name = user_json[constants.SIDE][constants.ID]
         self.reserve.clear()
