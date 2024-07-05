@@ -552,6 +552,7 @@
     "assist": {
         "accuracy": true,
         "basePower": 0,
+        "callsMove": true,
         "category": "status",
         "flags": {
             "failcopycat": 1,
@@ -2547,6 +2548,7 @@
     "copycat": {
         "accuracy": true,
         "basePower": 0,
+        "callsMove": true,
         "category": "status",
         "flags": {
             "failcopycat": 1,
@@ -9086,6 +9088,7 @@
     "mefirst": {
         "accuracy": true,
         "basePower": 0,
+        "callsMove": true,
         "category": "status",
         "flags": {
             "bypasssub": 1,
@@ -9344,6 +9347,7 @@
     "metronome": {
         "accuracy": true,
         "basePower": 0,
+        "callsMove": true,
         "category": "status",
         "flags": {
             "failcopycat": 1,
@@ -9522,6 +9526,7 @@
     "mirrormove": {
         "accuracy": true,
         "basePower": 0,
+        "callsMove": true,
         "category": "status",
         "flags": {
             "failcopycat": 1,
@@ -9973,6 +9978,7 @@
     "naturepower": {
         "accuracy": true,
         "basePower": 0,
+        "callsMove": true,
         "category": "status",
         "flags": {
             "failcopycat": 1,
@@ -13654,6 +13660,7 @@
     "sleeptalk": {
         "accuracy": true,
         "basePower": 0,
+        "callsMove": true,
         "category": "status",
         "flags": {
             "failcopycat": 1,

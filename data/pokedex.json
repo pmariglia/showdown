@@ -2055,7 +2055,8 @@
         "eggGroups": [
             "Monster",
             "Field"
-        ]
+        ],
+        "mother": "nidoranf"
     },
     "nidorino": {
         "num": 33,
@@ -13321,7 +13322,8 @@
         "eggGroups": [
             "Bug",
             "Human-Like"
-        ]
+        ],
+        "mother": "illumise"
     },
     "illumise": {
         "num": 314,
@@ -35914,7 +35916,8 @@
         "formeOrder": [
             "Indeedee",
             "Indeedee-F"
-        ]
+        ],
+        "mother": "indeedeef"
     },
     "indeedeef": {
         "num": 876,
