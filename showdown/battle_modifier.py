@@ -329,7 +329,7 @@ def move(battle, split_msg):
 
     try:
         if all_move_json[move_name][constants.CATEGORY] == constants.STATUS:
-            logger.debug("{} used a status-move. Setting can_have_assultvest to False".format(pkmn.name))
+            logger.debug("{} used a status-move. Setting can_have_assaultvest to False".format(pkmn.name))
             pkmn.can_have_assaultvest = False
     except KeyError:
         pass
