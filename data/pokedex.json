@@ -30239,7 +30239,7 @@
         "color": "Brown",
         "prevo": "Rockruff",
         "evoLevel": 25,
-        "evoCondition": "from a special Rockruff",
+        "evoCondition": "from a special Rockruff during the evening",
         "eggGroups": [
             "Field"
         ]
@@ -41973,16 +41973,16 @@
         ],
         "baseStats": {
             "hp": 80,
-            "attack": 103,
+            "attack": 117,
             "defense": 85,
             "special-attack": 55,
             "special-defense": 80,
-            "speed": 110
+            "speed": 128
         },
         "abilities": {
             "0": "Frisk",
             "1": "Limber",
-            "H": "Iron Fist"
+            "H": "Trace"
         },
         "heightm": 1.1,
         "weightkg": 51,
@@ -43935,16 +43935,19 @@
             "defense": 117,
             "special-attack": 120,
             "special-defense": 110,
-            "speed": 115
+            "speed": 108
         },
         "abilities": {
-            "0": "Armor Tail"
+            "0": "Armor Tail",
+            "1": "White Smoke",
+            "H": "Slow Start"
         },
         "heightm": 6.2,
         "weightkg": 201.6,
         "color": "Black",
         "eggGroups": [
-            "Undiscovered"
+            "Dragon",
+            "Mineral"
         ],
         "gen": 9
     },
