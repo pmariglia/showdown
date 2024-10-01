@@ -1,6 +1,7 @@
 import asyncio
 import json
 import logging
+import sys
 import traceback
 from datetime import datetime
 from copy import deepcopy
@@ -24,8 +25,10 @@ def check_dictionaries_are_unmodified(original_pokedex, original_move_json):
     # The bot should not modify the data dictionaries
     # This is a "just-in-case" check to make sure and will stop the bot if it mutates either of them
     if original_move_json != all_move_json:
-        logger.critical("Move JSON changed!\nDumping modified version to `modified_moves.json`")
-        with open("modified_moves.json", 'w') as f:
+        logger.critical(
+            "Move JSON changed!\nDumping modified version to `modified_moves.json`"
+        )
+        with open("modified_moves.json", "w") as f:
             json.dump(all_move_json, f, indent=4)
         exit(1)
     else:
@@ -35,7 +38,7 @@ def check_dictionaries_are_unmodified(original_pokedex, original_move_json):
         logger.critical(
             "Pokedex JSON changed!\nDumping modified version to `modified_pokedex.json`"
         )
-        with open("modified_pokedex.json", 'w') as f:
+        with open("modified_pokedex.json", "w") as f:
             json.dump(pokedex, f, indent=4)
         exit(1)
     else:
@@ -43,20 +46,15 @@ def check_dictionaries_are_unmodified(original_pokedex, original_move_json):
 
 
 async def showdown():
-    ShowdownConfig.configure()
-    init_logging(
-        ShowdownConfig.log_level,
-        ShowdownConfig.log_to_file
-    )
+    ShowdownConfig.configure(sys.argv[1] if len(sys.argv) > 1 else None)
+    init_logging(ShowdownConfig.log_level, ShowdownConfig.log_to_file)
     apply_mods(ShowdownConfig.pokemon_mode)
 
     original_pokedex = deepcopy(pokedex)
     original_move_json = deepcopy(all_move_json)
 
     ps_websocket_client = await PSWebsocketClient.create(
-        ShowdownConfig.username,
-        ShowdownConfig.password,
-        ShowdownConfig.websocket_uri
+        ShowdownConfig.username, ShowdownConfig.password, ShowdownConfig.websocket_uri
     )
     await ps_websocket_client.login()
 
@@ -65,22 +63,22 @@ async def showdown():
     losses = 0
     while True:
         if ShowdownConfig.log_to_file:
-            ShowdownConfig.log_handler.do_rollover(datetime.now().strftime("%Y-%m-%dT%H:%M:%S.log"))
+            ShowdownConfig.log_handler.do_rollover(
+                datetime.now().strftime("%Y-%m-%dT%H:%M:%S.log")
+            )
         team = load_team(ShowdownConfig.team)
         if ShowdownConfig.bot_mode == constants.CHALLENGE_USER:
             await ps_websocket_client.challenge_user(
-                ShowdownConfig.user_to_challenge,
-                ShowdownConfig.pokemon_mode,
-                team
+                ShowdownConfig.user_to_challenge, ShowdownConfig.pokemon_mode, team
             )
         elif ShowdownConfig.bot_mode == constants.ACCEPT_CHALLENGE:
             await ps_websocket_client.accept_challenge(
-                ShowdownConfig.pokemon_mode,
-                team,
-                ShowdownConfig.room_name
+                ShowdownConfig.pokemon_mode, team, ShowdownConfig.room_name
             )
         elif ShowdownConfig.bot_mode == constants.SEARCH_LADDER:
-            await ps_websocket_client.search_for_match(ShowdownConfig.pokemon_mode, team)
+            await ps_websocket_client.search_for_match(
+                ShowdownConfig.pokemon_mode, team
+            )
         else:
             raise ValueError("Invalid Bot Mode: {}".format(ShowdownConfig.bot_mode))
 
