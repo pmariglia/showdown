@@ -9,7 +9,13 @@ from environs import Env
 import constants
 
 env = Env()
-env.read_env(path="env", recurse=False)
+config_home = os.environ.get("XDG_CONFIG_HOME")
+if not config_home:
+    sys.stderr.write("Could not find XDG_CONFIG_HOME")
+    sys.exit(1)
+
+env_path = os.path.join(config_home, "showdown_bot", "env")
+env.read_env(path=env_path, recurse=False)
 
 
 class CustomFormatter(logging.Formatter):
@@ -93,9 +99,9 @@ class _ShowdownConfig:
         assert self.bot_mode in constants.BOT_MODES
 
         if self.bot_mode == constants.CHALLENGE_USER:
-            assert self.user_to_challenge is not None, (
-                "If bot_mode is `CHALLENGE_USER, you must declare USER_TO_CHALLENGE"
-            )
+            assert (
+                self.user_to_challenge is not None
+            ), "If bot_mode is `CHALLENGE_USER, you must declare USER_TO_CHALLENGE"
 
 
 ShowdownConfig = _ShowdownConfig()

@@ -8,3 +8,5 @@ creds
 *.txt
 suspect_decisions.py
 teams/teams
+.venv
+.envrc
