@@ -31,7 +31,7 @@ class PSWebsocketClient:
         self = PSWebsocketClient()
         self.username = username
         self.password = password
-        self.address = "ws://{}/showdown/websocket".format(address)
+        self.address = address
         self.websocket = await websockets.connect(self.address)
         self.login_uri = "https://play.pokemonshowdown.com/action.php"
         return self
@@ -86,9 +86,9 @@ class PSWebsocketClient:
         if response.status_code == 200:
             if self.password:
                 response_json = json.loads(response.text[1:])
-                if not response_json['actionsuccess']:
-                    logger.error("Login Unsuccessful")
-                    raise LoginError("Could not log-in")
+                if "actionsuccess" not in response_json:
+                    logger.error("Login Unsuccessful: {}".format(response_json))
+                    raise LoginError("Could not log-in: {}".format(response_json))
 
                 assertion = response_json.get('assertion')
             else:

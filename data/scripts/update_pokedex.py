@@ -36,6 +36,8 @@ data = re.sub(r': ""(.*)":(.*)",', r': "\1:\2",', data)
 # remove semicolon at end of file
 data = data.replace("};", "}")
 
+data = re.sub(r"'([^'\n]*)'", r'"\1"', data)
+
 # should be parseable as JSON now
 data_json = json.loads(data)
 

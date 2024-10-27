@@ -835,7 +835,7 @@ def check_speed_ranges(battle, msg_lines):
             - Grassy Glide is used when Grassy Terrain is up
     """
     # If either side switched this turn - don't do this check
-    if any(ln.startswith("|switch|") for ln in msg_lines):
+    if any(ln.startswith("|switch|") for ln in msg_lines) or not battle.request_json:
         return
 
     moves = [get_move_information(m) for m in msg_lines if m.startswith('|move|')]
@@ -901,7 +901,7 @@ def check_speed_ranges(battle, msg_lines):
 
 def check_choicescarf(battle, msg_lines):
     # If either side switched this turn - don't do this check
-    if any(ln.startswith("|switch|") for ln in msg_lines):
+    if any(ln.startswith("|switch|") for ln in msg_lines) or not battle.request_json:
         return
 
     moves = [get_move_information(m) for m in msg_lines if m.startswith('|move|')]
@@ -982,7 +982,8 @@ def check_choice_band_or_specs(battle, damage_dealt):
         damage_dealt.crit or
         damage_dealt.move in constants.WEIGHT_BASED_MOVES or
         damage_dealt.move in constants.SPEED_BASED_MOVES or
-        not battle.opponent.active.can_have_choice_item
+        not battle.opponent.active.can_have_choice_item or
+        not battle.request_json
     ):
         return
 

@@ -47,7 +47,7 @@ Install the requirements with `pip install -r requirements.txt`.
 Here is a sample:
 ```
 BATTLE_BOT=safest
-WEBSOCKET_URI=sim.smogon.com:8000
+WEBSOCKET_URI=wss://sim3.psim.us/showdown/websocket
 PS_USERNAME=MyUsername
 PS_PASSWORD=MyPassword
 BOT_MODE=SEARCH_LADDER
