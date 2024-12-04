@@ -43951,6 +43951,33 @@
         ],
         "gen": 9
     },
+    "shox": {
+        "num": -77,
+        "name": "shox",
+        "types": [
+            "electric",
+            "normal"
+        ],
+        "baseStats": {
+            "hp": 136,
+            "attack": 73,
+            "defense": 81,
+            "special-attack": 90,
+            "special-defense": 98,
+            "speed": 56
+        },
+        "abilities": {
+            "0": "Electromorphosis",
+            "1": "Sticky Hold"
+        },
+        "heightm": 3,
+        "weightkg": 99.9,
+        "color": "Brown",
+        "eggGroups": [
+            "Field"
+        ],
+        "gen": 9
+    },
     "pokestarsmeargle": {
         "num": -5000,
         "name": "pokestar smeargle",
