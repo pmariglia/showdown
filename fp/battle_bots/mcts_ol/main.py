@@ -54,6 +54,7 @@ def process_mcts(state_data, log_queue, result_queue):
         # Send results back through the result queue
         result = {x[0]: x[1] * likelihood for x in policy}
         result_queue.put(result)
+        logger.info("Result successfully put in the queue.")
         
     except (KeyboardInterrupt, SystemExit):
         logger.info("MCTS process interrupted")
@@ -105,7 +106,12 @@ class BattleBot(Battle):
         try:
             known_counter = sum(1 for p in [self.opponent.active] + self.opponent.reserve if p)
             num_teams = self.num_team_map[known_counter]
-            
+            # Limit the number of teams based on CPU allocation
+            if os.environ.get('CPUS_PER_BOT'):
+                cpus = float(os.environ.get('CPUS_PER_BOT'))
+                # Scale down num_teams based on available CPUs
+                num_teams = min(num_teams, max(2, int(cpus * 2)))
+                logger.info(f"Limiting to {num_teams} teams based on {cpus} CPUs")          
             # Get multiple complete opponent teams
             sampled_battles = sample_opponent_teams(self, num_teams=num_teams)
             
@@ -144,32 +150,36 @@ class BattleBot(Battle):
                 timeout = FoulPlayConfig.search_time_ms / 1000 + 5  # Add 5 second buffer
                 deadline = time.time() + timeout
 
+                logger.info("Waiting for processes to join...")
                 for p in processes:
                     remaining = max(0, deadline - time.time())
                     p.join(timeout=remaining)
+                    logger.info(f"Process {p.pid} join complete.")
                     if p.is_alive():
-                        logger.warning(f"Process {p.pid} timed out")
+                        logger.warning(f"Process {p.pid} is still alive after timeout.")
                         continue
-
                     try:
                         result = result_queue.get_nowait()
+                        logger.info(f"Result collected: {result}")
                         results.append(result)
                     except Empty:
-                        logger.error(f"Process {p.pid} finished but produced no result")
+                        logger.error(f"Process {p.pid} finished but no result was available.")
 
+
+            logger.info("Aggregating results...")
             if not results:
-                logger.error("No results were produced by any process")
-                # Return a fallback move if available
+                logger.error("No results were produced by any process.")
                 return self._get_fallback_move()
 
-            # Aggregate results
             move_names = results[0].keys()
+            logger.info(f"Move names: {move_names}")
             final_policy = []
             for move in move_names:
-                final_policy.append(sum(policy[move] for policy in results))
-            
-            choices = sorted(list(zip(move_names, final_policy)), 
-                           reverse=True, key=lambda x: x[1])
+                move_total = sum(policy.get(move, 0) for policy in results)
+                final_policy.append((move, move_total))
+            logger.info(f"Final policy before sorting: {final_policy}")
+            choices = sorted(final_policy, key=lambda x: x[1], reverse=True)
+            logger.info(f"Sorted choices: {choices}")
             
             logger.info(f"Final Policy: {choices}")
             best_choice = choices[0][0]
