@@ -1,5 +1,6 @@
 import logging
 from concurrent.futures import ProcessPoolExecutor, TimeoutError
+import multiprocessing
 from queue import Empty
 import time
 from fp.battle import Battle
@@ -32,6 +33,11 @@ class BattleBot(Battle):
     def __init__(self, *args, **kwargs):
         super(BattleBot, self).__init__(*args, **kwargs)
         self.num_team_map = {6: 2, 5: 4, 4: 8, 3: 16, 2: 16, 1:16, 0:16}
+        try:
+            multiprocessing.set_start_method('spawn', force=True)
+        except RuntimeError:
+            # If it's already been set, that's fine
+            pass
 
     def find_best_move(self):
         if self.team_preview:
