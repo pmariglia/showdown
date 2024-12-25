@@ -3,7 +3,7 @@ from __future__ import annotations
 import ntpath
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-
+import urllib.request
 import requests
 from dateutil import relativedelta
 from datetime import datetime
@@ -238,6 +238,7 @@ class _RandomBattleSets(PokemonSets):
         self.raw_pkmn_sets = {}
         self.pkmn_sets = {}
         self.pkmn_mode = "uninitialized"
+        self.pkmn_levels = {}
 
     def _load_raw_sets(self, generation):
         if generation.endswith("blitz"):
@@ -245,8 +246,14 @@ class _RandomBattleSets(PokemonSets):
         randombattle_sets_path = os.path.join(
             PWD, f"pkmn_sets/{generation}randombattle.json"
         )
+        randombattle_levels_path = os.path.join(
+            PWD, f"pkmn_sets/{generation}randombattle_levels.json"
+        )
         with open(randombattle_sets_path, "r") as f:
             sets = json.load(f)
+        with open(randombattle_levels_path, "r") as f:
+            levels = json.load(f)
+        self.pkmn_levels = levels
         self.raw_pkmn_sets = sets
 
     def _initialize_pkmn_sets(self):
@@ -280,6 +287,7 @@ class _RandomBattleSets(PokemonSets):
         # always load entire JSON into memory
         self.raw_pkmn_sets = {}
         self.pkmn_sets = {}
+        self.pkmn_levels = {}
         self.pkmn_mode = pkmn_mode
         self._load_raw_sets(pkmn_mode)
         self._initialize_pkmn_sets()

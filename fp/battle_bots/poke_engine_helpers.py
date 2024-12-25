@@ -15,6 +15,10 @@ from poke_engine import (
     iterative_deepening_expectiminimax,
 )
 
+from pokey_engine import (
+    State as PokeyState, Side as PokeySide, Pokemon as Pokeymon, Move as Pokeymove, SideConditions as PokeySideConditions
+)
+
 logger = logging.getLogger(__name__)
 
 
@@ -35,6 +39,43 @@ def status_to_string(status):
         return "None"
     raise ValueError(f"Unknown status: {status}")
 
+def pokemon_to_pokeymon(pkmn: Pokemon):
+    """
+    id,level,type0,type1,hp,maxhp,ability,item,atk,def,spa,spd,spe,atkb,defb,spab,spdb,speb,accb,evab,status,subhp,restturns
+    nature,volatiles,m0,m1,m2,m3
+    """
+
+    # Gen 3/4 don't remove items if knocked off
+    # but the item is not active, so lets remove it
+    if pkmn.knocked_off or pkmn.item == "" or pkmn.item is None:
+        pkmn.item = "None"
+
+    p = Pokeymon(
+        id=str(pkmn.name),
+        level=pkmn.level,
+        types=pkmn.types,
+        hp=int(pkmn.hp),
+        maxhp=int(pkmn.max_hp),
+        ability=str(pkmn.ability),
+        item=str(pkmn.item),
+        attack=pkmn.stats[constants.ATTACK],
+        defense=pkmn.stats[constants.DEFENSE],
+        special_attack=pkmn.stats[constants.SPECIAL_ATTACK],
+        special_defense=pkmn.stats[constants.SPECIAL_DEFENSE],
+        speed=pkmn.stats[constants.SPEED],
+        status=status_to_string(pkmn.status),
+        rest_turns=pkmn.rest_turns,
+        sleep_turns=pkmn.sleep_turns,
+        weight_kg=float(pokedex[pkmn.name][constants.WEIGHT]),
+        moves=[
+            Pokeymove(id=str(m.name), disabled=m.disabled, pp=m.current_pp)
+            for m in pkmn.moves
+        ],
+        tera_type=pkmn.tera_type or "typeless",
+        terastallized=pkmn.terastallized,
+    )
+
+    return p
 
 def pokemon_to_poke_engine_pkmn(pkmn: Pokemon):
     """
@@ -82,10 +123,103 @@ def pokemon_to_poke_engine_pkmn(pkmn: Pokemon):
 
     return p
 
+def get_dummy_pokeymon():
+    return Pokeymon(id="pikachu", level=1, hp=0)
 
 def get_dummy_poke_engine_pkmn():
     return PokeEnginePokemon(id="pikachu", level=1, hp=0)
 
+
+def battler_to_pokeyside(
+    battler: Battler, force_switch=False, stayed_in_on_switchout_move=False
+):
+    num_reserves = len(battler.reserve)
+    last_used_move = "move:none"
+    if battler.last_used_move.move.startswith("switch "):
+        last_used_move = "switch:0"
+    elif battler.last_used_move.move:
+        pkmn_moves = [m.name for m in battler.active.moves]
+        for i, move in enumerate(pkmn_moves):
+            if move == battler.last_used_move.move:
+                last_used_move = "move:{}".format(i)
+                break
+        else:
+            last_used_move = "move:0"
+
+    # substitute health can't be known with certainty but the client can keep track of if the substitute was hit
+    # to approximate: the substitute health is 1/10 of the pokemon's max_hp if it was hit, 1/4 if it wasn't
+    substitute_health = 0
+    if constants.SUBSTITUTE in battler.active.volatile_statuses:
+        if battler.active.substitute_hit:
+            substitute_health = int(battler.active.max_hp / 10)
+        else:
+            substitute_health = int(battler.active.max_hp / 4)
+
+    future_sight_index = 0
+    if battler.future_sight[0] > 0:
+        if battler.active.name == battler.future_sight[1]:
+            future_sight_index = 0
+        else:
+            index = 1
+            for pkmn in battler.reserve:
+                if pkmn.name == battler.future_sight[1]:
+                    future_sight_index = index
+                    break
+                index += 1
+            else:
+                raise ValueError(
+                    "Couldnt find future sight source: {} not in {} + {}".format(
+                        battler.future_sight[1],
+                        battler.active.name,
+                        [p.name for p in battler.reserve],
+                    )
+                )
+
+    side = PokeySide(
+        active_index=0,
+        baton_passing=battler.baton_passing,
+        pokemon=[pokemon_to_pokeymon(battler.active)]
+        + [pokemon_to_pokeymon(p) for p in battler.reserve],
+        side_conditions=PokeySideConditions(
+            auroraveil=battler.side_conditions[constants.AURORA_VEIL],
+            craftyshield=battler.side_conditions["craftyshield"],
+            healingwish=battler.side_conditions[constants.HEALING_WISH],
+            lightscreen=battler.side_conditions[constants.LIGHT_SCREEN],
+            luckychant=battler.side_conditions["luckychant"],
+            lunardance=battler.side_conditions["lunardance"],
+            matblock=battler.side_conditions["matblock"],
+            mist=battler.side_conditions["mist"],
+            protect=battler.side_conditions[constants.PROTECT],
+            quickguard=battler.side_conditions["quickguard"],
+            reflect=battler.side_conditions[constants.REFLECT],
+            safeguard=battler.side_conditions[constants.SAFEGUARD],
+            spikes=battler.side_conditions[constants.SPIKES],
+            stealthrock=battler.side_conditions[constants.STEALTH_ROCK],
+            stickyweb=battler.side_conditions[constants.STICKY_WEB],
+            tailwind=battler.side_conditions[constants.TAILWIND],
+            toxiccount=battler.side_conditions[constants.TOXIC_COUNT],
+            toxicspikes=battler.side_conditions[constants.TOXIC_SPIKES],
+            wideguard=battler.side_conditions["wideguard"],
+        ),
+        wish=(int(battler.wish[0]), int(battler.wish[1])),
+        future_sight=(battler.future_sight[0], future_sight_index),
+        force_switch=force_switch,
+        force_trapped=battler.trapped,
+        slow_uturn_move=stayed_in_on_switchout_move,
+        volatile_statuses=battler.active.volatile_statuses,
+        substitute_health=substitute_health,
+        attack_boost=battler.active.boosts[constants.ATTACK],
+        defense_boost=battler.active.boosts[constants.DEFENSE],
+        special_attack_boost=battler.active.boosts[constants.SPECIAL_ATTACK],
+        special_defense_boost=battler.active.boosts[constants.SPECIAL_DEFENSE],
+        speed_boost=battler.active.boosts[constants.SPEED],
+        accuracy_boost=0,
+        evasion_boost=0,
+        last_used_move=last_used_move,
+        switch_out_move_second_saved_move="NONE",  # always none because we can't know this
+    )
+
+    return side
 
 def battler_to_poke_engine_side(
     battler: Battler, force_switch=False, stayed_in_on_switchout_move=False
@@ -258,6 +392,49 @@ def replace_return_last_used_move(battler: Battler):
             turn=battler.last_used_move.turn,
         )
 
+def battle_to_pokeystate(battle: Battle, swap=False):
+    # Boolean that represents if we have used a switch-out move first (i.e. fast uturn)
+    # this is toggled to True if we did, and signifies to the engine that the opponent has
+    # selected a move and that should be accounted for in the search
+    opponent_switchout_move_stayed_in = False
+    bot_lum = battle.user.last_used_move
+    opp_lum = battle.opponent.last_used_move
+    if bot_lum.move in constants.SWITCH_OUT_MOVES and opp_lum.turn != bot_lum.turn:
+        opponent_switchout_move_stayed_in = True
+
+    if battle.opponent.last_used_move.move == constants.HIDDEN_POWER:
+        replace_hidden_power_last_used_move(battle.opponent)
+    elif battle.opponent.last_used_move.move == "return":
+        replace_return_last_used_move(battle.opponent)
+
+    if battle.user.last_used_move.move == constants.HIDDEN_POWER:
+        replace_hidden_power_last_used_move(battle.user)
+    if battle.user.last_used_move.move == "return":
+        replace_return_last_used_move(battle.user)
+
+    side_one = battler_to_pokeyside(
+        battle.user, force_switch=battle.force_switch
+    )
+    side_two = battler_to_pokeyside(
+        battle.opponent, stayed_in_on_switchout_move=opponent_switchout_move_stayed_in
+    )
+
+    if swap:
+        side_one, side_two = side_two, side_one
+
+    state = PokeyState(
+        side_one=side_one,
+        side_two=side_two,
+        weather=get_weather_string(battle.weather),
+        weather_turns_remaining=battle.weather_turns_remaining,
+        terrain=get_terrain_string(battle.field),
+        terrain_turns_remaining=battle.field_turns_remaining,
+        trick_room=battle.trick_room,
+        trick_room_turns_remaining=battle.trick_room_turns_remaining,
+        team_preview=battle.team_preview,
+    )
+
+    return state
 
 def battle_to_poke_engine_state(battle: Battle, swap=False):
     # Boolean that represents if we have used a switch-out move first (i.e. fast uturn)
