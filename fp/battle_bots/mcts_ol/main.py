@@ -60,7 +60,7 @@ def process_mcts(state_data, log_queue, result_queue):
     except Exception as e:
         logger.error(f"Error in MCTS process: {e}")
         raise
-    
+
 @contextmanager
 def process_cleanup_handler(processes, log_queue, logging_thread):
     """Context manager to ensure processes are cleaned up"""
@@ -101,10 +101,8 @@ class BattleBot(Battle):
             known_counter = sum(1 for p in [self.opponent.active] + self.opponent.reserve if p)
             num_teams = self.num_team_map[known_counter]
             
-            # Get multiple complete opponent teams
+            # Prepare states as before
             sampled_battles = sample_opponent_teams(self, num_teams=num_teams)
-            
-            # Prepare battles and convert to pokey states
             prepared_states = []
             for battle, likelihood in sampled_battles:
                 copied_battle = prepare_battle(battle, lambda x: None)
@@ -115,66 +113,88 @@ class BattleBot(Battle):
 
             search_time_per_battle = round(FoulPlayConfig.search_time_ms / max(num_teams / 5.3, 1))
             state_data = [(state, likelihood, search_time_per_battle) 
-                         for state, likelihood in prepared_states]
+                        for state, likelihood in prepared_states]
             
             start = time.time()
             log_queue = Queue()
             result_queue = Queue()
-            logging_thread = threading.Thread(target=logger_thread, args=(log_queue,))
-            logging_thread.daemon = True  # Make thread daemon so it dies with the main process
-            logging_thread.start()
-
             processes = []
             results = []
 
-            with process_cleanup_handler(processes, log_queue, logging_thread):
-                # Start processes
+            # Start logging thread
+            logging_thread = threading.Thread(target=logger_thread, args=(log_queue,))
+            logging_thread.daemon = True
+            logging_thread.start()
+
+            try:
+                # Start all processes
                 for battle_data in state_data:
                     p = Process(target=process_mcts, args=(battle_data, log_queue, result_queue))
-                    p.daemon = True  # Make process daemon so it dies with the parent
+                    p.daemon = True
                     processes.append(p)
                     p.start()
 
-                # Wait for results with timeout
-                timeout = FoulPlayConfig.search_time_ms / 1000 + 5  # Add 5 second buffer
-                deadline = time.time() + timeout
+                # Wait for processes with timeout
+                total_timeout = (search_time_per_battle / 1000) + 5  # Convert ms to seconds and add buffer
+                deadline = time.time() + total_timeout
 
+                # Collect results as they come in
+                while processes and time.time() < deadline:
+                    # Check completed processes
+                    for p in processes[:]:
+                        if not p.is_alive():
+                            p.join(timeout=0.1)
+                            processes.remove(p)
+                            try:
+                                result = result_queue.get_nowait()
+                                results.append(result)
+                            except Empty:
+                                logger.warning(f"Process completed but no result available")
+                    time.sleep(0.1)
+
+                # Kill any remaining processes
                 for p in processes:
-                    remaining = max(0, deadline - time.time())
-                    p.join(timeout=remaining)
                     if p.is_alive():
-                        logger.warning(f"Process {p.pid} timed out")
-                        continue
+                        logger.warning(f"Terminating hung process")
+                        p.terminate()
+                        p.join(timeout=0.1)
 
+            finally:
+                # Cleanup
+                log_queue.put(None)  # Signal logging thread to stop
+                logging_thread.join(timeout=1.0)
+                
+                # Clear queues
+                while not result_queue.empty():
                     try:
-                        result = result_queue.get_nowait()
-                        results.append(result)
+                        result_queue.get_nowait()
                     except Empty:
-                        logger.error(f"Process {p.pid} finished but produced no result")
+                        break
 
             if not results:
-                logger.error("No results were produced by any process")
-                # Return a fallback move if available
+                logger.error("No results produced - falling back to default move")
                 return self._get_fallback_move()
 
-            # Aggregate results
+            # Process results
             move_names = results[0].keys()
             final_policy = []
             for move in move_names:
                 final_policy.append(sum(policy[move] for policy in results))
             
             choices = sorted(list(zip(move_names, final_policy)), 
-                           reverse=True, key=lambda x: x[1])
+                        reverse=True, key=lambda x: x[1])
             
             logger.info(f"Final Policy: {choices}")
             best_choice = choices[0][0]
-            
             logger.info(f"Final choice: {best_choice}")
             logger.info(f"Elapsed time: {time.time() - start}")
+
+            return best_choice
 
         except Exception as e:
             logger.error(f"Error in find_best_move: {e}")
             return self._get_fallback_move()
+
         finally:
             if self.team_preview:
                 self.user.reserve.insert(0, self.user.active)
@@ -182,18 +202,13 @@ class BattleBot(Battle):
                 self.opponent.reserve.insert(0, self.opponent.active)
                 self.opponent.active = None
 
-        return best_choice
-
     def _get_fallback_move(self):
         """Return a fallback move in case of errors"""
         if self.team_preview:
-            return "1"  # Default team preview choice
-        
-        # Get first available move
-        if self.user.active and self.user.active.moves:
+            return "1"
+        if self.user.active and hasattr(self.user.active, 'moves') and self.user.active.moves:
             return self.user.active.moves[0].name
         return None
-
 # Add signal handlers at module level
 def signal_handler(signum, frame):
     """Handle shutdown signals"""
