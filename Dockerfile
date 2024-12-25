@@ -12,7 +12,9 @@ RUN apt update && apt install -y \
 WORKDIR /build
 
 # Clone pokey-engine at the same level as foul-play
-RUN cd .. && git clone https://github.com/RotomLearn/pokey-engine.git
+RUN cd .. && \
+    git clone https://github.com/RotomLearn/pokey-engine.git && \
+    git clone https://github.com/RotomLearn/poke-engine
 
 # Copy requirements and project files
 COPY requirements.txt requirements.txt
