@@ -4,7 +4,7 @@ A Pokémon battle-bot that can play battles on [Pokemon Showdown](https://pokemo
 Foul Play can play single battles in all generations,
 though currently mega-evolutions and z-moves are not supported.
 
-![badge](https://github.com/pmariglia/foul-play/actions/workflows/pythonapp.yml/badge.svg)
+![badge](https://github.com/pmariglia/foul-play/actions/workflows/ci.yml/badge.svg)
 
 ## Python version
 Requires Python 3.10+.
