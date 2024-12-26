@@ -35,6 +35,19 @@ class TeamSampler:
             logger.info(f"No consistent sets found for {pokemon.name} based on observations.")
             consistent_sets = all_sets
         return consistent_sets
+    
+    def get_pokemon_level(self, pokemon: Pokemon) -> int:
+        levels_dict = RandomBattleTeamDatasets.pkmn_levels
+        if pokemon.name in levels_dict:
+            return levels_dict[pokemon.name]
+        elif pokemon.base_name in levels_dict:
+            return levels_dict[pokemon.base_name]
+
+        # Fallback: check for a partial match
+        for p in levels_dict:
+            if pokemon.name.startswith(p) or p.startswith(pokemon.name):
+                return levels_dict[p]
+        return 80
 
     def sample_set_for_known_pokemon(self, pokemon: Pokemon) -> Tuple[Pokemon, float]:
         """Sample a set for a known Pokemon, ensuring consistency"""
@@ -51,7 +64,7 @@ class TeamSampler:
         pkmn_set = chosen_set.pkmn_set
         moveset = chosen_set.pkmn_moveset.moves
 
-        new_pokemon = Pokemon(pokemon.name, RandomBattleTeamDatasets.pkmn_levels.get(pokemon.name))
+        new_pokemon = Pokemon(pokemon.name, )
         new_pokemon.ability = pkmn_set.ability
         new_pokemon.item = pkmn_set.item
         new_pokemon.moves = [m for m in moveset]
