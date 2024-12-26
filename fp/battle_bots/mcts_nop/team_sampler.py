@@ -24,7 +24,7 @@ class TeamSampler:
 
     def get_consistent_sets(self, pokemon: Pokemon) -> List:
         """Filter sets to find those consistent with observed traits"""
-        all_sets = RandomBattleTeamDatasets.pkmn_sets.get(pokemon.name, [])
+        all_sets = RandomBattleTeamDatasets.get_pkmn_sets_from_pkmn_name(pokemon.name, pokemon.base_name)
         consistent_sets = []
 
         for p_set in all_sets:
@@ -64,7 +64,7 @@ class TeamSampler:
         pkmn_set = chosen_set.pkmn_set
         moveset = chosen_set.pkmn_moveset.moves
 
-        new_pokemon = Pokemon(pokemon.name, )
+        new_pokemon = Pokemon(pokemon.name, self.get_pokemon_level(pokemon))
         new_pokemon.ability = pkmn_set.ability
         new_pokemon.item = pkmn_set.item
         new_pokemon.moves = [m for m in moveset]
