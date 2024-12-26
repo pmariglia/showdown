@@ -12,13 +12,6 @@ from ..poke_engine_helpers import (
 from poke_engine import (
     state_from_string
 )
-from poke_engine import (
-    state_from_string
-)
-from ..poke_engine_helpers import (
-    get_mcts_policy,
-    battle_to_poke_engine_state,
-)
 
 # Basic logging setup
 logging.basicConfig(
@@ -70,21 +63,21 @@ class BattleBot(Battle):
                 poke_engine_state = battle_to_poke_engine_state(copied_battle)
                 serialized_state = poke_engine_state.to_string()
                 prepared_states.append((serialized_state, likelihood))
-
+            logger.info("Prepared states")
             search_time_per_battle = round(FoulPlayConfig.search_time_ms / max(num_teams / cpus, 1))
             state_data = [(state, likelihood, search_time_per_battle)
                          for state, likelihood in prepared_states]
 
             start = time.time()
             results = []
-            
+            logger.info("Ready to do MCTS")
             # Use ProcessPoolExecutor instead of manual process management
-            with ProcessPoolExecutor(max_workers=cpus) as executor:
+            with ProcessPoolExecutor(max_workers=int(cpus)) as executor:
                 future_to_state = {executor.submit(process_mcts_task, data): data 
                                  for data in state_data}
                 
                 # Wait for all futures to complete with timeout
-                timeout = FoulPlayConfig.search_time_ms / 1000 + 5
+                timeout = int(FoulPlayConfig.search_time_ms / 1000 + 5)
                 remaining_time = timeout
                 
                 for future in future_to_state:
