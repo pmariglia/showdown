@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TOTAL_CPUS=16
-NUM_INSTANCES=4
+NUM_INSTANCES=2
 CPUS_PER_BOT=$(( TOTAL_CPUS / NUM_INSTANCES ))
 
 # Create logs directory if it doesn't exist
