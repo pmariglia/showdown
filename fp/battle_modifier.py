@@ -2086,6 +2086,7 @@ def update_dataset_possibilities(
         or battle.user.active.ability in ["protean", "libero"]
         or damage_dealt.move in constants.WEIGHT_BASED_MOVES
         or damage_dealt.move in constants.SPEED_BASED_MOVES
+        or damage_dealt.move not in all_move_json
         or all_move_json[damage_dealt.move][constants.CATEGORY] == constants.STATUS
         or damage_dealt.move.startswith(constants.HIDDEN_POWER)
         or damage_dealt.crit
