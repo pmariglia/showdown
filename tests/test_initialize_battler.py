@@ -1,672 +1,493 @@
 import unittest
-from showdown.battle import Battler
-from showdown.battle import Pokemon
+
+import constants
+from fp.battle import Battler, Move
+from fp.battle import Pokemon
 
 
-class TestInitializeBattler(unittest.TestCase):
+class TestUpdateFromRequestJson(unittest.TestCase):
     def setUp(self):
         self.battler = Battler()
 
-    def test_initialize_with_z_move_available(self):
+    def test_basic_updating_attributes_for_active_pkmn(self):
         request_dict = {
-          "active": [
-            {
-              "moves": [
+            "active": [
                 {
-                  "move": "Swords Dance",
-                  "id": "swordsdance",
-                  "pp": 32,
-                  "maxpp": 32,
-                  "target": "self",
-                  "disabled": False
-                },
-                {
-                  "move": "Photon Geyser",
-                  "id": "photongeyser",
-                  "pp": 8,
-                  "maxpp": 8,
-                  "target": "normal",
-                  "disabled": False
-                },
-                {
-                  "move": "Earthquake",
-                  "id": "earthquake",
-                  "pp": 16,
-                  "maxpp": 16,
-                  "target": "allAdjacent",
-                  "disabled": False
-                },
-                {
-                  "move": "Stone Edge",
-                  "id": "stoneedge",
-                  "pp": 8,
-                  "maxpp": 8,
-                  "target": "normal",
-                  "disabled": False
+                    "moves": [
+                        {
+                            "move": "Volt Tackle",
+                            "id": "volttackle",
+                            "pp": 32,
+                            "maxpp": 32,
+                            "target": "self",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Thunderbolt",
+                            "id": "thunderbolt",
+                            "pp": 8,
+                            "maxpp": 8,
+                            "target": "normal",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Hidden Power Ice 60",
+                            "id": "hiddenpower",
+                            "pp": 16,
+                            "maxpp": 16,
+                            "target": "allAdjacent",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Nasty Plot",
+                            "id": "nastyplot",
+                            "pp": 8,
+                            "maxpp": 8,
+                            "target": "normal",
+                            "disabled": False,
+                        },
+                    ],
                 }
-              ],
-              "canZMove": [
-                None,
-                {
-                  "move": "Light That Burns the Sky",
-                  "target": "normal"
-                },
-                None,
-                None
-              ]
-            }
-          ],
-          "side": {
-            "name": "BigBluePikachu",
-            "id": "p2",
-            "pokemon": [
-              {
-                "ident": "p2: Necrozma",
-                "details": "Necrozma-Ultra",
-                "condition": "152/335",
-                "active": True,
-                "stats": {
-                  "atk": 433,
-                  "def": 238,
-                  "spa": 333,
-                  "spd": 230,
-                  "spe": 385
-                },
-                "moves": [
-                  "swordsdance",
-                  "photongeyser",
-                  "earthquake",
-                  "stoneedge"
+            ],
+            "side": {
+                "name": "BigBluePikachu",
+                "id": "p2",
+                "pokemon": [
+                    {
+                        "ident": "p2: PikachuNickname",
+                        "details": "Pikachu, L84, M",
+                        "condition": "152/335",
+                        "active": True,
+                        "stats": {
+                            "atk": 200,
+                            "def": 210,
+                            "spa": 220,
+                            "spd": 230,
+                            "spe": 240,
+                        },
+                        "moves": [
+                            "volttackle",
+                            "thunderbolt",
+                            "hiddenpowerice60",
+                            "nastyplot",
+                        ],
+                        "baseAbility": "static",
+                        "item": "lightball",
+                        "ability": "static",
+                    },
                 ],
-                "baseAbility": "neuroforce",
-                "item": "ultranecroziumz",
-                "pokeball": "pokeball",
-                "ability": "neuroforce"
-              },
-              {
-                "ident": "p2: Groudon",
-                "details": "Groudon",
-                "condition": "386/386",
-                "active": False,
-                "stats": {
-                  "atk": 336,
-                  "def": 284,
-                  "spa": 328,
-                  "spd": 216,
-                  "spe": 235
-                },
-                "moves": [
-                  "overheat",
-                  "stealthrock",
-                  "precipiceblades",
-                  "toxic"
-                ],
-                "baseAbility": "drought",
-                "item": "redorb",
-                "pokeball": "pokeball",
-                "ability": "drought"
-              },
-              {
-                "ident": "p2: Xerneas",
-                "details": "Xerneas",
-                "condition": "393/393",
-                "active": False,
-                "stats": {
-                  "atk": 268,
-                  "def": 226,
-                  "spa": 397,
-                  "spd": 233,
-                  "spe": 297
-                },
-                "moves": [
-                  "moonblast",
-                  "focusblast",
-                  "aromatherapy",
-                  "thunder"
-                ],
-                "baseAbility": "fairyaura",
-                "item": "choicescarf",
-                "pokeball": "pokeball",
-                "ability": "fairyaura"
-              },
-              {
-                "ident": "p2: Darkrai",
-                "details": "Darkrai",
-                "condition": "281/281",
-                "active": False,
-                "stats": {
-                  "atk": 194,
-                  "def": 217,
-                  "spa": 369,
-                  "spd": 216,
-                  "spe": 383
-                },
-                "moves": [
-                  "nastyplot",
-                  "darkpulse",
-                  "hypnosis",
-                  "thunder"
-                ],
-                "baseAbility": "baddreams",
-                "item": "lifeorb",
-                "pokeball": "pokeball",
-                "ability": "baddreams"
-              },
-              {
-                "ident": "p2: Arceus",
-                "details": "Arceus-Dragon",
-                "condition": "444/444",
-                "active": False,
-                "stats": {
-                  "atk": 248,
-                  "def": 292,
-                  "spa": 276,
-                  "spd": 276,
-                  "spe": 356
-                },
-                "moves": [
-                  "judgment",
-                  "fireblast",
-                  "defog",
-                  "recover"
-                ],
-                "baseAbility": "multitype",
-                "item": "dracoplate",
-                "pokeball": "pokeball",
-                "ability": "multitype"
-              },
-              {
-                "ident": "p2: Celesteela",
-                "details": "Celesteela",
-                "condition": "397/397",
-                "active": False,
-                "stats": {
-                  "atk": 238,
-                  "def": 335,
-                  "spa": 225,
-                  "spd": 240,
-                  "spe": 158
-                },
-                "moves": [
-                  "leechseed",
-                  "heavyslam",
-                  "toxic",
-                  "flamethrower"
-                ],
-                "baseAbility": "beastboost",
-                "item": "leftovers",
-                "pokeball": "pokeball",
-                "ability": "beastboost"
-              }
-            ]
-          },
-          "rqid": 7
+            },
         }
+        self.battler.active = Pokemon("pikachu", 100)
 
-        self.battler.active = Pokemon('pikachu', 100)
-        self.battler.from_json(request_dict)
-        
-        # photongeyser is a z-move with the request dict given above
-        photon_geyser = self.battler.active.get_move('photongeyser')
+        self.battler.update_from_request_json(request_dict)
 
-        self.assertTrue(photon_geyser.can_z)
-
-    def test_initialize_with_hidden_power_produces_correct_hidden_power(self):
-        request_dict = {
-          "active": [
+        self.assertEqual(self.battler.active.nickname, "PikachuNickname")
+        self.assertEqual(self.battler.active.status, None)
+        self.assertEqual(self.battler.active.level, 84)
+        self.assertEqual(self.battler.active.hp, 152)
+        self.assertEqual(self.battler.active.max_hp, 335)
+        self.assertEqual(self.battler.active.ability, "static")
+        self.assertEqual(self.battler.active.item, "lightball")
+        self.assertEqual(
+            self.battler.active.stats,
             {
-              "moves": [
-                {
-                  "move": "Swords Dance",
-                  "id": "swordsdance",
-                  "pp": 32,
-                  "maxpp": 32,
-                  "target": "self",
-                  "disabled": False
-                },
-                {
-                  "move": "Photon Geyser",
-                  "id": "photongeyser",
-                  "pp": 8,
-                  "maxpp": 8,
-                  "target": "normal",
-                  "disabled": False
-                },
-                {
-                  "move": "Earthquake",
-                  "id": "earthquake",
-                  "pp": 16,
-                  "maxpp": 16,
-                  "target": "allAdjacent",
-                  "disabled": False
-                },
-                {
-                  "move": "Hidden Power Fire",
-                  "id": "hiddenpower",
-                  "pp": 24,
-                  "maxpp": 24,
-                  "target": "normal",
-                  "disabled": False
-                },
-              ]
-            }
-          ],
-          "side": {
-            "name": "BigBluePikachu",
-            "id": "p2",
-            "pokemon": [
-              {
-                "ident": "p2: Necrozma",
-                "details": "Necrozma",
-                "condition": "152/335",
-                "active": True,
-                "stats": {
-                  "atk": 433,
-                  "def": 238,
-                  "spa": 333,
-                  "spd": 230,
-                  "spe": 385
-                },
-                "moves": [
-                  "swordsdance",
-                  "photongeyser",
-                  "earthquake",
-                  "stoneedge"
-                ],
-                "baseAbility": "neuroforce",
-                "item": "ultranecroziumz",
-                "pokeball": "pokeball",
-                "ability": "neuroforce"
-              },
-              {
-                "ident": "p2: Groudon",
-                "details": "Groudon",
-                "condition": "386/386",
-                "active": False,
-                "stats": {
-                  "atk": 336,
-                  "def": 284,
-                  "spa": 328,
-                  "spd": 216,
-                  "spe": 235
-                },
-                "moves": [
-                  "overheat",
-                  "stealthrock",
-                  "precipiceblades",
-                  "toxic"
-                ],
-                "baseAbility": "drought",
-                "item": "redorb",
-                "pokeball": "pokeball",
-                "ability": "drought"
-              },
-              {
-                "ident": "p2: Xerneas",
-                "details": "Xerneas",
-                "condition": "393/393",
-                "active": False,
-                "stats": {
-                  "atk": 268,
-                  "def": 226,
-                  "spa": 397,
-                  "spd": 233,
-                  "spe": 297
-                },
-                "moves": [
-                  "moonblast",
-                  "focusblast",
-                  "aromatherapy",
-                  "thunder"
-                ],
-                "baseAbility": "fairyaura",
-                "item": "choicescarf",
-                "pokeball": "pokeball",
-                "ability": "fairyaura"
-              },
-              {
-                "ident": "p2: Darkrai",
-                "details": "Darkrai",
-                "condition": "281/281",
-                "active": False,
-                "stats": {
-                  "atk": 194,
-                  "def": 217,
-                  "spa": 369,
-                  "spd": 216,
-                  "spe": 383
-                },
-                "moves": [
-                  "nastyplot",
-                  "darkpulse",
-                  "hypnosis",
-                  "thunder"
-                ],
-                "baseAbility": "baddreams",
-                "item": "lifeorb",
-                "pokeball": "pokeball",
-                "ability": "baddreams"
-              },
-              {
-                "ident": "p2: Arceus",
-                "details": "Arceus-Dragon",
-                "condition": "444/444",
-                "active": False,
-                "stats": {
-                  "atk": 248,
-                  "def": 292,
-                  "spa": 276,
-                  "spd": 276,
-                  "spe": 356
-                },
-                "moves": [
-                  "judgment",
-                  "fireblast",
-                  "defog",
-                  "recover"
-                ],
-                "baseAbility": "multitype",
-                "item": "dracoplate",
-                "pokeball": "pokeball",
-                "ability": "multitype"
-              },
-              {
-                "ident": "p2: Celesteela",
-                "details": "Celesteela",
-                "condition": "397/397",
-                "active": False,
-                "stats": {
-                  "atk": 238,
-                  "def": 335,
-                  "spa": 225,
-                  "spd": 240,
-                  "spe": 158
-                },
-                "moves": [
-                  "leechseed",
-                  "heavyslam",
-                  "toxic",
-                  "flamethrower"
-                ],
-                "baseAbility": "beastboost",
-                "item": "leftovers",
-                "pokeball": "pokeball",
-                "ability": "beastboost"
-              }
-            ]
-          },
-          "rqid": 7
-        }
+                "attack": 200,
+                "defense": 210,
+                "special-attack": 220,
+                "special-defense": 230,
+                "speed": 240,
+            },
+        )
+        self.assertEqual(
+            self.battler.active.moves,
+            [
+                Move("volttackle"),
+                Move("thunderbolt"),
+                Move("hiddenpowerice"),
+                Move("nastyplot"),
+            ],
+        )
 
-        self.battler.active = Pokemon('pikachu', 100)
-        self.battler.from_json(request_dict)
-
-        hiddenpowerfire = self.battler.active.get_move('hiddenpowerfire60')
-
-        self.assertTrue(hiddenpowerfire)
-
-    def test_initialize_pokemon_with_no_item(self):
+    def test_sets_trapped(self):
         request_dict = {
-          "active": [
+            "active": [
+                {
+                    "trapped": True,
+                    "moves": [
+                        {
+                            "move": "Volt Tackle",
+                            "id": "volttackle",
+                            "pp": 32,
+                            "maxpp": 32,
+                            "target": "self",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Thunderbolt",
+                            "id": "thunderbolt",
+                            "pp": 8,
+                            "maxpp": 8,
+                            "target": "normal",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Hidden Power Ice 60",
+                            "id": "hiddenpower",
+                            "pp": 16,
+                            "maxpp": 16,
+                            "target": "allAdjacent",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Nasty Plot",
+                            "id": "nastyplot",
+                            "pp": 8,
+                            "maxpp": 8,
+                            "target": "normal",
+                            "disabled": False,
+                        },
+                    ],
+                }
+            ],
+            "side": {
+                "name": "BigBluePikachu",
+                "id": "p2",
+                "pokemon": [
+                    {
+                        "ident": "p2: PikachuNickname",
+                        "details": "Pikachu, L84, M",
+                        "condition": "152/335",
+                        "active": True,
+                        "stats": {
+                            "atk": 200,
+                            "def": 210,
+                            "spa": 220,
+                            "spd": 230,
+                            "spe": 240,
+                        },
+                        "moves": [
+                            "volttackle",
+                            "thunderbolt",
+                            "hiddenpowerice60",
+                            "nastyplot",
+                        ],
+                        "baseAbility": "static",
+                        "item": "lightball",
+                        "ability": "static",
+                    },
+                ],
+            },
+        }
+        self.battler.active = Pokemon("pikachu", 100)
+
+        self.battler.update_from_request_json(request_dict)
+
+        self.assertTrue(self.battler.trapped)
+
+    def test_active_optional_attributes(self):
+        request_dict = {
+            "active": [
+                {
+                    constants.CAN_MEGA_EVO: True,
+                    constants.CAN_ULTRA_BURST: True,
+                    constants.CAN_DYNAMAX: True,
+                    constants.CAN_TERASTALLIZE: True,
+                    "moves": [
+                        {
+                            "move": "Volt Tackle",
+                            "id": "volttackle",
+                            "pp": 32,
+                            "maxpp": 32,
+                            "target": "self",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Thunderbolt",
+                            "id": "thunderbolt",
+                            "pp": 8,
+                            "maxpp": 8,
+                            "target": "normal",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Hidden Power Ice 60",
+                            "id": "hiddenpower",
+                            "pp": 16,
+                            "maxpp": 16,
+                            "target": "allAdjacent",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Nasty Plot",
+                            "id": "nastyplot",
+                            "pp": 8,
+                            "maxpp": 8,
+                            "target": "normal",
+                            "disabled": False,
+                        },
+                    ],
+                }
+            ],
+            "side": {
+                "name": "BigBluePikachu",
+                "id": "p2",
+                "pokemon": [
+                    {
+                        "ident": "p2: PikachuNickname",
+                        "details": "Pikachu, L84, M",
+                        "condition": "152/335",
+                        "active": True,
+                        "stats": {
+                            "atk": 200,
+                            "def": 210,
+                            "spa": 220,
+                            "spd": 230,
+                            "spe": 240,
+                        },
+                        "moves": [
+                            "volttackle",
+                            "thunderbolt",
+                            "hiddenpowerice60",
+                            "nastyplot",
+                        ],
+                        "baseAbility": "static",
+                        "item": "lightball",
+                        "ability": "static",
+                    },
+                ],
+            },
+        }
+        self.battler.active = Pokemon("pikachu", 100)
+
+        self.battler.update_from_request_json(request_dict)
+
+        self.assertTrue(self.battler.active.can_mega_evo)
+        self.assertTrue(self.battler.active.can_ultra_burst)
+        self.assertTrue(self.battler.active.can_dynamax)
+        self.assertTrue(self.battler.active.can_terastallize)
+
+    def test_basic_updating_attributes_for_reserve_pkmn(self):
+        request_dict = {
+            "active": [
+                {
+                    "moves": [
+                        {
+                            "move": "Volt Tackle",
+                            "id": "volttackle",
+                            "pp": 32,
+                            "maxpp": 32,
+                            "target": "self",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Thunderbolt",
+                            "id": "thunderbolt",
+                            "pp": 8,
+                            "maxpp": 8,
+                            "target": "normal",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Hidden Power Ice 60",
+                            "id": "hiddenpower",
+                            "pp": 16,
+                            "maxpp": 16,
+                            "target": "allAdjacent",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Nasty Plot",
+                            "id": "nastyplot",
+                            "pp": 8,
+                            "maxpp": 8,
+                            "target": "normal",
+                            "disabled": False,
+                        },
+                    ],
+                }
+            ],
+            "side": {
+                "name": "BigBluePikachu",
+                "id": "p2",
+                "pokemon": [
+                    {
+                        "ident": "p2: MyPikachu",
+                        "details": "Pikachu, L84, M",
+                        "condition": "152/335",
+                        "active": True,
+                        "stats": {
+                            "atk": 200,
+                            "def": 210,
+                            "spa": 220,
+                            "spd": 230,
+                            "spe": 240,
+                        },
+                        "moves": [
+                            "volttackle",
+                            "thunderbolt",
+                            "hiddenpowerice60",
+                            "nastyplot",
+                        ],
+                        "baseAbility": "static",
+                        "item": "lightball",
+                        "ability": "static",
+                    },
+                    {
+                        "ident": "p2: RattataNickName",
+                        "details": "Rattata",
+                        "condition": "100/300 par",
+                        "active": False,
+                        "stats": {
+                            "atk": 100,
+                            "def": 110,
+                            "spa": 120,
+                            "spd": 130,
+                            "spe": 140,
+                        },
+                        "moves": [
+                            "tackle",
+                            "tailwhip",
+                            "hiddenpowerrock60",
+                            "growl",
+                        ],
+                        "baseAbility": "runaway",
+                        "item": "leftovers",
+                        "ability": "runaway",
+                    },
+                ],
+            },
+        }
+        self.battler.active = Pokemon("pikachu", 100)
+        rattata = Pokemon("rattata", 50)
+        self.battler.reserve.append(rattata)
+
+        self.battler.update_from_request_json(request_dict)
+
+        self.assertEqual(rattata.level, 100)
+        self.assertEqual(rattata.status, constants.PARALYZED)
+        self.assertEqual(rattata.ability, "runaway")
+        self.assertEqual(rattata.ability, "runaway")
+        self.assertEqual(rattata.item, "leftovers")
+        self.assertEqual(
+            rattata.stats,
             {
-              "moves": [
-                {
-                  "move": "Swords Dance",
-                  "id": "swordsdance",
-                  "pp": 32,
-                  "maxpp": 32,
-                  "target": "self",
-                  "disabled": False
-                },
-                {
-                  "move": "Photon Geyser",
-                  "id": "photongeyser",
-                  "pp": 8,
-                  "maxpp": 8,
-                  "target": "normal",
-                  "disabled": False
-                },
-                {
-                  "move": "Earthquake",
-                  "id": "earthquake",
-                  "pp": 16,
-                  "maxpp": 16,
-                  "target": "allAdjacent",
-                  "disabled": False
-                },
-                {
-                  "move": "Hidden Power Fire",
-                  "id": "hiddenpower",
-                  "pp": 24,
-                  "maxpp": 24,
-                  "target": "normal",
-                  "disabled": False
-                },
-              ]
-            }
-          ],
-          "side": {
-            "name": "BigBluePikachu",
-            "id": "p2",
-            "pokemon": [
-              {
-                "ident": "p2: Necrozma",
-                "details": "Necrozma",
-                "condition": "152/335",
-                "active": True,
-                "stats": {
-                  "atk": 433,
-                  "def": 238,
-                  "spa": 333,
-                  "spd": 230,
-                  "spe": 385
-                },
-                "moves": [
-                  "swordsdance",
-                  "photongeyser",
-                  "earthquake",
-                  "stoneedge"
-                ],
-                "baseAbility": "neuroforce",
-                "item": "ultranecroziumz",
-                "pokeball": "pokeball",
-                "ability": "neuroforce"
-              },
-              {
-                "ident": "p2: Groudon",
-                "details": "Groudon",
-                "condition": "386/386",
-                "active": False,
-                "stats": {
-                  "atk": 336,
-                  "def": 284,
-                  "spa": 328,
-                  "spd": 216,
-                  "spe": 235
-                },
-                "moves": [
-                  "overheat",
-                  "stealthrock",
-                  "precipiceblades",
-                  "toxic"
-                ],
-                "baseAbility": "drought",
-                "item": "",
-                "pokeball": "pokeball",
-                "ability": "drought"
-              },
-              {
-                "ident": "p2: Xerneas",
-                "details": "Xerneas",
-                "condition": "393/393",
-                "active": False,
-                "stats": {
-                  "atk": 268,
-                  "def": 226,
-                  "spa": 397,
-                  "spd": 233,
-                  "spe": 297
-                },
-                "moves": [
-                  "moonblast",
-                  "focusblast",
-                  "aromatherapy",
-                  "thunder"
-                ],
-                "baseAbility": "fairyaura",
-                "item": "choicescarf",
-                "pokeball": "pokeball",
-                "ability": "fairyaura"
-              },
-              {
-                "ident": "p2: Darkrai",
-                "details": "Darkrai",
-                "condition": "281/281",
-                "active": False,
-                "stats": {
-                  "atk": 194,
-                  "def": 217,
-                  "spa": 369,
-                  "spd": 216,
-                  "spe": 383
-                },
-                "moves": [
-                  "nastyplot",
-                  "darkpulse",
-                  "hypnosis",
-                  "thunder"
-                ],
-                "baseAbility": "baddreams",
-                "item": "lifeorb",
-                "pokeball": "pokeball",
-                "ability": "baddreams"
-              },
-              {
-                "ident": "p2: Arceus",
-                "details": "Arceus-Dragon",
-                "condition": "444/444",
-                "active": False,
-                "stats": {
-                  "atk": 248,
-                  "def": 292,
-                  "spa": 276,
-                  "spd": 276,
-                  "spe": 356
-                },
-                "moves": [
-                  "judgment",
-                  "fireblast",
-                  "defog",
-                  "recover"
-                ],
-                "baseAbility": "multitype",
-                "item": "dracoplate",
-                "pokeball": "pokeball",
-                "ability": "multitype"
-              },
-              {
-                "ident": "p2: Celesteela",
-                "details": "Celesteela",
-                "condition": "397/397",
-                "active": False,
-                "stats": {
-                  "atk": 238,
-                  "def": 335,
-                  "spa": 225,
-                  "spd": 240,
-                  "spe": 158
-                },
-                "moves": [
-                  "leechseed",
-                  "heavyslam",
-                  "toxic",
-                  "flamethrower"
-                ],
-                "baseAbility": "beastboost",
-                "item": "leftovers",
-                "pokeball": "pokeball",
-                "ability": "beastboost"
-              }
-            ]
-          },
-          "rqid": 7
-        }
+                "attack": 100,
+                "defense": 110,
+                "special-attack": 120,
+                "special-defense": 130,
+                "speed": 140,
+            },
+        )
+        self.assertEqual(
+            rattata.moves,
+            [
+                Move("tackle"),
+                Move("tailwhip"),
+                Move("hiddenpowerrock"),
+                Move("growl"),
+            ],
+        )
 
-        self.battler.active = Pokemon('pikachu', 100)
-        self.battler.from_json(request_dict)
-
-        groudon = [p for p in self.battler.reserve if p.name == 'groudon'][0]
-
-        self.assertEqual(None, groudon.item)
-
-    def test_reviving_pokemon(self):
+    def test_reserve_pkmn_has_pp_preserved(self):
         request_dict = {
-          "forceSwitch": [
-            True
-          ],
-          "side": {
-            "name": "BigBlackSpinarak",
-            "id": "p1",
-            "pokemon": [
-              {
-                "ident": "p1: Pawmot",
-                "details": "Pawmot, F",
-                "condition": "281/281",
-                "active": True,
-                "stats": {
-                  "atk": 361,
-                  "def": 176,
-                  "spa": 158,
-                  "spd": 157,
-                  "spe": 309
-                },
-                "moves": [
-                  "agility",
-                  "bodypress",
-                  "brickbreak",
-                  "revivalblessing"
+            "active": [
+                {
+                    "moves": [
+                        {
+                            "move": "Volt Tackle",
+                            "id": "volttackle",
+                            "pp": 32,
+                            "maxpp": 32,
+                            "target": "self",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Thunderbolt",
+                            "id": "thunderbolt",
+                            "pp": 8,
+                            "maxpp": 8,
+                            "target": "normal",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Hidden Power Ice 60",
+                            "id": "hiddenpower",
+                            "pp": 16,
+                            "maxpp": 16,
+                            "target": "allAdjacent",
+                            "disabled": False,
+                        },
+                        {
+                            "move": "Nasty Plot",
+                            "id": "nastyplot",
+                            "pp": 8,
+                            "maxpp": 8,
+                            "target": "normal",
+                            "disabled": False,
+                        },
+                    ],
+                }
+            ],
+            "side": {
+                "name": "BigBluePikachu",
+                "id": "p2",
+                "pokemon": [
+                    {
+                        "ident": "p2: MyPikachu",
+                        "details": "Pikachu, L84, M",
+                        "condition": "152/335",
+                        "active": True,
+                        "stats": {
+                            "atk": 200,
+                            "def": 210,
+                            "spa": 220,
+                            "spd": 230,
+                            "spe": 240,
+                        },
+                        "moves": [
+                            "volttackle",
+                            "thunderbolt",
+                            "hiddenpowerice60",
+                            "nastyplot",
+                        ],
+                        "baseAbility": "static",
+                        "item": "lightball",
+                        "ability": "static",
+                    },
+                    {
+                        "ident": "p2: RattataNickName",
+                        "details": "Rattata, L84, M",
+                        "condition": "100/300",
+                        "active": False,
+                        "stats": {
+                            "atk": 100,
+                            "def": 110,
+                            "spa": 120,
+                            "spd": 130,
+                            "spe": 140,
+                        },
+                        "moves": [
+                            "tackle",
+                            "tailwhip",
+                            "hiddenpowerrock60",
+                            "growl",
+                        ],
+                        "baseAbility": "runaway",
+                        "item": "leftovers",
+                        "ability": "runaway",
+                    },
                 ],
-                "baseAbility": "voltabsorb",
-                "item": "expertbelt",
-                "commanding": False,
-                "reviving": True,
-                "pokeball": "pokeball",
-                "ability": "voltabsorb"
-              },
-              {
-                "ident": "p1: Amoonguss",
-                "details": "Amoonguss, F",
-                "condition": "0 fnt",
-                "active": False,
-                "stats": {
-                  "atk": 295,
-                  "def": 176,
-                  "spa": 208,
-                  "spd": 196,
-                  "spe": 86
-                },
-                "moves": [
-                  "bodyslam",
-                  "clearsmog",
-                  "energyball",
-                  "facade"
-                ],
-                "baseAbility": "regenerator",
-                "item": "expertbelt",
-                "commanding": False,
-                "reviving": False,
-                "pokeball": "pokeball",
-                "ability": "regenerator"
-              }
-            ]
-          },
-          "noCancel": True,
-          "rqid": 10
+            },
         }
+        self.battler.active = Pokemon("pikachu", 100)
+        rattata = Pokemon("rattata", 100)
+        tackle = Move("tackle")
+        tackle.max_pp = 32
+        tackle.current_pp = 16
+        rattata.moves.append(tackle)
+        self.battler.reserve.append(rattata)
 
-        self.battler.active = Pokemon('Pawmot', 100)
-        self.battler.from_json(request_dict)
+        self.battler.update_from_request_json(request_dict)
 
-        pawmot = self.battler.active
-
-        self.assertTrue(pawmot.reviving)
+        self.assertEqual(16, rattata.get_move("tackle").current_pp)
