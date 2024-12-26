@@ -516,6 +516,22 @@ def poke_engine_get_damage_rolls(
 
     return s1_rolls, s2_rolls
 
+def get_mcts_policy(
+    poke_engine_state: PokeEngineState, search_time_ms: int
+):
+    state_string = poke_engine_state.to_string()
+    logger.debug("Calling with state: {}".format(state_string))
+
+    mcts_result = monte_carlo_tree_search(poke_engine_state, search_time_ms)
+
+    iterations = mcts_result.total_visits
+    result = []
+    for option in mcts_result.side_one:
+        result.append((option.move_choice, option.visits / mcts_result.total_visits))
+
+    return result, iterations
+
+
 
 def get_payoff_matrix_from_mcts(
     poke_engine_state: PokeEngineState, search_time_ms: int

@@ -1,16 +1,24 @@
-import logging
+
 from concurrent.futures import ProcessPoolExecutor
-import time
+import logging, os, time
 from fp.battle import Battle
 from config import FoulPlayConfig
 from .team_sampler import sample_opponent_teams
 from ..helpers import prepare_battle
-from ..poke_engine_helpers import battle_to_pokeystate
-import os
-import multiprocessing
-from pokey_engine import State
-
-multiprocessing.set_start_method("spawn", force=True)
+from ..poke_engine_helpers import (
+    get_mcts_policy,
+    battle_to_poke_engine_state,
+)
+from poke_engine import (
+    state_from_string
+)
+from poke_engine import (
+    state_from_string
+)
+from ..poke_engine_helpers import (
+    get_mcts_policy,
+    battle_to_poke_engine_state,
+)
 
 # Basic logging setup
 logging.basicConfig(
@@ -24,10 +32,8 @@ def process_mcts_task(state_data):
     serialized_state, likelihood, search_time = state_data
     
     try:
-        pokey_state = State()
-        pokey_state.deserialize(serialized_state)
-        
-        policy, num_iterations = pokey_state.perform_mcts_search_st(search_time)
+        poke_state = state_from_string(serialized_state)
+        policy, num_iterations = get_mcts_policy(poke_state, search_time)
         return {x[0]: x[1] * likelihood for x in policy}
     except Exception as e:
         logger.error(f"Error in MCTS process: {e}")
@@ -37,7 +43,7 @@ class BattleBot(Battle):
     def __init__(self, *args, **kwargs):
         super(BattleBot, self).__init__(*args, **kwargs)
         self.num_team_map = {6: 2, 5: 4, 4: 8, 3: 16, 2: 16, 1:16, 0:16}
-
+        
     def find_best_move(self):
         logger.info("Starting find_best_move.")
         if self.team_preview:
@@ -61,9 +67,8 @@ class BattleBot(Battle):
             prepared_states = []
             for battle, likelihood in sampled_battles:
                 copied_battle = prepare_battle(battle, lambda x: None)
-                pokey_state = battle_to_pokeystate(copied_battle)
-                serialized_state = pokey_state.serialize()
-                logger.info(f"Prepared team state: {serialized_state}")
+                poke_engine_state = battle_to_poke_engine_state(copied_battle)
+                serialized_state = poke_engine_state.to_string()
                 prepared_states.append((serialized_state, likelihood))
 
             search_time_per_battle = round(FoulPlayConfig.search_time_ms / max(num_teams / cpus, 1))
@@ -72,8 +77,8 @@ class BattleBot(Battle):
 
             start = time.time()
             results = []
-
-            # Use ProcessPoolExecutor
+            
+            # Use ProcessPoolExecutor instead of manual process management
             with ProcessPoolExecutor(max_workers=cpus) as executor:
                 future_to_state = {executor.submit(process_mcts_task, data): data 
                                  for data in state_data}
@@ -123,11 +128,3 @@ class BattleBot(Battle):
                 self.user.active = None
                 self.opponent.reserve.insert(0, self.opponent.active)
                 self.opponent.active = None
-
-    def _get_fallback_move(self):
-        if self.team_preview:
-            return "1"
-
-        if self.user.active and self.user.active.moves:
-            return self.user.active.moves[0].name
-        return None
