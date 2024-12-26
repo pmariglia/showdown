@@ -14,7 +14,7 @@ Requires Python 3.10+.
 ### Configuration
 Environment variables are used for configuration.
 You may either set these in your environment before running,
-or populate them in the [env](https://github.com/pmariglia/foul-play/blob/master/env) file.
+or populate them in the [env](https://github.com/pmariglia/foul-play/blob/main/env) file.
 
 The configurations available are:
 
@@ -47,7 +47,7 @@ Install the requirements with `pip install -r requirements.txt`.
 
 Note: Requires Rust to be installed on your machine to build the engine.
 
-**3. Configure your [env](https://github.com/pmariglia/foul-play/blob/master/env) file**
+**3. Configure your [env](https://github.com/pmariglia/foul-play/blob/main/env) file**
 
 Here is a sample:
 ```
