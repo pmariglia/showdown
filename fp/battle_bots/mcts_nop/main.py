@@ -128,3 +128,11 @@ class BattleBot(Battle):
                 self.user.active = None
                 self.opponent.reserve.insert(0, self.opponent.active)
                 self.opponent.active = None
+                
+    def _get_fallback_move(self):
+        if self.team_preview:
+            return "1"
+
+        if self.user.active and self.user.active.moves:
+            return self.user.active.moves[0].name
+        return None

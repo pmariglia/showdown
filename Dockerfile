@@ -21,21 +21,15 @@ RUN cd .. && \
 # Copy requirements and project files
 COPY requirements.txt requirements.txt
 
-# Replace the poke-engine version in requirements.txt
-ARG GEN
-RUN if [ -n "$GEN" ]; then sed -i "s/poke-engine\/[^ ]*/poke-engine\/${GEN}/" requirements.txt; fi
-
-# Create virtual environment and install dependencies
-RUN python3 -m venv venv && \
-    . venv/bin/activate && \
-    # pip24 is required for --config-settings
-    pip install --upgrade pip==24.2 && \
+# pip24 is required for --config-settings
+RUN pip install --upgrade pip==24.2 && \
+    # Install other requirements to the packages directory
+    pip install -v --target /build/packages -r requirements.txt && \
     # Install pokey-engine from the cloned repository
     pip install -v --force-reinstall --no-cache-dir ../pokey-engine/ \
     --config-settings="build-args=--features poke-engine/${GEN:-gen4} --no-default-features" && \
     cp -r /build/venv/lib/python3.11/site-packages/pokey_engine* /build/packages/ && \
-    # Install other requirements to the packages directory
-    pip install -v --target /build/packages -r requirements.txt
+    pip uninstall -y poke-engine && pip install -v --force-reinstall --no-cache-dir ../poke-engine/poke-engine-py --config-settings="build-args=--features poke-engine/gen${GEN} --no-default-features"
 
 # Second stage
 FROM python:3.11-slim
