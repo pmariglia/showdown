@@ -3,7 +3,6 @@ from __future__ import annotations
 import ntpath
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-import urllib.request
 import requests
 from dateutil import relativedelta
 from datetime import datetime

@@ -79,7 +79,7 @@ make docker
 
 or for a specific generation:
 ```shell
-make docker GEN=gen5
+make docker GEN=gen4
 ```
 
 **3. Run with an environment variable file**
@@ -89,6 +89,30 @@ make docker GEN=gen5
 
 This project uses [poke-engine](https://github.com/pmariglia/poke-engine) to search through battles.
 See [the engine docs](https://poke-engine.readthedocs.io/en/latest/) for more information.
+
+The engine must be built from source if installing locally so you must have rust installed on your machine.
+
+### Re-Installing the Engine
+
+It is common to want to re-install the engine for different generations of Pokémon.
+
+`pip` will used cached .whl artifacts when installing packages
+and cannot detect the `--config-settings` flag that was used to build the engine.
+
+The following command will ensure that the engine is re-installed properly:
+```shell
+pip uninstall -y poke-engine && pip install -v --force-reinstall --no-cache-dir poke-engine --config-settings="build-args=--features poke-engine/<GENERATION> --no-default-features"
+```
+
+Or using the Makefile:
+```shell
+make poke_engine GEN=<generation>
+```
+
+For example, to re-install the engine for generation 4:
+```shell
+make poke_engine GEN=gen4
+```
 
 ## Battle Bots
 
@@ -106,11 +130,6 @@ use `BATTLE_BOT=minimax`
 Uses poke-engine to perform an
 [expectiminimax search](https://en.wikipedia.org/wiki/Expectiminimax) and picks the move that minimizes the loss
 for the turn.
-
-## The Battle Engine
-This project uses [poke-engine](https://github.com/pmariglia/poke-engine) to simulate battles.
-
-The engine must be built from source if installing locally so you must have rust installed on your machine.
 
 ## Specifying Teams
 You can specify teams by setting the `TEAM_NAME` environment variable.
