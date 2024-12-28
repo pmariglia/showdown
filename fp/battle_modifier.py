@@ -582,7 +582,17 @@ def move(battle, split_msg):
     elif move_name != "sleeptalk":
         pkmn.gen_3_consecutive_sleep_talks = 0
 
-    if "[from]" in split_msg[-1] and split_msg[-1] != "[from]lockedmove":
+    if split_msg[-1] == "[from]Sleep Talk" or split_msg[-1] == "[from]move: Sleep Talk":
+        move_object = pkmn.get_move(move_name)
+        if move_object is None:
+            pkmn.add_move(move_name)
+            logger.info(
+                "Added unrevealed {} to {}'s moves because it was called by sleeptalk".format(
+                    move_name, pkmn.name
+                )
+            )
+        return
+    elif "[from]" in split_msg[-1] and split_msg[-1] != "[from]lockedmove":
         return
 
     # remove volatile status if they have it
