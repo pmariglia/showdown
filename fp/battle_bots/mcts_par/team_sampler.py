@@ -1,14 +1,11 @@
-from typing import List, Dict, Set, Optional, Tuple
+from typing import List, Dict, Set, Tuple
 from copy import deepcopy
 import logging
-from collections import defaultdict
 import math
 import random
 
-import constants
 from fp.battle import Pokemon, Battle, Move
 from data.pkmn_sets import RandomBattleTeamDatasets
-from fp.helpers import normalize_name
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +21,7 @@ class TeamSampler:
 
     def get_consistent_sets(self, pokemon: Pokemon) -> List:
         """Filter sets to find those consistent with observed traits"""
-        all_sets = RandomBattleTeamDatasets.pkmn_sets.get(pokemon.name, [])
+        all_sets = RandomBattleTeamDatasets.get_pkmn_sets_from_pkmn_name(pokemon.name, pokemon.base_name)
         consistent_sets = []
 
         for p_set in all_sets:
@@ -35,6 +32,19 @@ class TeamSampler:
             logger.info(f"No consistent sets found for {pokemon.name} based on observations.")
             consistent_sets = all_sets
         return consistent_sets
+    
+    def get_pokemon_level(self, pokemon: Pokemon) -> int:
+        levels_dict = RandomBattleTeamDatasets.pkmn_levels
+        if pokemon.name in levels_dict:
+            return levels_dict[pokemon.name]
+        elif pokemon.base_name in levels_dict:
+            return levels_dict[pokemon.base_name]
+
+        # Fallback: check for a partial match
+        for p in levels_dict:
+            if pokemon.name.startswith(p) or p.startswith(pokemon.name):
+                return levels_dict[p]
+        return 80
 
     def sample_set_for_known_pokemon(self, pokemon: Pokemon) -> Tuple[Pokemon, float]:
         """Sample a set for a known Pokemon, ensuring consistency"""
@@ -51,16 +61,18 @@ class TeamSampler:
         pkmn_set = chosen_set.pkmn_set
         moveset = chosen_set.pkmn_moveset.moves
 
-        new_pokemon = Pokemon(pokemon.name, RandomBattleTeamDatasets.pkmn_levels.get(pokemon.name))
+        new_pokemon = Pokemon(pokemon.name, self.get_pokemon_level(pokemon))
         new_pokemon.ability = pkmn_set.ability
         new_pokemon.item = pkmn_set.item
         new_pokemon.moves = [m for m in moveset]
         new_pokemon.tera_type = pkmn_set.tera_type
 
         # Calculate log probability
-        log_prob = math.log(chosen_set.pkmn_set.count) - math.log(total_count)
-
-        logger.debug(f"Sampled consistent set for {pokemon.name}: {chosen_set} with log_prob {log_prob:.4f}")
+        if pokemon.hp == 0:
+            log_prob = 0
+        else:
+            log_prob = math.log(chosen_set.pkmn_set.count) - math.log(total_count)
+        logger.debug(f"Sampled {pokemon.name} with log_prob {log_prob}")
         return new_pokemon, log_prob
 
     def sample_team(self, battle: Battle, known_pokemon: Dict[str, Pokemon]) -> Tuple[List[Pokemon], float]:

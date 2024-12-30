@@ -1,7 +1,6 @@
 import asyncio
 import json
 import logging
-import sys
 import traceback
 from copy import deepcopy
 

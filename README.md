@@ -63,7 +63,6 @@ RUN_COUNT=1
 **4. Run**
 
 Run with `python run.py`
-You can specify a specific env to load with `python run.py my_env`
 
 ### Running with Docker
 

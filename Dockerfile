@@ -14,9 +14,7 @@ WORKDIR /build
 RUN mkdir -p /build/packages
 
 # Clone both repositories at the same level
-RUN cd .. && \
-    git clone https://github.com/RotomLearn/poke-engine.git && \
-    git clone https://github.com/RotomLearn/pokey-engine.git
+RUN cd .. && git clone https://github.com/RotomLearn/poke-engine.git
 
 # Copy requirements and project files
 COPY requirements.txt requirements.txt
@@ -29,10 +27,6 @@ RUN python3 -m venv venv && \
     pip install --upgrade pip==24.2 && \
     # Install other requirements to the packages directory
     pip install -v --target /build/packages -r requirements.txt && \
-    # Install pokey-engine from the cloned repository
-    pip install -v --force-reinstall --no-cache-dir ../pokey-engine/ \
-    --config-settings="build-args=--features poke-engine/${GEN:-gen4} --no-default-features" && \
-    cp -r /build/venv/lib/python3.11/site-packages/pokey_engine* /build/packages/ && \
     pip uninstall -y poke-engine && pip install -v --force-reinstall \
     --no-cache-dir ../poke-engine/poke-engine-py \
     --config-settings="build-args=--features poke-engine/${GEN} --no-default-features" && \
