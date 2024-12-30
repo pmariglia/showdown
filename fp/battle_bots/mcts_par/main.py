@@ -1,6 +1,8 @@
 
 from concurrent.futures import ProcessPoolExecutor
-import logging, os, time
+import logging
+import os
+import time
 from fp.battle import Battle
 from config import FoulPlayConfig
 from .team_sampler import sample_opponent_teams
