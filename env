@@ -1,11 +1,12 @@
-BATTLE_BOT=minimax
+BATTLE_BOT=mcts_nop
 WEBSOCKET_URI=wss://sim3.psim.us/showdown/websocket
-# PS_USERNAME=MyUsername
-# PS_PASSWORD=MyPassword
+PS_USERNAME=RotomLearn_0
+PS_PASSWORD=crimson
 BOT_MODE=SEARCH_LADDER
-POKEMON_MODE=gen7randombattle
-RUN_COUNT=1
-
-USER_TO_CHALLENGE=SomeOtherPerson
+POKEMON_MODE=gen9randombattle
+RUN_COUNT=10
+USER_TO_CHALLENGE=RotomLearn_1
 TEAM_NAME=gen8/ou/clef_sand
-SAVE_REPLAY=False
+SAVE_REPLAY=True
+SEARCH_TIME_MS=8000
+LOG_TO_FILE=True

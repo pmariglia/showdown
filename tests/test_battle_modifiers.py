@@ -1168,6 +1168,56 @@ class TestMove(unittest.TestCase):
 
         self.assertEqual(0, self.battle.opponent.active.gen_3_consecutive_sleep_talks)
 
+    def test_does_not_decrement_pp_if_move_is_called_by_sleeptalk(self):
+        split_msg = ["", "move", "p2a: Caterpie", "String Shot", "[from]Sleep Talk"]
+        m = Move("String Shot")
+        m.current_pp = 5
+        self.battle.opponent.active.moves.append(m)
+        move(self.battle, split_msg)
+
+        self.assertEqual(5, m.current_pp)
+
+    def test_sets_move_if_doesnt_exist_from_sleeptalk(self):
+        split_msg = ["", "move", "p2a: Caterpie", "String Shot", "[from]Sleep Talk"]
+        move(self.battle, split_msg)
+
+        self.assertIn(Move("stringshot"), self.battle.opponent.active.moves)
+        self.assertEqual(
+            self.battle.opponent.active.moves[0].current_pp,
+            self.battle.opponent.active.moves[0].max_pp,
+        )
+
+    def test_sets_move_if_doesnt_exist_from_move_sleeptalk(self):
+        split_msg = [
+            "",
+            "move",
+            "p2a: Caterpie",
+            "String Shot",
+            "[from]move: Sleep Talk",
+        ]
+        move(self.battle, split_msg)
+
+        self.assertIn(Move("stringshot"), self.battle.opponent.active.moves)
+        self.assertEqual(
+            self.battle.opponent.active.moves[0].current_pp,
+            self.battle.opponent.active.moves[0].max_pp,
+        )
+
+    def test_does_not_decrement_pp_if_move_is_called_by_move_sleeptalk(self):
+        split_msg = [
+            "",
+            "move",
+            "p2a: Caterpie",
+            "String Shot",
+            "[from]move: Sleep Talk",
+        ]
+        m = Move("String Shot")
+        m.current_pp = 5
+        self.battle.opponent.active.moves.append(m)
+        move(self.battle, split_msg)
+
+        self.assertEqual(5, m.current_pp)
+
     def test_decrements_seen_move_pp_if_seen_again(self):
         split_msg = ["", "move", "p2a: Caterpie", "String Shot"]
         m = Move("String Shot")

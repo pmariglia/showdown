@@ -582,7 +582,17 @@ def move(battle, split_msg):
     elif move_name != "sleeptalk":
         pkmn.gen_3_consecutive_sleep_talks = 0
 
-    if "[from]" in split_msg[-1] and split_msg[-1] != "[from]lockedmove":
+    if split_msg[-1] == "[from]Sleep Talk" or split_msg[-1] == "[from]move: Sleep Talk":
+        move_object = pkmn.get_move(move_name)
+        if move_object is None:
+            pkmn.add_move(move_name)
+            logger.info(
+                "Added unrevealed {} to {}'s moves because it was called by sleeptalk".format(
+                    move_name, pkmn.name
+                )
+            )
+        return
+    elif "[from]" in split_msg[-1] and split_msg[-1] != "[from]lockedmove":
         return
 
     # remove volatile status if they have it
@@ -2086,6 +2096,7 @@ def update_dataset_possibilities(
         or battle.user.active.ability in ["protean", "libero"]
         or damage_dealt.move in constants.WEIGHT_BASED_MOVES
         or damage_dealt.move in constants.SPEED_BASED_MOVES
+        or damage_dealt.move not in all_move_json
         or all_move_json[damage_dealt.move][constants.CATEGORY] == constants.STATUS
         or damage_dealt.move.startswith(constants.HIDDEN_POWER)
         or damage_dealt.crit

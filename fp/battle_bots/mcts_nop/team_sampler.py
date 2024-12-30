@@ -1,14 +1,11 @@
 from typing import List, Dict, Set, Optional, Tuple
 from copy import deepcopy
 import logging
-from collections import defaultdict
 import math
 import random
 
-import constants
 from fp.battle import Pokemon, Battle, Move
 from data.pkmn_sets import RandomBattleTeamDatasets
-from fp.helpers import normalize_name
 
 logger = logging.getLogger(__name__)
 
@@ -71,9 +68,11 @@ class TeamSampler:
         new_pokemon.tera_type = pkmn_set.tera_type
 
         # Calculate log probability
-        log_prob = math.log(chosen_set.pkmn_set.count) - math.log(total_count)
-
-        logger.debug(f"Sampled consistent set for {pokemon.name}: {chosen_set} with log_prob {log_prob:.4f}")
+        if pokemon.hp == 0:
+            log_prob = 0
+        else:
+            log_prob = math.log(chosen_set.pkmn_set.count) - math.log(total_count)
+        logger.debug(f"Sampled {pokemon.name} with log_prob {log_prob}")
         return new_pokemon, log_prob
 
     def sample_team(self, battle: Battle, known_pokemon: Dict[str, Pokemon]) -> Tuple[List[Pokemon], float]:

@@ -27,6 +27,7 @@ def process_mcts_task(state_data):
     try:
         poke_state = state_from_string(serialized_state)
         policy, num_iterations = get_mcts_policy(poke_state, search_time)
+        logger.info(f"Iterations: {num_iterations}")
         return {x[0]: x[1] * likelihood for x in policy}
     except Exception as e:
         logger.error(f"Error in MCTS process: {e}")
@@ -62,8 +63,8 @@ class BattleBot(Battle):
                 copied_battle = prepare_battle(battle, lambda x: None)
                 poke_engine_state = battle_to_poke_engine_state(copied_battle)
                 serialized_state = poke_engine_state.to_string()
+                logger.info(f"State: {serialized_state}")
                 prepared_states.append((serialized_state, likelihood))
-            logger.info("Prepared states")
             search_time_per_battle = round(FoulPlayConfig.search_time_ms / max(num_teams / cpus, 1))
             state_data = [(state, likelihood, search_time_per_battle)
                          for state, likelihood in prepared_states]
