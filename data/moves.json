@@ -1243,6 +1243,7 @@
             "failmefirst": 1,
             "failmimic": 1,
             "noassist": 1,
+            "nosketch": 1,
             "nosleeptalk": 1,
             "protect": 1
         },
@@ -2374,6 +2375,7 @@
             "failmefirst": 1,
             "failmimic": 1,
             "noassist": 1,
+            "nosketch": 1,
             "nosleeptalk": 1,
             "protect": 1
         },
@@ -2943,6 +2945,7 @@
         "flags": {
             "metronome": 1,
             "mirror": 1,
+            "nosketch": 1,
             "protect": 1,
             "reflectable": 1
         },
@@ -7489,7 +7492,8 @@
         "category": "physical",
         "flags": {
             "bypasssub": 1,
-            "mirror": 1
+            "mirror": 1,
+            "nosketch": 1
         },
         "id": "hyperspacefury",
         "name": "Hyperspace Fury",
@@ -8806,6 +8810,7 @@
             "failmefirst": 1,
             "failmimic": 1,
             "noassist": 1,
+            "nosketch": 1,
             "nosleeptalk": 1,
             "protect": 1
         },
@@ -10184,6 +10189,7 @@
             "failmefirst": 1,
             "failmimic": 1,
             "noassist": 1,
+            "nosketch": 1,
             "nosleeptalk": 1,
             "protect": 1
         },
@@ -11897,7 +11903,7 @@
         "basePower": 0,
         "category": "status",
         "flags": {},
-        "id": "nothing",
+        "id": "recharge",
         "name": "Recharge",
         "pp": 40,
         "priority": 0,
@@ -12151,7 +12157,8 @@
         "basePower": 0,
         "category": "status",
         "flags": {
-            "heal": 1
+            "heal": 1,
+            "nosketch": 1
         },
         "id": "revivalblessing",
         "name": "Revival Blessing",
@@ -13436,6 +13443,7 @@
             "failinstruct": 1,
             "failmimic": 1,
             "noassist": 1,
+            "nosketch": 1,
             "nosleeptalk": 1
         },
         "id": "sketch",
@@ -14812,6 +14820,7 @@
             "failmefirst": 1,
             "failmimic": 1,
             "noassist": 1,
+            "nosketch": 1,
             "nosleeptalk": 1,
             "protect": 1
         },
@@ -15640,6 +15649,7 @@
             "failmimic": 1,
             "mirror": 1,
             "noassist": 1,
+            "nosketch": 1,
             "protect": 1
         },
         "id": "terastarstorm",
@@ -16933,6 +16943,7 @@
             "failmefirst": 1,
             "failmimic": 1,
             "noassist": 1,
+            "nosketch": 1,
             "nosleeptalk": 1,
             "protect": 1
         },

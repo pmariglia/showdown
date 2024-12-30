@@ -2,7 +2,7 @@ import logging
 import os
 import sys
 from logging.handlers import RotatingFileHandler
-from typing import Optional, Union
+from typing import Optional
 
 from environs import Env
 
@@ -11,9 +11,8 @@ import constants
 
 class CustomFormatter(logging.Formatter):
     def format(self, record):
-        record.module = "[{}]".format(record.module)
-        record.levelname = "[{}]".format(record.levelname)
-        return "{} {}".format(record.levelname.ljust(10), record.msg)
+        lvl = "{}".format(record.levelname)
+        return "{} {}".format(lvl.ljust(8), record.msg)
 
 
 class CustomRotatingFileHandler(RotatingFileHandler):
@@ -25,6 +24,7 @@ class CustomRotatingFileHandler(RotatingFileHandler):
         super().__init__("{}/{}".format(self.base_dir, file_name), **kwargs)
 
     def do_rollover(self, new_file_name):
+        new_file_name = new_file_name.replace("/", "_")
         self.baseFilename = "{}/{}".format(self.base_dir, new_file_name)
         self.doRollover()
 
@@ -37,24 +37,29 @@ def init_logging(level, log_to_file):
 
     # Gets the root logger to set handlers/formatters
     logger = logging.getLogger()
-    logger.setLevel(level)
+    logger.setLevel(logging.DEBUG)
+    stdout_handler = logging.StreamHandler(sys.stdout)
+    stdout_handler.setLevel(level)
+    stdout_handler.setFormatter(CustomFormatter())
+    logger.addHandler(stdout_handler)
+    FoulPlayConfig.stdout_log_handler = stdout_handler
+
     if log_to_file:
-        log_handler = CustomRotatingFileHandler("init.log")
-    else:
-        log_handler = logging.StreamHandler(sys.stdout)
-
-    ShowdownConfig.log_handler = log_handler
-    log_handler.setFormatter(CustomFormatter())
-    logger.addHandler(log_handler)
+        file_handler = CustomRotatingFileHandler("init.log")
+        file_handler.setLevel(logging.DEBUG)  # file logs are always debug
+        file_handler.setFormatter(CustomFormatter())
+        logger.addHandler(file_handler)
+        FoulPlayConfig.file_log_handler = file_handler
 
 
-class _ShowdownConfig:
+class _FoulPlayConfig:
     battle_bot_module: str
     websocket_uri: str
     username: str
     password: str
     bot_mode: str
-    pokemon_mode: str
+    pokemon_mode: str = ""
+    search_time_ms: int
     run_count: int
     team: str
     user_to_challenge: str
@@ -63,7 +68,8 @@ class _ShowdownConfig:
     damage_calc_type: str
     log_level: str
     log_to_file: bool
-    log_handler: Union[CustomRotatingFileHandler, logging.StreamHandler]
+    stdout_log_handler: logging.StreamHandler
+    file_log_handler: Optional[CustomRotatingFileHandler]
 
     def configure(self, env_path: Optional[str] = None):
         env = Env()
@@ -83,6 +89,8 @@ class _ShowdownConfig:
         self.password = env("PS_PASSWORD")
         self.bot_mode = env("BOT_MODE")
         self.pokemon_mode = env("POKEMON_MODE")
+
+        self.search_time_ms = env.int("SEARCH_TIME_MS", 100)
 
         self.run_count = env.int("RUN_COUNT", 1)
         self.team = env("TEAM_NAME", None)
@@ -106,4 +114,4 @@ class _ShowdownConfig:
             ), "If bot_mode is `CHALLENGE_USER, you must declare USER_TO_CHALLENGE"
 
 
-ShowdownConfig = _ShowdownConfig()
+FoulPlayConfig = _FoulPlayConfig()

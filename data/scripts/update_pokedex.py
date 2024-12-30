@@ -2,6 +2,7 @@
 import requests
 import re
 import json
+from fp.helpers import normalize_name
 
 # Fetch latest version
 data = requests.get(
@@ -51,9 +52,7 @@ for k, v in data_json.items():
         "special-defense": v["baseStats"]["spd"],
         "speed": v["baseStats"]["spe"],
     }
-    v["types"] = [
-        i.lower() for i in v["types"]
-    ]
+    v["types"] = [i.lower() for i in v["types"]]
     v["name"] = v["name"].lower()
 
 # re-create the dictionary in order of pokedex numbers
@@ -62,8 +61,11 @@ new_dict = {}
 sorted_dex = sorted(data_json.items(), key=lambda x: x[1]["num"])
 negative_nums = [i for i in sorted_dex if i[1]["num"] <= 0]
 sorted_dex = [i for i in sorted_dex if i[1]["num"] > 0]
-for k, v in sorted_dex + negative_nums:
+for k, v in sorted_dex:
     new_dict[k] = v
+    if v.get("cosmeticFormes"):
+        for forme in v["cosmeticFormes"]:
+            new_dict[normalize_name(forme)] = v
 
 with open("pokedex_new.json", "w") as f:
-    json.dump(data_json, f, indent=4)
+    json.dump(new_dict, f, indent=4)

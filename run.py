@@ -3,15 +3,14 @@ import json
 import logging
 import sys
 import traceback
-from datetime import datetime
 from copy import deepcopy
 
 import constants
-from config import ShowdownConfig, init_logging
+from config import FoulPlayConfig, init_logging
 
 from teams import load_team
-from showdown.run_battle import pokemon_battle
-from showdown.websocket_client import PSWebsocketClient
+from fp.run_battle import pokemon_battle
+from fp.websocket_client import PSWebsocketClient
 
 from data import all_move_json
 from data import pokedex
@@ -45,16 +44,16 @@ def check_dictionaries_are_unmodified(original_pokedex, original_move_json):
         logger.debug("Pokedex JSON unmodified!")
 
 
-async def showdown():
-    ShowdownConfig.configure(sys.argv[1] if len(sys.argv) > 1 else None)
-    init_logging(ShowdownConfig.log_level, ShowdownConfig.log_to_file)
-    apply_mods(ShowdownConfig.pokemon_mode)
+async def run_foul_play():
+    FoulPlayConfig.configure()
+    init_logging(FoulPlayConfig.log_level, FoulPlayConfig.log_to_file)
+    apply_mods(FoulPlayConfig.pokemon_mode)
 
     original_pokedex = deepcopy(pokedex)
     original_move_json = deepcopy(all_move_json)
 
     ps_websocket_client = await PSWebsocketClient.create(
-        ShowdownConfig.username, ShowdownConfig.password, ShowdownConfig.websocket_uri
+        FoulPlayConfig.username, FoulPlayConfig.password, FoulPlayConfig.websocket_uri
     )
     await ps_websocket_client.login()
 
@@ -62,28 +61,24 @@ async def showdown():
     wins = 0
     losses = 0
     while True:
-        if ShowdownConfig.log_to_file:
-            ShowdownConfig.log_handler.do_rollover(
-                datetime.now().strftime("%Y-%m-%dT%H:%M:%S.log")
-            )
-        team = load_team(ShowdownConfig.team)
-        if ShowdownConfig.bot_mode == constants.CHALLENGE_USER:
+        team = load_team(FoulPlayConfig.team)
+        if FoulPlayConfig.bot_mode == constants.CHALLENGE_USER:
             await ps_websocket_client.challenge_user(
-                ShowdownConfig.user_to_challenge, ShowdownConfig.pokemon_mode, team
+                FoulPlayConfig.user_to_challenge, FoulPlayConfig.pokemon_mode, team
             )
-        elif ShowdownConfig.bot_mode == constants.ACCEPT_CHALLENGE:
+        elif FoulPlayConfig.bot_mode == constants.ACCEPT_CHALLENGE:
             await ps_websocket_client.accept_challenge(
-                ShowdownConfig.pokemon_mode, team, ShowdownConfig.room_name
+                FoulPlayConfig.pokemon_mode, team, FoulPlayConfig.room_name
             )
-        elif ShowdownConfig.bot_mode == constants.SEARCH_LADDER:
+        elif FoulPlayConfig.bot_mode == constants.SEARCH_LADDER:
             await ps_websocket_client.search_for_match(
-                ShowdownConfig.pokemon_mode, team
+                FoulPlayConfig.pokemon_mode, team
             )
         else:
-            raise ValueError("Invalid Bot Mode: {}".format(ShowdownConfig.bot_mode))
+            raise ValueError("Invalid Bot Mode: {}".format(FoulPlayConfig.bot_mode))
 
-        winner = await pokemon_battle(ps_websocket_client, ShowdownConfig.pokemon_mode)
-        if winner == ShowdownConfig.username:
+        winner = await pokemon_battle(ps_websocket_client, FoulPlayConfig.pokemon_mode)
+        if winner == FoulPlayConfig.username:
             wins += 1
         else:
             losses += 1
@@ -92,13 +87,14 @@ async def showdown():
         check_dictionaries_are_unmodified(original_pokedex, original_move_json)
 
         battles_run += 1
-        if battles_run >= ShowdownConfig.run_count:
+        if battles_run >= FoulPlayConfig.run_count:
             break
+    await ps_websocket_client.close()
 
 
 if __name__ == "__main__":
     try:
-        asyncio.run(showdown())
-    except Exception as e:
+        asyncio.run(run_foul_play())
+    except Exception:
         logger.error(traceback.format_exc())
         raise

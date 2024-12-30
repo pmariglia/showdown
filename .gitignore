@@ -1,5 +1,6 @@
 logs/
 venv/
+dist/
 .idea/
 **/actual_states/*
 **/__pycache__/*
@@ -10,3 +11,6 @@ suspect_decisions.py
 teams/teams
 .venv
 .envrc
+data/smogon_stats_cache
+*.DS_Store
+env*

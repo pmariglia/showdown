@@ -1,24 +1,52 @@
-FROM pmariglia/gambit-docker as debian-with-gambit
+FROM rust:1.81-slim as build
 
-FROM python:3.8-slim
+# Install necessary build dependencies
+RUN apt update && apt install -y \
+    python3.11 \
+    python3.11-dev \
+    make \
+    build-essential \
+    python3.11-venv \
+    git
 
-COPY --from=debian-with-gambit /usr/local/bin/gambit-enummixed /usr/local/bin
+# Set working directory and create packages directory
+WORKDIR /build
+RUN mkdir -p /build/packages
 
-WORKDIR /showdown
+# Clone both repositories at the same level
+RUN cd .. && \
+    git clone https://github.com/RotomLearn/poke-engine.git && \
+    git clone https://github.com/RotomLearn/pokey-engine.git
 
-COPY requirements.txt /showdown/requirements.txt
-COPY requirements-docker.txt /showdown/requirements-docker.txt
+# Copy requirements and project files
+COPY requirements.txt requirements.txt
 
-RUN pip3 install -r requirements.txt
-RUN pip3 install -r requirements-docker.txt
+ARG GEN
 
-COPY config.py /showdown/config.py
-COPY constants.py /showdown/constants.py
-COPY data /showdown/data
-COPY run.py /showdown/run.py
-COPY showdown /showdown/showdown
-COPY teams /showdown/teams
+RUN python3 -m venv venv && \
+    . venv/bin/activate && \
+    # pip24 is required for --config-settings
+    pip install --upgrade pip==24.2 && \
+    # Install other requirements to the packages directory
+    pip install -v --target /build/packages -r requirements.txt && \
+    # Install pokey-engine from the cloned repository
+    pip install -v --force-reinstall --no-cache-dir ../pokey-engine/ \
+    --config-settings="build-args=--features poke-engine/${GEN:-gen4} --no-default-features" && \
+    cp -r /build/venv/lib/python3.11/site-packages/pokey_engine* /build/packages/ && \
+    pip uninstall -y poke-engine && pip install -v --force-reinstall \
+    --no-cache-dir ../poke-engine/poke-engine-py \
+    --config-settings="build-args=--features poke-engine/${GEN} --no-default-features" && \
+    cp -r /build/venv/lib/python3.11/site-packages/poke_engine* /build/packages/
 
+# Second stage
+FROM python:3.11-slim
+WORKDIR /foul-play
+COPY config.py /foul-play/config.py
+COPY constants.py /foul-play/constants.py
+COPY data /foul-play/data
+COPY run.py /foul-play/run.py
+COPY fp /foul-play/fp
+COPY teams /foul-play/teams
+COPY --from=build /build/packages/ /usr/local/lib/python3.11/site-packages/
 ENV PYTHONIOENCODING=utf-8
-
 CMD ["python3", "run.py"]
