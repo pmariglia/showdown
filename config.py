@@ -8,6 +8,9 @@ from environs import Env
 
 import constants
 
+env = Env()
+env.read_env(path="env", recurse=False)
+
 
 class CustomFormatter(logging.Formatter):
     def format(self, record):
@@ -71,18 +74,7 @@ class _FoulPlayConfig:
     stdout_log_handler: logging.StreamHandler
     file_log_handler: Optional[CustomRotatingFileHandler]
 
-    def configure(self, env_path: Optional[str] = None):
-        env = Env()
-        if not env_path:
-            config_home = os.environ.get("XDG_CONFIG_HOME")
-            if not config_home:
-                sys.stderr.write("Could not find XDG_CONFIG_HOME")
-                sys.exit(1)
-
-            env_path = os.path.join(config_home, "showdown_bot", "env")
-
-        env.read_env(path=env_path, recurse=False)
-
+    def configure(self):
         self.battle_bot_module = env("BATTLE_BOT")
         self.websocket_uri = env("WEBSOCKET_URI")
         self.username = env("PS_USERNAME")
