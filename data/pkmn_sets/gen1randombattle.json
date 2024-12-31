@@ -1,759 +1,755 @@
 {
   "abra": {
-    ",noability,psychic,reflect,seismictoss,thunderwave": 2150,
-    ",noability,counter,psychic,seismictoss,thunderwave": 2137,
-    ",noability,psychic,seismictoss,substitute,thunderwave": 2060
+    "84,,noability,psychic,reflect,seismictoss,thunderwave": 2150,
+    "84,,noability,counter,psychic,seismictoss,thunderwave": 2137,
+    "84,,noability,psychic,seismictoss,substitute,thunderwave": 2060
   },
   "aerodactyl": {
-    ",noability,doubleedge,fireblast,hyperbeam,skyattack": 1976,
-    ",noability,agility,doubleedge,fireblast,hyperbeam": 974
+    "75,,noability,doubleedge,fireblast,hyperbeam,skyattack": 1976,
+    "75,,noability,agility,doubleedge,fireblast,hyperbeam": 974
   },
   "alakazam": {
-    ",noability,psychic,recover,seismictoss,thunderwave": 2531,
-    ",noability,counter,psychic,recover,thunderwave": 1342,
-    ",noability,psychic,recover,reflect,thunderwave": 2566
+    "68,,noability,psychic,recover,seismictoss,thunderwave": 2531,
+    "68,,noability,counter,psychic,recover,thunderwave": 1342,
+    "68,,noability,psychic,recover,reflect,thunderwave": 2566
   },
   "arbok": {
-    ",noability,earthquake,glare,hyperbeam,rockslide": 2409,
-    ",noability,bodyslam,earthquake,glare,hyperbeam": 1213
+    "78,,noability,earthquake,glare,hyperbeam,rockslide": 2409,
+    "78,,noability,bodyslam,earthquake,glare,hyperbeam": 1213
   },
   "arcanine": {
-    ",noability,bodyslam,fireblast,flamethrower,hyperbeam": 1385,
-    ",noability,bodyslam,fireblast,hyperbeam,rest": 715,
-    ",noability,agility,bodyslam,fireblast,hyperbeam": 1320,
-    ",noability,bodyslam,fireblast,hyperbeam,reflect": 677
+    "75,,noability,bodyslam,fireblast,flamethrower,hyperbeam": 1385,
+    "75,,noability,bodyslam,fireblast,hyperbeam,rest": 715,
+    "75,,noability,agility,bodyslam,fireblast,hyperbeam": 1320,
+    "75,,noability,bodyslam,fireblast,hyperbeam,reflect": 677
   },
   "articuno": {
-    ",noability,agility,blizzard,hyperbeam,icebeam": 606,
-    ",noability,agility,blizzard,hyperbeam,mimic": 587,
-    ",noability,blizzard,icebeam,reflect,rest": 1929,
-    ",noability,agility,blizzard,hyperbeam,reflect": 639
+    "70,,noability,agility,blizzard,hyperbeam,icebeam": 606,
+    "70,,noability,agility,blizzard,hyperbeam,mimic": 587,
+    "70,,noability,blizzard,icebeam,reflect,rest": 1929,
+    "70,,noability,agility,blizzard,hyperbeam,reflect": 639
   },
   "beedrill": {
-    ",noability,agility,hyperbeam,swordsdance,twineedle": 3053,
-    ",noability,hyperbeam,megadrain,swordsdance,twineedle": 1605
+    "81,,noability,agility,hyperbeam,swordsdance,twineedle": 3053,
+    "81,,noability,hyperbeam,megadrain,swordsdance,twineedle": 1605
   },
   "bellsprout": {
-    ",noability,doubleedge,razorleaf,sleeppowder,stunspore": 2234,
-    ",noability,doubleedge,razorleaf,sleeppowder,swordsdance": 1118
+    "88,,noability,doubleedge,razorleaf,sleeppowder,stunspore": 2234,
+    "88,,noability,doubleedge,razorleaf,sleeppowder,swordsdance": 1118
   },
   "blastoise": {
-    ",noability,blizzard,bodyslam,earthquake,surf": 1411,
-    ",noability,blizzard,bodyslam,rest,surf": 1319,
-    ",noability,blizzard,bodyslam,earthquake,hydropump": 678,
-    ",noability,blizzard,bodyslam,hydropump,rest": 704
+    "75,,noability,blizzard,bodyslam,earthquake,surf": 1411,
+    "75,,noability,blizzard,bodyslam,rest,surf": 1319,
+    "75,,noability,blizzard,bodyslam,earthquake,hydropump": 678,
+    "75,,noability,blizzard,bodyslam,hydropump,rest": 704
   },
   "bulbasaur": {
-    ",noability,bodyslam,razorleaf,sleeppowder,swordsdance": 3415
+    "89,,noability,bodyslam,razorleaf,sleeppowder,swordsdance": 3415
   },
   "butterfree": {
-    ",noability,hyperbeam,psychic,sleeppowder,stunspore": 778,
-    ",noability,doubleedge,psychic,sleeppowder,stunspore": 721,
-    ",noability,psychic,sleeppowder,stunspore,substitute": 699,
-    ",noability,megadrain,psychic,sleeppowder,stunspore": 796
+    "77,,noability,hyperbeam,psychic,sleeppowder,stunspore": 778,
+    "77,,noability,doubleedge,psychic,sleeppowder,stunspore": 721,
+    "77,,noability,psychic,sleeppowder,stunspore,substitute": 699,
+    "77,,noability,megadrain,psychic,sleeppowder,stunspore": 796
   },
   "chansey": {
-    ",noability,icebeam,softboiled,thunderbolt,thunderwave": 2490,
-    ",noability,icebeam,sing,softboiled,thunderwave": 854,
-    ",noability,icebeam,reflect,softboiled,thunderwave": 863,
-    ",noability,counter,icebeam,softboiled,thunderwave": 862,
-    ",noability,icebeam,seismictoss,softboiled,thunderwave": 805
+    "68,,noability,icebeam,softboiled,thunderbolt,thunderwave": 2490,
+    "68,,noability,icebeam,sing,softboiled,thunderwave": 854,
+    "68,,noability,icebeam,reflect,softboiled,thunderwave": 863,
+    "68,,noability,counter,icebeam,softboiled,thunderwave": 862,
+    "68,,noability,icebeam,seismictoss,softboiled,thunderwave": 805
   },
   "charizard": {
-    ",noability,earthquake,fireblast,hyperbeam,swordsdance": 1425,
-    ",noability,bodyslam,earthquake,fireblast,slash": 1450
+    "74,,noability,earthquake,fireblast,hyperbeam,swordsdance": 1425,
+    "74,,noability,bodyslam,earthquake,fireblast,slash": 1450
   },
   "charmander": {
-    ",noability,bodyslam,counter,fireblast,slash": 423,
-    ",noability,bodyslam,fireblast,seismictoss,slash": 1089,
-    ",noability,bodyslam,fireblast,submission,swordsdance": 2100,
-    ",noability,bodyslam,counter,fireblast,seismictoss": 515
+    "90,,noability,bodyslam,counter,fireblast,slash": 423,
+    "90,,noability,bodyslam,fireblast,seismictoss,slash": 1089,
+    "90,,noability,bodyslam,fireblast,submission,swordsdance": 2100,
+    "90,,noability,bodyslam,counter,fireblast,seismictoss": 515
   },
   "charmeleon": {
-    ",noability,bodyslam,fireblast,seismictoss,slash": 1112,
-    ",noability,bodyslam,fireblast,submission,swordsdance": 2025,
-    ",noability,bodyslam,counter,fireblast,seismictoss": 504,
-    ",noability,bodyslam,counter,fireblast,slash": 472
+    "81,,noability,bodyslam,fireblast,seismictoss,slash": 1112,
+    "81,,noability,bodyslam,fireblast,submission,swordsdance": 2025,
+    "81,,noability,bodyslam,counter,fireblast,seismictoss": 504,
+    "81,,noability,bodyslam,counter,fireblast,slash": 472
   },
   "clefable": {
-    ",noability,blizzard,bodyslam,sing,thunderwave": 898,
-    ",noability,blizzard,bodyslam,psychic,thunderwave": 461,
-    ",noability,blizzard,bodyslam,hyperbeam,thunderwave": 891,
-    ",noability,blizzard,bodyslam,thunderbolt,thunderwave": 801,
-    ",noability,blizzard,sing,thunderbolt,thunderwave": 402,
-    ",noability,blizzard,bodyslam,hyperbeam,thunderbolt": 392,
-    ",noability,blizzard,bodyslam,counter,thunderwave": 427,
-    ",noability,blizzard,bodyslam,counter,thunderbolt": 180,
-    ",noability,blizzard,psychic,thunderbolt,thunderwave": 195,
-    ",noability,blizzard,bodyslam,psychic,thunderbolt": 201,
-    ",noability,blizzard,bodyslam,sing,thunderbolt": 386,
-    ",noability,blizzard,hyperbeam,thunderbolt,thunderwave": 408,
-    ",noability,blizzard,counter,thunderbolt,thunderwave": 166
+    "74,,noability,blizzard,bodyslam,sing,thunderwave": 898,
+    "74,,noability,blizzard,bodyslam,psychic,thunderwave": 461,
+    "74,,noability,blizzard,bodyslam,hyperbeam,thunderwave": 891,
+    "74,,noability,blizzard,bodyslam,thunderbolt,thunderwave": 801,
+    "74,,noability,blizzard,sing,thunderbolt,thunderwave": 402,
+    "74,,noability,blizzard,bodyslam,hyperbeam,thunderbolt": 392,
+    "74,,noability,blizzard,bodyslam,counter,thunderwave": 427,
+    "74,,noability,blizzard,bodyslam,counter,thunderbolt": 180,
+    "74,,noability,blizzard,psychic,thunderbolt,thunderwave": 195,
+    "74,,noability,blizzard,bodyslam,psychic,thunderbolt": 201,
+    "74,,noability,blizzard,bodyslam,sing,thunderbolt": 386,
+    "74,,noability,blizzard,hyperbeam,thunderbolt,thunderwave": 408,
+    "74,,noability,blizzard,counter,thunderbolt,thunderwave": 166
   },
   "clefairy": {
-    ",noability,blizzard,bodyslam,sing,thunderwave": 962,
-    ",noability,blizzard,bodyslam,seismictoss,thunderwave": 873,
-    ",noability,blizzard,bodyslam,thunderbolt,thunderwave": 783,
-    ",noability,blizzard,seismictoss,sing,thunderwave": 474,
-    ",noability,blizzard,sing,thunderbolt,thunderwave": 525,
-    ",noability,blizzard,counter,thunderbolt,thunderwave": 236,
-    ",noability,blizzard,bodyslam,counter,thunderwave": 503,
-    ",noability,blizzard,psychic,seismictoss,thunderwave": 273,
-    ",noability,blizzard,bodyslam,psychic,thunderwave": 477,
-    ",noability,blizzard,psychic,thunderbolt,thunderwave": 227,
-    ",noability,blizzard,seismictoss,thunderbolt,thunderwave": 325,
-    ",noability,blizzard,counter,seismictoss,thunderwave": 249
+    "88,,noability,blizzard,bodyslam,sing,thunderwave": 962,
+    "88,,noability,blizzard,bodyslam,seismictoss,thunderwave": 873,
+    "88,,noability,blizzard,bodyslam,thunderbolt,thunderwave": 783,
+    "88,,noability,blizzard,seismictoss,sing,thunderwave": 474,
+    "88,,noability,blizzard,sing,thunderbolt,thunderwave": 525,
+    "88,,noability,blizzard,counter,thunderbolt,thunderwave": 236,
+    "88,,noability,blizzard,bodyslam,counter,thunderwave": 503,
+    "88,,noability,blizzard,psychic,seismictoss,thunderwave": 273,
+    "88,,noability,blizzard,bodyslam,psychic,thunderwave": 477,
+    "88,,noability,blizzard,psychic,thunderbolt,thunderwave": 227,
+    "88,,noability,blizzard,seismictoss,thunderbolt,thunderwave": 325,
+    "88,,noability,blizzard,counter,seismictoss,thunderwave": 249
   },
   "cloyster": {
-    ",noability,blizzard,explosion,hyperbeam,surf": 2756,
-    ",noability,blizzard,doubleedge,explosion,surf": 1357
+    "70,,noability,blizzard,explosion,hyperbeam,surf": 2756,
+    "70,,noability,blizzard,doubleedge,explosion,surf": 1357
   },
   "cubone": {
-    ",noability,blizzard,bodyslam,earthquake,seismictoss": 3974
+    "89,,noability,blizzard,bodyslam,earthquake,seismictoss": 3974
   },
   "dewgong": {
-    ",noability,blizzard,bodyslam,rest,surf": 3010,
-    ",noability,blizzard,bodyslam,hyperbeam,surf": 1022
+    "74,,noability,blizzard,bodyslam,rest,surf": 3010,
+    "74,,noability,blizzard,bodyslam,hyperbeam,surf": 1022
   },
   "diglett": {
-    ",noability,bodyslam,earthquake,rockslide,slash": 2000,
-    ",noability,earthquake,rockslide,slash,substitute": 2039
+    "86,,noability,bodyslam,earthquake,rockslide,slash": 2000,
+    "86,,noability,earthquake,rockslide,slash,substitute": 2039
   },
   "ditto": {
-    ",noability,transform": 1
+    "100,,noability,transform": 1
   },
   "dodrio": {
-    ",noability,agility,bodyslam,drillpeck,hyperbeam": 2914
+    "73,,noability,agility,bodyslam,drillpeck,hyperbeam": 2914
   },
   "doduo": {
-    ",noability,agility,bodyslam,doubleedge,drillpeck": 2955
+    "87,,noability,agility,bodyslam,doubleedge,drillpeck": 2955
   },
   "dragonair": {
-    ",noability,blizzard,bodyslam,thunderbolt,thunderwave": 1798,
-    ",noability,blizzard,hyperbeam,thunderbolt,thunderwave": 1798,
-    ",noability,blizzard,bodyslam,hyperbeam,thunderwave": 690
+    "80,,noability,blizzard,bodyslam,thunderbolt,thunderwave": 1798,
+    "80,,noability,blizzard,hyperbeam,thunderbolt,thunderwave": 1798,
+    "80,,noability,blizzard,bodyslam,hyperbeam,thunderwave": 690
   },
   "dragonite": {
-    ",noability,blizzard,bodyslam,thunderbolt,thunderwave": 1211,
-    ",noability,blizzard,hyperbeam,thunderbolt,thunderwave": 1270,
-    ",noability,blizzard,bodyslam,hyperbeam,thunderwave": 1267,
-    ",noability,blizzard,bodyslam,hyperbeam,thunderbolt": 405
+    "74,,noability,blizzard,bodyslam,thunderbolt,thunderwave": 1211,
+    "74,,noability,blizzard,hyperbeam,thunderbolt,thunderwave": 1270,
+    "74,,noability,blizzard,bodyslam,hyperbeam,thunderwave": 1267,
+    "74,,noability,blizzard,bodyslam,hyperbeam,thunderbolt": 405
   },
   "dratini": {
-    ",noability,blizzard,hyperbeam,thunderbolt,thunderwave": 1830,
-    ",noability,blizzard,bodyslam,thunderbolt,thunderwave": 1790,
-    ",noability,blizzard,bodyslam,hyperbeam,thunderwave": 714
+    "89,,noability,blizzard,hyperbeam,thunderbolt,thunderwave": 1830,
+    "89,,noability,blizzard,bodyslam,thunderbolt,thunderwave": 1790,
+    "89,,noability,blizzard,bodyslam,hyperbeam,thunderwave": 714
   },
   "drowzee": {
-    ",noability,hypnosis,psychic,seismictoss,thunderwave": 3251,
-    ",noability,counter,hypnosis,psychic,thunderwave": 1646,
-    ",noability,hypnosis,psychic,rest,thunderwave": 1580
+    "84,,noability,hypnosis,psychic,seismictoss,thunderwave": 3251,
+    "84,,noability,counter,hypnosis,psychic,thunderwave": 1646,
+    "84,,noability,hypnosis,psychic,rest,thunderwave": 1580
   },
   "dugtrio": {
-    ",noability,bodyslam,earthquake,rockslide,slash": 2106,
-    ",noability,earthquake,rockslide,slash,substitute": 1982
+    "73,,noability,bodyslam,earthquake,rockslide,slash": 2106,
+    "73,,noability,earthquake,rockslide,slash,substitute": 1982
   },
   "eevee": {
-    ",noability,bodyslam,quickattack,reflect,sandattack": 722,
-    ",noability,bodyslam,doubleedge,quickattack,sandattack": 1475,
-    ",noability,bodyslam,doubleedge,quickattack,tailwhip": 1550,
-    ",noability,bodyslam,doubleedge,reflect,tailwhip": 643,
-    ",noability,bodyslam,quickattack,reflect,tailwhip": 707,
-    ",noability,bodyslam,doubleedge,reflect,sandattack": 670
+    "88,,noability,bodyslam,quickattack,reflect,sandattack": 722,
+    "88,,noability,bodyslam,doubleedge,quickattack,sandattack": 1475,
+    "88,,noability,bodyslam,doubleedge,quickattack,tailwhip": 1550,
+    "88,,noability,bodyslam,doubleedge,reflect,tailwhip": 643,
+    "88,,noability,bodyslam,quickattack,reflect,tailwhip": 707,
+    "88,,noability,bodyslam,doubleedge,reflect,sandattack": 670
   },
   "ekans": {
-    ",noability,bodyslam,earthquake,glare,rockslide": 3606
+    "90,,noability,bodyslam,earthquake,glare,rockslide": 3606
   },
   "electabuzz": {
-    ",noability,hyperbeam,psychic,thunderbolt,thunderwave": 1118,
-    ",noability,psychic,seismictoss,thunderbolt,thunderwave": 3222
+    "74,,noability,hyperbeam,psychic,thunderbolt,thunderwave": 1118,
+    "74,,noability,psychic,seismictoss,thunderbolt,thunderwave": 3222
   },
   "electrode": {
-    ",noability,explosion,hyperbeam,thunderbolt,thunderwave": 1697,
-    ",noability,explosion,thunder,thunderbolt,thunderwave": 1757,
-    ",noability,explosion,takedown,thunderbolt,thunderwave": 884
+    "76,,noability,explosion,hyperbeam,thunderbolt,thunderwave": 1697,
+    "76,,noability,explosion,thunder,thunderbolt,thunderwave": 1757,
+    "76,,noability,explosion,takedown,thunderbolt,thunderwave": 884
   },
   "exeggcute": {
-    ",noability,explosion,psychic,sleeppowder,stunspore": 3961
+    "84,,noability,explosion,psychic,sleeppowder,stunspore": 3961
   },
   "exeggutor": {
-    ",noability,explosion,psychic,sleeppowder,stunspore": 1978,
-    ",noability,explosion,hyperbeam,psychic,sleeppowder": 676,
-    ",noability,explosion,megadrain,psychic,sleeppowder": 671,
-    ",noability,doubleedge,explosion,psychic,sleeppowder": 654
+    "68,,noability,explosion,psychic,sleeppowder,stunspore": 1978,
+    "68,,noability,explosion,hyperbeam,psychic,sleeppowder": 676,
+    "68,,noability,explosion,megadrain,psychic,sleeppowder": 671,
+    "68,,noability,doubleedge,explosion,psychic,sleeppowder": 654
   },
   "farfetchd": {
-    ",noability,agility,bodyslam,slash,swordsdance": 2857
+    "78,,noability,agility,bodyslam,slash,swordsdance": 2857
   },
   "fearow": {
-    ",noability,agility,doubleedge,drillpeck,hyperbeam": 2921
+    "75,,noability,agility,doubleedge,drillpeck,hyperbeam": 2921
   },
   "flareon": {
-    ",noability,bodyslam,fireblast,hyperbeam,quickattack": 4070
+    "76,,noability,bodyslam,fireblast,hyperbeam,quickattack": 4070
   },
   "gastly": {
-    ",noability,explosion,hypnosis,psychic,thunderbolt": 1130,
-    ",noability,explosion,hypnosis,megadrain,thunderbolt": 514,
-    ",noability,hypnosis,nightshade,psychic,thunderbolt": 517,
-    ",noability,hypnosis,megadrain,psychic,thunderbolt": 540,
-    ",noability,explosion,hypnosis,nightshade,thunderbolt": 528,
-    ",noability,hypnosis,megadrain,nightshade,thunderbolt": 246
+    "83,,noability,explosion,hypnosis,psychic,thunderbolt": 1130,
+    "83,,noability,explosion,hypnosis,megadrain,thunderbolt": 514,
+    "83,,noability,hypnosis,nightshade,psychic,thunderbolt": 517,
+    "83,,noability,hypnosis,megadrain,psychic,thunderbolt": 540,
+    "83,,noability,explosion,hypnosis,nightshade,thunderbolt": 528,
+    "83,,noability,hypnosis,megadrain,nightshade,thunderbolt": 246
   },
   "gengar": {
-    ",noability,explosion,hypnosis,psychic,thunderbolt": 1261,
-    ",noability,explosion,hypnosis,megadrain,thunderbolt": 494,
-    ",noability,hypnosis,megadrain,nightshade,thunderbolt": 208,
-    ",noability,hypnosis,nightshade,psychic,thunderbolt": 538,
-    ",noability,explosion,hypnosis,nightshade,thunderbolt": 582,
-    ",noability,hypnosis,megadrain,psychic,thunderbolt": 554
+    "68,,noability,explosion,hypnosis,psychic,thunderbolt": 1261,
+    "68,,noability,explosion,hypnosis,megadrain,thunderbolt": 494,
+    "68,,noability,hypnosis,megadrain,nightshade,thunderbolt": 208,
+    "68,,noability,hypnosis,nightshade,psychic,thunderbolt": 538,
+    "68,,noability,explosion,hypnosis,nightshade,thunderbolt": 582,
+    "68,,noability,hypnosis,megadrain,psychic,thunderbolt": 554
   },
   "geodude": {
-    ",noability,bodyslam,earthquake,explosion,rockslide": 2989
+    "88,,noability,bodyslam,earthquake,explosion,rockslide": 2989
   },
   "gloom": {
-    ",noability,doubleedge,megadrain,sleeppowder,swordsdance": 1122,
-    ",noability,doubleedge,megadrain,sleeppowder,stunspore": 2262
+    "82,,noability,doubleedge,megadrain,sleeppowder,swordsdance": 1122,
+    "82,,noability,doubleedge,megadrain,sleeppowder,stunspore": 2262
   },
   "golbat": {
-    ",noability,confuseray,doubleedge,hyperbeam,megadrain": 2759
+    "78,,noability,confuseray,doubleedge,hyperbeam,megadrain": 2759
   },
   "goldeen": {
-    ",noability,agility,blizzard,doubleedge,surf": 4145
+    "88,,noability,agility,blizzard,doubleedge,surf": 4145
   },
   "golduck": {
-    ",noability,amnesia,blizzard,hydropump,surf": 822,
-    ",noability,amnesia,blizzard,seismictoss,surf": 843,
-    ",noability,amnesia,blizzard,bodyslam,surf": 858,
-    ",noability,amnesia,blizzard,rest,surf": 1574
+    "75,,noability,amnesia,blizzard,hydropump,surf": 822,
+    "75,,noability,amnesia,blizzard,seismictoss,surf": 843,
+    "75,,noability,amnesia,blizzard,bodyslam,surf": 858,
+    "75,,noability,amnesia,blizzard,rest,surf": 1574
   },
   "golem": {
-    ",noability,bodyslam,earthquake,explosion,rockslide": 2958
+    "71,,noability,bodyslam,earthquake,explosion,rockslide": 2958
   },
   "graveler": {
-    ",noability,bodyslam,earthquake,explosion,rockslide": 2948
+    "80,,noability,bodyslam,earthquake,explosion,rockslide": 2948
   },
   "grimer": {
-    ",noability,bodyslam,explosion,megadrain,sludge": 637,
-    ",noability,bodyslam,explosion,fireblast,sludge": 1301,
-    ",noability,bodyslam,explosion,sludge,thunderbolt": 636,
-    ",noability,bodyslam,explosion,fireblast,thunderbolt": 369,
-    ",noability,bodyslam,explosion,fireblast,megadrain": 385,
-    ",noability,bodyslam,explosion,megadrain,thunderbolt": 143
+    "90,,noability,bodyslam,explosion,megadrain,sludge": 637,
+    "90,,noability,bodyslam,explosion,fireblast,sludge": 1301,
+    "90,,noability,bodyslam,explosion,sludge,thunderbolt": 636,
+    "90,,noability,bodyslam,explosion,fireblast,thunderbolt": 369,
+    "90,,noability,bodyslam,explosion,fireblast,megadrain": 385,
+    "90,,noability,bodyslam,explosion,megadrain,thunderbolt": 143
   },
   "growlithe": {
-    ",noability,agility,bodyslam,fireblast,flamethrower": 2032,
-    ",noability,agility,bodyslam,fireblast,reflect": 2026
+    "89,,noability,agility,bodyslam,fireblast,flamethrower": 2032,
+    "89,,noability,agility,bodyslam,fireblast,reflect": 2026
   },
   "gyarados": {
-    ",noability,blizzard,bodyslam,hydropump,hyperbeam": 396,
-    ",noability,blizzard,bodyslam,surf,thunderbolt": 852,
-    ",noability,bodyslam,hyperbeam,surf,thunderbolt": 905,
-    ",noability,blizzard,bodyslam,hyperbeam,surf": 803,
-    ",noability,bodyslam,hydropump,hyperbeam,thunderbolt": 384,
-    ",noability,blizzard,hyperbeam,surf,thunderbolt": 265,
-    ",noability,blizzard,bodyslam,hydropump,thunderbolt": 425,
-    ",noability,blizzard,hydropump,hyperbeam,thunderbolt": 120
+    "74,,noability,blizzard,bodyslam,hydropump,hyperbeam": 396,
+    "74,,noability,blizzard,bodyslam,surf,thunderbolt": 852,
+    "74,,noability,bodyslam,hyperbeam,surf,thunderbolt": 905,
+    "74,,noability,blizzard,bodyslam,hyperbeam,surf": 803,
+    "74,,noability,bodyslam,hydropump,hyperbeam,thunderbolt": 384,
+    "74,,noability,blizzard,hyperbeam,surf,thunderbolt": 265,
+    "74,,noability,blizzard,bodyslam,hydropump,thunderbolt": 425,
+    "74,,noability,blizzard,hydropump,hyperbeam,thunderbolt": 120
   },
   "haunter": {
-    ",noability,explosion,hypnosis,psychic,thunderbolt": 1121,
-    ",noability,explosion,hypnosis,nightshade,thunderbolt": 530,
-    ",noability,hypnosis,nightshade,psychic,thunderbolt": 553,
-    ",noability,hypnosis,megadrain,nightshade,thunderbolt": 229,
-    ",noability,hypnosis,megadrain,psychic,thunderbolt": 548,
-    ",noability,explosion,hypnosis,megadrain,thunderbolt": 530
+    "74,,noability,explosion,hypnosis,psychic,thunderbolt": 1121,
+    "74,,noability,explosion,hypnosis,nightshade,thunderbolt": 530,
+    "74,,noability,hypnosis,nightshade,psychic,thunderbolt": 553,
+    "74,,noability,hypnosis,megadrain,nightshade,thunderbolt": 229,
+    "74,,noability,hypnosis,megadrain,psychic,thunderbolt": 548,
+    "74,,noability,explosion,hypnosis,megadrain,thunderbolt": 530
   },
   "hitmonchan": {
-    ",noability,agility,bodyslam,seismictoss,submission": 1940,
-    ",noability,bodyslam,counter,seismictoss,submission": 1913,
-    ",noability,bodyslam,megakick,seismictoss,submission": 984
+    "80,,noability,agility,bodyslam,seismictoss,submission": 1940,
+    "80,,noability,bodyslam,counter,seismictoss,submission": 1913,
+    "80,,noability,bodyslam,megakick,seismictoss,submission": 984
   },
   "hitmonlee": {
-    ",noability,bodyslam,counter,highjumpkick,seismictoss": 1844,
-    ",noability,bodyslam,highjumpkick,meditate,seismictoss": 976,
-    ",noability,bodyslam,highjumpkick,rollingkick,seismictoss": 992,
-    ",noability,bodyslam,highjumpkick,megakick,seismictoss": 992
+    "78,,noability,bodyslam,counter,highjumpkick,seismictoss": 1844,
+    "78,,noability,bodyslam,highjumpkick,meditate,seismictoss": 976,
+    "78,,noability,bodyslam,highjumpkick,rollingkick,seismictoss": 992,
+    "78,,noability,bodyslam,highjumpkick,megakick,seismictoss": 992
   },
   "horsea": {
-    ",noability,agility,blizzard,doubleedge,surf": 1363,
-    ",noability,agility,blizzard,hydropump,surf": 1389,
-    ",noability,agility,blizzard,smokescreen,surf": 1314
+    "88,,noability,agility,blizzard,doubleedge,surf": 1363,
+    "88,,noability,agility,blizzard,hydropump,surf": 1389,
+    "88,,noability,agility,blizzard,smokescreen,surf": 1314
   },
   "hypno": {
-    ",noability,hypnosis,psychic,rest,thunderwave": 2535,
-    ",noability,counter,hypnosis,psychic,thunderwave": 1275,
-    ",noability,hypnosis,psychic,seismictoss,thunderwave": 2586
+    "72,,noability,hypnosis,psychic,rest,thunderwave": 2535,
+    "72,,noability,counter,hypnosis,psychic,thunderwave": 1275,
+    "72,,noability,hypnosis,psychic,seismictoss,thunderwave": 2586
   },
   "ivysaur": {
-    ",noability,bodyslam,razorleaf,sleeppowder,swordsdance": 3356
+    "80,,noability,bodyslam,razorleaf,sleeppowder,swordsdance": 3356
   },
   "jigglypuff": {
-    ",noability,blizzard,bodyslam,sing,thunderwave": 641,
-    ",noability,blizzard,bodyslam,seismictoss,thunderwave": 1964,
-    ",noability,bodyslam,counter,seismictoss,thunderwave": 664,
-    ",noability,bodyslam,seismictoss,sing,thunderwave": 671,
-    ",noability,blizzard,bodyslam,counter,thunderwave": 602,
-    ",noability,blizzard,counter,seismictoss,thunderwave": 665,
-    ",noability,blizzard,seismictoss,sing,thunderwave": 629
+    "89,,noability,blizzard,bodyslam,sing,thunderwave": 641,
+    "89,,noability,blizzard,bodyslam,seismictoss,thunderwave": 1964,
+    "89,,noability,bodyslam,counter,seismictoss,thunderwave": 664,
+    "89,,noability,bodyslam,seismictoss,sing,thunderwave": 671,
+    "89,,noability,blizzard,bodyslam,counter,thunderwave": 602,
+    "89,,noability,blizzard,counter,seismictoss,thunderwave": 665,
+    "89,,noability,blizzard,seismictoss,sing,thunderwave": 629
   },
   "jolteon": {
-    ",noability,bodyslam,pinmissile,thunderbolt,thunderwave": 1705,
-    ",noability,bodyslam,doublekick,thunderbolt,thunderwave": 856,
-    ",noability,agility,bodyslam,thunderbolt,thunderwave": 1709
+    "69,,noability,bodyslam,pinmissile,thunderbolt,thunderwave": 1705,
+    "69,,noability,bodyslam,doublekick,thunderbolt,thunderwave": 856,
+    "69,,noability,agility,bodyslam,thunderbolt,thunderwave": 1709
   },
   "jynx": {
-    ",noability,blizzard,lovelykiss,psychic,substitute": 1154,
-    ",noability,blizzard,counter,lovelykiss,psychic": 2354,
-    ",noability,blizzard,bodyslam,lovelykiss,psychic": 1165,
-    ",noability,blizzard,lovelykiss,psychic,seismictoss": 1134
+    "68,,noability,blizzard,lovelykiss,psychic,substitute": 1154,
+    "68,,noability,blizzard,counter,lovelykiss,psychic": 2354,
+    "68,,noability,blizzard,bodyslam,lovelykiss,psychic": 1165,
+    "68,,noability,blizzard,lovelykiss,psychic,seismictoss": 1134
   },
   "kabuto": {
-    ",noability,blizzard,bodyslam,hydropump,slash": 1022,
-    ",noability,blizzard,bodyslam,slash,surf": 2003
+    "88,,noability,blizzard,bodyslam,hydropump,slash": 1022,
+    "88,,noability,blizzard,bodyslam,slash,surf": 2003
   },
   "kabutops": {
-    ",noability,bodyslam,hyperbeam,surf,swordsdance": 1459,
-    ",noability,hyperbeam,slash,surf,swordsdance": 1533
+    "75,,noability,bodyslam,hyperbeam,surf,swordsdance": 1459,
+    "75,,noability,hyperbeam,slash,surf,swordsdance": 1533
   },
   "kadabra": {
-    ",noability,psychic,recover,reflect,thunderwave": 2510,
-    ",noability,psychic,recover,seismictoss,thunderwave": 2509,
-    ",noability,counter,psychic,recover,thunderwave": 1258
+    "74,,noability,psychic,recover,reflect,thunderwave": 2510,
+    "74,,noability,psychic,recover,seismictoss,thunderwave": 2509,
+    "74,,noability,counter,psychic,recover,thunderwave": 1258
   },
   "kangaskhan": {
-    ",noability,bodyslam,earthquake,hyperbeam,rockslide": 2938,
-    ",noability,bodyslam,counter,earthquake,hyperbeam": 1421,
-    ",noability,bodyslam,earthquake,hyperbeam,surf": 1496
+    "73,,noability,bodyslam,earthquake,hyperbeam,rockslide": 2938,
+    "73,,noability,bodyslam,counter,earthquake,hyperbeam": 1421,
+    "73,,noability,bodyslam,earthquake,hyperbeam,surf": 1496
   },
   "kingler": {
-    ",noability,bodyslam,crabhammer,hyperbeam,swordsdance": 4057
+    "76,,noability,bodyslam,crabhammer,hyperbeam,swordsdance": 4057
   },
   "koffing": {
-    ",noability,explosion,fireblast,sludge,thunderbolt": 3542
+    "90,,noability,explosion,fireblast,sludge,thunderbolt": 3542
   },
   "krabby": {
-    ",noability,blizzard,bodyslam,crabhammer,swordsdance": 3016,
-    ",noability,bodyslam,crabhammer,stomp,swordsdance": 995
+    "89,,noability,blizzard,bodyslam,crabhammer,swordsdance": 3016,
+    "89,,noability,bodyslam,crabhammer,stomp,swordsdance": 995
   },
   "lapras": {
-    ",noability,blizzard,bodyslam,sing,thunderbolt": 710,
-    ",noability,blizzard,bodyslam,surf,thunderbolt": 703,
-    ",noability,blizzard,rest,surf,thunderbolt": 721,
-    ",noability,blizzard,sing,surf,thunderbolt": 662,
-    ",noability,blizzard,bodyslam,rest,thunderbolt": 728,
-    ",noability,blizzard,rest,sing,thunderbolt": 693
+    "69,,noability,blizzard,bodyslam,sing,thunderbolt": 710,
+    "69,,noability,blizzard,bodyslam,surf,thunderbolt": 703,
+    "69,,noability,blizzard,rest,surf,thunderbolt": 721,
+    "69,,noability,blizzard,sing,surf,thunderbolt": 662,
+    "69,,noability,blizzard,bodyslam,rest,thunderbolt": 728,
+    "69,,noability,blizzard,rest,sing,thunderbolt": 693
   },
   "lickitung": {
-    ",noability,blizzard,bodyslam,hyperbeam,swordsdance": 1444,
-    ",noability,bodyslam,earthquake,hyperbeam,swordsdance": 4363
+    "78,,noability,blizzard,bodyslam,hyperbeam,swordsdance": 1444,
+    "78,,noability,bodyslam,earthquake,hyperbeam,swordsdance": 4363
   },
   "machamp": {
-    ",noability,bodyslam,earthquake,rockslide,submission": 1893,
-    ",noability,bodyslam,earthquake,hyperbeam,submission": 1865,
-    ",noability,bodyslam,counter,earthquake,submission": 993
+    "76,,noability,bodyslam,earthquake,rockslide,submission": 1893,
+    "76,,noability,bodyslam,earthquake,hyperbeam,submission": 1865,
+    "76,,noability,bodyslam,counter,earthquake,submission": 993
   },
   "machoke": {
-    ",noability,bodyslam,counter,earthquake,submission": 1645,
-    ",noability,bodyslam,earthquake,rockslide,submission": 3138
+    "81,,noability,bodyslam,counter,earthquake,submission": 1645,
+    "81,,noability,bodyslam,earthquake,rockslide,submission": 3138
   },
   "machop": {
-    ",noability,bodyslam,earthquake,rockslide,submission": 3141,
-    ",noability,bodyslam,counter,earthquake,submission": 1578
+    "89,,noability,bodyslam,earthquake,rockslide,submission": 3141,
+    "89,,noability,bodyslam,counter,earthquake,submission": 1578
   },
   "magmar": {
-    ",noability,bodyslam,confuseray,fireblast,psychic": 1356,
-    ",noability,bodyslam,confuseray,fireblast,hyperbeam": 1359,
-    ",noability,bodyslam,confuseray,fireblast,seismictoss": 1383
+    "76,,noability,bodyslam,confuseray,fireblast,psychic": 1356,
+    "76,,noability,bodyslam,confuseray,fireblast,hyperbeam": 1359,
+    "76,,noability,bodyslam,confuseray,fireblast,seismictoss": 1383
   },
   "magnemite": {
-    ",noability,doubleedge,thunder,thunderbolt,thunderwave": 2243,
-    ",noability,mimic,thunder,thunderbolt,thunderwave": 1065,
-    ",noability,rest,thunder,thunderbolt,thunderwave": 1018
+    "88,,noability,doubleedge,thunder,thunderbolt,thunderwave": 2243,
+    "88,,noability,mimic,thunder,thunderbolt,thunderwave": 1065,
+    "88,,noability,rest,thunder,thunderbolt,thunderwave": 1018
   },
   "magneton": {
-    ",noability,rest,thunder,thunderbolt,thunderwave": 821,
-    ",noability,doubleedge,thunder,thunderbolt,thunderwave": 900,
-    ",noability,mimic,thunder,thunderbolt,thunderwave": 851,
-    ",noability,hyperbeam,thunder,thunderbolt,thunderwave": 1694
+    "76,,noability,rest,thunder,thunderbolt,thunderwave": 821,
+    "76,,noability,doubleedge,thunder,thunderbolt,thunderwave": 900,
+    "76,,noability,mimic,thunder,thunderbolt,thunderwave": 851,
+    "76,,noability,hyperbeam,thunder,thunderbolt,thunderwave": 1694
   },
   "mankey": {
-    ",noability,bodyslam,counter,rockslide,submission": 1527,
-    ",noability,bodyslam,lowkick,rockslide,submission": 1579,
-    ",noability,bodyslam,megakick,rockslide,submission": 1670
+    "89,,noability,bodyslam,counter,rockslide,submission": 1527,
+    "89,,noability,bodyslam,lowkick,rockslide,submission": 1579,
+    "89,,noability,bodyslam,megakick,rockslide,submission": 1670
   },
   "marowak": {
-    ",noability,blizzard,bodyslam,earthquake,seismictoss": 3951
+    "79,,noability,blizzard,bodyslam,earthquake,seismictoss": 3951
   },
   "meowth": {
-    ",noability,bodyslam,bubblebeam,slash,thunderbolt": 5932
+    "85,,noability,bodyslam,bubblebeam,slash,thunderbolt": 5932
   },
   "mew": {
-    ",noability,earthquake,psychic,softboiled,thunderwave": 1064,
-    ",noability,blizzard,psychic,softboiled,thunderwave": 2179,
-    ",noability,psychic,softboiled,thunderbolt,thunderwave": 1069,
-    ",noability,explosion,psychic,softboiled,thunderwave": 2134
+    "64,,noability,earthquake,psychic,softboiled,thunderwave": 1064,
+    "64,,noability,blizzard,psychic,softboiled,thunderwave": 2179,
+    "64,,noability,psychic,softboiled,thunderbolt,thunderwave": 1069,
+    "64,,noability,explosion,psychic,softboiled,thunderwave": 2134
   },
   "mewtwo": {
-    ",noability,amnesia,psychic,recover,thunderwave": 3252,
-    ",noability,amnesia,psychic,recover,thunderbolt": 1657,
-    ",noability,amnesia,blizzard,psychic,recover": 1614
+    "60,,noability,amnesia,psychic,recover,thunderwave": 3252,
+    "60,,noability,amnesia,psychic,recover,thunderbolt": 1657,
+    "60,,noability,amnesia,blizzard,psychic,recover": 1614
   },
   "moltres": {
-    ",noability,agility,doubleedge,fireblast,hyperbeam": 2189,
-    ",noability,agility,fireblast,hyperbeam,reflect": 772
+    "73,,noability,agility,doubleedge,fireblast,hyperbeam": 2189,
+    "73,,noability,agility,fireblast,hyperbeam,reflect": 772
   },
   "mrmime": {
-    ",noability,psychic,seismictoss,thunderbolt,thunderwave": 6418
+    "75,,noability,psychic,seismictoss,thunderbolt,thunderwave": 6418
   },
   "muk": {
-    ",noability,bodyslam,explosion,fireblast,sludge": 725,
-    ",noability,bodyslam,explosion,sludge,thunderbolt": 333,
-    ",noability,bodyslam,explosion,fireblast,thunderbolt": 187,
-    ",noability,bodyslam,explosion,megadrain,sludge": 701,
-    ",noability,bodyslam,explosion,hyperbeam,sludge": 360,
-    ",noability,bodyslam,explosion,fireblast,hyperbeam": 206,
-    ",noability,bodyslam,explosion,hyperbeam,thunderbolt": 104,
-    ",noability,bodyslam,explosion,fireblast,megadrain": 463,
-    ",noability,bodyslam,explosion,megadrain,thunderbolt": 192,
-    ",noability,bodyslam,explosion,hyperbeam,megadrain": 215
+    "76,,noability,bodyslam,explosion,fireblast,sludge": 725,
+    "76,,noability,bodyslam,explosion,sludge,thunderbolt": 333,
+    "76,,noability,bodyslam,explosion,fireblast,thunderbolt": 187,
+    "76,,noability,bodyslam,explosion,megadrain,sludge": 701,
+    "76,,noability,bodyslam,explosion,hyperbeam,sludge": 360,
+    "76,,noability,bodyslam,explosion,fireblast,hyperbeam": 206,
+    "76,,noability,bodyslam,explosion,hyperbeam,thunderbolt": 104,
+    "76,,noability,bodyslam,explosion,fireblast,megadrain": 463,
+    "76,,noability,bodyslam,explosion,megadrain,thunderbolt": 192,
+    "76,,noability,bodyslam,explosion,hyperbeam,megadrain": 215
   },
   "nidoking": {
-    ",noability,blizzard,bodyslam,earthquake,rockslide": 534,
-    ",noability,blizzard,earthquake,substitute,thunderbolt": 609,
-    ",noability,blizzard,bodyslam,earthquake,thunderbolt": 1245,
-    ",noability,blizzard,earthquake,rockslide,substitute": 297
+    "74,,noability,blizzard,bodyslam,earthquake,rockslide": 534,
+    "74,,noability,blizzard,earthquake,substitute,thunderbolt": 609,
+    "74,,noability,blizzard,bodyslam,earthquake,thunderbolt": 1245,
+    "74,,noability,blizzard,earthquake,rockslide,substitute": 297
   },
   "nidoqueen": {
-    ",noability,blizzard,bodyslam,earthquake,thunderbolt": 1789,
-    ",noability,blizzard,earthquake,substitute,thunderbolt": 903
+    "74,,noability,blizzard,bodyslam,earthquake,thunderbolt": 1789,
+    "74,,noability,blizzard,earthquake,substitute,thunderbolt": 903
   },
   "nidoranf": {
-    ",noability,blizzard,bodyslam,doublekick,thunderbolt": 1700,
-    ",noability,blizzard,bodyslam,doubleedge,thunderbolt": 1730
+    "90,,noability,blizzard,bodyslam,doublekick,thunderbolt": 1700,
+    "90,,noability,blizzard,bodyslam,doubleedge,thunderbolt": 1730
   },
   "nidoranm": {
-    ",noability,blizzard,bodyslam,doublekick,thunderbolt": 1738,
-    ",noability,blizzard,bodyslam,doubleedge,thunderbolt": 1827
+    "90,,noability,blizzard,bodyslam,doublekick,thunderbolt": 1738,
+    "90,,noability,blizzard,bodyslam,doubleedge,thunderbolt": 1827
   },
   "nidorina": {
-    ",noability,blizzard,bodyslam,doubleedge,thunderbolt": 1212,
-    ",noability,blizzard,bodyslam,bubblebeam,thunderbolt": 1176,
-    ",noability,blizzard,bodyslam,doublekick,thunderbolt": 1180
+    "82,,noability,blizzard,bodyslam,doubleedge,thunderbolt": 1212,
+    "82,,noability,blizzard,bodyslam,bubblebeam,thunderbolt": 1176,
+    "82,,noability,blizzard,bodyslam,doublekick,thunderbolt": 1180
   },
   "nidorino": {
-    ",noability,blizzard,bodyslam,bubblebeam,thunderbolt": 1136,
-    ",noability,blizzard,bodyslam,doubleedge,thunderbolt": 1206,
-    ",noability,blizzard,bodyslam,doublekick,thunderbolt": 1196
+    "82,,noability,blizzard,bodyslam,bubblebeam,thunderbolt": 1136,
+    "82,,noability,blizzard,bodyslam,doubleedge,thunderbolt": 1206,
+    "82,,noability,blizzard,bodyslam,doublekick,thunderbolt": 1196
   },
   "ninetales": {
-    ",noability,bodyslam,confuseray,fireblast,substitute": 1650,
-    ",noability,bodyslam,confuseray,fireblast,hyperbeam": 834,
-    ",noability,bodyslam,confuseray,fireblast,flamethrower": 852,
-    ",noability,bodyslam,confuseray,fireblast,reflect": 810
+    "74,,noability,bodyslam,confuseray,fireblast,substitute": 1650,
+    "74,,noability,bodyslam,confuseray,fireblast,hyperbeam": 834,
+    "74,,noability,bodyslam,confuseray,fireblast,flamethrower": 852,
+    "74,,noability,bodyslam,confuseray,fireblast,reflect": 810
   },
   "oddish": {
-    ",noability,doubleedge,megadrain,sleeppowder,stunspore": 2246,
-    ",noability,doubleedge,megadrain,sleeppowder,swordsdance": 1126
+    "90,,noability,doubleedge,megadrain,sleeppowder,stunspore": 2246,
+    "90,,noability,doubleedge,megadrain,sleeppowder,swordsdance": 1126
   },
   "omanyte": {
-    ",noability,blizzard,bodyslam,hydropump,rest": 1494,
-    ",noability,blizzard,bodyslam,rest,surf": 1590
+    "87,,noability,blizzard,bodyslam,hydropump,rest": 1494,
+    "87,,noability,blizzard,bodyslam,rest,surf": 1590
   },
   "omastar": {
-    ",noability,blizzard,hydropump,rest,seismictoss": 499,
-    ",noability,blizzard,bodyslam,seismictoss,surf": 528,
-    ",noability,blizzard,bodyslam,hydropump,seismictoss": 530,
-    ",noability,blizzard,bodyslam,hydropump,rest": 517,
-    ",noability,blizzard,rest,seismictoss,surf": 446,
-    ",noability,blizzard,bodyslam,rest,surf": 492
+    "74,,noability,blizzard,hydropump,rest,seismictoss": 499,
+    "74,,noability,blizzard,bodyslam,seismictoss,surf": 528,
+    "74,,noability,blizzard,bodyslam,hydropump,seismictoss": 530,
+    "74,,noability,blizzard,bodyslam,hydropump,rest": 517,
+    "74,,noability,blizzard,rest,seismictoss,surf": 446,
+    "74,,noability,blizzard,bodyslam,rest,surf": 492
   },
   "onix": {
-    ",noability,bodyslam,earthquake,explosion,rockslide": 2995
+    "80,,noability,bodyslam,earthquake,explosion,rockslide": 2995
   },
   "paras": {
-    ",noability,bodyslam,megadrain,spore,swordsdance": 1361,
-    ",noability,bodyslam,megadrain,spore,stunspore": 2729
+    "90,,noability,bodyslam,megadrain,spore,swordsdance": 1361,
+    "90,,noability,bodyslam,megadrain,spore,stunspore": 2729
   },
   "parasect": {
-    ",noability,bodyslam,megadrain,spore,swordsdance": 1138,
-    ",noability,bodyslam,megadrain,slash,spore": 598,
-    ",noability,bodyslam,megadrain,spore,stunspore": 1743,
-    ",noability,bodyslam,hyperbeam,megadrain,spore": 566
+    "77,,noability,bodyslam,megadrain,spore,swordsdance": 1138,
+    "77,,noability,bodyslam,megadrain,slash,spore": 598,
+    "77,,noability,bodyslam,megadrain,spore,stunspore": 1743,
+    "77,,noability,bodyslam,hyperbeam,megadrain,spore": 566
   },
   "persian": {
-    ",noability,bodyslam,bubblebeam,hyperbeam,slash": 3023,
-    ",noability,bodyslam,bubblebeam,slash,thunderbolt": 2982
+    "73,,noability,bodyslam,bubblebeam,hyperbeam,slash": 3023,
+    "73,,noability,bodyslam,bubblebeam,slash,thunderbolt": 2982
   },
   "pidgeot": {
-    ",noability,agility,doubleedge,hyperbeam,quickattack": 976,
-    ",noability,agility,doubleedge,hyperbeam,substitute": 294,
-    ",noability,agility,doubleedge,hyperbeam,mirrormove": 300,
-    ",noability,agility,doubleedge,hyperbeam,skyattack": 600,
-    ",noability,agility,doubleedge,hyperbeam,reflect": 319,
-    ",noability,agility,doubleedge,hyperbeam,sandattack": 301
+    "76,,noability,agility,doubleedge,hyperbeam,quickattack": 976,
+    "76,,noability,agility,doubleedge,hyperbeam,substitute": 294,
+    "76,,noability,agility,doubleedge,hyperbeam,mirrormove": 300,
+    "76,,noability,agility,doubleedge,hyperbeam,skyattack": 600,
+    "76,,noability,agility,doubleedge,hyperbeam,reflect": 319,
+    "76,,noability,agility,doubleedge,hyperbeam,sandattack": 301
   },
   "pidgeotto": {
-    ",noability,agility,doubleedge,quickattack,skyattack": 1379,
-    ",noability,agility,doubleedge,quickattack,substitute": 262,
-    ",noability,agility,doubleedge,quickattack,sandattack": 262,
-    ",noability,agility,doubleedge,mirrormove,quickattack": 269,
-    ",noability,agility,doubleedge,skyattack,substitute": 106,
-    ",noability,agility,doubleedge,mirrormove,skyattack": 111,
-    ",noability,doubleedge,quickattack,sandattack,skyattack": 121,
-    ",noability,agility,doubleedge,sandattack,skyattack": 113,
-    ",noability,doubleedge,mirrormove,quickattack,skyattack": 122,
-    ",noability,doubleedge,quickattack,skyattack,substitute": 107
+    "85,,noability,agility,doubleedge,quickattack,skyattack": 1379,
+    "85,,noability,agility,doubleedge,quickattack,substitute": 262,
+    "85,,noability,agility,doubleedge,quickattack,sandattack": 262,
+    "85,,noability,agility,doubleedge,mirrormove,quickattack": 269,
+    "85,,noability,agility,doubleedge,skyattack,substitute": 106,
+    "85,,noability,agility,doubleedge,mirrormove,skyattack": 111,
+    "85,,noability,doubleedge,quickattack,sandattack,skyattack": 121,
+    "85,,noability,agility,doubleedge,sandattack,skyattack": 113,
+    "85,,noability,doubleedge,mirrormove,quickattack,skyattack": 122,
+    "85,,noability,doubleedge,quickattack,skyattack,substitute": 107
   },
   "pidgey": {
-    ",noability,agility,doubleedge,quickattack,substitute": 253,
-    ",noability,agility,doubleedge,quickattack,skyattack": 1485,
-    ",noability,agility,doubleedge,quickattack,sandattack": 266,
-    ",noability,agility,doubleedge,mirrormove,skyattack": 111,
-    ",noability,doubleedge,quickattack,sandattack,skyattack": 104,
-    ",noability,agility,doubleedge,sandattack,skyattack": 145,
-    ",noability,doubleedge,quickattack,skyattack,substitute": 114,
-    ",noability,doubleedge,mirrormove,quickattack,skyattack": 117,
-    ",noability,agility,doubleedge,mirrormove,quickattack": 263,
-    ",noability,agility,doubleedge,skyattack,substitute": 131
+    "93,,noability,agility,doubleedge,quickattack,substitute": 253,
+    "93,,noability,agility,doubleedge,quickattack,skyattack": 1485,
+    "93,,noability,agility,doubleedge,quickattack,sandattack": 266,
+    "93,,noability,agility,doubleedge,mirrormove,skyattack": 111,
+    "93,,noability,doubleedge,quickattack,sandattack,skyattack": 104,
+    "93,,noability,agility,doubleedge,sandattack,skyattack": 145,
+    "93,,noability,doubleedge,quickattack,skyattack,substitute": 114,
+    "93,,noability,doubleedge,mirrormove,quickattack,skyattack": 117,
+    "93,,noability,agility,doubleedge,mirrormove,quickattack": 263,
+    "93,,noability,agility,doubleedge,skyattack,substitute": 131
   },
   "pikachu": {
-    ",noability,bodyslam,surf,thunderbolt,thunderwave": 876,
-    ",noability,surf,thunder,thunderbolt,thunderwave": 883,
-    ",noability,seismictoss,surf,thunderbolt,thunderwave": 1715,
-    ",noability,agility,surf,thunderbolt,thunderwave": 853
+    "87,,noability,bodyslam,surf,thunderbolt,thunderwave": 876,
+    "87,,noability,surf,thunder,thunderbolt,thunderwave": 883,
+    "87,,noability,seismictoss,surf,thunderbolt,thunderwave": 1715,
+    "87,,noability,agility,surf,thunderbolt,thunderwave": 853
   },
   "pinsir": {
-    ",noability,hyperbeam,slash,submission,swordsdance": 1369,
-    ",noability,bodyslam,hyperbeam,submission,swordsdance": 2790,
-    ",noability,hyperbeam,seismictoss,slash,swordsdance": 685,
-    ",noability,bodyslam,hyperbeam,seismictoss,swordsdance": 1319
+    "75,,noability,hyperbeam,slash,submission,swordsdance": 1369,
+    "75,,noability,bodyslam,hyperbeam,submission,swordsdance": 2790,
+    "75,,noability,hyperbeam,seismictoss,slash,swordsdance": 685,
+    "75,,noability,bodyslam,hyperbeam,seismictoss,swordsdance": 1319
   },
   "poliwag": {
-    ",noability,amnesia,blizzard,hypnosis,surf": 3065,
-    ",noability,amnesia,blizzard,psychic,surf": 977
+    "86,,noability,amnesia,blizzard,hypnosis,surf": 4042
   },
   "poliwhirl": {
-    ",noability,amnesia,blizzard,psychic,surf": 1067,
-    ",noability,amnesia,blizzard,hypnosis,surf": 3130
+    "79,,noability,amnesia,blizzard,hypnosis,surf": 4197
   },
   "poliwrath": {
-    ",noability,amnesia,blizzard,hypnosis,surf": 1622,
-    ",noability,blizzard,bodyslam,earthquake,surf": 267,
-    ",noability,blizzard,earthquake,hypnosis,surf": 250,
-    ",noability,blizzard,bodyslam,hypnosis,surf": 289,
-    ",noability,blizzard,earthquake,submission,surf": 272,
-    ",noability,blizzard,hypnosis,submission,surf": 243,
-    ",noability,blizzard,bodyslam,submission,surf": 254
+    "74,,noability,amnesia,blizzard,hypnosis,surf": 1622,
+    "74,,noability,blizzard,bodyslam,earthquake,surf": 267,
+    "74,,noability,blizzard,earthquake,hypnosis,surf": 250,
+    "74,,noability,blizzard,bodyslam,hypnosis,surf": 289,
+    "74,,noability,blizzard,earthquake,submission,surf": 272,
+    "74,,noability,blizzard,hypnosis,submission,surf": 243,
+    "74,,noability,blizzard,bodyslam,submission,surf": 254
   },
   "ponyta": {
-    ",noability,agility,bodyslam,fireblast,stomp": 671,
-    ",noability,agility,bodyslam,fireblast,substitute": 1354,
-    ",noability,agility,bodyslam,fireblast,reflect": 2096
+    "84,,noability,agility,bodyslam,fireblast,stomp": 671,
+    "84,,noability,agility,bodyslam,fireblast,substitute": 1354,
+    "84,,noability,agility,bodyslam,fireblast,reflect": 2096
   },
   "porygon": {
-    ",noability,blizzard,recover,thunderwave,triattack": 1469,
-    ",noability,blizzard,psychic,recover,thunderwave": 1489,
-    ",noability,blizzard,recover,thunderbolt,thunderwave": 1436,
-    ",noability,blizzard,doubleedge,recover,thunderwave": 1378
+    "76,,noability,blizzard,recover,thunderwave,triattack": 1469,
+    "76,,noability,blizzard,psychic,recover,thunderwave": 1489,
+    "76,,noability,blizzard,recover,thunderbolt,thunderwave": 1436,
+    "76,,noability,blizzard,doubleedge,recover,thunderwave": 1378
   },
   "primeape": {
-    ",noability,bodyslam,hyperbeam,rockslide,submission": 1851,
-    ",noability,bodyslam,counter,rockslide,submission": 928,
-    ",noability,bodyslam,counter,submission,thunderbolt": 333,
-    ",noability,bodyslam,lowkick,rockslide,submission": 832,
-    ",noability,bodyslam,hyperbeam,submission,thunderbolt": 573,
-    ",noability,bodyslam,lowkick,submission,thunderbolt": 312
+    "76,,noability,bodyslam,hyperbeam,rockslide,submission": 1851,
+    "76,,noability,bodyslam,counter,rockslide,submission": 928,
+    "76,,noability,bodyslam,counter,submission,thunderbolt": 333,
+    "76,,noability,bodyslam,lowkick,rockslide,submission": 832,
+    "76,,noability,bodyslam,hyperbeam,submission,thunderbolt": 573,
+    "76,,noability,bodyslam,lowkick,submission,thunderbolt": 312
   },
   "psyduck": {
-    ",noability,amnesia,blizzard,bodyslam,surf": 847,
-    ",noability,amnesia,blizzard,seismictoss,surf": 1631,
-    ",noability,amnesia,blizzard,rest,surf": 822,
-    ",noability,amnesia,blizzard,hydropump,surf": 825
+    "89,,noability,amnesia,blizzard,bodyslam,surf": 847,
+    "89,,noability,amnesia,blizzard,seismictoss,surf": 1631,
+    "89,,noability,amnesia,blizzard,rest,surf": 822,
+    "89,,noability,amnesia,blizzard,hydropump,surf": 825
   },
   "raichu": {
-    ",noability,agility,surf,thunderbolt,thunderwave": 724,
-    ",noability,hyperbeam,surf,thunderbolt,thunderwave": 1436,
-    ",noability,seismictoss,surf,thunderbolt,thunderwave": 692,
-    ",noability,bodyslam,surf,thunderbolt,thunderwave": 719,
-    ",noability,surf,thunder,thunderbolt,thunderwave": 693
+    "74,,noability,agility,surf,thunderbolt,thunderwave": 724,
+    "74,,noability,hyperbeam,surf,thunderbolt,thunderwave": 1436,
+    "74,,noability,seismictoss,surf,thunderbolt,thunderwave": 692,
+    "74,,noability,bodyslam,surf,thunderbolt,thunderwave": 719,
+    "74,,noability,surf,thunder,thunderbolt,thunderwave": 693
   },
   "rapidash": {
-    ",noability,agility,bodyslam,fireblast,hyperbeam": 4063
+    "75,,noability,agility,bodyslam,fireblast,hyperbeam": 4063
   },
   "raticate": {
-    ",noability,blizzard,bodyslam,hyperbeam,superfang": 5869
+    "75,,noability,blizzard,bodyslam,hyperbeam,superfang": 5869
   },
   "rattata": {
-    ",noability,blizzard,bodyslam,superfang,thunderbolt": 2890,
-    ",noability,blizzard,bodyslam,doubleedge,superfang": 955,
-    ",noability,blizzard,bodyslam,quickattack,superfang": 1944
+    "89,,noability,blizzard,bodyslam,superfang,thunderbolt": 2890,
+    "89,,noability,blizzard,bodyslam,doubleedge,superfang": 955,
+    "89,,noability,blizzard,bodyslam,quickattack,superfang": 1944
   },
   "rhydon": {
-    ",noability,bodyslam,earthquake,rockslide,substitute": 3102
+    "68,,noability,bodyslam,earthquake,rockslide,substitute": 3102
   },
   "rhyhorn": {
-    ",noability,bodyslam,earthquake,rockslide,substitute": 2967
+    "84,,noability,bodyslam,earthquake,rockslide,substitute": 2967
   },
   "sandshrew": {
-    ",noability,bodyslam,earthquake,rockslide,swordsdance": 3982
+    "88,,noability,bodyslam,earthquake,rockslide,swordsdance": 3982
   },
   "sandslash": {
-    ",noability,bodyslam,earthquake,rockslide,swordsdance": 4016
+    "76,,noability,bodyslam,earthquake,rockslide,swordsdance": 4016
   },
   "scyther": {
-    ",noability,agility,hyperbeam,slash,swordsdance": 3030
+    "75,,noability,agility,hyperbeam,slash,swordsdance": 3030
   },
   "seadra": {
-    ",noability,agility,blizzard,hydropump,surf": 977,
-    ",noability,agility,blizzard,doubleedge,surf": 1063,
-    ",noability,agility,blizzard,smokescreen,surf": 1046,
-    ",noability,agility,blizzard,hyperbeam,surf": 1050
+    "77,,noability,agility,blizzard,hydropump,surf": 977,
+    "77,,noability,agility,blizzard,doubleedge,surf": 1063,
+    "77,,noability,agility,blizzard,smokescreen,surf": 1046,
+    "77,,noability,agility,blizzard,hyperbeam,surf": 1050
   },
   "seaking": {
-    ",noability,blizzard,doubleedge,hyperbeam,surf": 1391,
-    ",noability,agility,blizzard,doubleedge,surf": 1398,
-    ",noability,agility,blizzard,hyperbeam,surf": 1339
+    "78,,noability,blizzard,doubleedge,hyperbeam,surf": 1391,
+    "78,,noability,agility,blizzard,doubleedge,surf": 1398,
+    "78,,noability,agility,blizzard,hyperbeam,surf": 1339
   },
   "seel": {
-    ",noability,blizzard,bodyslam,rest,surf": 4068
+    "88,,noability,blizzard,bodyslam,rest,surf": 4068
   },
   "shellder": {
-    ",noability,blizzard,doubleedge,explosion,surf": 4077
+    "90,,noability,blizzard,doubleedge,explosion,surf": 4077
   },
   "slowbro": {
-    ",noability,amnesia,blizzard,surf,thunderwave": 636,
-    ",noability,amnesia,rest,surf,thunderwave": 1954,
-    ",noability,amnesia,blizzard,psychic,thunderwave": 653,
-    ",noability,amnesia,psychic,surf,thunderwave": 660
+    "68,,noability,amnesia,blizzard,surf,thunderwave": 636,
+    "68,,noability,amnesia,rest,surf,thunderwave": 1954,
+    "68,,noability,amnesia,blizzard,psychic,thunderwave": 653,
+    "68,,noability,amnesia,psychic,surf,thunderwave": 660
   },
   "slowpoke": {
-    ",noability,amnesia,rest,surf,thunderwave": 2267,
-    ",noability,blizzard,earthquake,surf,thunderwave": 468,
-    ",noability,earthquake,psychic,surf,thunderwave": 467,
-    ",noability,amnesia,blizzard,surf,thunderwave": 209,
-    ",noability,amnesia,psychic,surf,thunderwave": 216,
-    ",noability,earthquake,rest,surf,thunderwave": 461
+    "84,,noability,amnesia,rest,surf,thunderwave": 2042,
+    "84,,noability,amnesia,blizzard,surf,thunderwave": 659,
+    "84,,noability,amnesia,blizzard,psychic,thunderwave": 685,
+    "84,,noability,amnesia,psychic,surf,thunderwave": 702
   },
   "snorlax": {
-    ",noability,bodyslam,earthquake,hyperbeam,selfdestruct": 2973,
-    ",noability,amnesia,blizzard,bodyslam,rest": 1454,
-    ",noability,amnesia,blizzard,bodyslam,selfdestruct": 1438
+    "69,,noability,bodyslam,earthquake,hyperbeam,selfdestruct": 2973,
+    "69,,noability,amnesia,blizzard,bodyslam,rest": 1454,
+    "69,,noability,amnesia,blizzard,bodyslam,selfdestruct": 1438
   },
   "spearow": {
-    ",noability,agility,doubleedge,drillpeck,mirrormove": 747,
-    ",noability,agility,doubleedge,drillpeck,substitute": 708,
-    ",noability,agility,doubleedge,drillpeck,mimic": 672,
-    ",noability,agility,doubleedge,drillpeck,leer": 670
+    "89,,noability,agility,doubleedge,drillpeck,mirrormove": 747,
+    "89,,noability,agility,doubleedge,drillpeck,substitute": 708,
+    "89,,noability,agility,doubleedge,drillpeck,mimic": 672,
+    "89,,noability,agility,doubleedge,drillpeck,leer": 670
   },
   "squirtle": {
-    ",noability,blizzard,counter,seismictoss,surf": 1358,
-    ",noability,blizzard,bodyslam,hydropump,seismictoss": 684,
-    ",noability,blizzard,bodyslam,seismictoss,surf": 1290,
-    ",noability,blizzard,counter,hydropump,seismictoss": 638
+    "90,,noability,blizzard,counter,seismictoss,surf": 1358,
+    "90,,noability,blizzard,bodyslam,hydropump,seismictoss": 684,
+    "90,,noability,blizzard,bodyslam,seismictoss,surf": 1290,
+    "90,,noability,blizzard,counter,hydropump,seismictoss": 638
   },
   "starmie": {
-    ",noability,psychic,recover,thunderbolt,thunderwave": 411,
-    ",noability,blizzard,hydropump,recover,thunderbolt": 93,
-    ",noability,blizzard,recover,surf,thunderwave": 470,
-    ",noability,blizzard,psychic,recover,thunderwave": 417,
-    ",noability,recover,surf,thunderbolt,thunderwave": 477,
-    ",noability,blizzard,hydropump,recover,thunderwave": 246,
-    ",noability,blizzard,recover,surf,thunderbolt": 207,
-    ",noability,psychic,recover,surf,thunderwave": 421,
-    ",noability,hydropump,psychic,recover,thunderwave": 241,
-    ",noability,psychic,recover,surf,thunderbolt": 189,
-    ",noability,hydropump,psychic,recover,thunderbolt": 102,
-    ",noability,blizzard,psychic,recover,surf": 195,
-    ",noability,blizzard,psychic,recover,thunderbolt": 168,
-    ",noability,hydropump,recover,thunderbolt,thunderwave": 225,
-    ",noability,blizzard,hydropump,psychic,recover": 106
+    "68,,noability,psychic,recover,thunderbolt,thunderwave": 411,
+    "68,,noability,blizzard,hydropump,recover,thunderbolt": 93,
+    "68,,noability,blizzard,recover,surf,thunderwave": 470,
+    "68,,noability,blizzard,psychic,recover,thunderwave": 417,
+    "68,,noability,recover,surf,thunderbolt,thunderwave": 477,
+    "68,,noability,blizzard,hydropump,recover,thunderwave": 246,
+    "68,,noability,blizzard,recover,surf,thunderbolt": 207,
+    "68,,noability,psychic,recover,surf,thunderwave": 421,
+    "68,,noability,hydropump,psychic,recover,thunderwave": 241,
+    "68,,noability,psychic,recover,surf,thunderbolt": 189,
+    "68,,noability,hydropump,psychic,recover,thunderbolt": 102,
+    "68,,noability,blizzard,psychic,recover,surf": 195,
+    "68,,noability,blizzard,psychic,recover,thunderbolt": 168,
+    "68,,noability,hydropump,recover,thunderbolt,thunderwave": 225,
+    "68,,noability,blizzard,hydropump,psychic,recover": 106
   },
   "staryu": {
-    ",noability,blizzard,recover,surf,thunderbolt": 917,
-    ",noability,recover,surf,thunderbolt,thunderwave": 896,
-    ",noability,blizzard,recover,surf,thunderwave": 936,
-    ",noability,blizzard,hydropump,recover,thunderwave": 454,
-    ",noability,hydropump,recover,thunderbolt,thunderwave": 428,
-    ",noability,blizzard,hydropump,recover,thunderbolt": 476
+    "84,,noability,blizzard,recover,surf,thunderbolt": 917,
+    "84,,noability,recover,surf,thunderbolt,thunderwave": 896,
+    "84,,noability,blizzard,recover,surf,thunderwave": 936,
+    "84,,noability,blizzard,hydropump,recover,thunderwave": 454,
+    "84,,noability,hydropump,recover,thunderbolt,thunderwave": 428,
+    "84,,noability,blizzard,hydropump,recover,thunderbolt": 476
   },
   "tangela": {
-    ",noability,bodyslam,megadrain,sleeppowder,stunspore": 2076,
-    ",noability,bodyslam,growth,megadrain,sleeppowder": 699,
-    ",noability,bodyslam,megadrain,sleeppowder,swordsdance": 1256
+    "74,,noability,bodyslam,megadrain,sleeppowder,stunspore": 2076,
+    "74,,noability,bodyslam,growth,megadrain,sleeppowder": 699,
+    "74,,noability,bodyslam,megadrain,sleeppowder,swordsdance": 1256
   },
   "tauros": {
-    ",noability,bodyslam,earthquake,hyperbeam,thunderbolt": 1487,
-    ",noability,blizzard,bodyslam,earthquake,hyperbeam": 4313
+    "68,,noability,bodyslam,earthquake,hyperbeam,thunderbolt": 1487,
+    "68,,noability,blizzard,bodyslam,earthquake,hyperbeam": 4313
   },
   "tentacool": {
-    ",noability,blizzard,hydropump,megadrain,surf": 1690,
-    ",noability,barrier,blizzard,megadrain,surf": 839
+    "86,,noability,blizzard,hydropump,megadrain,surf": 1690,
+    "86,,noability,barrier,blizzard,megadrain,surf": 839
   },
   "tentacruel": {
-    ",noability,blizzard,hydropump,hyperbeam,swordsdance": 889,
-    ",noability,blizzard,hyperbeam,surf,swordsdance": 1721
+    "73,,noability,blizzard,hydropump,hyperbeam,swordsdance": 889,
+    "73,,noability,blizzard,hyperbeam,surf,swordsdance": 1721
   },
   "vaporeon": {
-    ",noability,blizzard,bodyslam,rest,surf": 2001,
-    ",noability,blizzard,mimic,rest,surf": 649,
-    ",noability,blizzard,hydropump,rest,surf": 657,
-    ",noability,acidarmor,blizzard,rest,surf": 662
+    "74,,noability,blizzard,bodyslam,rest,surf": 2001,
+    "74,,noability,blizzard,mimic,rest,surf": 649,
+    "74,,noability,blizzard,hydropump,rest,surf": 657,
+    "74,,noability,acidarmor,blizzard,rest,surf": 662
   },
   "venomoth": {
-    ",noability,doubleedge,psychic,sleeppowder,stunspore": 2393,
-    ",noability,megadrain,psychic,sleeppowder,stunspore": 2385
+    "74,,noability,doubleedge,psychic,sleeppowder,stunspore": 2393,
+    "74,,noability,megadrain,psychic,sleeppowder,stunspore": 2385
   },
   "venonat": {
-    ",noability,megadrain,psychic,sleeppowder,stunspore": 2330,
-    ",noability,doubleedge,psychic,sleeppowder,stunspore": 2346
+    "88,,noability,megadrain,psychic,sleeppowder,stunspore": 2330,
+    "88,,noability,doubleedge,psychic,sleeppowder,stunspore": 2346
   },
   "venusaur": {
-    ",noability,bodyslam,hyperbeam,razorleaf,sleeppowder": 1117,
-    ",noability,bodyslam,razorleaf,sleeppowder,swordsdance": 2226
+    "74,,noability,bodyslam,hyperbeam,razorleaf,sleeppowder": 1117,
+    "74,,noability,bodyslam,razorleaf,sleeppowder,swordsdance": 2226
   },
   "victreebel": {
-    ",noability,bodyslam,razorleaf,sleeppowder,stunspore": 1673,
-    ",noability,bodyslam,razorleaf,sleeppowder,swordsdance": 1069,
-    ",noability,bodyslam,hyperbeam,razorleaf,sleeppowder": 552
+    "74,,noability,bodyslam,razorleaf,sleeppowder,stunspore": 1673,
+    "74,,noability,bodyslam,razorleaf,sleeppowder,swordsdance": 1069,
+    "74,,noability,bodyslam,hyperbeam,razorleaf,sleeppowder": 552
   },
   "vileplume": {
-    ",noability,bodyslam,megadrain,sleeppowder,stunspore": 2231,
-    ",noability,bodyslam,megadrain,sleeppowder,swordsdance": 1107
+    "76,,noability,bodyslam,megadrain,sleeppowder,stunspore": 2231,
+    "76,,noability,bodyslam,megadrain,sleeppowder,swordsdance": 1107
   },
   "voltorb": {
-    ",noability,explosion,takedown,thunderbolt,thunderwave": 2165,
-    ",noability,explosion,thunder,thunderbolt,thunderwave": 2016
+    "88,,noability,explosion,takedown,thunderbolt,thunderwave": 2165,
+    "88,,noability,explosion,thunder,thunderbolt,thunderwave": 2016
   },
   "vulpix": {
-    ",noability,bodyslam,confuseray,fireblast,flamethrower": 1427,
-    ",noability,bodyslam,confuseray,fireblast,substitute": 1427,
-    ",noability,bodyslam,confuseray,fireblast,quickattack": 658,
-    ",noability,bodyslam,confuseray,fireblast,reflect": 672
+    "88,,noability,bodyslam,confuseray,fireblast,flamethrower": 1427,
+    "88,,noability,bodyslam,confuseray,fireblast,substitute": 1427,
+    "88,,noability,bodyslam,confuseray,fireblast,quickattack": 658,
+    "88,,noability,bodyslam,confuseray,fireblast,reflect": 672
   },
   "wartortle": {
-    ",noability,blizzard,bodyslam,seismictoss,surf": 884,
-    ",noability,blizzard,bodyslam,counter,surf": 980,
-    ",noability,blizzard,bodyslam,rest,surf": 909,
-    ",noability,blizzard,bodyslam,counter,hydropump": 480,
-    ",noability,blizzard,bodyslam,hydropump,seismictoss": 449,
-    ",noability,blizzard,bodyslam,hydropump,rest": 468
+    "82,,noability,blizzard,bodyslam,seismictoss,surf": 884,
+    "82,,noability,blizzard,bodyslam,counter,surf": 980,
+    "82,,noability,blizzard,bodyslam,rest,surf": 909,
+    "82,,noability,blizzard,bodyslam,counter,hydropump": 480,
+    "82,,noability,blizzard,bodyslam,hydropump,seismictoss": 449,
+    "82,,noability,blizzard,bodyslam,hydropump,rest": 468
   },
   "weepinbell": {
-    ",noability,doubleedge,razorleaf,sleeppowder,swordsdance": 1135,
-    ",noability,doubleedge,razorleaf,sleeppowder,stunspore": 2192
+    "80,,noability,doubleedge,razorleaf,sleeppowder,swordsdance": 1135,
+    "80,,noability,doubleedge,razorleaf,sleeppowder,stunspore": 2192
   },
   "weezing": {
-    ",noability,explosion,fireblast,sludge,thunderbolt": 3489
+    "76,,noability,explosion,fireblast,sludge,thunderbolt": 3489
   },
   "wigglytuff": {
-    ",noability,blizzard,bodyslam,sing,thunderwave": 2010,
-    ",noability,blizzard,bodyslam,hyperbeam,thunderwave": 1911,
-    ",noability,blizzard,bodyslam,counter,thunderwave": 1915
+    "76,,noability,blizzard,bodyslam,sing,thunderwave": 2010,
+    "76,,noability,blizzard,bodyslam,hyperbeam,thunderwave": 1911,
+    "76,,noability,blizzard,bodyslam,counter,thunderwave": 1915
   },
   "zapdos": {
-    ",noability,agility,drillpeck,thunderbolt,thunderwave": 4228
+    "68,,noability,agility,drillpeck,thunderbolt,thunderwave": 4228
   },
   "zubat": {
-    ",noability,confuseray,doubleedge,megadrain,wingattack": 895,
-    ",noability,confuseray,doubleedge,megadrain,substitute": 1673
+    "100,,noability,confuseray,doubleedge,megadrain,wingattack": 895,
+    "100,,noability,confuseray,doubleedge,megadrain,substitute": 1673
   }
 }
