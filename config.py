@@ -63,6 +63,7 @@ class _FoulPlayConfig:
     bot_mode: str
     pokemon_mode: str = ""
     search_time_ms: int
+    parallelism: int
     run_count: int
     team: str
     user_to_challenge: str
@@ -83,6 +84,7 @@ class _FoulPlayConfig:
         self.pokemon_mode = env("POKEMON_MODE")
 
         self.search_time_ms = env.int("SEARCH_TIME_MS", 100)
+        self.parallelism = env.int("MCTS_PARALLELISM", 1)
 
         self.run_count = env.int("RUN_COUNT", 1)
         self.team = env("TEAM_NAME", None)
