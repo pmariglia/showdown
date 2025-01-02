@@ -143,6 +143,7 @@ class PokemonSet:
     nature: str
     evs: Tuple[int, int, int, int, int, int]
     count: int
+    level: Optional[int] = 100
     tera_type: Optional[str] = None
 
     def set_makes_sense(self, pkmn: Pokemon, match_traits):
@@ -254,12 +255,13 @@ class _RandomBattleSets(PokemonSets):
             self.pkmn_sets[pkmn] = []
             for set_, count in sets.items():
                 set_split = set_.split(",")
-                item = set_split[0]
-                ability = set_split[1]
-                moves = set_split[2:6]
+                level = int(set_split[0])
+                item = set_split[1]
+                ability = set_split[2]
+                moves = set_split[3:7]
                 tera_type = None
-                if len(set_split) > 6:
-                    tera_type = set_split[6]
+                if len(set_split) > 7:
+                    tera_type = set_split[7]
                 self.pkmn_sets[pkmn].append(
                     PredictedPokemonSet(
                         pkmn_set=PokemonSet(
@@ -269,6 +271,7 @@ class _RandomBattleSets(PokemonSets):
                             evs=(85, 85, 85, 85, 85, 85),
                             count=count,
                             tera_type=tera_type,
+                            level=level,
                         ),
                         pkmn_moveset=PokemonMoveset(moves=moves),
                     )
@@ -313,11 +316,24 @@ class _RandomBattleSets(PokemonSets):
 
         return None
 
-    def pokemon_can_have_move(self, pkmn: Pokemon, move: str) -> bool:
+    def get_all_remaining_sets(
+        self, pkmn: Pokemon, match_traits=True
+    ) -> list[PredictedPokemonSet]:
+        if not self.pkmn_sets:
+            logger.warning("Called `predict_set` when pkmn_sets was empty")
+            return []
+
+        remaining_sets = []
         for pkmn_set in self.get_pkmn_sets_from_pkmn_name(pkmn.name, pkmn.base_name):
-            if move in pkmn_set.pkmn_moveset.moves:
-                return True
-        return False
+            if pkmn_set.full_set_pkmn_can_have_set(
+                pkmn,
+                match_ability=match_traits,
+                match_item=match_traits,
+                speed_check=False,  # speed check never makes sense for randombattles because we know the nature/evs
+            ):
+                remaining_sets.append(pkmn_set)
+
+        return remaining_sets
 
 
 class _TeamDatasets(PokemonSets):

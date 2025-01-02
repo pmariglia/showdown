@@ -801,7 +801,7 @@
   },
   "magnemite": {
     "types": [
-      "Electric"
+      "electric"
     ],
     "baseStats": {
       "hp": 25,
@@ -814,7 +814,7 @@
   },
   "magneton": {
     "types": [
-      "Electric"
+      "electric"
     ],
     "baseStats": {
       "hp": 50,

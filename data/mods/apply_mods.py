@@ -4,6 +4,10 @@ import logging
 import constants
 from data import all_move_json
 from data import pokedex
+from fp.helpers import (
+    DAMAGE_MULTIPICATION_ARRAY,
+    POKEMON_TYPE_INDICES,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +36,15 @@ PRE_PHYSICAL_SPECIAL_SPLIT_CATEGORY_LOOKUP = {
 }
 
 
+def _steel_resists_dark_and_ghost():
+    DAMAGE_MULTIPICATION_ARRAY[POKEMON_TYPE_INDICES["ghost"]][
+        POKEMON_TYPE_INDICES["steel"]
+    ] = 0.5
+    DAMAGE_MULTIPICATION_ARRAY[POKEMON_TYPE_INDICES["dark"]][
+        POKEMON_TYPE_INDICES["steel"]
+    ] = 0.5
+
+
 def apply_move_mods(gen_number):
     logger.debug("Applying move mod for gen {}".format(gen_number))
     for gen_number in reversed(range(gen_number, CURRENT_GEN)):
@@ -57,6 +70,7 @@ def apply_gen_3_mods():
     apply_move_mods(3)
     apply_pokedex_mods(4)  # no pokedex mods in gen3 so use gen4
     undo_physical_special_split()
+    _steel_resists_dark_and_ghost()
 
 
 # these are the same as gen3
@@ -70,6 +84,18 @@ def apply_gen_1_mods():
         pokedex_mods = json.load(f)
     for pokemon, modifications in pokedex_mods.items():
         pokedex[pokemon].update(modifications)
+    DAMAGE_MULTIPICATION_ARRAY[POKEMON_TYPE_INDICES["ice"]][
+        POKEMON_TYPE_INDICES["fire"]
+    ] = 1
+    DAMAGE_MULTIPICATION_ARRAY[POKEMON_TYPE_INDICES["ghost"]][
+        POKEMON_TYPE_INDICES["psychic"]
+    ] = 0
+    DAMAGE_MULTIPICATION_ARRAY[POKEMON_TYPE_INDICES["poison"]][
+        POKEMON_TYPE_INDICES["bug"]
+    ] = 2
+    DAMAGE_MULTIPICATION_ARRAY[POKEMON_TYPE_INDICES["bug"]][
+        POKEMON_TYPE_INDICES["poison"]
+    ] = 2
 
 
 def apply_gen_4_mods():
@@ -78,6 +104,7 @@ def apply_gen_4_mods():
     constants.REQUEST_DICT_ABILITY = "baseAbility"
     apply_move_mods(4)
     apply_pokedex_mods(4)
+    _steel_resists_dark_and_ghost()
 
 
 def apply_gen_5_mods():
@@ -86,6 +113,7 @@ def apply_gen_5_mods():
     constants.REQUEST_DICT_ABILITY = "baseAbility"
     apply_move_mods(5)
     apply_pokedex_mods(5)
+    _steel_resists_dark_and_ghost()
 
 
 def apply_gen_6_mods():
